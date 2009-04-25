@@ -26,7 +26,5 @@ Asi tambien la recepcionista y los administrativos encargados.
 11.Req. Los productos deberán tener un historial de los ingresos en el servicio, donde debe tener fecha.
 
 
-
-
-
+[!Proyecto volver]
 
