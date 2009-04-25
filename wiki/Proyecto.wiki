@@ -4,4 +4,4 @@ El contenido de está Wiki será toda la información importante referente a el 
 
 = Otros =
 
-  * Requerimientos  haga click aquí : http://code.google.com/p/sigset/wiki/Requerimientos
+  * [Requerimientos]
