@@ -1,6 +1,6 @@
 = Listado de Requerimientos del Sistema =
 
-Requerimientos versión 1.0
+Requerimientos versión 1.0                                            [Proyecto  Volver ]
 
 1.Req :El sistema debe permitir ingresar ordenes de trabajo las cuales consistirán en un formulario donde se ingresarán los datos del cliente, los datos del producto, la fecha de entrega.
 
@@ -25,4 +25,4 @@ Asi tambien la recepcionista y los administrativos encargados.
 
 11.Req. Los productos deberán tener un historial de los ingresos en el servicio, donde debe tener fecha.
 
-                                [Proyecto = Volver = ]
+                                                                      [Proyecto  Volver ]
