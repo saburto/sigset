@@ -1,0 +1,9 @@
+= Descripción General =
+
+El proyecto es un sistema para el control de flujos de procesos de un servicio técnico electrónico. Para este proceso el sistema deberá permitir registrar los artículos que ingresan al servicio y administrar de manera eficiente la carga de trabajo para los técnicos.
+
+En el registro de artículos que ingresan al servicio técnico deberá ser un mantenedor de órdenes de trabajo, además debe contar con un flujo de trabajo manejado por estados, los cuales indicarán la situación actual dentro del servicio.
+
+Para la administración en la carga de trabajo de los técnicos, el sistema deberá permitir realizar una asignación de trabajo a los técnicos dependiendo de su especialidad y disponibilidad de tiempo al momento de realizar la carga. 
+
+El sistema será capaz de balancear los técnicos disponibles con el trabajo disponible según especialidad, y los técnicos deberán evaluar la dificultad del trabajo indicando el tiempo estimado a reparar el articulo, se debe especificar que este tiene un tope preestablecido para el cliente dueño del articulo, pero internamente se manejaran tiempos para una mayor optimización en el uso de recursos y tiempo.
