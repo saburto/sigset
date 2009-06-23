@@ -1,0 +1,1798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sigsetModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="sigsetModelStoreContainer">
+          <EntitySet Name="Articulo" EntityType="sigsetModel.Store.Articulo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Categoria" EntityType="sigsetModel.Store.Categoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cliente" EntityType="sigsetModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contacto" EntityType="sigsetModel.Store.Contacto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Detalle" EntityType="sigsetModel.Store.Detalle" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Direccion" EntityType="sigsetModel.Store.Direccion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Empleado" EntityType="sigsetModel.Store.Empleado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Especialidades" EntityType="sigsetModel.Store.Especialidades" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estado" EntityType="sigsetModel.Store.Estado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Historial_Modificacion_Orden" EntityType="sigsetModel.Store.Historial_Modificacion_Orden" store:Type="Tables" store:Schema="dbo" store:Name="Historial_Modificacion_Orden">
+            <DefiningQuery>SELECT 
+      [Historial_Modificacion_Orden].[Id] AS [Id], 
+      [Historial_Modificacion_Orden].[Id_Orden] AS [Id_Orden], 
+      [Historial_Modificacion_Orden].[Usuario] AS [Usuario], 
+      [Historial_Modificacion_Orden].[Fecha] AS [Fecha], 
+      [Historial_Modificacion_Orden].[Detalle] AS [Detalle]
+      FROM [dbo].[Historial_Modificacion_Orden] AS [Historial_Modificacion_Orden]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Linea" EntityType="sigsetModel.Store.Linea" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Marca" EntityType="sigsetModel.Store.Marca" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Nivel" EntityType="sigsetModel.Store.Nivel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Orden_Trabajo" EntityType="sigsetModel.Store.Orden_Trabajo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Porcentaje" EntityType="sigsetModel.Store.Porcentaje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Precio_Garantia" EntityType="sigsetModel.Store.Precio_Garantia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="sigsetModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tecnicos" EntityType="sigsetModel.Store.Tecnicos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Articulo" EntityType="sigsetModel.Store.Tipo_Articulo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Cargo" EntityType="sigsetModel.Store.Tipo_Cargo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Contacto" EntityType="sigsetModel.Store.Tipo_Contacto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Direccion" EntityType="sigsetModel.Store.Tipo_Direccion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Especialidad" EntityType="sigsetModel.Store.Tipo_Especialidad" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Orden" EntityType="sigsetModel.Store.Tipo_Orden" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Usuario" EntityType="sigsetModel.Store.Tipo_Usuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="sigsetModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Articulo_Categoria" Association="sigsetModel.Store.FK_Articulo_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Marca" Association="sigsetModel.Store.FK_Articulo_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Precio_Garantia" Association="sigsetModel.Store.FK_Articulo_Precio_Garantia">
+            <End Role="Precio_Garantia" EntitySet="Precio_Garantia" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Tipo_Articulo" Association="sigsetModel.Store.FK_Articulo_Tipo_Articulo">
+            <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Cliente" Association="sigsetModel.Store.FK_Contacto_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Tipo_Contacto" Association="sigsetModel.Store.FK_Contacto_Tipo_Contacto">
+            <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Estado" Association="sigsetModel.Store.FK_Detalle_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Orden_Trabajo1" Association="sigsetModel.Store.FK_Detalle_Orden_Trabajo1">
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Usuario" Association="sigsetModel.Store.FK_Detalle_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Cliente" Association="sigsetModel.Store.FK_Direccion_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Tipo_Direccion" Association="sigsetModel.Store.FK_Direccion_Tipo_Direccion">
+            <End Role="Tipo_Direccion" EntitySet="Tipo_Direccion" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Tipo_Cargo" Association="sigsetModel.Store.FK_Empleado_Tipo_Cargo">
+            <End Role="Tipo_Cargo" EntitySet="Tipo_Cargo" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialidades_Tecnicos" Association="sigsetModel.Store.FK_Especialidades_Tecnicos">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Especialidades" EntitySet="Especialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialidades_Tipo_Especialidad" Association="sigsetModel.Store.FK_Especialidades_Tipo_Especialidad">
+            <End Role="Tipo_Especialidad" EntitySet="Tipo_Especialidad" />
+            <End Role="Especialidades" EntitySet="Especialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historial_Modificacion_Orden_Orden_Trabajo" Association="sigsetModel.Store.FK_Historial_Modificacion_Orden_Orden_Trabajo">
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+            <End Role="Historial_Modificacion_Orden" EntitySet="Historial_Modificacion_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marca_Linea" Association="sigsetModel.Store.FK_Marca_Linea">
+            <End Role="Linea" EntitySet="Linea" />
+            <End Role="Marca" EntitySet="Marca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Articulo" Association="sigsetModel.Store.FK_Orden_Trabajo_Articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Cliente" Association="sigsetModel.Store.FK_Orden_Trabajo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Tecnicos" Association="sigsetModel.Store.FK_Orden_Trabajo_Tecnicos">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Tipo_Orden" Association="sigsetModel.Store.FK_Orden_Trabajo_Tipo_Orden">
+            <End Role="Tipo_Orden" EntitySet="Tipo_Orden" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Porcentaje_Precio_Garantia" Association="sigsetModel.Store.FK_Porcentaje_Precio_Garantia">
+            <End Role="Precio_Garantia" EntitySet="Precio_Garantia" />
+            <End Role="Porcentaje" EntitySet="Porcentaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_Empleado" Association="sigsetModel.Store.FK_Tecnicos_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_Nivel" Association="sigsetModel.Store.FK_Tecnicos_Nivel">
+            <End Role="Nivel" EntitySet="Nivel" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Empleado" Association="sigsetModel.Store.FK_Usuario_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Tipo_Usuario" Association="sigsetModel.Store.FK_Usuario_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Modelo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Marca" Type="numeric" Nullable="false" />
+          <Property Name="Tipo_Articulo" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Categoria" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Precio_Garantia" Type="numeric" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido_Paterno" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido_Materno" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Rut" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Tipo_Contacto" Type="numeric" Precision="2" />
+          <Property Name="Valor_Contacto" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Id_Orden" Type="numeric" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="datetime" />
+          <Property Name="Id_Usuario" Type="numeric" />
+          <Property Name="Detalle" Type="varchar" MaxLength="250" />
+          <Property Name="Estado" Type="numeric" Nullable="false" Precision="4" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Rut" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Region" Type="numeric" Nullable="false" Precision="2" />
+          <Property Name="Ciudad" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Comuna" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Calle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Numero" Type="numeric" Nullable="false" Precision="8" />
+          <Property Name="Codigo_Postal" Type="varchar" MaxLength="10" />
+          <Property Name="Tipo_Direccion" Type="numeric" Nullable="false" Precision="2" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido_Paterno" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido_Materno" Type="varchar" MaxLength="50" />
+          <Property Name="Tipo_Cargo" Type="numeric" Nullable="false" Precision="4" />
+        </EntityType>
+        <EntityType Name="Especialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Id_Tecnico" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Tipo_Especialidad" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'sigset.dbo.Historial_Modificacion_Orden' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Historial_Modificacion_Orden">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Id_Orden" />
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Id_Orden" Type="numeric" Nullable="false" />
+          <Property Name="Usuario" Type="numeric" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Linea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Linea" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Orden_Trabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Id_Cliente" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Id_Articulo" Type="numeric" Nullable="false" />
+          <Property Name="Serie" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Fecha_Ingreso" Type="datetime" Nullable="false" />
+          <Property Name="Fecha_Entrega" Type="datetime" Nullable="false" />
+          <Property Name="Falla" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Condicion_Articulo" Type="numeric" />
+          <Property Name="Id_Tecnico_Asignado" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Tipo_Orden" Type="numeric" />
+          <Property Name="Boleta" Type="varchar" MaxLength="50" />
+          <Property Name="Poliza" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_Compra" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Porcentaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Id_Precio" Type="numeric" Nullable="false" />
+          <Property Name="Porcentaje" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Precio_Garantia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Articulo" Type="numeric" Nullable="false" />
+          <Property Name="Valor_Revision" Type="numeric" Nullable="false" />
+          <Property Name="Valor_Reparacion" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="numeric" Nullable="false" Precision="10" />
+          <Property Name="Nivel" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Articulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tipo_Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="2" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tipo_Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="2" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tipo_Especialidad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Orden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tipo_Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Contraseña" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Tipo_Usuario" Type="numeric" Nullable="false" Precision="4" />
+          <Property Name="Empleado" Type="numeric" Precision="10" />
+        </EntityType>
+        <Association Name="FK_Articulo_Categoria">
+          <End Role="Categoria" Type="sigsetModel.Store.Categoria" Multiplicity="1" />
+          <End Role="Articulo" Type="sigsetModel.Store.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Marca">
+          <End Role="Marca" Type="sigsetModel.Store.Marca" Multiplicity="1" />
+          <End Role="Articulo" Type="sigsetModel.Store.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Precio_Garantia">
+          <End Role="Precio_Garantia" Type="sigsetModel.Store.Precio_Garantia" Multiplicity="0..1" />
+          <End Role="Articulo" Type="sigsetModel.Store.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Precio_Garantia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Precio_Garantia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Tipo_Articulo">
+          <End Role="Tipo_Articulo" Type="sigsetModel.Store.Tipo_Articulo" Multiplicity="1" />
+          <End Role="Articulo" Type="sigsetModel.Store.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Articulo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Tipo_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Cliente">
+          <End Role="Cliente" Type="sigsetModel.Store.Cliente" Multiplicity="1" />
+          <End Role="Contacto" Type="sigsetModel.Store.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Tipo_Contacto">
+          <End Role="Tipo_Contacto" Type="sigsetModel.Store.Tipo_Contacto" Multiplicity="0..1" />
+          <End Role="Contacto" Type="sigsetModel.Store.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Contacto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="Tipo_Contacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Estado">
+          <End Role="Estado" Type="sigsetModel.Store.Estado" Multiplicity="1" />
+          <End Role="Detalle" Type="sigsetModel.Store.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Orden_Trabajo1">
+          <End Role="Orden_Trabajo" Type="sigsetModel.Store.Orden_Trabajo" Multiplicity="1" />
+          <End Role="Detalle" Type="sigsetModel.Store.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Trabajo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Id_Orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Usuario">
+          <End Role="Usuario" Type="sigsetModel.Store.Usuario" Multiplicity="0..1" />
+          <End Role="Detalle" Type="sigsetModel.Store.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Cliente">
+          <End Role="Cliente" Type="sigsetModel.Store.Cliente" Multiplicity="1" />
+          <End Role="Direccion" Type="sigsetModel.Store.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Tipo_Direccion">
+          <End Role="Tipo_Direccion" Type="sigsetModel.Store.Tipo_Direccion" Multiplicity="1" />
+          <End Role="Direccion" Type="sigsetModel.Store.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Direccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="Tipo_Direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Tipo_Cargo">
+          <End Role="Tipo_Cargo" Type="sigsetModel.Store.Tipo_Cargo" Multiplicity="1" />
+          <End Role="Empleado" Type="sigsetModel.Store.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Cargo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Tipo_Cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Especialidades_Tecnicos">
+          <End Role="Tecnicos" Type="sigsetModel.Store.Tecnicos" Multiplicity="1" />
+          <End Role="Especialidades" Type="sigsetModel.Store.Especialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Especialidades">
+              <PropertyRef Name="Id_Tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Especialidades_Tipo_Especialidad">
+          <End Role="Tipo_Especialidad" Type="sigsetModel.Store.Tipo_Especialidad" Multiplicity="1" />
+          <End Role="Especialidades" Type="sigsetModel.Store.Especialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Especialidad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Especialidades">
+              <PropertyRef Name="Tipo_Especialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historial_Modificacion_Orden_Orden_Trabajo">
+          <End Role="Orden_Trabajo" Type="sigsetModel.Store.Orden_Trabajo" Multiplicity="1" />
+          <End Role="Historial_Modificacion_Orden" Type="sigsetModel.Store.Historial_Modificacion_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Trabajo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Historial_Modificacion_Orden">
+              <PropertyRef Name="Id_Orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marca_Linea">
+          <End Role="Linea" Type="sigsetModel.Store.Linea" Multiplicity="1" />
+          <End Role="Marca" Type="sigsetModel.Store.Marca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Linea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marca">
+              <PropertyRef Name="Linea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Articulo">
+          <End Role="Articulo" Type="sigsetModel.Store.Articulo" Multiplicity="1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Store.Orden_Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orden_Trabajo">
+              <PropertyRef Name="Id_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Cliente">
+          <End Role="Cliente" Type="sigsetModel.Store.Cliente" Multiplicity="1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Store.Orden_Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Orden_Trabajo">
+              <PropertyRef Name="Id_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Tecnicos">
+          <End Role="Tecnicos" Type="sigsetModel.Store.Tecnicos" Multiplicity="1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Store.Orden_Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnicos">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Orden_Trabajo">
+              <PropertyRef Name="Id_Tecnico_Asignado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Tipo_Orden">
+          <End Role="Tipo_Orden" Type="sigsetModel.Store.Tipo_Orden" Multiplicity="0..1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Store.Orden_Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Orden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orden_Trabajo">
+              <PropertyRef Name="Tipo_Orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Porcentaje_Precio_Garantia">
+          <End Role="Precio_Garantia" Type="sigsetModel.Store.Precio_Garantia" Multiplicity="1" />
+          <End Role="Porcentaje" Type="sigsetModel.Store.Porcentaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Precio_Garantia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Porcentaje">
+              <PropertyRef Name="Id_Precio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_Empleado">
+          <End Role="Empleado" Type="sigsetModel.Store.Empleado" Multiplicity="1" />
+          <End Role="Tecnicos" Type="sigsetModel.Store.Tecnicos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnicos_Nivel">
+          <End Role="Nivel" Type="sigsetModel.Store.Nivel" Multiplicity="1" />
+          <End Role="Tecnicos" Type="sigsetModel.Store.Tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="Nivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Empleado">
+          <End Role="Empleado" Type="sigsetModel.Store.Empleado" Multiplicity="0..1" />
+          <End Role="Usuario" Type="sigsetModel.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="sigsetModel.Store.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Usuario" Type="sigsetModel.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Tipo_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sigsetModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="sigsetEntities">
+          <EntitySet Name="Articulo" EntityType="sigsetModel.Articulo" />
+          <EntitySet Name="Categoria" EntityType="sigsetModel.Categoria" />
+          <EntitySet Name="Cliente" EntityType="sigsetModel.Cliente" />
+          <EntitySet Name="Contacto" EntityType="sigsetModel.Contacto" />
+          <EntitySet Name="Detalle" EntityType="sigsetModel.Detalle" />
+          <EntitySet Name="Direccion" EntityType="sigsetModel.Direccion" />
+          <EntitySet Name="Empleado" EntityType="sigsetModel.Empleado" />
+          <EntitySet Name="Especialidades" EntityType="sigsetModel.Especialidades" />
+          <EntitySet Name="Estado" EntityType="sigsetModel.Estado" />
+          <EntitySet Name="Historial_Modificacion_Orden" EntityType="sigsetModel.Historial_Modificacion_Orden" />
+          <EntitySet Name="Linea" EntityType="sigsetModel.Linea" />
+          <EntitySet Name="Marca" EntityType="sigsetModel.Marca" />
+          <EntitySet Name="Nivel" EntityType="sigsetModel.Nivel" />
+          <EntitySet Name="Orden_Trabajo" EntityType="sigsetModel.Orden_Trabajo" />
+          <EntitySet Name="Porcentaje" EntityType="sigsetModel.Porcentaje" />
+          <EntitySet Name="Precio_Garantia" EntityType="sigsetModel.Precio_Garantia" />
+          <EntitySet Name="sysdiagrams" EntityType="sigsetModel.sysdiagrams" />
+          <EntitySet Name="Tecnicos" EntityType="sigsetModel.Tecnicos" />
+          <EntitySet Name="Tipo_Articulo" EntityType="sigsetModel.Tipo_Articulo" />
+          <EntitySet Name="Tipo_Cargo" EntityType="sigsetModel.Tipo_Cargo" />
+          <EntitySet Name="Tipo_Contacto" EntityType="sigsetModel.Tipo_Contacto" />
+          <EntitySet Name="Tipo_Direccion" EntityType="sigsetModel.Tipo_Direccion" />
+          <EntitySet Name="Tipo_Especialidad" EntityType="sigsetModel.Tipo_Especialidad" />
+          <EntitySet Name="Tipo_Orden" EntityType="sigsetModel.Tipo_Orden" />
+          <EntitySet Name="Tipo_Usuario" EntityType="sigsetModel.Tipo_Usuario" />
+          <EntitySet Name="Usuario" EntityType="sigsetModel.Usuario" />
+          <AssociationSet Name="FK_Articulo_Categoria" Association="sigsetModel.FK_Articulo_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Marca" Association="sigsetModel.FK_Articulo_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Precio_Garantia" Association="sigsetModel.FK_Articulo_Precio_Garantia">
+            <End Role="Precio_Garantia" EntitySet="Precio_Garantia" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Tipo_Articulo" Association="sigsetModel.FK_Articulo_Tipo_Articulo">
+            <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Articulo" Association="sigsetModel.FK_Orden_Trabajo_Articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Cliente" Association="sigsetModel.FK_Contacto_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Cliente" Association="sigsetModel.FK_Direccion_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Cliente" Association="sigsetModel.FK_Orden_Trabajo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Tipo_Contacto" Association="sigsetModel.FK_Contacto_Tipo_Contacto">
+            <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Estado" Association="sigsetModel.FK_Detalle_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Orden_Trabajo1" Association="sigsetModel.FK_Detalle_Orden_Trabajo1">
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Usuario" Association="sigsetModel.FK_Detalle_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Tipo_Direccion" Association="sigsetModel.FK_Direccion_Tipo_Direccion">
+            <End Role="Tipo_Direccion" EntitySet="Tipo_Direccion" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Tipo_Cargo" Association="sigsetModel.FK_Empleado_Tipo_Cargo">
+            <End Role="Tipo_Cargo" EntitySet="Tipo_Cargo" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_Empleado" Association="sigsetModel.FK_Tecnicos_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Empleado" Association="sigsetModel.FK_Usuario_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialidades_Tecnicos" Association="sigsetModel.FK_Especialidades_Tecnicos">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Especialidades" EntitySet="Especialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialidades_Tipo_Especialidad" Association="sigsetModel.FK_Especialidades_Tipo_Especialidad">
+            <End Role="Tipo_Especialidad" EntitySet="Tipo_Especialidad" />
+            <End Role="Especialidades" EntitySet="Especialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historial_Modificacion_Orden_Orden_Trabajo" Association="sigsetModel.FK_Historial_Modificacion_Orden_Orden_Trabajo">
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+            <End Role="Historial_Modificacion_Orden" EntitySet="Historial_Modificacion_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marca_Linea" Association="sigsetModel.FK_Marca_Linea">
+            <End Role="Linea" EntitySet="Linea" />
+            <End Role="Marca" EntitySet="Marca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnicos_Nivel" Association="sigsetModel.FK_Tecnicos_Nivel">
+            <End Role="Nivel" EntitySet="Nivel" />
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Tecnicos" Association="sigsetModel.FK_Orden_Trabajo_Tecnicos">
+            <End Role="Tecnicos" EntitySet="Tecnicos" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orden_Trabajo_Tipo_Orden" Association="sigsetModel.FK_Orden_Trabajo_Tipo_Orden">
+            <End Role="Tipo_Orden" EntitySet="Tipo_Orden" />
+            <End Role="Orden_Trabajo" EntitySet="Orden_Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Porcentaje_Precio_Garantia" Association="sigsetModel.FK_Porcentaje_Precio_Garantia">
+            <End Role="Precio_Garantia" EntitySet="Precio_Garantia" />
+            <End Role="Porcentaje" EntitySet="Porcentaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Tipo_Usuario" Association="sigsetModel.FK_Usuario_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Categoria" Relationship="sigsetModel.FK_Articulo_Categoria" FromRole="Articulo" ToRole="Categoria" />
+          <NavigationProperty Name="Marca" Relationship="sigsetModel.FK_Articulo_Marca" FromRole="Articulo" ToRole="Marca" />
+          <NavigationProperty Name="Precio_Garantia" Relationship="sigsetModel.FK_Articulo_Precio_Garantia" FromRole="Articulo" ToRole="Precio_Garantia" />
+          <NavigationProperty Name="Tipo_Articulo" Relationship="sigsetModel.FK_Articulo_Tipo_Articulo" FromRole="Articulo" ToRole="Tipo_Articulo" />
+          <NavigationProperty Name="Orden_Trabajo" Relationship="sigsetModel.FK_Orden_Trabajo_Articulo" FromRole="Articulo" ToRole="Orden_Trabajo" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Articulo" Relationship="sigsetModel.FK_Articulo_Categoria" FromRole="Categoria" ToRole="Articulo" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido_Paterno" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido_Materno" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contacto" Relationship="sigsetModel.FK_Contacto_Cliente" FromRole="Cliente" ToRole="Contacto" />
+          <NavigationProperty Name="Direccion" Relationship="sigsetModel.FK_Direccion_Cliente" FromRole="Cliente" ToRole="Direccion" />
+          <NavigationProperty Name="Orden_Trabajo" Relationship="sigsetModel.FK_Orden_Trabajo_Cliente" FromRole="Cliente" ToRole="Orden_Trabajo" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Valor_Contacto" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Cliente" Relationship="sigsetModel.FK_Contacto_Cliente" FromRole="Contacto" ToRole="Cliente" />
+          <NavigationProperty Name="Tipo_Contacto" Relationship="sigsetModel.FK_Contacto_Tipo_Contacto" FromRole="Contacto" ToRole="Tipo_Contacto" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" />
+          <Property Name="Detalle1" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Estado" Relationship="sigsetModel.FK_Detalle_Estado" FromRole="Detalle" ToRole="Estado" />
+          <NavigationProperty Name="Orden_Trabajo" Relationship="sigsetModel.FK_Detalle_Orden_Trabajo1" FromRole="Detalle" ToRole="Orden_Trabajo" />
+          <NavigationProperty Name="Usuario" Relationship="sigsetModel.FK_Detalle_Usuario" FromRole="Detalle" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Region" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Comuna" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Calle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Numero" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+          <Property Name="Codigo_Postal" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Cliente" Relationship="sigsetModel.FK_Direccion_Cliente" FromRole="Direccion" ToRole="Cliente" />
+          <NavigationProperty Name="Tipo_Direccion" Relationship="sigsetModel.FK_Direccion_Tipo_Direccion" FromRole="Direccion" ToRole="Tipo_Direccion" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido_Paterno" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido_Materno" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tipo_Cargo" Relationship="sigsetModel.FK_Empleado_Tipo_Cargo" FromRole="Empleado" ToRole="Tipo_Cargo" />
+          <NavigationProperty Name="Tecnicos" Relationship="sigsetModel.FK_Tecnicos_Empleado" FromRole="Empleado" ToRole="Tecnicos" />
+          <NavigationProperty Name="Usuario" Relationship="sigsetModel.FK_Usuario_Empleado" FromRole="Empleado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Especialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Tecnicos" Relationship="sigsetModel.FK_Especialidades_Tecnicos" FromRole="Especialidades" ToRole="Tecnicos" />
+          <NavigationProperty Name="Tipo_Especialidad" Relationship="sigsetModel.FK_Especialidades_Tipo_Especialidad" FromRole="Especialidades" ToRole="Tipo_Especialidad" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Descripcion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Detalle" Relationship="sigsetModel.FK_Detalle_Estado" FromRole="Estado" ToRole="Detalle" />
+        </EntityType>
+        <EntityType Name="Historial_Modificacion_Orden">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Id_Orden" />
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Id_Orden" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Usuario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Orden_Trabajo" Relationship="sigsetModel.FK_Historial_Modificacion_Orden_Orden_Trabajo" FromRole="Historial_Modificacion_Orden" ToRole="Orden_Trabajo" />
+        </EntityType>
+        <EntityType Name="Linea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Marca" Relationship="sigsetModel.FK_Marca_Linea" FromRole="Linea" ToRole="Marca" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Articulo" Relationship="sigsetModel.FK_Articulo_Marca" FromRole="Marca" ToRole="Articulo" />
+          <NavigationProperty Name="Linea" Relationship="sigsetModel.FK_Marca_Linea" FromRole="Marca" ToRole="Linea" />
+        </EntityType>
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tecnicos" Relationship="sigsetModel.FK_Tecnicos_Nivel" FromRole="Nivel" ToRole="Tecnicos" />
+        </EntityType>
+        <EntityType Name="Orden_Trabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Serie" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Fecha_Ingreso" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha_Entrega" Type="DateTime" Nullable="false" />
+          <Property Name="Falla" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="Condicion_Articulo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Boleta" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Poliza" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Fecha_Compra" Type="DateTime" />
+          <NavigationProperty Name="Articulo" Relationship="sigsetModel.FK_Orden_Trabajo_Articulo" FromRole="Orden_Trabajo" ToRole="Articulo" />
+          <NavigationProperty Name="Cliente" Relationship="sigsetModel.FK_Orden_Trabajo_Cliente" FromRole="Orden_Trabajo" ToRole="Cliente" />
+          <NavigationProperty Name="Detalle" Relationship="sigsetModel.FK_Detalle_Orden_Trabajo1" FromRole="Orden_Trabajo" ToRole="Detalle" />
+          <NavigationProperty Name="Historial_Modificacion_Orden" Relationship="sigsetModel.FK_Historial_Modificacion_Orden_Orden_Trabajo" FromRole="Orden_Trabajo" ToRole="Historial_Modificacion_Orden" />
+          <NavigationProperty Name="Tecnicos" Relationship="sigsetModel.FK_Orden_Trabajo_Tecnicos" FromRole="Orden_Trabajo" ToRole="Tecnicos" />
+          <NavigationProperty Name="Tipo_Orden" Relationship="sigsetModel.FK_Orden_Trabajo_Tipo_Orden" FromRole="Orden_Trabajo" ToRole="Tipo_Orden" />
+        </EntityType>
+        <EntityType Name="Porcentaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Porcentaje1" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Precio_Garantia" Relationship="sigsetModel.FK_Porcentaje_Precio_Garantia" FromRole="Porcentaje" ToRole="Precio_Garantia" />
+        </EntityType>
+        <EntityType Name="Precio_Garantia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Articulo" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Valor_Revision" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Valor_Reparacion" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Articulo1" Relationship="sigsetModel.FK_Articulo_Precio_Garantia" FromRole="Precio_Garantia" ToRole="Articulo" />
+          <NavigationProperty Name="Porcentaje" Relationship="sigsetModel.FK_Porcentaje_Precio_Garantia" FromRole="Precio_Garantia" ToRole="Porcentaje" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tecnicos">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <NavigationProperty Name="Empleado" Relationship="sigsetModel.FK_Tecnicos_Empleado" FromRole="Tecnicos" ToRole="Empleado" />
+          <NavigationProperty Name="Especialidades" Relationship="sigsetModel.FK_Especialidades_Tecnicos" FromRole="Tecnicos" ToRole="Especialidades" />
+          <NavigationProperty Name="Nivel" Relationship="sigsetModel.FK_Tecnicos_Nivel" FromRole="Tecnicos" ToRole="Nivel" />
+          <NavigationProperty Name="Orden_Trabajo" Relationship="sigsetModel.FK_Orden_Trabajo_Tecnicos" FromRole="Tecnicos" ToRole="Orden_Trabajo" />
+        </EntityType>
+        <EntityType Name="Tipo_Articulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Articulo" Relationship="sigsetModel.FK_Articulo_Tipo_Articulo" FromRole="Tipo_Articulo" ToRole="Articulo" />
+        </EntityType>
+        <EntityType Name="Tipo_Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Empleado" Relationship="sigsetModel.FK_Empleado_Tipo_Cargo" FromRole="Tipo_Cargo" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contacto" Relationship="sigsetModel.FK_Contacto_Tipo_Contacto" FromRole="Tipo_Contacto" ToRole="Contacto" />
+        </EntityType>
+        <EntityType Name="Tipo_Direccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Direccion" Relationship="sigsetModel.FK_Direccion_Tipo_Direccion" FromRole="Tipo_Direccion" ToRole="Direccion" />
+        </EntityType>
+        <EntityType Name="Tipo_Especialidad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Especialidades" Relationship="sigsetModel.FK_Especialidades_Tipo_Especialidad" FromRole="Tipo_Especialidad" ToRole="Especialidades" />
+        </EntityType>
+        <EntityType Name="Tipo_Orden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Orden_Trabajo" Relationship="sigsetModel.FK_Orden_Trabajo_Tipo_Orden" FromRole="Tipo_Orden" ToRole="Orden_Trabajo" />
+        </EntityType>
+        <EntityType Name="Tipo_Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Usuario" Relationship="sigsetModel.FK_Usuario_Tipo_Usuario" FromRole="Tipo_Usuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Detalle" Relationship="sigsetModel.FK_Detalle_Usuario" FromRole="Usuario" ToRole="Detalle" />
+          <NavigationProperty Name="Empleado" Relationship="sigsetModel.FK_Usuario_Empleado" FromRole="Usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Tipo_Usuario" Relationship="sigsetModel.FK_Usuario_Tipo_Usuario" FromRole="Usuario" ToRole="Tipo_Usuario" />
+        </EntityType>
+        <Association Name="FK_Articulo_Categoria">
+          <End Role="Categoria" Type="sigsetModel.Categoria" Multiplicity="1" />
+          <End Role="Articulo" Type="sigsetModel.Articulo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Articulo_Marca">
+          <End Role="Marca" Type="sigsetModel.Marca" Multiplicity="1" />
+          <End Role="Articulo" Type="sigsetModel.Articulo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Articulo_Precio_Garantia">
+          <End Role="Precio_Garantia" Type="sigsetModel.Precio_Garantia" Multiplicity="0..1" />
+          <End Role="Articulo" Type="sigsetModel.Articulo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Articulo_Tipo_Articulo">
+          <End Role="Tipo_Articulo" Type="sigsetModel.Tipo_Articulo" Multiplicity="1" />
+          <End Role="Articulo" Type="sigsetModel.Articulo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Articulo">
+          <End Role="Articulo" Type="sigsetModel.Articulo" Multiplicity="1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Orden_Trabajo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Contacto_Cliente">
+          <End Role="Cliente" Type="sigsetModel.Cliente" Multiplicity="1" />
+          <End Role="Contacto" Type="sigsetModel.Contacto" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Direccion_Cliente">
+          <End Role="Cliente" Type="sigsetModel.Cliente" Multiplicity="1" />
+          <End Role="Direccion" Type="sigsetModel.Direccion" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Cliente">
+          <End Role="Cliente" Type="sigsetModel.Cliente" Multiplicity="1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Orden_Trabajo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Contacto_Tipo_Contacto">
+          <End Role="Tipo_Contacto" Type="sigsetModel.Tipo_Contacto" Multiplicity="0..1" />
+          <End Role="Contacto" Type="sigsetModel.Contacto" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Detalle_Estado">
+          <End Role="Estado" Type="sigsetModel.Estado" Multiplicity="1" />
+          <End Role="Detalle" Type="sigsetModel.Detalle" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Detalle_Orden_Trabajo1">
+          <End Role="Orden_Trabajo" Type="sigsetModel.Orden_Trabajo" Multiplicity="1" />
+          <End Role="Detalle" Type="sigsetModel.Detalle" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Detalle_Usuario">
+          <End Role="Usuario" Type="sigsetModel.Usuario" Multiplicity="0..1" />
+          <End Role="Detalle" Type="sigsetModel.Detalle" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Direccion_Tipo_Direccion">
+          <End Role="Tipo_Direccion" Type="sigsetModel.Tipo_Direccion" Multiplicity="1" />
+          <End Role="Direccion" Type="sigsetModel.Direccion" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Empleado_Tipo_Cargo">
+          <End Role="Tipo_Cargo" Type="sigsetModel.Tipo_Cargo" Multiplicity="1" />
+          <End Role="Empleado" Type="sigsetModel.Empleado" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Tecnicos_Empleado">
+          <End Role="Empleado" Type="sigsetModel.Empleado" Multiplicity="1" />
+          <End Role="Tecnicos" Type="sigsetModel.Tecnicos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Tecnicos">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Empleado">
+          <End Role="Empleado" Type="sigsetModel.Empleado" Multiplicity="0..1" />
+          <End Role="Usuario" Type="sigsetModel.Usuario" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Especialidades_Tecnicos">
+          <End Role="Tecnicos" Type="sigsetModel.Tecnicos" Multiplicity="1" />
+          <End Role="Especialidades" Type="sigsetModel.Especialidades" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Especialidades_Tipo_Especialidad">
+          <End Role="Tipo_Especialidad" Type="sigsetModel.Tipo_Especialidad" Multiplicity="1" />
+          <End Role="Especialidades" Type="sigsetModel.Especialidades" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Historial_Modificacion_Orden_Orden_Trabajo">
+          <End Role="Orden_Trabajo" Type="sigsetModel.Orden_Trabajo" Multiplicity="1" />
+          <End Role="Historial_Modificacion_Orden" Type="sigsetModel.Historial_Modificacion_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Trabajo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Historial_Modificacion_Orden">
+              <PropertyRef Name="Id_Orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marca_Linea">
+          <End Role="Linea" Type="sigsetModel.Linea" Multiplicity="1" />
+          <End Role="Marca" Type="sigsetModel.Marca" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Tecnicos_Nivel">
+          <End Role="Nivel" Type="sigsetModel.Nivel" Multiplicity="1" />
+          <End Role="Tecnicos" Type="sigsetModel.Tecnicos" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Tecnicos">
+          <End Role="Tecnicos" Type="sigsetModel.Tecnicos" Multiplicity="1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Orden_Trabajo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Orden_Trabajo_Tipo_Orden">
+          <End Role="Tipo_Orden" Type="sigsetModel.Tipo_Orden" Multiplicity="0..1" />
+          <End Role="Orden_Trabajo" Type="sigsetModel.Orden_Trabajo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Porcentaje_Precio_Garantia">
+          <End Role="Precio_Garantia" Type="sigsetModel.Precio_Garantia" Multiplicity="1" />
+          <End Role="Porcentaje" Type="sigsetModel.Porcentaje" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Usuario_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="sigsetModel.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Usuario" Type="sigsetModel.Usuario" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="sigsetModelStoreContainer" CdmEntityContainer="sigsetEntities">
+          <EntitySetMapping Name="Articulo">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Articulo)">
+              <MappingFragment StoreEntitySet="Articulo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Categoria)">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Cliente)">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacto">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Contacto)">
+              <MappingFragment StoreEntitySet="Contacto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Valor_Contacto" ColumnName="Valor_Contacto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Detalle)">
+              <MappingFragment StoreEntitySet="Detalle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Detalle1" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Direccion)">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Codigo_Postal" ColumnName="Codigo_Postal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Empleado)">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidades">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Especialidades)">
+              <MappingFragment StoreEntitySet="Especialidades">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Estado)">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historial_Modificacion_Orden">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Historial_Modificacion_Orden)">
+              <MappingFragment StoreEntitySet="Historial_Modificacion_Orden">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Linea">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Linea)">
+              <MappingFragment StoreEntitySet="Linea">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Marca)">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nivel">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Nivel)">
+              <MappingFragment StoreEntitySet="Nivel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden_Trabajo">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Orden_Trabajo)">
+              <MappingFragment StoreEntitySet="Orden_Trabajo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+                <ScalarProperty Name="Fecha_Entrega" ColumnName="Fecha_Entrega" />
+                <ScalarProperty Name="Falla" ColumnName="Falla" />
+                <ScalarProperty Name="Condicion_Articulo" ColumnName="Condicion_Articulo" />
+                <ScalarProperty Name="Boleta" ColumnName="Boleta" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="Fecha_Compra" ColumnName="Fecha_Compra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Porcentaje">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Porcentaje)">
+              <MappingFragment StoreEntitySet="Porcentaje">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Porcentaje1" ColumnName="Porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Precio_Garantia">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Precio_Garantia)">
+              <MappingFragment StoreEntitySet="Precio_Garantia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Articulo" ColumnName="Articulo" />
+                <ScalarProperty Name="Valor_Revision" ColumnName="Valor_Revision" />
+                <ScalarProperty Name="Valor_Reparacion" ColumnName="Valor_Reparacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.sysdiagrams)">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tecnicos">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tecnicos)">
+              <MappingFragment StoreEntitySet="Tecnicos">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Articulo">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Articulo)">
+              <MappingFragment StoreEntitySet="Tipo_Articulo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Cargo">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Cargo)">
+              <MappingFragment StoreEntitySet="Tipo_Cargo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Contacto">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Contacto)">
+              <MappingFragment StoreEntitySet="Tipo_Contacto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Direccion">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Direccion)">
+              <MappingFragment StoreEntitySet="Tipo_Direccion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Especialidad">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Especialidad)">
+              <MappingFragment StoreEntitySet="Tipo_Especialidad">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Orden">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Orden)">
+              <MappingFragment StoreEntitySet="Tipo_Orden">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Usuario">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Tipo_Usuario)">
+              <MappingFragment StoreEntitySet="Tipo_Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="IsTypeOf(sigsetModel.Usuario)">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Articulo_Categoria" TypeName="sigsetModel.FK_Articulo_Categoria" StoreEntitySet="Articulo">
+            <EndProperty Name="Categoria">
+              <ScalarProperty Name="Id" ColumnName="Categoria" />
+            </EndProperty>
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Articulo_Marca" TypeName="sigsetModel.FK_Articulo_Marca" StoreEntitySet="Articulo">
+            <EndProperty Name="Marca">
+              <ScalarProperty Name="Id" ColumnName="Marca" />
+            </EndProperty>
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Articulo_Precio_Garantia" TypeName="sigsetModel.FK_Articulo_Precio_Garantia" StoreEntitySet="Articulo">
+            <EndProperty Name="Precio_Garantia">
+              <ScalarProperty Name="Id" ColumnName="Precio_Garantia" />
+            </EndProperty>
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="Precio_Garantia" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Articulo_Tipo_Articulo" TypeName="sigsetModel.FK_Articulo_Tipo_Articulo" StoreEntitySet="Articulo">
+            <EndProperty Name="Tipo_Articulo">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Articulo" />
+            </EndProperty>
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Orden_Trabajo_Articulo" TypeName="sigsetModel.FK_Orden_Trabajo_Articulo" StoreEntitySet="Orden_Trabajo">
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="Id" ColumnName="Id_Articulo" />
+            </EndProperty>
+            <EndProperty Name="Orden_Trabajo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Contacto_Cliente" TypeName="sigsetModel.FK_Contacto_Cliente" StoreEntitySet="Contacto">
+            <EndProperty Name="Cliente">
+              <ScalarProperty Name="Rut" ColumnName="Rut" />
+            </EndProperty>
+            <EndProperty Name="Contacto">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Direccion_Cliente" TypeName="sigsetModel.FK_Direccion_Cliente" StoreEntitySet="Direccion">
+            <EndProperty Name="Cliente">
+              <ScalarProperty Name="Rut" ColumnName="Rut" />
+            </EndProperty>
+            <EndProperty Name="Direccion">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Orden_Trabajo_Cliente" TypeName="sigsetModel.FK_Orden_Trabajo_Cliente" StoreEntitySet="Orden_Trabajo">
+            <EndProperty Name="Cliente">
+              <ScalarProperty Name="Rut" ColumnName="Id_Cliente" />
+            </EndProperty>
+            <EndProperty Name="Orden_Trabajo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Contacto_Tipo_Contacto" TypeName="sigsetModel.FK_Contacto_Tipo_Contacto" StoreEntitySet="Contacto">
+            <EndProperty Name="Tipo_Contacto">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Contacto" />
+            </EndProperty>
+            <EndProperty Name="Contacto">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="Tipo_Contacto" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Detalle_Estado" TypeName="sigsetModel.FK_Detalle_Estado" StoreEntitySet="Detalle">
+            <EndProperty Name="Estado">
+              <ScalarProperty Name="Id" ColumnName="Estado" />
+            </EndProperty>
+            <EndProperty Name="Detalle">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Detalle_Orden_Trabajo1" TypeName="sigsetModel.FK_Detalle_Orden_Trabajo1" StoreEntitySet="Detalle">
+            <EndProperty Name="Orden_Trabajo">
+              <ScalarProperty Name="Id" ColumnName="Id_Orden" />
+            </EndProperty>
+            <EndProperty Name="Detalle">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Detalle_Usuario" TypeName="sigsetModel.FK_Detalle_Usuario" StoreEntitySet="Detalle">
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="Id" ColumnName="Id_Usuario" />
+            </EndProperty>
+            <EndProperty Name="Detalle">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="Id_Usuario" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Direccion_Tipo_Direccion" TypeName="sigsetModel.FK_Direccion_Tipo_Direccion" StoreEntitySet="Direccion">
+            <EndProperty Name="Tipo_Direccion">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Direccion" />
+            </EndProperty>
+            <EndProperty Name="Direccion">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Empleado_Tipo_Cargo" TypeName="sigsetModel.FK_Empleado_Tipo_Cargo" StoreEntitySet="Empleado">
+            <EndProperty Name="Tipo_Cargo">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Cargo" />
+            </EndProperty>
+            <EndProperty Name="Empleado">
+              <ScalarProperty Name="Rut" ColumnName="Rut" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Tecnicos_Empleado" TypeName="sigsetModel.FK_Tecnicos_Empleado" StoreEntitySet="Tecnicos">
+            <EndProperty Name="Empleado">
+              <ScalarProperty Name="Rut" ColumnName="Rut" />
+            </EndProperty>
+            <EndProperty Name="Tecnicos">
+              <ScalarProperty Name="Rut" ColumnName="Rut" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Usuario_Empleado" TypeName="sigsetModel.FK_Usuario_Empleado" StoreEntitySet="Usuario">
+            <EndProperty Name="Empleado">
+              <ScalarProperty Name="Rut" ColumnName="Empleado" />
+            </EndProperty>
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="Empleado" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Especialidades_Tecnicos" TypeName="sigsetModel.FK_Especialidades_Tecnicos" StoreEntitySet="Especialidades">
+            <EndProperty Name="Tecnicos">
+              <ScalarProperty Name="Rut" ColumnName="Id_Tecnico" />
+            </EndProperty>
+            <EndProperty Name="Especialidades">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Especialidades_Tipo_Especialidad" TypeName="sigsetModel.FK_Especialidades_Tipo_Especialidad" StoreEntitySet="Especialidades">
+            <EndProperty Name="Tipo_Especialidad">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Especialidad" />
+            </EndProperty>
+            <EndProperty Name="Especialidades">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Historial_Modificacion_Orden_Orden_Trabajo" TypeName="sigsetModel.FK_Historial_Modificacion_Orden_Orden_Trabajo" StoreEntitySet="Historial_Modificacion_Orden">
+            <EndProperty Name="Orden_Trabajo">
+              <ScalarProperty Name="Id" ColumnName="Id_Orden" />
+            </EndProperty>
+            <EndProperty Name="Historial_Modificacion_Orden">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+              <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+              <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Marca_Linea" TypeName="sigsetModel.FK_Marca_Linea" StoreEntitySet="Marca">
+            <EndProperty Name="Linea">
+              <ScalarProperty Name="Id" ColumnName="Linea" />
+            </EndProperty>
+            <EndProperty Name="Marca">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Tecnicos_Nivel" TypeName="sigsetModel.FK_Tecnicos_Nivel" StoreEntitySet="Tecnicos">
+            <EndProperty Name="Nivel">
+              <ScalarProperty Name="Id" ColumnName="Nivel" />
+            </EndProperty>
+            <EndProperty Name="Tecnicos">
+              <ScalarProperty Name="Rut" ColumnName="Rut" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Orden_Trabajo_Tecnicos" TypeName="sigsetModel.FK_Orden_Trabajo_Tecnicos" StoreEntitySet="Orden_Trabajo">
+            <EndProperty Name="Tecnicos">
+              <ScalarProperty Name="Rut" ColumnName="Id_Tecnico_Asignado" />
+            </EndProperty>
+            <EndProperty Name="Orden_Trabajo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Orden_Trabajo_Tipo_Orden" TypeName="sigsetModel.FK_Orden_Trabajo_Tipo_Orden" StoreEntitySet="Orden_Trabajo">
+            <EndProperty Name="Tipo_Orden">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Orden" />
+            </EndProperty>
+            <EndProperty Name="Orden_Trabajo">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="Tipo_Orden" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Porcentaje_Precio_Garantia" TypeName="sigsetModel.FK_Porcentaje_Precio_Garantia" StoreEntitySet="Porcentaje">
+            <EndProperty Name="Precio_Garantia">
+              <ScalarProperty Name="Id" ColumnName="Id_Precio" />
+            </EndProperty>
+            <EndProperty Name="Porcentaje">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Usuario_Tipo_Usuario" TypeName="sigsetModel.FK_Usuario_Tipo_Usuario" StoreEntitySet="Usuario">
+            <EndProperty Name="Tipo_Usuario">
+              <ScalarProperty Name="Id" ColumnName="Tipo_Usuario" />
+            </EndProperty>
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="sigsetModel.Articulo" Width="1.5" PointX="3.75" PointY="23" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Categoria" Width="1.5" PointX="1.5" PointY="19.75" Height="1.4279589843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Cliente" Width="1.5" PointX="0.75" PointY="5.375" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Contacto" Width="1.5" PointX="3" PointY="5.625" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Detalle" Width="1.5" PointX="8.25" PointY="5.375" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Direccion" Width="1.5" PointX="3" PointY="2.125" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Empleado" Width="1.5" PointX="1.5" PointY="13.875" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Especialidades" Width="1.5" PointX="6" PointY="13.125" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Estado" Width="1.5" PointX="6" PointY="2.375" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Historial_Modificacion_Orden" Width="1.5" PointX="8.25" PointY="8.125" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Linea" Width="1.5" PointX="1.5" PointY="27.125" Height="1.4279589843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Marca" Width="1.5" PointX="1.5" PointY="24.125" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Nivel" Width="1.5" PointX="1.5" PointY="11.75" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Orden_Trabajo" Width="1.5" PointX="6" PointY="4.625" Height="3.4001269531249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Porcentaje" Width="1.5" PointX="3.75" PointY="29.75" Height="1.4279589843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Precio_Garantia" Width="1.5" PointX="1.5" PointY="29.5" Height="1.9210009765625031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" Height="1.7566536458333333" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tecnicos" Width="1.5" PointX="3.75" PointY="13" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Articulo" Width="1.5" PointX="1.5" PointY="21.875" Height="1.4279589843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Cargo" Width="1.5" PointX="1.5" PointY="17.25" Height="1.4279589843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Contacto" Width="1.5" PointX="0.75" PointY="8.625" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Direccion" Width="1.5" PointX="0.75" PointY="2.625" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Especialidad" Width="1.5" PointX="3.75" PointY="18.125" Height="1.4279589843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Orden" Width="1.5" PointX="3.75" PointY="8.5" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Tipo_Usuario" Width="1.5" PointX="3.75" PointY="15.75" Height="1.4279589843750014" IsExpanded="true" />
+        <EntityTypeShape EntityType="sigsetModel.Usuario" Width="1.5" PointX="6" PointY="15.5" Height="1.9210009765625014" IsExpanded="true" />
+        <AssociationConnector Association="sigsetModel.FK_Articulo_Categoria" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="20.4639794921875" />
+          <ConnectorPoint PointX="4.5" PointY="20.4639794921875" />
+          <ConnectorPoint PointX="4.5" PointY="23" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Articulo_Marca" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="24.605174153645834" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="24.605174153645834" />
+          <ConnectorPoint PointX="3.4583333333333335" PointY="24.605174153645834" />
+          <ConnectorPoint PointX="3.75" PointY="24.605174153645834" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Articulo_Precio_Garantia" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="30.460500488281252" />
+          <ConnectorPoint PointX="3.375" PointY="30.460500488281252" />
+          <ConnectorPoint PointX="3.375" PointY="23.771335076822915" />
+          <ConnectorPoint PointX="3.75" PointY="23.771335076822915" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Articulo_Tipo_Articulo" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="23.1514794921875" />
+          <ConnectorPoint PointX="3.75" PointY="23.1514794921875" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Orden_Trabajo_Articulo" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="24.042674153645834" />
+          <ConnectorPoint PointX="5.625" PointY="24.042674153645834" />
+          <ConnectorPoint PointX="5.625" PointY="6.3250634765625" />
+          <ConnectorPoint PointX="6" PointY="6.3250634765625" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Contacto_Cliente" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.4211531575520837" />
+          <ConnectorPoint PointX="3" PointY="6.4211531575520837" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Direccion_Cliente" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.8668245787760416" />
+          <ConnectorPoint PointX="2.625" PointY="5.8668245787760416" />
+          <ConnectorPoint PointX="2.625" PointY="3.332021484375" />
+          <ConnectorPoint PointX="3" PointY="3.332021484375" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Orden_Trabajo_Cliente" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.46875" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="5.4687499999999991" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="5.46875" />
+          <ConnectorPoint PointX="6" PointY="5.46875" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Contacto_Tipo_Contacto" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.021708984375" />
+          <ConnectorPoint PointX="3.34375" PointY="10.021708984375" />
+          <ConnectorPoint PointX="3.34375" PointY="7.2173063151041674" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Detalle_Estado" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="3.1860563151041665" />
+          <ConnectorPoint PointX="8.46875" PointY="3.1860563151041665" />
+          <ConnectorPoint PointX="8.46875" PointY="5.375" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Detalle_Orden_Trabajo1" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="6.33550048828125" />
+          <ConnectorPoint PointX="8.25" PointY="6.33550048828125" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Detalle_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="16.460500488281252" />
+          <ConnectorPoint PointX="7.875" PointY="16.460500488281252" />
+          <ConnectorPoint PointX="7.875" PointY="6.8470027324218741" />
+          <ConnectorPoint PointX="8.25" PointY="6.8470027324218741" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Direccion_Tipo_Direccion" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.7549902343749997" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="3.7549902343749992" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="3.7549902343749997" />
+          <ConnectorPoint PointX="3" PointY="3.7549902343749997" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Empleado_Tipo_Cargo" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="17.25" />
+          <ConnectorPoint PointX="2.25" PointY="15.960348307291667" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Tecnicos_Empleado" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="14.315826822916666" />
+          <ConnectorPoint PointX="3.75" PointY="14.315826822916666" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Usuario_Empleado" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="15.593750000000002" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="15.59375" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="15.593750000000002" />
+          <ConnectorPoint PointX="6" PointY="15.593750000000002" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Especialidades_Tecnicos" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="13.8389794921875" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="13.8389794921875" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="13.8389794921875" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="13.8389794921875" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="13.8389794921875" />
+          <ConnectorPoint PointX="6" PointY="13.8389794921875" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Especialidades_Tipo_Especialidad" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="18.8389794921875" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="18.8389794921875" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="18.8389794921875" />
+          <ConnectorPoint PointX="5.75" PointY="18.8389794921875" />
+          <ConnectorPoint PointX="5.75" PointY="14.227221238281249" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="14.227221238281249" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="14.227221238281249" />
+          <ConnectorPoint PointX="6" PointY="14.227221238281249" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Historial_Modificacion_Orden_Orden_Trabajo" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="8.025126953125" />
+          <ConnectorPoint PointX="6.75" PointY="9.08550048828125" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="9.08550048828125" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="9.08550048828125" />
+          <ConnectorPoint PointX="8.25" PointY="9.08550048828125" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Marca_Linea" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="27.125" />
+          <ConnectorPoint PointX="2.25" PointY="25.717306315104167" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Tecnicos_Nivel" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="12.374999500000001" />
+          <ConnectorPoint PointX="4.5" PointY="12.374999500000001" />
+          <ConnectorPoint PointX="4.5" PointY="13" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Orden_Trabajo_Tecnicos" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="14.329068569010417" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="14.329068569010415" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="14.329068569010417" />
+          <ConnectorPoint PointX="5.875" PointY="14.329068569010417" />
+          <ConnectorPoint PointX="5.875" PointY="7.20634721484375" />
+          <ConnectorPoint PointX="6" PointY="7.20634721484375" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Orden_Trabajo_Tipo_Orden" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="9.5067297363281256" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="9.5067297363281256" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="9.5067297363281256" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="9.5067297363281256" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="9.5067297363281256" />
+          <ConnectorPoint PointX="6.3437475" PointY="9.5067297363281256" />
+          <ConnectorPoint PointX="6.3437475" PointY="8.025126953125" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Porcentaje_Precio_Garantia" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="30.881729736328126" />
+          <ConnectorPoint PointX="3.75" PointY="30.881729736328126" /></AssociationConnector>
+        <AssociationConnector Association="sigsetModel.FK_Usuario_Tipo_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="16.4639794921875" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="16.4639794921875" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="16.4639794921875" />
+          <ConnectorPoint PointX="6" PointY="16.4639794921875" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
