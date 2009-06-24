@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 using Web.Seguridad;
+using xVal.ServerSide;
 
 namespace Web.Controllers
 {
@@ -54,15 +55,15 @@ namespace Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
             Justification = "Needs to take same parameter type as Controller.Redirect()")]
-        public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
+        public ActionResult LogOn(string Usuario1, string Contraseña, bool rememberMe, string returnUrl)
         {
 
-            if (!ValidateLogOn(userName, password))
+            if (!ValidateLogOn(Usuario1, Contraseña))
             {
                 return View();
             }
 
-            FormsAuth.SignIn(userName, rememberMe);
+            FormsAuth.SignIn(Usuario1, rememberMe);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
@@ -197,17 +198,26 @@ namespace Web.Controllers
 
         private bool ValidateLogOn(string userName, string password)
         {
-            if (String.IsNullOrEmpty(userName))
+            //if (String.IsNullOrEmpty(userName))
+            //{
+            //    ModelState.AddModelError("username", "You must specify a username.");
+            //}
+            //if (String.IsNullOrEmpty(password))
+            //{
+            //    ModelState.AddModelError("password", "You must specify a password.");
+            //}
+
+            try
             {
-                ModelState.AddModelError("username", "You must specify a username.");
+                if (!MembershipService.ValidateUser(userName, password))
+                {
+                    ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
+                }
+
             }
-            if (String.IsNullOrEmpty(password))
+            catch (RulesException ex )
             {
-                ModelState.AddModelError("password", "You must specify a password.");
-            }
-            if (!MembershipService.ValidateUser(userName, password))
-            {
-                ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
+                ex.AddModelStateErrors(ModelState,"");
             }
 
             return ModelState.IsValid;

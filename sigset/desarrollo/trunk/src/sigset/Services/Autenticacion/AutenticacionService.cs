@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Data.Repositorios.Usuarios;
 using Data.Modelo;
+using Services.Helpers;
+using xVal.ServerSide;
 
 namespace Services.Autenticacion
 {
@@ -46,12 +48,16 @@ namespace Services.Autenticacion
 
         public bool ValidarUsuario(string user, string contrasena)
         {
-            Usuario usuario = _repo.GetUsuarioByNombreUsuario(user);
-            if (usuario != null)
+            Usuario usuario = new Usuario(){Usuario1=user,Contraseña=contrasena};
+            var errors = DataAnnotationsValidationRunner.GetErrors(usuario);
+            if (errors.Any())
             {
-                return usuario.Contraseña == contrasena;
+                throw new RulesException(errors);
             }
-            return false;
+            else
+            {
+                return _repo.GetUsuarioByNombreUsuario(user).Contraseña == contrasena;
+            }
         }
     }
 }

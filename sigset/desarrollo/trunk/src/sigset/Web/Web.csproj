@@ -39,6 +39,12 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity.Design">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,6 +59,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="xVal, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\xVal.0.8\xVal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
@@ -75,6 +85,9 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\xVal.jquery.validate.js" />
+    <Content Include="Scripts\xVal.Messages.es-ES.js" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
@@ -97,6 +110,10 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{F046A285-A437-4076-B056-888152578225}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{821EB115-E7D9-4318-94A6-365736479A4F}</Project>
       <Name>Services</Name>
