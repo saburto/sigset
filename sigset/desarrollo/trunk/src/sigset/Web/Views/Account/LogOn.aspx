@@ -18,12 +18,12 @@
                 <p>
                     <label for="username">Username:</label>
                     <%= Html.TextBox("Usuario1")%>
-                    <%= Html.ValidationMessage("Usuario1") %>
+                    <%= Html.ValidationMessage("Usuario1","*") %>
                 </p>
                 <p>
                     <label for="password">Password:</label>
                     <%= Html.Password("Contraseña")%>
-                    <%= Html.ValidationMessage("Contraseña") %>
+                    <%= Html.ValidationMessage("Contraseña", "*") %>
                 </p>
                 <p>
                     <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Remember me?</label>
@@ -34,5 +34,5 @@
             </fieldset>
         </div>
     <% } %>
-    <% =Html.ClientSideValidation("",typeof(Data.Modelo.Usuario)) %>
+    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Usuario))%>
 </asp:Content>

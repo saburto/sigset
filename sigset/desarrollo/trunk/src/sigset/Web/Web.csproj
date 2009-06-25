@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Seguridad\IFormsAuthenticationService.cs" />
@@ -124,6 +125,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\ad.gif" />
+    <Content Include="Content\images\bg-button.png" />
+    <Content Include="Content\images\bg-column-left.png" />
+    <Content Include="Content\images\bg-column-right.png" />
+    <Content Include="Content\images\bg-input.png" />
+    <Content Include="Content\images\bg-poster-photo.jpg" />
+    <Content Include="Content\images\bg-poster-tile.jpg" />
+    <Content Include="Content\images\bg-poster.jpg" />
+    <Content Include="Content\images\bullet.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\photo-small-01.jpg" />
+    <Content Include="Content\images\photo-small-02.jpg" />
+    <Content Include="Content\print-styles.css" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
