@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
+    <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Seguridad\IFormsAuthenticationService.cs" />
@@ -103,10 +104,7 @@
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
@@ -138,6 +136,8 @@
     <Content Include="Content\images\photo-small-01.jpg" />
     <Content Include="Content\images\photo-small-02.jpg" />
     <Content Include="Content\print-styles.css" />
+    <Content Include="Views\Shared\ActualAction.ascx" />
+    <Content Include="Views\Shared\MenuIzquierda.ascx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>

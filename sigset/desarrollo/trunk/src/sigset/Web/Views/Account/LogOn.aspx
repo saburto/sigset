@@ -5,31 +5,30 @@
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Log On</h2>
+    <h2> Inicio de Sesi&#243;n</h2>
     <p>
-        Please enter your username and password. <%= Html.ActionLink("Register", "Register") %> if you don't have an account.
+        Ingrese nombre de usuario y contraseña
     </p>
-    <%= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("Usuario y/o contraseña no valido. Intente Nuevamente") %>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
                 <p>
-                    <label for="username">Username:</label>
+                    <label for="username">Nombre de Usuario:</label>
                     <%= Html.TextBox("Usuario1")%>
                     <%= Html.ValidationMessage("Usuario1","*") %>
                 </p>
                 <p>
-                    <label for="password">Password:</label>
+                    <label for="password">Contraseña:</label>
                     <%= Html.Password("Contraseña")%>
                     <%= Html.ValidationMessage("Contraseña", "*") %>
                 </p>
                 <p>
-                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Remember me?</label>
+                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Recordar Sesi&#243;n</label>
                 </p>
                 <p>
-                    <input type="submit" value="Log On" />
+                    <input type="submit" value="Iniciar Sesi&#243;n" />
                 </p>
             </fieldset>
         </div>
