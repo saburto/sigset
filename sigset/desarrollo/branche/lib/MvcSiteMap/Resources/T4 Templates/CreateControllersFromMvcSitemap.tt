@@ -1,0 +1,86 @@
+<#@ template language="C#" hostspecific="true"#>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="CreateController.tt" #>
+<#@ import namespace="System.Xml" #>
+
+<#
+List<MvcController> listControllers=controllers();
+foreach(MvcController controller in listControllers)
+{
+    ControllerTemplate template = new ControllerTemplate(controller.Name, controller.Actions);
+    template.Output.File = @"Generated\"+controller.Name+"Controller.cs";
+    template.Output.Project = @"..\MvcSiteMap.Web.csproj";
+    template.Render();
+}
+#>
+
+<#+
+	 private List<MvcController> controllers()
+        {
+            List<MvcController> controllers = new List<MvcController>();
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            settings.IgnoreComments = true;
+            string siteMapFile = @"..\Web.sitemap";
+            using (XmlReader node = XmlReader.Create(siteMapFile, settings))
+            {
+                while (node.Read())
+                {
+                    string controllerName = node["controller"];
+                    if (controllerName != null)
+                    {
+                        string action = node["action"];
+                        List<string> listParameters = new List<string>();
+                        string param = node["dynamicParameters"];
+                        if (param != null)
+                        {
+                            string[] paramaters = param.Split(',');
+                            foreach (string s in paramaters)
+                            {
+                                if (!s.Contains("*")) listParameters.Add(s);
+                            }
+                        }
+
+                        if (controllers.Exists(delegate(MvcController c) { return c.Name.Equals(controllerName); }))
+                        {
+                            MvcController controller =
+                                controllers.Find(delegate(MvcController c) { return c.Name.Equals(controllerName); });
+                            if (action != null)
+                                if (!controller.Actions.Exists(delegate(MvcAction a) { return a.Name.Equals(action); }))
+                                {
+                                    controller.Actions.Add(new MvcAction(action, listParameters));
+                                }
+                        }
+                        else
+                        {
+                            MvcController controller = new MvcController(controllerName);
+                            if (action != null)
+                                controller.Actions.Add(new MvcAction(action, listParameters));
+                            controllers.Add(controller);
+                        }
+                    }
+                }
+            }
+            return controllers;
+        }
+#>
+
+<#+
+   public class MvcController
+    {
+        public string Name;
+        public List<MvcAction> Actions;
+
+        public MvcController(string controllerName)
+        {
+            Name = controllerName;
+            Actions = new List<MvcAction>();
+        }
+        public MvcController(string controllerName, List<MvcAction> actions)
+        {
+            Name = controllerName;
+            Actions = actions;
+        }
+    }
+#>
