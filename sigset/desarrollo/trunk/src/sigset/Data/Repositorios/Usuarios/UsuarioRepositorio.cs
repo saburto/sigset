@@ -73,6 +73,13 @@ namespace Data.Repositorios.Usuarios
             return _entities.Tipo_Usuario;
         }
 
+        public Tipo_Usuario GetTipo_UsuarioByUsuarioNombre(string usuarioNombre)
+        {
+            var tipo = (from u in _entities.Usuario
+                       where u.Usuario1 == usuarioNombre
+                        select u.Tipo_Usuario).FirstOrDefault() ;
+            return tipo;
+        }
 
     }
 }

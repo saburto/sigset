@@ -57,9 +57,12 @@ namespace Services.Autorizacion
 
         public IList<string> GetTipos_UsuarioByUsuario(string user)
         {
-            Tipo_Usuario tipo = _repo.GetUsuarioByNombreUsuario(user).Tipo_Usuario;
             IList<String> lista = new List<String>();
-            lista.Add(tipo.Descripcion);
+            Tipo_Usuario tipo = _repo.GetTipo_UsuarioByUsuarioNombre(user);
+            if (tipo != null)
+            {
+                lista.Add(tipo.Descripcion);
+            }
             return lista;
         }
     }

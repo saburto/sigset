@@ -9,6 +9,7 @@ namespace Data.Repositorios.Usuarios
         void DeleteTipo_Usuario(decimal id);
         Tipo_Usuario GetTipo_Usuario(decimal id);
         Tipo_Usuario GetTipo_UsuarioByNombre(string nombre);
+        Tipo_Usuario GetTipo_UsuarioByUsuarioNombre(string usuarioNombre);
         IQueryable<Tipo_Usuario> GetTipos_Usuario();
         Usuario GetUsuario(decimal id);
         Usuario GetUsuarioByNombreUsuario(string nombreUsuario);

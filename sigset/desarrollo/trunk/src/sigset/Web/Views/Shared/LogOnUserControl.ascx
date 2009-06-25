@@ -1,14 +1,15 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Import Namespace="Web.Helpers" %>
 <%
     if (Request.IsAuthenticated) {
 %>
-        Welcome <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
-        [ <%= Html.ActionLink("Log Off", "LogOff", "Account") %> ]
+        Bienvenido <b><%= (Html.Encode(Page.User.Identity.Name.ToCapitalize())) %></b>
+        [ <%= Html.ActionLink("Cerrar Sesión", "LogOff", "Account") %> ]
 <%
     }
     else {
 %> 
-        [ <%= Html.ActionLink("Log On", "LogOn", "Account") %> ]
+        [ <%= Html.ActionLink("Iniciar Sesión", "LogOn", "Account") %> ]
 <%
     }
 %>

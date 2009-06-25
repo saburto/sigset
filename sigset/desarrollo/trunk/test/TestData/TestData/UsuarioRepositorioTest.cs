@@ -43,7 +43,24 @@ namespace TestData
             Assert.IsNotNull(usuario);
         }
 
+        [TestMethod()]
+        public void Test_GetUsuarioById()
+        {
+            UsuarioRepositorio usuario = new UsuarioRepositorio();
+            Usuario user = usuario.GetUsuario(1);
 
+            Assert.IsNotNull(user);
+        }
+
+        [TestMethod()]
+        public void Test_GetUsuarioByNombre()
+        {
+            UsuarioRepositorio usuario = new UsuarioRepositorio();
+            Usuario user = usuario.GetUsuarioByNombreUsuario("test");
+
+            Assert.IsNotNull(user);
+            Assert.AreEqual("test", user.Usuario1);
+        }
 
         /// <summary>
         ///A test for UpdateUsuario

@@ -481,7 +481,7 @@ a:active {
 .content-main {
 	padding:15px 2% 20px 2%;
 	position:relative;
-	min-height:1px;
+	min-height:400px;
 	_height:1px;
 	float:left;
 	width:96%;
