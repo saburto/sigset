@@ -56,7 +56,9 @@ namespace Services.Autenticacion
             }
             else
             {
-                return _repo.GetUsuarioByNombreUsuario(user).Contraseña == contrasena;
+                Usuario u = _repo.GetUsuarioByNombreUsuario(user);
+
+                return  u != null? u.Contraseña  == contrasena : false;
             }
         }
     }
