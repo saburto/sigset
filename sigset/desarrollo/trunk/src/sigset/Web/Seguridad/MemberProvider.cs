@@ -106,7 +106,7 @@ namespace Web.Seguridad
 
         public override int MinRequiredPasswordLength
         {
-            get { throw new NotImplementedException(); }
+            get { return 10; }
         }
 
         public override int PasswordAttemptWindow
