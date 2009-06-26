@@ -2,17 +2,12 @@
 <siteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-1.0" enableLocalization="true">
   <mvcSiteMapNode title="Incio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
 
-    <mvcSiteMapNode title="Cuenta" controller="Account" visibility="InSiteMapPathOnly">
-      <!-- No need to specify controller here if not needed: parent controller name will be used -->
-      <mvcSiteMapNode title="Login" action="LogOn" />
-      <mvcSiteMapNode title="AccountCreationTitle" action="Register" />
-      <mvcSiteMapNode title="ChangePasswordTitle" action="ChangePassword" />
-      <mvcSiteMapNode title="LogoutTitle" action="LogOff" />
-    </mvcSiteMapNode>
-
-    <mvcSiteMapNode title="SitemapTitle" controller="Home" action="Sitemap" visibility="InSiteMapPathOnly" />
-
-    <mvcSiteMapNode title="AboutUsTitle" controller="Home" action="About" />
-
-  </mvcSiteMapNode>
+    <mvcSiteMapNode title="Orden de Trabajo" controller="OrdenTrabajo" action="Index">
+      <mvcSiteMapNode title="Crear Orden" action="Crear" />
+      <mvcSiteMapNode title="Consulta" action="Consulta" />
+      <mvcSiteMapNode title="Listar" action="Listar" />
+     </mvcSiteMapNode>
+    
+     <mvcSiteMapNode title="Acerca de" controller="Home" action="About" />
+ </mvcSiteMapNode>
 </siteMap>
