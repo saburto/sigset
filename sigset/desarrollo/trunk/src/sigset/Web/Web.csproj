@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />
@@ -136,6 +137,8 @@
     <Content Include="Content\images\photo-small-01.jpg" />
     <Content Include="Content\images\photo-small-02.jpg" />
     <Content Include="Content\print-styles.css" />
+    <Content Include="Views\OrdenTrabajo\Crear.aspx" />
+    <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />
     <Content Include="Views\Shared\MenuIzquierda.ascx" />
     <Content Include="Web.sitemap" />

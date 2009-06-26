@@ -1,6 +1,10 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 
-<%if(Request.IsAuthenticated) { %>
+<div class="side-bucket">
+<%=Html.MenuIzquierda("active") %>
+</div>
+
+<%--<%if(Request.IsAuthenticated) { %>
                     <div class="side-bucket">
                         <ul>
                             <li class="first"><a href="#">Side nav</a></li>
@@ -13,3 +17,4 @@
                         </ul>
                     </div>
 <%} %>                    
+--%>
