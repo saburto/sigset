@@ -23,6 +23,12 @@ namespace Web.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Crear(string rut)
+        {
+            return View();
+        }
+
         public ActionResult Consulta()
         {
             return View();
