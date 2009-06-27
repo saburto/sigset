@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 
 namespace Web
 {
@@ -26,7 +27,30 @@ namespace Web
 
         protected void Application_Start()
         {
+            Logger.Write("App Iniciando");
             RegisterRoutes(RouteTable.Routes);
+
         }
+
+        protected void Application_End()
+        {
+            Logger.Write("App Cerrando");
+        }
+
+        protected void Application_Error(object sender, EventArgs e) 
+        {
+            Exception ex = Server.GetLastError().GetBaseException();
+            
+            string message = ex.Message + 
+                            "\nSOURCE: " + ex.Source +
+                            "\nFORM: " + Request.Form.ToString() + 
+                            "\nQUERYSTRING: " + 
+                               Request.QueryString.ToString() +
+                            "\nTARGETSITE: " + ex.TargetSite +
+                            "\nSTACKTRACE: " + ex.StackTrace;
+
+            Logger.Write(message);
+        }
+
     }
 }
