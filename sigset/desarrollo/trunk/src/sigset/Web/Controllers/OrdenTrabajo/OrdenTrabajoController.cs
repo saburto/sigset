@@ -8,6 +8,7 @@ using System.Web.Mvc.Ajax;
 namespace Web.Controllers
 {
     [Authorize]
+    [LogFilter.Log]
     public class OrdenTrabajoController : Controller
     {
         //

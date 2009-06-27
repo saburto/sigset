@@ -182,8 +182,8 @@
 <div class="footer">
     <div class="nav-footer">
         <ul>
-            <li class="first"><%= Html.ActionLink("Home", "Index", "Home") %></li>
-            <li><%= Html.ActionLink("About", "About", "Home") %></li>
+            <li class="first"><%= Html.ActionLink("Inicio", "Index", "Home") %></li>
+            <li><%= Html.ActionLink("Acerca", "About", "Home") %></li>
         </ul>
         <p class="copyright">&copy; 2009 Servicio T&#233;cnico</p>
     </div>
