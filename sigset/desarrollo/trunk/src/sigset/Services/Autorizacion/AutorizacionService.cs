@@ -34,7 +34,7 @@ namespace Services.Autorizacion
 
         public bool EsUsuarioTipo_Usuario(string nombreUsuario, decimal tipo)
         {
-            return _repo.GetUsuarioByNombreUsuario(nombreUsuario).Tipo_Usuario.Id == tipo;
+            return _repo.GetUsuarioByNombreUsuario(nombreUsuario).Tipo_Usuario.Id_Tipo_Usuario == tipo;
         }
 
         public bool EsUsuarioTipo_Usuario(string nombreUsuario, string nombreTipo)
