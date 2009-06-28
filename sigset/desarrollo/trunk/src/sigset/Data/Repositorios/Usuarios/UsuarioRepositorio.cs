@@ -42,7 +42,7 @@ namespace Data.Repositorios.Usuarios
 
         public Tipo_Usuario GetTipo_Usuario(decimal id)
         {
-            return _entities.Tipo_Usuario.Where(x => x.Id == id).FirstOrDefault();
+            return _entities.Tipo_Usuario.Where(x => x.Id_Tipo_Usuario == id).FirstOrDefault();
         }
 
         public Tipo_Usuario GetTipo_UsuarioByNombre(string nombre)
