@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
+using System.Web.DynamicData;
 
 namespace Web
 {
@@ -16,6 +17,15 @@ namespace Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            MetaModel model = new MetaModel();
+            model.RegisterContext(typeof(Data.Modelo.sigsetEntities), new ContextConfiguration() {ScaffoldAllTables=true });
+
+            routes.Add(new DynamicDataRoute("Admin/DD/{table}/{action}.aspx")
+            {
+                Constraints = new RouteValueDictionary(new { action = "List|Details|Edit|Insert" }),
+                Model = model
+            });
 
             routes.MapRoute(
                 "Default",                                              // Route name
