@@ -1799,12 +1799,14 @@ namespace Data.Modelo
         /// <param name="rut">Initial value of Rut.</param>
         /// <param name="nombre">Initial value of Nombre.</param>
         /// <param name="apellido_Paterno">Initial value of Apellido_Paterno.</param>
-        public static Empleado CreateEmpleado(decimal rut, string nombre, string apellido_Paterno)
+        public static Empleado CreateEmpleado(decimal rut, string nombre, string apellido_Paterno,string apellido_Materno)
         {
             Empleado empleado = new Empleado();
             empleado.Rut = rut;
             empleado.Nombre = nombre;
             empleado.Apellido_Paterno = apellido_Paterno;
+            empleado.Apellido_Materno = apellido_Materno;
+
             return empleado;
         }
         /// <summary>
