@@ -18,15 +18,6 @@ namespace Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            MetaModel model = new MetaModel();
-            model.RegisterContext(typeof(Data.Modelo.sigsetEntities), new ContextConfiguration() {ScaffoldAllTables=true });
-
-            routes.Add(new DynamicDataRoute("Admin/DD/{table}/{action}.aspx")
-            {
-                Constraints = new RouteValueDictionary(new { action = "List|Details|Edit|Insert" }),
-                Model = model
-            });
-
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters
