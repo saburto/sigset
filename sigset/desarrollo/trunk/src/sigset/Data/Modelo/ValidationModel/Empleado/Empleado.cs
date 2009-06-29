@@ -8,7 +8,7 @@ namespace Data.Modelo
 {
     [MetadataType(typeof(EmpleadoMetaData))]
     public partial class Empleado
-    { 
+    {
     }
     public class EmpleadoMetaData 
     {
@@ -20,10 +20,10 @@ namespace Data.Modelo
         public object Nombre { get; set;}
 
         [Required(ErrorMessage = "Apellido Paterno es necesario")]
-        public object Apelllido_Paterno { get; set;}
+        public object Apellido_Paterno { get; set;}
 
         [Required(ErrorMessage = "Apellido Materno es necesario")]
-        public object Apelllido_Materno { get; set; }
+        public object Apellido_Materno { get; set; }
     }
 
     }
