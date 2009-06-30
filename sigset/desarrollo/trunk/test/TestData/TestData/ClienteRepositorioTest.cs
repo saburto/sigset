@@ -203,5 +203,32 @@ namespace TestData
             Tipo_Direccion tipo = _repo.GetTipoDireccionById(99);
             Assert.IsNull(tipo);
         }
+
+
+        [TestMethod]
+        public void Test_GetClientesPorAppellido()
+        {
+            var clientes = _repo.GetClientesByApellidoPaterno("a");
+            Assert.IsNotNull(clientes);
+            Assert.IsTrue(clientes.Any());
+        }
+
+        [TestMethod]
+        public void Test_GetClientesPorAppellidoConPaginado()
+        {
+            var clientes = _repo.GetClientesByApellidoPaterno("a",0,10);
+            Assert.AreEqual(0,clientes.PageIndex);
+            Assert.AreEqual(10, clientes.Count());
+            Assert.IsNotNull(clientes);
+            Assert.IsTrue(clientes.Any());
+            Assert.IsTrue(clientes.IsNextPage);
+            
+            var clientes2 = _repo.GetClientesByApellidoPaterno("a",1,10);
+            Assert.AreEqual(4, clientes2.Count());
+
+            var clientes3 = _repo.GetClientesByApellidoPaterno("a",2,10);
+            Assert.IsFalse(clientes3.Any());
+        }
+
     }
 }

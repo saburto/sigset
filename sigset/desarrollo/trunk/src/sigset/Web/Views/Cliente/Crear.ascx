@@ -11,8 +11,7 @@
             <div class="three-column-left">
             <p>
                 <label for="Rut">Rut:</label>
-                <%= Html.TextBox("Rut", null, new Dictionary<string, object>() { { "maxlength", "10" }, { "size", "10" } })%> -
-                <%= Html.TextBox("dv", null, new Dictionary<string, object>() { { "maxlength", "1" }, { "size", "1" } })%>
+                <%= Html.RutTextBox() %>
                 <%= Html.ValidationMessage("Rut", "*")%>
             </p>
             <p>

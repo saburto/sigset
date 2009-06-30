@@ -22,6 +22,20 @@ namespace Data.Repositorios.Clientes
             return cliente;
         }
 
+        public IQueryable<Cliente> GetClientesByApellidoPaterno(string appellido)
+        {
+            
+            return from c in _ent.Cliente
+                   where c.Apellido_Paterno.Contains(appellido)
+                   select c;
+            
+        }
+
+        public PagedList<Cliente> GetClientesByApellidoPaterno(string appellido, int indice, int pagina)
+        {
+            return GetClientesByApellidoPaterno(appellido).OrderBy(x => x.Apellido_Paterno).ToPagedList<Cliente>(indice, pagina);
+        }
+
         public void CrearCliente(Cliente cliente)
         {
             _ent.AddToCliente(cliente);
