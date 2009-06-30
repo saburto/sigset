@@ -6,6 +6,8 @@
 
 <asp:Content ID="errorContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        Sorry, an error occurred while processing your request.
+        <%=Html.Encode(Model.Exception.Message) %>
     </h2>
+    <p>Controlador: <%=Model.ControllerName %></p>
+    <p>Action: <%=Model.ActionName %></p>
 </asp:Content>

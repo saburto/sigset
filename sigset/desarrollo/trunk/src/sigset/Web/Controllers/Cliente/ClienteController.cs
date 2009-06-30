@@ -8,10 +8,12 @@ using System.Web.Mvc.Ajax;
 using Data.Modelo;
 using xVal.ServerSide;
 using Services.Clientes;
-using Web.ModelView;
+using Web.Helpers;
+using Web.Seguridad;
 
 namespace Web.Controllers
 {
+    [ManejadorErrores]
     public class ClienteController : Controller
     {
         IClienteServicio _serv;
@@ -64,25 +66,36 @@ namespace Web.Controllers
                 _serv.CrearNuevoCliente(cliente, dv);
                 return PartialView("Detalles", cliente);
             }
-            catch(RulesException ex)
+            catch (RulesException ex)
             {
-                foreach (var key in ModelState.Keys)
-                {
-                    ModelState[key].Errors.Clear();   
-                }
-                foreach (var erro in ex.Errors)
-                {
-                    ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
-                }
-                //ex.AddModelStateErrors(ModelState, "");
+                ModelState.AddRuleErrors(ex.Errors);
                 return PartialView("Crear");
             }
-            
+            catch
+            {
+                return View("Error");
+            }
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Detalles(string id)
+        {
+            return Detalles(Decimal.Parse(id));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Detalles(decimal rut)
         {
-            return PartialView("Detalles", new Cliente { Rut = rut, Nombre = "Detalles", Apellido_Materno = "ADetalles", Apellido_Paterno = "paternoEditar" });
+            try
+            {
+                var cliente = _serv.GetClientePorRut(rut);
+                return PartialView("Detalles", cliente);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+            
         }
 
         public ActionResult Editar(decimal rut)
