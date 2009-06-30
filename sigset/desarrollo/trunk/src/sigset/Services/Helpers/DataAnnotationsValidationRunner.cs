@@ -8,7 +8,7 @@ using xVal.ServerSide;
 
 namespace Services.Helpers
 {
-    public static class DataAnnotationsValidationRunner
+    public static class DataValidation
     {
         /// <summary>
         /// Runs each ValidationAttribute associated with a property on the supplied instance
@@ -30,6 +30,16 @@ namespace Services.Helpers
                    from attribute in buddyProp.Attributes.OfType<ValidationAttribute>()
                    where !attribute.IsValid(modelProp.GetValue(instance))
                    select new ErrorInfo(buddyProp.Name, attribute.FormatErrorMessage(string.Empty), instance);
+        }
+
+        public static IEnumerable<ErrorInfo> GetErrors(object instance, IList<ErrorInfo> listaErrores)
+        {
+            IEnumerable<ErrorInfo> errores = GetErrors(instance);
+            foreach (var item in errores)
+            {
+                listaErrores.Add(item);
+            }
+            return listaErrores;
         }
     }
 }

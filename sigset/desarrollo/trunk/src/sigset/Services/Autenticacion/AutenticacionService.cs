@@ -49,7 +49,7 @@ namespace Services.Autenticacion
         public bool ValidarUsuario(string user, string contrasena)
         {
             Usuario usuario = new Usuario(){Usuario1=user,Contraseña=contrasena};
-            var errors = DataAnnotationsValidationRunner.GetErrors(usuario);
+            var errors = DataValidation.GetErrors(usuario);
             if (errors.Any())
             {
                 throw new RulesException(errors);

@@ -7,8 +7,7 @@ using System.Web.Mvc.Ajax;
 
 namespace Web.Controllers
 {
-    [Authorize]
-    [LogFilter.Log]
+    //[Authorize]
     public class OrdenTrabajoController : Controller
     {
         //
@@ -29,6 +28,9 @@ namespace Web.Controllers
         {
             return View();
         }
+
+        
+ 
 
         public ActionResult Consulta()
         {
