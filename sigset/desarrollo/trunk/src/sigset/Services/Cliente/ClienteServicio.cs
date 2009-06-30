@@ -67,5 +67,10 @@ namespace Services.Clientes
             }
             return cliente;
         }
+
+        public IQueryable<Cliente> BuscarClientesPorApellido(string apellido)
+        {
+            return null;
+        }
     }
 }

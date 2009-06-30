@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Data.Modelo;
 namespace Data.Repositorios.Clientes
 {
     public interface IClienteRepositorio
@@ -17,5 +19,8 @@ namespace Data.Repositorios.Clientes
         global::Data.Modelo.Tipo_Direccion GetTipoDireccionById(decimal id);
         System.Linq.IQueryable<global::Data.Modelo.Tipo_Contacto> GetTiposContacto();
         System.Linq.IQueryable<global::Data.Modelo.Tipo_Direccion> GetTiposDireccion();
+
+        IQueryable<Cliente> GetClientesByApellidoPaterno(string appellido);
+        PagedList<Cliente> GetClientesByApellidoPaterno(string appellido, int indice, int pagina);
     }
 }

@@ -10,7 +10,7 @@
             <div class="three-column-left">
             <p>
                 <label for="Rut">Rut:</label>
-                <%= Html.TextBox("Rut", Model.Rut, new Dictionary<string, object>(){{"readonly","readonly"}})%>
+                <%= Html.RutTextBox(Model.Rut,true)%>
                 <%= Html.ValidationMessage("Rut", "*") %>
             </p>
             <p>            

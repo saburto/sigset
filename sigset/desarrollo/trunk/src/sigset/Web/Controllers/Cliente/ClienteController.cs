@@ -37,17 +37,10 @@ namespace Web.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Buscar(string rutCliente)
+        public ActionResult Buscar(string Rut, string Apellido_Paterno)
         {
+            
             ActionResult result = null;
-            if (rutCliente == "1")
-            {
-                result = PartialView("Detalles", new Data.Modelo.Cliente() { Rut = 1, Nombre = "Juan", Apellido_Paterno = "Perez" });
-            }
-            else
-            {
-                result = PartialView("Crear");
-            }
             return result;
         }
 
