@@ -78,10 +78,12 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
+    <Compile Include="Controllers\Cliente\ClienteController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="LogFilter\LogFilter.cs" />
+    <Compile Include="ModelView\Cliente\ClienteRutVerif.cs" />
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Seguridad\IFormsAuthenticationService.cs" />
@@ -134,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\ad.gif" />
+    <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\bg-button.png" />
     <Content Include="Content\images\bg-column-left.png" />
     <Content Include="Content\images\bg-column-right.png" />
@@ -147,6 +150,10 @@
     <Content Include="Content\images\photo-small-02.jpg" />
     <Content Include="Content\print-styles.css" />
     <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Cliente\Buscar.ascx" />
+    <Content Include="Views\Cliente\Editar.ascx" />
+    <Content Include="Views\Cliente\Crear.ascx" />
+    <Content Include="Views\Cliente\Detalles.ascx" />
     <Content Include="Views\OrdenTrabajo\Crear.aspx" />
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />

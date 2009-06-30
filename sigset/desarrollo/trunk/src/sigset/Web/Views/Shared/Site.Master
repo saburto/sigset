@@ -1,54 +1,63 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <%@ Import Namespace="Helpers" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta name="description" content="Sistema de Gestion de Servicio Tecnico" />
-<meta name="keywords" content="servicio tecnico, servicio electronico" />
-<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-
-<link rel="shortcut icon" href="<%= Url.Content("~/Content/images/favicon.ico") %>" />
-<link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
-<link href="<%= Url.Content("~/Content/print-styles.css") %>" rel="stylesheet" type="text/css" media="print" />
-<link href="<%= Url.Content("~/Content/SiteDD.css") %>" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.min.js") %>"></script>
-<script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js") %>"></script>
-<script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.jquery.validate.js") %>"></script>
-
-
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="description" content="Sistema de Gestion de Servicio Tecnico" />
+    <meta name="keywords" content="servicio tecnico, servicio electronico" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="shortcut icon" href="<%= Url.Content("~/Content/images/favicon.ico") %>" />
+    <link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css"
+        media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
+    <link href="<%= Url.Content("~/Content/print-styles.css") %>" rel="stylesheet" type="text/css"
+        media="print" />
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.jquery.validate.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>"></script>
 </head>
 <body>
-<div class="none"><a href="#maincontent"></a></div>
-<div class="header-container">
-    <div class="nav-login">
+    <div class="none">
+        <a href="#maincontent"></a>
+    </div>
+    <div class="header-container">
+        <div class="nav-login">
+            <ul>
+                <li class="first">
+                    <%Html.RenderPartial("LogOnUserControl"); %></li>
+            </ul>
+        </div>
+        <div class="logo">
+            <a href="<%= Url.Action("Index", "Home") %>">SERVICIO T&#201;CNICO</a></div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="poster-container-no-image">
+        <div class="poster-inner">
+        </div>
+    </div>
+    <div class="nav-main">
         <ul>
-            <li class="first"><%Html.RenderPartial("LogOnUserControl"); %></li>
+            <%Html.RenderPartial("ActualAction"); %>
         </ul>
     </div>
-    <div class="logo"><a href="<%= Url.Action("Index", "Home") %>">SERVICIO T&#201;CNICO</a></div>
-    <div class="clear"></div>
-</div>
-<div class="poster-container-no-image">
-    <div class="poster-inner"> </div>
-</div>
-<div class="nav-main">
-    <ul>
-           <%Html.RenderPartial("ActualAction"); %>
-    </ul>
-</div>
-<div class="content-container">
-    <div class="content-container-inner">
-
-        <div class="content-main"><a name="maincontent" id="maincontent"></a>
-            <div class="breadcrumb"><%= Html.SiteMapPath(" &raquo; ") %></div>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        
-<%--
+    <div class="content-container">
+        <div class="content-container-inner">
+            <div class="content-main">
+                <a name="maincontent" id="maincontent"></a>
+                <div class="breadcrumb">
+                    <%= Html.SiteMapPath(" &raquo; ") %> 
+                    <div id="loadingAjax" style="display: none;">
+                    Cargando... <img src="../../Content/images/ajax-loader.gif" />
+                    </div></div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                <%--
             <h1 class="first">&lt;H1&gt; Header</h1>
             <div class="photo-container align-left" style="width:202px;">
                 <div class="photo-content"> <img src="../../Content/images/photo-small-01.jpg" alt="Photo Small 1" /> </div>
@@ -166,29 +175,29 @@
             <input class="button button-big" name="Submit" type="button" value="Submit"  />
             <input class="button button-big" name="Submit2" type="reset" value="Reset" />
             </fieldset>
---%>  
+--%>
+            </div>
+            <div class="content-left">
+                <% Html.RenderPartial("MenuIzquierda"); %>
+            </div>
+            <div class="content-right">
+                <asp:ContentPlaceHolder ID="MenuDerecha" runat="server" />
+            </div>
+            <div class="clear">
+            </div>
         </div>
-		        <div class="content-left">
-		            <% Html.RenderPartial("MenuIzquierda"); %>
-                </div>
-        
-        
-        <div class="content-right">
-            
+    </div>
+    <div class="footer">
+        <div class="nav-footer">
+            <ul>
+                <li class="first">
+                    <%= Html.ActionLink("Inicio", "Index", "Home") %></li>
+                <li>
+                    <%= Html.ActionLink("Acerca", "About", "Home") %></li>
+            </ul>
+            <p class="copyright">
+                &copy; 2009 Servicio T&#233;cnico</p>
         </div>
-        
-        
-        <div class="clear"></div>
     </div>
-</div>
-<div class="footer">
-    <div class="nav-footer">
-        <ul>
-            <li class="first"><%= Html.ActionLink("Inicio", "Index", "Home") %></li>
-            <li><%= Html.ActionLink("Acerca", "About", "Home") %></li>
-        </ul>
-        <p class="copyright">&copy; 2009 Servicio T&#233;cnico</p>
-    </div>
-</div>
 </body>
 </html>

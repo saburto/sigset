@@ -107,7 +107,7 @@ fieldset fieldset legend {
 	}
 	
 input[type="text"],input[type="password"]   {
-	display:block;
+	/*display:block;*/
 	margin-bottom:5px;
 	vertical-align:top;
 	padding:2px;
@@ -165,6 +165,18 @@ input[type="submit"], input[type="button"], input.button {
 	padding:0 5px 2px 5px;
 	cursor:pointer;
 	}
+	
+.linkButton{
+	color:#FFF;
+	background:#317f0c url(images/bg-button.png) repeat-x;
+	border:2px groove #FFF;
+	font-size:.7em;
+	font-weight:bold;
+	padding:0 5px 2px 5px;
+	cursor:pointer;
+	
+}
+	
 	
 input.button-big {
 	padding:6px 20px;

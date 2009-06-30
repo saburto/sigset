@@ -41,6 +41,7 @@
     <Reference Include="System.Data.Entity">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -59,7 +60,10 @@
     <Compile Include="Autenticacion\IAutenticacionService.cs" />
     <Compile Include="Autorizacion\AutorizacionService.cs" />
     <Compile Include="Autorizacion\IAutorizacionService.cs" />
+    <Compile Include="Cliente\ClienteServicio.cs" />
+    <Compile Include="Cliente\IClienteServicio.cs" />
     <Compile Include="Helpers\DataAnnotationsValidationRunner.cs" />
+    <Compile Include="Helpers\ValidarRut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

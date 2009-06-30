@@ -6,7 +6,7 @@ using Data.Modelo;
 
 namespace Data.Repositorios.Clientes
 {
-    public class ClienteRepositorio
+    public class ClienteRepositorio : Data.Repositorios.Clientes.IClienteRepositorio
     {
         sigsetEntities _ent;
         public ClienteRepositorio()
