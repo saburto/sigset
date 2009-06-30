@@ -57,5 +57,15 @@ namespace Services.Clientes
                 }
             }
         }
+
+        public Cliente GetClientePorRut(decimal rut)
+        {
+            var cliente = _repo.GetClienteByRut(rut);
+            if (cliente == null)
+            {
+                throw new Exception("Cliente con rut:"+ rut +" no ha sido encontrado");
+            }
+            return cliente;
+        }
     }
 }

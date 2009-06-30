@@ -81,9 +81,9 @@
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
+    <Compile Include="Helpers\ModelStateHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="LogFilter\LogFilter.cs" />
-    <Compile Include="ModelView\Cliente\ClienteRutVerif.cs" />
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Seguridad\IFormsAuthenticationService.cs" />
@@ -96,6 +96,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\AccountMembershipService.cs" />
+    <Compile Include="Seguridad\ManejadorErrores.cs" />
     <Compile Include="Seguridad\MemberProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\TipoUsuarioProvider.cs" />
@@ -154,6 +155,7 @@
     <Content Include="Views\Cliente\Editar.ascx" />
     <Content Include="Views\Cliente\Crear.ascx" />
     <Content Include="Views\Cliente\Detalles.ascx" />
+    <Content Include="Views\Cliente\NoEncontrado.ascx" />
     <Content Include="Views\OrdenTrabajo\Crear.aspx" />
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />
