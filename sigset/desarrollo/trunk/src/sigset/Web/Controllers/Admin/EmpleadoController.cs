@@ -7,7 +7,7 @@ using System.Web.Mvc.Ajax;
 using Services.Empleados;
 using Data.Modelo;
 using xVal.ServerSide;
-using Web.ModelView;
+using Web.Helpers;
 
 //AMor de controllers, okis??oki
 namespace Web.Controllers //.Admin
@@ -41,7 +41,8 @@ namespace Web.Controllers //.Admin
       
         public ActionResult Crear()
         {
-            return PartialView("Crear");
+            //Crear es un View(aspx) No un PartialView(ascx)
+            return View("Crear");
         }
 
 
@@ -51,20 +52,18 @@ namespace Web.Controllers //.Admin
             try
             {
                 _servicio.CrearNuevoEmpleado(empleado, dv);
-                return PartialView("Detalles", empleado);
+
+                //Detalles es un View(aspx) No un PartialView(ascx)
+                return View("Detalles", empleado);
             }
             catch (RulesException ex)
             {
-                foreach (var key in ModelState.Keys)
-                {
-                    ModelState[key].Errors.Clear();
-                }
-                foreach (var erro in ex.Errors)
-                {
-                    ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
-                }
-                //ex.AddModelStateErrors(ModelState, "");
-                return PartialView("Crear");
+                //Modificado por sebastian
+                //Ocupar Helper para agregar errores
+                ModelState.AddRuleErrors(ex.Errors);
+
+                //Crear es un View(aspx) No un PartialView(ascx)
+                return View("Crear");
             }
 
         }
