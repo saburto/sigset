@@ -24,6 +24,10 @@ namespace Data.Modelo
 
         [Required(ErrorMessage = "Apellido Materno es necesario")]
         public object Apellido_Materno { get; set; }
+
+        [Required(ErrorMessage = "Debe seleccionar un Tipo de Cargo")]
+        public object Tipo_Cargo { get; set;}
+
     }
 
     }
