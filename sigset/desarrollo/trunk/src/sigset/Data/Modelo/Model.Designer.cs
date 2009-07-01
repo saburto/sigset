@@ -1806,7 +1806,6 @@ namespace Data.Modelo
             empleado.Nombre = nombre;
             empleado.Apellido_Paterno = apellido_Paterno;
             empleado.Apellido_Materno = apellido_Materno;
-
             return empleado;
         }
         /// <summary>

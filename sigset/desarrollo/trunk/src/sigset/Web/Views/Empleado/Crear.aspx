@@ -44,8 +44,8 @@
             </div>
             <p>
                <label for="Tipo_Cargo">Tipo Cargo:</label>
-                <%=Html.DropDownList("listaTipos") %>                    
-               
+               <%=Html.DropDownList("listaTipos") %>
+              
             </p>
             
             <p>

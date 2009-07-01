@@ -39,8 +39,8 @@ namespace Services.Empleados
         {
               return _repo.GetTipoCargo().ToList();
         }
-
-        public void CrearNuevoEmpleado(Empleado empleadoNuevo, string digitoVerificador)
+       
+        public void CrearNuevoEmpleado(Empleado empleadoNuevo, string digitoVerificador,string listaTipos)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
             if (empleadoNuevo.Rut == 0)
@@ -54,6 +54,10 @@ namespace Services.Empleados
             else if (!ValidarRut.GetDigitoVerificador(empleadoNuevo.Rut).Equals(digitoVerificador, StringComparison.InvariantCultureIgnoreCase))
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut invalido"));
+            }
+            else if (listaTipos == "-1")
+            { 
+                _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
             }
 
             DataValidation.GetErrors(empleadoNuevo, _errors);
@@ -69,9 +73,8 @@ namespace Services.Empleados
                 }
                 else
                 {
-                    _repo.GuardarEmpleado(empleadoNuevo);
+                  _repo.GuardarEmpleado(empleadoNuevo);
                 }
-            }
-        }
+            }        }
     }
 }

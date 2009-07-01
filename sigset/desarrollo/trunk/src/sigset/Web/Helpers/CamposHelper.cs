@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Web.UI.WebControls;
+using Data.Modelo;
+using Services.Empleados;
 
 namespace Helpers
 {
@@ -44,5 +47,9 @@ namespace Helpers
             string textBoxDV = InputExtensions.TextBox(helper, nombreCampoDV, dataDv, htmlAtributtes);
             return textBoxRut+ " - " + textBoxDV;
         }
+
+           
+       
+
     }
 }

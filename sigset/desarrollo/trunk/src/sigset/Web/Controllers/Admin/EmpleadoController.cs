@@ -42,38 +42,45 @@ namespace Web.Controllers //.Admin
        
         public ActionResult Crear()
         {
-            List<Tipo_Cargo> listaCargo = new List<Tipo_Cargo>();
-            listaCargo = _servicio.GetTodosLosTipoCargo().ToList();
-            List<SelectListItem> lista = new List<SelectListItem>();
-            lista.Add(new SelectListItem() {Text = "Seleccione Tipo de Cargo" , Value = "-1" });
-            foreach (Tipo_Cargo tipo_cargo in listaCargo)
-            {
-                lista.Add(new SelectListItem() { Text = tipo_cargo.Descripcion.ToString(), Value = tipo_cargo.Id_Tipo_Cargo.ToString() });
-            }
-          
-            ViewData["listaTipos"] = lista;
+            
+            ViewData["listaTipos"] = CargarTipoCargo();                         
             return View();
         }
 
+        public  List<SelectListItem> CargarTipoCargo()
+        {
+                List<Tipo_Cargo> listaCargo = new List<Tipo_Cargo>();
+                listaCargo = _servicio.GetTodosLosTipoCargo().ToList();
+                List<SelectListItem> lista = new List<SelectListItem>();
+                lista.Add(new SelectListItem() { Text = "Seleccione Tipo de Cargo", Value = "-1" });
+                foreach (Tipo_Cargo tipo_cargo in listaCargo)
+                {
+                    lista.Add(new SelectListItem() { Text = tipo_cargo.Descripcion.ToString(), Value = tipo_cargo.Id_Tipo_Cargo.ToString() });
+                }
+                return lista;
+        }
+        
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Empleado empleado, string dv,string listaTipos)
+        public ActionResult Crear(Empleado empleado, string dv, string listaTipos)
         {
             try
             {
-                 _servicio.CrearNuevoEmpleado(empleado, dv);
+                              
+                 _servicio.CrearNuevoEmpleado(empleado, dv, listaTipos);
 
                 //Detalles es un View(aspx) No un PartialView(ascx)
-                return View("Detalles", empleado);
+                 ViewData["listaTipos"] = CargarTipoCargo(); 
+                return View();
             }
             catch (RulesException ex)
             {
                 //Modificado por sebastian
                 //Ocupar Helper para agregar errores
                 ModelState.AddRuleErrors(ex.Errors);
-
+                ViewData["listaTipos"] = CargarTipoCargo(); 
                 //Crear es un View(aspx) No un PartialView(ascx)
-                return View("Crear");
+                return View();
             }
 
         }
