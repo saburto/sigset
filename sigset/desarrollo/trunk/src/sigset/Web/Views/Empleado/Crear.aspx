@@ -14,29 +14,37 @@
 
         <fieldset>
             <legend>Datos Personales:</legend>
+             <div class="three-column-container">
+            <div class="three-column-left">
             <p>
                 <label for="Rut">Rut:</label>
-                <%= Html.TextBox("Rut") %>
+                <%= Html.RutTextBox()%>
                 <%= Html.ValidationMessage("Rut", "*") %>
             </p>
+             <p>
+                <label for="Apellido_Paterno">Apellido Paterno:</label>
+                <%= Html.TextBox("Apellido_Paterno") %>
+                <%= Html.ValidationMessage("Apellido_Paterno", "*") %>
+            </p>
+            </div>
+            <div class="three-column-middle">
             <p>
                 <label for="Nombre">Nombre:</label>
                 <%= Html.TextBox("Nombre") %>
                 <%= Html.ValidationMessage("Nombre", "*") %>
             </p>
-            <p>
-                <label for="Apellido_Paterno">Apellido Paterno:</label>
-                <%= Html.TextBox("Apellido_Paterno") %>
-                <%= Html.ValidationMessage("Apellido_Paterno", "*") %>
-            </p>
+           
             <p>
                 <label for="Apellido_Materno">Apellido Materno:</label>
                 <%= Html.TextBox("Apellido_Materno") %>
                 <%= Html.ValidationMessage("Apellido_Materno", "*") %>
             </p>
+            </div>
+            <div class="clear"></div>
+            </div>
             <p>
                <label for="Tipo_Cargo">Tipo Cargo:</label>
-                <%=Html.DropDownList("listaTipos") %>             
+                <%=Html.DropDownList("listaTipos") %>                    
                
             </p>
             
