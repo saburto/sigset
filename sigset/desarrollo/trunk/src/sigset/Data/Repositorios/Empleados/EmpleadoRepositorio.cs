@@ -31,6 +31,15 @@ namespace Data.Repositorios.Empleados
             return empleado;
         }
 
+        public IQueryable<Tipo_Cargo> GetTipoCargo()
+        {
+            var tipo_cargo = from tc in _data.Tipo_Cargo
+                            select tc;
+            return tipo_cargo;
+        }
+
+
+
         public void GuardarEmpleado(Empleado empleado)
         {
             _data.AddToEmpleado(empleado);

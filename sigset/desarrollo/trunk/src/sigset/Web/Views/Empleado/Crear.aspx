@@ -35,13 +35,9 @@
                 <%= Html.ValidationMessage("Apellido_Materno", "*") %>
             </p>
             <p>
-                <label for="Tipo_Cargo">Tipo Cargo:</label>
-                <select id="Tipo_Cargo">
-                <option value="0" selected="selected">Seleccione Tipo de Cargo</option>
-                <option value="1">Tecnico</option>
-                <option value="2">Recepcionista</option>
-                <option value="3">Administrador</option>
-                </select>
+               <label for="Tipo_Cargo">Tipo Cargo:</label>
+                <%=Html.DropDownList("listaTipos") %>             
+               
             </p>
             
             <p>

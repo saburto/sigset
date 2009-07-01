@@ -8,10 +8,8 @@ using xVal.ServerSide;
 using Data.Repositorios.Empleados;
 
 
-//amor ojo, al crear esta carpeta me trajo conflico con el nombre del modelo, asi que le voy a poner una s, okis??oki
-namespace Services.Empleados //aqui le puse la S, el modelo no hay que tocarlo, okisdoki
+namespace Services.Empleados 
 {
-    //Esta clase tambien le voy a sacar la interfaz para que se comunique con la visa, okis??oki
     public class EmpleadoServicio : Services.Empleados.IEmpleadoServicio
     {
         private IEmpleadoRepositorio _repo;
@@ -20,9 +18,7 @@ namespace Services.Empleados //aqui le puse la S, el modelo no hay que tocarlo, 
             _repo = repo;
         }
 
-        //Con este constructor le decimos que trabaje con esa implementacion, ahora esto
-        //esto no se debeira hacer, porque al cambiar el repositorio tambien debemos de cambiar solo este constructor, okis??doki
-        public EmpleadoServicio()
+         public EmpleadoServicio()
             //COn la palabra this llamamos al constructor de arribasi
             :this(new EmpleadoRepositorio())
         {
@@ -31,15 +27,17 @@ namespace Services.Empleados //aqui le puse la S, el modelo no hay que tocarlo, 
 
         //Entornces ahora vamos a crear una function
         /// <summary>
-        /// Asi se hace la docu de los meotods por siiiii :) sisabia
+        /// 
         /// </summary>
         /// <returns></returns>
         public IList<Empleado> GetTodosLosEmpleados()
         {
-            //oops me equivoque, XD era IQuryeable
-            //amor en este caso es super simple, no hay que hacer nada,
-            //pero en el servicio debe estar toda la logica de negoscios y validaciones, okis??doki
-            return _repo.GetEmpleados().ToList();
+                   return _repo.GetEmpleados().ToList();
+        }
+
+        public IList<Tipo_Cargo> GetTodosLosTipoCargo()
+        {
+              return _repo.GetTipoCargo().ToList();
         }
 
         public void CrearNuevoEmpleado(Empleado empleadoNuevo, string digitoVerificador)

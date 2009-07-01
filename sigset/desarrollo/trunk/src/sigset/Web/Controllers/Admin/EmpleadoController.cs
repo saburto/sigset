@@ -39,15 +39,27 @@ namespace Web.Controllers //.Admin
         }
 
       
+       
         public ActionResult Crear()
         {
-            //Crear es un View(aspx) No un PartialView(ascx)
-            return View("Crear");
+            List<Tipo_Cargo> listaCargo = new List<Tipo_Cargo>();
+            listaCargo = _servicio.GetTodosLosTipoCargo().ToList();
+            List<SelectListItem> lista = new List<SelectListItem>();
+          
+            foreach (Tipo_Cargo tipo_cargo in listaCargo)
+            {
+
+                lista.Add(new SelectListItem() { Text = tipo_cargo.Descripcion.ToString(), Value = tipo_cargo.Id_Tipo_Cargo.ToString() });
+
+            }
+          
+            ViewData["listaTipos"] = lista;
+            return View();
         }
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Empleado empleado, string dv)
+        public ActionResult Crear(Empleado empleado, string dv,string listaTipos)
         {
             try
             {
