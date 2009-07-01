@@ -48,7 +48,27 @@ namespace Helpers
             return textBoxRut+ " - " + textBoxDV;
         }
 
-           
+
+        /// <summary>
+        /// Devuele lista de items para select
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="listaDeCampos"></param>
+        /// <param name="valueMember">Campo que sera el que contengael valor</param>
+        /// <param name="displayMember">Campo que se mostrara</param>
+        /// <returns></returns>
+        public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember)
+        {
+            List<SelectListItem> lista = new List<SelectListItem>();
+            lista.Add(new SelectListItem() { Text = "Seleccione Tipo de Cargo", Value = "-1" });
+            foreach (T campo in listaDeCampos)
+            {
+                var valor = campo.GetType().GetProperty(valueMember).GetValue(campo, null);
+                var display = campo.GetType().GetProperty(displayMember).GetValue(campo, null);
+                lista.Add(new SelectListItem() { Text = display.ToString(), Value = valor.ToString() });
+            }
+            return lista;
+        }
        
 
     }
