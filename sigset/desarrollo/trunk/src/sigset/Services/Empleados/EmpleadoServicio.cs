@@ -42,6 +42,7 @@ namespace Services.Empleados
        
         public void CrearNuevoEmpleado(Empleado empleadoNuevo, string digitoVerificador,string listaTipos)
         {
+            
             List<ErrorInfo> _errors = new List<ErrorInfo>();
             if (empleadoNuevo.Rut == 0)
             {
@@ -60,6 +61,12 @@ namespace Services.Empleados
                 _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
             }
 
+            decimal cargo;
+            if(!decimal.TryParse(listaTipos,out cargo))
+            {
+                _errors.Add(new ErrorInfo("Tipo Cargo", "Tipo de Cargo Invalido"));
+            }
+
             DataValidation.GetErrors(empleadoNuevo, _errors);
             if (_errors.Any())
             {
@@ -73,8 +80,9 @@ namespace Services.Empleados
                 }
                 else
                 {
-                  _repo.GuardarEmpleado(empleadoNuevo);
+                  _repo.GuardarEmpleado(empleadoNuevo,cargo);
                 }
-            }        }
+            }        
+        }
     }
 }
