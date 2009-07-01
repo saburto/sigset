@@ -8,6 +8,7 @@ using Services.Empleados;
 using Data.Modelo;
 using xVal.ServerSide;
 using Web.Helpers;
+using Helpers;
 
 //AMor de controllers, okis??oki
 namespace Web.Controllers //.Admin
@@ -42,24 +43,10 @@ namespace Web.Controllers //.Admin
        
         public ActionResult Crear()
         {
-            
-            ViewData["listaTipos"] = CargarTipoCargo();                         
+
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion");
             return View();
         }
-
-        public  List<SelectListItem> CargarTipoCargo()
-        {
-                List<Tipo_Cargo> listaCargo = new List<Tipo_Cargo>();
-                listaCargo = _servicio.GetTodosLosTipoCargo().ToList();
-                List<SelectListItem> lista = new List<SelectListItem>();
-                lista.Add(new SelectListItem() { Text = "Seleccione Tipo de Cargo", Value = "-1" });
-                foreach (Tipo_Cargo tipo_cargo in listaCargo)
-                {
-                    lista.Add(new SelectListItem() { Text = tipo_cargo.Descripcion.ToString(), Value = tipo_cargo.Id_Tipo_Cargo.ToString() });
-                }
-                return lista;
-        }
-        
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear(Empleado empleado, string dv, string listaTipos)
@@ -82,7 +69,7 @@ namespace Web.Controllers //.Admin
                 ModelState.AddRuleErrors(ex.Errors);
 
 
-                ViewData["listaTipos"] = CargarTipoCargo(); 
+                ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion");
                 //Crear es un View(aspx) No un PartialView(ascx)
                 return View();
             }
