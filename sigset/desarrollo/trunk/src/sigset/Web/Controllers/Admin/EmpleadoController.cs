@@ -70,19 +70,22 @@ namespace Web.Controllers //.Admin
                  _servicio.CrearNuevoEmpleado(empleado, dv, listaTipos);
 
                 //Detalles es un View(aspx) No un PartialView(ascx)
-                 ViewData["listaTipos"] = CargarTipoCargo(); 
-                return View();
+                 //ViewData["listaTipos"] = CargarTipoCargo();
+
+                //Despues que lo guarda sim ningun problema redirige hacia la lista
+                return RedirectToAction("Lista");
             }
             catch (RulesException ex)
             {
                 //Modificado por sebastian
                 //Ocupar Helper para agregar errores
                 ModelState.AddRuleErrors(ex.Errors);
+
+
                 ViewData["listaTipos"] = CargarTipoCargo(); 
                 //Crear es un View(aspx) No un PartialView(ascx)
                 return View();
             }
-
         }
 
     }

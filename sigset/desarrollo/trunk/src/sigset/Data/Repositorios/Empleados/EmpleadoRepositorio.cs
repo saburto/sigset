@@ -45,6 +45,13 @@ namespace Data.Repositorios.Empleados
             _data.AddToEmpleado(empleado);
             _data.SaveChanges();
         }
+
+        public void GuardarEmpleado(Empleado empleado, decimal tipoCargo)
+        {
+            Tipo_Cargo cargo = _data.Tipo_Cargo.Where(x => x.Id_Tipo_Cargo == tipoCargo).FirstOrDefault();
+            empleado.Tipo_Cargo = cargo;
+            GuardarEmpleado(empleado);
+        }
       
     }
 }
