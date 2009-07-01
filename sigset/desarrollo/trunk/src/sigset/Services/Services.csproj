@@ -67,6 +67,7 @@
     <Compile Include="Helpers\DataAnnotationsValidationRunner.cs" />
     <Compile Include="Helpers\ValidarRut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoCargo\TipoCargoServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
