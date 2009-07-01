@@ -3,7 +3,7 @@ namespace Services.Empleados
 {
    public interface IEmpleadoServicio
     {
-        void CrearNuevoEmpleado(global::Data.Modelo.Empleado empleadoNuevo, string digitoVerificador);
+        void CrearNuevoEmpleado(global::Data.Modelo.Empleado empleadoNuevo, string digitoVerificador,string listaTipos);
         System.Collections.Generic.IList<global::Data.Modelo.Empleado> GetTodosLosEmpleados();
         System.Collections.Generic.IList<global::Data.Modelo.Tipo_Cargo> GetTodosLosTipoCargo();
     }
