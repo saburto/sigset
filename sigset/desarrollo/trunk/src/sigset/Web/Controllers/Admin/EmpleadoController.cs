@@ -45,12 +45,10 @@ namespace Web.Controllers //.Admin
             List<Tipo_Cargo> listaCargo = new List<Tipo_Cargo>();
             listaCargo = _servicio.GetTodosLosTipoCargo().ToList();
             List<SelectListItem> lista = new List<SelectListItem>();
-          
+            lista.Add(new SelectListItem() {Text = "Seleccione Tipo de Cargo" , Value = "-1" });
             foreach (Tipo_Cargo tipo_cargo in listaCargo)
             {
-
                 lista.Add(new SelectListItem() { Text = tipo_cargo.Descripcion.ToString(), Value = tipo_cargo.Id_Tipo_Cargo.ToString() });
-
             }
           
             ViewData["listaTipos"] = lista;
@@ -63,7 +61,7 @@ namespace Web.Controllers //.Admin
         {
             try
             {
-                _servicio.CrearNuevoEmpleado(empleado, dv);
+                 _servicio.CrearNuevoEmpleado(empleado, dv);
 
                 //Detalles es un View(aspx) No un PartialView(ascx)
                 return View("Detalles", empleado);
