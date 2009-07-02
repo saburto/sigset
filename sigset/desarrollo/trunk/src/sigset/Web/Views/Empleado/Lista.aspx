@@ -29,8 +29,8 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> |
-                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Rut })%>
+                <%= Html.ActionLink("Editar", "Editar", new { id = item.Rut }) %> |
+                <%= Html.ActionLink("Detalles", "Detalles", new { id =item.Rut })%>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.Rut)) %>
