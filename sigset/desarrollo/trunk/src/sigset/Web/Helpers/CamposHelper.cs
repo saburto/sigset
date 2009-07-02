@@ -19,7 +19,7 @@ namespace Helpers
         /// <returns></returns>
         public static string RutTextBox(this HtmlHelper helper)
         {
-            return RutTextBox(helper,null,false);
+            return RutTextBox(helper, null, false);
         }
 
         public static string RutTextBox(this HtmlHelper helper, object dataRut, bool soloLectura)
@@ -27,25 +27,25 @@ namespace Helpers
             return RutTextBox(helper, "Rut", "dv", dataRut, null, soloLectura);
         }
 
-        public static string RutTextBox(this HtmlHelper helper,string nombreCampoRut, string nombreCampoDV, object dataRut, object dataDv, bool soloLectura )
+        public static string RutTextBox(this HtmlHelper helper, string nombreCampoRut, string nombreCampoDV, object dataRut, object dataDv, bool soloLectura)
         {
-            Dictionary<string,object> htmlAtributtes = new Dictionary<string, object>();
+            Dictionary<string, object> htmlAtributtes = new Dictionary<string, object>();
             htmlAtributtes.Add("maxlength", "10");
             htmlAtributtes.Add("size", "10");
             htmlAtributtes.Add("style", "text-align: right");
             if (soloLectura)
             {
-                htmlAtributtes.Add("readonly", "readonly");   
+                htmlAtributtes.Add("readonly", "readonly");
             }
-            
-            string textBoxRut = InputExtensions.TextBox(helper,nombreCampoRut, dataRut, htmlAtributtes);
+
+            string textBoxRut = InputExtensions.TextBox(helper, nombreCampoRut, dataRut, htmlAtributtes);
 
             htmlAtributtes["maxlength"] = "1";
             htmlAtributtes["size"] = "1";
             htmlAtributtes["style"] = "width: 10px";
 
             string textBoxDV = InputExtensions.TextBox(helper, nombreCampoDV, dataDv, htmlAtributtes);
-            return textBoxRut+ " - " + textBoxDV;
+            return textBoxRut + " - " + textBoxDV;
         }
 
 
@@ -59,17 +59,76 @@ namespace Helpers
         /// <returns></returns>
         public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember)
         {
+            return GetSelectCampos<T>(listaDeCampos, valueMember, displayMember, null);
+        }
+
+        public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember, string seleccionado)
+        {
             List<SelectListItem> lista = new List<SelectListItem>();
             lista.Add(new SelectListItem() { Text = "Seleccione...", Value = "-1" });
             foreach (T campo in listaDeCampos)
             {
                 var valor = campo.GetType().GetProperty(valueMember).GetValue(campo, null);
                 var display = campo.GetType().GetProperty(displayMember).GetValue(campo, null);
-                lista.Add(new SelectListItem() { Text = display.ToString(), Value = valor.ToString() });
+                if (seleccionado != null && valor.ToString() == seleccionado)
+                {
+                    lista.Add(new SelectListItem() { Text = display.ToString(), Value = valor.ToString(), Selected = true });
+                }
+                else
+                {
+                    lista.Add(new SelectListItem() { Text = display.ToString(), Value = valor.ToString() });
+                }
             }
             return lista;
         }
-       
+
+        public static string GetRutCompleto(this decimal rut)
+        {
+            return rut.ToString() + "-" + ValidarRut.GetDigitoVerificador(rut);
+        }
+
+        public static class ValidarRut
+        {
+
+            public static string GetDigitoVerificador(decimal rut)
+            {
+                return GetDigitoVerificador((int)rut);
+            }
+
+            public static string GetDigitoVerificador(int rut)
+            {
+                int Digito, Contador, Multiplo, Acumulador;
+                string RutDigito;
+                Contador = 2;
+                Acumulador = 0;
+                while (rut != 0)
+                {
+                    Multiplo = (rut % 10) * Contador;
+                    Acumulador = Acumulador + Multiplo;
+                    rut = rut / 10;
+                    Contador = Contador + 1;
+                    if (Contador == 8)
+                    {
+                        Contador = 2;
+                    }
+                }
+                Digito = 11 - (Acumulador % 11);
+                RutDigito = Digito.ToString().Trim();
+                if (Digito == 10)
+                {
+                    RutDigito = "K";
+                }
+                if (Digito == 11)
+                {
+                    RutDigito = "0";
+                }
+                return (RutDigito);
+            }
+        }
+
 
     }
+
+
 }
+

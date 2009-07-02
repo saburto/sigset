@@ -7,9 +7,13 @@ using System.Web.Mvc.Ajax;
 using Data.Modelo;
 using Data.Repositorios.TipoCargo;
 using Services.TipoCargo;
+using xVal.ServerSide;
+using Web.Helpers;
+using Web.Seguridad;
 
 namespace Web.Controllers
 {
+    [ManejadorErrores]
     public class TipoCargoController : Controller
     {
 
@@ -41,8 +45,17 @@ namespace Web.Controllers
         [AcceptVerbs (HttpVerbs.Post)]
         public ActionResult Editar(int id, Tipo_Cargo tipo)
         {
-            var tipo_cargo = _servicio.EditarTipoCargo(id, tipo);
-            return RedirectToAction("Lista",tipo_cargo);
+            try
+            {
+                var tipo_cargo = _servicio.EditarTipoCargo(id, tipo);
+                return RedirectToAction("Lista", tipo_cargo);
+            }
+            catch (RulesException e)
+            {
+                ModelState.AddRuleErrors(e.Errors);
+                return View();
+            
+            }
         }
         public ActionResult Crear()
         {
@@ -51,9 +64,22 @@ namespace Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear(Tipo_Cargo tipo)
         {
-             _servicio.CrearTipoCargo(tipo);
-            return RedirectToAction("Lista");
-        }
+            try
+            {
+                _servicio.CrearTipoCargo(tipo);
+                return RedirectToAction("Lista");
+            }
+            catch(RulesException e)
+            {
+                ModelState.AddRuleErrors(e.Errors);
+
+                return View();
+
+            }
+              
+             
+      
+         }
     }
 
 }

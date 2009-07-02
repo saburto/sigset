@@ -7,8 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Lista</h2>
-
-    <table style = "border-color" border = "1">
+    <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th></th>
             <th>
@@ -24,16 +23,23 @@
                 Apellido Materno
             </th>
         </tr>
-
+    <%bool alter = false; %>
     <% foreach (var item in Model) { %>
-    
+        <%if (alter)
+      { %>
+        <tr class="row-alternating">
+    <%}
+      else
+      { %>
         <tr>
+    <%} %>
+    
             <td>
                 <%= Html.ActionLink("Editar", "Editar", new { id = item.Rut }) %> |
                 <%= Html.ActionLink("Detalles", "Detalles", new { id =item.Rut })%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.Rut)) %>
+                <%= Html.Encode(String.Format("{0}", item.Rut.GetRutCompleto())) %>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>

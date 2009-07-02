@@ -32,7 +32,9 @@
     <% } %>
 
     <div>
+    <p>
         <%=Html.ActionLink("Volver Atrás", "Lista") %>
+    </p>
     </div>
 
 </asp:Content>

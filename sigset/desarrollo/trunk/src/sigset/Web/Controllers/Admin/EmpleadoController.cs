@@ -45,15 +45,29 @@ namespace Web.Controllers //.Admin
         {
             var empleado = _servicio.BuscarEmpleadoPorRut(id);
             ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
-            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion");
-            return PartialView("Editar", empleado);
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Tipo_Cargo.Id_Tipo_Cargo.ToString());
+            return View("Editar", empleado);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Editar(int id, Empleado empleado, string listaTipos)
         {
-            _servicio.EditarEmpleado(id, listaTipos, empleado);
-            return RedirectToAction("Lista");
+            try
+            {
+                _servicio.EditarEmpleado(id, listaTipos, empleado);
+                return RedirectToAction("Lista");
+            }
+            catch
+                (RulesException ex)
+            {
+                //Modificado por sebastian
+                //Ocupar Helper para agregar errores
+                ModelState.AddRuleErrors(ex.Errors);
+                ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion");
+                ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
+                //Crear es un View(aspx) No un PartialView(ascx)
+                return View(empleado);
+            }
         }
 
         public ActionResult Detalles(int id)
