@@ -44,8 +44,8 @@
             </div>
             <p>
                <label for="listaTipos">Tipo Cargo:</label>
-               <%=Html.DropDownList("listaTipos", Model.Tipo_Cargo.Descripcion)%>
-               <%= Html.ValidationMessage("listaTipos", "*")%>
+               <%=Html.DropDownList("listaTipos")%>
+               <%= Html.ValidationMessage("Tipo Cargo", "*")%>
 
                
               
@@ -59,7 +59,9 @@
     <% } %>
 
     <div>
+    <p>
         <%=Html.ActionLink("Volver Atrás", "Lista") %>
+    </p>        
     </div>
 
 </asp:Content>
