@@ -6,7 +6,7 @@ using Data.Modelo;
 
 namespace Data.Repositorios.Empleados
 {
-    public class EmpleadoRepositorio : Data.Repositorios.Empleados.IEmpleadoRepositorio
+    public class EmpleadoRepositorio : Data.Repositorios.Empleados.IEmpleadoRepositorio 
     {
         sigsetEntities _data;
        
@@ -52,6 +52,27 @@ namespace Data.Repositorios.Empleados
             empleado.Tipo_Cargo = cargo;
             GuardarEmpleado(empleado);
         }
+
+        public Empleado EditarEmpleado(int Rut, Empleado empleado,decimal tipoCargo)
+        {
+            var empleado_original = (from eo in _data.Empleado
+                                     where eo.Rut == Rut
+                                     select eo).FirstOrDefault();
+            empleado_original.Nombre = empleado.Nombre;
+            empleado_original.Apellido_Paterno = empleado.Apellido_Paterno;
+            empleado_original.Apellido_Materno = empleado.Apellido_Materno;
+            Tipo_Cargo cargo = _data.Tipo_Cargo.Where(x => x.Id_Tipo_Cargo == tipoCargo).FirstOrDefault();
+            empleado_original.Tipo_Cargo = cargo;
+           
+
+            _data.SaveChanges();
+
+            return empleado;
+
+                             
+          
+        }
+
       
     }
 }
