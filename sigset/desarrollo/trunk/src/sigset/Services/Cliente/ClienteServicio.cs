@@ -68,6 +68,31 @@ namespace Services.Clientes
             return cliente;
         }
 
+        public Cliente GetClientePorRut(decimal rut, string dv)
+        {
+            if (ValidarRut.GetDigitoVerificador(rut) != dv)
+            {
+                throw new RulesException("Rut", "Rut Invalido");
+            }
+            else
+            {
+                return GetClientePorRut(rut);
+            }
+        }
+
+        public Cliente GetClientePorRut(string rut, string dv)
+        {
+            decimal rutDe;
+            if (!decimal.TryParse(rut, out rutDe))
+            {
+                throw new RulesException("Rut", "Rut Invalido");
+            }
+            else
+            {
+                return GetClientePorRut(rutDe, dv);
+            }
+        }
+
         public IQueryable<Cliente> BuscarClientesPorApellido(string apellido)
         {
             return null;

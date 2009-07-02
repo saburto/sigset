@@ -1,5 +1,7 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-    <% using (Ajax.BeginForm("Buscar", "Cliente", new AjaxOptions { UpdateTargetId = "resultadoBusqueda", LoadingElementId = "loadingAjax" }))
+
+    <% Html.ValidationSummary("Error al buscar."); %>
+    <% using (Ajax.BeginForm("Buscar", "Cliente", new AjaxOptions { UpdateTargetId = "datosCliente", LoadingElementId = "loadingAjax" }))
        { %>
     <div>
             <fieldset>
@@ -12,14 +14,7 @@
                     <%= Html.ValidationMessage("Rut", "*")%>
                  </p>
             </div>
-            <div class="three-column-middle">                 
-                 <p>
-                    <label for="Apellido_Paterno">Buscar por Apellido Paterno:</label>
-                    <%= Html.TextBox("Apellido_Paterno")%>
-                    <%= Html.ValidationMessage("Apellido_Paterno", "*")%>
-                 </p>
-             </div>
-             <div class="clear"></div>
+            <div class="clear"></div>
              </div>
                 <p>
                     <input type="submit" value="Buscar Cliente" />

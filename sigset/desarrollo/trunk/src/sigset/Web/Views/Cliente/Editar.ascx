@@ -14,7 +14,7 @@
                 <%= Html.ValidationMessage("Rut", "*") %>
             </p>
             <p>            
-                <label for="Apellido Paterno">Apellido_Paterno:</label>
+                <label for="Apellido Paterno">Apellido Paterno:</label>
                 <%= Html.TextBox("Apellido_Paterno", Model.Apellido_Paterno) %>
                 <%= Html.ValidationMessage("Apellido_Paterno", "*") %>
             </p>
@@ -26,7 +26,7 @@
                 <%= Html.ValidationMessage("Nombre", "*") %>
             </p>
             <p>
-                <label for="Apellido Materno">Apellido_Materno:</label>
+                <label for="Apellido Materno">Apellido Materno:</label>
                 <%= Html.TextBox("Apellido_Materno", Model.Apellido_Materno) %>
                 <%= Html.ValidationMessage("Apellido_Materno", "*") %>
             </p>
