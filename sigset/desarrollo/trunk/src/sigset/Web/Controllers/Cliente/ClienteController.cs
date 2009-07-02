@@ -37,11 +37,22 @@ namespace Web.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Buscar(string Rut, string Apellido_Paterno)
+        public ActionResult Buscar(decimal Rut, string dv)
         {
-            
-            ActionResult result = null;
-            return result;
+            try
+            {
+                Cliente cliente = _serv.GetClientePorRut(Rut, dv);
+                return DetallesCliente(cliente);
+            }
+            catch (RulesException ex)
+            {
+                ModelState.AddRuleErrors(ex.Errors);
+            }
+            catch(Exception e)
+            {
+                ModelState.AddModelError("Rut", e);
+            }
+            return View();
         }
 
 
@@ -57,7 +68,7 @@ namespace Web.Controllers
             try
             {
                 _serv.CrearNuevoCliente(cliente, dv);
-                return PartialView("Detalles", cliente);
+                return DetallesCliente(cliente);
             }
             catch (RulesException ex)
             {
@@ -82,7 +93,7 @@ namespace Web.Controllers
             try
             {
                 var cliente = _serv.GetClientePorRut(rut);
-                return PartialView("Detalles", cliente);
+                return DetallesCliente(cliente);
             }
             catch(Exception e)
             {
@@ -91,9 +102,18 @@ namespace Web.Controllers
             
         }
 
+        [NonAction]
+        private ActionResult DetallesCliente(Cliente cliente)
+        {
+            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(cliente.Rut);
+            return PartialView("Detalles",cliente);
+        }
+
         public ActionResult Editar(decimal rut)
         {
-            return PartialView("Editar", new Cliente { Rut=rut, Nombre="Editar",Apellido_Materno="Aeditar",Apellido_Paterno="paternoEditar" });
+            var cliente = _serv.GetClientePorRut(rut);
+            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(rut);
+            return PartialView("Editar",cliente);
         }
 
     }

@@ -154,6 +154,7 @@
     <Content Include="Content\print-styles.css" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Cliente\Buscar.ascx" />
+    <Content Include="Views\Cliente\Direccion.ascx" />
     <Content Include="Views\Cliente\Editar.ascx" />
     <Content Include="Views\Cliente\Crear.ascx" />
     <Content Include="Views\Cliente\Detalles.ascx" />

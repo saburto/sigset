@@ -175,7 +175,29 @@ namespace TestServices
             }            
         }
 
+        [TestMethod]
+        public void TestBuscarClientePorRut_Encontrado()
+        {
+            Cliente clienteEncontrado = _serv.GetClientePorRut(16007459, "0");
+            Assert.IsNotNull(clienteEncontrado);
+        }
 
+        [TestMethod]
+        public void TestBuscarClientePorRut_No_Encontrado()
+        {
+            Cliente clienteEncontrado = null;
+            try
+            {
+                clienteEncontrado = _serv.GetClientePorRut(16007459, "K");
+            }
+            catch (Exception ex)
+            {
+
+                Assert.IsNotNull(ex);
+            }
+            
+            Assert.IsNull(clienteEncontrado);
+        }
 
     }
 }
