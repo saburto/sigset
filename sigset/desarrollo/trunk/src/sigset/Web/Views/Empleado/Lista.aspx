@@ -8,7 +8,7 @@
 
     <h2>Lista</h2>
 
-    <table style = "background" border = "1">
+    <table style = "border-color" border = "1">
         <tr>
             <th></th>
             <th>
