@@ -16,7 +16,12 @@
 </div>
 <div class="three-column-middle">
         <h2><%=Html.Encode("Dirección") %></h2>
-      
+        <div id="datosDireccion">
+        <% Html.RenderPartial("Direcciones", Model.Direccion); %>
+            <p>
+                <%= Ajax.ActionLink("Agregar", "CrearDireccion", "Cliente", new { rut = Model.Rut }, new AjaxOptions { LoadingElementId = "loadingAjax", UpdateTargetId = "datosDireccion", HttpMethod="GET" })%>
+            </p>
+        </div>
 </div>
 
 <div class="three-column-right">
