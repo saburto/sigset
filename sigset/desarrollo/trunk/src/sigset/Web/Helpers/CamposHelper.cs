@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
 using Data.Modelo;
-using Services.Empleados;
+
 
 namespace Helpers
 {
@@ -60,7 +60,7 @@ namespace Helpers
         public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember)
         {
             List<SelectListItem> lista = new List<SelectListItem>();
-            lista.Add(new SelectListItem() { Text = "Seleccione Tipo de Cargo", Value = "-1" });
+            lista.Add(new SelectListItem() { Text = "Seleccione...", Value = "-1" });
             foreach (T campo in listaDeCampos)
             {
                 var valor = campo.GetType().GetProperty(valueMember).GetValue(campo, null);

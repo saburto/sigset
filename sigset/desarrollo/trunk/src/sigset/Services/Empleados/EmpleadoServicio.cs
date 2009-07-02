@@ -19,7 +19,7 @@ namespace Services.Empleados
         }
 
          public EmpleadoServicio()
-            //COn la palabra this llamamos al constructor de arribasi
+            //COn la palabra this llamamos al constructor de arriba
             :this(new EmpleadoRepositorio())
         {
 
@@ -39,7 +39,44 @@ namespace Services.Empleados
         {
               return _repo.GetTipoCargo().ToList();
         }
-       
+
+        public Empleado BuscarEmpleadoPorRut(int rut)
+        {
+            var empleado = _repo.GetEmpleadoByRut(rut);
+            if (empleado == null)
+            {
+                throw new Exception("Empleado con rut:" + rut + " no ha sido encontrado");
+            }
+            return empleado;
+        }
+
+        public void EditarEmpleado(int rut, string listaTipos, Empleado empleado)
+        {
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
+            if(listaTipos == "-1")
+            { 
+                _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
+            }
+
+            decimal cargo;
+            if(!decimal.TryParse(listaTipos,out cargo))
+            {
+                _errors.Add(new ErrorInfo("Tipo Cargo", "Tipo de Cargo Invalido"));
+            }
+
+            DataValidation.GetErrors(empleado, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+            else
+            {
+                _repo.EditarEmpleado(rut, empleado, cargo);
+            }
+        
+        }
+
+
         public void CrearNuevoEmpleado(Empleado empleadoNuevo, string digitoVerificador,string listaTipos)
         {
             
