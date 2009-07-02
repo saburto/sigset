@@ -40,7 +40,32 @@ namespace Web.Controllers //.Admin
         }
 
       
-       
+        
+        public ActionResult Editar(int id)
+        {
+            var empleado = _servicio.BuscarEmpleadoPorRut(id);
+            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion");
+            return PartialView("Editar", empleado);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editar(int id, Empleado empleado, string listaTipos)
+        {
+            _servicio.EditarEmpleado(id, listaTipos, empleado);
+            return RedirectToAction("Lista");
+        }
+
+        public ActionResult Detalles(int id)
+        {
+            var empleado = _servicio.BuscarEmpleadoPorRut(id);
+            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion");
+            return PartialView("Detalles", empleado);
+        }
+
+
+              
         public ActionResult Crear()
         {
 
@@ -60,7 +85,7 @@ namespace Web.Controllers //.Admin
                  //ViewData["listaTipos"] = CargarTipoCargo();
 
                 //Despues que lo guarda sim ningun problema redirige hacia la lista
-                return RedirectToAction("Lista");
+                return RedirectToAction ("Lista");
             }
             catch (RulesException ex)
             {
