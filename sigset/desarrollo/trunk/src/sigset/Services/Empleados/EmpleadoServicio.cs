@@ -57,6 +57,10 @@ namespace Services.Empleados
             { 
                 _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
             }
+            if (listaTipos == "0" || listaTipos == "")
+            {
+                _errors.Add(new ErrorInfo("Tipo Cargo", "Debe seleccionar Tipo de Cargo"));
+            }
 
             decimal cargo;
             if(!decimal.TryParse(listaTipos,out cargo))
