@@ -1,0 +1,5 @@
+C:\Documents and Settings\sevazthian\Escritorio\mvcsitemap-22676\Main\MvcSiteMap\MvcSiteMap.Core\bin\Debug\MvcSiteMap.Core.dll
+C:\Documents and Settings\sevazthian\Escritorio\mvcsitemap-22676\Main\MvcSiteMap\MvcSiteMap.Core\bin\Debug\MvcSiteMap.Core.pdb
+C:\Documents and Settings\sevazthian\Escritorio\mvcsitemap-22676\Main\MvcSiteMap\MvcSiteMap.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\sevazthian\Escritorio\mvcsitemap-22676\Main\MvcSiteMap\MvcSiteMap.Core\obj\Debug\MvcSiteMap.Core.dll
+C:\Documents and Settings\sevazthian\Escritorio\mvcsitemap-22676\Main\MvcSiteMap\MvcSiteMap.Core\obj\Debug\MvcSiteMap.Core.pdb

@@ -1,0 +1,74 @@
+<#@ template language="C#" hostspecific="True" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="T4Toolbox.tt" #>
+
+<#+
+public class ControllerTemplate : Template
+    {
+		string controllerName;
+		List<MvcAction> listActions;
+		public ControllerTemplate(string ControllerName, List<MvcAction> ListActions)
+		{
+			controllerName=ControllerName;
+			listActions=ListActions;
+		}
+        protected override void RenderCore()
+        {
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MvcSiteMap.Web.Controllers
+{	
+	public class <#= controllerName #>Controller : Controller
+    {
+<#+ 	foreach(MvcAction action in listActions)
+{#>
+		public ActionResult <#=action.Name#>(<#+
+	bool first=true;
+	foreach(string paramater in action.Paramaters)
+	{
+		if(first)
+		{
+			#>string <#=paramater#><#+
+		first=false;
+		}
+		else
+		{
+			#>, string <#=paramater#><#+}#><#+
+	}#>)
+        {
+			// TODO: Add logic here
+          	throw new NotImplementedException();
+        }
+<#+
+}#>
+	}
+}
+<#+
+		}
+	}#>
+<#+
+	
+   public class MvcAction
+    {
+        public string Name;
+        public List<string> Paramaters;
+
+        public MvcAction(string actionName)
+        {
+            Name = actionName;
+
+            Paramaters = new List<string>();
+        }
+        public MvcAction(string actionName, List<string> paramaters)
+        {
+            Name = actionName;
+            Paramaters = paramaters;
+        }
+    }
+#>
