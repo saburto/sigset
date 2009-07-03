@@ -16,7 +16,7 @@ namespace Data.Repositorios.TipoCargo
         }
         public IQueryable <Tipo_Cargo> GetTipoCargo()
         {
-            var tipo_cargo = from tc in _data.Tipo_Cargo
+            var tipo_cargo = from tc in _data.Tipo_Cargos
                              select tc;
             return tipo_cargo;
         }
@@ -24,33 +24,33 @@ namespace Data.Repositorios.TipoCargo
 
         public Tipo_Cargo GetTipoCargoById(int id)
         {
-            var tipo_cargo = (from tc in _data.Tipo_Cargo
+            var tipo_cargo = (from tc in _data.Tipo_Cargos
                               where tc.Id_Tipo_Cargo == id
                               select tc).FirstOrDefault();
             return tipo_cargo;
             
         }
         public void GuardarNuevoTipoCargo(Tipo_Cargo tipo)
-        { 
-            _data.AddToTipo_Cargo(tipo);
-            _data.SaveChanges();
+        {
+            _data.Tipo_Cargos.InsertOnSubmit(tipo);
+            _data.SubmitChanges();
         }
 
         public Tipo_Cargo EditarTipoCargo(int id,Tipo_Cargo tipo)
         {
-          var tipo_cargo_original = (from tc in _data.Tipo_Cargo
+          var tipo_cargo_original = (from tc in _data.Tipo_Cargos
                                    where tc.Id_Tipo_Cargo == id
                                   select tc).FirstOrDefault();
           tipo_cargo_original.Descripcion = tipo.Descripcion;
-          _data.SaveChanges();
+          _data.SubmitChanges();
           return tipo;    
         }
 
         public void BorrarTipoCargo(int id)
         {
              Tipo_Cargo tipo = GetTipoCargoById(id);
-            _data.DeleteObject(tipo);
-            _data.SaveChanges();
+             _data.Tipo_Cargos.DeleteOnSubmit(tipo);
+            _data.SubmitChanges();
         }
         
     }

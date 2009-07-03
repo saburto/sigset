@@ -17,67 +17,67 @@ namespace Data.Repositorios.Usuarios
 
         public IQueryable<Usuario> GetUsuarios()
         {
-            return _entities.Usuario;
+            return _entities.Usuarios;
         }
 
         public Usuario GetUsuario(decimal id)
         {
-            return _entities.Usuario.Where(x => x.Id == id).FirstOrDefault();
+            return _entities.Usuarios.Where(x => x.Id == id).FirstOrDefault();
         }
 
 
         public Usuario GetUsuarioByNombreUsuario(string nombreUsuario )
         {
-            return _entities.Usuario.Where(x => x.Usuario1 == nombreUsuario).FirstOrDefault();
+            return _entities.Usuarios.Where(x => x.Usuario1 == nombreUsuario).FirstOrDefault();
         }
 
         public Usuario UpdateUsuario(Usuario usuario)
         {
             var originalUsuario = GetUsuario(usuario.Id);
-            _entities.ApplyPropertyChanges(originalUsuario.EntityKey.EntitySetName, usuario);
-            _entities.SaveChanges();
+            _entities.Usuarios.Attach(usuario,originalUsuario);
+            _entities.SubmitChanges();
             return usuario;
         }
 
 
         public Tipo_Usuario GetTipo_Usuario(decimal id)
         {
-            return _entities.Tipo_Usuario.Where(x => x.Id_Tipo_Usuario == id).FirstOrDefault();
+            return _entities.Tipo_Usuarios.Where(x => x.Id_Tipo_Usuario == id).FirstOrDefault();
         }
 
         public Tipo_Usuario GetTipo_UsuarioByNombre(string nombre)
         {
-            return _entities.Tipo_Usuario.Where(x => x.Descripcion == nombre).FirstOrDefault();
+            return _entities.Tipo_Usuarios.Where(x => x.Descripcion == nombre).FirstOrDefault();
         }
 
         public void CreateTipo_Usuario(string nombreTipoUsuario)
         {
-            _entities.AddToTipo_Usuario(new Tipo_Usuario() { Descripcion= nombreTipoUsuario });
-            _entities.SaveChanges();
+            _entities.Tipo_Usuarios.InsertOnSubmit(new Tipo_Usuario() { Descripcion= nombreTipoUsuario });
+            _entities.SubmitChanges();
         }
 
         public void DeleteTipo_Usuario(decimal id)
         {
             Tipo_Usuario tipo = GetTipo_Usuario(id);
-            _entities.DeleteObject(tipo);
-            _entities.SaveChanges();
+            _entities.Tipo_Usuarios.DeleteOnSubmit(tipo);
+            _entities.SubmitChanges();
         }
 
         public IQueryable<Usuario> GetUsuariosTipo_Usuario(string nombreTipoUsuario)
         {
-            return _entities.Usuario.Where(x => x.Tipo_Usuario.Descripcion == nombreTipoUsuario);
+            return _entities.Usuarios.Where(x => x.Tipo_Usuario1.Descripcion == nombreTipoUsuario);
         }
 
         public IQueryable<Tipo_Usuario> GetTipos_Usuario()
         {
-            return _entities.Tipo_Usuario;
+            return _entities.Tipo_Usuarios;
         }
 
         public Tipo_Usuario GetTipo_UsuarioByUsuarioNombre(string usuarioNombre)
         {
-            var tipo = (from u in _entities.Usuario
+            var tipo = (from u in _entities.Usuarios
                        where u.Usuario1 == usuarioNombre
-                        select u.Tipo_Usuario).FirstOrDefault() ;
+                        select u.Tipo_Usuario1).FirstOrDefault() ;
             return tipo;
         }
 
