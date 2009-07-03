@@ -45,7 +45,7 @@ namespace Web.Controllers //.Admin
         {
             var empleado = _servicio.BuscarEmpleadoPorRut(id);
             ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
-            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Tipo_Cargo.Id_Tipo_Cargo.ToString());
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Tipo_Cargo1.Id_Tipo_Cargo.ToString());
             return View("Editar", empleado);
         }
 

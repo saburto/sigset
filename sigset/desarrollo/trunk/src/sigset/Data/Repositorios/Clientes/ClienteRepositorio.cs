@@ -16,7 +16,7 @@ namespace Data.Repositorios.Clientes
 
         public Cliente GetClienteByRut(decimal rut)
         {
-            var cliente = (from c in _ent.Cliente
+            var cliente = (from c in _ent.Clientes
                            where c.Rut == rut
                            select c).FirstOrDefault();
             return cliente;
@@ -25,7 +25,7 @@ namespace Data.Repositorios.Clientes
         public IQueryable<Cliente> GetClientesByApellidoPaterno(string appellido)
         {
             
-            return from c in _ent.Cliente
+            return from c in _ent.Clientes
                    where c.Apellido_Paterno.Contains(appellido)
                    select c;
             
@@ -38,8 +38,8 @@ namespace Data.Repositorios.Clientes
 
         public void CrearCliente(Cliente cliente)
         {
-            _ent.AddToCliente(cliente);
-            _ent.SaveChanges();
+            _ent.Clientes.InsertOnSubmit(cliente);
+            _ent.SubmitChanges();
         }
 
 
@@ -52,7 +52,7 @@ namespace Data.Repositorios.Clientes
         /// <returns></returns>
         public IQueryable<Direccion> GetDireccionesByRutCliente(decimal rut)
         {
-            var direcciones = from dires in _ent.Direccion
+            var direcciones = from dires in _ent.Direccions
                               where dires.Cliente.Rut == rut
                               select dires;
             return direcciones;
@@ -61,9 +61,9 @@ namespace Data.Repositorios.Clientes
         public void CrearDirecionCliente(Cliente cliente, Direccion direccion, Tipo_Direccion tipo)
         {
             direccion.Cliente = cliente;
-            direccion.Tipo_Direccion = tipo;
-            _ent.AddToDireccion(direccion);
-            _ent.SaveChanges();
+            direccion.Tipo_Direccion = tipo.Id_Tipo_Direccion;
+            _ent.Direccions.InsertOnSubmit(direccion);
+            _ent.SubmitChanges();
         }
 
         public void CrearDirecionCliente(decimal rut, Direccion direccion, Tipo_Direccion tipo)
@@ -78,21 +78,20 @@ namespace Data.Repositorios.Clientes
 
         public void EditarDireccionCliente(Direccion direccion)
         {
-            _ent.Attach(direccion);
-            var dire = _ent.Direccion.Where(x => x.Id == direccion.Id).FirstOrDefault();
-            _ent.ApplyPropertyChanges("Direccion", dire);
-            _ent.SaveChanges();
-
+            
+            var dire = _ent.Direccions.Where(x => x.Id == direccion.Id).FirstOrDefault();
+            _ent.Direccions.Attach(direccion, dire);
+            _ent.SubmitChanges();
         }
 
         public IQueryable<Tipo_Direccion> GetTiposDireccion()
         {
-            return _ent.Tipo_Direccion;
+            return _ent.Tipo_Direccions;
         }
 
         public Tipo_Direccion GetTipoDireccionById(decimal id)
         {
-            return _ent.Tipo_Direccion.Where( x => x.Id_Tipo_Direccion == id).FirstOrDefault();
+            return _ent.Tipo_Direccions.Where( x => x.Id_Tipo_Direccion == id).FirstOrDefault();
         }
 
         #endregion
@@ -102,20 +101,21 @@ namespace Data.Repositorios.Clientes
 
         public IQueryable<Tipo_Contacto> GetTiposContacto()
         {
-            return _ent.Tipo_Contacto;
+            return _ent.Tipo_Contactos;
         }
 
         public Tipo_Contacto GetTipoContactoById(decimal id)
         {
-            return _ent.Tipo_Contacto.Where(x => x.Id_Tipo_Contacto == id).FirstOrDefault();
+            return _ent.Tipo_Contactos.Where(x => x.Id_Tipo_Contacto == id).FirstOrDefault();
         }
 
         public void CrearContactoCliente(Cliente cliente, Contacto contacto, Tipo_Contacto tipoContacto)
         {
             contacto.Cliente = cliente;
-            contacto.Tipo_Contacto = tipoContacto;
-            _ent.AddToContacto(contacto);
-            _ent.SaveChanges();
+            contacto.Tipo_Contacto = tipoContacto.Id_Tipo_Contacto;
+
+            _ent.Contactos.InsertOnSubmit(contacto);
+            _ent.SubmitChanges();
         }
         public void CrearContactoCliente(decimal rut, Contacto contacto, Tipo_Contacto tipoContacto)
         {
