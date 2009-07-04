@@ -80,6 +80,7 @@
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\TipoCargoController.cs" />
+    <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\CamposHelper.cs" />
@@ -171,6 +172,7 @@
     <Content Include="Views\TipoCargo\Crear.aspx" />
     <Content Include="Views\TipoCargo\Editar.aspx" />
     <Content Include="Views\TipoCargo\Lista.aspx" />
+    <Content Include="Views\Usuario\Lista.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>

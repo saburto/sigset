@@ -11,8 +11,7 @@
    <ul>
     <li> <%=Html.ActionLink("Empleado", "Lista", "Empleado") %></li>
     <li> <%=Html.ActionLink("Tipo Cargo", "Lista", "TipoCargo") %></li>   
-    <li> <%=Html.ActionLink("Usuario", "Lista", "Usuario") %> </li>
-    <li> <%=Html.ActionLink("Tipo de Usuario", "Lista", "TipoUsuario") %> </li>
+    <li> <%=Html.ActionLink("Usuario", "Lista", "Usuario") %> </li>   
    </ul>
    </p>
         

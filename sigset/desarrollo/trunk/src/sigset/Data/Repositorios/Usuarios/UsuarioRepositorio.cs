@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Data.Modelo;
+using System.Collections;
 
 namespace Data.Repositorios.Usuarios
 {
@@ -80,6 +81,28 @@ namespace Data.Repositorios.Usuarios
                         select u.Tipo_Usuario1).FirstOrDefault() ;
             return tipo;
         }
+        public void CreateUsuario(Usuario usuario)
+        {
+            _entities.Usuarios.InsertOnSubmit(usuario);
+            _entities.SubmitChanges();
+        }
+        public Empleado FindEmpleadoByRut(decimal rut)
+        {
+            var empleado = (from e in _entities.Empleados
+                            where e.Rut == rut
+                            select e).FirstOrDefault();
+            return empleado;
+        }
+        public IQueryable<Empleado> GetTodosLosEmpleados()
+        {
+            return _entities.Empleados;            
+        }
+        public void DeleteUsuario(Usuario usuario)
+        {
+            _entities.Usuarios.DeleteOnSubmit(usuario);
+            _entities.SubmitChanges();
+        }
+
 
     }
 }

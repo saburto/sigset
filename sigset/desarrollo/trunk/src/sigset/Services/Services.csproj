@@ -70,6 +70,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoCargo\ITipoCargoServicio.cs" />
     <Compile Include="TipoCargo\TipoCargoServicio.cs" />
+    <Compile Include="Usuarios\IUsuarioServicio.cs" />
+    <Compile Include="Usuarios\UsuarioServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

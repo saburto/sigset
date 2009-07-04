@@ -204,6 +204,18 @@ namespace TestData
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
+        [TestMethod()]
+        public void Create_UsuarioTest()
+        {
+            Usuario usuario = new Usuario();
+            usuario.Empleado = 15709046;
+            usuario.Usuario1 = "Ruminita";
+            usuario.Contraseña = "1234";
+            usuario.Tipo_Usuario = 1;
+            UsuarioRepositorio target = new UsuarioRepositorio(); // TODO: Initialize to an appropriate value
+            target.CreateUsuario(usuario);          
+         }
+
         /// <summary>
         ///A test for UsuarioRepositorio Constructor
         ///</summary>
