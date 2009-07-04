@@ -20,5 +20,6 @@ namespace Data.Modelo
 
         [Required(ErrorMessage="Contraseña requerida")]
         public object Contraseña { get; set; }
+
     }
 }
