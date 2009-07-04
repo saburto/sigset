@@ -12,6 +12,12 @@ namespace Helpers
 {
     public static class CamposHelper
     {
+        public static string TextoSoloLectura(this HtmlHelper helper,string name, object value)
+        {
+            Dictionary<String, object> atributos = new Dictionary<string, object>();
+            atributos.Add("readonly", "readonly");
+            return helper.TextBox(name, value, atributos);
+        }
         /// <summary>
         /// Devuelve dos textbox, uno para los numeros y otro para el digito verificador
         /// </summary>

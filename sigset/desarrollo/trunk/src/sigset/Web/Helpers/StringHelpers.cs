@@ -12,5 +12,6 @@ namespace Web.Helpers
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str);
         }
+      
     }
 }

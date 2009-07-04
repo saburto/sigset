@@ -8,7 +8,9 @@
       <mvcSiteMapNode title="Listar" action="Listar" />
      </mvcSiteMapNode>
 
-     <mvcSiteMapNode title="Administracion" controller="Admin" action="Index" />
+     <mvcSiteMapNode title="Administración" controller="Admin" action="Index" >
+       <!--<mvcSiteMapNode title="Empleados" controller="Empleado" action="Lista" />-->
+     </mvcSiteMapNode> 
      <mvcSiteMapNode title="Acerca de" controller="Home" action="About" />
  </mvcSiteMapNode>
 </siteMap>

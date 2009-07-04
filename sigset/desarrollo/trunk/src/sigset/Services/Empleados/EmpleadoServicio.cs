@@ -57,10 +57,19 @@ namespace Services.Empleados
             { 
                 _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
             }
-            if (listaTipos == "0" || listaTipos == "")
-            {
-                _errors.Add(new ErrorInfo("Tipo Cargo", "Debe seleccionar Tipo de Cargo"));
+            if (!empleado.Nombre.SoloTexto())
+            { 
+                 _errors.Add(new ErrorInfo("Nombre","Debe ingresar sólo texto en Nombre"));
             }
+            if (!empleado.Apellido_Paterno.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
+            }
+
+            if (!empleado.Apellido_Materno.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
+            }   
 
             decimal cargo;
             if(!decimal.TryParse(listaTipos,out cargo))
@@ -89,6 +98,7 @@ namespace Services.Empleados
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut es necesario"));
             }
+          
             else if (string.IsNullOrEmpty(digitoVerificador))
             {
                 _errors.Add(new ErrorInfo("Rut", "Se debe ingresar digito verificador"));
@@ -97,7 +107,20 @@ namespace Services.Empleados
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut invalido"));
             }
-            else if (listaTipos == "-1")
+            if (!empleadoNuevo.Nombre.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Nombre", "Debe ingresar sólo texto en Nombre"));
+            }
+            if (!empleadoNuevo.Apellido_Paterno.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
+            }
+
+            if (!empleadoNuevo.Apellido_Materno.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
+            }   
+            if (listaTipos == "-1")
             { 
                 _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
             }

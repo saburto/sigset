@@ -8,7 +8,7 @@
 
     <h2>Editar</h2>
 
-    <%= Html.ValidationSummary("No se ha realizado edición. Favor revise los siguientes datos.") %>
+    <%= Html.ValidationSummary("No se ha realizado edición. Favor corrija los siguientes datos.") %>
 
     <% using (Html.BeginForm()) {%>
 
