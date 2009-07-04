@@ -63,7 +63,7 @@ namespace Web.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Cliente cliente, string dv )
+        public ActionResult Crear(Cliente cliente, string dv, Direccion direccion, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Email")] Contacto email, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Fono")] Contacto fono)
         {
             try
             {
