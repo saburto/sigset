@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AE332932-4BE7-46C6-868F-B521B48E1855}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -155,7 +155,6 @@
     <Content Include="Content\print-styles.css" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Cliente\Buscar.ascx" />
-    <Content Include="Views\Cliente\CrearDireccion.ascx" />
     <Content Include="Views\Cliente\Direccion.ascx" />
     <Content Include="Views\Cliente\Direcciones.ascx" />
     <Content Include="Views\Cliente\Editar.ascx" />
@@ -198,6 +197,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

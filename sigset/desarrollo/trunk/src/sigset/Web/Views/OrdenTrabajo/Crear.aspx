@@ -9,12 +9,8 @@
     <h2>Crear Orden de Trabajo</h2>
 
     <div id="datosCliente">
-        <p>
-            <%=Ajax.ActionLink("Buscar Cliente", "Buscar", "Cliente", new AjaxOptions { LoadingElementId = "loadingAjax", UpdateTargetId = "datosCliente", HttpMethod = "GET" })%>
-        </p>
-        <p>
-            <%=Ajax.ActionLink("Nuevo Cliente", "Crear", "Cliente", new AjaxOptions{ LoadingElementId="loadingAjax",UpdateTargetId="datosCliente", HttpMethod="GET"}) %>
-        </p>
+        <%Html.RenderPartial("~/Views/Cliente/Crear.ascx"); %>
+    
     </div>
 </asp:Content>
 
