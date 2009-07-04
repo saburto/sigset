@@ -8,12 +8,12 @@
 
     <h2>Crear</h2>
 
-    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("No es posible crea Tipo Cargo. Favor corrija los siguietes errores.") %>
 
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Crear Tipo Cargo</legend>
             <p>
                 <label for="Id_Tipo_Cargo">Id Tipo Cargo:</label>
                 <%= Html.TextBox("Id_Tipo_Cargo") %>
@@ -22,7 +22,7 @@
             <p>
                 <label for="Descripcion">Descripcion:</label>
                 <%= Html.TextBox("Descripcion") %>
-                <%= Html.ValidationMessage("Descripcion", "*") %>
+                <%= Html.ValidationMessage("Descripción", "*") %>
             </p>
             <p>
                 <input type="submit" value="Crear" />

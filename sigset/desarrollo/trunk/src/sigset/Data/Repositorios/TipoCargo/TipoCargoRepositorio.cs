@@ -48,11 +48,19 @@ namespace Data.Repositorios.TipoCargo
 
         public void BorrarTipoCargo(int id)
         {
-             Tipo_Cargo tipo = GetTipoCargoById(id);
+            Tipo_Cargo tipo = GetTipoCargoById(id);
              _data.Tipo_Cargos.DeleteOnSubmit(tipo);
             _data.SubmitChanges();
         }
-        
+
+        public int ContarEmpleadoSegunTipoCargo(Tipo_Cargo tipo)
+        {
+            var cargos = (from e in _data.Empleados
+                          where e.Tipo_Cargo1 == tipo
+                          select e).Count();
+            return cargos;
+
+        }
     }
              
 

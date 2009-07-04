@@ -48,14 +48,30 @@ namespace Web.Controllers
             try
             {
                 var tipo_cargo = _servicio.EditarTipoCargo(id, tipo);
-                return RedirectToAction("Lista", tipo_cargo);
+                return RedirectToAction("Lista");
             }
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                return View();
+                return View(tipo);
             
             }
+        }
+       
+        public ActionResult Eliminar(int id)
+        {
+            try
+            {
+                _servicio.BorrarTipoCargo(id);
+                return RedirectToAction("Lista");
+            }
+            catch (RulesException e)
+            {
+                ModelState.AddRuleErrors(e.Errors);
+                TempData["MensajeError"] = e.Errors.FirstOrDefault().ErrorMessage;
+                return RedirectToAction("Lista");
+             }
+
         }
         public ActionResult Crear()
         {
@@ -72,7 +88,6 @@ namespace Web.Controllers
             catch(RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-
                 return View();
 
             }

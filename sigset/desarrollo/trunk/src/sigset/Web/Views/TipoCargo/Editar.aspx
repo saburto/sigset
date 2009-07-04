@@ -13,16 +13,16 @@
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Editar Tipo Cargo</legend>
             <p>
                 <label for="Id_Tipo_Cargo">Id Tipo Cargo:</label>
-                <%= Html.TextBox("Id_Tipo_Cargo", String.Format("{0:F}", Model.Id_Tipo_Cargo)) %>
+                <%= Html.TextoSoloLectura("Id_Tipo_Cargo", String.Format("{0}", Model.Id_Tipo_Cargo)) %>
                 <%= Html.ValidationMessage("Id_Tipo_Cargo", "*") %>
             </p>
             <p>
                 <label for="Descripcion">Descripcion:</label>
                 <%= Html.TextBox("Descripcion", Model.Descripcion) %>
-                <%= Html.ValidationMessage("Descripcion", "*") %>
+                <%= Html.ValidationMessage("Descripción", "*") %>
             </p>
             <p>
                 <input type="submit" value="Guardar" />

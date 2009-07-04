@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Data.Repositorios.TipoCargo;
 using Data.Modelo;
+using System.Text.RegularExpressions;
 using Services.Helpers;
 using xVal.ServerSide;
 
@@ -33,26 +34,56 @@ namespace Services.TipoCargo
         }
         public Tipo_Cargo EditarTipoCargo(int id, Tipo_Cargo tipo)
         {
+            if (tipo.Descripcion == "")
+            {
+                throw new RulesException("Descripcion", "Descripción es necesaria");
+            }
+
+            if (!tipo.Descripcion.SoloTexto())
+            {
+                throw new RulesException("Descripcion", "Descripción debe ingresar sólo letras");
+            }
             var tipo_cargo = _repo.EditarTipoCargo(id, tipo);
             return tipo_cargo;
         }
         public void BorrarTipoCargo(int id)
         {
-            _repo.BorrarTipoCargo(id);
+             var tipo_cargo = _repo.GetTipoCargoById(id);
+             if (tipo_cargo == null)
+             {
+                 throw new RulesException("Tipo Cargo", "Tipo de cargo no encontrado.");
+             }
+             else  
+             {
+                 if (_repo.ContarEmpleadoSegunTipoCargo(tipo_cargo) > 0)
+                 {
+                     throw new RulesException("Tipo Cargo", "No se puede borrar el cargo por que tiene empleados asociados.");
+                 }
+                 else
+                 {
+                     _repo.BorrarTipoCargo(id);
+                 }
+                                  
+             }
 
         }
+
+        
         public void CrearTipoCargo(Tipo_Cargo tipoNuevo)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            if (tipoNuevo.Id_Tipo_Cargo == 0)
+            if (tipoNuevo.Id_Tipo_Cargo <= 0)
             {
-                _errors.Add(new ErrorInfo("ID Tipo Cargo", "Id es necesario"));
+                _errors.Add(new ErrorInfo("Id_Tipo_Cargo", "Id es necesario"));
             }
-            else if (tipoNuevo.Descripcion == "")
+            if (tipoNuevo.Descripcion == "")
             {
-                _errors.Add(new ErrorInfo("Descripción", "Descripción es necesaria"));
+                _errors.Add(new ErrorInfo("Descripcion", "Descripción es necesaria"));
+            } 
+            else if (!tipoNuevo.Descripcion.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Descripcion", "Descripción debe ingresar sólo letras"));
             }
-
             DataValidation.GetErrors(tipoNuevo, _errors);
             if (_errors.Any())
             {

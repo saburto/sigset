@@ -6,55 +6,35 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Detalles</h2>
+    <h2>Detalles Empleado</h2>
 
- 
-    <% using (Html.BeginForm()) {%>
+   
+        <p>
+            Rut:
+            <%= Html.Encode(String.Format("{0}", Model.Rut.GetRutCompleto())) %>
+        </p>
+        <p>
+            Nombre:
+            <%= Html.Encode(Model.Nombre) %>
+        </p>
+        <p>
+            Apellido Paterno:
+            <%= Html.Encode(Model.Apellido_Paterno) %>
+        </p>
+        <p>
+            Apellido Materno:
+            <%= Html.Encode(Model.Apellido_Materno) %>
+        </p>
+        <p>
+            Tipo Cargo:
+            <%= Html.Encode(String.Format("{0}", Model.Tipo_Cargo1.Descripcion)) %>
+        </p>
+  
+    <p>
 
-        <fieldset>
-            <legend>Datos Empleado</legend>
-              <div class="three-column-container">
-            <div class="three-column-left">
-            <p>
-                <label for="Rut">Rut:</label>
-                <%= Html.RutTextBox(Model.Rut,true) %>
-                
-            </p>
-            <p>
-                <label for="Apellido_Paterno">Apellido Paterno:</label>
-                <%= Html.TextBox("Apellido_Paterno", Model.Apellido_Paterno) %>
-                <%= Html.ValidationMessage("Apellido Paterno", "*") %>
-              
-            </p>
-             </div>
-            <div class="three-column-middle">
-            <p>
-              <label for="Nombre">Nombre:</label>
-                <%= Html.TextBox("Nombre", Model.Nombre) %>
-                <%= Html.ValidationMessage("Nombre", "*") %>
-             
-            </p>
-            <p>
-             <label for="Apellido_Materno">Apellido Materno:</label>
-                <%= Html.TextBox("Apellido_Materno", Model.Apellido_Materno) %>
-                <%= Html.ValidationMessage("Apellido Materno", "*") %>
-                         
-            </p>
-             </div>
-            <div class="clear"></div>
-            </div>
-             <p>
-               <label for="Tipo_Cargo">Tipo Cargo:</label>
-               <%=Html.DropDownList("listaTipos", Model.Tipo_Cargo.Descripcion)%>
-              
-            </p>
-      </fieldset>
-
-    <% } %>
-
-    <div>
+        <%=Html.ActionLink("Editar", "Editar", new { id=Model.Rut }) %> |
         <%=Html.ActionLink("Volver Atrás", "Lista") %>
-    </div>
+    </p>
 
 </asp:Content>
 

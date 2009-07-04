@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Crear</h2>
+    <h2>Crear Empleado</h2>
 
     <%= Html.ValidationSummary("No se puede Crear Nuevo Empleado. Favor corrija los errores.") %>
 
@@ -55,9 +55,9 @@
 
     <% } %>
 
-    <div>
+    <p>
         <%=Html.ActionLink("Volver Atrás", "Lista") %>
-    </div>
+    </p>
 
 </asp:Content>
 
