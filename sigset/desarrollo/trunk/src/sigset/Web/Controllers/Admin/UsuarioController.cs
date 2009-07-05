@@ -48,6 +48,17 @@ namespace Web.Controllers.Admin
             }
 
         }
+        public ActionResult Editar(int id)
+        {
+            var usuario = _servicio.GetUsuarioById(id);
+            ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion", usuario.Tipo_Usuario.ToString());
+            ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre", usuario.Empleado.ToString());
+            ViewData["listaPass"] = usuario.Contraseña.ToString();
+            ViewData["listaRut"] = usuario.Empleado1.Rut.GetRutCompleto().ToString();
+            ViewData["listaNombreEmpleado"] = usuario.Empleado1.Nombre.ToString() + " " + usuario.Empleado1.Apellido_Paterno.ToString() + " " + usuario.Empleado1.Apellido_Materno.ToString();
+            return View("Editar", usuario);
+        }
+      
 
         public ActionResult Crear()
         {
