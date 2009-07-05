@@ -15,11 +15,12 @@ namespace Data.Modelo
 
     public class UserMetadata
     {
-        [Required(ErrorMessage="Usuario debe ser informado")]
+        [Required(ErrorMessage="Usuario requerido")]
         public object Usuario1 { get; set; }
 
         [Required(ErrorMessage="Contraseña requerida")]
         public object Contraseña { get; set; }
 
+        
     }
 }
