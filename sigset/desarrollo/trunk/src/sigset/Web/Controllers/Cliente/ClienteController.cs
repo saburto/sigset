@@ -127,5 +127,10 @@ namespace Web.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult EncontrarRegiones(string q)
+        {
+            return Content("region\nholiiii\nruminita");
+        }
     }
 }

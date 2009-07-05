@@ -45,9 +45,6 @@ namespace Data.Modelo
     partial void InsertDetalle(Detalle instance);
     partial void UpdateDetalle(Detalle instance);
     partial void DeleteDetalle(Detalle instance);
-    partial void InsertDireccion(Direccion instance);
-    partial void UpdateDireccion(Direccion instance);
-    partial void DeleteDireccion(Direccion instance);
     partial void InsertEmpleado(Empleado instance);
     partial void UpdateEmpleado(Empleado instance);
     partial void DeleteEmpleado(Empleado instance);
@@ -105,6 +102,18 @@ namespace Data.Modelo
     partial void InsertUsuario(Usuario instance);
     partial void UpdateUsuario(Usuario instance);
     partial void DeleteUsuario(Usuario instance);
+    partial void InsertDireccion(Direccion instance);
+    partial void UpdateDireccion(Direccion instance);
+    partial void DeleteDireccion(Direccion instance);
+    partial void InsertComuna(Comuna instance);
+    partial void UpdateComuna(Comuna instance);
+    partial void DeleteComuna(Comuna instance);
+    partial void InsertRegion(Region instance);
+    partial void UpdateRegion(Region instance);
+    partial void DeleteRegion(Region instance);
+    partial void InsertProvincia(Provincia instance);
+    partial void UpdateProvincia(Provincia instance);
+    partial void DeleteProvincia(Provincia instance);
     #endregion
 		
 		public sigsetEntities() : 
@@ -174,14 +183,6 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<Detalle>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Direccion> Direccions
-		{
-			get
-			{
-				return this.GetTable<Direccion>();
 			}
 		}
 		
@@ -334,6 +335,38 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<Usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Direccion> Direccions
+		{
+			get
+			{
+				return this.GetTable<Direccion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Comuna> Comunas
+		{
+			get
+			{
+				return this.GetTable<Comuna>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Region> Regions
+		{
+			get
+			{
+				return this.GetTable<Region>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Provincia> Provincias
+		{
+			get
+			{
+				return this.GetTable<Provincia>();
 			}
 		}
 	}
@@ -907,9 +940,9 @@ namespace Data.Modelo
 		
 		private EntitySet<Contacto> _Contactos;
 		
-		private EntitySet<Direccion> _Direccions;
-		
 		private EntitySet<Orden_Trabajo> _Orden_Trabajos;
+		
+		private EntitySet<Direccion> _Direccions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -928,8 +961,8 @@ namespace Data.Modelo
 		public Cliente()
 		{
 			this._Contactos = new EntitySet<Contacto>(new Action<Contacto>(this.attach_Contactos), new Action<Contacto>(this.detach_Contactos));
-			this._Direccions = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccions), new Action<Direccion>(this.detach_Direccions));
 			this._Orden_Trabajos = new EntitySet<Orden_Trabajo>(new Action<Orden_Trabajo>(this.attach_Orden_Trabajos), new Action<Orden_Trabajo>(this.detach_Orden_Trabajos));
+			this._Direccions = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccions), new Action<Direccion>(this.detach_Direccions));
 			OnCreated();
 		}
 		
@@ -1026,19 +1059,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Association(Name="Cliente_Direccion", Storage="_Direccions", ThisKey="Rut", OtherKey="Rut")]
-		public EntitySet<Direccion> Direccions
-		{
-			get
-			{
-				return this._Direccions;
-			}
-			set
-			{
-				this._Direccions.Assign(value);
-			}
-		}
-		
 		[Association(Name="Cliente_Orden_Trabajo", Storage="_Orden_Trabajos", ThisKey="Rut", OtherKey="Id_Cliente")]
 		public EntitySet<Orden_Trabajo> Orden_Trabajos
 		{
@@ -1049,6 +1069,19 @@ namespace Data.Modelo
 			set
 			{
 				this._Orden_Trabajos.Assign(value);
+			}
+		}
+		
+		[Association(Name="Cliente_Direccion", Storage="_Direccions", ThisKey="Rut", OtherKey="Rut")]
+		public EntitySet<Direccion> Direccions
+		{
+			get
+			{
+				return this._Direccions;
+			}
+			set
+			{
+				this._Direccions.Assign(value);
 			}
 		}
 		
@@ -1084,18 +1117,6 @@ namespace Data.Modelo
 			entity.Cliente = null;
 		}
 		
-		private void attach_Direccions(Direccion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cliente = this;
-		}
-		
-		private void detach_Direccions(Direccion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cliente = null;
-		}
-		
 		private void attach_Orden_Trabajos(Orden_Trabajo entity)
 		{
 			this.SendPropertyChanging();
@@ -1103,6 +1124,18 @@ namespace Data.Modelo
 		}
 		
 		private void detach_Orden_Trabajos(Orden_Trabajo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cliente = null;
+		}
+		
+		private void attach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cliente = this;
+		}
+		
+		private void detach_Direccions(Direccion entity)
 		{
 			this.SendPropertyChanging();
 			entity.Cliente = null;
@@ -1605,342 +1638,6 @@ namespace Data.Modelo
 						this._Id_Usuario = default(Nullable<decimal>);
 					}
 					this.SendPropertyChanged("Usuario");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Direccion")]
-	public partial class Direccion : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private decimal _Id;
-		
-		private decimal _Rut;
-		
-		private decimal _Region;
-		
-		private string _Ciudad;
-		
-		private string _Comuna;
-		
-		private string _Calle;
-		
-		private decimal _Numero;
-		
-		private string _Codigo_Postal;
-		
-		private decimal _Tipo_Direccion;
-		
-		private EntityRef<Cliente> _Cliente;
-		
-		private EntityRef<Tipo_Direccion> _Tipo_Direccion1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(decimal value);
-    partial void OnIdChanged();
-    partial void OnRutChanging(decimal value);
-    partial void OnRutChanged();
-    partial void OnRegionChanging(decimal value);
-    partial void OnRegionChanged();
-    partial void OnCiudadChanging(string value);
-    partial void OnCiudadChanged();
-    partial void OnComunaChanging(string value);
-    partial void OnComunaChanged();
-    partial void OnCalleChanging(string value);
-    partial void OnCalleChanged();
-    partial void OnNumeroChanging(decimal value);
-    partial void OnNumeroChanged();
-    partial void OnCodigo_PostalChanging(string value);
-    partial void OnCodigo_PostalChanged();
-    partial void OnTipo_DireccionChanging(decimal value);
-    partial void OnTipo_DireccionChanged();
-    #endregion
-		
-		public Direccion()
-		{
-			this._Cliente = default(EntityRef<Cliente>);
-			this._Tipo_Direccion1 = default(EntityRef<Tipo_Direccion>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public decimal Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL")]
-		public decimal Rut
-		{
-			get
-			{
-				return this._Rut;
-			}
-			set
-			{
-				if ((this._Rut != value))
-				{
-					if (this._Cliente.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRutChanging(value);
-					this.SendPropertyChanging();
-					this._Rut = value;
-					this.SendPropertyChanged("Rut");
-					this.OnRutChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Region", DbType="Decimal(2,0) NOT NULL")]
-		public decimal Region
-		{
-			get
-			{
-				return this._Region;
-			}
-			set
-			{
-				if ((this._Region != value))
-				{
-					this.OnRegionChanging(value);
-					this.SendPropertyChanging();
-					this._Region = value;
-					this.SendPropertyChanged("Region");
-					this.OnRegionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Ciudad", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Ciudad
-		{
-			get
-			{
-				return this._Ciudad;
-			}
-			set
-			{
-				if ((this._Ciudad != value))
-				{
-					this.OnCiudadChanging(value);
-					this.SendPropertyChanging();
-					this._Ciudad = value;
-					this.SendPropertyChanged("Ciudad");
-					this.OnCiudadChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Comuna", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Comuna
-		{
-			get
-			{
-				return this._Comuna;
-			}
-			set
-			{
-				if ((this._Comuna != value))
-				{
-					this.OnComunaChanging(value);
-					this.SendPropertyChanging();
-					this._Comuna = value;
-					this.SendPropertyChanged("Comuna");
-					this.OnComunaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Calle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Calle
-		{
-			get
-			{
-				return this._Calle;
-			}
-			set
-			{
-				if ((this._Calle != value))
-				{
-					this.OnCalleChanging(value);
-					this.SendPropertyChanging();
-					this._Calle = value;
-					this.SendPropertyChanged("Calle");
-					this.OnCalleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Numero", DbType="Decimal(8,0) NOT NULL")]
-		public decimal Numero
-		{
-			get
-			{
-				return this._Numero;
-			}
-			set
-			{
-				if ((this._Numero != value))
-				{
-					this.OnNumeroChanging(value);
-					this.SendPropertyChanging();
-					this._Numero = value;
-					this.SendPropertyChanged("Numero");
-					this.OnNumeroChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Codigo_Postal", DbType="VarChar(10)")]
-		public string Codigo_Postal
-		{
-			get
-			{
-				return this._Codigo_Postal;
-			}
-			set
-			{
-				if ((this._Codigo_Postal != value))
-				{
-					this.OnCodigo_PostalChanging(value);
-					this.SendPropertyChanging();
-					this._Codigo_Postal = value;
-					this.SendPropertyChanged("Codigo_Postal");
-					this.OnCodigo_PostalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Tipo_Direccion", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Tipo_Direccion
-		{
-			get
-			{
-				return this._Tipo_Direccion;
-			}
-			set
-			{
-				if ((this._Tipo_Direccion != value))
-				{
-					if (this._Tipo_Direccion1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTipo_DireccionChanging(value);
-					this.SendPropertyChanging();
-					this._Tipo_Direccion = value;
-					this.SendPropertyChanged("Tipo_Direccion");
-					this.OnTipo_DireccionChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Cliente_Direccion", Storage="_Cliente", ThisKey="Rut", OtherKey="Rut", IsForeignKey=true)]
-		public Cliente Cliente
-		{
-			get
-			{
-				return this._Cliente.Entity;
-			}
-			set
-			{
-				Cliente previousValue = this._Cliente.Entity;
-				if (((previousValue != value) 
-							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Cliente.Entity = null;
-						previousValue.Direccions.Remove(this);
-					}
-					this._Cliente.Entity = value;
-					if ((value != null))
-					{
-						value.Direccions.Add(this);
-						this._Rut = value.Rut;
-					}
-					else
-					{
-						this._Rut = default(decimal);
-					}
-					this.SendPropertyChanged("Cliente");
-				}
-			}
-		}
-		
-		[Association(Name="Tipo_Direccion_Direccion", Storage="_Tipo_Direccion1", ThisKey="Tipo_Direccion", OtherKey="Id_Tipo_Direccion", IsForeignKey=true)]
-		public Tipo_Direccion Tipo_Direccion1
-		{
-			get
-			{
-				return this._Tipo_Direccion1.Entity;
-			}
-			set
-			{
-				Tipo_Direccion previousValue = this._Tipo_Direccion1.Entity;
-				if (((previousValue != value) 
-							|| (this._Tipo_Direccion1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tipo_Direccion1.Entity = null;
-						previousValue.Direccions.Remove(this);
-					}
-					this._Tipo_Direccion1.Entity = value;
-					if ((value != null))
-					{
-						value.Direccions.Add(this);
-						this._Tipo_Direccion = value.Id_Tipo_Direccion;
-					}
-					else
-					{
-						this._Tipo_Direccion = default(decimal);
-					}
-					this.SendPropertyChanged("Tipo_Direccion1");
 				}
 			}
 		}
@@ -5270,6 +4967,969 @@ namespace Data.Modelo
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = null;
+		}
+	}
+	
+	[Table(Name="dbo.Direccion")]
+	public partial class Direccion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Id;
+		
+		private decimal _Rut;
+		
+		private decimal _Region;
+		
+		private decimal _Provincia;
+		
+		private decimal _Comuna;
+		
+		private string _Calle;
+		
+		private string _Numero;
+		
+		private decimal _Tipo_Direccion;
+		
+		private EntityRef<Cliente> _Cliente;
+		
+		private EntityRef<Tipo_Direccion> _Tipo_Direccion1;
+		
+		private EntityRef<Comuna> _Comuna1;
+		
+		private EntityRef<Region> _Region1;
+		
+		private EntityRef<Provincia> _Provincia1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(decimal value);
+    partial void OnIdChanged();
+    partial void OnRutChanging(decimal value);
+    partial void OnRutChanged();
+    partial void OnRegionChanging(decimal value);
+    partial void OnRegionChanged();
+    partial void OnProvinciaChanging(decimal value);
+    partial void OnProvinciaChanged();
+    partial void OnComunaChanging(decimal value);
+    partial void OnComunaChanged();
+    partial void OnCalleChanging(string value);
+    partial void OnCalleChanged();
+    partial void OnNumeroChanging(string value);
+    partial void OnNumeroChanged();
+    partial void OnTipo_DireccionChanging(decimal value);
+    partial void OnTipo_DireccionChanged();
+    #endregion
+		
+		public Direccion()
+		{
+			this._Cliente = default(EntityRef<Cliente>);
+			this._Tipo_Direccion1 = default(EntityRef<Tipo_Direccion>);
+			this._Comuna1 = default(EntityRef<Comuna>);
+			this._Region1 = default(EntityRef<Region>);
+			this._Provincia1 = default(EntityRef<Provincia>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public decimal Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL")]
+		public decimal Rut
+		{
+			get
+			{
+				return this._Rut;
+			}
+			set
+			{
+				if ((this._Rut != value))
+				{
+					if (this._Cliente.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRutChanging(value);
+					this.SendPropertyChanging();
+					this._Rut = value;
+					this.SendPropertyChanged("Rut");
+					this.OnRutChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Region", DbType="Decimal(2,0) NOT NULL")]
+		public decimal Region
+		{
+			get
+			{
+				return this._Region;
+			}
+			set
+			{
+				if ((this._Region != value))
+				{
+					if (this._Region1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRegionChanging(value);
+					this.SendPropertyChanging();
+					this._Region = value;
+					this.SendPropertyChanged("Region");
+					this.OnRegionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Provincia", DbType="Decimal(3,0) NOT NULL")]
+		public decimal Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					if (this._Provincia1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProvinciaChanging(value);
+					this.SendPropertyChanging();
+					this._Provincia = value;
+					this.SendPropertyChanged("Provincia");
+					this.OnProvinciaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Comuna", DbType="Decimal(3,0) NOT NULL")]
+		public decimal Comuna
+		{
+			get
+			{
+				return this._Comuna;
+			}
+			set
+			{
+				if ((this._Comuna != value))
+				{
+					if (this._Comuna1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComunaChanging(value);
+					this.SendPropertyChanging();
+					this._Comuna = value;
+					this.SendPropertyChanged("Comuna");
+					this.OnComunaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Calle", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Calle
+		{
+			get
+			{
+				return this._Calle;
+			}
+			set
+			{
+				if ((this._Calle != value))
+				{
+					this.OnCalleChanging(value);
+					this.SendPropertyChanging();
+					this._Calle = value;
+					this.SendPropertyChanged("Calle");
+					this.OnCalleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Numero", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Numero
+		{
+			get
+			{
+				return this._Numero;
+			}
+			set
+			{
+				if ((this._Numero != value))
+				{
+					this.OnNumeroChanging(value);
+					this.SendPropertyChanging();
+					this._Numero = value;
+					this.SendPropertyChanged("Numero");
+					this.OnNumeroChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Tipo_Direccion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Tipo_Direccion
+		{
+			get
+			{
+				return this._Tipo_Direccion;
+			}
+			set
+			{
+				if ((this._Tipo_Direccion != value))
+				{
+					if (this._Tipo_Direccion1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTipo_DireccionChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo_Direccion = value;
+					this.SendPropertyChanged("Tipo_Direccion");
+					this.OnTipo_DireccionChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Cliente_Direccion", Storage="_Cliente", ThisKey="Rut", OtherKey="Rut", IsForeignKey=true)]
+		public Cliente Cliente
+		{
+			get
+			{
+				return this._Cliente.Entity;
+			}
+			set
+			{
+				Cliente previousValue = this._Cliente.Entity;
+				if (((previousValue != value) 
+							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Cliente.Entity = null;
+						previousValue.Direccions.Remove(this);
+					}
+					this._Cliente.Entity = value;
+					if ((value != null))
+					{
+						value.Direccions.Add(this);
+						this._Rut = value.Rut;
+					}
+					else
+					{
+						this._Rut = default(decimal);
+					}
+					this.SendPropertyChanged("Cliente");
+				}
+			}
+		}
+		
+		[Association(Name="Tipo_Direccion_Direccion", Storage="_Tipo_Direccion1", ThisKey="Tipo_Direccion", OtherKey="Id_Tipo_Direccion", IsForeignKey=true)]
+		public Tipo_Direccion Tipo_Direccion1
+		{
+			get
+			{
+				return this._Tipo_Direccion1.Entity;
+			}
+			set
+			{
+				Tipo_Direccion previousValue = this._Tipo_Direccion1.Entity;
+				if (((previousValue != value) 
+							|| (this._Tipo_Direccion1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tipo_Direccion1.Entity = null;
+						previousValue.Direccions.Remove(this);
+					}
+					this._Tipo_Direccion1.Entity = value;
+					if ((value != null))
+					{
+						value.Direccions.Add(this);
+						this._Tipo_Direccion = value.Id_Tipo_Direccion;
+					}
+					else
+					{
+						this._Tipo_Direccion = default(decimal);
+					}
+					this.SendPropertyChanged("Tipo_Direccion1");
+				}
+			}
+		}
+		
+		[Association(Name="Comuna_Direccion", Storage="_Comuna1", ThisKey="Comuna", OtherKey="Id", IsForeignKey=true)]
+		public Comuna Comuna1
+		{
+			get
+			{
+				return this._Comuna1.Entity;
+			}
+			set
+			{
+				Comuna previousValue = this._Comuna1.Entity;
+				if (((previousValue != value) 
+							|| (this._Comuna1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Comuna1.Entity = null;
+						previousValue.Direccions.Remove(this);
+					}
+					this._Comuna1.Entity = value;
+					if ((value != null))
+					{
+						value.Direccions.Add(this);
+						this._Comuna = value.Id;
+					}
+					else
+					{
+						this._Comuna = default(decimal);
+					}
+					this.SendPropertyChanged("Comuna1");
+				}
+			}
+		}
+		
+		[Association(Name="Region_Direccion", Storage="_Region1", ThisKey="Region", OtherKey="Id", IsForeignKey=true)]
+		public Region Region1
+		{
+			get
+			{
+				return this._Region1.Entity;
+			}
+			set
+			{
+				Region previousValue = this._Region1.Entity;
+				if (((previousValue != value) 
+							|| (this._Region1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Region1.Entity = null;
+						previousValue.Direccions.Remove(this);
+					}
+					this._Region1.Entity = value;
+					if ((value != null))
+					{
+						value.Direccions.Add(this);
+						this._Region = value.Id;
+					}
+					else
+					{
+						this._Region = default(decimal);
+					}
+					this.SendPropertyChanged("Region1");
+				}
+			}
+		}
+		
+		[Association(Name="Provincia_Direccion", Storage="_Provincia1", ThisKey="Provincia", OtherKey="Id", IsForeignKey=true)]
+		public Provincia Provincia1
+		{
+			get
+			{
+				return this._Provincia1.Entity;
+			}
+			set
+			{
+				Provincia previousValue = this._Provincia1.Entity;
+				if (((previousValue != value) 
+							|| (this._Provincia1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Provincia1.Entity = null;
+						previousValue.Direccions.Remove(this);
+					}
+					this._Provincia1.Entity = value;
+					if ((value != null))
+					{
+						value.Direccions.Add(this);
+						this._Provincia = value.Id;
+					}
+					else
+					{
+						this._Provincia = default(decimal);
+					}
+					this.SendPropertyChanged("Provincia1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Comuna")]
+	public partial class Comuna : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Id;
+		
+		private decimal _Id_Provincia;
+		
+		private string _Nombre;
+		
+		private EntitySet<Direccion> _Direccions;
+		
+		private EntityRef<Provincia> _Provincia;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(decimal value);
+    partial void OnIdChanged();
+    partial void OnId_ProvinciaChanging(decimal value);
+    partial void OnId_ProvinciaChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    #endregion
+		
+		public Comuna()
+		{
+			this._Direccions = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccions), new Action<Direccion>(this.detach_Direccions));
+			this._Provincia = default(EntityRef<Provincia>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="Decimal(3,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Provincia", DbType="Decimal(3,0) NOT NULL")]
+		public decimal Id_Provincia
+		{
+			get
+			{
+				return this._Id_Provincia;
+			}
+			set
+			{
+				if ((this._Id_Provincia != value))
+				{
+					if (this._Provincia.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_ProvinciaChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Provincia = value;
+					this.SendPropertyChanged("Id_Provincia");
+					this.OnId_ProvinciaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Comuna_Direccion", Storage="_Direccions", ThisKey="Id", OtherKey="Comuna")]
+		public EntitySet<Direccion> Direccions
+		{
+			get
+			{
+				return this._Direccions;
+			}
+			set
+			{
+				this._Direccions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Provincia_Comuna", Storage="_Provincia", ThisKey="Id_Provincia", OtherKey="Id", IsForeignKey=true)]
+		public Provincia Provincia
+		{
+			get
+			{
+				return this._Provincia.Entity;
+			}
+			set
+			{
+				Provincia previousValue = this._Provincia.Entity;
+				if (((previousValue != value) 
+							|| (this._Provincia.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Provincia.Entity = null;
+						previousValue.Comunas.Remove(this);
+					}
+					this._Provincia.Entity = value;
+					if ((value != null))
+					{
+						value.Comunas.Add(this);
+						this._Id_Provincia = value.Id;
+					}
+					else
+					{
+						this._Id_Provincia = default(decimal);
+					}
+					this.SendPropertyChanged("Provincia");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Comuna1 = this;
+		}
+		
+		private void detach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Comuna1 = null;
+		}
+	}
+	
+	[Table(Name="dbo.Region")]
+	public partial class Region : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Id;
+		
+		private string _Nombre;
+		
+		private EntitySet<Direccion> _Direccions;
+		
+		private EntitySet<Provincia> _Provincias;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(decimal value);
+    partial void OnIdChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    #endregion
+		
+		public Region()
+		{
+			this._Direccions = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccions), new Action<Direccion>(this.detach_Direccions));
+			this._Provincias = new EntitySet<Provincia>(new Action<Provincia>(this.attach_Provincias), new Action<Provincia>(this.detach_Provincias));
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="Decimal(2,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Region_Direccion", Storage="_Direccions", ThisKey="Id", OtherKey="Region")]
+		public EntitySet<Direccion> Direccions
+		{
+			get
+			{
+				return this._Direccions;
+			}
+			set
+			{
+				this._Direccions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Region_Provincia", Storage="_Provincias", ThisKey="Id", OtherKey="Id_Region")]
+		public EntitySet<Provincia> Provincias
+		{
+			get
+			{
+				return this._Provincias;
+			}
+			set
+			{
+				this._Provincias.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Region1 = this;
+		}
+		
+		private void detach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Region1 = null;
+		}
+		
+		private void attach_Provincias(Provincia entity)
+		{
+			this.SendPropertyChanging();
+			entity.Region = this;
+		}
+		
+		private void detach_Provincias(Provincia entity)
+		{
+			this.SendPropertyChanging();
+			entity.Region = null;
+		}
+	}
+	
+	[Table(Name="dbo.Provincia")]
+	public partial class Provincia : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Id;
+		
+		private decimal _Id_Region;
+		
+		private string _nombre;
+		
+		private EntitySet<Direccion> _Direccions;
+		
+		private EntitySet<Comuna> _Comunas;
+		
+		private EntityRef<Region> _Region;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(decimal value);
+    partial void OnIdChanged();
+    partial void OnId_RegionChanging(decimal value);
+    partial void OnId_RegionChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    #endregion
+		
+		public Provincia()
+		{
+			this._Direccions = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccions), new Action<Direccion>(this.detach_Direccions));
+			this._Comunas = new EntitySet<Comuna>(new Action<Comuna>(this.attach_Comunas), new Action<Comuna>(this.detach_Comunas));
+			this._Region = default(EntityRef<Region>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="Decimal(3,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Region", DbType="Decimal(2,0) NOT NULL")]
+		public decimal Id_Region
+		{
+			get
+			{
+				return this._Id_Region;
+			}
+			set
+			{
+				if ((this._Id_Region != value))
+				{
+					if (this._Region.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_RegionChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Region = value;
+					this.SendPropertyChanged("Id_Region");
+					this.OnId_RegionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_nombre", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Provincia_Direccion", Storage="_Direccions", ThisKey="Id", OtherKey="Provincia")]
+		public EntitySet<Direccion> Direccions
+		{
+			get
+			{
+				return this._Direccions;
+			}
+			set
+			{
+				this._Direccions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Provincia_Comuna", Storage="_Comunas", ThisKey="Id", OtherKey="Id_Provincia")]
+		public EntitySet<Comuna> Comunas
+		{
+			get
+			{
+				return this._Comunas;
+			}
+			set
+			{
+				this._Comunas.Assign(value);
+			}
+		}
+		
+		[Association(Name="Region_Provincia", Storage="_Region", ThisKey="Id_Region", OtherKey="Id", IsForeignKey=true)]
+		public Region Region
+		{
+			get
+			{
+				return this._Region.Entity;
+			}
+			set
+			{
+				Region previousValue = this._Region.Entity;
+				if (((previousValue != value) 
+							|| (this._Region.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Region.Entity = null;
+						previousValue.Provincias.Remove(this);
+					}
+					this._Region.Entity = value;
+					if ((value != null))
+					{
+						value.Provincias.Add(this);
+						this._Id_Region = value.Id;
+					}
+					else
+					{
+						this._Id_Region = default(decimal);
+					}
+					this.SendPropertyChanged("Region");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Provincia1 = this;
+		}
+		
+		private void detach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Provincia1 = null;
+		}
+		
+		private void attach_Comunas(Comuna entity)
+		{
+			this.SendPropertyChanging();
+			entity.Provincia = this;
+		}
+		
+		private void detach_Comunas(Comuna entity)
+		{
+			this.SendPropertyChanging();
+			entity.Provincia = null;
 		}
 	}
 }

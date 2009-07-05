@@ -32,8 +32,8 @@
       <Column Name="Apellido_Paterno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Apellido_Materno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Cliente_Contacto" Member="Contactos" ThisKey="Rut" OtherKey="Rut" Type="Contacto" />
-      <Association Name="Cliente_Direccion" Member="Direccions" ThisKey="Rut" OtherKey="Rut" Type="Direccion" />
       <Association Name="Cliente_Orden_Trabajo" Member="Orden_Trabajos" ThisKey="Rut" OtherKey="Id_Cliente" Type="Orden_Trabajo" />
+      <Association Name="Cliente_Direccion" Member="Direccions" ThisKey="Rut" OtherKey="Rut" Type="Direccion" />
     </Type>
   </Table>
   <Table Name="dbo.Contacto" Member="Contactos">
@@ -57,21 +57,6 @@
       <Association Name="Estado_Detalle" Member="Estado1" ThisKey="Estado" OtherKey="Id_Estado" Type="Estado" IsForeignKey="true" />
       <Association Name="Orden_Trabajo_Detalle" Member="Orden_Trabajo" ThisKey="Id_Orden" OtherKey="Id" Type="Orden_Trabajo" IsForeignKey="true" />
       <Association Name="Usuario_Detalle" Member="Usuario" ThisKey="Id_Usuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Direccion" Member="Direccions">
-    <Type Name="Direccion">
-      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Ciudad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Comuna" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Calle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Codigo_Postal" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="Tipo_Direccion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Cliente_Direccion" Member="Cliente" ThisKey="Rut" OtherKey="Rut" Type="Cliente" IsForeignKey="true" />
-      <Association Name="Tipo_Direccion_Direccion" Member="Tipo_Direccion1" ThisKey="Tipo_Direccion" OtherKey="Id_Tipo_Direccion" Type="Tipo_Direccion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Empleado" Member="Empleados">
@@ -243,6 +228,50 @@
       <Association Name="Usuario_Detalle" Member="Detalles" ThisKey="Id" OtherKey="Id_Usuario" Type="Detalle" />
       <Association Name="Empleado_Usuario" Member="Empleado1" ThisKey="Empleado" OtherKey="Rut" Type="Empleado" IsForeignKey="true" />
       <Association Name="Tipo_Usuario_Usuario" Member="Tipo_Usuario1" ThisKey="Tipo_Usuario" OtherKey="Id_Tipo_Usuario" Type="Tipo_Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direccion" Member="Direccions">
+    <Type Name="Direccion">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Provincia" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Calle" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Numero" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo_Direccion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="Cliente_Direccion" Member="Cliente" ThisKey="Rut" OtherKey="Rut" Type="Cliente" IsForeignKey="true" />
+      <Association Name="Tipo_Direccion_Direccion" Member="Tipo_Direccion1" ThisKey="Tipo_Direccion" OtherKey="Id_Tipo_Direccion" Type="Tipo_Direccion" IsForeignKey="true" />
+      <Association Name="Comuna_Direccion" Member="Comuna1" ThisKey="Comuna" OtherKey="Id" Type="Comuna" IsForeignKey="true" />
+      <Association Name="Region_Direccion" Member="Region1" ThisKey="Region" OtherKey="Id" Type="Region" IsForeignKey="true" />
+      <Association Name="Provincia_Direccion" Member="Provincia1" ThisKey="Provincia" OtherKey="Id" Type="Provincia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comuna" Member="Comunas">
+    <Type Name="Comuna">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_Provincia" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Comuna_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Comuna" Type="Direccion" />
+      <Association Name="Provincia_Comuna" Member="Provincia" ThisKey="Id_Provincia" OtherKey="Id" Type="Provincia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Region" Member="Regions">
+    <Type Name="Region">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="Region_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Region" Type="Direccion" />
+      <Association Name="Region_Provincia" Member="Provincias" ThisKey="Id" OtherKey="Id_Region" Type="Provincia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Provincia" Member="Provincias">
+    <Type Name="Provincia">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Provincia_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Provincia" Type="Direccion" />
+      <Association Name="Provincia_Comuna" Member="Comunas" ThisKey="Id" OtherKey="Id_Provincia" Type="Comuna" />
+      <Association Name="Region_Provincia" Member="Region" ThisKey="Id_Region" OtherKey="Id" Type="Region" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

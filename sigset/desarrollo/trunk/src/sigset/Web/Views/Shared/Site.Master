@@ -21,6 +21,9 @@
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.jquery.validate.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js") %>"></script>
+    
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 <body>
     <div class="none">

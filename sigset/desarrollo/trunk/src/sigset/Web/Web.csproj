@@ -154,6 +154,7 @@
     <Content Include="Content\images\photo-small-01.jpg" />
     <Content Include="Content\images\photo-small-02.jpg" />
     <Content Include="Content\print-styles.css" />
+    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Cliente\Buscar.ascx" />
     <Content Include="Views\Cliente\Direccion.ascx" />
