@@ -59,10 +59,7 @@ namespace Services.Usuarios
         public void CrearUsuario(Usuario usuario)
         {
                 List<ErrorInfo> _errors = new List<ErrorInfo>();
-                if (usuario.Id == 0)
-                {
-                    _errors.Add(new ErrorInfo("Id", "Id Usuario es necesario"));
-                }
+               
                 if (usuario.Empleado == 0)
                 {
                     _errors.Add(new ErrorInfo("Empleado", "Empleado es necesario"));
