@@ -30,7 +30,7 @@
             <div class="three-column-middle">
             <p>
                 <label for="Pass"> Contrase&ntilde;a </label>
-                <%= Html.TextBox("Pass") %>
+                <%= Html.Password("Pass") %>
                 <%= Html.ValidationMessage("Pass", "*")%>
             </p>
             <p>

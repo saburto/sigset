@@ -174,6 +174,7 @@
     <Content Include="Views\TipoCargo\Editar.aspx" />
     <Content Include="Views\TipoCargo\Lista.aspx" />
     <Content Include="Views\Usuario\Crear.aspx" />
+    <Content Include="Views\Usuario\Editar.aspx" />
     <Content Include="Views\Usuario\Lista.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
