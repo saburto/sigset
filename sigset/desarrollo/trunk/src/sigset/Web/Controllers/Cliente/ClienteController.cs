@@ -130,7 +130,8 @@ namespace Web.Controllers
 
         public ActionResult EncontrarRegiones(string q)
         {
-            return Content("region\nholiiii\nruminita");
+            var regiones = _serv.GetRegiones().Select(x => x.Nombre);
+            return Content(string.Join("\n", regiones.ToArray()));
         }
     }
 }

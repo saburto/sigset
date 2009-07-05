@@ -97,5 +97,28 @@ namespace Services.Clientes
         {
             return null;
         }
+
+
+        public IList<Region> GetRegiones()
+        {
+            return _repo.GetRegiones().ToList();
+        }
+
+        public IList<Provincia> GetProvinciasByRegion(decimal regionId)
+        {
+            return _repo.GetProvinciasByRegionId(regionId).ToList();
+        }
+
+        public IList<Provincia> GetProvinciasByRegion(decimal regionId, string nombreAlcance )
+        {
+            return (from provin in _repo.GetProvinciasByRegionId(regionId)
+                   where provin.nombre.StartsWith(nombreAlcance)
+                   select provin).ToList();
+        }
+
+        public IList<Comuna> GetComunasByProvincia(decimal p)
+        {
+            return _repo.GetComunasByProvinciaId(p).ToList();
+        }
     }
 }
