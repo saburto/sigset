@@ -8,7 +8,7 @@
 
     <h2>Editar</h2>
 
-    <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("No se ha modificado usuario. Favor corrija los siguientes errores.") %>
 
     <% using (Html.BeginForm()) {%>
 
@@ -38,7 +38,7 @@
             <div class="three-column-middle">
             <p>
                 <label for="Pass">Contrase&ntilde;a:</label>
-                <%= Html.Password("Pass", ViewData["listaPass"]) %>
+                <%= Html.Password("Pass", Model.Contraseña) %>
                 <%= Html.ValidationMessage("Pass", "*") %>
             </p>                  
           
