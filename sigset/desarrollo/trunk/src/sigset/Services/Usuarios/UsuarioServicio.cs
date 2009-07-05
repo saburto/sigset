@@ -18,7 +18,7 @@ namespace Services.Usuarios
             _repo = repo;
         }
         public UsuarioServicio()
-            :this(new UsuarioRepositorio())
+            : this(new UsuarioRepositorio())
         {
         }
 
@@ -34,7 +34,7 @@ namespace Services.Usuarios
 
         public void ModificarUsuario(Usuario usuario)
         {
-            _repo.UpdateUsuario(usuario);        
+            _repo.UpdateUsuario(usuario);
         }
 
         public void EliminarUsuario(decimal id)
@@ -45,7 +45,7 @@ namespace Services.Usuarios
 
         public IList<Tipo_Usuario> TiposUsuarios()
         {
-            return _repo.GetTipos_Usuario().ToList() ;
+            return _repo.GetTipos_Usuario().ToList();
         }
         public IList<Empleado> TodosLosEmpleados()
         {
@@ -59,33 +59,45 @@ namespace Services.Usuarios
 
         public void CrearUsuario(Usuario usuario)
         {
-                List<ErrorInfo> _errors = new List<ErrorInfo>();
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
 
+            
 
-                if (usuario.Tipo_Usuario == -1)
-                {
-                    _errors.Add(new ErrorInfo("Tipo_Usuario", "Tipo de Usuario requerido"));
-                }
-                if (usuario.Empleado == 0)
-                {
-                    _errors.Add(new ErrorInfo("Empleado", "Empleado requerido"));
-                }
-              
+            if (usuario.Tipo_Usuario == -1)
+            {
+                _errors.Add(new ErrorInfo("Tipo_Usuario", "Debe seleccionar Tipo de Usuario"));
+            }
 
-                        
-                DataValidation.GetErrors(usuario, _errors);
-                if (_errors.Any())
+            if (usuario.Empleado == -1)
+            {
+                _errors.Add(new ErrorInfo("Empleado", "Debe seleccionar Empleado asociado a nuevo usuario"));
+            }
+          
+            DataValidation.GetErrors(usuario, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+            else
+            {
+
+                var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.Usuario1);
+                if (usuarioRepetido != null)
                 {
-                    throw new RulesException(_errors);
+                  if (usuario.Usuario1.ToLower().Equals(usuarioRepetido.Usuario1.ToLower()))
+                   {
+                    throw new RulesException("Usuario1", "Nombre de usario ya esta en uso");
+                   }
                 }
                 else
                 {
                     _repo.CreateUsuario(usuario);
                 }
-           
-            }
-        
-        }
 
+            }
+
+        }
     }
+}
+    
 

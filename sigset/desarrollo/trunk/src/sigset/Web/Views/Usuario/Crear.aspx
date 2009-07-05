@@ -14,25 +14,32 @@
 
       <fieldset>
             <legend>Datos del Usuario</legend>
+              <div class="three-column-container">
+            <div class="three-column-left">
              <p>
                 <label for="Usuario1">Nombre Usuario:</label>
                 <%= Html.TextBox("Usuario1") %>
                 <%= Html.ValidationMessage("Usuario1", "*") %>
             </p>
+              <p>
+                <label for="Tipo_Usuario">Tipo Usuario:</label>
+                <%= Html.DropDownList("listaTipos") %>
+            </p>
+          
+             </div>
+            <div class="three-column-middle">
             <p>
                 <label for="Pass"> Contrase&ntilde;a </label>
                 <%= Html.TextBox("Pass") %>
                 <%= Html.ValidationMessage("Pass", "*")%>
             </p>
             <p>
-                <label for="Tipo_Usuario">Tipo Usuario:</label>
-                <%= Html.DropDownList("listaTipos") %>
-            </p>
-            <p>
                 <label for="Empleado">Empleado:</label>
-                <%= Html.TextBox("Empleado") %>
-                <%= Html.ValidationMessage("Empleado", "*") %>
+               <%= Html.DropDownList("listaEmpleados") %>
             </p>
+            </div>
+            <div class="clear"></div>
+            </div>
             <p>
                 <input type="submit" value="Crear" />
             </p>
@@ -41,8 +48,11 @@
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Volver Atrás", "Lista") %>
+      <%=Html.ActionLink( "Volver" , "Lista")%>
+       
+    
     </div>
+      
 
 </asp:Content>
 

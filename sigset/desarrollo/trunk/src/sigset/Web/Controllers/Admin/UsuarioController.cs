@@ -51,16 +51,18 @@ namespace Web.Controllers.Admin
 
         public ActionResult Crear()
         {
+             ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre");
              ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion");
             return View();
         }
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear([Bind (Exclude="Id")]Usuario usuario,string listaTipos,string Pass)
+        public ActionResult Crear([Bind (Exclude="Id")]Usuario usuario,string listaTipos,string Pass,string listaEmpleados)
         {
             try
             {
                 if (usuario != null)
                 {
+                    usuario.Empleado = decimal.Parse(listaEmpleados);
                     usuario.Contraseña = Pass;
                     usuario.Tipo_Usuario = decimal.Parse(listaTipos);
                 }
@@ -71,6 +73,7 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
+                ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre");
                 ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion");
                 return View();
             }
