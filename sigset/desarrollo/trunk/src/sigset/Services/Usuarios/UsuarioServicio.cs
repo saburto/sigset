@@ -37,8 +37,9 @@ namespace Services.Usuarios
             _repo.UpdateUsuario(usuario);        
         }
 
-        public void EliminarUsuario(Usuario usuario)
+        public void EliminarUsuario(decimal id)
         {
+            var usuario = _repo.GetUsuario(id);
             _repo.DeleteUsuario(usuario);
         }
 
@@ -59,11 +60,19 @@ namespace Services.Usuarios
         public void CrearUsuario(Usuario usuario)
         {
                 List<ErrorInfo> _errors = new List<ErrorInfo>();
-               
+
+
+                if (usuario.Tipo_Usuario == -1)
+                {
+                    _errors.Add(new ErrorInfo("Tipo_Usuario", "Tipo de Usuario requerido"));
+                }
                 if (usuario.Empleado == 0)
                 {
-                    _errors.Add(new ErrorInfo("Empleado", "Empleado es necesario"));
+                    _errors.Add(new ErrorInfo("Empleado", "Empleado requerido"));
                 }
+              
+
+                        
                 DataValidation.GetErrors(usuario, _errors);
                 if (_errors.Any())
                 {

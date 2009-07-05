@@ -33,6 +33,21 @@ namespace Web.Controllers.Admin
             var usuarios = _servicio.GetTodosLosUsuario();
             return View(usuarios);
         }
+        public ActionResult Eliminar(decimal id)
+        {
+            try
+            {
+                _servicio.EliminarUsuario(id);
+                return RedirectToAction("Lista");
+            }
+            catch (RulesException e)
+            {
+                ModelState.AddRuleErrors(e.Errors);
+                TempData["MensajeError"] = e.Errors.FirstOrDefault().ErrorMessage;
+                return RedirectToAction("Lista");
+            }
+
+        }
 
         public ActionResult Crear()
         {
