@@ -129,58 +129,7 @@ namespace TestData
 
         }
 
-        [TestMethod]
-        public void Test_CrearDireccionCliente_Null()
-        {
-            Direccion dire = new Direccion();
-            dire.Region = 13;
-            dire.Ciudad = "Santiago";
-            dire.Comuna = "PA";
-            dire.Calle = "asdads";
-            dire.Numero = 123;
-            
-            Exception ex = null;
-            try
-            {
-                _repo.CrearDirecionCliente(0, dire, 1);
-            }
-            catch (Exception e)
-            {
-                ex = e;
-            }
-            Assert.IsNotNull(ex);
-            
-        }
-
-        [TestMethod]
-        public void Test_CrearDireccionCliente_NoNull()
-        {
-            Direccion dire = new Direccion();
-            dire.Region = 13;
-            dire.Ciudad = "Santiago";
-            dire.Comuna = "PA";
-            dire.Calle = "asdads";
-            dire.Numero = 123;
-
-            Exception ex = null;
-
-            IQueryable<Direccion> dires = null;
-
-            try
-            {
-                _repo.CrearDirecionCliente(16007459, dire, 1);
-                dires = _repo.GetDireccionesByRutCliente(16007459);
-            }
-            catch (Exception e)
-            {
-                ex = e;
-            }
-            Assert.IsNull(ex);
-            Assert.IsTrue(dires.Count() > 1);
-            
-
-        }
-
+       
         [TestMethod]
         public void Test_ListaDeTipoDireccion()
         {
@@ -228,6 +177,37 @@ namespace TestData
 
             var clientes3 = _repo.GetClientesByApellidoPaterno("a",2,10);
             Assert.IsFalse(clientes3.Any());
+        }
+
+        [TestMethod]
+        public void TestDireccionesLocalizaciones()
+        {
+            var regiiones = _repo.GetRegiones();
+            Assert.IsNotNull(regiiones);
+            Assert.IsTrue(regiiones.Count() == 15);
+        }
+
+        [TestMethod]
+        public void TestDireccionesLocalizacionesProvincias()
+        {
+            var regiiones = _repo.GetRegiones();
+            
+            var provincicas = _repo.GetProvinciasByRegionId(regiiones.FirstOrDefault().Id);
+            Assert.IsNotNull(provincicas);
+            Assert.IsTrue(provincicas.Any());
+        }
+
+        [TestMethod]
+        public void TestDireccionesLocalizacionesComunas()
+        {
+            var regiiones = _repo.GetRegiones();
+
+            var provincicas = _repo.GetProvinciasByRegionId(regiiones.FirstOrDefault().Id);
+
+            var comunas = _repo.GetComunasByProvinciaId(provincicas.FirstOrDefault().Id);
+
+            Assert.IsNotNull(comunas);
+            Assert.IsTrue(comunas.Any());
         }
 
     }

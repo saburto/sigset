@@ -129,5 +129,25 @@ namespace Data.Repositorios.Clientes
 
         #endregion
 
+
+        public IQueryable<Region> GetRegiones()
+        {
+            return _ent.Regions;
+        }
+
+        public IQueryable<Provincia> GetProvinciasByRegionId(decimal idRegion)
+        {
+            return from p in _ent.Provincias
+                   where p.Id_Region == idRegion
+                   select p;
+        }
+
+        public IQueryable<Comuna> GetComunasByProvinciaId(decimal idProvincia)
+        {
+            return from c in _ent.Comunas
+                   where c.Id_Provincia == idProvincia
+                   select c;
+        }
+
     }
 }

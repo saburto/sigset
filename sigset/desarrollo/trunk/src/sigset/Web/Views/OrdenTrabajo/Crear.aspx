@@ -4,6 +4,16 @@
 	Crear
 </asp:Content>
 
+<asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+<script type="text/javascript" language="javascript">
+
+    $(document).ready(function() {
+    $("input#Region").autocomplete('<%= Url.Action("EncontrarRegiones", "Cliente") %>');
+    }); 
+
+</script>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Crear Orden de Trabajo</h2>

@@ -22,5 +22,9 @@ namespace Data.Repositorios.Clientes
 
         IQueryable<Cliente> GetClientesByApellidoPaterno(string appellido);
         PagedList<Cliente> GetClientesByApellidoPaterno(string appellido, int indice, int pagina);
+
+        IQueryable<Region> GetRegiones();
+        IQueryable<Provincia> GetProvinciasByRegionId(decimal idRegion);
+        IQueryable<Comuna> GetComunasByProvinciaId(decimal idProvincia);
     }
 }
