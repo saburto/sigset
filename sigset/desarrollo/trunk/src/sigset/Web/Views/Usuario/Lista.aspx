@@ -7,8 +7,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Lista de Usuarios</h2>
+    <% if (TempData["MensajeError"] != null) %>
+    <%{%>
+     <h2 class ="field-validation-error" >
+        <%=Html.Encode(TempData["MensajeError"])%>
+     </h2>
+    <%}%>
 
-    <table>
+   
+    <table border="0" cellpadding="0" cellspacing="0" class="data-table">
+   
         <tr>
             <th></th>
             <th>
@@ -25,13 +33,22 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
-    
+    <%bool alter = false; %>
+    <% foreach (var item in Model)
+       { %>
+    <%if (alter)
+      { %>
+        <tr class="row-alternating">
+    <%}
+      else
+      { %>
         <tr>
-            <td>
+    <%} %>
+       
+            <th scope="row">
                 <%= Html.ActionLink("Editar", "Editar", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
-            </td>
+                <%= Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id })%>
+            </th>
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Id)) %>
             </td>
@@ -42,7 +59,7 @@
                 <%= Html.Encode(String.Format("{0}", item.Tipo_Usuario)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Empleado)) %>
+                <%= Html.Encode(String.Format("{0}", item.Empleado.GetRutCompleto())) %>
             </td>
         </tr>
     
