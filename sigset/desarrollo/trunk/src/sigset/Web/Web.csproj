@@ -175,6 +175,7 @@
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />
     <Content Include="Views\Shared\MenuIzquierda.ascx" />
+    <Content Include="Views\Tecnico\Crear.aspx" />
     <Content Include="Views\Tecnico\Lista.aspx" />
     <Content Include="Views\TipoCargo\Crear.aspx" />
     <Content Include="Views\TipoCargo\Editar.aspx" />

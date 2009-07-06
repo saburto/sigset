@@ -8,21 +8,35 @@
 
     <h2>Lista Técnicos Registrados</h2>
 
-    <table>
+     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th></th>
             <th>
                 Rut
             </th>
             <th>
+                Nombre
+            </th>
+            <th>
                 Nivel
+            </th>
+            <th>
+                <%=Html.Encode("Descripción") +  " " + "nivel" %>
             </th>
         </tr>
 
+    <%bool alter = false; %>
     <% foreach (var item in Model) { %>
-    
+        <%if (alter)
+        { %>
+        <tr class="row-alternating">
+       <%}
+      else
+      { %>
         <tr>
-            <td>
+    <%} %>
+    
+          <td>
                 <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> |
                 <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Rut })%>
             </td>
@@ -30,8 +44,18 @@
                 <%= Html.Encode(String.Format("{0}", item.Rut.GetRutCompleto())) %>
             </td>
             <td>
+                <%= Html.Encode( item.Empleado.Nombre + " " ) %>
+                <%= Html.Encode(item.Empleado.Apellido_Paterno + " ")%>
+                <%= Html.Encode( item.Empleado.Apellido_Materno) %>
+                
+            </td>
+            <td>
                 <%= Html.Encode(String.Format("{0}", item.Nivel)) %>
             </td>
+            <td>
+                <%= Html.Encode(item.Nivel1.Descripcion)%>
+            </td>
+            
         </tr>
     
     <% } %>

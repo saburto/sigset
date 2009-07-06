@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Data.Modelo;
 using Services.Tecnicos;
+using Web.Helpers;
+using Helpers;
+
 
 namespace Web.Controllers.Admin
 {
@@ -27,8 +30,16 @@ namespace Web.Controllers.Admin
 
         public ActionResult Lista()
         {
-            var tecnicos = _servicio.GetTodosLosTecnicos();            
+            var tecnicos = _servicio.GetTodosLosTecnicos();
             return View(tecnicos);
+        }
+
+        public ActionResult Crear()
+        {
+            ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre"); 
+            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("Id_Nivel", "Descripcion");
+            ViewData["tipoEspecialidad"] = _servicio.GetTodosLosTiposDeEspecialidad().GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
+            return View();           
         }
 
     }
