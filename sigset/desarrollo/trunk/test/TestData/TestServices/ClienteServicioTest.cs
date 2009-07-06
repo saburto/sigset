@@ -36,144 +36,14 @@ namespace TestServices
         }
 
 
-        [TestMethod]
-        public void TestCrearCliente_Con_Datos_Invalidos()
-        {
-            try
-            {
-                Cliente clienteInvalido = new Cliente();
-                _serv.CrearNuevoCliente(clienteInvalido,"");
-            }
-            catch (RulesException ex)
-            {
-                Assert.IsNotNull(ex);
-                Assert.IsTrue(ex.Errors.Count() > 0);
-                Assert.IsTrue(ex.Errors.ToList()[0].PropertyName == "Rut");
-                Assert.IsTrue(ex.Errors.ToList()[1].PropertyName == "Nombre");
-                Assert.IsTrue(ex.Errors.ToList()[2].PropertyName == "Apellido_Paterno");
-            }
-        }
 
-        [TestMethod]
-        public void TestCrearCliente_ConSolo_Rut()
-        {
-            try
-            {
-                Cliente clienteInvalido = new Cliente();
-                clienteInvalido.Rut = 16007459;
-                _serv.CrearNuevoCliente(clienteInvalido,"0");
-            }
-            catch (RulesException ex)
-            {
-                Assert.IsNotNull(ex);
-                Assert.IsTrue(ex.Errors.Count() > 0);
-                Assert.IsTrue(ex.Errors.ToList()[0].PropertyName == "Nombre");
-                Assert.IsTrue(ex.Errors.ToList()[1].PropertyName == "Apellido_Paterno");
-            }
-        }
 
-        [TestMethod]
-        public void TestCrearCliente_Con_RutInvalido()
-        {
-            try
-            {
-                Cliente clienteInvalido = new Cliente();
-                clienteInvalido.Rut = 16;
-                clienteInvalido.Nombre = "Juan";
-                clienteInvalido.Apellido_Paterno = "Perez";
-                _serv.CrearNuevoCliente(clienteInvalido,"0");
-            }
-            catch (RulesException ex)
-            {
-                Assert.IsNotNull(ex);
-                Assert.IsTrue(ex.Errors.Count() > 0);
-                Assert.IsTrue(ex.Errors.ToList()[0].PropertyName == "Rut");
-            }
-        }
 
-        [TestMethod]
-        public void TestCrearCliente_Con_RutInvalido_y_sin_nombre()
-        {
-            try
-            {
-                Cliente clienteInvalido = new Cliente();
-                clienteInvalido.Rut = 16;
-                _serv.CrearNuevoCliente(clienteInvalido, "0");
-            }
-            catch (RulesException ex)
-            {
-                Assert.IsNotNull(ex);
-                Assert.IsTrue(ex.Errors.Count() > 0);
-                Assert.IsTrue(ex.Errors.ToList()[0].PropertyName == "Rut");
-                Assert.IsTrue(ex.Errors.ToList()[1].PropertyName == "Nombre");
-                Assert.IsTrue(ex.Errors.ToList()[2].PropertyName == "Apellido_Paterno");
+    
 
-            }
-        }
+        
 
-        [TestMethod]
-        public void TestCrearCliente_Valido_con_DV_Invalido()
-        {
-            Cliente clienteValido = new Cliente();
-            clienteValido.Rut = 16007459;
-            clienteValido.Nombre = "Sebastián";
-            clienteValido.Apellido_Paterno = "Aburto";
-            clienteValido.Apellido_Materno = "Méndez";
 
-            try
-            {
-                _serv.CrearNuevoCliente(clienteValido, "3");
-            }
-            catch (RulesException ex)
-            {
-                Assert.IsNotNull(ex);
-                Assert.IsTrue(ex.Errors.Count() > 0);
-                Assert.IsTrue(ex.Errors.ToList()[0].PropertyName == "Rut");
-            }
-        }
-
-        [TestMethod]
-        public void TestCrearCliente_Valido_con_DV_valido()
-        {
-            Cliente clienteValido = new Cliente();
-            clienteValido.Rut = 16007459;
-            clienteValido.Nombre = "Sebastián";
-            clienteValido.Apellido_Paterno = "Aburto";
-            clienteValido.Apellido_Materno = "Méndez";
-
-            Exception e = null;
-
-            try
-            {
-                _serv.CrearNuevoCliente(clienteValido, "0");
-            }
-            catch (RulesException ex)
-            {
-                e = ex;
-            }
-            Assert.IsNull(e);
-        }
-
-        [TestMethod]
-        public void TestCrearCliente_Valido_con_Rut_Ya_Ingresado()
-        {
-            Cliente clienteValido = new Cliente();
-            clienteValido.Rut = 16007459;
-            clienteValido.Nombre = "Juan";
-            clienteValido.Apellido_Paterno = "Perez";
-            
-            try
-            {
-                _serv.CrearNuevoCliente(clienteValido, "0");
-            }
-            catch (RulesException ex)
-            {
-                Assert.IsNotNull(ex);
-                Assert.IsTrue(ex.Errors.Count() > 0);
-                Assert.IsTrue(ex.Errors.ToList()[0].PropertyName == "Rut");
-
-            }            
-        }
 
         [TestMethod]
         public void TestBuscarClientePorRut_Encontrado()

@@ -43,7 +43,7 @@ namespace Web.Controllers
             try
             {
                 Cliente cliente = _serv.GetClientePorRut(Rut, dv);
-                return DetallesCliente(cliente);
+                return PartialView("Detalles",cliente);
             }
             catch (RulesException ex)
             {
@@ -68,13 +68,15 @@ namespace Web.Controllers
         {
             try
             {
-                _serv.CrearNuevoCliente(cliente, dv);
-                return DetallesCliente(cliente);
+                _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
+                Orden_Trabajo ot = new Orden_Trabajo();
+                ot.Cliente = cliente;
+                return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
             }
             catch (RulesException ex)
             {
                 ModelState.AddRuleErrors(ex.Errors);
-                return PartialView("Crear");
+                return View("~/Views/OrdenTrabajo/Crear.aspx");
             }
             catch
             {
@@ -94,7 +96,7 @@ namespace Web.Controllers
             try
             {
                 var cliente = _serv.GetClientePorRut(rut);
-                return DetallesCliente(cliente);
+                return PartialView(cliente);
             }
             catch(Exception e)
             {
@@ -103,12 +105,6 @@ namespace Web.Controllers
             
         }
 
-        [NonAction]
-        private ActionResult DetallesCliente(Cliente cliente)
-        {
-            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(cliente.Rut);
-            return PartialView("Detalles",cliente);
-        }
 
         public ActionResult Editar(decimal rut)
         {
