@@ -11,9 +11,11 @@ namespace Services.Clientes
         Cliente GetClientePorRut(string rut, string dv);
 
          IList<Region> GetRegiones();
+         IList<Region> GetRegionesPorNombre(string regionNombre);
          IList<Provincia> GetProvinciasByRegion(decimal regionId);
          IList<Provincia> GetProvinciasByRegion(decimal regionId, string nombreAlcance );
         IList<Comuna> GetComunasByProvincia(decimal p);
+        IList<Comuna> GetComunasByProvincia(decimal p, string nombreAlcance);
         
     }
 }

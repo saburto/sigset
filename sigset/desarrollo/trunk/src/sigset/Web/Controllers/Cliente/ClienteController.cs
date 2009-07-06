@@ -11,6 +11,7 @@ using Services.Clientes;
 using Web.Helpers;
 using Web.Seguridad;
 
+
 namespace Web.Controllers
 {
     [ManejadorErrores]
@@ -130,8 +131,20 @@ namespace Web.Controllers
 
         public ActionResult EncontrarRegiones(string q)
         {
-            var regiones = _serv.GetRegiones().Select(x => x.Nombre);
-            return Content(string.Join("\n", regiones.ToArray()));
+            var regiones = _serv.GetRegionesPorNombre(q).ToAutoCompleteJson("Id", "Nombre"); ;
+            return Json(regiones);
+        }
+
+        public ActionResult EncontrarProvincias(string q, decimal Region)
+        {
+            var provincias = _serv.GetProvinciasByRegion(Region, q).ToAutoCompleteJson("Id","nombre");
+            return Json(provincias);
+        }
+
+        public ActionResult EncontrarComunas(string q, decimal Provincia)
+        {
+            var ciudades = _serv.GetComunasByProvincia(Provincia, q).ToAutoCompleteJson("Id","Nombre");
+            return Json(ciudades);
         }
     }
 }
