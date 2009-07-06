@@ -69,23 +69,21 @@
             <div class="three-column-left">
 
                     <label for="Region"><%=Html.Encode("Region:")%></label>
-                    <%= Html.TextBox("Region")%>
+                    <%= Html.AutoCompleteTextBox("Region")%>
                     <%= Html.ValidationMessage("Region", "*")%>
-
             </div>
             
             <div class="three-column-middle">
    
-                    <label for="Ciudad">Ciudad:</label>
-                    <%= Html.TextBox("Ciudad")%>
-                    <%= Html.ValidationMessage("Ciudad", "*")%>
-   
+                    <label for="Provincia">Provincia:</label>
+                    <%= Html.AutoCompleteTextBox("Provincia")%>
+                    <%= Html.ValidationMessage("Provincia", "*")%>
             </div>
             
             <div class="three-column-right">
             
                 <label for="Comuna">Comuna:</label>
-                <%= Html.TextBox("Comuna")%>
+                <%= Html.AutoCompleteTextBox("Comuna")%>
                 <%= Html.ValidationMessage("Comuna", "*")%>
             
             </div>

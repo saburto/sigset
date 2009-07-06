@@ -8,6 +8,7 @@ using System.Web.Mvc.Ajax;
 namespace Web.Controllers
 {
     //[Authorize]
+    [Web.Seguridad.ManejadorErrores]
     public class OrdenTrabajoController : Controller
     {
         //

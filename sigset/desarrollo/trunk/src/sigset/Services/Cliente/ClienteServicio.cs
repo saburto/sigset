@@ -104,15 +104,24 @@ namespace Services.Clientes
             return _repo.GetRegiones().ToList();
         }
 
+
+        public IList<Region> GetRegionesPorNombre(string regionNombre)
+        {
+            return (from c in _repo.GetRegiones()
+                   where c.Nombre.Contains(regionNombre)
+                   select c).ToList();
+        }
+
         public IList<Provincia> GetProvinciasByRegion(decimal regionId)
         {
-            return _repo.GetProvinciasByRegionId(regionId).ToList();
+            return _repo.GetProvinciasByRegionId(regionId).OrderBy(x => x.nombre).ToList();
         }
 
         public IList<Provincia> GetProvinciasByRegion(decimal regionId, string nombreAlcance )
         {
             return (from provin in _repo.GetProvinciasByRegionId(regionId)
                    where provin.nombre.StartsWith(nombreAlcance)
+                   orderby provin.nombre
                    select provin).ToList();
         }
 
@@ -120,5 +129,15 @@ namespace Services.Clientes
         {
             return _repo.GetComunasByProvinciaId(p).ToList();
         }
+
+        public IList<Comuna> GetComunasByProvincia(decimal p, string nombreAlcance)
+        {
+            return (from c in _repo.GetComunasByProvinciaId(p)
+                    where c.Nombre.StartsWith(nombreAlcance)
+                    orderby c.Nombre
+                    select c).ToList();
+        }
+
+
     }
 }

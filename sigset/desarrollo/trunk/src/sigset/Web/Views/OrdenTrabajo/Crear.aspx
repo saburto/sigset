@@ -5,13 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
-<script type="text/javascript" language="javascript">
-
-    $(document).ready(function() {
-    $("input#Region").autocomplete('<%= Url.Action("EncontrarRegiones", "Cliente") %>');
-    }); 
-
-</script>
+    <%using (Html.BeginReady()) {%>
+    
+    <%= Html.InitializeAutoComplete("Region", "EncontrarRegiones", "Cliente", true,15) %>
+    <%= Html.InitializeAutoComplete("Provincia", "EncontrarProvincias", "Cliente", true, "Region", 30, 0) %>
+    <%= Html.InitializeAutoComplete("Comuna", "EncontrarComunas", "Cliente", true, "Provincia",100,0 ) %>
+    
+    <%} %>
+   
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
