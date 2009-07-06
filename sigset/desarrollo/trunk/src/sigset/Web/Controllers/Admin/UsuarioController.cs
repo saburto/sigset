@@ -68,12 +68,10 @@ namespace Web.Controllers.Admin
                 {
                     usuario.Contraseña = Pass;
                     usuario.Tipo_Usuario = decimal.Parse(listaTipos);
-                    var user = _servicio.GetUsuarioById(id);
-                    if (user != null)
-                    {
-                        usuario.Empleado1 = user.Empleado1;
-                    }
-
+                    var user = _servicio.GetUsuarioById(usuario.Id);
+                    var empleado = _servicio.BuscarEmpleadoByRut(user.Empleado);
+                    usuario.Empleado1 = empleado;                   
+                   
                 }
                 _servicio.ModificarUsuario(usuario);
                 return RedirectToAction("Lista");
