@@ -17,5 +17,7 @@ namespace Services.Clientes
         System.Collections.Generic.IList<Data.Modelo.Provincia> GetProvinciasByRegion(decimal regionId);
         System.Collections.Generic.IList<Data.Modelo.Region> GetRegiones();
         System.Collections.Generic.IList<Data.Modelo.Region> GetRegionesPorNombre(string regionNombre);
+
+        Data.Modelo.Cliente GetClienteCompletoPorRut(decimal Rut, string dv);
     }
 }
