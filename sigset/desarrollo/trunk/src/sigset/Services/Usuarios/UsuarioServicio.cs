@@ -34,37 +34,36 @@ namespace Services.Usuarios
 
         public void ModificarUsuario(Usuario usuario)
         {
-             List<ErrorInfo> _errors = new List<ErrorInfo>();                     
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
 
             if (usuario.Tipo_Usuario == -1)
             {
                 _errors.Add(new ErrorInfo("Tipo_Usuario", "Debe seleccionar Tipo de Usuario"));
             }
-                    
+
             DataValidation.GetErrors(usuario, _errors);
             if (_errors.Any())
             {
                 throw new RulesException(_errors);
             }
-            else
+
+            var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.Usuario1);
+            if (usuarioRepetido != null)
             {
-                
-                var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.Usuario1);
-                if (usuarioRepetido != null)
+                if (usuario.Usuario1.ToLower().Equals(usuarioRepetido.Usuario1.ToLower()) && usuario.Id != usuarioRepetido.Id)
                 {
-                if (usuario.Usuario1.ToLower().Equals(usuarioRepetido.Usuario1.ToLower()))
-                   {
-                    throw new RulesException("Usuario1", "Nombre de usario ya esta en uso");
-                   }
-               }
+                    throw new RulesException("Usuario1", "Nombre de usuario ya esta en uso");
+                }
+
                 else
                 {
                     _repo.UpdateUsuario(usuario);
                 }
-
             }
-      
         }
+            
+      
+        
 
         public void EliminarUsuario(decimal id)
         {

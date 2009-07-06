@@ -14,11 +14,12 @@
 
         <fieldset>
             <legend>Editar Usuario</legend>
+                  
             <p>
                 <%=ViewData["listaNombreEmpleado"]%>                  
             </p>
             <p>
-             <%=ViewData["listaRut"]%>    
+                <%= Html.Encode(Model.Empleado.GetRutCompleto()) %> 
             </p>
              <div class="three-column-container">
             <div class="three-column-left">

@@ -52,14 +52,12 @@ namespace Web.Controllers.Admin
         {
             var usuario = _servicio.GetUsuarioById(id);
             ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion", usuario.Tipo_Usuario.ToString());
-            ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre", usuario.Empleado.ToString());
-            ViewData["listaRut"] = usuario.Empleado1.Rut.GetRutCompleto().ToString();
             ViewData["listaNombreEmpleado"] = usuario.Empleado1.Nombre.ToString() + " " + usuario.Empleado1.Apellido_Paterno.ToString() + " " + usuario.Empleado1.Apellido_Materno.ToString();
             return View("Editar", usuario);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editar(decimal id,Usuario usuario, string listaTipos,string Pass)
+        public ActionResult Editar(Usuario usuario, string listaTipos,string Pass)
         {
             try
             {
@@ -67,10 +65,10 @@ namespace Web.Controllers.Admin
                 if (usuario != null)
                 {
                     usuario.Contraseña = Pass;
-                    usuario.Tipo_Usuario = decimal.Parse(listaTipos);
+                    usuario.Tipo_Usuario = decimal.Parse(listaTipos);                    
                     var user = _servicio.GetUsuarioById(usuario.Id);
                     var empleado = _servicio.BuscarEmpleadoByRut(user.Empleado);
-                    usuario.Empleado1 = empleado;                   
+                    usuario.Empleado = empleado.Rut;                   
                    
                 }
                 _servicio.ModificarUsuario(usuario);
@@ -79,11 +77,9 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-
                 ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion", usuario.Tipo_Usuario.ToString());
-                ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre", usuario.Empleado.ToString());
-                ViewData["listaRut"] = usuario.Empleado1.Rut.GetRutCompleto().ToString();
-                ViewData["listaNombreEmpleado"] = usuario.Empleado1.Nombre.ToString() + " " + usuario.Empleado1.Apellido_Paterno.ToString() + " " + usuario.Empleado1.Apellido_Materno.ToString();
+                var usuarioEmpleado = _servicio.BuscarEmpleadoByRut(usuario.Empleado);
+                ViewData["listaNombreEmpleado"] = usuarioEmpleado.Nombre.ToString() + " " + usuarioEmpleado.Apellido_Paterno.ToString() + " " + usuarioEmpleado.Apellido_Materno.ToString();
                 return View(usuario);
                
             }

@@ -35,11 +35,16 @@ namespace Data.Repositorios.Usuarios
         public Usuario UpdateUsuario(Usuario usuario)
         {
 
-            var usuarioOriginal = GetUsuario(usuario.Id);
-            _entities.Usuarios.Attach(usuarioOriginal,usuario);
+            var usuario_original = (from uo in _entities.Usuarios
+                                     where uo.Id == usuario.Id
+                                     select uo).FirstOrDefault();
+            usuario_original.Usuario1 = usuario.Usuario1;
+            usuario_original.Contraseña = usuario.Contraseña;
+            usuario_original.Tipo_Usuario = usuario.Tipo_Usuario;
+            usuario_original.Empleado = usuario.Empleado;
             _entities.SubmitChanges();
             return usuario;
-        }
+          }
 
 
         public Tipo_Usuario GetTipo_Usuario(decimal id)
