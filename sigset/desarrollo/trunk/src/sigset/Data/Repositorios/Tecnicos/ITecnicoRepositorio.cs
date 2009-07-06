@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Data.Repositorios.Tecnicos
 {
-    interface ITecnicoRepositorio
+    public interface ITecnicoRepositorio
     {
         void CrearEspecialidad(global::Data.Modelo.Especialidade especialidad);
         void CreateTecnico(global::Data.Modelo.Tecnico tecnico);
