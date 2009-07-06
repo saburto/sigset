@@ -4,7 +4,7 @@
         <h2>Cliente</h2>
         <p>
             Rut:
-            <%= Html.Encode(Model.Rut) %>-<%= Html.ViewData["dv"] %>
+            <%= Html.Encode(Model.Rut.GetRutCompleto())%>
         </p>
         <p>
             Nombre:
@@ -17,10 +17,7 @@
 <div class="three-column-middle">
         <h2><%=Html.Encode("Dirección") %></h2>
         <div id="datosDireccion">
-        <% Html.RenderPartial("Direcciones", Model.Direccion); %>
-            <p>
-                <%= Ajax.ActionLink("Agregar", "CrearDireccion", "Cliente", new { rut = Model.Rut }, new AjaxOptions { LoadingElementId = "loadingAjax", UpdateTargetId = "datosDireccion", HttpMethod="GET" })%>
-            </p>
+        <% Html.RenderPartial("Direcciones", Model.Direccions); %>
         </div>
 </div>
 

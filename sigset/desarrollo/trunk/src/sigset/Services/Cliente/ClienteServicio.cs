@@ -313,5 +313,26 @@ namespace Services.Clientes
         }
 
 
+
+        #region IClienteServicio Members
+
+
+        public Cliente GetClienteCompletoPorRut(decimal Rut, string dv)
+        {
+            var clienteEncontrado = GetClientePorRut(Rut, dv);
+            var direcciones = _repo.GetDireccionesByRutCliente(Rut);
+            var contactos = _repo.GetContactosByIdCliente(Rut);
+            foreach (var d in direcciones)
+            {
+                clienteEncontrado.Direccions.Add(d);
+            }
+            foreach (var c in contactos)
+            {
+                clienteEncontrado.Contactos.Add(c);
+            }
+            return clienteEncontrado;
+        }
+
+        #endregion
     }
 }

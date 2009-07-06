@@ -42,8 +42,10 @@ namespace Web.Controllers
         {
             try
             {
-                Cliente cliente = _serv.GetClientePorRut(Rut, dv);
-                return PartialView("Detalles",cliente);
+                Cliente cliente = _serv.GetClienteCompletoPorRut(Rut, dv);
+                Orden_Trabajo ot = new Orden_Trabajo();
+                ot.Cliente = cliente;
+                return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
             }
             catch (RulesException ex)
             {
@@ -69,6 +71,9 @@ namespace Web.Controllers
             try
             {
                 _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
+                cliente.Direccions.Add(direccion);
+                cliente.Contactos.Add(email);
+                cliente.Contactos.Add(fono);
                 Orden_Trabajo ot = new Orden_Trabajo();
                 ot.Cliente = cliente;
                 return View("~/Views/OrdenTrabajo/Crear.aspx", ot);

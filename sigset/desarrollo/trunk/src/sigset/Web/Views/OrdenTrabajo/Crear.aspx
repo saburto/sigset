@@ -23,11 +23,11 @@
     <h2>Crear Orden de Trabajo</h2>
 
     <div id="datosCliente">
-    <%if(Model == null)
+    <%if(Model == null || Model.Cliente == null)
       {
         Html.RenderPartial("~/Views/Cliente/Crear.ascx");
       }else if(Model.Cliente != null){
-          Html.RenderPartial("~/Views/Cliente/Crear.ascx", Model.Cliente);     
+          Html.RenderPartial("~/Views/Cliente/Detalles.ascx", Model.Cliente);     
     }%>
     </div>
 </asp:Content>
