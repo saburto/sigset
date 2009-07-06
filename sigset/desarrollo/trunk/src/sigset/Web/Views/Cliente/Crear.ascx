@@ -1,10 +1,9 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-
+<%--using (Html.BeginForm("Crear", "Cliente", new AjaxOptions {LoadingElementId="loadingAjax", UpdateTargetId="datosCliente" }))--%>
     <%= Html.ValidationSummary("No se puede Crear Cliente. Corriga los siguientes errores.") %>
 
-    <% using (Ajax.BeginForm("Crear", "Cliente", new AjaxOptions {LoadingElementId="loadingAjax", UpdateTargetId="datosCliente" }))
+    <% using(Html.BeginForm("Crear", "Cliente"))
        {%>
-
         <fieldset>
             <legend>Cliente</legend>
             
@@ -13,7 +12,7 @@
                     <label for="Rut">Rut:</label>
                     <%= Html.RutTextBox() %>
                     <%= Html.ValidationMessage("Rut", "*")%>
-                    <input type="button" value="Buscar" title="Buscar Cliente"/>
+                    <input type="button" value="Buscar" title="Buscar Cliente" />
                 </div>
                 <div class="clear"></div>
             </div>

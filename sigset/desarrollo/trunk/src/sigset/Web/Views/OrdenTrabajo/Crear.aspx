@@ -1,10 +1,13 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Orden_Trabajo>" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Crear
 </asp:Content>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+<%if(Model == null || Model.Cliente == null){ %>
     <%using (Html.BeginReady()) {%>
     
     <%= Html.InitializeAutoComplete("Region", "EncontrarRegiones", "Cliente", true,15) %>
@@ -12,7 +15,7 @@
     <%= Html.InitializeAutoComplete("Comuna", "EncontrarComunas", "Cliente", true, "Provincia",100,0 ) %>
     
     <%} %>
-   
+<%} %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -20,8 +23,12 @@
     <h2>Crear Orden de Trabajo</h2>
 
     <div id="datosCliente">
-        <%Html.RenderPartial("~/Views/Cliente/Crear.ascx"); %>
-    
+    <%if(Model == null)
+      {
+        Html.RenderPartial("~/Views/Cliente/Crear.ascx");
+      }else if(Model.Cliente != null){
+          Html.RenderPartial("~/Views/Cliente/Crear.ascx", Model.Cliente);     
+    }%>
     </div>
 </asp:Content>
 

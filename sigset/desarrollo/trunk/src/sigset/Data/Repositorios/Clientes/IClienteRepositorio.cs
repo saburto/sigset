@@ -3,15 +3,11 @@ using System.Linq;
 using Data.Modelo;
 namespace Data.Repositorios.Clientes
 {
-    public interface IClienteRepositorio
+    public interface IClienteRepositorio : IDisposable
     {
         void CrearCliente(global::Data.Modelo.Cliente cliente);
-        void CrearContactoCliente(global::Data.Modelo.Cliente cliente, global::Data.Modelo.Contacto contacto, global::Data.Modelo.Tipo_Contacto tipoContacto);
-        void CrearContactoCliente(decimal rut, global::Data.Modelo.Contacto contacto, global::Data.Modelo.Tipo_Contacto tipoContacto);
         void CrearContactoCliente(decimal rut, global::Data.Modelo.Contacto contacto, decimal idTipoContacto);
-        void CrearDirecionCliente(global::Data.Modelo.Cliente cliente, global::Data.Modelo.Direccion direccion, global::Data.Modelo.Tipo_Direccion tipo);
         void CrearDirecionCliente(decimal rut, global::Data.Modelo.Direccion direccion, decimal idTipo);
-        void CrearDirecionCliente(decimal rut, global::Data.Modelo.Direccion direccion, global::Data.Modelo.Tipo_Direccion tipo);
         void EditarDireccionCliente(global::Data.Modelo.Direccion direccion);
         global::Data.Modelo.Cliente GetClienteByRut(decimal rut);
         System.Linq.IQueryable<global::Data.Modelo.Direccion> GetDireccionesByRutCliente(decimal rut);
@@ -26,5 +22,9 @@ namespace Data.Repositorios.Clientes
         IQueryable<Region> GetRegiones();
         IQueryable<Provincia> GetProvinciasByRegionId(decimal idRegion);
         IQueryable<Comuna> GetComunasByProvinciaId(decimal idProvincia);
+
+        IQueryable<Contacto> GetContactosByIdCliente(decimal rut);
+
+        void SaveChanges();
     }
 }

@@ -6,7 +6,7 @@ using Data.Modelo;
 
 namespace Data.Repositorios.Clientes
 {
-    public class ClienteRepositorio : Data.Repositorios.Clientes.IClienteRepositorio
+    public class ClienteRepositorio : Data.Repositorios.Clientes.IClienteRepositorio, IDisposable
     {
         sigsetEntities _ent;
         public ClienteRepositorio()
@@ -39,7 +39,7 @@ namespace Data.Repositorios.Clientes
         public void CrearCliente(Cliente cliente)
         {
             _ent.Clientes.InsertOnSubmit(cliente);
-            _ent.SubmitChanges();
+//            _ent.SubmitChanges();
         }
 
 
@@ -58,22 +58,12 @@ namespace Data.Repositorios.Clientes
             return direcciones;
         }
 
-        public void CrearDirecionCliente(Cliente cliente, Direccion direccion, Tipo_Direccion tipo)
-        {
-            direccion.Cliente = cliente;
-            direccion.Tipo_Direccion = tipo.Id_Tipo_Direccion;
-            _ent.Direccions.InsertOnSubmit(direccion);
-            _ent.SubmitChanges();
-        }
-
-        public void CrearDirecionCliente(decimal rut, Direccion direccion, Tipo_Direccion tipo)
-        {
-            CrearDirecionCliente(GetClienteByRut(rut), direccion, tipo);
-        }
-
         public void CrearDirecionCliente(decimal rut, Direccion direccion, decimal idTipo)
         {
-            CrearDirecionCliente(rut,direccion,GetTipoDireccionById(idTipo));
+            direccion.Rut = rut;
+            direccion.Tipo_Direccion = idTipo;
+            _ent.Direccions.InsertOnSubmit(direccion);
+            // _ent.SubmitChanges();
         }
 
         public void EditarDireccionCliente(Direccion direccion)
@@ -81,7 +71,7 @@ namespace Data.Repositorios.Clientes
             
             var dire = _ent.Direccions.Where(x => x.Id == direccion.Id).FirstOrDefault();
             _ent.Direccions.Attach(direccion, dire);
-            _ent.SubmitChanges();
+            //_ent.SubmitChanges();
         }
 
         public IQueryable<Tipo_Direccion> GetTiposDireccion()
@@ -109,22 +99,18 @@ namespace Data.Repositorios.Clientes
             return _ent.Tipo_Contactos.Where(x => x.Id_Tipo_Contacto == id).FirstOrDefault();
         }
 
-        public void CrearContactoCliente(Cliente cliente, Contacto contacto, Tipo_Contacto tipoContacto)
-        {
-            contacto.Cliente = cliente;
-            contacto.Tipo_Contacto = tipoContacto.Id_Tipo_Contacto;
-
-            _ent.Contactos.InsertOnSubmit(contacto);
-            _ent.SubmitChanges();
-        }
-        public void CrearContactoCliente(decimal rut, Contacto contacto, Tipo_Contacto tipoContacto)
-        {
-            CrearContactoCliente(GetClienteByRut(rut), contacto, tipoContacto);
-        }
-
         public void CrearContactoCliente(decimal rut, Contacto contacto, decimal idTipoContacto)
         {
-            CrearContactoCliente(rut, contacto, GetTipoContactoById(idTipoContacto));
+            contacto.Rut = rut;
+            contacto.Tipo_Contacto = idTipoContacto;
+
+            _ent.Contactos.InsertOnSubmit(contacto);
+            //_ent.SubmitChanges();
+        }
+
+        public IQueryable<Contacto> GetContactosByIdCliente(decimal rut)
+        {
+            return _ent.Contactos.Where(x => x.Rut == rut);
         }
 
         #endregion
@@ -149,5 +135,22 @@ namespace Data.Repositorios.Clientes
                    select c;
         }
 
+        public void SaveChanges()
+        {
+            _ent.SubmitChanges();
+        }
+
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (_ent != null)
+            {
+                _ent.Dispose();   
+            }
+        }
+
+        #endregion
     }
 }
