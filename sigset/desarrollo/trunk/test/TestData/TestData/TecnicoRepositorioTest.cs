@@ -193,7 +193,7 @@ namespace TestData
             IQueryable<Empleado> actual;
             actual = target.GetEmpleadosTecnicos();
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+          
         }
 
         /// <summary>
