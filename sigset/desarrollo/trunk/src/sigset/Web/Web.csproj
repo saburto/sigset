@@ -79,6 +79,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
+    <Compile Include="Controllers\Admin\TecnicoController.cs" />
     <Compile Include="Controllers\Admin\TipoCargoController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
@@ -170,6 +171,7 @@
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />
     <Content Include="Views\Shared\MenuIzquierda.ascx" />
+    <Content Include="Views\Tecnico\Lista.aspx" />
     <Content Include="Views\TipoCargo\Crear.aspx" />
     <Content Include="Views\TipoCargo\Editar.aspx" />
     <Content Include="Views\TipoCargo\Lista.aspx" />
