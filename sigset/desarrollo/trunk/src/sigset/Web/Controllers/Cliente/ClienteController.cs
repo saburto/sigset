@@ -44,7 +44,7 @@ namespace Web.Controllers
             {
                 if (Rut == null)
                 {
-                    throw new Exception("Debe ingresar rut");
+                    throw new Exception("Debe ingresar rut (12345678-0) sin puntos");
                 }
 
                 decimal rut = Rut.Value;
@@ -59,7 +59,7 @@ namespace Web.Controllers
             }
             catch(Exception e)
             {
-                ModelState.AddModelError("Rut", e);
+                ModelState.AddModelError("_FORM", e.Message);
             }
             return View("~/Views/OrdenTrabajo/Crear.aspx");
         }

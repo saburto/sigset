@@ -34,6 +34,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">
 
+<%--
 <ol>
 <li>
     <%=Ajax.ActionLink("Buscar Cliente", "Buscar", "Cliente", new AjaxOptions { LoadingElementId = "loadingAjax", UpdateTargetId = "datosCliente", HttpMethod = "GET" })%>
@@ -42,5 +43,5 @@
     <%=Ajax.ActionLink("Nuevo Cliente", "Crear", "Cliente", new AjaxOptions{ LoadingElementId="loadingAjax",UpdateTargetId="datosCliente", HttpMethod="GET"}) %>
 </li>
 </ol>
-
+--%>
 </asp:Content>
