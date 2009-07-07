@@ -160,6 +160,7 @@
     <Content Include="Views\Cliente\Editar.ascx" />
     <Content Include="Views\Cliente\Crear.ascx" />
     <Content Include="Views\Cliente\Detalles.ascx" />
+    <Content Include="Views\Cliente\Lista.aspx" />
     <Content Include="Views\Empleado\Crear.aspx" />
     <Content Include="Views\Empleado\Detalles.aspx" />
     <Content Include="Views\Empleado\Editar.aspx" />

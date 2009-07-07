@@ -26,8 +26,7 @@ namespace Services.Clientes
 
         public void CrearNuevoCliente(Cliente clienteNuevo, string digitoVerificador, Direccion direccion, Contacto email, Contacto telefono)
         {
-            using (IClienteRepositorio r = new ClienteRepositorio())
-            {
+                IClienteRepositorio r = new ClienteRepositorio();
                 decimal tipo_direccionDefecto = 1;
                 decimal tipo_EmailDefecto = 3;
                 decimal tipo_TelefonoDefecto = 1;
@@ -38,7 +37,6 @@ namespace Services.Clientes
                 s.CrearNuevoContacto(clienteNuevo.Rut, email, tipo_EmailDefecto);
                 s.CrearNuevoContacto(clienteNuevo.Rut, telefono, tipo_TelefonoDefecto);
                 r.SaveChanges();
-            }
         }
 
         public void CrearCliente(Cliente clienteNuevo, string digitoVerificador)
