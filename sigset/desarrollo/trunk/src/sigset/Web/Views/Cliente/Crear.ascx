@@ -1,6 +1,6 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%--using (Html.BeginForm("Crear", "Cliente", new AjaxOptions {LoadingElementId="loadingAjax", UpdateTargetId="datosCliente" }))--%>
-    <%= Html.ValidationSummary("No se puede Crear Cliente. Corriga los siguientes errores.") %>
+    <%= Html.ValidationSummary("Se producieron los siguientes errores.") %>
 
     <% using(Html.BeginForm("Crear", "Cliente"))
        {%>
