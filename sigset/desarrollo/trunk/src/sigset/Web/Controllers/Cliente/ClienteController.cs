@@ -38,11 +38,17 @@ namespace Web.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Buscar(decimal Rut, string dv)
+        public ActionResult Buscar(decimal? Rut, string dv)
         {
             try
             {
-                Cliente cliente = _serv.GetClienteCompletoPorRut(Rut, dv);
+                if (Rut == null)
+                {
+                    throw new Exception("Debe ingresar rut");
+                }
+
+                decimal rut = Rut.Value;
+                Cliente cliente = _serv.GetClienteCompletoPorRut(rut, dv);
                 Orden_Trabajo ot = new Orden_Trabajo();
                 ot.Cliente = cliente;
                 return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
@@ -55,7 +61,7 @@ namespace Web.Controllers
             {
                 ModelState.AddModelError("Rut", e);
             }
-            return View();
+            return View("~/Views/OrdenTrabajo/Crear.aspx");
         }
 
 

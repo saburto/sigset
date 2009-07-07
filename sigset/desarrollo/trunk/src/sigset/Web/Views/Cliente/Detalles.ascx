@@ -3,12 +3,11 @@
 <div class="three-column-left">
         <h2>Cliente</h2>
         <p>
+            <%= Html.Encode(Model.Nombre) %> <%= Html.Encode(Model.Apellido_Paterno) %> <%= Html.Encode(Model.Apellido_Materno) %>
+        </P>
+        <p>
             Rut:
             <%= Html.Encode(Model.Rut.GetRutCompleto())%>
-        </p>
-        <p>
-            Nombre:
-            <%= Html.Encode(Model.Nombre) %> <%= Html.Encode(Model.Apellido_Paterno) %> <%= Html.Encode(Model.Apellido_Materno) %>
         </p>
         <p>
             <%=Ajax.ActionLink("Editar", "Editar", "Cliente", new { rut = Model.Rut }, new AjaxOptions { LoadingElementId="loadingAjax", UpdateTargetId="datosCliente" })%>
@@ -23,6 +22,7 @@
 
 <div class="three-column-right">
         <h2>Contacto</h2>
+        <% Html.RenderPartial("Contactos", Model.Contactos); %>
 </div>
 
 </div>
