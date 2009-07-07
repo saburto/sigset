@@ -124,18 +124,7 @@ namespace Web.Controllers
             return PartialView("Editar",cliente);
         }
 
-        public ActionResult CrearDireccion(decimal rut)
-        {
-            ViewData["rutCliente"] = rut;
-            return PartialView();
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult CrearDireccion(decimal rut,[Bind(Exclude="Id")] Direccion direccion)
-        {
-            return PartialView();
-        }
-
+        
         public ActionResult EncontrarRegiones(string q)
         {
             var regiones = _serv.GetRegionesPorNombre(q).ToAutoCompleteJson("Id", "Nombre"); ;
