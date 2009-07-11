@@ -8,12 +8,13 @@
     
     <h2>Administración de Tablas</h2>
    <p>
-   <ul>
+     Mantenedores para Servicio
+  <%-- <ul>
     <li> <%=Html.ActionLink("Empleado", "Lista", "Empleado") %></li>
     <li> <%=Html.ActionLink("Tipo Cargo", "Lista", "TipoCargo") %></li>   
     <li> <%=Html.ActionLink("Usuario", "Lista", "Usuario") %> </li>   
     <li> <%=Html.ActionLink("Técnico", "Lista", "Tecnico") %> </li>   
-   </ul>
+   </ul>--%>
    </p>
         
            

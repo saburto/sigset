@@ -8,6 +8,7 @@ using Data.Modelo;
 using Services.Tecnicos;
 using Web.Helpers;
 using Helpers;
+using xVal.ServerSide;
 
 
 namespace Web.Controllers.Admin
@@ -38,9 +39,25 @@ namespace Web.Controllers.Admin
         {
             ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre"); 
             ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("Id_Nivel", "Descripcion");
-            ViewData["tipoEspecialidad"] = _servicio.GetTodosLosTiposDeEspecialidad().GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
             return View();           
         }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Crear(Tecnico tecnico, string niveles, string listaEmpleadosTecnicos)
+        {
+            try
+            {
+                tecnico.Rut = decimal.Parse(listaEmpleadosTecnicos);
+                tecnico.Nivel = decimal.Parse(niveles);
+                _servicio.CrearTecnico(tecnico);
+            }
+            catch (RulesException e)
+            { 
+            
+            }
+            return View();
+        }
+       
+
 
     }
 }

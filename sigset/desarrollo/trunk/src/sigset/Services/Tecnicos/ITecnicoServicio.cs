@@ -1,8 +1,10 @@
 ﻿using System;
+using Data.Modelo;
 namespace Services.Tecnicos
 {
  public interface ITecnicoServicio
     {
+         void CrearTecnico(Tecnico tecnico);
         global::Data.Modelo.Tecnico GetTecnicoByRut(decimal rut);
         System.Collections.Generic.IList<global::Data.Modelo.Nivel> GetTodosLosNiveles();
         System.Collections.Generic.IList<global::Data.Modelo.Tecnico> GetTodosLosTecnicos();
