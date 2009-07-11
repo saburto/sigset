@@ -28,6 +28,11 @@ namespace Helpers
             return RutTextBox(helper, null, false);
         }
 
+        public static string RutTextBox(this HtmlHelper helper,string rutName, object dataRut, bool soloLectura)
+        {
+            return RutTextBox(helper, rutName, "dv", dataRut, null, soloLectura);
+        }
+
         public static string RutTextBox(this HtmlHelper helper, object dataRut, bool soloLectura)
         {
             return RutTextBox(helper, "Rut", "dv", dataRut, null, soloLectura);

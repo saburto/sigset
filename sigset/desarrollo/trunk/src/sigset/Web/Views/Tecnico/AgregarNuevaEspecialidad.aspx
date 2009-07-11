@@ -17,8 +17,8 @@
            
             <p>
                 <label for="Id_Tecnico">Rut Técnico:</label>
-                <%= Html.TextBox("Id_Tecnico") %>
-                <%= Html.ValidationMessage("Id_Tecnico", "*") %>
+                <p><%= Html.Encode(Model.Id_Tecnico.GetRutCompleto()) %></p>
+                <%= Html.Hidden("Id_Tecnico",Model.Id_Tecnico) %>
             </p>
             <p>
                 <label for="Tipo_Especialidad">Tipo Especialidad:</label>
