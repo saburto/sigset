@@ -13,6 +13,7 @@ using xVal.ServerSide;
 
 namespace Web.Controllers.Admin
 {
+    [Seguridad.ManejadorErrores]
     public class TecnicoController : Controller
     {
 
@@ -106,14 +107,14 @@ namespace Web.Controllers.Admin
         }
 
         [AcceptVerbs (HttpVerbs.Post)]
-        public ActionResult AgregarNuevaEspecialidad(decimal id_tecnico, Especialidade especialidad, string tipoEspecialidades)
+        public ActionResult AgregarNuevaEspecialidad(decimal id, Especialidade especialidad, string tipoEspecialidades)
         {
             try
             {
-                especialidad.Id_Tecnico = id_tecnico;
+                especialidad.Id_Tecnico = id;
                 especialidad.Tipo_Especialidad = decimal.Parse(tipoEspecialidades);
                 _servicio.CrearEspecialidad(especialidad);
-                return RedirectToAction("AgregarEspecialidades",id_tecnico);
+                return RedirectToAction("AgregarEspecialidades",new {id=id});
             }
             catch (RulesException e)
             {

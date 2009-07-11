@@ -12,6 +12,7 @@
     </h2>
     <p>Controlador: <%=Model.ControllerName%></p>
     <p>Action: <%=Model.ActionName%></p>
+    <p><%=Html.Encode("Favor contáctese con el administrador de sistemas")%></p>
   <% }
    else
    { %>

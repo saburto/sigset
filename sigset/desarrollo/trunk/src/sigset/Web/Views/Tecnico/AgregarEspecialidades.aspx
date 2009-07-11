@@ -47,6 +47,10 @@
      <p>
         <%= Html.ActionLink("Agregar Nueva Especialidad", "AgregarNuevaEspecialidad", new { id = ViewData["rutTecnico"] })%>
      </p>
+     
+      <p>
+        <%= Html.ActionLink("Volver", "Lista")%>
+     </p>
 
 </asp:Content>
 
