@@ -95,7 +95,13 @@ namespace Web.Controllers.Admin
             var especialidades = _servicio.EspecialidadesByTecnico(id);                
             return View(especialidades);
         }
-        
+
+        public ActionResult AgregarNuevaEspecialidad()
+        {
+            var tecnico = _servicio.GetTecnicoByRut(15709046);
+            ViewData["tipoEspecialidades"] = _servicio.GetTodosLosTiposDeEspecialidad().GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
+            return View();
+        }       
 
     }
 }
