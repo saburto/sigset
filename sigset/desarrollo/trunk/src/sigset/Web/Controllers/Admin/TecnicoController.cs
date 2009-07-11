@@ -60,8 +60,6 @@ namespace Web.Controllers.Admin
             
             }
         }
-
-
         public ActionResult Crear()
         {
             ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre"); 
@@ -90,8 +88,14 @@ namespace Web.Controllers.Admin
             }
            
         }
-       
-
+        
+        public ActionResult AgregarEspecialidades(decimal id)
+        {
+            ViewData["tecnico"] = _servicio.GetTecnicoByRut(id);
+            var especialidades = _servicio.EspecialidadesByTecnico(id);                
+            return View(especialidades);
+        }
+        
 
     }
 }

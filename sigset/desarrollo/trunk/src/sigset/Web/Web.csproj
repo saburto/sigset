@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\OrdenTrabajo\Web.sitemap" />
+    <Content Include="Views\Tecnico\AgregarEspecialidades.aspx" />
     <Content Include="Views\Tecnico\Editar.aspx" />
   </ItemGroup>
   <ItemGroup>

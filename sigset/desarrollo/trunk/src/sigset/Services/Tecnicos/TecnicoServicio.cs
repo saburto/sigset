@@ -83,9 +83,17 @@ namespace Services.Tecnicos
             else
             {
                 _repo.UpdateTecnico(tecnico);
-            }     
+            }    
+        }
+        public int ContarEspecialidadesByTecnicos(int id)
+        {
+           return _repo.ContarEspecialidadesByTecnico(id);
 
-          
+        }
+
+        public IQueryable<Especialidade> EspecialidadesByTecnico(decimal id)
+        {
+            return _repo.GetEspecialidadByTecnicoId(id);                         
         }
     }
 }

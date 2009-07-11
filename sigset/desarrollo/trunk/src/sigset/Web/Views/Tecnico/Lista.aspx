@@ -75,10 +75,9 @@
 
             </td>
             <td>
-                <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades") %>
+                <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades" , new { id=item.Rut }) %>
             </td>
-            
-        </tr>
+                    </tr>
     
     <% } %>
 
