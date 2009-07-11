@@ -63,6 +63,22 @@ namespace TestData
 
         }
 
+        [TestMethod]
+        public void Test_EmpleadoSinTecnico_TestQuery()
+        {
+            sigsetEntities ent = new sigsetEntities();
+            /*from emp in empleados where 
+            ((tipo_cargo == 1) && (!(from t in tecnicos where t.rut == emp.rut).Any())) select emp*/
+            var empleadosSinTecnicos = from emp in ent.Empleados
+                                       where
+                                       (emp.Tipo_Cargo == 1) &&
+                                       ((from t in ent.Tecnicos
+                                         where t.Rut == emp.Rut
+                                         select t).Any())
+                                       select emp;
+            Assert.IsTrue(empleadosSinTecnicos.Any());
+        }
+
 
     }
 }
