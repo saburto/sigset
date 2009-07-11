@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-1.0" enableLocalization="true">
+  <mvcSiteMapNode title="Inicio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
+    <mvcSiteMapNode title="Crear Orden" controller="OrdenTrabajo" action="Crear" />
+    <mvcSiteMapNode title="Consulta" controller="OrdenTrabajo" action="Consulta" />
+    <mvcSiteMapNode title="Listar" controller="OrdenTrabajo" action="Listar" />
+    <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />
+  </mvcSiteMapNode>
+</siteMap>

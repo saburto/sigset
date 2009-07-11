@@ -5,15 +5,13 @@
     <mvcSiteMapNode title="Orden de Trabajo" controller="OrdenTrabajo" action="Index">
       <mvcSiteMapNode title="Crear Orden" action="Crear" />
       <mvcSiteMapNode title="Consulta" action="Consulta" />
+
       <mvcSiteMapNode title="Listar" action="Listar" />
-      <mvcSiteMapNode title="Cliente" controller="Cliente" action="">
-        <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />  
-      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />  
+    
     </mvcSiteMapNode>
 
-     <mvcSiteMapNode title="Administración" controller="Admin" action="Index" >
-       <!--<mvcSiteMapNode title="Empleados" controller="Empleado" action="Lista" />-->
-     </mvcSiteMapNode> 
+     <mvcSiteMapNode title="Administración" controller="Admin" action="Index" />
      <mvcSiteMapNode title="Acerca de" controller="Home" action="About" />
  </mvcSiteMapNode>
 </siteMap>
