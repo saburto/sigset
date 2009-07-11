@@ -1,30 +1,31 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Tecnico>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Crear
+	Editar
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Crear <%=Html.Encode("Técnico")%></h2>
+    <h2><%=Html.Encode("Editar técnico") %></h2>
 
-    <%= Html.ValidationSummary("No se ha creado Técnico. Favor corrija los siguientes errores.") %>
+    <%= Html.ValidationSummary("No se ha realizado edición. Favor corrija los siguientes errores.") %>
 
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
-            <legend>Datos <%=Html.Encode("Técnico")%></legend>
+            <legend><%= Html.Encode("Editar Técnico:")%></legend>
             <p>
-                <label for="Rut">Nombre Empleado:</label>
-                <%=Html.DropDownList("listaEmpleadosTecnicos")%>
-            </p>           
-            <p>
-                <label for="Nivel">Nivel:</label>
-                  <%=Html.DropDownList("niveles")%>
-            
+               <%= Html.Encode (Model.Empleado.Nombre + " " + Model.Empleado.Apellido_Paterno + " " + Model.Empleado.Apellido_Materno )%>
+            </p>
+            <p> 
+               <%= Html.Encode(Model.Rut.GetRutCompleto()) %>
             </p>
             <p>
-                <input type="submit" value="Crear" />
+                <label for="Nivel">Nivel:</label>
+                <%= Html.DropDownList("niveles") %>
+            </p>
+            <p>
+                <input type="submit" value="Guardar" />
             </p>
         </fieldset>
 
