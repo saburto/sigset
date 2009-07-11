@@ -10,7 +10,7 @@
     
     <table>
     <tr>
-    <td style="width:50%">
+    <td style="width:60%;vertical-align:top;">
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th></th>
@@ -18,10 +18,13 @@
                 Rut
             </th>
             <th>
-                Apellido Paterno
+                Apellidos
             </th>
             <th>
                 Nombre
+            </th>
+            <th>
+                Orden de Trabajo
             </th>
         </tr>
         
@@ -46,17 +49,20 @@
                 <%= Html.Encode(item.Rut.GetRutCompleto()) %>
             </td>
             <td>
-                <%= Html.Encode(item.Apellido_Paterno) %>
+                <%= Html.Encode(item.Apellido_Paterno) %> <%= Html.Encode(item.Apellido_Materno) %>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre) %>
+            </td>
+            <td>
+                <%=Html.ActionLink("Agregar", "Crear", "OrdenTrabajo", new {rut = item.Rut },null)%>
             </td>
         </tr>
     
     <% } %>
     </table>
     </td>
-    <td id="detallesCliente" style="width:50%"></td>
+    <td id="detallesCliente" style="width:40%; vertical-align:top;" ></td>
     </tr>
     </table>
 

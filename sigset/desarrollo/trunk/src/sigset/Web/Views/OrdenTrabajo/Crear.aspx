@@ -3,19 +3,10 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Crear
+	Crear Orden de Trabajo
 </asp:Content>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
-<%if(Model == null || Model.Cliente == null){ %>
-    <%using (Html.BeginReady()) {%>
-    
-    <%= Html.InitializeAutoComplete("Region", "EncontrarRegiones", "Cliente", true,15) %>
-    <%= Html.InitializeAutoComplete("Provincia", "EncontrarProvincias", "Cliente", true, "Region", 30, 0) %>
-    <%= Html.InitializeAutoComplete("Comuna", "EncontrarComunas", "Cliente", true, "Provincia",100,0 ) %>
-    
-    <%} %>
-<%} %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -23,12 +14,12 @@
     <h2>Crear Orden de Trabajo</h2>
 
     <div id="datosCliente">
-    <%if(Model == null || Model.Cliente == null)
-      {
-        Html.RenderPartial("~/Views/Cliente/Crear.ascx");
-      }else if(Model.Cliente != null){
-          Html.RenderPartial("~/Views/Cliente/Detalles.ascx", Model.Cliente);     
-    }%>
+    <%if (Model != null && Model.Cliente != null)
+      { %>
+    <h2>
+    <%= Html.Encode(Model.Cliente.Nombre) %> <%= Html.Encode(Model.Cliente.Apellido_Paterno) %> <%= Html.Encode(Model.Cliente.Apellido_Materno) %>
+    </h2>      
+    <%} %>
     </div>
 </asp:Content>
 

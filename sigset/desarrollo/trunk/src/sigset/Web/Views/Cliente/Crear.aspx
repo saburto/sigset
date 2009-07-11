@@ -22,22 +22,11 @@
        {%>
         <fieldset>
             <legend>Cliente</legend>
-            
-            <script>
-                function buscarCliente() {
-                    var form = document.forms[0];
-                    form.action = '<%= Url.Action("Buscar","Cliente") %>';
-                    form.submit();
-                    return true;
-                }
-            </script>
-            
             <div class="three-column-container">
                 <div class="three-column-left">
                     <label for="Rut">Rut:</label>
                     <%= Html.RutTextBox() %>
                     <%= Html.ValidationMessage("Rut", "*")%>
-                    <input type="submit" value="Buscar" title="Buscar Cliente" onclick="buscarCliente()" />
                 </div>
                 <div class="clear"></div>
             </div>

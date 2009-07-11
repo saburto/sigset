@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Services.Clientes;
+using System.Web.Routing;
 
 namespace Web.Controllers
 {
@@ -11,23 +13,35 @@ namespace Web.Controllers
     [Web.Seguridad.ManejadorErrores]
     public class OrdenTrabajoController : Controller
     {
-        //
-        // GET: /OrdenTrabajo/
+
+        IClienteServicio _srv;
+
+        public OrdenTrabajoController(IClienteServicio serv)
+        {
+            _srv = serv;
+        }
+
+        public OrdenTrabajoController()
+            :this(new ClienteServicio())
+        {
+
+        }
+
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Crear()
+        public ActionResult Crear(decimal? rut)
         {
-            return View();
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(string rut)
-        {
-            return View();
+            if (rut.HasValue)
+            {
+                var orden = new Data.Modelo.Orden_Trabajo();
+                orden.Cliente = _srv.GetClientePorRut(rut.Value);
+                return View(orden);                
+            }
+            return RedirectToRoute(new { action = "Buscar", controller = "Cliente", id = "" });
         }
 
         
