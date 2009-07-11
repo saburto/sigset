@@ -91,7 +91,6 @@ namespace Data.Repositorios.Tecnicos
                                  select e;
             return especialidades;
         }
-
         public void CreateTecnico(Tecnico tecnico)
         {
             _data.Tecnicos.InsertOnSubmit(tecnico);
@@ -125,6 +124,14 @@ namespace Data.Repositorios.Tecnicos
                                         select eb).FirstOrDefault();
             _data.Especialidades.DeleteOnSubmit(especialidadEliminar);
             _data.SubmitChanges();
+        }
+        public int ContarEspecialidadesByTecnico(decimal id)
+        {
+            int cantidad_especialidades = (from et in _data.Especialidades
+                                           where et.Id_Tecnico == id
+                                           select et).Count();
+            return cantidad_especialidades;
+
         }
 
     }

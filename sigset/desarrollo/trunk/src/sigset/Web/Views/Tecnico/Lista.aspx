@@ -23,6 +23,12 @@
             <th>
                 <%=Html.Encode("Descripción") +  " " + "nivel" %>
             </th>
+            <th>
+                Especialidades
+            </th>
+             <th>
+             
+            </th>
         </tr>
 
     <%bool alter = false; %>
@@ -54,6 +60,12 @@
             </td>
             <td>
                 <%= Html.Encode(item.Nivel1.Descripcion)%>
+            </td>
+             <td>
+                0
+            </td>
+            <td>
+                <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades") %>
             </td>
             
         </tr>
