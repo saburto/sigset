@@ -33,13 +33,19 @@ namespace Data.Repositorios.Tecnicos
 
         public IQueryable<Empleado> GetEmpleadosTecnicos()
         {
-            var empleados_tecnicos = (from t in _data.Empleados
-                                      where t.Tipo_Cargo1.Descripcion == "Tecnico"
-                                      select t);
+            var empleados_tecnicos = (from emp in _data.Empleados 
+                                     where ((emp.Tipo_Cargo == 1) && 
+                                     (!(from t in _data.Tecnicos
+                                        where t.Rut == emp.Rut 
+                                        select t).Any()))
+                                     select emp);                                      
+                                    
             return empleados_tecnicos;
         }
 
-         
+       
+
+
         public IQueryable<Nivel> GetTodosLosNiveles()
         {
             var niveles = from n in _data.Nivels
