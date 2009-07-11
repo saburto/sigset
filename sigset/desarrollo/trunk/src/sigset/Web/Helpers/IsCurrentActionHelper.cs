@@ -46,6 +46,13 @@ namespace Helpers
             hijos.Add("Cliente");
             controllerHijos.Add("OrdenTrabajo", hijos);
 
+            hijos = new List<string>();
+            hijos.Add("OrdenesAsignadas");
+            controllerHijos.Add("AreaTecnica", hijos);
+
+
+            
+
         }
 
         public static string MenuIzquierda(this HtmlHelper helper, string cssName)
