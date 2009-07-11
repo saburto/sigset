@@ -4,6 +4,7 @@
     <mvcSiteMapNode title="Crear Orden" controller="OrdenTrabajo" action="Crear" />
     <mvcSiteMapNode title="Consulta" controller="OrdenTrabajo" action="Consulta" />
     <mvcSiteMapNode title="Listar" controller="OrdenTrabajo" action="Listar" />
-    <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />
+    <mvcSiteMapNode title="Crear Cliente" controller="Cliente" action="Crear" />
+    <mvcSiteMapNode title="Lista de Clientes" controller="Cliente" action="Lista" />
   </mvcSiteMapNode>
 </siteMap>

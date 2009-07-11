@@ -10,7 +10,12 @@ namespace Services.Helpers
     {
       public static bool SoloTexto(this string str)
       {
-          return !Regex.IsMatch(str, "[^a-zA-ZÑñáéíóú]");
+          return !Regex.IsMatch(str, "[^a-zA-ZÑñáéíóúÁÉÍÓÚ]");
+      }
+
+      public static bool EsEmail(this string str)
+      {
+          return Regex.IsMatch(str, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
       }
    
     }

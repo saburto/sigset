@@ -7,28 +7,41 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Clientes</h2>
-
+    
     <table>
+    <tr>
+    <td style="width:50%">
+    <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th></th>
             <th>
                 Rut
             </th>
             <th>
-                Apellido_Paterno
+                Apellido Paterno
             </th>
             <th>
                 Nombre
             </th>
         </tr>
-
-    <% foreach (var item in Model) { %>
-    
+        
+    <%bool alter = false; %>
+    <% foreach (var item in Model)
+       { %>
+    <%if (alter)
+      { %>
+        <tr class="row-alternating">
+    <%}
+      else
+      {
+          alter = !alter; %>
         <tr>
-            <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Rut }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Rut })%>
-            </td>
+    <%} %>
+       
+            <th scope="row">
+                <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> |
+                <%= Ajax.ActionLink("Ver","Detalles",new {id=item.Rut},new AjaxOptions{  HttpMethod="GET",LoadingElementId="loadingAjax", UpdateTargetId="detallesCliente"}) %>
+            </th>
             <td>
                 <%= Html.Encode(item.Rut.GetRutCompleto()) %>
             </td>
@@ -38,15 +51,17 @@
             <td>
                 <%= Html.Encode(item.Nombre) %>
             </td>
-
         </tr>
     
     <% } %>
-
+    </table>
+    </td>
+    <td id="detallesCliente" style="width:50%"></td>
+    </tr>
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%= Html.ActionLink("Nuevo Cliente", "Crear") %>
     </p>
 
 </asp:Content>

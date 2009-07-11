@@ -34,9 +34,27 @@ namespace Services.Clientes
                 ClienteServicio s = new ClienteServicio(r);
                 s.CrearCliente(clienteNuevo, digitoVerificador);
                 s.CrearNuevaDireccion(clienteNuevo.Rut, direccion, tipo_direccionDefecto);
-                s.CrearNuevoContacto(clienteNuevo.Rut, email, tipo_EmailDefecto);
-                s.CrearNuevoContacto(clienteNuevo.Rut, telefono, tipo_TelefonoDefecto);
+                s.CrearNuevoContacto(clienteNuevo.Rut, email, tipo_EmailDefecto, "Email");
+                s.CrearNuevoContacto(clienteNuevo.Rut, telefono, tipo_TelefonoDefecto, "Fono");
                 r.SaveChanges();
+        }
+
+        public void ValidarCliente(Cliente clienteNuevo, IList<ErrorInfo> _errors)
+        {
+            if (!clienteNuevo.Nombre.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Nombre", "Debe ingresar sólo texto en Nombre"));
+            }
+            if (!clienteNuevo.Apellido_Paterno.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
+            }
+
+            if (!clienteNuevo.Apellido_Materno.SoloTexto())
+            {
+                _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
+            }
+            DataValidation.GetErrors(clienteNuevo, _errors);
         }
 
         public void CrearCliente(Cliente clienteNuevo, string digitoVerificador)
@@ -54,8 +72,7 @@ namespace Services.Clientes
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut invalido"));
             }
-
-            DataValidation.GetErrors(clienteNuevo, _errors);
+            ValidarCliente(clienteNuevo, _errors);
             if (_errors.Any())
             {
                 throw new RulesException(_errors);
@@ -77,29 +94,7 @@ namespace Services.Clientes
         public void CrearNuevaDireccion(decimal rut,Direccion direccion, decimal tipoDireccion)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            if (rut == 0)
-            {
-                _errors.Add(new ErrorInfo("Rut", "Rut es necesario"));
-            }
-
-            if (tipoDireccion == 0)
-            {
-                _errors.Add(new ErrorInfo("Tipo_Direccion", "Tipo de Direccion es necesario"));
-            }
-
-            if (string.IsNullOrEmpty(direccion.Calle))
-            {
-                _errors.Add(new ErrorInfo("Calle","Calle es necesario"));
-            }
-
-            if (string.IsNullOrEmpty(direccion.Numero))
-            {
-                _errors.Add(new ErrorInfo("Numero", "Numero es necesario"));
-            }
-
-            RegionProvinciaComunaEsValida(direccion.Region, direccion.Provincia, direccion.Comuna, _errors);
-
-            DataValidation.GetErrors(direccion, _errors);
+            ValidarDireccion(rut, direccion, tipoDireccion, _errors);
             if (_errors.Any())
             {
                 throw new RulesException(_errors);
@@ -119,6 +114,32 @@ namespace Services.Clientes
             }
         }
 
+        private void ValidarDireccion(decimal rut, Direccion direccion, decimal tipoDireccion, List<ErrorInfo> _errors)
+        {
+            if (rut == 0)
+            {
+                _errors.Add(new ErrorInfo("Rut", "Rut es necesario"));
+            }
+
+            if (tipoDireccion == 0)
+            {
+                _errors.Add(new ErrorInfo("Tipo_Direccion", "Tipo de Direccion es necesario"));
+            }
+
+            if (string.IsNullOrEmpty(direccion.Calle))
+            {
+                _errors.Add(new ErrorInfo("Calle", "Calle es necesario"));
+            }
+
+            if (string.IsNullOrEmpty(direccion.Numero))
+            {
+                _errors.Add(new ErrorInfo("Numero", "Numero es necesario"));
+            }
+
+            RegionProvinciaComunaEsValida(direccion.Region, direccion.Provincia, direccion.Comuna, _errors);
+            DataValidation.GetErrors(direccion, _errors);
+        }
+
         private bool DireccionNoRepetida(decimal rut, Direccion direccion, decimal tipoDireccion)
         {
             var direcccionesCliente = from d in _repo.GetDireccionesByRutCliente(rut)
@@ -136,25 +157,11 @@ namespace Services.Clientes
             return true;
         }
 
-        public void CrearNuevoContacto(decimal rut, Contacto contacto, decimal tipoContacto)
+        public void CrearNuevoContacto(decimal rut, Contacto contacto, decimal tipoContacto, string prefijo)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            if (rut == 0)
-            {
-                _errors.Add(new ErrorInfo("Rut", "Rut es necesario"));
-            }
+            ValidarContacto(rut, contacto, tipoContacto, _errors, prefijo);
 
-            if (tipoContacto == 0)
-            {
-                _errors.Add(new ErrorInfo("Tipo_Contacto", "Tipo de Contacto es necesario"));
-            }
-
-            if (string.IsNullOrEmpty(contacto.Valor_Contacto))
-            {
-                _errors.Add(new ErrorInfo("Valor_Contacto", "El valor de este tipo de contacto es necesario"));
-            }
-
-            DataValidation.GetErrors(contacto, _errors);
             if (_errors.Any())
             {
                 throw new RulesException(_errors);
@@ -171,6 +178,25 @@ namespace Services.Clientes
                     }    
    
             }
+        }
+
+        private static void ValidarContacto(decimal rut, Contacto contacto, decimal tipoContacto, List<ErrorInfo> _errors, string prefijo)
+        {
+            if (rut == 0)
+            {
+                _errors.Add(new ErrorInfo("Rut", "Rut es necesario"));
+            }
+
+            if (tipoContacto == 0)
+            {
+                _errors.Add(new ErrorInfo(prefijo + ".Tipo_Contacto", "Tipo de Contacto es necesario"));
+            }
+
+            if (string.IsNullOrEmpty(contacto.Valor_Contacto))
+            {
+                _errors.Add(new ErrorInfo(prefijo + ".Valor_Contacto", "El valor de este tipo de contacto es necesario"));
+            }
+            DataValidation.GetErrors(contacto, _errors);
         }
 
         private bool ContactoNoRepetido(decimal rut, Contacto contacto, decimal tipoContacto)
@@ -337,7 +363,67 @@ namespace Services.Clientes
                 throw new RulesException(_errors);
             }
             _repo.EditarCliente(cliente);
+        }
+
+        #region IClienteServicio Members
+
+
+        public IList<Cliente> GetClientes()
+        {
+            return _repo.GetClientes().ToList() ;
+        }
+
+        #endregion
+
+        #region IClienteServicio Members
+
+
+        public void EditarCliente(Cliente cliente, Direccion direccion, Contacto email, Contacto fono)
+        {
+            
+         
+            direccion.Rut = cliente.Rut;
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
+            ValidarDireccion(direccion.Rut, direccion, direccion.Tipo_Direccion, _errors);
+            email.Rut = cliente.Rut;
+            fono.Rut = cliente.Rut;
+
+            ValidarEmail(email.Rut,email,email.Tipo_Contacto.Value,_errors);
+            ValidarContacto(fono.Rut, fono, fono.Tipo_Contacto.Value, _errors, "Fono");
+            ValidarCliente(cliente, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+
+            _repo.EditarDireccionCliente(direccion);
+            _repo.EditarContactoCliente(email);
+            _repo.EditarCliente(cliente);
             _repo.SaveChanges();
         }
+
+        private void ValidarEmail(decimal p, Contacto email, decimal p_3, List<ErrorInfo> _errors)
+        {
+            ValidarContacto(p, email, p_3, _errors, "Email");
+            if (email.Valor_Contacto != null)
+            {
+                if (!email.Valor_Contacto.EsEmail())
+                {
+                    _errors.Add(new ErrorInfo("Email.Valor_Contacto", "Formato Email incorrecto"));
+                }
+            }
+        }
+
+        #endregion
+
+        #region IClienteServicio Members
+
+
+        public void CrearNuevoContacto(decimal rut, Contacto contacto, decimal tipoContacto)
+        {
+            CrearNuevoContacto(rut, contacto, tipoContacto, "");
+        }
+
+        #endregion
     }
 }

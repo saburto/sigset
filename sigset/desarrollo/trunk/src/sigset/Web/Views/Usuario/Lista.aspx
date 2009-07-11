@@ -41,7 +41,7 @@
         <tr class="row-alternating">
     <%}
       else
-      { %>
+      {alter = !alter; %>
         <tr>
     <%} %>
        

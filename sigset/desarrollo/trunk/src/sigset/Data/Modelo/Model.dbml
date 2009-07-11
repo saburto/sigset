@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="sigset" Class="ModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="sigset" Class="sigsetEntities" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=sigset;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="sigsetConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Articulo" Member="Articulos">
     <Type Name="Articulo">
@@ -27,10 +27,10 @@
   </Table>
   <Table Name="dbo.Cliente" Member="Clientes">
     <Type Name="Cliente">
-      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Apellido_Paterno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Apellido_Materno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Apellido_Paterno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Apellido_Materno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="Cliente_Contacto" Member="Contactos" ThisKey="Rut" OtherKey="Rut" Type="Contacto" />
       <Association Name="Cliente_Orden_Trabajo" Member="Orden_Trabajos" ThisKey="Rut" OtherKey="Id_Cliente" Type="Orden_Trabajo" />
       <Association Name="Cliente_Direccion" Member="Direccions" ThisKey="Rut" OtherKey="Rut" Type="Direccion" />
@@ -38,10 +38,10 @@
   </Table>
   <Table Name="dbo.Contacto" Member="Contactos">
     <Type Name="Contacto">
-      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Tipo_Contacto" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Valor_Contacto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Tipo_Contacto" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Valor_Contacto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Cliente_Contacto" Member="Cliente" ThisKey="Rut" OtherKey="Rut" Type="Cliente" IsForeignKey="true" />
       <Association Name="Tipo_Contacto_Contacto" Member="Tipo_Contacto1" ThisKey="Tipo_Contacto" OtherKey="Id_Tipo_Contacto" Type="Tipo_Contacto" IsForeignKey="true" />
     </Type>
@@ -232,14 +232,14 @@
   </Table>
   <Table Name="dbo.Direccion" Member="Direccions">
     <Type Name="Direccion">
-      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Provincia" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Calle" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Numero" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Tipo_Direccion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Provincia" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Calle" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Numero" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Tipo_Direccion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Cliente_Direccion" Member="Cliente" ThisKey="Rut" OtherKey="Rut" Type="Cliente" IsForeignKey="true" />
       <Association Name="Tipo_Direccion_Direccion" Member="Tipo_Direccion1" ThisKey="Tipo_Direccion" OtherKey="Id_Tipo_Direccion" Type="Tipo_Direccion" IsForeignKey="true" />
       <Association Name="Comuna_Direccion" Member="Comuna1" ThisKey="Comuna" OtherKey="Id" Type="Comuna" IsForeignKey="true" />

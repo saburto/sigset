@@ -43,6 +43,8 @@ namespace Helpers
         /// <returns></returns>
         public static string InitializeAutoComplete(this HtmlHelper html, string name, string actionName, string controllerName, bool mustMatch ,string nameExtraParameter, int limit, int min, object options)
         {
+            name = name.Replace(".", "_");
+            nameExtraParameter = nameExtraParameter.Replace(".", "_");
             UrlHelper helper = new UrlHelper(html.ViewContext.RequestContext, html.RouteCollection);
             string url = helper.Action(actionName, controllerName);
 
