@@ -92,15 +92,17 @@ namespace Web.Controllers.Admin
         public ActionResult AgregarEspecialidades(decimal id)
         {
             ViewData["tecnico"] = _servicio.GetTecnicoByRut(id);
+            ViewData["rutTecnico"] = id; 
             var especialidades = _servicio.EspecialidadesByTecnico(id);                
             return View(especialidades);
         }
 
-        public ActionResult AgregarNuevaEspecialidad()
+        public ActionResult AgregarNuevaEspecialidad(decimal id)
         {
-            var tecnico = _servicio.GetTecnicoByRut(15709046);
+            var tecnico = _servicio.GetTecnicoByRut(id);
             ViewData["tipoEspecialidades"] = _servicio.GetTodosLosTiposDeEspecialidad().GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
-            return View();
+
+            return View(new Especialidade { Id_Tecnico = id });
         }       
 
     }

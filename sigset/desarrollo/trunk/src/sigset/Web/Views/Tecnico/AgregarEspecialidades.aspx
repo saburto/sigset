@@ -26,7 +26,7 @@
       { %>
         <tr class="row-alternating">
     <%}
-      else
+      else alter = !alter;
       { %>
         <tr>
     <%} %>
@@ -45,7 +45,7 @@
     </table>
 
      <p>
-        <%= Html.ActionLink("Agregar Nueva Especialidad", "AgregarNuevaEspecialidad")%>
+        <%= Html.ActionLink("Agregar Nueva Especialidad", "AgregarNuevaEspecialidad", new { id = ViewData["rutTecnico"] })%>
      </p>
 
 </asp:Content>
