@@ -38,7 +38,9 @@
         <tr class="row-alternating">
        <%}
       else
-      { %>
+      {
+          alter = !alter;
+              %>
         <tr>
     <%} %>
     
@@ -62,7 +64,14 @@
                 <%= Html.Encode(item.Nivel1.Descripcion)%>
             </td>
              <td>
-                0
+             <%if (item.Especialidades != null && item.Especialidades.Count > 0)
+               { %>
+                <%= Html.Encode(String.Format("{0}", item.Especialidades.Count))%>
+                <%}
+               else
+               { %>
+               Sin Especialidad
+                <%} %>
             </td>
             <td>
                 <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades") %>
