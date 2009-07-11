@@ -3,8 +3,8 @@ namespace Data.Repositorios.Tecnicos
 {
     public interface ITecnicoRepositorio
     {
-        int ContarEspecialidadesByTecnico(decimal id);
         void CrearEspecialidad(global::Data.Modelo.Especialidade especialidad);
+        int ContarEspecialidadesByTecnico(decimal id);
         void CreateTecnico(global::Data.Modelo.Tecnico tecnico);
         void DeleteEspecialidad(global::Data.Modelo.Especialidade especialidad);
         void DeleteTecnico(global::Data.Modelo.Tecnico tecnico);

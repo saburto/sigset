@@ -95,5 +95,25 @@ namespace Services.Tecnicos
         {
             return _repo.GetEspecialidadByTecnicoId(id);                         
         }
+
+        public void CrearEspecialidad(Especialidade especialidad)
+        {
+
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
+            if (especialidad.Tipo_Especialidad == -1)
+            {
+                _errors.Add(new ErrorInfo("Nivel", "Debe seleccionar Tipo de Especialidad"));
+
+            }
+            DataValidation.GetErrors(especialidad, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+            else
+            {
+                _repo.CrearEspecialidad(especialidad);
+            }    
+        }
     }
 }
