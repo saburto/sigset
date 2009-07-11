@@ -10,9 +10,10 @@ using xVal.ServerSide;
 using Web.Helpers;
 using Helpers;
 
-//AMor de controllers, okis??oki
+
 namespace Web.Controllers //.Admin
 {
+    [Web.Seguridad.ManejadorErrores]
     public class EmpleadoController : Controller
     {
         //jojoj, XD
