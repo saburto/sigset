@@ -4,6 +4,7 @@ namespace Services.Tecnicos
 {
  public interface ITecnicoServicio
     {
+       
         void EditarTecnico(Tecnico tecnico);
         void CrearTecnico(Tecnico tecnico);
         global::Data.Modelo.Tecnico GetTecnicoByRut(decimal rut);
