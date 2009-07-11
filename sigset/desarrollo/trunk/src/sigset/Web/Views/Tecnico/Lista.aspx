@@ -31,21 +31,21 @@
             </th>
         </tr>
 
-    <%bool alter = false; %>
-    <% foreach (var item in Model) { %>
-        <%if (alter)
-        { %>
+   <%bool alter = false; %>
+    <% foreach (var item in Model)
+       { %>
+    <%if (alter)
+      { %>
         <tr class="row-alternating">
-       <%}
+    <%}
       else
-      {
-          alter = !alter;
-              %>
+      { %>
         <tr>
     <%} %>
+       
+            <th scope="row">
     
-          <td>
-                <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> |
+                <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> 
                 <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Rut })%>
             </td>
             <td>
@@ -71,7 +71,8 @@
                else
                { %>
                Sin Especialidad
-                <%} %>
+              <%} %>
+
             </td>
             <td>
                 <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades") %>
