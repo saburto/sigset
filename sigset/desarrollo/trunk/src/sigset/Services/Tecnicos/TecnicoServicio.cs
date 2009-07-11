@@ -47,7 +47,7 @@ namespace Services.Tecnicos
             List<ErrorInfo> _errors = new List<ErrorInfo>();
             if (tecnico.Rut == -1)
             {
-                _errors.Add(new ErrorInfo("Rut", "Debe seleccionar Empleado a registrar como tecnico"));
+                _errors.Add(new ErrorInfo("Rut", "Debe seleccionar empleado a registrar como técnico"));
 
             }
             if (tecnico.Nivel == -1)
@@ -63,10 +63,29 @@ namespace Services.Tecnicos
             else
             {
                 _repo.CreateTecnico(tecnico);
-            }
-                
+            }              
                 
                
+        }
+        public void EditarTecnico(Tecnico tecnico)
+        {
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
+            if (tecnico.Nivel == -1)
+            {
+                _errors.Add(new ErrorInfo("Nivel", "Debe seleccionar Nivel"));
+
+            }
+            DataValidation.GetErrors(tecnico, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+            else
+            {
+                _repo.UpdateTecnico(tecnico);
+            }     
+
+          
         }
     }
 }
