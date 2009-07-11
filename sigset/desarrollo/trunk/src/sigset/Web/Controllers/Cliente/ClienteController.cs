@@ -124,6 +124,28 @@ namespace Web.Controllers
             return PartialView("Editar",cliente);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editar(Cliente cliente)
+        {
+            try
+            {
+                _serv.EditarCliente(cliente);
+                Orden_Trabajo ot = new Orden_Trabajo();
+                ot.Cliente = cliente;
+                return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
+            }
+            catch (RulesException e)
+            {
+                ModelState.AddRuleErrors(e.Errors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("_FORM", ex.Message);
+            }
+            return View();
+        }
+
+
         
         public ActionResult EncontrarRegiones(string q)
         {

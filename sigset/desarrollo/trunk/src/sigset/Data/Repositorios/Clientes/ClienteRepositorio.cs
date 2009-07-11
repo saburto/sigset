@@ -152,5 +152,12 @@ namespace Data.Repositorios.Clientes
         }
 
         #endregion
+
+        public void EditarCliente(Cliente cliente)
+        {
+            _ent.Clientes.Attach(cliente, true);
+        }
+
+
     }
 }

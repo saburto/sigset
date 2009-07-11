@@ -168,7 +168,6 @@
     <Content Include="Views\OrdenTrabajo\Crear.aspx" />
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />
-    <Content Include="Views\Shared\MenuIzquierda.ascx" />
     <Content Include="Views\Tecnico\Crear.aspx" />
     <Content Include="Views\Tecnico\Lista.aspx" />
     <Content Include="Views\TipoCargo\Crear.aspx" />
@@ -178,6 +177,9 @@
     <Content Include="Views\Usuario\Editar.aspx" />
     <Content Include="Views\Usuario\Lista.aspx" />
     <Content Include="Web.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

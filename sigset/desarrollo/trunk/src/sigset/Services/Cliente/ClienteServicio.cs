@@ -312,9 +312,6 @@ namespace Services.Clientes
 
 
 
-        #region IClienteServicio Members
-
-
         public Cliente GetClienteCompletoPorRut(decimal Rut, string dv)
         {
             var clienteEncontrado = GetClientePorRut(Rut, dv);
@@ -331,6 +328,16 @@ namespace Services.Clientes
             return clienteEncontrado;
         }
 
-        #endregion
+        public void EditarCliente(Cliente cliente)
+        {
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
+            DataValidation.GetErrors(cliente, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+            _repo.EditarCliente(cliente);
+            _repo.SaveChanges();
+        }
     }
 }

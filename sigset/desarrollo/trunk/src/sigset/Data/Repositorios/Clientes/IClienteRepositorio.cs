@@ -26,5 +26,7 @@ namespace Data.Repositorios.Clientes
         IQueryable<Contacto> GetContactosByIdCliente(decimal rut);
 
         void SaveChanges();
+
+        void EditarCliente(Cliente cliente);
     }
 }

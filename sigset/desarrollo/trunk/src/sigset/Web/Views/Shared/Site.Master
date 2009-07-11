@@ -182,7 +182,12 @@
 --%>
             </div>
             <div class="content-left">
-                <% Html.RenderPartial("MenuIzquierda"); %>
+            
+            
+            <div class="side-bucket">
+                 <%=Html.MenuIzquierda("active") %>
+            </div>
+            
             </div>
             <div class="content-right">
                 <asp:ContentPlaceHolder ID="MenuDerecha" runat="server" />

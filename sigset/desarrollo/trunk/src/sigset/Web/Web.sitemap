@@ -6,6 +6,9 @@
       <mvcSiteMapNode title="Crear Orden" action="Crear" />
       <mvcSiteMapNode title="Consulta" action="Consulta" />
       <mvcSiteMapNode title="Listar" action="Listar" />
+      <mvcSiteMapNode title="Cliente" controller="Cliente" action="">
+        <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />  
+      </mvcSiteMapNode>
     </mvcSiteMapNode>
 
      <mvcSiteMapNode title="Administración" controller="Admin" action="Index" >
