@@ -7,8 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
   
     
-    <h2><%=Html.Encode("Detalle especialidades Técnico")%></h2>
-     
+    <h2><%=Html.Encode("Detalle especialidades Técnico")%></h2>  
     
   
      <table border="0" cellpadding="0" cellspacing="0" class="data-table">
@@ -45,9 +44,9 @@
 
     </table>
 
-    <p>
-        <%= Html.ActionLink("Agregar Nueva Especialidad", "AgregarNuevaEspecialidad") %>
-    </p>
+     <p>
+        <%= Html.ActionLink("Agregar Nueva Especialidad", "AgregarNuevaEspecialidad")%>
+     </p>
 
 </asp:Content>
 
