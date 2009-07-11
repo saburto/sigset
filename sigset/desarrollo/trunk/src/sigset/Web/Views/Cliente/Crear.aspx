@@ -1,5 +1,21 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%--using (Html.BeginForm("Crear", "Cliente", new AjaxOptions {LoadingElementId="loadingAjax", UpdateTargetId="datosCliente" }))--%>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Crear Cliente
+</asp:Content>
+<asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+    <%using (Html.BeginReady()) {%>
+    
+    <%= Html.InitializeAutoComplete("Region", "EncontrarRegiones", "Cliente", true,15) %>
+    <%= Html.InitializeAutoComplete("Provincia", "EncontrarProvincias", "Cliente", true, "Region", 30, 0) %>
+    <%= Html.InitializeAutoComplete("Comuna", "EncontrarComunas", "Cliente", true, "Provincia",100,0 ) %>
+    
+    <%} %>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <%= Html.ValidationSummary("Se producieron los siguientes errores.") %>
 
     <% using(Html.BeginForm("Crear", "Cliente"))
@@ -125,3 +141,4 @@
                 <input type="submit" class="button-big" value="Grabar" />
         </fieldset>
     <% } %>
+</asp:Content>

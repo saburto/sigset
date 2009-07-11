@@ -28,5 +28,9 @@ namespace Data.Repositorios.Clientes
         void SaveChanges();
 
         void EditarCliente(Cliente cliente);
+
+        IQueryable<Cliente> GetClientes();
+
+        void EditarContactoCliente(Contacto email);
     }
 }

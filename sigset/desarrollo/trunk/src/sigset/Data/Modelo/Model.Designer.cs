@@ -966,7 +966,7 @@ namespace Data.Modelo
 			OnCreated();
 		}
 		
-		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL", IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
 		public decimal Rut
 		{
 			get
@@ -986,7 +986,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Nombre
 		{
 			get
@@ -1006,7 +1006,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Apellido_Paterno", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Apellido_Paterno", DbType="VarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Apellido_Paterno
 		{
 			get
@@ -1026,7 +1026,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Apellido_Materno", DbType="VarChar(50)")]
+		[Column(Storage="_Apellido_Materno", DbType="VarChar(50)", UpdateCheck=UpdateCheck.Never)]
 		public string Apellido_Materno
 		{
 			get
@@ -1181,7 +1181,7 @@ namespace Data.Modelo
 			OnCreated();
 		}
 		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public decimal Id
 		{
 			get
@@ -1201,7 +1201,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL")]
+		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal Rut
 		{
 			get
@@ -1225,7 +1225,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Tipo_Contacto", DbType="Decimal(18,0)")]
+		[Column(Storage="_Tipo_Contacto", DbType="Decimal(18,0)", UpdateCheck=UpdateCheck.Never)]
 		public System.Nullable<decimal> Tipo_Contacto
 		{
 			get
@@ -1249,7 +1249,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Valor_Contacto", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Valor_Contacto", DbType="VarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Valor_Contacto
 		{
 			get
@@ -5034,7 +5034,7 @@ namespace Data.Modelo
 			OnCreated();
 		}
 		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public decimal Id
 		{
 			get
@@ -5054,7 +5054,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL")]
+		[Column(Storage="_Rut", DbType="Decimal(10,0) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal Rut
 		{
 			get
@@ -5078,7 +5078,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Region", DbType="Decimal(2,0) NOT NULL")]
+		[Column(Storage="_Region", DbType="Decimal(2,0) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal Region
 		{
 			get
@@ -5102,7 +5102,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Provincia", DbType="Decimal(3,0) NOT NULL")]
+		[Column(Storage="_Provincia", DbType="Decimal(3,0) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal Provincia
 		{
 			get
@@ -5126,7 +5126,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Comuna", DbType="Decimal(3,0) NOT NULL")]
+		[Column(Storage="_Comuna", DbType="Decimal(3,0) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal Comuna
 		{
 			get
@@ -5150,7 +5150,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Calle", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Calle", DbType="VarChar(250) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Calle
 		{
 			get
@@ -5170,7 +5170,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Numero", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Numero", DbType="VarChar(10) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Numero
 		{
 			get
@@ -5190,7 +5190,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Tipo_Direccion", DbType="Decimal(18,0) NOT NULL")]
+		[Column(Storage="_Tipo_Direccion", DbType="Decimal(18,0) NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public decimal Tipo_Direccion
 		{
 			get

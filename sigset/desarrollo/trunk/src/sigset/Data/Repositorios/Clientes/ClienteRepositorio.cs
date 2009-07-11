@@ -68,9 +68,7 @@ namespace Data.Repositorios.Clientes
 
         public void EditarDireccionCliente(Direccion direccion)
         {
-            
-            var dire = _ent.Direccions.Where(x => x.Id == direccion.Id).FirstOrDefault();
-            _ent.Direccions.Attach(direccion, dire);
+            _ent.Direccions.Attach(direccion, true);
             //_ent.SubmitChanges();
         }
 
@@ -159,5 +157,25 @@ namespace Data.Repositorios.Clientes
         }
 
 
+
+        #region IClienteRepositorio Members
+
+
+        public IQueryable<Cliente> GetClientes()
+        {
+            return _ent.Clientes;
+        }
+
+        #endregion
+
+        #region IClienteRepositorio Members
+
+
+        public void EditarContactoCliente(Contacto contactoNuevo)
+        {
+            _ent.Contactos.Attach(contactoNuevo,true);
+        }
+
+        #endregion
     }
 }

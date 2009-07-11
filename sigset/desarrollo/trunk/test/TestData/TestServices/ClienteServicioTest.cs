@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services.Clientes;
 using Data.Modelo;
 using xVal.ServerSide;
-
+using Services.Helpers;
 
 namespace TestServices
 {
@@ -69,5 +69,19 @@ namespace TestServices
             Assert.IsNull(clienteEncontrado);
         }
 
+
+        [TestMethod]
+        public void TestValidarEmailValido()
+        {
+            string email = "sevazthian@gmail.com";
+            Assert.IsTrue(email.EsEmail());
+        }
+
+        [TestMethod]
+        public void TestValidarEmailInvalidoValido()
+        {
+            string email = "sevazthiangmail.com";
+            Assert.IsFalse(email.EsEmail());
+        }
     }
 }

@@ -30,6 +30,12 @@ namespace Web.Controllers
             _serv = ser;
         }
 
+        public ActionResult Lista()
+        {
+            var clientes = _serv.GetClientes();
+            return View(clientes);
+        }
+
         
         public ActionResult Buscar()
         {
@@ -67,7 +73,7 @@ namespace Web.Controllers
 
         public ActionResult Crear()
         {
-            return PartialView("Crear");
+            return View("Crear");
         }
 
 
@@ -77,12 +83,7 @@ namespace Web.Controllers
             try
             {
                 _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
-                cliente.Direccions.Add(direccion);
-                cliente.Contactos.Add(email);
-                cliente.Contactos.Add(fono);
-                Orden_Trabajo ot = new Orden_Trabajo();
-                ot.Cliente = cliente;
-                return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
+                return RedirectToAction("Lista");
             }
             catch (RulesException ex)
             {
@@ -95,19 +96,20 @@ namespace Web.Controllers
             }
         }
 
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Detalles(string id)
-        {
-            return Detalles(Decimal.Parse(id));
-        }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Detalles(decimal rut)
+        public ActionResult Detalles(int id)
         {
             try
             {
-                var cliente = _serv.GetClientePorRut(rut);
-                return PartialView(cliente);
+                var cliente = _serv.GetClientePorRut(id);
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView(cliente);
+                }
+                else
+                {
+                    return View("Detalle", cliente);
+                }
             }
             catch(Exception e)
             {
@@ -117,22 +119,20 @@ namespace Web.Controllers
         }
 
 
-        public ActionResult Editar(decimal rut)
+        public ActionResult Editar(int id)
         {
-            var cliente = _serv.GetClientePorRut(rut);
-            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(rut);
-            return PartialView("Editar",cliente);
+            var cliente = _serv.GetClientePorRut(id);
+            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
+            return View("Editar",cliente);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editar(Cliente cliente)
+        public ActionResult Editar(Cliente cliente, string dv,[Bind(Prefix="Dire")] Direccion direccion, [Bind(Exclude = "Rut", Prefix = "Email")] Contacto email, [Bind(Exclude = "Rut", Prefix = "Fono")] Contacto fono)
         {
             try
             {
-                _serv.EditarCliente(cliente);
-                Orden_Trabajo ot = new Orden_Trabajo();
-                ot.Cliente = cliente;
-                return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
+                _serv.EditarCliente(cliente, direccion, email, fono);
+                return RedirectToAction("Detalles", new {id = cliente.Rut });
             }
             catch (RulesException e)
             {
@@ -142,7 +142,15 @@ namespace Web.Controllers
             {
                 ModelState.AddModelError("_FORM", ex.Message);
             }
-            return View();
+            ViewData["dv"] = dv;
+            direccion.Region1 = _serv.GetRegiones().Where(x => x.Id == direccion.Region).FirstOrDefault();
+            direccion.Provincia1 = _serv.GetProvinciasByRegion(direccion.Region).Where(x => x.Id == direccion.Provincia).FirstOrDefault();
+            direccion.Comuna1 = _serv.GetComunasByProvincia(direccion.Provincia).Where(x => x.Id == direccion.Comuna).FirstOrDefault();
+
+            cliente.Direccions.Add(direccion);
+            cliente.Contactos.Add(email);
+            cliente.Contactos.Add(fono);
+            return View(cliente);
         }
 
 
@@ -153,15 +161,24 @@ namespace Web.Controllers
             return Json(regiones);
         }
 
-        public ActionResult EncontrarProvincias(string q, decimal Region)
+        public ActionResult EncontrarProvincias(string q, decimal? Region)
         {
-            var provincias = _serv.GetProvinciasByRegion(Region, q).ToAutoCompleteJson("Id","nombre");
+            if (!Region.HasValue)
+            {
+                Region = decimal.Parse(Request.Params["Dire_Region"]);
+            }
+
+            var provincias = _serv.GetProvinciasByRegion(Region.Value, q).ToAutoCompleteJson("Id","nombre");
             return Json(provincias);
         }
 
-        public ActionResult EncontrarComunas(string q, decimal Provincia)
+        public ActionResult EncontrarComunas(string q, decimal? Provincia)
         {
-            var ciudades = _serv.GetComunasByProvincia(Provincia, q).ToAutoCompleteJson("Id","Nombre");
+            if (!Provincia.HasValue)
+            {
+                Provincia = decimal.Parse(Request.Params["Dire_Provincia"]);
+            }
+            var ciudades = _serv.GetComunasByProvincia(Provincia.Value, q).ToAutoCompleteJson("Id","Nombre");
             return Json(ciudades);
         }
     }

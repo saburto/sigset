@@ -1,11 +1,28 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Data.Modelo.Cliente>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Cliente>" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Editar Cliente
+</asp:Content>
+
+<asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+    <%using (Html.BeginReady()) {%>
+    
+    <%= Html.InitializeAutoComplete("Dire.Region", "EncontrarRegiones", "Cliente", true,15) %>
+    <%= Html.InitializeAutoComplete("Dire.Provincia", "EncontrarProvincias", "Cliente", true, "Dire.Region", 30, 0) %>
+    <%= Html.InitializeAutoComplete("Dire.Comuna", "EncontrarComunas", "Cliente", true, "Dire.Provincia",100,0 ) %>
+    
+    <%} %>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<h2>Editar Cliente</h2>
 
     <%= Html.ValidationSummary("Edición de cliente con los siguientes errores.") %>
 
-    <% using (Html.BeginForm("Crear", "Cliente"))
+    <% using (Html.BeginForm())
     {%>
         <fieldset>
-            <legend>Editar Cliente</legend>
+            <legend>Cliente</legend>
             
             <div class="three-column-container">
                 <div class="three-column-left">
@@ -45,14 +62,16 @@
             <div class="three-column-left">
 
                     <label for="Calle">Calle:</label>
-                    <%= Html.TextBox("Calle", Model.Direccions.FirstOrDefault().Calle)%>
+                    <%= Html.TextBox("Dire.Calle", Model.Direccions.FirstOrDefault().Calle)%>
                     <%= Html.ValidationMessage("Calle", "*")%>
+                    <%= Html.Hidden("Dire.Tipo_Direccion", Model.Direccions.FirstOrDefault().Tipo_Direccion)%>
+                    <%= Html.Hidden("Dire.Id", Model.Direccions.FirstOrDefault().Id)%>
             </div>
             
             <div class="three-column-middle">
 
                 <label for="Numero"><%=Html.Encode("Número:") %></label>
-                <%= Html.TextBox("Numero",Model.Direccions.FirstOrDefault().Calle)%>
+                <%= Html.TextBox("Dire.Numero", Model.Direccions.FirstOrDefault().Numero)%>
                 <%= Html.ValidationMessage("Numero", "*")%>
 
             </div>
@@ -61,22 +80,41 @@
             <div class="three-column-container">
             <div class="three-column-left">
 
-                    <label for="Region"><%=Html.Encode("Region:")%></label>
-                    <%= Html.AutoCompleteTextBox("Region",Model.Direccions.FirstOrDefault().Region1.Nombre, Model.Direccions.FirstOrDefault().Region,null)%>
+                    <label for="Region"><%=Html.Encode("Región:")%></label>
+                    <%if (Model.Direccions.FirstOrDefault().Region1 != null)
+                    { %>
+                    <%= Html.AutoCompleteTextBox("Dire.Region", Model.Direccions.FirstOrDefault().Region1.Nombre, Model.Direccions.FirstOrDefault().Region, null)%>
+                    <%}
+                    else { %>
+                    <%= Html.AutoCompleteTextBox("Dire.Region")%>
+                    <%} %>
                     <%= Html.ValidationMessage("Region", "*")%>
             </div>
             
             <div class="three-column-middle">
    
                     <label for="Provincia">Provincia:</label>
-                    <%= Html.AutoCompleteTextBox("Provincia", Model.Direccions.FirstOrDefault().Provincia1.nombre, Model.Direccions.FirstOrDefault().Provincia,null)%>
+                    <%if (Model.Direccions.FirstOrDefault().Provincia1 != null)
+                    { %>
+                    <%= Html.AutoCompleteTextBox("Dire.Provincia", Model.Direccions.FirstOrDefault().Provincia1.nombre, Model.Direccions.FirstOrDefault().Provincia, null)%>
+                    <%}
+                    else { %>
+                    <%= Html.AutoCompleteTextBox("Dire.Provincia")%>
+                    <%} %>
+
                     <%= Html.ValidationMessage("Provincia", "*")%>
             </div>
             
             <div class="three-column-right">
             
                 <label for="Comuna">Comuna:</label>
-                <%= Html.AutoCompleteTextBox("Comuna", Model.Direccions.FirstOrDefault().Comuna1.Nombre, Model.Direccions.FirstOrDefault().Comuna,null)%>
+                <%if (Model.Direccions.FirstOrDefault().Comuna1 != null)
+                { %>
+                <%= Html.AutoCompleteTextBox("Dire.Comuna", Model.Direccions.FirstOrDefault().Comuna1.Nombre, Model.Direccions.FirstOrDefault().Comuna, null)%>
+                <%}
+                else { %>
+                <%= Html.AutoCompleteTextBox("Dire.Comuna")%>
+                <%} %>
                 <%= Html.ValidationMessage("Comuna", "*")%>
             
             </div>
@@ -94,14 +132,18 @@
 
                 <label for="Valor_Contacto"><%=Html.Encode("Correo Electrónico:") %></label>
                 <%= Html.TextBox("Email.Valor_Contacto", Model.Contactos.Where(x=> x.Tipo_Contacto == 3).FirstOrDefault().Valor_Contacto)%>
-                <%= Html.ValidationMessage("Email.Valor_Contacto", "*") %>
+                <%= Html.ValidationMessage("Email.Valor_Contacto", "*")%>
+                <%= Html.Hidden("Email.Tipo_Contacto", Model.Contactos.Where(x => x.Tipo_Contacto == 3).FirstOrDefault().Tipo_Contacto) %>
+                <%= Html.Hidden("Email.Id", Model.Contactos.Where(x => x.Tipo_Contacto == 3).FirstOrDefault().Id) %>
 
             </div>
             <div class="three-column-middle">
 
                 <label for="Valor_Contacto"><%=Html.Encode("Teléfono:") %></label>
                 <%= Html.TextBox("Fono.Valor_Contacto", Model.Contactos.Where(x => x.Tipo_Contacto == 1).FirstOrDefault().Valor_Contacto)%>
-                <%= Html.ValidationMessage("Fono.Valor_Contacto", "*") %>
+                <%= Html.ValidationMessage("Fono.Valor_Contacto", "*")%>
+                <%= Html.Hidden("Fono.Tipo_Contacto", Model.Contactos.Where(x => x.Tipo_Contacto == 1).FirstOrDefault().Tipo_Contacto) %>
+                <%= Html.Hidden("Fono.Id", Model.Contactos.Where(x => x.Tipo_Contacto == 1).FirstOrDefault().Id) %>
             </p>
             </div>
             </div>
@@ -112,9 +154,13 @@
                 <input type="submit" class="button-big" value="Grabar" />
         </fieldset>
     <% } %>
-
+    <%= Html.ClientSideValidation("Dire", typeof(Data.Modelo.Direccion)) %>
+    <%= Html.ClientSideValidation("Fono", typeof(Data.Modelo.Contacto)) %>
+    <%= Html.ClientSideValidation("Email", typeof(Data.Modelo.Contacto)) %>
+    <%= Html.ClientSideValidation("", typeof(Data.Modelo.Cliente)) %>
+    
     <p>
-       <%=Ajax.ActionLink("Cancelar", "Detalles", "Cliente", new { rut = Model.Rut }, new AjaxOptions { UpdateTargetId = "datosCliente", LoadingElementId = "loadingAjax", })%>
+       <%=Html.ActionLink("Cancelar", "Lista")%>
     </p>
-
+</asp:Content>
 

@@ -21,5 +21,9 @@ namespace Services.Clientes
         Data.Modelo.Cliente GetClienteCompletoPorRut(decimal Rut, string dv);
 
         void EditarCliente(Data.Modelo.Cliente cliente);
+
+         System.Collections.Generic.IList<Data.Modelo.Cliente> GetClientes();
+
+         void EditarCliente(Data.Modelo.Cliente cliente, Data.Modelo.Direccion direccion, Data.Modelo.Contacto email, Data.Modelo.Contacto fono);
     }
 }

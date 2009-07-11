@@ -12,6 +12,7 @@ namespace Data.Modelo
 
     }
 
+
     public class ClienteMetaData
     {
         [Required(ErrorMessage="Rut es necesario")]
@@ -28,4 +29,5 @@ namespace Data.Modelo
         [StringLength(50, ErrorMessage = "Apellido no puede tener mas de 50 caracteres")]
         public object Apellido_Materno { get; set; }
     }
+
 }
