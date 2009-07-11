@@ -15,27 +15,23 @@
         <fieldset>
             <legend>Datos <%=Html.Encode("Técnico")%></legend>
             <p>
-                <label for="Rut">Rut:</label>
+                <label for="Rut">Nombre Empleado:</label>
                 <%=Html.DropDownList("listaEmpleadosTecnicos")%>
-            </p>
-             <p>
-                <label for="Rut">Especialidad:</label>
-                <%=Html.DropDownList("tipoEspecialidad")%>
-            </p>
+            </p>           
             <p>
                 <label for="Nivel">Nivel:</label>
                   <%=Html.DropDownList("niveles")%>
             
             </p>
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Crear" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Volver", "Lista") %>
     </div>
 
 </asp:Content>

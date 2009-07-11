@@ -33,7 +33,6 @@ namespace Services.Tecnicos
             return _repo.GetTodosLosTecnicos().ToList();
         }
        
-
         public IList<Tipo_Especialidad> GetTodosLosTiposDeEspecialidad()
         {
             return _repo.GetTodosLosTiposEspecialidad().ToList();
@@ -41,6 +40,33 @@ namespace Services.Tecnicos
         public IList<Nivel> GetTodosLosNiveles()
         {
            return _repo.GetTodosLosNiveles().ToList();
+        }
+
+        public void CrearTecnico(Tecnico tecnico)
+        {
+            List<ErrorInfo> _errors = new List<ErrorInfo>();
+            if (tecnico.Rut == -1)
+            {
+                _errors.Add(new ErrorInfo("Rut", "Debe seleccionar Empleado a registrar como tecnico"));
+
+            }
+            if (tecnico.Nivel == -1)
+            {
+                _errors.Add(new ErrorInfo("Nivel", "Debe seleccionar Nivel"));
+           
+            }
+            DataValidation.GetErrors(tecnico, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }
+            else
+            {
+                _repo.CreateTecnico(tecnico);
+            }
+                
+                
+               
         }
     }
 }

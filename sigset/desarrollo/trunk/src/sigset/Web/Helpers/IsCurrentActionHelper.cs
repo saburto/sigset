@@ -27,13 +27,21 @@ namespace Helpers
         public static Dictionary<String, List<String>> controllerHijos = null;
         public static void InitControllerHijo()
         {
+            //Aca guardamos la realacion de controller padre e hijos.
+            //mira controllerHijos es de tipo diccionario, donde la clave va a ser el padre
+            //y los hijos una lista de controlladores, entiendes???sipis
             controllerHijos = new Dictionary<string,List<string>>();
+            
             List<String> hijos = new List<string>();
+            
+            //Estos son los hijos de Admin
             hijos.Add("Usuario");
             hijos.Add("Empleado");
             hijos.Add("Tecnico");
+            //Aqui guardo a Admin y a sus hijos.
             controllerHijos.Add("Admin", hijos);
 
+            //aqui por ejemplo el controller Orden de trabaajo tiene como hijo al cliente
             hijos = new List<string>();
             hijos.Add("Cliente");
             controllerHijos.Add("OrdenTrabajo", hijos);
