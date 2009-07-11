@@ -39,7 +39,7 @@ namespace Web.Controllers
         
         public ActionResult Buscar()
         {
-            return PartialView("Buscar");
+            return View("Buscar");
         }
 
 
@@ -55,19 +55,28 @@ namespace Web.Controllers
 
                 decimal rut = Rut.Value;
                 Cliente cliente = _serv.GetClienteCompletoPorRut(rut, dv);
-                Orden_Trabajo ot = new Orden_Trabajo();
-                ot.Cliente = cliente;
-                return View("~/Views/OrdenTrabajo/Crear.aspx", ot);
+                if (cliente != null)
+                {
+                    return PartialView("Detalles", cliente);
+                }
+                else
+                {
+                    string clienteNoEncontrado = "Cliente no encontrado. " + "<a href='" + Url.Action("Crear") + ">Agregar nuevo cliente</a>";
+                    return Content(clienteNoEncontrado);
+                }
+                
             }
             catch (RulesException ex)
             {
-                ModelState.AddRuleErrors(ex.Errors);
+                string error = "<span class=" + HtmlHelper.ValidationMessageCssClassName + ">" + ex.Errors.FirstOrDefault().ErrorMessage + "</span>";
+                return Content(error);
             }
             catch(Exception e)
             {
-                ModelState.AddModelError("_FORM", e.Message);
+                string error = "<span class=" + HtmlHelper.ValidationMessageCssClassName + ">" + e.Message + "</span>";
+                return Content(error);
             }
-            return View("~/Views/OrdenTrabajo/Crear.aspx");
+            
         }
 
 
@@ -83,12 +92,12 @@ namespace Web.Controllers
             try
             {
                 _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
-                return RedirectToAction("Lista");
+                return RedirectToAction("Detalles", new { id = cliente.Rut });
             }
             catch (RulesException ex)
             {
                 ModelState.AddRuleErrors(ex.Errors);
-                return View("~/Views/OrdenTrabajo/Crear.aspx");
+                return View();
             }
             catch
             {
