@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-1.0" enableLocalization="true">
+  <mvcSiteMapNode title="Inicio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
+    <mvcSiteMapNode title="Ordenes Asignadas" controller="AreaTecnica" action="Index" />
+   
+  </mvcSiteMapNode>
+</siteMap>

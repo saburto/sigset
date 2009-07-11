@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AE332932-4BE7-46C6-868F-B521B48E1855}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -73,6 +73,7 @@
     <Compile Include="Controllers\Admin\TecnicoController.cs" />
     <Compile Include="Controllers\Admin\TipoCargoController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
+    <Compile Include="Controllers\AreaTecnica\AreaTecnicaController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\AutoCompleteHelper.cs" />
@@ -182,11 +183,16 @@
     <Content Include="Views\Admin\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\AreaTecnica\Index.aspx" />
+    <Content Include="Views\AreaTecnica\Lista.aspx" />
     <Content Include="Views\Cliente\Detalle.aspx" />
     <Content Include="Views\OrdenTrabajo\Web.sitemap" />
     <Content Include="Views\Tecnico\AgregarEspecialidades.aspx" />
     <Content Include="Views\Tecnico\AgregarNuevaEspecialidad.aspx" />
     <Content Include="Views\Tecnico\Editar.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AreaTecnica\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -212,9 +218,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

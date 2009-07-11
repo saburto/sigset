@@ -12,6 +12,7 @@
     </mvcSiteMapNode>
 
      <mvcSiteMapNode title="Administración" controller="Admin" action="Index" />
+    <mvcSiteMapNode title="Area Técnica" controller="AreaTecnica" action="Index" />
      <mvcSiteMapNode title="Acerca de" controller="Home" action="About" />
  </mvcSiteMapNode>
 </siteMap>
