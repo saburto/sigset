@@ -103,7 +103,26 @@ namespace Web.Controllers.Admin
             ViewData["tipoEspecialidades"] = _servicio.GetTodosLosTiposDeEspecialidad().GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
 
             return View(new Especialidade { Id_Tecnico = id });
-        }       
+        }
+
+        [AcceptVerbs (HttpVerbs.Post)]
+        public ActionResult AgregarNuevaEspecialidad(decimal id_tecnico, Especialidade especialidad, string tipoEspecialidades)
+        {
+            try
+            {
+                especialidad.Id_Tecnico = id_tecnico;
+                especialidad.Tipo_Especialidad = decimal.Parse(tipoEspecialidades);
+                _servicio.CrearEspecialidad(especialidad);
+                return RedirectToAction("AgregarEspecialidades",id_tecnico);
+            }
+            catch (RulesException e)
+            {
+
+                ModelState.AddRuleErrors(e.Errors);
+                return View(especialidad); 
+            }
+        }  
+
 
     }
 }

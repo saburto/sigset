@@ -3,6 +3,7 @@ namespace Services.Tecnicos
 {
    public interface ITecnicoServicio
     {
+       void CrearEspecialidad(global::Data.Modelo.Especialidade especialidad);
         int ContarEspecialidadesByTecnicos(int id);
         void CrearTecnico(global::Data.Modelo.Tecnico tecnico);
         void EditarTecnico(global::Data.Modelo.Tecnico tecnico);

@@ -32,7 +32,7 @@
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Volver", "AgregarEspecialidades") %>
+        <%=Html.ActionLink("Volver", "AgregarEspecialidades", new { id = Model.Id_Tecnico })%>
     </div>
 
 </asp:Content>
