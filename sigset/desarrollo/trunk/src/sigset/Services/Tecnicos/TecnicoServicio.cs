@@ -115,5 +115,34 @@ namespace Services.Tecnicos
                 _repo.CrearEspecialidad(especialidad);
             }    
         }
+
+        public IList<Tipo_Especialidad> GetEspecialidadesNoRepetidas(decimal id)
+        {
+            var especialidadesActuales = _repo.GetEspecialidadByTecnicoId(id);
+            var especialidades = _repo.GetTodosLosTiposEspecialidad().ToList();
+            IList<Tipo_Especialidad> especialidadFaltantes = new List<Tipo_Especialidad>();
+          
+            for (int i = 0; i < especialidades.Count; i++)
+            {
+                        especialidadFaltantes.Add(especialidades[i]);                        
+            }
+
+            foreach(var e in especialidadesActuales)
+            {
+                if (especialidadFaltantes.Where(x => x.Id_Tipo_Especialidad == e.Tipo_Especialidad).Any())
+                {
+                    especialidadFaltantes.Remove(especialidadFaltantes.Where(x => x.Id_Tipo_Especialidad == e.Tipo_Especialidad).FirstOrDefault());
+                }
+            }
+
+            return especialidadFaltantes;
+        }
+        public void EliminarEspecialidad(decimal id)
+        {
+            Especialidade especialidad = _repo.GetEspecialidadById(id);
+           _repo.DeleteEspecialidad(especialidad);       
+        }
+
+           
     }
 }
