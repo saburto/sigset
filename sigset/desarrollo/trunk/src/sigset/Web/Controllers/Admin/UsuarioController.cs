@@ -14,6 +14,7 @@ using Helpers;
 
 namespace Web.Controllers.Admin
 {
+    [Seguridad.ManejadorErrores]
     public class UsuarioController : Controller
     {
         //
