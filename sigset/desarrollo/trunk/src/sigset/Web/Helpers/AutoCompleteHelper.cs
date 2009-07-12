@@ -55,14 +55,13 @@ namespace Helpers
 
             if (mustMatch)
             {
-                sb.AppendLine("mustMatch: true,");
+                sb.AppendLine("mustMatch: true, selectFirst:true,");
             }
 
             string dataJson =
             @"
             autoFill: false,
             max: "+ limit +@",
-            selectFirst:true,
             cacheLength:0,
             delay:100,
             minChars:"+ min +@",
