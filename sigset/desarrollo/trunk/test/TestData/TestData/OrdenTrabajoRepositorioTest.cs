@@ -76,20 +76,7 @@ namespace TestData
             Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
         }
 
-        /// <summary>
-        ///Una prueba de GetOrdenTrabajoById
-        ///</summary>
-        [TestMethod()]
-        public void GetOrdenTrabajoByIdTest()
-        {
-            OrdenTrabajoRepositorio target = new OrdenTrabajoRepositorio(); // TODO: Inicializar en un valor adecuado
-            Decimal id = 4; // TODO: Inicializar en un valor adecuado
-            Detalle expected 
-            Detalle actual;
-            actual = target.GetOrdenTrabajoById(id);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+        
 
         /// <summary>
         ///Una prueba de GetTodasLasOrdenDeTrabajo
