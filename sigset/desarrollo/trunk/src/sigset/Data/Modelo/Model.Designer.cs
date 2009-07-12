@@ -66,9 +66,6 @@ namespace Data.Modelo
     partial void InsertNivel(Nivel instance);
     partial void UpdateNivel(Nivel instance);
     partial void DeleteNivel(Nivel instance);
-    partial void InsertOrden_Trabajo(Orden_Trabajo instance);
-    partial void UpdateOrden_Trabajo(Orden_Trabajo instance);
-    partial void DeleteOrden_Trabajo(Orden_Trabajo instance);
     partial void InsertPorcentaje(Porcentaje instance);
     partial void UpdatePorcentaje(Porcentaje instance);
     partial void DeletePorcentaje(Porcentaje instance);
@@ -114,6 +111,9 @@ namespace Data.Modelo
     partial void InsertProvincia(Provincia instance);
     partial void UpdateProvincia(Provincia instance);
     partial void DeleteProvincia(Provincia instance);
+    partial void InsertOrden_Trabajo(Orden_Trabajo instance);
+    partial void UpdateOrden_Trabajo(Orden_Trabajo instance);
+    partial void DeleteOrden_Trabajo(Orden_Trabajo instance);
     #endregion
 		
 		public sigsetEntities() : 
@@ -242,14 +242,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		public System.Data.Linq.Table<Orden_Trabajo> Orden_Trabajos
-		{
-			get
-			{
-				return this.GetTable<Orden_Trabajo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Porcentaje> Porcentajes
 		{
 			get
@@ -367,6 +359,14 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<Provincia>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Orden_Trabajo> Orden_Trabajos
+		{
+			get
+			{
+				return this.GetTable<Orden_Trabajo>();
 			}
 		}
 	}
@@ -940,9 +940,9 @@ namespace Data.Modelo
 		
 		private EntitySet<Contacto> _Contactos;
 		
-		private EntitySet<Orden_Trabajo> _Orden_Trabajos;
-		
 		private EntitySet<Direccion> _Direccions;
+		
+		private EntitySet<Orden_Trabajo> _Orden_Trabajos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -961,8 +961,8 @@ namespace Data.Modelo
 		public Cliente()
 		{
 			this._Contactos = new EntitySet<Contacto>(new Action<Contacto>(this.attach_Contactos), new Action<Contacto>(this.detach_Contactos));
-			this._Orden_Trabajos = new EntitySet<Orden_Trabajo>(new Action<Orden_Trabajo>(this.attach_Orden_Trabajos), new Action<Orden_Trabajo>(this.detach_Orden_Trabajos));
 			this._Direccions = new EntitySet<Direccion>(new Action<Direccion>(this.attach_Direccions), new Action<Direccion>(this.detach_Direccions));
+			this._Orden_Trabajos = new EntitySet<Orden_Trabajo>(new Action<Orden_Trabajo>(this.attach_Orden_Trabajos), new Action<Orden_Trabajo>(this.detach_Orden_Trabajos));
 			OnCreated();
 		}
 		
@@ -1059,19 +1059,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Association(Name="Cliente_Orden_Trabajo", Storage="_Orden_Trabajos", ThisKey="Rut", OtherKey="Id_Cliente")]
-		public EntitySet<Orden_Trabajo> Orden_Trabajos
-		{
-			get
-			{
-				return this._Orden_Trabajos;
-			}
-			set
-			{
-				this._Orden_Trabajos.Assign(value);
-			}
-		}
-		
 		[Association(Name="Cliente_Direccion", Storage="_Direccions", ThisKey="Rut", OtherKey="Rut")]
 		public EntitySet<Direccion> Direccions
 		{
@@ -1082,6 +1069,19 @@ namespace Data.Modelo
 			set
 			{
 				this._Direccions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Cliente_Orden_Trabajo", Storage="_Orden_Trabajos", ThisKey="Rut", OtherKey="Id_Cliente")]
+		public EntitySet<Orden_Trabajo> Orden_Trabajos
+		{
+			get
+			{
+				return this._Orden_Trabajos;
+			}
+			set
+			{
+				this._Orden_Trabajos.Assign(value);
 			}
 		}
 		
@@ -1117,18 +1117,6 @@ namespace Data.Modelo
 			entity.Cliente = null;
 		}
 		
-		private void attach_Orden_Trabajos(Orden_Trabajo entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cliente = this;
-		}
-		
-		private void detach_Orden_Trabajos(Orden_Trabajo entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cliente = null;
-		}
-		
 		private void attach_Direccions(Direccion entity)
 		{
 			this.SendPropertyChanging();
@@ -1136,6 +1124,18 @@ namespace Data.Modelo
 		}
 		
 		private void detach_Direccions(Direccion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cliente = null;
+		}
+		
+		private void attach_Orden_Trabajos(Orden_Trabajo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cliente = this;
+		}
+		
+		private void detach_Orden_Trabajos(Orden_Trabajo entity)
 		{
 			this.SendPropertyChanging();
 			entity.Cliente = null;
@@ -1378,9 +1378,9 @@ namespace Data.Modelo
 		
 		private EntityRef<Estado> _Estado1;
 		
-		private EntityRef<Orden_Trabajo> _Orden_Trabajo;
-		
 		private EntityRef<Usuario> _Usuario;
+		
+		private EntityRef<Orden_Trabajo> _Orden_Trabajo;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1403,8 +1403,8 @@ namespace Data.Modelo
 		public Detalle()
 		{
 			this._Estado1 = default(EntityRef<Estado>);
-			this._Orden_Trabajo = default(EntityRef<Orden_Trabajo>);
 			this._Usuario = default(EntityRef<Usuario>);
+			this._Orden_Trabajo = default(EntityRef<Orden_Trabajo>);
 			OnCreated();
 		}
 		
@@ -1574,40 +1574,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Association(Name="Orden_Trabajo_Detalle", Storage="_Orden_Trabajo", ThisKey="Id_Orden", OtherKey="Id", IsForeignKey=true)]
-		public Orden_Trabajo Orden_Trabajo
-		{
-			get
-			{
-				return this._Orden_Trabajo.Entity;
-			}
-			set
-			{
-				Orden_Trabajo previousValue = this._Orden_Trabajo.Entity;
-				if (((previousValue != value) 
-							|| (this._Orden_Trabajo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Orden_Trabajo.Entity = null;
-						previousValue.Detalles.Remove(this);
-					}
-					this._Orden_Trabajo.Entity = value;
-					if ((value != null))
-					{
-						value.Detalles.Add(this);
-						this._Id_Orden = value.Id;
-					}
-					else
-					{
-						this._Id_Orden = default(decimal);
-					}
-					this.SendPropertyChanged("Orden_Trabajo");
-				}
-			}
-		}
-		
 		[Association(Name="Usuario_Detalle", Storage="_Usuario", ThisKey="Id_Usuario", OtherKey="Id", IsForeignKey=true)]
 		public Usuario Usuario
 		{
@@ -1638,6 +1604,40 @@ namespace Data.Modelo
 						this._Id_Usuario = default(Nullable<decimal>);
 					}
 					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		[Association(Name="Orden_Trabajo_Detalle", Storage="_Orden_Trabajo", ThisKey="Id_Orden", OtherKey="Id", IsForeignKey=true)]
+		public Orden_Trabajo Orden_Trabajo
+		{
+			get
+			{
+				return this._Orden_Trabajo.Entity;
+			}
+			set
+			{
+				Orden_Trabajo previousValue = this._Orden_Trabajo.Entity;
+				if (((previousValue != value) 
+							|| (this._Orden_Trabajo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Orden_Trabajo.Entity = null;
+						previousValue.Detalles.Remove(this);
+					}
+					this._Orden_Trabajo.Entity = value;
+					if ((value != null))
+					{
+						value.Detalles.Add(this);
+						this._Id_Orden = value.Id;
+					}
+					else
+					{
+						this._Id_Orden = default(decimal);
+					}
+					this.SendPropertyChanged("Orden_Trabajo");
 				}
 			}
 		}
@@ -2766,600 +2766,6 @@ namespace Data.Modelo
 		{
 			this.SendPropertyChanging();
 			entity.Nivel1 = null;
-		}
-	}
-	
-	[Table(Name="dbo.Orden_Trabajo")]
-	public partial class Orden_Trabajo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private decimal _Id;
-		
-		private decimal _Id_Cliente;
-		
-		private decimal _Id_Articulo;
-		
-		private string _Serie;
-		
-		private System.DateTime _Fecha_Ingreso;
-		
-		private System.DateTime _Fecha_Entrega;
-		
-		private string _Falla;
-		
-		private System.Nullable<decimal> _Condicion_Articulo;
-		
-		private decimal _Id_Tecnico_Asignado;
-		
-		private System.Nullable<decimal> _Tipo_Orden;
-		
-		private string _Boleta;
-		
-		private string _Poliza;
-		
-		private System.Nullable<System.DateTime> _Fecha_Compra;
-		
-		private string _Lugar_Compra;
-		
-		private EntitySet<Detalle> _Detalles;
-		
-		private EntitySet<Historial_Modificacion_Orden> _Historial_Modificacion_Ordens;
-		
-		private EntityRef<Articulo> _Articulo;
-		
-		private EntityRef<Cliente> _Cliente;
-		
-		private EntityRef<Tecnico> _Tecnico;
-		
-		private EntityRef<Tipo_Orden> _Tipo_Orden1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(decimal value);
-    partial void OnIdChanged();
-    partial void OnId_ClienteChanging(decimal value);
-    partial void OnId_ClienteChanged();
-    partial void OnId_ArticuloChanging(decimal value);
-    partial void OnId_ArticuloChanged();
-    partial void OnSerieChanging(string value);
-    partial void OnSerieChanged();
-    partial void OnFecha_IngresoChanging(System.DateTime value);
-    partial void OnFecha_IngresoChanged();
-    partial void OnFecha_EntregaChanging(System.DateTime value);
-    partial void OnFecha_EntregaChanged();
-    partial void OnFallaChanging(string value);
-    partial void OnFallaChanged();
-    partial void OnCondicion_ArticuloChanging(System.Nullable<decimal> value);
-    partial void OnCondicion_ArticuloChanged();
-    partial void OnId_Tecnico_AsignadoChanging(decimal value);
-    partial void OnId_Tecnico_AsignadoChanged();
-    partial void OnTipo_OrdenChanging(System.Nullable<decimal> value);
-    partial void OnTipo_OrdenChanged();
-    partial void OnBoletaChanging(string value);
-    partial void OnBoletaChanged();
-    partial void OnPolizaChanging(string value);
-    partial void OnPolizaChanged();
-    partial void OnFecha_CompraChanging(System.Nullable<System.DateTime> value);
-    partial void OnFecha_CompraChanged();
-    partial void OnLugar_CompraChanging(string value);
-    partial void OnLugar_CompraChanged();
-    #endregion
-		
-		public Orden_Trabajo()
-		{
-			this._Detalles = new EntitySet<Detalle>(new Action<Detalle>(this.attach_Detalles), new Action<Detalle>(this.detach_Detalles));
-			this._Historial_Modificacion_Ordens = new EntitySet<Historial_Modificacion_Orden>(new Action<Historial_Modificacion_Orden>(this.attach_Historial_Modificacion_Ordens), new Action<Historial_Modificacion_Orden>(this.detach_Historial_Modificacion_Ordens));
-			this._Articulo = default(EntityRef<Articulo>);
-			this._Cliente = default(EntityRef<Cliente>);
-			this._Tecnico = default(EntityRef<Tecnico>);
-			this._Tipo_Orden1 = default(EntityRef<Tipo_Orden>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public decimal Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Id_Cliente", DbType="Decimal(10,0) NOT NULL")]
-		public decimal Id_Cliente
-		{
-			get
-			{
-				return this._Id_Cliente;
-			}
-			set
-			{
-				if ((this._Id_Cliente != value))
-				{
-					if (this._Cliente.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnId_ClienteChanging(value);
-					this.SendPropertyChanging();
-					this._Id_Cliente = value;
-					this.SendPropertyChanged("Id_Cliente");
-					this.OnId_ClienteChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Id_Articulo", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Id_Articulo
-		{
-			get
-			{
-				return this._Id_Articulo;
-			}
-			set
-			{
-				if ((this._Id_Articulo != value))
-				{
-					if (this._Articulo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnId_ArticuloChanging(value);
-					this.SendPropertyChanging();
-					this._Id_Articulo = value;
-					this.SendPropertyChanged("Id_Articulo");
-					this.OnId_ArticuloChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Serie", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Serie
-		{
-			get
-			{
-				return this._Serie;
-			}
-			set
-			{
-				if ((this._Serie != value))
-				{
-					this.OnSerieChanging(value);
-					this.SendPropertyChanging();
-					this._Serie = value;
-					this.SendPropertyChanged("Serie");
-					this.OnSerieChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Fecha_Ingreso", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Ingreso
-		{
-			get
-			{
-				return this._Fecha_Ingreso;
-			}
-			set
-			{
-				if ((this._Fecha_Ingreso != value))
-				{
-					this.OnFecha_IngresoChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Ingreso = value;
-					this.SendPropertyChanged("Fecha_Ingreso");
-					this.OnFecha_IngresoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Fecha_Entrega", DbType="DateTime NOT NULL")]
-		public System.DateTime Fecha_Entrega
-		{
-			get
-			{
-				return this._Fecha_Entrega;
-			}
-			set
-			{
-				if ((this._Fecha_Entrega != value))
-				{
-					this.OnFecha_EntregaChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Entrega = value;
-					this.SendPropertyChanged("Fecha_Entrega");
-					this.OnFecha_EntregaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Falla", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Falla
-		{
-			get
-			{
-				return this._Falla;
-			}
-			set
-			{
-				if ((this._Falla != value))
-				{
-					this.OnFallaChanging(value);
-					this.SendPropertyChanging();
-					this._Falla = value;
-					this.SendPropertyChanged("Falla");
-					this.OnFallaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Condicion_Articulo", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Condicion_Articulo
-		{
-			get
-			{
-				return this._Condicion_Articulo;
-			}
-			set
-			{
-				if ((this._Condicion_Articulo != value))
-				{
-					this.OnCondicion_ArticuloChanging(value);
-					this.SendPropertyChanging();
-					this._Condicion_Articulo = value;
-					this.SendPropertyChanged("Condicion_Articulo");
-					this.OnCondicion_ArticuloChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Id_Tecnico_Asignado", DbType="Decimal(10,0) NOT NULL")]
-		public decimal Id_Tecnico_Asignado
-		{
-			get
-			{
-				return this._Id_Tecnico_Asignado;
-			}
-			set
-			{
-				if ((this._Id_Tecnico_Asignado != value))
-				{
-					if (this._Tecnico.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnId_Tecnico_AsignadoChanging(value);
-					this.SendPropertyChanging();
-					this._Id_Tecnico_Asignado = value;
-					this.SendPropertyChanged("Id_Tecnico_Asignado");
-					this.OnId_Tecnico_AsignadoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Tipo_Orden", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Tipo_Orden
-		{
-			get
-			{
-				return this._Tipo_Orden;
-			}
-			set
-			{
-				if ((this._Tipo_Orden != value))
-				{
-					if (this._Tipo_Orden1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTipo_OrdenChanging(value);
-					this.SendPropertyChanging();
-					this._Tipo_Orden = value;
-					this.SendPropertyChanged("Tipo_Orden");
-					this.OnTipo_OrdenChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Boleta", DbType="VarChar(50)")]
-		public string Boleta
-		{
-			get
-			{
-				return this._Boleta;
-			}
-			set
-			{
-				if ((this._Boleta != value))
-				{
-					this.OnBoletaChanging(value);
-					this.SendPropertyChanging();
-					this._Boleta = value;
-					this.SendPropertyChanged("Boleta");
-					this.OnBoletaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Poliza", DbType="VarChar(50)")]
-		public string Poliza
-		{
-			get
-			{
-				return this._Poliza;
-			}
-			set
-			{
-				if ((this._Poliza != value))
-				{
-					this.OnPolizaChanging(value);
-					this.SendPropertyChanging();
-					this._Poliza = value;
-					this.SendPropertyChanged("Poliza");
-					this.OnPolizaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Fecha_Compra", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Compra
-		{
-			get
-			{
-				return this._Fecha_Compra;
-			}
-			set
-			{
-				if ((this._Fecha_Compra != value))
-				{
-					this.OnFecha_CompraChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Compra = value;
-					this.SendPropertyChanged("Fecha_Compra");
-					this.OnFecha_CompraChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Lugar_Compra", DbType="VarChar(100)")]
-		public string Lugar_Compra
-		{
-			get
-			{
-				return this._Lugar_Compra;
-			}
-			set
-			{
-				if ((this._Lugar_Compra != value))
-				{
-					this.OnLugar_CompraChanging(value);
-					this.SendPropertyChanging();
-					this._Lugar_Compra = value;
-					this.SendPropertyChanged("Lugar_Compra");
-					this.OnLugar_CompraChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Orden_Trabajo_Detalle", Storage="_Detalles", ThisKey="Id", OtherKey="Id_Orden")]
-		public EntitySet<Detalle> Detalles
-		{
-			get
-			{
-				return this._Detalles;
-			}
-			set
-			{
-				this._Detalles.Assign(value);
-			}
-		}
-		
-		[Association(Name="Orden_Trabajo_Historial_Modificacion_Orden", Storage="_Historial_Modificacion_Ordens", ThisKey="Id", OtherKey="Id_Orden")]
-		public EntitySet<Historial_Modificacion_Orden> Historial_Modificacion_Ordens
-		{
-			get
-			{
-				return this._Historial_Modificacion_Ordens;
-			}
-			set
-			{
-				this._Historial_Modificacion_Ordens.Assign(value);
-			}
-		}
-		
-		[Association(Name="Articulo_Orden_Trabajo", Storage="_Articulo", ThisKey="Id_Articulo", OtherKey="Id", IsForeignKey=true)]
-		public Articulo Articulo
-		{
-			get
-			{
-				return this._Articulo.Entity;
-			}
-			set
-			{
-				Articulo previousValue = this._Articulo.Entity;
-				if (((previousValue != value) 
-							|| (this._Articulo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Articulo.Entity = null;
-						previousValue.Orden_Trabajos.Remove(this);
-					}
-					this._Articulo.Entity = value;
-					if ((value != null))
-					{
-						value.Orden_Trabajos.Add(this);
-						this._Id_Articulo = value.Id;
-					}
-					else
-					{
-						this._Id_Articulo = default(decimal);
-					}
-					this.SendPropertyChanged("Articulo");
-				}
-			}
-		}
-		
-		[Association(Name="Cliente_Orden_Trabajo", Storage="_Cliente", ThisKey="Id_Cliente", OtherKey="Rut", IsForeignKey=true)]
-		public Cliente Cliente
-		{
-			get
-			{
-				return this._Cliente.Entity;
-			}
-			set
-			{
-				Cliente previousValue = this._Cliente.Entity;
-				if (((previousValue != value) 
-							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Cliente.Entity = null;
-						previousValue.Orden_Trabajos.Remove(this);
-					}
-					this._Cliente.Entity = value;
-					if ((value != null))
-					{
-						value.Orden_Trabajos.Add(this);
-						this._Id_Cliente = value.Rut;
-					}
-					else
-					{
-						this._Id_Cliente = default(decimal);
-					}
-					this.SendPropertyChanged("Cliente");
-				}
-			}
-		}
-		
-		[Association(Name="Tecnico_Orden_Trabajo", Storage="_Tecnico", ThisKey="Id_Tecnico_Asignado", OtherKey="Rut", IsForeignKey=true)]
-		public Tecnico Tecnico
-		{
-			get
-			{
-				return this._Tecnico.Entity;
-			}
-			set
-			{
-				Tecnico previousValue = this._Tecnico.Entity;
-				if (((previousValue != value) 
-							|| (this._Tecnico.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tecnico.Entity = null;
-						previousValue.Orden_Trabajos.Remove(this);
-					}
-					this._Tecnico.Entity = value;
-					if ((value != null))
-					{
-						value.Orden_Trabajos.Add(this);
-						this._Id_Tecnico_Asignado = value.Rut;
-					}
-					else
-					{
-						this._Id_Tecnico_Asignado = default(decimal);
-					}
-					this.SendPropertyChanged("Tecnico");
-				}
-			}
-		}
-		
-		[Association(Name="Tipo_Orden_Orden_Trabajo", Storage="_Tipo_Orden1", ThisKey="Tipo_Orden", OtherKey="Id_Tipo_Orden", IsForeignKey=true)]
-		public Tipo_Orden Tipo_Orden1
-		{
-			get
-			{
-				return this._Tipo_Orden1.Entity;
-			}
-			set
-			{
-				Tipo_Orden previousValue = this._Tipo_Orden1.Entity;
-				if (((previousValue != value) 
-							|| (this._Tipo_Orden1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tipo_Orden1.Entity = null;
-						previousValue.Orden_Trabajos.Remove(this);
-					}
-					this._Tipo_Orden1.Entity = value;
-					if ((value != null))
-					{
-						value.Orden_Trabajos.Add(this);
-						this._Tipo_Orden = value.Id_Tipo_Orden;
-					}
-					else
-					{
-						this._Tipo_Orden = default(Nullable<decimal>);
-					}
-					this.SendPropertyChanged("Tipo_Orden1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Detalles(Detalle entity)
-		{
-			this.SendPropertyChanging();
-			entity.Orden_Trabajo = this;
-		}
-		
-		private void detach_Detalles(Detalle entity)
-		{
-			this.SendPropertyChanging();
-			entity.Orden_Trabajo = null;
-		}
-		
-		private void attach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
-		{
-			this.SendPropertyChanging();
-			entity.Orden_Trabajo = this;
-		}
-		
-		private void detach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
-		{
-			this.SendPropertyChanging();
-			entity.Orden_Trabajo = null;
 		}
 	}
 	
@@ -5930,6 +5336,600 @@ namespace Data.Modelo
 		{
 			this.SendPropertyChanging();
 			entity.Provincia = null;
+		}
+	}
+	
+	[Table(Name="dbo.Orden_Trabajo")]
+	public partial class Orden_Trabajo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Id;
+		
+		private decimal _Id_Cliente;
+		
+		private decimal _Id_Articulo;
+		
+		private string _Serie;
+		
+		private System.DateTime _Fecha_Ingreso;
+		
+		private System.DateTime _Fecha_Entrega;
+		
+		private string _Falla;
+		
+		private string _Condicion_Articulo;
+		
+		private decimal _Id_Tecnico_Asignado;
+		
+		private System.Nullable<decimal> _Tipo_Orden;
+		
+		private string _Boleta;
+		
+		private string _Poliza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Compra;
+		
+		private string _Lugar_Compra;
+		
+		private EntitySet<Detalle> _Detalles;
+		
+		private EntitySet<Historial_Modificacion_Orden> _Historial_Modificacion_Ordens;
+		
+		private EntityRef<Articulo> _Articulo;
+		
+		private EntityRef<Cliente> _Cliente;
+		
+		private EntityRef<Tecnico> _Tecnico;
+		
+		private EntityRef<Tipo_Orden> _Tipo_Orden1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(decimal value);
+    partial void OnIdChanged();
+    partial void OnId_ClienteChanging(decimal value);
+    partial void OnId_ClienteChanged();
+    partial void OnId_ArticuloChanging(decimal value);
+    partial void OnId_ArticuloChanged();
+    partial void OnSerieChanging(string value);
+    partial void OnSerieChanged();
+    partial void OnFecha_IngresoChanging(System.DateTime value);
+    partial void OnFecha_IngresoChanged();
+    partial void OnFecha_EntregaChanging(System.DateTime value);
+    partial void OnFecha_EntregaChanged();
+    partial void OnFallaChanging(string value);
+    partial void OnFallaChanged();
+    partial void OnCondicion_ArticuloChanging(string value);
+    partial void OnCondicion_ArticuloChanged();
+    partial void OnId_Tecnico_AsignadoChanging(decimal value);
+    partial void OnId_Tecnico_AsignadoChanged();
+    partial void OnTipo_OrdenChanging(System.Nullable<decimal> value);
+    partial void OnTipo_OrdenChanged();
+    partial void OnBoletaChanging(string value);
+    partial void OnBoletaChanged();
+    partial void OnPolizaChanging(string value);
+    partial void OnPolizaChanged();
+    partial void OnFecha_CompraChanging(System.Nullable<System.DateTime> value);
+    partial void OnFecha_CompraChanged();
+    partial void OnLugar_CompraChanging(string value);
+    partial void OnLugar_CompraChanged();
+    #endregion
+		
+		public Orden_Trabajo()
+		{
+			this._Detalles = new EntitySet<Detalle>(new Action<Detalle>(this.attach_Detalles), new Action<Detalle>(this.detach_Detalles));
+			this._Historial_Modificacion_Ordens = new EntitySet<Historial_Modificacion_Orden>(new Action<Historial_Modificacion_Orden>(this.attach_Historial_Modificacion_Ordens), new Action<Historial_Modificacion_Orden>(this.detach_Historial_Modificacion_Ordens));
+			this._Articulo = default(EntityRef<Articulo>);
+			this._Cliente = default(EntityRef<Cliente>);
+			this._Tecnico = default(EntityRef<Tecnico>);
+			this._Tipo_Orden1 = default(EntityRef<Tipo_Orden>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public decimal Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Cliente", DbType="Decimal(10,0) NOT NULL")]
+		public decimal Id_Cliente
+		{
+			get
+			{
+				return this._Id_Cliente;
+			}
+			set
+			{
+				if ((this._Id_Cliente != value))
+				{
+					if (this._Cliente.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_ClienteChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Cliente = value;
+					this.SendPropertyChanged("Id_Cliente");
+					this.OnId_ClienteChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Articulo", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Id_Articulo
+		{
+			get
+			{
+				return this._Id_Articulo;
+			}
+			set
+			{
+				if ((this._Id_Articulo != value))
+				{
+					if (this._Articulo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_ArticuloChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Articulo = value;
+					this.SendPropertyChanged("Id_Articulo");
+					this.OnId_ArticuloChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Serie", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Serie
+		{
+			get
+			{
+				return this._Serie;
+			}
+			set
+			{
+				if ((this._Serie != value))
+				{
+					this.OnSerieChanging(value);
+					this.SendPropertyChanging();
+					this._Serie = value;
+					this.SendPropertyChanged("Serie");
+					this.OnSerieChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha_Ingreso", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Ingreso
+		{
+			get
+			{
+				return this._Fecha_Ingreso;
+			}
+			set
+			{
+				if ((this._Fecha_Ingreso != value))
+				{
+					this.OnFecha_IngresoChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Ingreso = value;
+					this.SendPropertyChanged("Fecha_Ingreso");
+					this.OnFecha_IngresoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha_Entrega", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Entrega
+		{
+			get
+			{
+				return this._Fecha_Entrega;
+			}
+			set
+			{
+				if ((this._Fecha_Entrega != value))
+				{
+					this.OnFecha_EntregaChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Entrega = value;
+					this.SendPropertyChanged("Fecha_Entrega");
+					this.OnFecha_EntregaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Falla", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Falla
+		{
+			get
+			{
+				return this._Falla;
+			}
+			set
+			{
+				if ((this._Falla != value))
+				{
+					this.OnFallaChanging(value);
+					this.SendPropertyChanging();
+					this._Falla = value;
+					this.SendPropertyChanged("Falla");
+					this.OnFallaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Condicion_Articulo", DbType="VarChar(250)")]
+		public string Condicion_Articulo
+		{
+			get
+			{
+				return this._Condicion_Articulo;
+			}
+			set
+			{
+				if ((this._Condicion_Articulo != value))
+				{
+					this.OnCondicion_ArticuloChanging(value);
+					this.SendPropertyChanging();
+					this._Condicion_Articulo = value;
+					this.SendPropertyChanged("Condicion_Articulo");
+					this.OnCondicion_ArticuloChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Tecnico_Asignado", DbType="Decimal(10,0) NOT NULL")]
+		public decimal Id_Tecnico_Asignado
+		{
+			get
+			{
+				return this._Id_Tecnico_Asignado;
+			}
+			set
+			{
+				if ((this._Id_Tecnico_Asignado != value))
+				{
+					if (this._Tecnico.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_Tecnico_AsignadoChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Tecnico_Asignado = value;
+					this.SendPropertyChanged("Id_Tecnico_Asignado");
+					this.OnId_Tecnico_AsignadoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Tipo_Orden", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Tipo_Orden
+		{
+			get
+			{
+				return this._Tipo_Orden;
+			}
+			set
+			{
+				if ((this._Tipo_Orden != value))
+				{
+					if (this._Tipo_Orden1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTipo_OrdenChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo_Orden = value;
+					this.SendPropertyChanged("Tipo_Orden");
+					this.OnTipo_OrdenChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Boleta", DbType="VarChar(50)")]
+		public string Boleta
+		{
+			get
+			{
+				return this._Boleta;
+			}
+			set
+			{
+				if ((this._Boleta != value))
+				{
+					this.OnBoletaChanging(value);
+					this.SendPropertyChanging();
+					this._Boleta = value;
+					this.SendPropertyChanged("Boleta");
+					this.OnBoletaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this.OnPolizaChanging(value);
+					this.SendPropertyChanging();
+					this._Poliza = value;
+					this.SendPropertyChanged("Poliza");
+					this.OnPolizaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha_Compra", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Compra
+		{
+			get
+			{
+				return this._Fecha_Compra;
+			}
+			set
+			{
+				if ((this._Fecha_Compra != value))
+				{
+					this.OnFecha_CompraChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Compra = value;
+					this.SendPropertyChanged("Fecha_Compra");
+					this.OnFecha_CompraChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Lugar_Compra", DbType="VarChar(100)")]
+		public string Lugar_Compra
+		{
+			get
+			{
+				return this._Lugar_Compra;
+			}
+			set
+			{
+				if ((this._Lugar_Compra != value))
+				{
+					this.OnLugar_CompraChanging(value);
+					this.SendPropertyChanging();
+					this._Lugar_Compra = value;
+					this.SendPropertyChanged("Lugar_Compra");
+					this.OnLugar_CompraChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Orden_Trabajo_Detalle", Storage="_Detalles", ThisKey="Id", OtherKey="Id_Orden")]
+		public EntitySet<Detalle> Detalles
+		{
+			get
+			{
+				return this._Detalles;
+			}
+			set
+			{
+				this._Detalles.Assign(value);
+			}
+		}
+		
+		[Association(Name="Orden_Trabajo_Historial_Modificacion_Orden", Storage="_Historial_Modificacion_Ordens", ThisKey="Id", OtherKey="Id_Orden")]
+		public EntitySet<Historial_Modificacion_Orden> Historial_Modificacion_Ordens
+		{
+			get
+			{
+				return this._Historial_Modificacion_Ordens;
+			}
+			set
+			{
+				this._Historial_Modificacion_Ordens.Assign(value);
+			}
+		}
+		
+		[Association(Name="Articulo_Orden_Trabajo", Storage="_Articulo", ThisKey="Id_Articulo", OtherKey="Id", IsForeignKey=true)]
+		public Articulo Articulo
+		{
+			get
+			{
+				return this._Articulo.Entity;
+			}
+			set
+			{
+				Articulo previousValue = this._Articulo.Entity;
+				if (((previousValue != value) 
+							|| (this._Articulo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Articulo.Entity = null;
+						previousValue.Orden_Trabajos.Remove(this);
+					}
+					this._Articulo.Entity = value;
+					if ((value != null))
+					{
+						value.Orden_Trabajos.Add(this);
+						this._Id_Articulo = value.Id;
+					}
+					else
+					{
+						this._Id_Articulo = default(decimal);
+					}
+					this.SendPropertyChanged("Articulo");
+				}
+			}
+		}
+		
+		[Association(Name="Cliente_Orden_Trabajo", Storage="_Cliente", ThisKey="Id_Cliente", OtherKey="Rut", IsForeignKey=true)]
+		public Cliente Cliente
+		{
+			get
+			{
+				return this._Cliente.Entity;
+			}
+			set
+			{
+				Cliente previousValue = this._Cliente.Entity;
+				if (((previousValue != value) 
+							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Cliente.Entity = null;
+						previousValue.Orden_Trabajos.Remove(this);
+					}
+					this._Cliente.Entity = value;
+					if ((value != null))
+					{
+						value.Orden_Trabajos.Add(this);
+						this._Id_Cliente = value.Rut;
+					}
+					else
+					{
+						this._Id_Cliente = default(decimal);
+					}
+					this.SendPropertyChanged("Cliente");
+				}
+			}
+		}
+		
+		[Association(Name="Tecnico_Orden_Trabajo", Storage="_Tecnico", ThisKey="Id_Tecnico_Asignado", OtherKey="Rut", IsForeignKey=true)]
+		public Tecnico Tecnico
+		{
+			get
+			{
+				return this._Tecnico.Entity;
+			}
+			set
+			{
+				Tecnico previousValue = this._Tecnico.Entity;
+				if (((previousValue != value) 
+							|| (this._Tecnico.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tecnico.Entity = null;
+						previousValue.Orden_Trabajos.Remove(this);
+					}
+					this._Tecnico.Entity = value;
+					if ((value != null))
+					{
+						value.Orden_Trabajos.Add(this);
+						this._Id_Tecnico_Asignado = value.Rut;
+					}
+					else
+					{
+						this._Id_Tecnico_Asignado = default(decimal);
+					}
+					this.SendPropertyChanged("Tecnico");
+				}
+			}
+		}
+		
+		[Association(Name="Tipo_Orden_Orden_Trabajo", Storage="_Tipo_Orden1", ThisKey="Tipo_Orden", OtherKey="Id_Tipo_Orden", IsForeignKey=true)]
+		public Tipo_Orden Tipo_Orden1
+		{
+			get
+			{
+				return this._Tipo_Orden1.Entity;
+			}
+			set
+			{
+				Tipo_Orden previousValue = this._Tipo_Orden1.Entity;
+				if (((previousValue != value) 
+							|| (this._Tipo_Orden1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tipo_Orden1.Entity = null;
+						previousValue.Orden_Trabajos.Remove(this);
+					}
+					this._Tipo_Orden1.Entity = value;
+					if ((value != null))
+					{
+						value.Orden_Trabajos.Add(this);
+						this._Tipo_Orden = value.Id_Tipo_Orden;
+					}
+					else
+					{
+						this._Tipo_Orden = default(Nullable<decimal>);
+					}
+					this.SendPropertyChanged("Tipo_Orden1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Detalles(Detalle entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orden_Trabajo = this;
+		}
+		
+		private void detach_Detalles(Detalle entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orden_Trabajo = null;
+		}
+		
+		private void attach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orden_Trabajo = this;
+		}
+		
+		private void detach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orden_Trabajo = null;
 		}
 	}
 }

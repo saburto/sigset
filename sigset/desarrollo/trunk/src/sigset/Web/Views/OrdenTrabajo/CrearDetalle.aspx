@@ -37,8 +37,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>CrearDetalle</h2>
-    
+    <h2>Orden de trabajo</h2>
+    <p>Fecha de Ingreso: <%=DateTime.Now.ToShortDateString()%></p>
    <%if (Model != null && Model.Cliente != null)
    { %>
       <% Html.RenderPartial("DatosCliente", Model.Cliente); %>
@@ -52,77 +52,68 @@
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
+    <%= Html.Hidden("Fecha_Ingreso", DateTime.Now.ToShortDateString()) %>
 
         <fieldset>
             <legend>Orden de Trabajo</legend>
             <p>
-                <label for="Id"><%=Html.Encode("Número de Orden:") %></label>
-                <%= Html.TextBox("Id") %>
-                <%= Html.ValidationMessage("Id", "*") %>
-            </p>
-            <p>
-                <label for="Serie">Serie:</label>
+                <label for="Serie">N° Serie de Articulo:</label>
                 <%= Html.TextBox("Serie") %>
                 <%= Html.ValidationMessage("Serie", "*") %>
             </p>
-                <label for="Fecha_Ingreso">Fecha_Ingreso:</label>
-                <%= Html.TextoSoloLectura("Fecha_Ingreso", DateTime.Now.ToShortDateString()) %>
-                <%= Html.ValidationMessage("Fecha_Ingreso", "*") %>
+
             <p>
-                <label for="Fecha_Entrega">Fecha_Entrega:</label>
+                <label for="Falla">Falla Articulo:</label>
+                <%= Html.TextArea("Falla", new { cols="60", rows="4" })%>
+                <%= Html.ValidationMessage("Falla", "*") %>
+            </p>
+            <p>
+                <label for="Condicion Articulo">Condicion Articulo:</label>
+                <%= Html.TextArea("Condicion_Articulo", new { cols = "60", rows = "4" })%>
+                <%= Html.ValidationMessage("Condicion_Articulo", "*") %>
+            </p>
+
+            <div class="three-column-container">
+                <div class="three-column-left">
+                <p>
+                    <label for="Tipo_Orden">Tipo Orden:</label>
+                    <%= Html.TextBox("Tipo_Orden") %>
+                    <%= Html.ValidationMessage("Tipo_Orden", "*") %>
+                </p>
+                </div>
+                <div class="three-column-middle">
+                <p>
+                <label for="Boleta">Boleta:</label>
+                <%= Html.TextBox("Boleta") %>
+                <%= Html.ValidationMessage("Boleta", "*") %>
+                <label for="Poliza">Poliza:</label>
+                <%= Html.TextBox("Poliza") %>
+                <%= Html.ValidationMessage("Poliza", "*") %>
+                </p>
+                </div>
+                <div class="three-column-right">
+                <p>
+                <label for="Fecha_Compra">Fecha Compra:</label>
+                <%= Html.TextBox("Fecha_Compra") %>
+                <%= Html.ValidationMessage("Fecha_Compra", "*") %>
+                <label for="Lugar_Compra">Lugar Compra:</label>
+                <%= Html.TextBox("Lugar_Compra") %>
+                <%= Html.ValidationMessage("Lugar_Compra", "*") %>
+                </p>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <p>
+                <label for="Fecha Entrega">Fecha Entrega:</label>
                 <%= Html.TextBox("Fecha_Entrega") %>
                 <%= Html.ValidationMessage("Fecha_Entrega", "*") %>
             </p>
             <p>
-                <label for="Falla">Falla:</label>
-                <%= Html.TextArea("Falla") %>
-                <%= Html.ValidationMessage("Falla", "*") %>
-            </p>
-            <p>
-                <label for="Condicion_Articulo">Condicion_Articulo:</label>
-                <%= Html.TextArea("Condicion_Articulo") %>
-                <%= Html.ValidationMessage("Condicion_Articulo", "*") %>
-            </p>
-
-            <p>
-                <label for="Tipo_Orden">Tipo_Orden:</label>
-                <%= Html.TextBox("Tipo_Orden") %>
-                <%= Html.ValidationMessage("Tipo_Orden", "*") %>
-            </p>
-
-            <p>
-                <label for="Boleta">Boleta:</label>
-                <%= Html.TextBox("Boleta") %>
-                <%= Html.ValidationMessage("Boleta", "*") %>
-            </p>
-
-            <p>
-                <label for="Poliza">Poliza:</label>
-                <%= Html.TextBox("Poliza") %>
-                <%= Html.ValidationMessage("Poliza", "*") %>
-            </p>
-
-            <p>
-                <label for="Fecha_Compra">Fecha_Compra:</label>
-                <%= Html.TextBox("Fecha_Compra") %>
-                <%= Html.ValidationMessage("Fecha_Compra", "*") %>
-            </p>
-            <p>
-                <label for="Lugar_Compra">Lugar_Compra:</label>
-                <%= Html.TextBox("Lugar_Compra") %>
-                <%= Html.ValidationMessage("Lugar_Compra", "*") %>
-            </p>
-            <p>
-                <input type="submit" value="Create" />
+                <input type="submit" class="button-big" value="Guardar" />
             </p>
         </fieldset>
 
     <% } %>
-
-    <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </div>
-
 </asp:Content>
 
 
