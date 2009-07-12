@@ -18,7 +18,7 @@
 
     <h2>Crear</h2>
 
-    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("Creación de articulo con errores.") %>
 
     <% using (Html.BeginForm()) {%>
 

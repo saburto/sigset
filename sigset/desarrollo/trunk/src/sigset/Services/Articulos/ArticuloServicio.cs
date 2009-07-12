@@ -157,9 +157,22 @@ namespace Services.Articulos
 
 
 
-        public Articulo GetArticulo(int id)
+        public Articulo GetArticulo(decimal id)
         {
            return _rep.GetArticulo(id);
+        }
+
+
+        public Articulo GetArticuloPorModelo(string Modelo)
+        {
+           return _rep.GetArticuloPorModelo(Modelo);
+        }
+
+
+
+        public Articulo GetArticuloPorModeloMarca(string Modelo, string Marca)
+        {
+            return _rep.GetArticuloPorModeloMarca(Modelo, Marca);
         }
 
     }

@@ -9,9 +9,11 @@ using Services.Articulos;
 using Helpers;
 using Data.Modelo;
 using xVal.ServerSide;
+using Web.Seguridad;
 
 namespace Web.Controllers.OrdenTrabajo
 {
+    [ManejadorErrores]
     public class ArticuloController : Controller
     {
         IArticuloServicio _srv;
@@ -26,13 +28,44 @@ namespace Web.Controllers.OrdenTrabajo
 
         }
 
+        public ActionResult Buscar(decimal id)
+        {
+            TempData["rutOrden"] = id;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Buscar(string Modelo, string Marca, string Rut)
+        {
+            string returnContent = "";
+            returnContent = "<p><span class='" + HtmlHelper.ValidationMessageCssClassName + "'>";
+            try
+            {
+                Articulo art = _srv.GetArticuloPorModeloMarca(Modelo, Marca);
+                if (art != null)
+                {
+                    TempData["rutOrden"] = Rut;
+                    return PartialView("Detalle", art);
+                }
+                returnContent += "Modelo No encontrado <a href='"+ Url.Action("Crear") +"'>Crear nuevo articulo</a>";
+                
+            }
+            catch (Exception ex)
+            {
+                returnContent += ex.Message;
+            }
+            returnContent += "</span></p>";
+            return Content(returnContent);
+        }
+
         public ActionResult Detalles(int id)
         {
            return View("Detalles",_srv.GetArticulo(id));
         }
 
-        public ActionResult Crear()
+        public ActionResult Crear(int id)
         {
+            TempData["rutOrden"] = id;
             ViewData["Lista_Precio_Garantia"] = _srv.GetPrecios().GetSelectCampos("Id_Precio_Garantia", "Valor_Revision",null,"${0}");
             return View();
         }
@@ -43,7 +76,7 @@ namespace Web.Controllers.OrdenTrabajo
             try
             {
                 Articulo art = _srv.CrearArticulo(articulo, Lista_Precio_Garantia, Marca, Linea);
-                return RedirectToAction("Detalles", new { id=art.Id });
+                return RedirectToRoute(new { controller = "OrdenTrabajo", action = "Detalle", id = TempData["rutOrden"], id_articulo=art.Id });
             }
             catch (RulesException ex)
             {

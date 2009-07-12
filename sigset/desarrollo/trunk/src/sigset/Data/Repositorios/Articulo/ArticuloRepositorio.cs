@@ -143,5 +143,14 @@ namespace Data.Repositorios.Articulo
                     select a).FirstOrDefault() ;
         }
 
+
+
+        public Data.Modelo.Articulo GetArticuloPorModelo(string Modelo)
+        {
+            return (from a in _ent.Articulos
+                   where a.Modelo == Modelo
+                   select a).FirstOrDefault();
+        }
+
     }
 }

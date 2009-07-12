@@ -12,15 +12,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Crear Orden de Trabajo</h2>
-
-    <div id="datosCliente">
     <%if (Model != null && Model.Cliente != null)
       { %>
-    <h2>
-    <%= Html.Encode(Model.Cliente.Nombre) %> <%= Html.Encode(Model.Cliente.Apellido_Paterno) %> <%= Html.Encode(Model.Cliente.Apellido_Materno) %>
-    </h2>      
+      <% Html.RenderPartial("DatosCliente", Model.Cliente); %>
     <%} %>
-    </div>
+    
+    <p>
+    <%=Html.ActionLink("Agregar Articulo", "Buscar", "Articulo", new {id=Model.Cliente.Rut }, null)%>
+    </p>
+    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">

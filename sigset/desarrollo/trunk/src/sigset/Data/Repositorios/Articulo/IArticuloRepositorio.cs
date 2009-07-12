@@ -32,5 +32,7 @@ namespace Data.Repositorios.Articulo
 
         Data.Modelo.Articulo GetArticuloPorModeloMarca(string p, string marca);
 
+
+        Data.Modelo.Articulo GetArticuloPorModelo(string Modelo);
     }
 }
