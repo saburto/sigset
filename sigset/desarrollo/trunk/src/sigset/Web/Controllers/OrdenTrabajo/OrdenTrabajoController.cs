@@ -8,6 +8,9 @@ using Services.Clientes;
 using System.Web.Routing;
 using Data.Modelo;
 using Services.Articulos;
+using Services.OrdenTrabajo;
+using Web.Helpers;
+using Helpers;
 
 namespace Web.Controllers
 {
@@ -18,15 +21,18 @@ namespace Web.Controllers
 
         IClienteServicio _srvCliente;
         IArticuloServicio _srvArticulo;
+        IOrdenTrabajoServicio _srvOrdenTrabajo;
+        
 
-        public OrdenTrabajoController(IClienteServicio serv, IArticuloServicio servArt)
+        public OrdenTrabajoController(IClienteServicio serv, IArticuloServicio servArt, IOrdenTrabajoServicio serOrd)
         {
             _srvCliente = serv;
             _srvArticulo = servArt;
+            _srvOrdenTrabajo = serOrd;
         }
 
         public OrdenTrabajoController()
-            :this(new ClienteServicio(), new ArticuloServicio())
+            :this(new ClienteServicio(), new ArticuloServicio(), new OrdenTrabajoServicio())
         {
 
         }
@@ -55,14 +61,28 @@ namespace Web.Controllers
         /// <returns></returns>
         public ActionResult CrearDetalle(decimal id, decimal rut)
         {
+            ViewData["Tipo_Orden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
+
+
             Cliente cliente = _srvCliente.GetClientePorRut(rut);
             Orden_Trabajo ot = new Orden_Trabajo();
             ot.Cliente = cliente;
+            ot.Id_Cliente =cliente.Rut;
 
             Articulo articulo = _srvArticulo.GetArticulo(id);
             ot.Articulo = articulo;
+            ot.Id_Articulo = articulo.Id;
+
+            ot.Fecha_Entrega = DateTime.Now.AddDays(5);
 
             return View(ot);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CrearDetalle(Orden_Trabajo ordenTrabajo)
+        {
+            
+            return View();
         }
  
 

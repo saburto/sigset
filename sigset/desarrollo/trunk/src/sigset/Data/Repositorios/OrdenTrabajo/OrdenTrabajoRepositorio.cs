@@ -37,5 +37,21 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
             return ordenes_trabajo;
         }
 
+
+
+        public void GuardarOrdenTrabajo(Orden_Trabajo orden)
+        {
+            _data.Orden_Trabajos.InsertOnSubmit(orden);
+            _data.SubmitChanges();
+        }
+
+
+
+
+        public IQueryable<Tipo_Orden> GetTiposOrden()
+        {
+            return _data.Tipo_Ordens;
+        }
+
     }
 }
