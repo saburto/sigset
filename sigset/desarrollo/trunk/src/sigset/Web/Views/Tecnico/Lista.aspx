@@ -40,6 +40,7 @@
     <%}
       else
       { %>
+      
         <tr>
     <%} %>
        
@@ -47,7 +48,8 @@
     
                 <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> 
                 <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Rut })%>
-            </td>
+            </th>
+            
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Rut.GetRutCompleto())) %>
             </td>
@@ -77,7 +79,7 @@
             <td>
                 <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades" , new { id=item.Rut }) %>
             </td>
-                    </tr>
+    </tr>
     
     <% } %>
 
