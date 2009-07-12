@@ -16,6 +16,10 @@ namespace Services.Articulos
 
         Articulo CrearArticulo(Data.Modelo.Articulo articulo, string Lista_Precio_Garantia, string Marca, string Linea);
 
-        Articulo GetArticulo(int id);
+        Articulo GetArticuloPorModelo(string Modelo);
+
+        Articulo GetArticuloPorModeloMarca(string Modelo, string Marca);
+
+        Articulo GetArticulo(decimal id);
     }
 }

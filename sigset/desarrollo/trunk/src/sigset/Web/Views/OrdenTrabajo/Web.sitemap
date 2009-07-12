@@ -8,5 +8,6 @@
     <mvcSiteMapNode title="Lista de Clientes" controller="Cliente" action="Lista" />
     <mvcSiteMapNode title="Buscar Cliente" controller="Cliente" action="Buscar" />
     <mvcSiteMapNode title="Nuevo Articulo" controller="Articulo" action="Crear" />
+    <mvcSiteMapNode title="Buscar Articulo" controller="Articulo" action="Buscar" />
   </mvcSiteMapNode>
 </siteMap>

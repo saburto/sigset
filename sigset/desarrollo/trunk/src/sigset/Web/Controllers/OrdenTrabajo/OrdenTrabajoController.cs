@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Services.Clientes;
 using System.Web.Routing;
+using Data.Modelo;
+using Services.Articulos;
 
 namespace Web.Controllers
 {
@@ -14,15 +16,17 @@ namespace Web.Controllers
     public class OrdenTrabajoController : Controller
     {
 
-        IClienteServicio _srv;
+        IClienteServicio _srvCliente;
+        IArticuloServicio _srvArticulo;
 
-        public OrdenTrabajoController(IClienteServicio serv)
+        public OrdenTrabajoController(IClienteServicio serv, IArticuloServicio servArt)
         {
-            _srv = serv;
+            _srvCliente = serv;
+            _srvArticulo = servArt;
         }
 
         public OrdenTrabajoController()
-            :this(new ClienteServicio())
+            :this(new ClienteServicio(), new ArticuloServicio())
         {
 
         }
@@ -38,13 +42,28 @@ namespace Web.Controllers
             if (rut.HasValue)
             {
                 var orden = new Data.Modelo.Orden_Trabajo();
-                orden.Cliente = _srv.GetClientePorRut(rut.Value);
+                orden.Cliente = _srvCliente.GetClientePorRut(rut.Value);
                 return View(orden);                
             }
             return RedirectToRoute(new { action = "Buscar", controller = "Cliente", id = "" });
         }
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Id de articulo</param>
+        /// <returns></returns>
+        public ActionResult CrearDetalle(decimal id, decimal rut)
+        {
+            Cliente cliente = _srvCliente.GetClientePorRut(rut);
+            Orden_Trabajo ot = new Orden_Trabajo();
+            ot.Cliente = cliente;
+
+            Articulo articulo = _srvArticulo.GetArticulo(id);
+            ot.Articulo = articulo;
+
+            return View(ot);
+        }
  
 
         public ActionResult Consulta()

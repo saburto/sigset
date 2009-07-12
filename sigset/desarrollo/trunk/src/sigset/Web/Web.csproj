@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AE332932-4BE7-46C6-868F-B521B48E1855}</ProjectGuid>
     <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -197,13 +197,35 @@
   <ItemGroup>
     <Content Include="Views\Administrativos\Index.aspx" />
     <Content Include="Views\AreaTecnica\Web.sitemap" />
+    <Content Include="Views\Articulo\Buscar.aspx" />
+    <Content Include="Views\Articulo\BuscarArticulo.ascx" />
     <Content Include="Views\Articulo\Crear.aspx" />
+    <Content Include="Views\Articulo\Detalle.ascx" />
     <Content Include="Views\Articulo\Detalles.aspx" />
     <Content Include="Views\Tecnico\Detalles.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui-1.7.2.custom.css" />
+    <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Views\Administrativos\Lista.aspx" />
     <Content Include="Views\Administrativos\Web.sitemap" />
+    <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />
+    <Content Include="Views\OrdenTrabajo\DatosArticulo.ascx" />
+    <Content Include="Views\OrdenTrabajo\DatosCliente.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -229,6 +251,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
