@@ -78,33 +78,18 @@ namespace TestData
 
         
 
-        /// <summary>
-        ///Una prueba de GetTodasLasOrdenDeTrabajo
-        ///</summary>
-        [TestMethod()]
-        public void GetTodasLasOrdenDeTrabajoTest()
-        {
-            OrdenTrabajoRepositorio target = new OrdenTrabajoRepositorio(); // TODO: Inicializar en un valor adecuado
-            IQueryable<Orden_Trabajo> expected = null; // TODO: Inicializar en un valor adecuado
-            IQueryable<Orden_Trabajo> actual;
-            actual = target.GetTodasLasOrdenDeTrabajo();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+      
 
         /// <summary>
         ///Una prueba de GetTodasLasOrdenDeTrabajoByTecnicoId
         ///</summary>
         [TestMethod()]
-        public void GetTodasLasOrdenDeTrabajoByTecnicoIdTest()
+        public void GetOrdenDeTrabajoByTecnicoIdTest()
         {
             OrdenTrabajoRepositorio target = new OrdenTrabajoRepositorio(); // TODO: Inicializar en un valor adecuado
-            Decimal id = new Decimal(); // TODO: Inicializar en un valor adecuado
-            IQueryable<Orden_Trabajo> expected = null; // TODO: Inicializar en un valor adecuado
-            IQueryable<Orden_Trabajo> actual;
-            actual = target.GetTodasLasOrdenDeTrabajoByTecnicoId(id);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            Decimal id = 15709046; // TODO: Inicializar en un valor adecuado
+            target.GetTodasLasOrdenDeTrabajoByTecnicoId(id);
+            
         }
     }
 }
