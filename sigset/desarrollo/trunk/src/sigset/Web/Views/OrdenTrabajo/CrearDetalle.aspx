@@ -10,7 +10,7 @@
     
     $.datepicker.setDefaults({
         constrainInput: true,
-        dateFormat: 'dd--mm-yy',
+        dateFormat: 'dd-mm-yy',
  		closeText: 'Cerrar',
 		prevText: '&#x3c;Ant',
 		nextText: 'Sig&#x3e;',
@@ -29,6 +29,20 @@
 
     $('#Fecha_Compra').datepicker();
     $('#Fecha_Entrega').datepicker();
+    
+    $('#Tipo_Orden').change(
+        function()
+        {
+          if($('#Tipo_Orden').val() == 2)
+          {
+            $('#datosGarantia').hide();
+          }
+          else
+          {
+            $('#datosGarantia').show();
+          }  
+        }
+    );
       
   <%} %>
 
@@ -52,7 +66,8 @@
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-    <%= Html.Hidden("Fecha_Ingreso", DateTime.Now.ToShortDateString()) %>
+    <%= Html.Hidden("Id_Cliente", Model.Id_Cliente)%>
+    <%= Html.Hidden("Id_Articulo", Model.Id_Articulo)%>
 
         <fieldset>
             <legend>Orden de Trabajo</legend>
@@ -77,10 +92,12 @@
                 <div class="three-column-left">
                 <p>
                     <label for="Tipo_Orden">Tipo Orden:</label>
-                    <%= Html.TextBox("Tipo_Orden") %>
+                    <%= Html.DropDownList("Tipo_Orden")%>
+                    
                     <%= Html.ValidationMessage("Tipo_Orden", "*") %>
                 </p>
                 </div>
+                <div id="datosGarantia">
                 <div class="three-column-middle">
                 <p>
                 <label for="Boleta">Boleta:</label>
@@ -101,11 +118,12 @@
                 <%= Html.ValidationMessage("Lugar_Compra", "*") %>
                 </p>
                 </div>
+                </div>
             </div>
             <div class="clear"></div>
             <p>
                 <label for="Fecha Entrega">Fecha Entrega:</label>
-                <%= Html.TextBox("Fecha_Entrega") %>
+                <%= Html.TextBox("Fecha_Entrega", Model.Fecha_Entrega.ToShortDateString()) %>
                 <%= Html.ValidationMessage("Fecha_Entrega", "*") %>
             </p>
             <p>
