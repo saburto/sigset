@@ -25,6 +25,7 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
             var ordenes_trabajo = from ot in _data.Orden_Trabajos
                                   where ot.Id_Tecnico_Asignado == id
                                   select ot;
+                                  
             return ordenes_trabajo;
         }
         public Detalle GetOrdenTrabajoById(decimal id)
