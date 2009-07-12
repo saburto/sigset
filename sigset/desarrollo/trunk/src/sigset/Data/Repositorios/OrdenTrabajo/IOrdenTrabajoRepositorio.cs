@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Data.Repositorios.OrdenTrabajo
+namespace Data.Repositorios.OrdenTrabajoRepositorio
 {
    public  interface IOrdenTrabajoRepositorio
     {

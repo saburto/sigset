@@ -6,7 +6,7 @@ using Data.Modelo;
 
 namespace Data.Repositorios.OrdenTrabajoRepositorio
 {
-    public class OrdenTrabajoRepositorio : Data.Repositorios.OrdenTrabajo.IOrdenTrabajoRepositorio
+    public class OrdenTrabajoRepositorio : Data.Repositorios.OrdenTrabajoRepositorio.IOrdenTrabajoRepositorio
     {
         sigsetEntities _data;
         public OrdenTrabajoRepositorio()
