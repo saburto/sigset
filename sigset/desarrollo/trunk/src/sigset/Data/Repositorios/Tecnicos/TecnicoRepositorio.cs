@@ -121,10 +121,8 @@ namespace Data.Repositorios.Tecnicos
         }
         public void DeleteEspecialidad(Especialidade especialidad)
         {
-            var especialidadEliminar = (from eb in _data.Especialidades
-                                        where eb.Id_Tecnico == especialidad.Id_Tecnico
-                                        select eb).FirstOrDefault();
-            _data.Especialidades.DeleteOnSubmit(especialidadEliminar);
+
+            _data.Especialidades.DeleteOnSubmit(especialidad);
             _data.SubmitChanges();
         }
         public int ContarEspecialidadesByTecnico(decimal id)
