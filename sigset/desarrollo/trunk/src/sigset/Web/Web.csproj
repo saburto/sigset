@@ -74,6 +74,7 @@
     <Compile Include="Controllers\Admin\TipoCargoController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\AreaTecnica\AreaTecnicaController.cs" />
+    <Compile Include="Controllers\AreaTecnica\OrdenesAsignadasController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\ArticuloController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
