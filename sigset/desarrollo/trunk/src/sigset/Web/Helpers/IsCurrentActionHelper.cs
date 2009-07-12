@@ -51,6 +51,10 @@ namespace Helpers
             hijos.Add("OrdenesAsignadas");
             controllerHijos.Add("AreaTecnica", hijos);
 
+            hijos = new List<string>();
+            hijos.Add("OrdenesTrabajo");
+            controllerHijos.Add("Administrativos", hijos);
+
 
             
 

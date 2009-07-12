@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Administrativos\AdministrativosController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\TecnicoController.cs" />
@@ -194,10 +195,15 @@
     <Content Include="Views\Tecnico\Editar.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Administrativos\Index.aspx" />
     <Content Include="Views\AreaTecnica\Web.sitemap" />
     <Content Include="Views\Articulo\Crear.aspx" />
     <Content Include="Views\Articulo\Detalles.aspx" />
     <Content Include="Views\Tecnico\Detalles.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Administrativos\Lista.aspx" />
+    <Content Include="Views\Administrativos\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
