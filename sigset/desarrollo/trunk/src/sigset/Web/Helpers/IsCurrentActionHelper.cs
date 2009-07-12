@@ -44,6 +44,7 @@ namespace Helpers
             //aqui por ejemplo el controller Orden de trabaajo tiene como hijo al cliente
             hijos = new List<string>();
             hijos.Add("Cliente");
+            hijos.Add("Articulo");
             controllerHijos.Add("OrdenTrabajo", hijos);
 
             hijos = new List<string>();

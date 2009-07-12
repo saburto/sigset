@@ -75,6 +75,7 @@
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\AreaTecnica\AreaTecnicaController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
+    <Compile Include="Controllers\OrdenTrabajo\ArticuloController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\AutoCompleteHelper.cs" />
     <Compile Include="Helpers\CamposHelper.cs" />
@@ -193,6 +194,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AreaTecnica\Web.sitemap" />
+    <Content Include="Views\Articulo\Crear.aspx" />
+    <Content Include="Views\Articulo\Detalles.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

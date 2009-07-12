@@ -75,12 +75,23 @@ namespace Helpers
 
         public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember, string seleccionado)
         {
+            return GetSelectCampos<T>(listaDeCampos, valueMember, displayMember, seleccionado,null);
+        }
+
+        public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember, string seleccionado, string formatDisplay)
+        {
             List<SelectListItem> lista = new List<SelectListItem>();
             lista.Add(new SelectListItem() { Text = "Seleccione...", Value = "-1" });
             foreach (T campo in listaDeCampos)
             {
-                var valor = campo.GetType().GetProperty(valueMember).GetValue(campo, null);
-                var display = campo.GetType().GetProperty(displayMember).GetValue(campo, null);
+                var valor = campo.GetType().GetProperty(valueMember).GetValue(campo, null).ToString();
+                var display = campo.GetType().GetProperty(displayMember).GetValue(campo, null).ToString();
+                if (formatDisplay != null)
+                {
+                    display = string.Format(formatDisplay, display);
+                }
+
+
                 if (seleccionado != null && valor.ToString() == seleccionado)
                 {
                     lista.Add(new SelectListItem() { Text = display.ToString(), Value = valor.ToString(), Selected = true });
