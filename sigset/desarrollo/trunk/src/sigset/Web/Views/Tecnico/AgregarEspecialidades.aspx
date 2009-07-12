@@ -32,14 +32,13 @@
     <%} %>
        
             <th scope="row">
-                <%= Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id })%>
+                <%= Html.ActionLink("Eliminar", "EliminarEspecialidad", new { id = item.Id, id_tecnico = ViewData["rutTecnico"] })%>
             </td>
             <td>
                 <%= Html.Encode(item.Tipo_Especialidad1.Descripcion) %>
             </td>
             
-        </tr>
-    
+        </tr>    
     <% } %>
 
     </table>

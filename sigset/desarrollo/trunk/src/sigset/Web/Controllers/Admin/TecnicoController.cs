@@ -97,11 +97,27 @@ namespace Web.Controllers.Admin
             var especialidades = _servicio.EspecialidadesByTecnico(id);                
             return View(especialidades);
         }
+        public ActionResult EliminarEspecialidad(decimal id,decimal Id_Tecnico)
+        {
+          try
+            {
+
+                _servicio.EliminarEspecialidad(id);
+                return RedirectToAction("AgregarEspecialidades", new { id = Id_Tecnico });
+            }
+            catch (RulesException e)
+            {
+                ModelState.AddRuleErrors(e.Errors);
+                TempData["MensajeError"] = e.Errors.FirstOrDefault().ErrorMessage;
+                return RedirectToAction("AgregarEspecialidades",new {id=id});
+             }
+
+         }
 
         public ActionResult AgregarNuevaEspecialidad(decimal id)
         {
             var tecnico = _servicio.GetTecnicoByRut(id);
-            ViewData["tipoEspecialidades"] = _servicio.GetTodosLosTiposDeEspecialidad().GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
+            ViewData["tipoEspecialidades"] = _servicio.GetEspecialidadesNoRepetidas(id).GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
 
             return View(new Especialidade { Id_Tecnico = id });
         }
