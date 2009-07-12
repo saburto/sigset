@@ -61,6 +61,13 @@ namespace Web.Controllers.Admin
             
             }
         }
+        public ActionResult Detalles(decimal id)
+        {
+            var tecnico = _servicio.GetTecnicoByRut(id);
+            return View(tecnico);
+
+        }
+
         public ActionResult Crear()
         {
             ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre"); 
