@@ -28,21 +28,21 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
                                   
             return ordenes_trabajo;
         }
-        public Detalle GetOrdenTrabajoById(decimal id)
+        public Orden_Trabajo GetOrdenTrabajoById(decimal id)
         {
-            var ordenes_trabajo = (from det in _data.Detalles
-                                   where det.Id_Orden == id
-                                   orderby det.Fecha_Creacion
-                                   select det).FirstOrDefault();
+            var ordenes_trabajo = (from o in _data.Orden_Trabajos
+                                   where o.Id == id
+                                   select o).FirstOrDefault();
             return ordenes_trabajo;
         }
 
 
 
-        public void GuardarOrdenTrabajo(Orden_Trabajo orden)
+        public Orden_Trabajo GuardarOrdenTrabajo(Orden_Trabajo orden)
         {
             _data.Orden_Trabajos.InsertOnSubmit(orden);
             _data.SubmitChanges();
+            return orden;
         }
 
 
@@ -52,6 +52,5 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
         {
             return _data.Tipo_Ordens;
         }
-
     }
 }

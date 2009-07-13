@@ -322,8 +322,15 @@ a:active {
 	 SIDE BUCKET
 	 	 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.content-right
+{
+	display:none;
+}
 
-.side-bucket {
+
+.side-bucket 
+{
+	display:none;
 	margin-bottom:20px;
 	line-height:normal;
 	width:400px;

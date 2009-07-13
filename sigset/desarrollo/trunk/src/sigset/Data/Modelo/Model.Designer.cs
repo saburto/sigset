@@ -5361,7 +5361,7 @@ namespace Data.Modelo
 		
 		private string _Condicion_Articulo;
 		
-		private decimal _Id_Tecnico_Asignado;
+		private System.Nullable<decimal> _Id_Tecnico_Asignado;
 		
 		private System.Nullable<decimal> _Tipo_Orden;
 		
@@ -5405,7 +5405,7 @@ namespace Data.Modelo
     partial void OnFallaChanged();
     partial void OnCondicion_ArticuloChanging(string value);
     partial void OnCondicion_ArticuloChanged();
-    partial void OnId_Tecnico_AsignadoChanging(decimal value);
+    partial void OnId_Tecnico_AsignadoChanging(System.Nullable<decimal> value);
     partial void OnId_Tecnico_AsignadoChanged();
     partial void OnTipo_OrdenChanging(System.Nullable<decimal> value);
     partial void OnTipo_OrdenChanged();
@@ -5598,8 +5598,8 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Id_Tecnico_Asignado", DbType="Decimal(10,0) NOT NULL")]
-		public decimal Id_Tecnico_Asignado
+		[Column(Storage="_Id_Tecnico_Asignado", DbType="Decimal(10,0)")]
+		public System.Nullable<decimal> Id_Tecnico_Asignado
 		{
 			get
 			{
@@ -5847,7 +5847,7 @@ namespace Data.Modelo
 					}
 					else
 					{
-						this._Id_Tecnico_Asignado = default(decimal);
+						this._Id_Tecnico_Asignado = default(Nullable<decimal>);
 					}
 					this.SendPropertyChanged("Tecnico");
 				}

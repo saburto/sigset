@@ -260,7 +260,7 @@
       <Column Name="Fecha_Entrega" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Falla" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Condicion_Articulo" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="Id_Tecnico_Asignado" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Tecnico_Asignado" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
       <Column Name="Tipo_Orden" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Boleta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
