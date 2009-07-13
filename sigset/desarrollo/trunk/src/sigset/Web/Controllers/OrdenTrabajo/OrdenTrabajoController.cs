@@ -11,6 +11,7 @@ using Services.Articulos;
 using Services.OrdenTrabajo;
 using Web.Helpers;
 using Helpers;
+using xVal.ServerSide;
 
 namespace Web.Controllers
 {
@@ -62,8 +63,6 @@ namespace Web.Controllers
         public ActionResult CrearDetalle(decimal id, decimal rut)
         {
             ViewData["Tipo_Orden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
-
-
             Cliente cliente = _srvCliente.GetClientePorRut(rut);
             Orden_Trabajo ot = new Orden_Trabajo();
             ot.Cliente = cliente;
@@ -81,10 +80,40 @@ namespace Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CrearDetalle(Orden_Trabajo ordenTrabajo)
         {
+            try
+            {
+                decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo);
+                return RedirectToAction("Detalles", new { id = idOrden });
+            }
+            catch (RulesException ex)
+            {
+                ModelState.AddRuleErrors(ex.Errors);
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("_FORM", ex.Message);
+            }
             
-            return View();
+            ViewData["Tipo_Orden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
+            return View(ordenTrabajo);
         }
- 
+
+        public ActionResult Detalles(decimal id, string format)
+        {
+            Orden_Trabajo ot = _srvOrdenTrabajo.GetOrdenTrabajo(id);
+
+            if (format != null)
+            {
+                if (format == "xls")
+                {
+                    List<Orden_Trabajo> or = new List<Orden_Trabajo>();
+                    or.Add(ot);
+                    return this.Excel(or.AsQueryable(), "OrdenTrabajo"+ id +".xls", new string[] {"Id","Serie","Id_Cliente", "Falla","Condicion_Articulo","Tipo_Orden","Fecha_Entrega","Boleta","Poliza","Fecha_Compra","Lugar_Compra" });
+                }
+            }
+
+            return View(ot);
+        }
 
         public ActionResult Consulta()
         {

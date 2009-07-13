@@ -81,6 +81,7 @@
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\AutoCompleteHelper.cs" />
     <Compile Include="Helpers\CamposHelper.cs" />
+    <Compile Include="Helpers\ExcelResult.cs" />
     <Compile Include="Helpers\IJsonAutoComplete.cs" />
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Helpers\JQueryHelper.cs" />
@@ -226,6 +227,7 @@
     <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />
     <Content Include="Views\OrdenTrabajo\DatosArticulo.ascx" />
     <Content Include="Views\OrdenTrabajo\DatosCliente.ascx" />
+    <Content Include="Views\OrdenTrabajo\Detalles.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
