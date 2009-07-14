@@ -120,6 +120,13 @@ namespace Web.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Consulta(decimal Id, decimal Rut, string dv)
+        {
+
+            return View();
+        }
+
         public ActionResult Listar()
         {
             return View();

@@ -52,5 +52,11 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
         {
             return _data.Tipo_Ordens;
         }
+
+        public void SaveChanges()
+        {
+            _data.SubmitChanges();
+        }
+
     }
 }

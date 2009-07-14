@@ -6,6 +6,7 @@ using Data.Modelo;
 using Data.Repositorios.OrdenTrabajoRepositorio;
 using xVal.ServerSide;
 using System.Threading;
+using Data.Repositorios.Tecnicos;
 
 
 namespace Services.OrdenTrabajo
@@ -13,12 +14,15 @@ namespace Services.OrdenTrabajo
     public class OrdenTrabajoServicio : Services.OrdenTrabajo.IOrdenTrabajoServicio
     {
         private IOrdenTrabajoRepositorio _repo;
-        public OrdenTrabajoServicio(IOrdenTrabajoRepositorio repo)
+        private ITecnicoRepositorio _repoTecnico;
+
+        public OrdenTrabajoServicio(IOrdenTrabajoRepositorio repo, ITecnicoRepositorio repoTecnicos)
         {
             _repo = repo;
+            _repoTecnico = repoTecnicos;
         }
         public OrdenTrabajoServicio()
-               : this(new OrdenTrabajoRepositorio())
+               : this(new OrdenTrabajoRepositorio(), new TecnicoRepositorio())
         {
         }
 
@@ -28,15 +32,34 @@ namespace Services.OrdenTrabajo
             ValidarOrden(orden, null);
             Orden_Trabajo ot = _repo.GuardarOrdenTrabajo(orden);
 
+
+            //Asignacion de tecnicos automaticamente asincronicamente
             ThreadStart star = delegate { AsigancionAutomatica(orden); };
             Thread asigancion = new Thread(star);
             asigancion.Start();
+            
+            
             return ot.Id;
         }
 
         public void AsigancionAutomatica(Orden_Trabajo ot)
         {
-            System.Threading.Thread.Sleep(100000);
+            var tecnicos = _repoTecnico.GetTodosLosTecnicos();
+            var tecnicosLibre = from t in tecnicos
+                                orderby t.Orden_Trabajos.Min()
+                                select t;
+            foreach (var tec in tecnicosLibre)
+            {
+                //Si existe algun tecnico ocioso
+                if (tec.Orden_Trabajos.Count() == 0)
+                {
+                    ot.Id_Tecnico_Asignado = tec.Rut;
+                    ot.Tecnico = tec;
+                    _repo.SaveChanges();
+                    return;
+                }
+            }
+
         }
 
 

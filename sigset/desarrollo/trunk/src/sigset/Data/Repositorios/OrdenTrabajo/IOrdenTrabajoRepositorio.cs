@@ -12,5 +12,7 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
         Orden_Trabajo GuardarOrdenTrabajo(Data.Modelo.Orden_Trabajo orden);
 
         IQueryable<Tipo_Orden> GetTiposOrden();
+
+        void SaveChanges();
     }
 }
