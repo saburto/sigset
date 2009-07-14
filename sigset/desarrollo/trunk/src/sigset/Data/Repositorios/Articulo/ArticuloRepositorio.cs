@@ -108,7 +108,7 @@ namespace Data.Repositorios.Articulo
             linea = linea.Trim();
             Linea l = new Linea();
             l.Descripcion = linea;
-            l.Id_Linea = _ent.Lineas.Count();
+            l.Id_Linea = _ent.Lineas.Count() + 1;
             _ent.Lineas.InsertOnSubmit(l);
             _ent.SubmitChanges();
             return l;

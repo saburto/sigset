@@ -5,6 +5,7 @@ using System.Text;
 using Data.Modelo;
 using Data.Repositorios.OrdenTrabajoRepositorio;
 using xVal.ServerSide;
+using System.Threading;
 
 
 namespace Services.OrdenTrabajo
@@ -26,8 +27,18 @@ namespace Services.OrdenTrabajo
             orden.Fecha_Ingreso = DateTime.Now;
             ValidarOrden(orden, null);
             Orden_Trabajo ot = _repo.GuardarOrdenTrabajo(orden);
+
+            ThreadStart star = delegate { AsigancionAutomatica(orden); };
+            Thread asigancion = new Thread(star);
+            asigancion.Start();
             return ot.Id;
         }
+
+        public void AsigancionAutomatica(Orden_Trabajo ot)
+        {
+            System.Threading.Thread.Sleep(100000);
+        }
+
 
         private void ValidarOrden(Orden_Trabajo orden, IList<ErrorInfo> _error)
         {

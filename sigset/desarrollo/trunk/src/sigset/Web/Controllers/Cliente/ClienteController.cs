@@ -174,7 +174,15 @@ namespace Web.Controllers
         {
             if (!Region.HasValue)
             {
-                Region = decimal.Parse(Request.Params["Dire_Region"]);
+                if (Request.Params["Dire_Region"] != null)
+                {
+                    Region = decimal.Parse(Request.Params["Dire_Region"]);
+                }
+                else
+                {
+                    Region = 0;
+                }
+                
             }
 
             var provincias = _serv.GetProvinciasByRegion(Region.Value, q).ToAutoCompleteJson("Id","nombre");
@@ -185,7 +193,14 @@ namespace Web.Controllers
         {
             if (!Provincia.HasValue)
             {
-                Provincia = decimal.Parse(Request.Params["Dire_Provincia"]);
+                if (Request.Params["Dire_Provincia"] != null)
+                {
+                    Provincia = decimal.Parse(Request.Params["Dire_Provincia"]);
+                }
+                else
+                {
+                    Provincia = 0;
+                }
             }
             var ciudades = _serv.GetComunasByProvincia(Provincia.Value, q).ToAutoCompleteJson("Id","Nombre");
             return Json(ciudades);

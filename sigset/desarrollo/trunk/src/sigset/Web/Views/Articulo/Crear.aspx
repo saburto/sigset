@@ -21,7 +21,7 @@
     <%= Html.ValidationSummary("Creación de articulo con errores.") %>
 
     <% using (Html.BeginForm()) {%>
-
+    <%=Html.Hidden("Rut", TempData["rutOrden"])%>
         <fieldset>
             <legend>Nuevo Articulo</legend>
             <div class="three-column-container">
@@ -63,14 +63,11 @@
                 </div>
             </div>
                 <div class="clear"></div>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Guardar" />
         </fieldset>
 
     <% } %>
 
-    <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 </asp:Content>
 
