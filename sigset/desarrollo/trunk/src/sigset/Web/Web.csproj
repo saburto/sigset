@@ -224,6 +224,7 @@
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Views\Administrativos\Lista.aspx" />
     <Content Include="Views\Administrativos\Web.sitemap" />
+    <Content Include="Views\OrdenTrabajo\Consulta.aspx" />
     <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />
     <Content Include="Views\OrdenTrabajo\DatosArticulo.ascx" />
     <Content Include="Views\OrdenTrabajo\DatosCliente.ascx" />
