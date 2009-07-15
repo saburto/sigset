@@ -42,9 +42,6 @@ namespace Data.Modelo
     partial void InsertContacto(Contacto instance);
     partial void UpdateContacto(Contacto instance);
     partial void DeleteContacto(Contacto instance);
-    partial void InsertDetalle(Detalle instance);
-    partial void UpdateDetalle(Detalle instance);
-    partial void DeleteDetalle(Detalle instance);
     partial void InsertEmpleado(Empleado instance);
     partial void UpdateEmpleado(Empleado instance);
     partial void DeleteEmpleado(Empleado instance);
@@ -114,6 +111,9 @@ namespace Data.Modelo
     partial void InsertOrden_Trabajo(Orden_Trabajo instance);
     partial void UpdateOrden_Trabajo(Orden_Trabajo instance);
     partial void DeleteOrden_Trabajo(Orden_Trabajo instance);
+    partial void InsertDetalle(Detalle instance);
+    partial void UpdateDetalle(Detalle instance);
+    partial void DeleteDetalle(Detalle instance);
     #endregion
 		
 		public sigsetEntities() : 
@@ -175,14 +175,6 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<Contacto>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Detalle> Detalles
-		{
-			get
-			{
-				return this.GetTable<Detalle>();
 			}
 		}
 		
@@ -367,6 +359,14 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<Orden_Trabajo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Detalle> Detalles
+		{
+			get
+			{
+				return this.GetTable<Detalle>();
 			}
 		}
 	}
@@ -1333,311 +1333,6 @@ namespace Data.Modelo
 						this._Tipo_Contacto = default(Nullable<decimal>);
 					}
 					this.SendPropertyChanged("Tipo_Contacto1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Detalle")]
-	public partial class Detalle : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private decimal _Id;
-		
-		private decimal _Id_Orden;
-		
-		private System.Nullable<System.DateTime> _Fecha_Creacion;
-		
-		private System.Nullable<decimal> _Id_Usuario;
-		
-		private string _Detalle1;
-		
-		private decimal _Estado;
-		
-		private EntityRef<Estado> _Estado1;
-		
-		private EntityRef<Usuario> _Usuario;
-		
-		private EntityRef<Orden_Trabajo> _Orden_Trabajo;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(decimal value);
-    partial void OnIdChanged();
-    partial void OnId_OrdenChanging(decimal value);
-    partial void OnId_OrdenChanged();
-    partial void OnFecha_CreacionChanging(System.Nullable<System.DateTime> value);
-    partial void OnFecha_CreacionChanged();
-    partial void OnId_UsuarioChanging(System.Nullable<decimal> value);
-    partial void OnId_UsuarioChanged();
-    partial void OnDetalle1Changing(string value);
-    partial void OnDetalle1Changed();
-    partial void OnEstadoChanging(decimal value);
-    partial void OnEstadoChanged();
-    #endregion
-		
-		public Detalle()
-		{
-			this._Estado1 = default(EntityRef<Estado>);
-			this._Usuario = default(EntityRef<Usuario>);
-			this._Orden_Trabajo = default(EntityRef<Orden_Trabajo>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public decimal Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Id_Orden", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Id_Orden
-		{
-			get
-			{
-				return this._Id_Orden;
-			}
-			set
-			{
-				if ((this._Id_Orden != value))
-				{
-					if (this._Orden_Trabajo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnId_OrdenChanging(value);
-					this.SendPropertyChanging();
-					this._Id_Orden = value;
-					this.SendPropertyChanged("Id_Orden");
-					this.OnId_OrdenChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Fecha_Creacion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Creacion
-		{
-			get
-			{
-				return this._Fecha_Creacion;
-			}
-			set
-			{
-				if ((this._Fecha_Creacion != value))
-				{
-					this.OnFecha_CreacionChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Creacion = value;
-					this.SendPropertyChanged("Fecha_Creacion");
-					this.OnFecha_CreacionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Id_Usuario", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Id_Usuario
-		{
-			get
-			{
-				return this._Id_Usuario;
-			}
-			set
-			{
-				if ((this._Id_Usuario != value))
-				{
-					if (this._Usuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnId_UsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._Id_Usuario = value;
-					this.SendPropertyChanged("Id_Usuario");
-					this.OnId_UsuarioChanged();
-				}
-			}
-		}
-		
-		[Column(Name="Detalle", Storage="_Detalle1", DbType="VarChar(250)")]
-		public string Detalle1
-		{
-			get
-			{
-				return this._Detalle1;
-			}
-			set
-			{
-				if ((this._Detalle1 != value))
-				{
-					this.OnDetalle1Changing(value);
-					this.SendPropertyChanging();
-					this._Detalle1 = value;
-					this.SendPropertyChanged("Detalle1");
-					this.OnDetalle1Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_Estado", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					if (this._Estado1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEstadoChanging(value);
-					this.SendPropertyChanging();
-					this._Estado = value;
-					this.SendPropertyChanged("Estado");
-					this.OnEstadoChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Estado_Detalle", Storage="_Estado1", ThisKey="Estado", OtherKey="Id_Estado", IsForeignKey=true)]
-		public Estado Estado1
-		{
-			get
-			{
-				return this._Estado1.Entity;
-			}
-			set
-			{
-				Estado previousValue = this._Estado1.Entity;
-				if (((previousValue != value) 
-							|| (this._Estado1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Estado1.Entity = null;
-						previousValue.Detalles.Remove(this);
-					}
-					this._Estado1.Entity = value;
-					if ((value != null))
-					{
-						value.Detalles.Add(this);
-						this._Estado = value.Id_Estado;
-					}
-					else
-					{
-						this._Estado = default(decimal);
-					}
-					this.SendPropertyChanged("Estado1");
-				}
-			}
-		}
-		
-		[Association(Name="Usuario_Detalle", Storage="_Usuario", ThisKey="Id_Usuario", OtherKey="Id", IsForeignKey=true)]
-		public Usuario Usuario
-		{
-			get
-			{
-				return this._Usuario.Entity;
-			}
-			set
-			{
-				Usuario previousValue = this._Usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario.Entity = null;
-						previousValue.Detalles.Remove(this);
-					}
-					this._Usuario.Entity = value;
-					if ((value != null))
-					{
-						value.Detalles.Add(this);
-						this._Id_Usuario = value.Id;
-					}
-					else
-					{
-						this._Id_Usuario = default(Nullable<decimal>);
-					}
-					this.SendPropertyChanged("Usuario");
-				}
-			}
-		}
-		
-		[Association(Name="Orden_Trabajo_Detalle", Storage="_Orden_Trabajo", ThisKey="Id_Orden", OtherKey="Id", IsForeignKey=true)]
-		public Orden_Trabajo Orden_Trabajo
-		{
-			get
-			{
-				return this._Orden_Trabajo.Entity;
-			}
-			set
-			{
-				Orden_Trabajo previousValue = this._Orden_Trabajo.Entity;
-				if (((previousValue != value) 
-							|| (this._Orden_Trabajo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Orden_Trabajo.Entity = null;
-						previousValue.Detalles.Remove(this);
-					}
-					this._Orden_Trabajo.Entity = value;
-					if ((value != null))
-					{
-						value.Detalles.Add(this);
-						this._Id_Orden = value.Id;
-					}
-					else
-					{
-						this._Id_Orden = default(decimal);
-					}
-					this.SendPropertyChanged("Orden_Trabajo");
 				}
 			}
 		}
@@ -5373,9 +5068,9 @@ namespace Data.Modelo
 		
 		private string _Lugar_Compra;
 		
-		private EntitySet<Detalle> _Detalles;
-		
 		private EntitySet<Historial_Modificacion_Orden> _Historial_Modificacion_Ordens;
+		
+		private EntitySet<Detalle> _Detalles;
 		
 		private EntityRef<Articulo> _Articulo;
 		
@@ -5421,8 +5116,8 @@ namespace Data.Modelo
 		
 		public Orden_Trabajo()
 		{
-			this._Detalles = new EntitySet<Detalle>(new Action<Detalle>(this.attach_Detalles), new Action<Detalle>(this.detach_Detalles));
 			this._Historial_Modificacion_Ordens = new EntitySet<Historial_Modificacion_Orden>(new Action<Historial_Modificacion_Orden>(this.attach_Historial_Modificacion_Ordens), new Action<Historial_Modificacion_Orden>(this.detach_Historial_Modificacion_Ordens));
+			this._Detalles = new EntitySet<Detalle>(new Action<Detalle>(this.attach_Detalles), new Action<Detalle>(this.detach_Detalles));
 			this._Articulo = default(EntityRef<Articulo>);
 			this._Cliente = default(EntityRef<Cliente>);
 			this._Tecnico = default(EntityRef<Tecnico>);
@@ -5726,19 +5421,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Association(Name="Orden_Trabajo_Detalle", Storage="_Detalles", ThisKey="Id", OtherKey="Id_Orden")]
-		public EntitySet<Detalle> Detalles
-		{
-			get
-			{
-				return this._Detalles;
-			}
-			set
-			{
-				this._Detalles.Assign(value);
-			}
-		}
-		
 		[Association(Name="Orden_Trabajo_Historial_Modificacion_Orden", Storage="_Historial_Modificacion_Ordens", ThisKey="Id", OtherKey="Id_Orden")]
 		public EntitySet<Historial_Modificacion_Orden> Historial_Modificacion_Ordens
 		{
@@ -5749,6 +5431,19 @@ namespace Data.Modelo
 			set
 			{
 				this._Historial_Modificacion_Ordens.Assign(value);
+			}
+		}
+		
+		[Association(Name="Orden_Trabajo_Detalle", Storage="_Detalles", ThisKey="Id", OtherKey="Id_Orden")]
+		public EntitySet<Detalle> Detalles
+		{
+			get
+			{
+				return this._Detalles;
+			}
+			set
+			{
+				this._Detalles.Assign(value);
 			}
 		}
 		
@@ -5908,6 +5603,18 @@ namespace Data.Modelo
 			}
 		}
 		
+		private void attach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orden_Trabajo = this;
+		}
+		
+		private void detach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
+		{
+			this.SendPropertyChanging();
+			entity.Orden_Trabajo = null;
+		}
+		
 		private void attach_Detalles(Detalle entity)
 		{
 			this.SendPropertyChanging();
@@ -5919,17 +5626,310 @@ namespace Data.Modelo
 			this.SendPropertyChanging();
 			entity.Orden_Trabajo = null;
 		}
+	}
+	
+	[Table(Name="dbo.Detalle")]
+	public partial class Detalle : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		private void attach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _Id;
+		
+		private decimal _Id_Orden;
+		
+		private System.DateTime _Fecha_Creacion;
+		
+		private decimal _Id_Usuario;
+		
+		private string _Detalle1;
+		
+		private decimal _Estado;
+		
+		private EntityRef<Estado> _Estado1;
+		
+		private EntityRef<Orden_Trabajo> _Orden_Trabajo;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(decimal value);
+    partial void OnIdChanged();
+    partial void OnId_OrdenChanging(decimal value);
+    partial void OnId_OrdenChanged();
+    partial void OnFecha_CreacionChanging(System.DateTime value);
+    partial void OnFecha_CreacionChanged();
+    partial void OnId_UsuarioChanging(decimal value);
+    partial void OnId_UsuarioChanged();
+    partial void OnDetalle1Changing(string value);
+    partial void OnDetalle1Changed();
+    partial void OnEstadoChanging(decimal value);
+    partial void OnEstadoChanged();
+    #endregion
+		
+		public Detalle()
 		{
-			this.SendPropertyChanging();
-			entity.Orden_Trabajo = this;
+			this._Estado1 = default(EntityRef<Estado>);
+			this._Orden_Trabajo = default(EntityRef<Orden_Trabajo>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
 		}
 		
-		private void detach_Historial_Modificacion_Ordens(Historial_Modificacion_Orden entity)
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public decimal Id
 		{
-			this.SendPropertyChanging();
-			entity.Orden_Trabajo = null;
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Orden", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Id_Orden
+		{
+			get
+			{
+				return this._Id_Orden;
+			}
+			set
+			{
+				if ((this._Id_Orden != value))
+				{
+					if (this._Orden_Trabajo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_OrdenChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Orden = value;
+					this.SendPropertyChanged("Id_Orden");
+					this.OnId_OrdenChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha_Creacion", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha_Creacion
+		{
+			get
+			{
+				return this._Fecha_Creacion;
+			}
+			set
+			{
+				if ((this._Fecha_Creacion != value))
+				{
+					this.OnFecha_CreacionChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Creacion = value;
+					this.SendPropertyChanged("Fecha_Creacion");
+					this.OnFecha_CreacionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Id_Usuario", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Id_Usuario
+		{
+			get
+			{
+				return this._Id_Usuario;
+			}
+			set
+			{
+				if ((this._Id_Usuario != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_UsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Usuario = value;
+					this.SendPropertyChanged("Id_Usuario");
+					this.OnId_UsuarioChanged();
+				}
+			}
+		}
+		
+		[Column(Name="Detalle", Storage="_Detalle1", DbType="VarChar(250)")]
+		public string Detalle1
+		{
+			get
+			{
+				return this._Detalle1;
+			}
+			set
+			{
+				if ((this._Detalle1 != value))
+				{
+					this.OnDetalle1Changing(value);
+					this.SendPropertyChanging();
+					this._Detalle1 = value;
+					this.SendPropertyChanged("Detalle1");
+					this.OnDetalle1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_Estado", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					if (this._Estado1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEstadoChanging(value);
+					this.SendPropertyChanging();
+					this._Estado = value;
+					this.SendPropertyChanged("Estado");
+					this.OnEstadoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Estado_Detalle", Storage="_Estado1", ThisKey="Estado", OtherKey="Id_Estado", IsForeignKey=true)]
+		public Estado Estado1
+		{
+			get
+			{
+				return this._Estado1.Entity;
+			}
+			set
+			{
+				Estado previousValue = this._Estado1.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado1.Entity = null;
+						previousValue.Detalles.Remove(this);
+					}
+					this._Estado1.Entity = value;
+					if ((value != null))
+					{
+						value.Detalles.Add(this);
+						this._Estado = value.Id_Estado;
+					}
+					else
+					{
+						this._Estado = default(decimal);
+					}
+					this.SendPropertyChanged("Estado1");
+				}
+			}
+		}
+		
+		[Association(Name="Orden_Trabajo_Detalle", Storage="_Orden_Trabajo", ThisKey="Id_Orden", OtherKey="Id", IsForeignKey=true)]
+		public Orden_Trabajo Orden_Trabajo
+		{
+			get
+			{
+				return this._Orden_Trabajo.Entity;
+			}
+			set
+			{
+				Orden_Trabajo previousValue = this._Orden_Trabajo.Entity;
+				if (((previousValue != value) 
+							|| (this._Orden_Trabajo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Orden_Trabajo.Entity = null;
+						previousValue.Detalles.Remove(this);
+					}
+					this._Orden_Trabajo.Entity = value;
+					if ((value != null))
+					{
+						value.Detalles.Add(this);
+						this._Id_Orden = value.Id;
+					}
+					else
+					{
+						this._Id_Orden = default(decimal);
+					}
+					this.SendPropertyChanged("Orden_Trabajo");
+				}
+			}
+		}
+		
+		[Association(Name="Usuario_Detalle", Storage="_Usuario", ThisKey="Id_Usuario", OtherKey="Id", IsForeignKey=true)]
+		public Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.Detalles.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Detalles.Add(this);
+						this._Id_Usuario = value.Id;
+					}
+					else
+					{
+						this._Id_Usuario = default(decimal);
+					}
+					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
