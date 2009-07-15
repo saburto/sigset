@@ -37,29 +37,31 @@
     <%}
       else
       {
-          alter = !alter; %>
+        %>  
         <tr>
-    <%} %>
+    <%}
+
+      alter = !alter;       %>
        
             <th scope="row">
-                <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> |
-                <%= Ajax.ActionLink("Ver","Detalles",new {id=item.Rut},new AjaxOptions{  HttpMethod="GET",LoadingElementId="loadingAjax", UpdateTargetId="detallesCliente"}) %>
+                <%= Html.ActionLink("Editar", "Editar", new { id = item.Rut })%> |
+                <%= Ajax.ActionLink("Ver", "Detalles", new { id = item.Rut }, new AjaxOptions { HttpMethod = "GET", LoadingElementId = "loadingAjax", UpdateTargetId = "detallesCliente" })%>
             </th>
             <td>
-                <%= Html.Encode(item.Rut.GetRutCompleto()) %>
+                <%= Html.Encode(item.Rut.GetRutCompleto())%>
             </td>
             <td>
-                <%= Html.Encode(item.Apellido_Paterno) %> <%= Html.Encode(item.Apellido_Materno) %>
+                <%= Html.Encode(item.Apellido_Paterno)%> <%= Html.Encode(item.Apellido_Materno)%>
             </td>
             <td>
-                <%= Html.Encode(item.Nombre) %>
+                <%= Html.Encode(item.Nombre)%>
             </td>
             <td>
-                <%=Html.ActionLink("Agregar", "Crear", "OrdenTrabajo", new {rut = item.Rut },null)%>
+                <%=Html.ActionLink("Agregar", "Crear", "OrdenTrabajo", new { rut = item.Rut }, null)%>
             </td>
         </tr>
     
-    <% } %>
+    <% } %>      
     </table>
     </td>
     <td id="detallesCliente" style="width:40%; vertical-align:top;" ></td>

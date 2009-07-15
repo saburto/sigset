@@ -7,6 +7,7 @@ using Data.Repositorios.OrdenTrabajoRepositorio;
 using xVal.ServerSide;
 using System.Threading;
 using Data.Repositorios.Tecnicos;
+using Data.Repositorios.Usuarios;
 
 
 namespace Services.OrdenTrabajo
@@ -15,22 +16,31 @@ namespace Services.OrdenTrabajo
     {
         private IOrdenTrabajoRepositorio _repo;
         private ITecnicoRepositorio _repoTecnico;
+        private IUsuarioRepositorio _repoUsuarios;
 
-        public OrdenTrabajoServicio(IOrdenTrabajoRepositorio repo, ITecnicoRepositorio repoTecnicos)
+        public OrdenTrabajoServicio(IOrdenTrabajoRepositorio repo, ITecnicoRepositorio repoTecnicos, IUsuarioRepositorio repoUsuario)
         {
             _repo = repo;
             _repoTecnico = repoTecnicos;
+            _repoUsuarios = repoUsuario;
         }
         public OrdenTrabajoServicio()
-               : this(new OrdenTrabajoRepositorio(), new TecnicoRepositorio())
+               : this(new OrdenTrabajoRepositorio(), new TecnicoRepositorio(), new UsuarioRepositorio())
         {
         }
 
-        public decimal CrearOrdenTrabajo(Orden_Trabajo orden)
+        public decimal CrearOrdenTrabajo(Orden_Trabajo orden, string usuario)
         {
             orden.Fecha_Ingreso = DateTime.Now;
             ValidarOrden(orden, null);
             Orden_Trabajo ot = _repo.GuardarOrdenTrabajo(orden);
+            Detalle detalle = new Detalle();
+            detalle.Id_Orden = ot.Id;
+            detalle.Id_Usuario = _repoUsuarios.GetUsuarioByNombreUsuario(usuario).Id;
+            detalle.Estado = 1;
+            detalle.Fecha_Creacion = ot.Fecha_Ingreso;
+            _repo.GuardarDetalle(detalle);
+
 
 
             //Asignacion de tecnicos automaticamente asincronicamente
@@ -44,21 +54,21 @@ namespace Services.OrdenTrabajo
 
         public void AsigancionAutomatica(Orden_Trabajo ot)
         {
-            var tecnicos = _repoTecnico.GetTodosLosTecnicos();
-            var tecnicosLibre = from t in tecnicos
-                                orderby t.Orden_Trabajos.Min()
-                                select t;
-            foreach (var tec in tecnicosLibre)
-            {
-                //Si existe algun tecnico ocioso
-                if (tec.Orden_Trabajos.Count() == 0)
-                {
-                    ot.Id_Tecnico_Asignado = tec.Rut;
-                    ot.Tecnico = tec;
-                    _repo.SaveChanges();
-                    return;
-                }
-            }
+            //var tecnicos = _repoTecnico.GetTodosLosTecnicos();
+            //var tecnicosLibre = from t in tecnicos
+            //                    orderby t.Orden_Trabajos.Min()
+            //                    select t;
+            //foreach (var tec in tecnicosLibre)
+            //{
+            //    //Si existe algun tecnico ocioso
+            //    if (tec.Orden_Trabajos.Count() == 0)
+            //    {
+            //        ot.Id_Tecnico_Asignado = tec.Rut;
+            //        ot.Tecnico = tec;
+            //        _repo.SaveChanges();
+            //        return;
+            //    }
+            //}
 
         }
 
@@ -130,6 +140,14 @@ namespace Services.OrdenTrabajo
         public Orden_Trabajo GetOrdenTrabajo(decimal id)
         {
             return _repo.GetOrdenTrabajoById(id);
+        }
+
+
+
+
+        public IList<Orden_Trabajo> GetOrdenesTrabajoByRut(decimal p)
+        {
+            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.Id_Cliente == p).OrderBy(x=> x.Fecha_Ingreso).ToList();
         }
     }
 }

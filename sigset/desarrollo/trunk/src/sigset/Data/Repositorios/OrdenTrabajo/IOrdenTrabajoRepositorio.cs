@@ -14,5 +14,7 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
         IQueryable<Tipo_Orden> GetTiposOrden();
 
         void SaveChanges();
+
+        void GuardarDetalle(Detalle detalle);
     }
 }

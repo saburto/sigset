@@ -58,5 +58,12 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
             _data.SubmitChanges();
         }
 
+
+        public void GuardarDetalle(Detalle detalle)
+        {
+            _data.Detalles.InsertOnSubmit(detalle);
+            SaveChanges();
+        }
+
     }
 }
