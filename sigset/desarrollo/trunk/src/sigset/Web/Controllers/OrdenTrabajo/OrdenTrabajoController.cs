@@ -82,10 +82,11 @@ namespace Web.Controllers
         {
             try
             {
-                string usuario = "aa";
+                string usuario = "rmorales";
                 if(HttpContext.User != null)
                 {
                     usuario = HttpContext.User.Identity.Name;
+
                 }
                 decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo,usuario);
                 return RedirectToAction("Detalles", new { id = idOrden });
