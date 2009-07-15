@@ -1,4 +1,12 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Data.Modelo.Orden_Trabajo>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Data.Modelo.Orden_Trabajo>>" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Lista Ordenes de trabajo sin asignar
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Lista Ordenes de trabajo sin asignar</h2>
 
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
@@ -44,7 +52,8 @@
     
         <tr>
             <th scope="row">
-                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
+                <%= Html.ActionLink("Asginar", "Asignar", new { id=item.Id })%> |
+                <%= Html.ActionLink("Detalles", "Detalles","OrdenTrabajo",new { id=item.Id }, null)%>
             </th>
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Id)) %>
@@ -72,4 +81,14 @@
     
     <% } %>
     </table>
+
+
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="MenuDerecha" runat="server">
+</asp:Content>
 

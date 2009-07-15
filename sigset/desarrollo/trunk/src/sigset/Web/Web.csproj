@@ -222,7 +222,10 @@
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom.css" />
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
-    <Content Include="Views\Administrativos\Lista.aspx" />
+    <Content Include="Views\Administrativos\Asignar.aspx" />
+    <Content Include="Views\Administrativos\AsignarTecnico.aspx" />
+    <Content Include="Views\Administrativos\Detalles.aspx" />
+    <Content Include="Views\Administrativos\ListaSinAsignar.aspx" />
     <Content Include="Views\Administrativos\Web.sitemap" />
     <Content Include="Views\OrdenTrabajo\Consulta.aspx" />
     <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />
