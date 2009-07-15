@@ -132,25 +132,71 @@ namespace Web.Controllers
             {
                 if (!Rut.HasValue)
                 {
-                    ModelState.AddModelError("_FORM", "Debe ingresar número de orden o rut para consulta.");
+                    return Content("<p><span class="+ HtmlHelper.ValidationMessageCssClassName +">Debe ingresar número de orden o rut para consulta.</span></p>");
                 }
                 else
                 {
                     var ordenesTrabajo = _srvOrdenTrabajo.GetOrdenesTrabajoByRut(Rut.Value);
-                    return PartialView("ListaOrdenes", ordenesTrabajo);
+                    if (!ordenesTrabajo.Any())
+                    {
+                        return Content("<p><span class="+ HtmlHelper.ValidationMessageCssClassName +">Rut no posee orden de trabajo asociado.</span></p>");
+                    }
+                    else
+                    {
+                        return PartialView("ListaOrdenes", ordenesTrabajo);
+                    }
                 }
             }
             else
             {
                 var ordenTrabajo = _srvOrdenTrabajo.GetOrdenTrabajo(Id.Value);
-                return PartialView("DetalleCompleto", ordenTrabajo);
+                if (ordenTrabajo == null)
+                {
+                    return Content("<p><span class="+ HtmlHelper.ValidationMessageCssClassName +">Orden de trabajo con ese número no se encuentra.</span></p>");
+                }
+                else
+                {
+                    var lista = new List<Orden_Trabajo>();
+                    lista.Add(ordenTrabajo);
+                    return PartialView("ListaOrdenes", lista);
+                }
             }
-            return View();
         }
 
         public ActionResult Listar()
         {
+            ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
+            ViewData["ListaEstados"] = _srvOrdenTrabajo.GetEstadosOrden().GetSelectCampos("Id_Estado", "Descripcion");
             return View();
+        }
+
+        
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Listar(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos,string ListaEstados)
+        {
+            try
+            {
+                var ordenes = _srvOrdenTrabajo.GetOrdenesTrabajo(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);
+                 return PartialView("ListaOrdenes", ordenes);
+            }
+            catch (Exception ex)
+            {
+                return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">"+ ex.Message +"</span></p>");
+            }
+            
+        }
+
+        public ActionResult ListarExcel(string Fecha_Inicio, string Fecha_Final, string ListaTipos, string ListaEstados, string format)
+        {
+
+            if (!string.IsNullOrEmpty(format) && format == "xls" && !string.IsNullOrEmpty(Fecha_Inicio) && !string.IsNullOrEmpty(Fecha_Final))
+            {
+                DateTime date = Convert.ToDateTime(Fecha_Inicio);
+                DateTime date2 = Convert.ToDateTime(Fecha_Final);
+                var ordenes = _srvOrdenTrabajo.GetOrdenesTrabajo(date, date2, ListaTipos, ListaEstados);
+                return this.Excel(ordenes.AsQueryable(), "OrdenesTrabajo.xls", new string[] { "Id", "Serie", "Id_Cliente", "Falla", "Condicion_Articulo", "Tipo_Orden", "Fecha_Entrega", "Boleta", "Poliza", "Fecha_Compra", "Lugar_Compra" });
+            }
+            return Content("");
         }
     }
 }

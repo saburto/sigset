@@ -5,6 +5,7 @@
     <mvcSiteMapNode title="Orden de Trabajo" controller="OrdenTrabajo" action="Index">
       <mvcSiteMapNode title="Crear Orden" action="Crear" />
       <mvcSiteMapNode title="Consulta" action="Consulta" />
+      <mvcSiteMapNode title="Detalles" action="Detalles" isDynamic="true" dynamicParameters="*"/>
 
       <mvcSiteMapNode title="Listar" action="Listar" />
       <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />

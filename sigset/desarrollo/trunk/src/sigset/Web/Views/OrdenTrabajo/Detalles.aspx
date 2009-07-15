@@ -108,6 +108,27 @@
             <%= Html.Encode(Model.Lugar_Compra)%>
         </p>
         <%} %>
+        
+         <%if(Model.Detalles.Count() > 0){ %>
+        
+        <h2>Detalles</h2>
+        
+        <%foreach (var detalle in Model.Detalles.OrderBy(x => x.Fecha_Creacion))
+          {%>
+          
+          <p>Fecha:
+          <%=Html.Encode(string.Format("{0:g}",detalle.Fecha_Creacion)) %>
+          </p>
+          
+          <p>Estado:
+           <%=Html.Encode(detalle.Estado1.Descripcion) %>
+           <br />
+           <%=Html.Encode(detalle.Detalle1) %> 
+           </p>
+          <%} %>
+        
+        
+        <%} %>
 
 </asp:Content>
 

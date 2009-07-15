@@ -21,6 +21,9 @@
             <th>
                 Tipo Orden
             </th>
+            <th>
+                Estado
+            </th>
         </tr>
 
             
@@ -41,8 +44,7 @@
     
         <tr>
             <th scope="row">
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
+                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
             </th>
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Id)) %>
@@ -62,9 +64,12 @@
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Tipo_Orden1.Descripcion)) %>
             </td>
+            <td>
+                <%= Html.Encode(String.Format("{0}", item.Detalles.OrderBy(x => x.Fecha_Creacion).FirstOrDefault() == null ? "" : item.Detalles.OrderBy(x => x.Fecha_Creacion).FirstOrDefault().Estado1.Descripcion))%>
+            </td>
+
         </tr>
     
     <% } %>
-
     </table>
 

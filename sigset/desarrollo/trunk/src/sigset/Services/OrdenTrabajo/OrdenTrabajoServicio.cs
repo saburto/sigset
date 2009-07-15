@@ -149,5 +149,53 @@ namespace Services.OrdenTrabajo
         {
             return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.Id_Cliente == p).OrderBy(x=> x.Fecha_Ingreso).ToList();
         }
+
+
+        public IList<Estado> GetEstadosOrden()
+        {
+            return _repo.GetEstadosOrden().ToList();
+        }
+
+        public IList<Orden_Trabajo> GetOrdenesTrabajo(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
+        {
+            if (Fecha_Final == null || Fecha_Inicio == null)
+            {
+                throw new Exception("Se debe ingresar fecha inicio y final.");
+            }
+
+
+            if (Fecha_Final < Fecha_Inicio)
+            {   
+                throw new Exception("Fecha final debe ser mayor que fecha de inicio");
+            }
+
+            IQueryable<Orden_Trabajo> ordenes;
+            if (string.IsNullOrEmpty(ListaTipos) || ListaTipos == "-1")
+            {
+                ordenes = from o in _repo.GetTodasLasOrdenDeTrabajo()
+                          where o.Fecha_Ingreso >= Fecha_Inicio && o.Fecha_Ingreso <= Fecha_Final
+                          select o;    
+            }
+            else
+            {
+                ordenes = from o in _repo.GetTodasLasOrdenDeTrabajo()
+                          where o.Fecha_Ingreso >= Fecha_Inicio && o.Fecha_Ingreso <= Fecha_Final
+                            && o.Tipo_Orden == decimal.Parse(ListaTipos)
+                          select o;
+            }
+
+            if (string.IsNullOrEmpty(ListaEstados) || ListaEstados == "-1")
+            {
+                return ordenes.ToList();
+            }
+            else
+            {
+                var ord = from o in ordenes
+                          where o.Detalles.OrderBy(x => x.Fecha_Creacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
+                          select o;
+                return ord.ToList();                          
+            }
+        }
+
     }
 }
