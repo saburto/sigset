@@ -75,7 +75,6 @@
     <Compile Include="Controllers\Admin\TipoCargoController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\AreaTecnica\AreaTecnicaController.cs" />
-    <Compile Include="Controllers\AreaTecnica\OrdenesAsignadasController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\ArticuloController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
@@ -230,6 +229,9 @@
     <Content Include="Views\Administrativos\ListaSinAsignar.aspx" />
     <Content Include="Views\Administrativos\OrdenesTecnico.aspx" />
     <Content Include="Views\Administrativos\Web.sitemap" />
+    <Content Include="Views\AreaTecnica\AgregarDetalle.aspx" />
+    <Content Include="Views\AreaTecnica\Detalles.aspx" />
+    <Content Include="Views\AreaTecnica\SinOrdenes.aspx" />
     <Content Include="Views\OrdenTrabajo\Consulta.aspx" />
     <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />
     <Content Include="Views\OrdenTrabajo\DatosArticulo.ascx" />

@@ -20,5 +20,7 @@ namespace Services.OrdenTrabajo
         void AsginarTecnicoOrden(Data.Modelo.Detalle detalle, decimal rutTecnico, string usuario);
 
         IList<Data.Modelo.Orden_Trabajo> GetOrdenesTrabajoByTecnico(decimal id);
+
+        void AgregarDetalle(Data.Modelo.Detalle detalle, string p);
     }
 }

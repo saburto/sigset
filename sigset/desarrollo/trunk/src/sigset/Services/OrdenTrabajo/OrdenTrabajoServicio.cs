@@ -236,5 +236,14 @@ namespace Services.OrdenTrabajo
         }
 
 
+        public void AgregarDetalle(Detalle detalle, string p)
+        {
+            detalle.Fecha_Creacion = DateTime.Now;
+            var user = _repoUsuarios.GetUsuarioByNombreUsuario(p);
+            detalle.Id_Usuario = user != null ? user.Id : 9;
+            _repo.GuardarDetalle(detalle);
+        }
+
+        
     }
 }
