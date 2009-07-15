@@ -116,7 +116,8 @@ namespace Web.Helpers
                 tw.RenderBeginTag(HtmlTextWriterTag.Tr);
                 foreach (string header in _headers)
                 {
-                    string strValue = row.GetType().GetProperty(header).GetValue(row, null).ToString();
+                    var valorObjeto = row.GetType().GetProperty(header).GetValue(row, null) ?? "";
+                    string strValue = valorObjeto.ToString();
                     strValue = ReplaceSpecialCharacters(strValue);
 
                     if (_itemStyle != null)

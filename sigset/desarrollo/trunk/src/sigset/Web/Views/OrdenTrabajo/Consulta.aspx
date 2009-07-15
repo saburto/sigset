@@ -10,19 +10,20 @@
 
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
-    <% using (Html.BeginForm()) {%>
+    <% using (Ajax.BeginForm("Consulta", new AjaxOptions { HttpMethod="POST", LoadingElementId="loadingAjax", UpdateTargetId="resultado" }))
+       {%>
 
         <fieldset>
             <legend>Consulta Orden de Trabajo</legend>
             <p>
-                <label for="Id"><%=Html.Encode("Número de Orden de Trabajo") %></label>
-                <%= Html.TextBox("Id") %>
-                <%= Html.ValidationMessage("Id", "*") %>
+                <label for="Id"><%=Html.Encode("Número de Orden de Trabajo")%></label>
+                <%= Html.TextBox("Id")%>
+                <%= Html.ValidationMessage("Id", "*")%>
             </p>
             <p>
                 <label for="Rut">Rut Cliente:</label>
-                <%= Html.RutTextBox() %>
-                <%= Html.ValidationMessage("Rut", "*") %>
+                <%= Html.RutTextBox()%>
+                <%= Html.ValidationMessage("Rut", "*")%>
             </p>
             <p>
                 <input type="submit" value="Consultar" />
@@ -30,6 +31,7 @@
         </fieldset>
 
     <% } %>
+    <div id="resultado"></div>
 
 </asp:Content>
 

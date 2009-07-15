@@ -82,7 +82,12 @@ namespace Web.Controllers
         {
             try
             {
-                decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo);
+                string usuario = "aa";
+                if(HttpContext.User != null)
+                {
+                    usuario = HttpContext.User.Identity.Name;
+                }
+                decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo,usuario);
                 return RedirectToAction("Detalles", new { id = idOrden });
             }
             catch (RulesException ex)
@@ -121,9 +126,25 @@ namespace Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Consulta(decimal Id, decimal Rut, string dv)
+        public ActionResult Consulta(decimal? Id, decimal? Rut, string dv)
         {
-
+            if (!Id.HasValue)
+            {
+                if (!Rut.HasValue)
+                {
+                    ModelState.AddModelError("_FORM", "Debe ingresar número de orden o rut para consulta.");
+                }
+                else
+                {
+                    var ordenesTrabajo = _srvOrdenTrabajo.GetOrdenesTrabajoByRut(Rut.Value);
+                    return PartialView("ListaOrdenes", ordenesTrabajo);
+                }
+            }
+            else
+            {
+                var ordenTrabajo = _srvOrdenTrabajo.GetOrdenTrabajo(Id.Value);
+                return PartialView("DetalleCompleto", ordenTrabajo);
+            }
             return View();
         }
 

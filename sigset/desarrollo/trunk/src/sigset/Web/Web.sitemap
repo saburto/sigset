@@ -7,8 +7,12 @@
       <mvcSiteMapNode title="Consulta" action="Consulta" />
 
       <mvcSiteMapNode title="Listar" action="Listar" />
-      <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />  
-    
+      <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />
+      <mvcSiteMapNode title="Crear" controller="Cliente" action="Lista" />
+
+      <mvcSiteMapNode title="Crear Articulo" controller="Articulo" action="Crear" />
+      <mvcSiteMapNode title="Buscar Articulo" controller="Articulo" action="Buscar" />
+
     </mvcSiteMapNode>
 
      <mvcSiteMapNode title="Administración" controller="Admin" action="Index" />

@@ -160,7 +160,16 @@ namespace Services.Clientes
         public void CrearNuevoContacto(decimal rut, Contacto contacto, decimal tipoContacto, string prefijo)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            ValidarContacto(rut, contacto, tipoContacto, _errors, prefijo);
+            if (prefijo == "Email")
+            {
+                ValidarEmail(rut, contacto, tipoContacto, _errors);
+            }
+            else
+            {
+                ValidarContacto(rut, contacto, tipoContacto, _errors, prefijo);
+
+            }
+            
 
             if (_errors.Any())
             {
