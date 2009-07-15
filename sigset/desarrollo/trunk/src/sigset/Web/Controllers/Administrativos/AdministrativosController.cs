@@ -14,6 +14,7 @@ using Data.Modelo;
 namespace Web.Controllers.Administrativos
 {
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles = "Administrativo,Sistema")]
     public class AdministrativosController : Controller
     {
         IOrdenTrabajoServicio _srvOr;

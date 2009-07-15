@@ -17,6 +17,7 @@ namespace Web.Controllers
 {
     //[Authorize]
     [Web.Seguridad.ManejadorErrores]
+    [Authorize(Roles = "Técnico,Recepcionista,Administrativo,Sistema")]
     public class OrdenTrabajoController : Controller
     {
 
