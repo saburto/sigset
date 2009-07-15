@@ -16,5 +16,7 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
         void SaveChanges();
 
         void GuardarDetalle(Detalle detalle);
+
+        IQueryable<Estado> GetEstadosOrden();
     }
 }

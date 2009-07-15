@@ -65,5 +65,10 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
             SaveChanges();
         }
 
+
+        public IQueryable<Estado> GetEstadosOrden()
+        {
+            return _data.Estados;
+        }
     }
 }
