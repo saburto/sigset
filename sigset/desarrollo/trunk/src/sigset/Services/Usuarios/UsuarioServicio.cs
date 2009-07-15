@@ -122,6 +122,11 @@ namespace Services.Usuarios
             }
 
         }
+        public Usuario GetUsuariByNombre(string p)
+        {
+            return _repo.GetUsuarioByNombreUsuario(p);
+        }
+
     }
 }
     
