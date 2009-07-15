@@ -8,7 +8,7 @@
 
     <h2>Asignar Tecnico a Orden</h2>
 
-    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("Asignación incorrecta con los siguientes errores.") %>
 
     <% using (Html.BeginForm()) {%>
 

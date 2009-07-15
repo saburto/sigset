@@ -229,5 +229,12 @@ namespace Services.OrdenTrabajo
         }
 
 
+
+        public IList<Orden_Trabajo> GetOrdenesTrabajoByTecnico(decimal id)
+        {
+            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.Id_Tecnico_Asignado == id).ToList();
+        }
+
+
     }
 }

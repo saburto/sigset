@@ -81,7 +81,7 @@
 
             </td>
            <td>
-                Ver Ordenes
+           <%=Html.ActionLink("Ver Ordenes", "OrdenesTecnico", new {id=item.Rut},null)%>
            </td>
     </tr>
     
