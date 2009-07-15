@@ -7,7 +7,7 @@ using Web.LogFilter;
 
 namespace Web.Controllers
 {
-    [HandleError]
+    [Web.Seguridad.ManejadorErrores]
     [Log]
     public class HomeController : Controller
     {

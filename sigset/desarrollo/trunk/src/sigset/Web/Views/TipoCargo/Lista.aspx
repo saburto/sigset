@@ -37,7 +37,7 @@
       else
       { %>
         <tr>
-    <%} %>
+    <%}%>
        
             <th scope="row">
                 <%= Html.ActionLink("Editar", "Editar", new { id = item.Id_Tipo_Cargo })%> |

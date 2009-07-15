@@ -50,7 +50,7 @@
       { %>
       
         <tr>
-    <%} %>
+    <%} alter = !alter; %>
              <td>
                <%= Html.Encode(item.Tipo_Especialidad1.Id_Tipo_Especialidad) %>
               </td>
