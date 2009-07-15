@@ -36,7 +36,10 @@ namespace Services.OrdenTrabajo
             Orden_Trabajo ot = _repo.GuardarOrdenTrabajo(orden);
             Detalle detalle = new Detalle();
             detalle.Id_Orden = ot.Id;
-            detalle.Id_Usuario = _repoUsuarios.GetUsuarioByNombreUsuario(usuario).Id;
+            //aca se cae.
+            var user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
+
+            detalle.Id_Usuario = user != null ? user.Id: 1;
             detalle.Estado = 1;
             detalle.Fecha_Creacion = ot.Fecha_Ingreso;
             _repo.GuardarDetalle(detalle);
