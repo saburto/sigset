@@ -194,11 +194,40 @@ namespace Services.OrdenTrabajo
             else
             {
                 var ord = from o in ordenes
-                          where o.Detalles.OrderBy(x => x.Fecha_Creacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
+                          where o.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
                           select o;
                 return ord.ToList();                          
             }
         }
+
+
+        public IList<Orden_Trabajo> GetOrdenesTrabajoSinAsignar()
+        {
+            var ord = from o in _repo.GetTodasLasOrdenDeTrabajo()
+                      where o.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault().Estado == 1
+                      select o;
+            return ord.ToList();
+        }
+
+
+        public void AsginarTecnicoOrden(Detalle detalle, decimal rutTecnico, string usuario)
+        {
+            var orden = GetOrdenTrabajo(detalle.Id_Orden);
+            orden.Id_Tecnico_Asignado = rutTecnico;
+            _repo.SaveChanges();
+
+
+            detalle.Estado = 2;
+            detalle.Fecha_Creacion = DateTime.Now;
+
+            var user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
+
+            detalle.Id_Usuario = user != null ? user.Id : 9;
+
+            _repo.GuardarDetalle(detalle);
+
+        }
+
 
     }
 }

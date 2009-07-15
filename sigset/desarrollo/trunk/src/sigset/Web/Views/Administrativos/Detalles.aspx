@@ -1,12 +1,15 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Orden_Trabajo>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Detalles
+	Orden de Trabajo Asignada
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
-        <h2>Orden de Trabajo</h2>
+        <h2>Orden de Trabajo Asignada</h2>
+        
+        <h2>Tecnico:<%=Html.Encode(Model.Tecnico.Empleado.Nombre + " " + Model.Tecnico.Empleado.Apellido_Paterno) %></h2>
+        
          <div class="three-column-container">
                 <div class="three-column-left">
         

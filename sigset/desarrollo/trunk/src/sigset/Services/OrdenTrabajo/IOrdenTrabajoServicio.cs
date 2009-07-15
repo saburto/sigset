@@ -14,5 +14,9 @@ namespace Services.OrdenTrabajo
         IList<Data.Modelo.Estado> GetEstadosOrden();
 
         IList<Data.Modelo.Orden_Trabajo> GetOrdenesTrabajo(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados);
+
+        IList<Data.Modelo.Orden_Trabajo> GetOrdenesTrabajoSinAsignar();
+
+        void AsginarTecnicoOrden(Data.Modelo.Detalle detalle, decimal rutTecnico, string usuario);
     }
 }
