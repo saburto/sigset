@@ -22,14 +22,14 @@
                 <%= Html.ValidationMessage("Detalle1", "*") %>
             </p>
             <p>
-                <input type="submit" value="Guardar" />s
+                <input type="submit" value="Guardar" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Volver", "Index") %>
     </div>
 
 </asp:Content>
