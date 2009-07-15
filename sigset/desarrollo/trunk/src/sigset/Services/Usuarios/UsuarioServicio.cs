@@ -40,13 +40,7 @@ namespace Services.Usuarios
             {
                 _errors.Add(new ErrorInfo("Tipo_Usuario", "Debe seleccionar Tipo de Usuario"));
             }
-
-            DataValidation.GetErrors(usuario, _errors);
-            if (_errors.Any())
-            {
-                throw new RulesException(_errors);
-            }
-
+      
             var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.Usuario1);
             if (usuarioRepetido != null)
             {
@@ -54,11 +48,16 @@ namespace Services.Usuarios
                 {
                     throw new RulesException("Usuario1", "Nombre de usuario ya esta en uso");
                 }
+            }
 
-                else
-                {
-                    _repo.UpdateUsuario(usuario);
-                }
+            DataValidation.GetErrors(usuario, _errors);
+            if (_errors.Any())
+            {
+                throw new RulesException(_errors);
+            }          
+            else
+            {
+                _repo.UpdateUsuario(usuario);
             }
         }
             
