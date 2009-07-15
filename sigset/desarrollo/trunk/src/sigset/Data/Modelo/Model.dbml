@@ -46,19 +46,6 @@
       <Association Name="Tipo_Contacto_Contacto" Member="Tipo_Contacto1" ThisKey="Tipo_Contacto" OtherKey="Id_Tipo_Contacto" Type="Tipo_Contacto" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Detalle" Member="Detalles">
-    <Type Name="Detalle">
-      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Id_Orden" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Id_Usuario" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Detalle" Member="Detalle1" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="Estado" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Estado_Detalle" Member="Estado1" ThisKey="Estado" OtherKey="Id_Estado" Type="Estado" IsForeignKey="true" />
-      <Association Name="Usuario_Detalle" Member="Usuario" ThisKey="Id_Usuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
-      <Association Name="Orden_Trabajo_Detalle" Member="Orden_Trabajo" ThisKey="Id_Orden" OtherKey="Id" Type="Orden_Trabajo" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Empleado" Member="Empleados">
     <Type Name="Empleado">
       <Column Name="Rut" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -266,12 +253,25 @@
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Compra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Lugar_Compra" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="Orden_Trabajo_Detalle" Member="Detalles" ThisKey="Id" OtherKey="Id_Orden" Type="Detalle" />
       <Association Name="Orden_Trabajo_Historial_Modificacion_Orden" Member="Historial_Modificacion_Ordens" ThisKey="Id" OtherKey="Id_Orden" Type="Historial_Modificacion_Orden" />
+      <Association Name="Orden_Trabajo_Detalle" Member="Detalles" ThisKey="Id" OtherKey="Id_Orden" Type="Detalle" />
       <Association Name="Articulo_Orden_Trabajo" Member="Articulo" ThisKey="Id_Articulo" OtherKey="Id" Type="Articulo" IsForeignKey="true" />
       <Association Name="Cliente_Orden_Trabajo" Member="Cliente" ThisKey="Id_Cliente" OtherKey="Rut" Type="Cliente" IsForeignKey="true" />
       <Association Name="Tecnico_Orden_Trabajo" Member="Tecnico" ThisKey="Id_Tecnico_Asignado" OtherKey="Rut" Type="Tecnico" IsForeignKey="true" />
       <Association Name="Tipo_Orden_Orden_Trabajo" Member="Tipo_Orden1" ThisKey="Tipo_Orden" OtherKey="Id_Tipo_Orden" Type="Tipo_Orden" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Detalle" Member="Detalles">
+    <Type Name="Detalle">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Orden" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Creacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Detalle" Member="Detalle1" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="Estado_Detalle" Member="Estado1" ThisKey="Estado" OtherKey="Id_Estado" Type="Estado" IsForeignKey="true" />
+      <Association Name="Orden_Trabajo_Detalle" Member="Orden_Trabajo" ThisKey="Id_Orden" OtherKey="Id" Type="Orden_Trabajo" IsForeignKey="true" />
+      <Association Name="Usuario_Detalle" Member="Usuario" ThisKey="Id_Usuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
