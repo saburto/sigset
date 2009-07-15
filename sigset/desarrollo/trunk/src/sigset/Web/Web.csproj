@@ -224,8 +224,11 @@
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Views\Administrativos\Asignar.aspx" />
     <Content Include="Views\Administrativos\AsignarTecnico.aspx" />
+    <Content Include="Views\Administrativos\ConsultaOrdenes.aspx" />
     <Content Include="Views\Administrativos\Detalles.aspx" />
+    <Content Include="Views\Administrativos\ListaOrdenes.ascx" />
     <Content Include="Views\Administrativos\ListaSinAsignar.aspx" />
+    <Content Include="Views\Administrativos\OrdenesTecnico.aspx" />
     <Content Include="Views\Administrativos\Web.sitemap" />
     <Content Include="Views\OrdenTrabajo\Consulta.aspx" />
     <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />

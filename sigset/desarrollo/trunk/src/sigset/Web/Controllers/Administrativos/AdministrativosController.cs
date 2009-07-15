@@ -63,5 +63,22 @@ namespace Web.Controllers.Administrativos
             var orden = _srvOr.GetOrdenTrabajo(detalle.Id_Orden);
             return View("Detalles",orden);
         }
+
+        public ActionResult OrdenesTecnico(decimal id)
+        {
+            var ordenes =  _srvOr.GetOrdenesTrabajoByTecnico(id);
+            return View(ordenes);
+        }
+
+        public ActionResult ConsultaOrdenes()
+        {
+            return new OrdenTrabajoController().Listar();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ConsultaOrdenes(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
+        {
+            return new OrdenTrabajoController().Listar(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);
+        }
     }
 }
