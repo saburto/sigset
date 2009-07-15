@@ -41,9 +41,9 @@
         <tr class="row-alternating">
     <%}
       else
-      {alter = !alter; %>
+      { %>
         <tr>
-    <%} %>
+    <%} alter = !alter; %>
        
             <th scope="row">
                 <%= Html.ActionLink("Editar", "Editar", new { id=item.Id }) %> |

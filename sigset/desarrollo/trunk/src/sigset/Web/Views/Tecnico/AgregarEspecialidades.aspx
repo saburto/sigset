@@ -26,10 +26,10 @@
       { %>
         <tr class="row-alternating">
     <%}
-      else alter = !alter;
+      else 
       { %>
         <tr>
-    <%} %>
+    <%} alter = !alter;%>
        
             <th scope="row">
                 <%= Html.ActionLink("Eliminar", "EliminarEspecialidad", new { id = item.Id, id_tecnico = ViewData["rutTecnico"] })%>

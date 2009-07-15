@@ -13,7 +13,7 @@ using xVal.ServerSide;
 namespace Web.Controllers
 {
 
-    [HandleError]
+    [Web.Seguridad.ManejadorErrores]
     public class AccountController : Controller
     {
 

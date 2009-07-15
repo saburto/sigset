@@ -42,7 +42,7 @@
       { %>
       
         <tr>
-    <%} %>
+    <%} alter = !alter; %>
        
             <th scope="row">
     
