@@ -17,7 +17,7 @@ namespace Web.Controllers //.Admin
     public class EmpleadoController : Controller
     {
         //jojoj, XD
-        //amor la misma logica con las interfaces de servicio
+        //la misma logica con las interfaces de servicio
         IEmpleadoServicio _servicio;
 
         public EmpleadoController()
@@ -31,8 +31,8 @@ namespace Web.Controllers //.Admin
             _servicio = ser;
         }
 
-        //amor voy a hacer una lista de empleados, okis??Doki
-        public ActionResult Lista()//amor fijate como se crea la vistaspis
+        //voy a hacer una lista de empleados, okis??Doki
+        public ActionResult Lista()//fijate como se crea la vistaspis
         {
             //aqui llamo al serivicio, que ha su vez llama al repositorio, okis??
             var empleados = _servicio.GetTodosLosEmpleados();
