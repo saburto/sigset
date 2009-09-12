@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IncioController {
 
+
+	/***
+	 * Action de inicio, de ruta por defecto "/"
+	 * @return
+	 */
 	@RequestMapping("/")
 	public String Index(){
 		return Inicio();
@@ -16,5 +21,7 @@ public class IncioController {
 	public String Inicio() {
 		return "inicio/inicio";
 	}
+	
+	
 	
 }
