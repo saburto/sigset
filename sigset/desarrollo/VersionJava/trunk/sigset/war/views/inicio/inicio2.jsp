@@ -9,5 +9,8 @@
 		<h2>Holiiiiiiii</h2>
 		<p>Esta es la pagina de inicio</p>
 		<a href="/sistema/prueba/">Link a aqui</a>
+		
+		<a href="/admin/">Link admin usuario</a>
+		
 	</body>
 </html>

@@ -1,11 +1,14 @@
 package cl.sigti.sigset.modelo;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+@SuppressWarnings("serial")
 @PersistenceCapable
-public class Direccion {
+public class Direccion implements Serializable {
 	@Persistent
 	@PrimaryKey
 	private Long id;

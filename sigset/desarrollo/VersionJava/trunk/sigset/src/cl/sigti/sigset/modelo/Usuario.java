@@ -2,45 +2,61 @@ package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import cl.sigti.sigset.util.modelo.Form;
+import cl.sigti.sigset.util.modelo.InputType;
 
 @SuppressWarnings("serial")
-@PersistenceCapable
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Usuario implements Serializable {
 	
-	@Persistent
+	@Persistent(valueStrategy= IdGeneratorStrategy.IDENTITY)
+	@PrimaryKey
+	@Form(type= InputType.HIDDEN)	
 	private Long id;
 	
 	@Persistent
 	private Empresa empresa;
 	
 	@Persistent
+	@Form(label="Nombre Usuario")
 	private String nombreUsuario;
 	
 	@Persistent
+	@Form(label="Email")
 	private String email;
 	
 	@Persistent
+	@Form(label="Rut")
 	private int rut;
 	
 	@Persistent
+	@Form(label="Telefono")
 	private String telefono;
 	
 	
 	@Persistent
+	@Form(label="Nombres")
 	private String nombres;
 	
 	@Persistent
+	@Form(label="Apellido Paterno")
 	private String apellidoPaterno;
 
 	@Persistent
+	@Form(label="Apellido Materno")
 	private String apellidoMaterno;
 
 	@Persistent
 	private TipoUsuario tipoUsuario;
 
 	@Persistent
+	@Form(label="Constraseña", type=InputType.PASSWORD)
 	private String password;
 
 	public Long getId() {
@@ -133,7 +149,7 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public Boolean isActivo() {
+	public Boolean getActivo() {
 		return activo;
 	}
 

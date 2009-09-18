@@ -1,17 +1,25 @@
 package cl.sigti.sigset.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable
-public class Empresa {
+import com.google.appengine.api.datastore.Key;
 
-	@PrimaryKey
-	@Persistent
-	private Long id;
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class Empresa implements Serializable {
+
+
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key id;
+
 	
 	@Persistent
 	private String nombre;
@@ -39,13 +47,7 @@ public class Empresa {
 	
 	private Boolean activo;
 	
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -126,6 +128,14 @@ public class Empresa {
 
 	public Boolean isActivo() {
 		return activo;
+	}
+
+	public void setId(Key id) {
+		this.id = id;
+	}
+
+	public Key getId() {
+		return id;
 	}
 
 	@Persistent
