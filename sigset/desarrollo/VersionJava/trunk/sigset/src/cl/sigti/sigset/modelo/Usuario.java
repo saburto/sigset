@@ -1,16 +1,32 @@
 package cl.sigti.sigset.modelo;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
+@SuppressWarnings("serial")
 @PersistenceCapable
-public class Usuario {
+public class Usuario implements Serializable {
 	
 	@Persistent
 	private Long id;
 	
 	@Persistent
 	private Empresa empresa;
+	
+	@Persistent
+	private String nombreUsuario;
+	
+	@Persistent
+	private String email;
+	
+	@Persistent
+	private int rut;
+	
+	@Persistent
+	private String telefono;
+	
 	
 	@Persistent
 	private String nombres;
@@ -42,6 +58,40 @@ public class Usuario {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
+	
+	
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getRut() {
+		return rut;
+	}
+
+	public void setRut(int rut) {
+		this.rut = rut;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 
 	public String getNombres() {
 		return nombres;
@@ -93,5 +143,10 @@ public class Usuario {
 
 	@Persistent
 	private Boolean activo;
+	
+	public String getNombresApellido(){
+		return this.nombres + " " + this.apellidoPaterno;
+	
+	}
 	
 }
