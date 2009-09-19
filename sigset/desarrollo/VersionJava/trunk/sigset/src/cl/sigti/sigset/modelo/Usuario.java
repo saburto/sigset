@@ -1,7 +1,6 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
-
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -13,7 +12,7 @@ import cl.sigti.sigset.util.modelo.InputType;
 
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Usuario implements Serializable {
+public class Usuario implements Serializable{
 	
 	@Persistent(valueStrategy= IdGeneratorStrategy.IDENTITY)
 	@PrimaryKey
@@ -33,7 +32,7 @@ public class Usuario implements Serializable {
 	
 	@Persistent
 	@Form(label="Rut")
-	private int rut;
+	private Integer rut;
 	
 	@Persistent
 	@Form(label="Telefono")
@@ -92,11 +91,11 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public int getRut() {
+	public Integer getRut() {
 		return rut;
 	}
 
-	public void setRut(int rut) {
+	public void setRut(Integer rut) {
 		this.rut = rut;
 	}
 
@@ -164,5 +163,7 @@ public class Usuario implements Serializable {
 		return this.nombres + " " + this.apellidoPaterno;
 	
 	}
+	
+
 	
 }

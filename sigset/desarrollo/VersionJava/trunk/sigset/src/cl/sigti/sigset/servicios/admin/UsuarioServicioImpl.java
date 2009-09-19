@@ -19,4 +19,10 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 		return usuarioRepositorio.getAll();
 	}
 
+	@Override
+	public Usuario crearNuevoUsuario(Usuario usuario) {
+		usuario.setActivo(true);
+		return usuarioRepositorio.Create(usuario);
+	}
+
 }

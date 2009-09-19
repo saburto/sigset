@@ -6,5 +6,5 @@ import cl.sigti.sigset.modelo.Usuario;
 
 public interface UsuarioServicio {
 	List<Usuario> getUsuarios();
-	
+	Usuario crearNuevoUsuario(Usuario usuario);
 }

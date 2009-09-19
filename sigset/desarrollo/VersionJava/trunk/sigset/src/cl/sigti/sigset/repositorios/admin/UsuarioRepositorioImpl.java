@@ -12,6 +12,4 @@ public class UsuarioRepositorioImpl extends RepositorioBaseImpl<Usuario> impleme
 		super(Usuario.class);
 	}
 
-	
-
 }
