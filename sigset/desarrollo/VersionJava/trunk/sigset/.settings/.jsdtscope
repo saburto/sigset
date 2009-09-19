@@ -6,7 +6,7 @@
 			<attribute name="hide" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.baseBrowserLibrary"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.wst.jsdt.launching.baseBrowserLibrary"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="output" path=""/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.wst.jsdt.USER_LIBRARY/jquery"/>
 </classpath>
