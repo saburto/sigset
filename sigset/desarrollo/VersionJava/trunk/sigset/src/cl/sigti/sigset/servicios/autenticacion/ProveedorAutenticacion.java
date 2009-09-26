@@ -3,6 +3,8 @@ package cl.sigti.sigset.servicios.autenticacion;
 import java.util.*;
 
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.concurrent.ConcurrentSessionControllerImpl;
+import org.springframework.security.authentication.concurrent.SessionRegistryImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,10 +16,22 @@ import cl.sigti.sigset.modelo.Usuario;
 @Service
 public class ProveedorAutenticacion implements AuthenticationProvider {
 
+	ConcurrentSessionControllerImpl sessionController = new  ConcurrentSessionControllerImpl();
+	SessionRegistryImpl sessionRegistry;
 	
+	public SessionRegistryImpl getSessionRegistry() {
+		return sessionRegistry;
+	}
+
+	public void setSessionRegistry(SessionRegistryImpl sessionRegistry) {
+		this.sessionRegistry = sessionRegistry;
+	}
+
 	@Override
 	public Authentication authenticate(Authentication arg0)
 			throws AuthenticationException {
+		
+		sessionController.setSessionRegistry(sessionRegistry);
 		
 		UsuarioPasswordEmpresaToken token = (UsuarioPasswordEmpresaToken) arg0;
 		
@@ -31,9 +45,14 @@ public class ProveedorAutenticacion implements AuthenticationProvider {
 			Usuario usuario = new Usuario();
 			usuario.setNombres("Juanito");
 			usuario.setApellidoPaterno("Perez");
+
+			UsuarioPasswordEmpresaToken aut = new UsuarioPasswordEmpresaToken(usuario, token.getPassword(), token.getEmpresa(),lista, arg0.getDetails());
 			
-			return new UsuarioPasswordEmpresaToken(usuario, 
-					token.getPassword(), token.getEmpresa(),lista );
+			sessionController.setExceptionIfMaximumExceeded(true);
+			sessionController.checkAuthenticationAllowed(aut);
+			sessionController.registerSuccessfulAuthentication(aut);
+			
+			return aut ;
 		}
 		return arg0;
 	}

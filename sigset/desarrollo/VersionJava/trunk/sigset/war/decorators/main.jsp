@@ -11,13 +11,16 @@
 <%@page import="cl.sigti.sigset.modelo.Usuario"%>
 
 
-<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%><html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@page import="org.springframework.web.jsf.WebApplicationContextVariableResolver"%>
+<%@page import="org.springframework.web.servlet.mvc.Controller"%><html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="<c:url value="/content/images/favicon.ico" />" />
+	<link href="<c:url value="/content/south-street/jquery-ui-1.7.2.custom.css" />"	rel="stylesheet" type="text/css" />
 	<link href="<c:url value="/content/Site.css" />" rel="stylesheet" type="text/css" media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
 	<link href="<c:url value="/content/print-styles.css" />" rel="stylesheet" type="text/css" media="print" />
-	<link href="<c:url value="/content/jquery-ui-1.7.2.custom.css" />"	rel="stylesheet" type="text/css" />
+	
 	<title>Sigset - <decorator:title default="Bienvenido" /></title>
 	
 	<script src="http://www.google.com/jsapi"></script>
@@ -27,7 +30,7 @@
 	</script>
 	<script type="text/javascript">
 		$(function() {
-			$("#nav-main").tabs().find(".ui-tabs-nav").sortable({axis:'x'});
+			$("#tabs").tabs();
 		});
 	</script>
 	
@@ -40,22 +43,24 @@
 		<div class="nav-login">
 			<ul>
 				<%if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof Usuario){%>
-					<%=((Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNombresApellido() %>
-				<%} %>
-				<!-- Control de usuario logeado -->
-				<li class="first"></li>
+					<li><%=((Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNombresApellido() %></li>
+					<li><a href='<s:url value="/logout/" />'>Cerrar Sesi&oacute;n</a></li>
+				<%}else{ %>
+					<li><a href="<s:url value="/login/" />">Iniciar Sesi&oacute;n</a></li>
+				<%}%>
 			</ul>
 		</div>
 		<div class="logo"><!-- Link pagina de inicio -->
-			<a href="">SERVICIO T&#201;CNICO</a>
+			<a href="<s:url value="/" />">SERVICIO T&#201;CNICO</a>
 		</div>
 		<div class="clear"></div>
 	</div>
 	<div class="poster-container-no-image">
 		<div class="poster-inner"></div>
 	</div>
-	<div class="nav-main">
+	<div class="nav-main" >
 		<ul>
+			
 			<li><a href="/">Home</a></li>
 			<li><a href="/admin/">Usuarios</a></li>
 			<li><a href="/sistema/prueba/">Prueba</a></li>
@@ -70,9 +75,8 @@
 							<img src="<c:url value="/content/images/ajax-loader.gif" />" alt="Cargando.." />
 						</div>
 					</div>
-
 						<decorator:body />
-<%/* 
+<%--
 <h1 class="first">&lt;H1&gt; Header</h1>
 <div class="photo-container align-left" style="width: 202px;">
 <div class="photo-content"><img src="" alt="Photo Small 1" /></div>
@@ -223,7 +227,7 @@ Label </label> <input class="input-box" name="email" id="email" type="text"
 <input class="button button-big" name="Submit" type="button"
 	value="Submit" /> <input class="button button-big" name="Submit2"
 	type="reset" value="Reset" /></fieldset>
-	*/%>
+	--%>
 	
 			</div>
 			<div class="content-left">

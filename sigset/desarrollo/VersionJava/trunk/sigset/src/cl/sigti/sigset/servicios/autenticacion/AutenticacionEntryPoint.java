@@ -16,6 +16,8 @@ public class AutenticacionEntryPoint extends
 	public void commence(HttpServletRequest arg0, HttpServletResponse arg1,
 			AuthenticationException arg2) throws IOException, ServletException {
 		// TODO Auto-generated method stub
+		//arg0.getSession().setMaxInactiveInterval(3*60);
+		
 		super.commence(arg0, arg1, arg2);
 	}
 }

@@ -7,12 +7,14 @@ http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 
-<http  create-session="never" entry-point-ref="AutenticacionEntryPoint" session-fixation-protection="none" >
+<http  create-session="never"  entry-point-ref="AutenticacionEntryPoint" session-fixation-protection="none" >
 	<custom-filter position="AUTHENTICATION_PROCESSING_FILTER" ref="AutenticacionFiltro"/>
+	<custom-filter position="CONCURRENT_SESSION_FILTER" ref="ConcurrentSessionFiltro"/>
 	<intercept-url pattern="/login/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	<intercept-url pattern="/content/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	<intercept-url pattern="/content/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	<intercept-url pattern="/sistema/**" access="ROLE_ADMIN" />
+	<custom-filter position="LOGOUT_FILTER" ref="LogoutFiltro"/>
 </http>
 
 <authentication-manager alias="authenticationManager" >
@@ -20,7 +22,21 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 	</authentication-provider>
 </authentication-manager>
 
-<beans:bean id="ProveedorAutenticacion" class="cl.sigti.sigset.servicios.autenticacion.ProveedorAutenticacion" />
+<beans:bean id="LogoutFiltro" class="cl.sigti.sigset.servicios.autenticacion.LogoutFiltro">
+<beans:property name="sessionRegistry" ref="SessionRegistro"></beans:property>
+</beans:bean>
+
+
+<beans:bean id="ConcurrentSessionFiltro" class="cl.sigti.sigset.servicios.autenticacion.SessionControllerFiltro">
+<beans:property name="sessionRegistry" ref="SessionRegistro"></beans:property>
+</beans:bean>
+
+
+<beans:bean id="SessionRegistro" class="org.springframework.security.authentication.concurrent.SessionRegistryImpl" scope="singleton" />
+
+<beans:bean id="ProveedorAutenticacion" class="cl.sigti.sigset.servicios.autenticacion.ProveedorAutenticacion">
+	<beans:property name="sessionRegistry" ref="SessionRegistro"></beans:property>
+</beans:bean>
 <beans:bean  id="AutenticacionFiltro" class="cl.sigti.sigset.servicios.autenticacion.AutenticacionFiltro" >
 	<beans:property name="authenticationManager" ref="authenticationManager" /> 
 </beans:bean>

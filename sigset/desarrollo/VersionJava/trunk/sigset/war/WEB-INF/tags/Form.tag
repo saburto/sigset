@@ -14,10 +14,11 @@
 <%@ tag import="java.lang.reflect.Field"%>
 <%@ tag import="cl.sigti.sigset.util.modelo.Form"%>
 <%@ tag import="cl.sigti.sigset.util.modelo.InputType"%>
-<%@tag import="org.springframework.web.util.HtmlUtils"%>
+<%@ tag import="org.springframework.web.util.HtmlUtils"%>
+
 <s:url var="url" value="${urlAction}" />
 <form:form action="${url}" commandName="usuario">
-
+	<fieldset>
 	<%for(Field obj : Class.forName(claseModelo).getDeclaredFields()) {%>
 	
 		<%if(obj.getAnnotation(Form.class) == null) continue; %>
@@ -32,5 +33,7 @@
 				<form:input path="<%=obj.getName() %>"/>
 			<%} %>
 	<%} %>
-	<input type="submit" value="Guardar"/>
+	<br />
+	<input type="submit" value="Guardar" class="button-big"/>
+	</fieldset>
 </form:form>
