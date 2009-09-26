@@ -6,6 +6,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
 
 import cl.sigti.sigset.util.modelo.Form;
 import cl.sigti.sigset.util.modelo.InputType;
@@ -164,6 +165,37 @@ public class Usuario implements Serializable{
 	
 	}
 	
-
+	@Override
+	public boolean equals(Object object){
+		
+		if(object == null && !(object instanceof Usuario)){
+			return false;	
+		}
+		else{
+			Usuario otroUsuario = (Usuario) object;
+			
+			if(this.nombres != null && otroUsuario.nombres != null 
+					/*&& this.empresa != null && otroUsuario.empresa != null*/
+					){
+				if (this.nombres.equals(otroUsuario.nombres) 
+						/*&& this.empresa.equals(otroUsuario.empresa)*/
+						) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode(){
+		return this.nombres != null ? this.nombres.hashCode(): 0;
+		//return  id.intValue();
+	}
+	
+	@Override
+	public String toString(){
+		return this.nombres;
+	}
 	
 }

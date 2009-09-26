@@ -11,9 +11,9 @@ public class UsuarioPasswordEmpresaToken extends AbstractAuthenticationToken {
 	private final Object nombreUsuario;
 	private final Object password;
 	private final Object empresa;
+	
 
-	public UsuarioPasswordEmpresaToken(Object nombreUsuario, Object password,
-			Object empresa) {
+	public UsuarioPasswordEmpresaToken(Object nombreUsuario, Object password, Object empresa) {
 		super(null);
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
@@ -22,11 +22,12 @@ public class UsuarioPasswordEmpresaToken extends AbstractAuthenticationToken {
 
 	}
 	
-    public UsuarioPasswordEmpresaToken(Object nombreUsuario, Object password,Object empresa, List<GrantedAuthority> authorities) {
+    public UsuarioPasswordEmpresaToken(Object nombreUsuario, Object password,Object empresa, List<GrantedAuthority> authorities, Object details) {
         super(authorities);
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.empresa = empresa;
+        super.setDetails(details);
         super.setAuthenticated(true); // must use super, as we override
     }
 
@@ -54,5 +55,4 @@ public class UsuarioPasswordEmpresaToken extends AbstractAuthenticationToken {
 	public Object getEmpresa() {
 		return empresa;
 	}
-
 }

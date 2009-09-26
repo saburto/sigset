@@ -12,16 +12,26 @@
 <title>Administraci&oacute;n</title>
 </head>
 <body>
+<div id="tabs">
 <ul>
-<%
-List<Usuario> usuarios =(List<Usuario>) request.getAttribute("usuarios");
-for(Usuario u: usuarios){ %>
-
-<li><%=u.getNombresApellido() %></li>
-
-<%} %>
+	<li><a href="#usuarios">Lista Usuarios</a></li>
+	<li><a href="#nuevo">Ingresar Nuevo Usuario</a></li>
 </ul>
-<cf:Form claseModelo="cl.sigti.sigset.modelo.Usuario" urlAction="/admin/crear/" commandName="usuario" />
 
+<div id="usuarios">
+	<ul>
+		<%
+		List<Usuario> usuarios =(List<Usuario>) request.getAttribute("usuarios");
+		for(Usuario u: usuarios){ %>
+		
+		<li><%=u.getNombresApellido() %></li>
+		
+		<%} %>
+	</ul>
+</div>
+<div id="nuevo">
+<cf:Form claseModelo="cl.sigti.sigset.modelo.Usuario" urlAction="/admin/crear/" commandName="usuario" />
+</div>
+</div>
 </body>
 </html>

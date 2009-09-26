@@ -8,6 +8,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -19,10 +20,16 @@ public class Empresa implements Serializable {
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key id;
-
-	
-	@Persistent
+    
+    @Persistent
+    @Unique
+    private String nombreCorto;
+    
+    @Persistent
 	private String nombre;
+    
+    @Persistent
+    private Integer rut;
 	
 	@Persistent
 	private Direccion direccion;
@@ -45,10 +52,9 @@ public class Empresa implements Serializable {
 	@Persistent
 	private String observaciones;
 	
+	@Persistent
 	private Boolean activo;
 	
-
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -136,6 +142,22 @@ public class Empresa implements Serializable {
 
 	public Key getId() {
 		return id;
+	}
+
+	public void setNombreCorto(String nombreCorto) {
+		this.nombreCorto = nombreCorto;
+	}
+
+	public String getNombreCorto() {
+		return nombreCorto;
+	}
+
+	public void setRut(Integer rut) {
+		this.rut = rut;
+	}
+
+	public Integer getRut() {
+		return rut;
 	}
 
 	@Persistent
