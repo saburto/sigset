@@ -17,7 +17,7 @@
 <%@ tag import="org.springframework.web.util.HtmlUtils"%>
 
 <s:url var="url" value="${urlAction}" />
-<form:form action="${url}" commandName="usuario">
+<form:form action="${url}" commandName="${commandName}">
 	<fieldset>
 	<%for(Field obj : Class.forName(claseModelo).getDeclaredFields()) {%>
 	

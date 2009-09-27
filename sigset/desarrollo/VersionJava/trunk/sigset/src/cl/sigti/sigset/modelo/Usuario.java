@@ -6,8 +6,6 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Unique;
-
 import cl.sigti.sigset.util.modelo.Form;
 import cl.sigti.sigset.util.modelo.InputType;
 
@@ -20,12 +18,32 @@ public class Usuario implements Serializable{
 	@Form(type= InputType.HIDDEN)	
 	private Long id;
 	
+
+	@Persistent
+	@Form(label="Nombre Usuario")
+	private String usuario;
+	
+	@Persistent
+	@Form(label="Constraseña", type=InputType.PASSWORD)
+	private String password;
+	
+	@Persistent
+	private Perfil perfil;
+	
 	@Persistent
 	private Empresa empresa;
 	
 	@Persistent
-	@Form(label="Nombre Usuario")
-	private String nombreUsuario;
+	@Form(label="Nombres")
+	private String nombres;
+	
+	@Persistent
+	@Form(label="Apellido Paterno")
+	private String apellidoPaterno;
+
+	@Persistent
+	@Form(label="Apellido Materno")
+	private String apellidoMaterno;
 	
 	@Persistent
 	@Form(label="Email")
@@ -39,26 +57,16 @@ public class Usuario implements Serializable{
 	@Form(label="Telefono")
 	private String telefono;
 	
+
+	@Persistent
+	private Boolean activo;
+		
+	@Persistent
+	private java.util.Set<cl.sigti.sigset.modelo.Tecnicos> Tecnicos = new java.util.HashSet<cl.sigti.sigset.modelo.Tecnicos>();
 	
 	@Persistent
-	@Form(label="Nombres")
-	private String nombres;
+	private java.util.Set<cl.sigti.sigset.modelo.UsuarioPermisos> UsuarioPermisos = new java.util.HashSet<cl.sigti.sigset.modelo.UsuarioPermisos>();
 	
-	@Persistent
-	@Form(label="Apellido Paterno")
-	private String apellidoPaterno;
-
-	@Persistent
-	@Form(label="Apellido Materno")
-	private String apellidoMaterno;
-
-	@Persistent
-	private TipoUsuario tipoUsuario;
-
-	@Persistent
-	@Form(label="Constraseña", type=InputType.PASSWORD)
-	private String password;
-
 	public Long getId() {
 		return id;
 	}
@@ -76,12 +84,12 @@ public class Usuario implements Serializable{
 	}
 	
 	
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsuario(String nombreUsuario) {
+		this.usuario = nombreUsuario;
 	}
 
 	public String getEmail() {
@@ -133,13 +141,6 @@ public class Usuario implements Serializable{
 		this.apellidoMaterno = apellidoMaterno;
 	}
 
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
 
 	public String getPassword() {
 		return password;
@@ -157,8 +158,6 @@ public class Usuario implements Serializable{
 		this.activo = activo;
 	}
 
-	@Persistent
-	private Boolean activo;
 	
 	public String getNombresApellido(){
 		return this.nombres + " " + this.apellidoPaterno;
@@ -196,6 +195,30 @@ public class Usuario implements Serializable{
 	@Override
 	public String toString(){
 		return this.nombres;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setTecnicos(java.util.Set<cl.sigti.sigset.modelo.Tecnicos> tecnicos) {
+		Tecnicos = tecnicos;
+	}
+
+	public java.util.Set<cl.sigti.sigset.modelo.Tecnicos> getTecnicos() {
+		return Tecnicos;
+	}
+
+	public void setUsuarioPermisos(java.util.Set<cl.sigti.sigset.modelo.UsuarioPermisos> usuarioPermisos) {
+		UsuarioPermisos = usuarioPermisos;
+	}
+
+	public java.util.Set<cl.sigti.sigset.modelo.UsuarioPermisos> getUsuarioPermisos() {
+		return UsuarioPermisos;
 	}
 	
 }
