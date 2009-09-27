@@ -30,7 +30,10 @@
 	</ul>
 </div>
 <div id="nuevo">
-<cf:Form claseModelo="cl.sigti.sigset.modelo.Usuario" urlAction="/admin/crear/" commandName="usuario" />
+<cf:Form claseModelo="cl.sigti.sigset.modelo.Usuario" 
+	urlAction="/admin/crear/" leyenda="Nuevo Usuario" 
+	commandName="usuario" />
+	
 </div>
 </div>
 </body>

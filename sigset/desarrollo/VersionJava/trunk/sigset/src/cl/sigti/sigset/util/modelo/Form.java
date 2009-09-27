@@ -13,5 +13,7 @@ import java.lang.annotation.Target;
 @Target(value=ElementType.FIELD)
 public @interface Form {
 	String label() default "";
-	InputType type() default InputType.TEXT ;  
+	InputType type() default InputType.TEXT ;
+	int columna() default -1;
+	int fila() default 999;
 }

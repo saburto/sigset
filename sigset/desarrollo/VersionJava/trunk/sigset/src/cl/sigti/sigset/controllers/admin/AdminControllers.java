@@ -8,16 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import cl.sigti.sigset.controllers.FormBaseController;
 import cl.sigti.sigset.modelo.Empresa;
 import cl.sigti.sigset.modelo.Usuario;
 import cl.sigti.sigset.servicios.admin.EmpresasServicio;
-import cl.sigti.sigset.servicios.admin.EmpresasServicioImpl;
 import cl.sigti.sigset.servicios.admin.UsuarioServicio;
 
 @Controller()
 @RequestMapping("/admin")
-public class AdminControllers extends FormBaseController {
+public class AdminControllers{
 
 	private final String ADMIN = "admin/";
 	

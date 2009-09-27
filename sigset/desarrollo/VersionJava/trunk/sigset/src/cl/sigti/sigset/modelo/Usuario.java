@@ -15,16 +15,15 @@ public class Usuario implements Serializable{
 	
 	@Persistent(valueStrategy= IdGeneratorStrategy.IDENTITY)
 	@PrimaryKey
-	@Form(type= InputType.HIDDEN)	
 	private Long id;
 	
 
 	@Persistent
-	@Form(label="Nombre Usuario")
+	@Form(label="Nombre Usuario",columna=0, fila=3)
 	private String usuario;
 	
 	@Persistent
-	@Form(label="Constraseña", type=InputType.PASSWORD)
+	@Form(label="Constraseña", type=InputType.PASSWORD, columna=1, fila=3)
 	private String password;
 	
 	@Persistent
@@ -34,27 +33,27 @@ public class Usuario implements Serializable{
 	private Empresa empresa;
 	
 	@Persistent
-	@Form(label="Nombres")
+	@Form(label="Nombres", columna=0, fila=1)
 	private String nombres;
 	
 	@Persistent
-	@Form(label="Apellido Paterno")
+	@Form(label="Apellido Paterno", columna=1, fila=1)
 	private String apellidoPaterno;
 
 	@Persistent
-	@Form(label="Apellido Materno")
+	@Form(label="Apellido Materno", columna=2, fila=1)
 	private String apellidoMaterno;
 	
 	@Persistent
-	@Form(label="Email")
+	@Form(label="Email", columna=0, fila=2)
 	private String email;
 	
 	@Persistent
-	@Form(label="Rut")
+	@Form(label="Rut", columna=0, fila=0)
 	private Integer rut;
 	
 	@Persistent
-	@Form(label="Telefono")
+	@Form(label="Telefono", columna=1, fila=2)
 	private String telefono;
 	
 

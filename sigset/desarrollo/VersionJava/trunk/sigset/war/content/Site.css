@@ -612,7 +612,31 @@ a:active {
 .three-column-right {
 	margin-right:0;
 	}
-	
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.two-column-container {
+	margin:0px 0px;
+	}
+
+
+.two-column-left {
+	float:left;
+	width:30%;
+	}
+
+.two-column-right {
+	width:70%;
+	float: right;
+	}
+
+
+
+
+
+
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 
 	 DATA TABLES

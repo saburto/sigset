@@ -4,24 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.propertyeditors.CustomBooleanEditor;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.support.WebBindingInitializer;
+import org.springframework.web.context.request.WebRequest;
 
 import cl.sigti.sigset.util.GoogleDatastoreKeyEditor;
 
-public class FormBaseController {
+public class InitBinder implements WebBindingInitializer {
 	
-	@InitBinder
-	protected void initBinder(HttpServletRequest request,
-			ServletRequestDataBinder binder) throws Exception {
-
+	@Override
+	public void initBinder(WebDataBinder binder, WebRequest request) {
 		binder.registerCustomEditor(String.class,
 				new StringTrimmerEditor(false));
 		
@@ -30,7 +27,7 @@ public class FormBaseController {
 		binder.registerCustomEditor(Double.class, new CustomNumberEditor(Double.class, true));
 		
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Boolean.class, new CustomBooleanEditor(
 				false));
