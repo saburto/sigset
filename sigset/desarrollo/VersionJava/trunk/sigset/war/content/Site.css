@@ -483,10 +483,11 @@ a:active {
 	}
 
 .content-container-inner {
-	background:url(images/bg-column-right.png) repeat-y right;
+	/*background:url(images/bg-column-right.png) repeat-y right;*/
 	_height:1px;
 	min-height:1px;
-	padding:0 200px;
+	/*padding:0 200px;*/
+	padding:0 0 0 200px;
 	position:relative;
 	}
 	
