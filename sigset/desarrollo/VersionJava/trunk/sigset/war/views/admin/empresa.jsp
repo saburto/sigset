@@ -27,7 +27,25 @@
 	</ul>
 </div>
 <div id="nueva">
-	<cf:Form claseModelo="cl.sigti.sigset.modelo.Empresa" urlAction="/admin/empresa/crear/" commandName="empresa" />
+
+	<form:form action="/admin/empresa/crear/" commandName="empresa">
+		<fieldset>
+		<legend>Nueva Empresa</legend>
+			<div class="three-column-container">
+				<div class="three-column-middle">
+					<form:label path="rut">Rut</form:label>
+					<form:input path="rut"/>
+				</div>
+				<div class="three-column-middle">
+				
+				</div>
+				<div class="three-column-right">
+				
+				</div>
+			</div>
+			<div class="clear"></div>
+		</fieldset>
+	</form:form>
 </div>
 
 

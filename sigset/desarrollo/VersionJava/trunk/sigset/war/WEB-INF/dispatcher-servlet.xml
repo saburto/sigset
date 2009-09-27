@@ -11,6 +11,11 @@
                 class="org.springframework.web.servlet.view.InternalResourceViewResolver"
                 p:prefix="/views/" p:suffix=".jsp" />
                 
-
+		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+			<property name="cacheSeconds" value="0" />
+			<property name="webBindingInitializer">
+				<bean class="cl.sigti.sigset.controllers.InitBinder" />
+			</property>
+		</bean>
              		   
 </beans>
