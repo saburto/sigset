@@ -407,7 +407,7 @@ a:active {
 
 .poster-container-no-image {
 	background:url(images/bg-poster-tile.jpg) repeat-x;
-	min-height:70px;
+	min-height:50px;
 	_height:70px;
 	margin-top:-1px;
 	}
@@ -415,7 +415,7 @@ a:active {
 .poster-inner {
 	background:url(images/bg-poster.jpg) no-repeat left top;
 	font-family:"trebuchet MS", verdana, sans-serif;
-	min-height:70px;
+	min-height:50px;
 	_height:70px;
 	}
 

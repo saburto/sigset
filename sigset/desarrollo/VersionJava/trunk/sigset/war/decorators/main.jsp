@@ -43,8 +43,7 @@
 		<div class="nav-login">
 			<ul>
 				<%if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof Usuario){%>
-					<li><%=((Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNombresApellido() %></li>
-					<li><a href='<s:url value="/logout/" />'>Cerrar Sesi&oacute;n</a></li>
+					<li><%=((Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNombresApellido() %><a href='<s:url value="/logout/" />'>[Cerrar Sesi&oacute;n]</a></li>
 				<%}else{ %>
 					<li><a href="<s:url value="/login/" />">Iniciar Sesi&oacute;n</a></li>
 				<%}%>
@@ -60,21 +59,22 @@
 	</div>
 	<div class="nav-main" >
 		<ul>
-			
-			<li><a href="/">Home</a></li>
-			<li><a href="/admin/">Usuarios</a></li>
-			<li><a href="/sistema/prueba/">Prueba</a></li>
+			<li><a href="/">Inicio</a></li>
+			<li><a href="/config/">Configuraci&ocirc;n Sistema</a></li>
+			<li><a href="/ot/">Orden de Trabajo</a></li>
+			<li><a href="/informes/">Informes</a></li>
+			<li><a href="/admin/">Administrativo</a></li>
 		</ul>
 	</div>
 	<div class="content-container">
 		<div class="content-container-inner">
 			<div class="content-main">
 				<a name="maincontent" id="maincontent"></a>
-					<div class="breadcrumb"><!-- Site map breadcrumb -->
+
 						<div id="loadingAjax" style="display: none;">Cargando... 
 							<img src="<c:url value="/content/images/ajax-loader.gif" />" alt="Cargando.." />
 						</div>
-					</div>
+
 						<decorator:body />
 <%--
 <h1 class="first">&lt;H1&gt; Header</h1>
@@ -233,8 +233,8 @@ Label </label> <input class="input-box" name="email" id="email" type="text"
 			<div class="content-left">
 				<div class="side-bucket"><!-- Menu izquierda --></div>
 			</div>
-			<div class="content-right"></div>
-			<div class="clear"></div>
+			<!--<div class="content-right"></div>
+			--><div class="clear"></div>
 		</div>
 	</div>
 	<div class="footer">
