@@ -28,7 +28,7 @@ public class AdminControllers{
 
 	@RequestMapping("/")
 	public ModelAndView inicio() {
-		
+												//    admin/inicio
 		ModelAndView modelAndView = new ModelAndView( ADMIN + "inicio");
 		
 		
@@ -41,6 +41,8 @@ public class AdminControllers{
 
 	@RequestMapping(value = "/crear/", method = RequestMethod.POST)
 	public String crear(@ModelAttribute Usuario usuario) {
+		
+		
 		usuarioServicio.crearNuevoUsuario(usuario);
 		return "redirect:/admin/";
 	}
