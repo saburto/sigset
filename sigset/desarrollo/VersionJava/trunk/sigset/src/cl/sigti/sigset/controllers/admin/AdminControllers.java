@@ -28,9 +28,14 @@ public class AdminControllers{
 
 	@RequestMapping("/")
 	public ModelAndView inicio() {
+		
 		ModelAndView modelAndView = new ModelAndView( ADMIN + "inicio");
+		
+		
 		modelAndView.addObject("usuarios", usuarioServicio.getUsuarios());
 		modelAndView.addObject("usuario", new Usuario());
+		
+		
 		return modelAndView;
 	}
 
