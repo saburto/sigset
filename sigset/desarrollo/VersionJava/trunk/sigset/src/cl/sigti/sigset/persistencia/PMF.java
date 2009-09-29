@@ -1,4 +1,4 @@
-package cl.sigsit.sigset.persistencia;
+package cl.sigti.sigset.persistencia;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;

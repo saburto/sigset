@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 
 
-import cl.sigsit.sigset.persistencia.PMF;
+import cl.sigti.sigset.persistencia.PMF;
 
 public class RepositorioBaseImpl<E> implements RepositorioBase<E> {
 	
