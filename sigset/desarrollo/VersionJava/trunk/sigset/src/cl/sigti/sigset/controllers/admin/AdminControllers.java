@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cl.sigti.sigset.modelo.Direccion;
 import cl.sigti.sigset.modelo.Empresa;
 import cl.sigti.sigset.modelo.Usuario;
 import cl.sigti.sigset.servicios.admin.EmpresasServicio;
@@ -51,7 +52,9 @@ public class AdminControllers{
 	public ModelAndView inicioEmpresa(){
 		ModelAndView modelAndView = new ModelAndView(ADMIN + "empresa");
 		modelAndView.addObject("empresas",empresasServicio.getEmpresas());
-		modelAndView.addObject("empresa", new Empresa());
+		Empresa empresa = new Empresa();
+		empresa.setDireccion(new Direccion());
+		modelAndView.addObject("empresa", empresa);
 		return modelAndView;
 	}
 	
