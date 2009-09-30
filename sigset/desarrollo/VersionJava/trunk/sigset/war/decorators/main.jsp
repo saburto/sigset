@@ -23,12 +23,15 @@
 	
 	<title>Sigset - <decorator:title default="Bienvenido" /></title>
 	
-	<script src="http://www.google.com/jsapi"></script>
+	<script src="<c:url value="/scripts/jquery-1.3.2.min.js" />"></script>
+	<script src="<c:url value="/scripts/jquery-ui-1.7.2.custom.min.js" />"></script>
+	
+	<!--<script src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 		google.load("jquery", "1.3.2");
 		google.load("jqueryui", "1.7.2");
 	</script>
-	<script type="text/javascript">
+	--><script type="text/javascript">
 		$(function() {
 			$("#tabs").tabs();
 		});
