@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cl.sigti.sigset.modelo.Empresa;
 import cl.sigti.sigset.modelo.Usuario;
 import cl.sigti.sigset.servicios.admin.EmpresasServicio;
 import cl.sigti.sigset.servicios.admin.UsuarioServicio;
@@ -15,11 +16,26 @@ import cl.sigti.sigset.servicios.admin.UsuarioServicio;
 public class adminInternoController {
    
 	@RequestMapping("/index/")
-	public String Index()
+	public String index()
 	{
 		return "adminInterno/index";
 	}
 	
 
+	@RequestMapping("/crear/usuario/")
+	public String crear()
+	{
+		return "adminInterno/crear";	
+		
+	}
+	@RequestMapping("/crear/usuario/empresa/")
+	public String crear(@ModelAttribute Usuario usuario)
+	{
+		return "adminInterno/crear";	
+		
+	}
+	
+	
+	
 	
 }
