@@ -1,4 +1,4 @@
-package cl.sigti.sigset.controllers.admin;
+package cl.sigti.sigset.controllers.sistema;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +15,10 @@ import cl.sigti.sigset.servicios.admin.EmpresasServicio;
 import cl.sigti.sigset.servicios.admin.UsuarioServicio;
 
 @Controller()
-@RequestMapping("/admin")
+@RequestMapping("/sistema")
 public class AdminControllers{
 
-	private final String ADMIN = "admin/";
+	private final String ADMIN = "sitema/";
 	
 	@Autowired
 	UsuarioServicio usuarioServicio;

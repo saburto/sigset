@@ -64,19 +64,24 @@
 			$("#tabs").tabs();
 		});
 
-		function abrirContenido(url){
+		function abrirContenido(url, menu){
+			$("#content").html("");
+
+			if(menu){
+				$("#MenuIzquierda").html("<p>Cargando Menu...</p>");
+				$("#MenuIzquierda").load(url + "menu/");
+			}
 			
 			$("#content").load(url,function(){
+					
 				$("#tabs").tabs();
 				$("#loadingAjax").hide(); 
 				$("#content").fadeTo(100,1,function(){
 					if(jQuery.browser.msie){
 						 this.style.removeAttribute('filter');
 					}
-				});
-				
+				});				
 			});
-			$("#content-left").load(url + "menu/");
 		}
 		
 	</script>
@@ -109,26 +114,19 @@
 	<div class="nav-main" >
 		<ul>
 			<li><a href="/">Inicio</a></li>
-			<li><a href="/config/">Configuraci&ocirc;n Sistema</a></li>
-			<li><a href="/ot/">Orden de Trabajo</a></li>
-			<li><a href="/informes/">Informes</a></li>
-			<li><a href="javascript:abrirContenido('/admin/')">Administrativo</a></li>
+			<li><a href="javascript:abrirContenido('/orden/', true);">Orden de Trabajo</a></li>
+			<li><a href="javascript:abrirContenido('/admin/', true);">Administraci&oacute;n</a></li>
+			<li><a href="javascript:abrirContenido('/tecnica/', true);">&Aacute;rea T&eacute;cnica</a></li>
+			<li><a href="javascript:abrirContenido('/config/', true);">Configuraci&oacute;n Sistema</a></li>
+			<li><a href="javascript:abrirContenido('/informes/', true);">Informes</a></li>
 		</ul>
 	</div>
 	<div class="content-container">
 		<div class="content-container-inner">
 			<div class="content-main">
-				<a name="maincontent" id="maincontent"></a>
-
-			
-		<div id="content">
-						<h2>Holiiiiiiii</h2>
-		<p>Esta es la pagina de inicio</p>
-		<a href="/sistema/prueba/">Link a aqui</a>
-		
-		<a href="/admin/">Link admin usuario</a>
-		
-		</div>
+				<div id="content">
+					<h2>P&aacute;gina de Inicio</h2>
+				</div>
 <%--
 <h1 class="first">&lt;H1&gt; Header</h1>
 <div class="photo-container align-left" style="width: 202px;">
@@ -284,7 +282,7 @@ Label </label> <input class="input-box" name="email" id="email" type="text"
 	
 			</div>
 			<div class="content-left">
-				<div class="side-bucket"><!-- Menu izquierda --></div>
+				<div class="side-bucket" id="MenuIzquierda"><!-- Menu izquierda --></div>
 			</div>
 			<!--<div class="content-right"></div>
 			--><div class="clear"></div>
