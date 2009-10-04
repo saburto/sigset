@@ -12,6 +12,19 @@ import cl.sigti.sigset.modelo.Marca;
 @RequestMapping("/orden")
 @Controller
 public class OrdenTrabajoController {
+	
+	
+	@RequestMapping("/menu/")
+	public ModelAndView menu(){
+		//TODO: llamar a servico de autorizacion y cargar permisos a los menus.
+		ModelAndView modelAndView = new ModelAndView("orden/menu");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/")
+	public String inicio(){
+		return crear();
+	}
 
 	@RequestMapping("/crear/")
 	public String crear(){
