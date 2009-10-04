@@ -119,6 +119,7 @@
 			<li><a href="javascript:abrirContenido('/tecnica/', true);">&Aacute;rea T&eacute;cnica</a></li>
 			<li><a href="javascript:abrirContenido('/config/', true);">Configuraci&oacute;n Sistema</a></li>
 			<li><a href="javascript:abrirContenido('/informes/', true);">Informes</a></li>
+			<li><a href="javascript:abrirContenido('/sistema/', true);">Sistema</a></li>
 		</ul>
 	</div>
 	<div class="content-container">
