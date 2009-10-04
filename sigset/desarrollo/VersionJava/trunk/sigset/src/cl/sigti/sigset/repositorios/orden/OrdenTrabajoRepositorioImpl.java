@@ -1,7 +1,5 @@
 package cl.sigti.sigset.repositorios.orden;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import cl.sigti.sigset.modelo.OrdenTrabajo;
