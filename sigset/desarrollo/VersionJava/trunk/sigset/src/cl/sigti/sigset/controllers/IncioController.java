@@ -1,36 +1,23 @@
 package cl.sigti.sigset.controllers;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IncioController {
 
-
-	/***
-	 * Action de inicio, de ruta por defecto "/"
-	 * @return
-	 */
 	@RequestMapping("/")
-	public String Index(){
-		return Inicio();
+	public String index(){
+		return inicio();
 	}
 	
 	@RequestMapping("/inicio/")
-	public String Inicio() {
-		return "inicio/inicio2";
+	public String inicio() {
+		return "inicio/inicio";
 	}
 	
-	@RequestMapping("/sistema/prueba/")
-	public String about(Model model){
-		SecurityContextHolder.getContext().getAuthentication().getDetails();
-		SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.addAttribute("usuario","");
-		return "sistema/prueba";
+	@RequestMapping("/acerca/")
+	public String about(){
+		return "inicio/acerca";
 	}
-	
-	
 }

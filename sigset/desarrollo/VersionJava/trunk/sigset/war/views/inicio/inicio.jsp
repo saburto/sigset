@@ -1,58 +1,135 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>	
 <%@page import="java.util.*"%>
 
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="cl.sigti.sigset.modelo.Usuario"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@page import="org.springframework.web.jsf.WebApplicationContextVariableResolver"%>
+<%@page import="org.springframework.web.servlet.mvc.Controller"%>
 
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" href="<c:url value="/content/images/favicon.ico" />" />
+	<link href="<c:url value="/content/south-street/jquery-ui-1.7.2.custom.css" />"	rel="stylesheet" type="text/css" />
+	<link href="<c:url value="/content/Site.css" />" rel="stylesheet" type="text/css" media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
+	<link href="<c:url value="/content/print-styles.css" />" rel="stylesheet" type="text/css" media="print" />
+	
+	<title>Sigset</title>
+	
+	<script src="<c:url value="/scripts/jquery-1.3.2.min.js" />"></script>
+	<script src="<c:url value="/scripts/jquery-ui-1.7.2.custom.min.js" />"></script>
+	
+	<!--<script src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+		google.load("jquery", "1.3.2");
+		google.load("jqueryui", "1.7.2");
+	</script>
+	--><script type="text/javascript">
 
-<link rel="shortcut icon"
-	href="<c:url value="/content/images/favicon.ico" />" />
-<link href="<c:url value="/content/Site.css" />" rel="stylesheet"
-	type="text/css"
-	media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
-<link href="<c:url value="/content/print-styles.css" />"
-	rel="stylesheet" type="text/css" media="print" />
-<link href="<c:url value="/content/jquery-ui-1.7.2.custom.css" />"
-	rel="stylesheet" type="text/css" />
+		jQuery.fn.center = function () {
+		    this.css("position","absolute");
+		    this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
+		    this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
+		    return this;
+		};
 
-<title>SigsetIncio</title>
+	
+		jQuery.ajaxSetup({
+			beforeSend: function(XMLHttpRequest) {
+				$("#content").fadeTo(100,0.33,function(){
+					if(jQuery.browser.msie){
+					 this.style.removeAttribute('filter');
+					}
+				});
+				$("#loadingAjax").center();
+				$("#loadingAjax").show();
+			},
+			complete: function(XMLHttpRequest, textStatus) {
+				$("#loadingAjax").hide();    
+				$("#content").fadeTo(100,1,function(){
+					if(jQuery.browser.msie){
+						 this.style.removeAttribute('filter');
+					}
+				});
+			}
+		});
+	
+		$(function() {
+			$("#tabs").tabs();
+		});
+
+		function abrirContenido(url){
+			
+			$("#content").load(url,function(){
+				$("#tabs").tabs();
+				$("#loadingAjax").hide(); 
+				$("#content").fadeTo(100,1,function(){
+					if(jQuery.browser.msie){
+						 this.style.removeAttribute('filter');
+					}
+				});
+				
+			});
+			$("#content-left").load(url + "menu/");
+		}
+		
+	</script>
 </head>
 <body>
-<div class="none"><a href="#maincontent"></a></div>
-<div class="header-container">
-<div class="nav-login">
-<ul>
-	<!-- Control de usuario logeado -->
-	<li class="first"></li>
-</ul>
+<div id="loadingAjax" style="display:none;width:10%;height:5%">Cargando... 
+		<img src="<c:url value="/content/images/ajax-loader.gif" />" alt="Cargando.." />
 </div>
-<div class="logo"><!-- Link pagina de inicio --> <a href="">SERVICIO
-T&#201;CNICO</a></div>
-<div class="clear"></div>
-</div>
-<div class="poster-container-no-image">
-<div class="poster-inner"></div>
-</div>
-<div class="nav-main">
-<ul>
-	<!-- Actual Action -->
 
-</ul>
-</div>
-<div class="content-container">
-<div class="content-container-inner">
-<div class="content-main"><a name="maincontent" id="maincontent"></a>
-<div class="breadcrumb"><!-- Site map breadcrumb -->
 
-<div id="loadingAjax" style="display: none;">Cargando... <img
-	src="<c:url value="/content/images/ajax-loader.gif" />" /></div>
-</div>
+	<div class="none"><a href="#maincontent"></a></div>
+	<div class="header-container">
+		<div class="nav-login">
+			<ul>
+				<%if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof Usuario){%>
+					<li><%=((Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getNombresApellido() %><a href='<s:url value="/logout/" />'>[Cerrar Sesi&oacute;n]</a></li>
+				<%}else{ %>
+					<li><a href="<s:url value="/login/" />">Iniciar Sesi&oacute;n</a></li>
+				<%}%>
+			</ul>
+		</div>
+		<div class="logo"><!-- Link pagina de inicio -->
+			<a href="<s:url value="/" />">SERVICIO T&#201;CNICO</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="poster-container-no-image">
+		<div class="poster-inner"></div>
+	</div>
+	<div class="nav-main" >
+		<ul>
+			<li><a href="/">Inicio</a></li>
+			<li><a href="/config/">Configuraci&ocirc;n Sistema</a></li>
+			<li><a href="/ot/">Orden de Trabajo</a></li>
+			<li><a href="/informes/">Informes</a></li>
+			<li><a href="javascript:abrirContenido('/admin/')">Administrativo</a></li>
+		</ul>
+	</div>
+	<div class="content-container">
+		<div class="content-container-inner">
+			<div class="content-main">
+				<a name="maincontent" id="maincontent"></a>
+
+			
+		<div id="content">
+						<h2>Holiiiiiiii</h2>
+		<p>Esta es la pagina de inicio</p>
+		<a href="/sistema/prueba/">Link a aqui</a>
+		
+		<a href="/admin/">Link admin usuario</a>
+		
+		</div>
+<%--
 <h1 class="first">&lt;H1&gt; Header</h1>
 <div class="photo-container align-left" style="width: 202px;">
 <div class="photo-content"><img src="" alt="Photo Small 1" /></div>
@@ -203,29 +280,28 @@ Label </label> <input class="input-box" name="email" id="email" type="text"
 <input class="button button-big" name="Submit" type="button"
 	value="Submit" /> <input class="button button-big" name="Submit2"
 	type="reset" value="Reset" /></fieldset>
-
-</div>
-<div class="content-left">
-
-
-<div class="side-bucket"><!-- Menu izquierda --></div>
-
-</div>
-<div class="content-right"></div>
-<div class="clear"></div>
-</div>
-</div>
-<div class="footer">
-<div class="nav-footer">
-<ul>
-	<li class="first"></li>
-	<!-- Link inicio -->
-	<li></li>
-
-	<!-- Link about -->
-</ul>
-<p class="copyright">&copy; 2009 Servicio T&#233;cnico</p>
-</div>
-</div>
+	--%>
+	
+			</div>
+			<div class="content-left">
+				<div class="side-bucket"><!-- Menu izquierda --></div>
+			</div>
+			<!--<div class="content-right"></div>
+			--><div class="clear"></div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="nav-footer">
+			<ul>
+				<li class="first">
+					<a href="/">Inicio</a>
+				</li>
+				<li>
+					<a href="javascript:abrirContenido('/acerca/');">Acerca</a>
+				</li>
+			</ul>
+			<p class="copyright">&copy; 2009 Sistema Servicio T&#233;cnico</p>
+		</div>
+	</div>
 </body>
 </html>
