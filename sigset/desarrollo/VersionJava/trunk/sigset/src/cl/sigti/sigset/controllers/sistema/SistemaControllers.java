@@ -16,9 +16,9 @@ import cl.sigti.sigset.servicios.admin.UsuarioServicio;
 
 @Controller()
 @RequestMapping("/sistema")
-public class AdminControllers{
+public class SistemaControllers{
 
-	private final String ADMIN = "sitema/";
+	private final String SISTEMA = "sitema/";
 	
 	@Autowired
 	UsuarioServicio usuarioServicio;
@@ -30,7 +30,7 @@ public class AdminControllers{
 	@RequestMapping("/")
 	public ModelAndView inicio() {
 												//    admin/inicio
-		ModelAndView modelAndView = new ModelAndView( ADMIN + "inicio");
+		ModelAndView modelAndView = new ModelAndView( SISTEMA + "inicio");
 		
 		
 		modelAndView.addObject("usuarios", usuarioServicio.getUsuarios());
@@ -50,7 +50,7 @@ public class AdminControllers{
 
 	@RequestMapping("/empresa/")
 	public ModelAndView inicioEmpresa(){
-		ModelAndView modelAndView = new ModelAndView(ADMIN + "empresa");
+		ModelAndView modelAndView = new ModelAndView(SISTEMA + "empresa");
 		modelAndView.addObject("empresas",empresasServicio.getEmpresas());
 		Empresa empresa = new Empresa();
 		empresa.setDireccion(new Direccion());
