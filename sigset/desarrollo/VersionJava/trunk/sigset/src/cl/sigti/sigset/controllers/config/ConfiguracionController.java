@@ -13,5 +13,6 @@ public class ConfiguracionController {
 		//TODO: llamar a servico de autorizacion y cargar permisos a los menus.
 		ModelAndView modelAndView = new ModelAndView("config/menu");
 		return modelAndView;
-	}
+	}	
+	
 }
