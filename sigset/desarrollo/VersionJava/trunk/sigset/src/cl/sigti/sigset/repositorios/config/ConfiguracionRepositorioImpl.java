@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 import cl.sigti.sigset.persistencia.PMF;
 
 @Repository
-public class ConfiguracionRepositorioImpl extends RepositorioBaseImpl<Usuario>
-		implements ConfiguracionRepositorio {
+public class ConfiguracionRepositorioImpl extends RepositorioBaseImpl<Usuario> implements ConfiguracionRepositorio
+		{
 
 	private static final Logger log = Logger
 			.getLogger(RepositorioBaseImpl.class.getName());
@@ -26,6 +26,9 @@ public class ConfiguracionRepositorioImpl extends RepositorioBaseImpl<Usuario>
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see cl.sigti.sigset.repositorios.config.ConfiguracionRepositorio#UsuariosEmpresa(cl.sigti.sigset.modelo.Empresa)
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Usuario> UsuariosEmpresa(Empresa empresa) {
 

@@ -14,7 +14,8 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 
 public class AutenticacionFiltro extends AbstractAuthenticationProcessingFilter {
 
-	public AutenticacionFiltro(){
+	public AutenticacionFiltro(
+			){
 		this("/login/iniciar/");
 	}
 	
