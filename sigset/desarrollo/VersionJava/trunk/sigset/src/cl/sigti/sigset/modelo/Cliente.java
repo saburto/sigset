@@ -18,7 +18,7 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 	
-	private int id;
+	private Long id;
 	
 	private cl.sigti.sigset.modelo.TipoCliente IdTipoCliente;
 	
@@ -26,21 +26,18 @@ public class Cliente implements Serializable {
 	
 	private cl.sigti.sigset.modelo.ClienteComercial ClienteComercial;
 	
-	private cl.sigti.sigset.modelo.ClienteParticular ClienteParticular;
+	private cl.sigti.sigset.modelo.ClienteParticular ClienteParticular = new ClienteParticular();
 	
 	private java.util.Set<cl.sigti.sigset.modelo.OrdenTrabajo> OrdenTrabajo = new java.util.HashSet<cl.sigti.sigset.modelo.OrdenTrabajo>();
 	
-	private void setId(int value) {
+	public void setId(Long value) {
 		this.id = value;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public int getORMID() {
-		return getId();
-	}
 	
 	public void setObservacion(String value) {
 		this.observacion = value;

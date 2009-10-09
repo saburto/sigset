@@ -30,7 +30,8 @@
 		google.load("jquery", "1.3.2");
 		google.load("jqueryui", "1.7.2");
 	</script>
-	--><script type="text/javascript">
+	-->
+	<script type="text/javascript">
 
 		jQuery.fn.center = function () {
 		    this.css("position","absolute");
@@ -59,11 +60,13 @@
 				});
 			}
 		});
-	
+
 		$(function() {
-			$("#tabs").tabs();
+			$("#tabs").tabs();		
 		});
 
+		var InitForm;
+		
 		function abrirContenido(url, menu){
 			$("#content").html("");
 
@@ -75,6 +78,12 @@
 			$("#content").load(url,function(){
 					
 				$("#tabs").tabs();
+				
+				if(InitForm != undefined){
+					InitForm();
+				}
+
+				
 				$("#loadingAjax").hide(); 
 				$("#content").fadeTo(100,1,function(){
 					if(jQuery.browser.msie){
@@ -114,12 +123,12 @@
 	<div class="nav-main" >
 		<ul>
 			<li><a href="/">Inicio</a></li>
-			<li><a href="javascript:abrirContenido('/orden/', true);">Orden de Trabajo</a></li>
-			<li><a href="javascript:abrirContenido('/admin/', true);">Administraci&oacute;n</a></li>
-			<li><a href="javascript:abrirContenido('/tecnica/', true);">&Aacute;rea T&eacute;cnica</a></li>
-			<li><a href="javascript:abrirContenido('/config/', true);">Configuraci&oacute;n Sistema</a></li>
-			<li><a href="javascript:abrirContenido('/informes/', true);">Informes</a></li>
-			<li><a href="javascript:abrirContenido('/sistema/', true);">Sistema</a></li>
+			<li><a  href="javascript:abrirContenido('/orden/',true);">Orden de Trabajo</a></li>
+			<li><a  href="javascript:abrirContenido('/admin/', true);">Administraci&oacute;n</a></li>
+			<li><a  href="javascript:abrirContenido('/tecnica/', true);">&Aacute;rea T&eacute;cnica</a></li>
+			<li><a  href="javascript:abrirContenido('/config/', true);">Configuraci&oacute;n Sistema</a></li>
+			<li><a  href="javascript:abrirContenido('/informes/', true);">Informes</a></li>
+			<li><a  href="javascript:abrirContenido('/sistema/', true);">Sistema</a></li>
 		</ul>
 	</div>
 	<div class="content-container">
