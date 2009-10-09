@@ -102,9 +102,6 @@ public class ClienteParticular implements Serializable {
 		return Contacto;
 	}
 	
-	
-	public String toString() {
-		return String.valueOf(((getCliente() == null) ? "" : String.valueOf(getCliente().getORMID())));
-	}
+
 	
 }

@@ -93,8 +93,6 @@ public class ClienteComercial implements Serializable {
 	}
 	
 	
-	public String toString() {
-		return String.valueOf(((getCliente() == null) ? "" : String.valueOf(getCliente().getORMID())));
-	}
+	
 	
 }

@@ -13,7 +13,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 	<intercept-url pattern="/login/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	<intercept-url pattern="/content/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 	<intercept-url pattern="/content/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-	<intercept-url pattern="/sistema/**" access="ROLE_ADMIN" />
+	<!--<intercept-url pattern="/sistema/**" access="ROLE_ADMIN" />	-->
 	<custom-filter position="LOGOUT_FILTER" ref="LogoutFiltro"/>
 </http>
 

@@ -18,21 +18,21 @@ public class TipoCliente implements Serializable {
 	public TipoCliente() {
 	}
 	
-	private int id;
+	private Long id;
 	
 	private String descripcion;
 	
 	private java.util.Set<cl.sigti.sigset.modelo.Cliente> Cliente = new java.util.HashSet<cl.sigti.sigset.modelo.Cliente>();
 	
-	private void setId(int value) {
+	private void setId(Long value) {
 		this.id = value;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public int getORMID() {
+	public Long getORMID() {
 		return getId();
 	}
 	
