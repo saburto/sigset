@@ -8,7 +8,6 @@ import cl.sigti.sigset.repositorios.RepositorioBase;
 
 public interface ConfiguracionRepositorio extends RepositorioBase<Usuario> {
 
-	@SuppressWarnings("unchecked")
 	public abstract List<Usuario> UsuariosEmpresa(Empresa empresa);
 
 }

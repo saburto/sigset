@@ -32,7 +32,6 @@ public class SistemaControllers{
 												//    admin/inicio
 		ModelAndView modelAndView = new ModelAndView( SISTEMA + "inicio");
 		
-		
 		modelAndView.addObject("usuarios", usuarioServicio.getUsuarios());
 		modelAndView.addObject("usuario", new Usuario());
 		
@@ -40,6 +39,13 @@ public class SistemaControllers{
 		return modelAndView;
 	}
 
+	@RequestMapping("/menu/")
+	public ModelAndView menu(){
+		//TODO: llamar a servico de autorizacion y cargar permisos a los menus.
+		ModelAndView modelAndView = new ModelAndView("sistema/menu");
+		return modelAndView;
+	}	
+	
 	@RequestMapping(value = "/crear/", method = RequestMethod.POST)
 	public String crear(@ModelAttribute Usuario usuario) {
 		
@@ -58,9 +64,15 @@ public class SistemaControllers{
 		return modelAndView;
 	}
 	
-	@RequestMapping("/empresa/crear/")
+	@RequestMapping(value = "/empresa/crear/", method = RequestMethod.POST ) 
 	public String crearEmpresa(@ModelAttribute Empresa empresa){
 		empresasServicio.crearNuevaEmpresa(empresa);
 		return "redirect:/admin/empresa/";
 	}
+	
+	@RequestMapping("/empresa/crear/")
+	public String crear()
+	   {
+		return "sistema/empresa/crear";
+		}
 }
