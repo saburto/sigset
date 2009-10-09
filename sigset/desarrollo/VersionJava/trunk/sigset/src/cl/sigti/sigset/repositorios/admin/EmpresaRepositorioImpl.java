@@ -12,6 +12,9 @@ public class EmpresaRepositorioImpl extends RepositorioBaseImpl<Empresa> impleme
 		super(Empresa.class);
 
 	}
+	
+	
+
 
 
 }
