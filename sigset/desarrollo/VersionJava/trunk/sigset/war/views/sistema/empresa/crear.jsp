@@ -7,8 +7,9 @@
 		<li><a href="#Empresa">Datos Empresa</a></li>
 		<li><a href="#Contrato">Datos Contrato</a></li>
 	</ul>
+<form  method="post" action="/sistema/empresa/crear">					
+	
 	<div id="Empresa">
-		<form  method="post" action="/sistema/empresa/crear">					
 			<div id="formularioEmpresa">
 			<fieldset>
 			<legend>Crear Empresa</legend>
@@ -24,7 +25,11 @@
 			 		<label>Raz&oacute;n social:</label>				 	
 			 		<input type="text" name="nombre" />
 			 	</div>
-			</div>				
+			</div>		
+			<div class="three-column-container">			
+			 		<label>Nombre Corto:</label>				 	
+			 		<input type="text" name="nombreCorto" />			 
+			</div>					
 			</div>
 			</fieldset>
 			<fieldset>					
@@ -52,7 +57,6 @@
 		   
 			</div>
 		
-		</form>
 	</div>
 	<div id="Contrato"> 
 	<fieldset>
@@ -69,15 +73,11 @@
 			 		<label>Inicio Contrato:</label>				 	
 			 		<input type="text" name="inicioContrato" />
 			 	</div>
-			</div>				
 			</div>
-			</fieldset>
-			<fieldset>					
-			<div class="three-column-container">
-				<div  class="three-column-left">	
+			<div class="three-column-container">				
 				 	<label>Fin Contrato:</label>
-				 	<input type="text" name="finContrato" />   
-				</div>
+				 	<input type="text" name="finContrato" />   				
+			</div>				
 			</div>
 		    </fieldset>
 		    <fieldset>
@@ -94,5 +94,6 @@
 				<input type="submit" value="guardar"></input>
 			</fieldset>	
 	
-	</div>
+	</div>	
+</form>
 </div>
