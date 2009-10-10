@@ -85,6 +85,8 @@ fieldset {
 	padding:10px 20px;
 	margin:15px 0;
 	position:relative;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
 	}
 
 fieldset fieldset {
@@ -111,7 +113,7 @@ input[type="text"],input[type="password"]   {
 	margin-bottom:5px;
 	vertical-align:top;
 	padding:2px;
-	color:#666666;
+	/*color:#666666;*/
 	font-size:.8em;
 	border:1px solid #82b26e;
 	background:url(images/bg-input.png) no-repeat;
@@ -730,13 +732,14 @@ li {
 .no-margin {
 	margin:0;
 	}
-	
-.field-validation-error
+
+
+.field-validation-error, .error
 {
     color: #ff0000;
 }
 
-.input-validation-error
+.input-validation-error, input.error
 {
     border: 1px solid #ff0000;
     background-color: #ffeeee;
@@ -802,4 +805,19 @@ li {
 .ac_over {
 	background-color: #0A246A;
 	color: white;
+}
+
+div.tooltip { 
+    background-color:#000; 
+    border:1px solid #fff; 
+    padding:10px 15px; 
+    width:200px; 
+    display:none; 
+    color:#fff; 
+    text-align:left; 
+    font-size:12px; 
+ 
+    /* outline radius for mozilla/firefox only */ 
+    -moz-box-shadow:0 0 10px #000; 
+    -webkit-box-shadow:0 0 10px #000; 
 }
