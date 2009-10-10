@@ -4,7 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <div id="tabs">
 	<ul>
-		<li><a href="#cliente">Mantenedor Empresa</a></li>
+		<li><a href="#Empresa">Datos Empresa</a></li>
+		<li><a href="#Contrato">Datos Contrato</a></li>
 	</ul>
 	<div id="Empresa">
 		<form  method="post" action="/sistema/empresa/crear">					
@@ -12,42 +13,86 @@
 			<fieldset>
 			<legend>Crear Empresa</legend>
 			<div>
-			 	<label>Rut:</label>				 	
-			 	<input type="text" name="rut" />				
-			</div>
 			<div class="three-column-container">
-				<div  class="three-column-left">			 	
-				 	<label>Raz&oacute;n social:</label>
-				 	<input type="text" name="nombre" />
-				 	<label>Direcci&oacute;n:</label>
-				 	<input type="text" name="direccion" />
-				 	<label>Correo Electr&oacute;nico</label>
-				 	<input type="text" name="email" />
-				 	<label>Telefono:</label>
-				 	<input type="text" name="telefono"/>
-				 	<label>Usuario Encargado:</label>
-				 	<input type="text" name="usuarioEncargado"/>
-				</div>
-				<div  class="three-column-left">				 	
-				 					 	
-				 	<label>Inicio Contrato:</label>				
-				 	<input type="text" name="inicioContrato"/>				 					 					 	
-	     	 	    <label>Fin Contrato:</label>
-				 	<input type="text" name="finContrato"/>
-				 	<label>Activo</label>
-				 	<input type="text" name="activo"/>
-				 	<label>Limite de usuario</label>
-				 	<input type="text" name="limiteUsuario"/>
-				</div>
-				</div>	
-				<div class="three-column-left">
-				</div>
-						
+				<div  class="three-column-left">
+			 		<label>Rut:</label>				 	
+			 		<input type="text" name="rut" />
+			 	</div>
 			</div>	
-			</fieldset>						
-			<label for="observacion">Observaciones</label>
-			<textarea name="observaciones"></textarea>
-			<input type="submit" value="guardar"></input>
+			<div class="three-column-container">
+				<div  class="three-column-left">
+			 		<label>Raz&oacute;n social:</label>				 	
+			 		<input type="text" name="nombre" />
+			 	</div>
+			</div>				
+			</div>
+			</fieldset>
+			<fieldset>					
+			<div class="three-column-container">
+				<div  class="three-column-left">	
+				 	<label>Direcci&oacute;n:</label>
+				 	<input type="text" name="direccion" />   
+				</div>
+			</div>
+		    </fieldset>
+		    <fieldset>
+		      <div class="three-column-container">
+				<div  class="three-column-left">
+		        	<label>Correo Electr&oacute;nico</label>
+				 	<input type="text" name="email" />
+				</div>
+			</div>	
+		     <div class="three-column-container">
+				<div  class="three-column-left">
+		         	<label>Tel&eacute;fono:</label>
+				 	<input type="text" name="telefono"/>
+				</div>
+			</div>	 
+		    </fieldset>   	  
+		   
+			</div>
+		
 		</form>
+	</div>
+	<div id="Contrato"> 
+	<fieldset>
+	<legend>Datos Contrato</legend>
+			<div>
+			<div class="three-column-container">
+				<div  class="three-column-left">
+			 		<label>Usuario Encargado:</label>				 	
+			 		<input type="text" name="usuarioEncargado" />
+			 	</div>
+			</div>	
+			<div class="three-column-container">
+				<div  class="three-column-left">
+			 		<label>Inicio Contrato:</label>				 	
+			 		<input type="text" name="inicioContrato" />
+			 	</div>
+			</div>				
+			</div>
+			</fieldset>
+			<fieldset>					
+			<div class="three-column-container">
+				<div  class="three-column-left">	
+				 	<label>Fin Contrato:</label>
+				 	<input type="text" name="finContrato" />   
+				</div>
+			</div>
+		    </fieldset>
+		    <fieldset>
+		      <div class="three-column-container">
+				<div  class="three-column-left">
+		        	<label>Activo</label>
+				 	<input type="text" name="activo" />
+				</div>
+			</div>			    
+		    </fieldset>   		   
+		    <fieldset>
+				<label for="observacion">Observaciones</label>
+				<textarea name="observaciones"></textarea>
+				<input type="submit" value="guardar"></input>
+			</fieldset>	
+	
 	</div>
 </div>
