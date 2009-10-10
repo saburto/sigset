@@ -19,11 +19,15 @@
 	<link href="<c:url value="/content/south-street/jquery-ui-1.7.2.custom.css" />"	rel="stylesheet" type="text/css" />
 	<link href="<c:url value="/content/Site.css" />" rel="stylesheet" type="text/css" media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
 	<link href="<c:url value="/content/print-styles.css" />" rel="stylesheet" type="text/css" media="print" />
-	
+	<link href="<c:url value="/content/jquery.tooltip.css" />" rel="stylesheet" type="text/css" />
 	<title>Sigset</title>
 	
 	<script src="<c:url value="/scripts/jquery-1.3.2.min.js" />"></script>
 	<script src="<c:url value="/scripts/jquery-ui-1.7.2.custom.min.js" />"></script>
+	<script src="<c:url value="/scripts/jquery.tooltip.min.js" />"></script>
+	<script src="<c:url value="/scripts/jquery.validate.min.js" />"></script>
+	<script src="<c:url value="/scripts/localization/messages_es.js" />"></script>
+	<script src="<c:url value="/scripts/jquery.history.js" />"></script>
 	
 	<!--<script src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
@@ -61,8 +65,40 @@
 			}
 		});
 
-		$(function() {
-			$("#tabs").tabs();		
+		function pageload(hash) {
+			// hash doesn't contain the first # character.
+			if(hash) {
+				// restore ajax loaded state
+				
+		      	var r = /^\/\w*\/$/;
+      			var t = r.test(hash);
+				abrirContenido(hash, t);
+			} else {
+				// start page
+				$("#content").html("");
+				$("#MenuIzquierda").html("");
+			}
+		}
+		
+		$(document).ready(function() {
+			$("#tabs").tabs();
+
+			// Initialize history plugin.
+			// The callback is called at once by present location.hash. 
+			$.history.init(pageload);
+			
+			// set onlick event for buttons
+			$("a[rel='history']").click(function(){
+
+				
+				
+				var hash = this.href;
+				hash = hash.replace(/^.*#/, '');
+				// moves to a new page. 
+				// pageload is called at once. 
+				$.history.load(hash);
+				return false;
+			});
 		});
 
 		var InitForm;
@@ -82,7 +118,6 @@
 				if(InitForm != undefined){
 					InitForm();
 				}
-
 				
 				$("#loadingAjax").hide(); 
 				$("#content").fadeTo(100,1,function(){
@@ -123,12 +158,14 @@
 	<div class="nav-main" >
 		<ul>
 			<li><a href="/">Inicio</a></li>
-			<li><a  href="javascript:abrirContenido('/orden/',true);">Orden de Trabajo</a></li>
-			<li><a  href="javascript:abrirContenido('/admin/', true);">Administraci&oacute;n</a></li>
-			<li><a  href="javascript:abrirContenido('/tecnica/', true);">&Aacute;rea T&eacute;cnica</a></li>
-			<li><a  href="javascript:abrirContenido('/config/', true);">Configuraci&oacute;n Sistema</a></li>
-			<li><a  href="javascript:abrirContenido('/informes/', true);">Informes</a></li>
-			<li><a  href="javascript:abrirContenido('/sistema/', true);">Sistema</a></li>
+			<li><a  rel="history"  href="#/orden/">Orden de Trabajo</a></li>
+			<li><a  rel="history"  href="#/admin/">Administraci&oacute;n</a></li>
+			<li><a  rel="history"  href="#/tecnica/">&Aacute;rea T&eacute;cnica</a></li>
+			<li><a  rel="history"  href="#/config/">Configuraci&oacute;n Sistema</a></li>
+			<li><a  rel="history"  href="#/informes/">Informes</a></li>
+			<li><a  rel="history"  href="#/sistema/">Sistema</a></li>
+			
+
 		</ul>
 	</div>
 	<div class="content-container">
