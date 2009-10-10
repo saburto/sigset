@@ -8,7 +8,6 @@ public class ClienteFormulario {
 	private Long id;
 	private String observacion;
 	private Long IdTipoCliente;
-	
 	private String razonSocial;
 	private int rut;
 	private String sucursal;
