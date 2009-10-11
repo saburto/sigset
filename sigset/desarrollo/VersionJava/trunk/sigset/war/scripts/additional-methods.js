@@ -21,7 +21,7 @@ jQuery.validator.addMethod("alphanumeric", function(value, element) {
 
 jQuery.validator.addMethod("lettersonly", function(value, element) {
 	return this.optional(element) || /^[a-z]+$/i.test(value);
-}, "Letters only please"); 
+}, "Solo ingreso de letras"); 
 
 jQuery.validator.addMethod("nowhitespace", function(value, element) {
 	return this.optional(element) || /^\S+$/i.test(value);

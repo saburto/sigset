@@ -9,11 +9,11 @@
 		<li><a href="#articulo">Art&iacute;culo</a></li>
 		<li><a href="#orden">Datos Orden</a></li>
 	</ul>
-
+	<form  method="post" action="/orden/crear/" id="formCliente">
 	<div id="cliente">
-		<form  method="post" action="/orden/crear/" id="formCliente">
-		<div id="errorContainer" class="ui-state-error ui-corner-all" style="display:none;">
-			<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  id="errorMessage"></span></p>
+		
+		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
+			<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
 		</div>
 		
 		
@@ -29,7 +29,7 @@
 				 <div class="three-column-container">
 				 	<div class="three-column-left" >
 				 		<label>Rut:</label>
-					 	<input  type="text" name="rut" title="Rut de Cliente Ej(12345456-9)" class="required" />
+					 	<input  type="text" name="rut" title="Rut de Cliente Ej(12345456-9)" class="required rut" />
 				 	</div>
 				 	<div class="three-column-left" >
 				 		<input title="Buscar Cliente por Rut" type="button" class="button-big" value="Buscar" >
@@ -39,15 +39,15 @@
 			 	<div class="three-column-container">
 				 	<div class="three-column-left" >
 					 	<label>Nombres:</label>
-					 	<input title="Nombres de Cliente" type="text" name="nombre" class="required" />
+					 	<input title="Nombres de Cliente" type="text" name="nombre" class="required lettersonly" />
 				 	</div>
 				 	<div class="three-column-left" >
 					 	<label>Apellido Paterno:</label>
-					 	<input type="text" name="apellidoPaterno" class="required" />
+					 	<input type="text" name="apellidoPaterno" class="required lettersonly" />
 				 	</div>
 				 	<div class="three-column-rigth" >
 					 	<label>Apellido Materno:</label>
-					 	<input type="text" name="apellidoMaterno" class="required" />
+					 	<input type="text" name="apellidoMaterno" class="required lettersonly" />
 				 	</div>
 			 	</div>
 			 	</fieldset>
@@ -58,7 +58,7 @@
 				 	<div class="three-column-container">
 						<div class="three-column-left" >
 					 		<label>Rut:</label>
-						 	<input type="text" name="rut" class="required" />
+						 	<input type="text" name="rut" class="required rut" />
 					 	</div>
 					 	<div class="three-column-left" >
 					 		<input type="button" class="button-big" value="Buscar" >
@@ -113,11 +113,11 @@
 					<div class="three-column-container">
 					<div class="three-column-left">
 						<label for="rut">Email:</label>
-						<input type="text" name="contactoEmail" />
+						<input type="text" name="contactoEmail" class="email" />
 					</div>
 					<div class="three-column-left">
 						<label for="rut">Telefono:</label>
-						<input type="text" name="contactoTelefono" class="required" />
+						<input type="text" name="contactoTelefono" class="required digits"  />
 					</div>
 					</div>
 				</fieldset>
@@ -133,33 +133,175 @@
 					<input type="submit" class="button-big" value="Siguiente"></input>
 				</fieldset>
 			</div>
-		</form>
+		
 	</div>
 	<div id="articulo">
-	
+		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
+				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
+		</div>
+	<fieldset>
+            <legend>Nuevo Articulo</legend>
+            <div class="three-column-container">
+                <div class="three-column-left">
+	                <label for="modelo">Modelo:</label>
+	                <input type="text" name="modelo" class="required" />
+                </div>
+                <div class="three-column-middle">
+                	<label for="marca">Marca:</label>
+                	<input type="text" name="marca" class="required" />
+                </div>
+                <div class="three-column-right">
+	                <label for="linea">Linea:</label>
+	                <input type="text" name="linea" class="required" />
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="three-column-container">
+                <div class="three-column-left">
+                	<label for="categoria">Categoria:</label>
+                	<input type="text" name="categoria" class="required" />
+                </div>
+                
+                <div class="three-column-middle">
+    	            <label for="tipo_Articulo">Tipo Articulo:</label>
+	                <input type="text" name="tipo_Articulo" class="required" />
+                </div>
+                
+                <div class="three-column-right">
+	                <label for="precio_Garantia">Precios Garantia:</label>
+	                <input type="text" name="precio_Garantia" class="required" />
+                </div>
+            </div>
+                <div class="clear"></div>
+        </fieldset>
+        <fieldset>
+					<div style="text-align: left;float: left;">
+						<input type="button" class="button-big" value="Anterior" />
+					</div>
+					<div style="text-align: right;float: right;">
+						<input type="submit" class="button-big" value="Siguiente" />
+					</div>
+		</fieldset>
 	</div>
 	<div id="orden">
-	
+		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
+				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
+		</div>
+		
+        <fieldset>
+            <legend>Orden de Trabajo</legend>
+            <p>
+                <label for="serie">N° Serie de Articulo:</label>
+                <input type="text" name="serie" class="required" />
+            </p>
+
+            <p>
+                <label for="falla">Falla Articulo:</label>
+                <textarea style="width: 100%;%" rows="6" name="falla"></textarea>
+            </p>
+            <p>
+                <label for="Condicion Articulo">Condicion Articulo:</label>
+                <textarea style="width: 100%;%" rows="6" name="condicionArticulo"></textarea>
+            </p>
+
+            <div class="three-column-container">
+                <div class="three-column-left">
+                <p>
+                    <label for="Tipo_Orden">Tipo Orden:</label>
+                    <label for="tipoGarantia" style="display:inline !important;" >Garantia:</label>
+                    <input type="radio" id="tipoGarantia" name="tipoOrden" value="1">
+                    <label for="tipoParticular" style="display:inline !important;" >Particular:</label>
+                    <input type="radio" id="tipoParticular" name="tipoOrden" value="2">
+                    
+                </p>
+                </div>
+                <div id="datosGarantia">
+                <div class="three-column-middle">
+                <p>
+                <label for="boleta">Boleta:</label>
+                <input type="text" name="boleta" />
+                <label for="poliza">Poliza:</label>
+                <input type="text" name="poliza" />
+                </p>
+                </div>
+                <div class="three-column-right">
+                <p>
+                <label for="Fecha_Compra">Fecha Compra:</label>
+                <input type="text" name="fechaCompra" id="fechaCompra" />
+                <label for="Lugar_Compra">Lugar Compra:</label>
+                <input type="text" name="lugarCompra" />
+                </p>
+                </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <p>
+                <label for="Fecha Entrega">Fecha Entrega:</label>
+                <input type="text" name="fechaEntrega" id="fechaEntrega"  />
+            </p>
+        </fieldset>
+        <fieldset>
+					<div style="text-align: left;float: left;">
+						<input type="button" class="button-big" value="Anterior" />
+					</div>
+					<div style="text-align: right;float: right;">
+						<input type="submit" class="button-big" value="Guardar" />
+					</div>
+        </fieldset>
 	</div>
+	</form>
 </div>
 <script type="text/javascript" language="javascript">
 	InitForm = function () {
+
+		//TODO: Descomentar esto
+		//$('#tabs').tabs('option', 'disabled', [1, 2]);
+		//$("#articulo input").attr("disabled","disabled");
+		//$("#orden input").attr("disabled","disabled");
+		
 		$("#formCliente").validate({
-			//errorLabelContainer:$("#errorContainer"),
 			invalidHandler: function(e, validator) {
 				var errors = validator.numberOfInvalids();
 				if (errors) {
 					var message = errors == 1
 						? 'Hay un campo que no se ha completado correctamente'
 						: 'Hay ' + errors + ' campos que no se han completado correctamente.';
-					$("#errorMessage").html(message);
-					$("#errorContainer").show();
+					$(".errorMessage").html(message);
+					$(".errorContainer").show();
 				} else {
-					$("#errorContainer").hide();
+					$(".errorContainer").hide();
 				}
+			},
+			submitHandler:function(form){
+				//$('#tabs').tabs('option', 'disabled', [1, 2]);
+				$('#tabs').tabs( 'enable' , 1);
+				$('#tabs').tabs( 'select' , 1 );
+				$("#articulo input").removeAttr("disabled");
+				$.scrollTo("articulo");				 
 			}
 			
 			});
+
+
+	jQuery.validator.addMethod("rut", function(value, element) {
+
+			while( value.indexOf(".") != -1 ){
+        		value = value.replace(".","");
+        	}
+			var rut = value.split("-");
+			var T = rut[0];
+			var d = rut[1];
+			
+			var M=0,S=1;
+			for(;T;T=Math.floor(T/10))
+				S=(S+T%10*(9-M++%6))%11;
+			var digito = S?S-1:'k';
+			 
+			 return this.optional(element) || digito == d; 
+		}, 
+		"Ingrese rut valido (ej. 12345678-0)");
+		
 		$("#formularioComercial input").attr("disabled","disabled");
 		
 	$(":radio[name='tipoCliente']").click(
@@ -184,12 +326,50 @@
 			);
 	$("#formCliente input").tooltip({ 
 		 
-		   track: true, 
+		    track: true, 
 		    delay: 0, 
 		    showURL: false, 
 		    showBody: " - ", 
-		    fade: 250 
+		    fade: 250,
+		    opacity:1
+		    //extraClass:"tooltip"
 	 
 	});
+
+    $.datepicker.setDefaults({
+        constrainInput: true,
+        dateFormat: 'dd-mm-yy',
+ 		closeText: 'Cerrar',
+		prevText: '&#x3c;Ant',
+		nextText: 'Sig&#x3e;',
+		currentText: 'Hoy',
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+		'Jul','Ago','Sep','Oct','Nov','Dic'],
+		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+        firstDay: 1,
+		isRTL: false,
+		showButtonPanel: true
+    });
+
+    $('#fechaCompra').datepicker();
+    $('#fechaEntrega').datepicker();
+    
+    $('input:[name=tipoOrden]').click(
+        function()
+        {
+          if($(this).val() == 2)
+          {
+            $('#datosGarantia').hide();
+          }
+          else
+          {
+            $('#datosGarantia').show();
+          }  
+        }
+    );
 };
 </script>
