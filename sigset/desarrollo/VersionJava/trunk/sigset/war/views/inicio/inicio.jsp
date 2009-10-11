@@ -51,21 +51,11 @@
 	
 		jQuery.ajaxSetup({
 			beforeSend: function(XMLHttpRequest) {
-				$("#content").fadeTo(100,0.33,function(){
-					if(jQuery.browser.msie){
-					 this.style.removeAttribute('filter');
-					}
-				});
 				$("#loadingAjax").center();
 				$("#loadingAjax").show();
 			},
 			complete: function(XMLHttpRequest, textStatus) {
 				$("#loadingAjax").hide();    
-				$("#content").fadeTo(100,1,function(){
-					if(jQuery.browser.msie){
-						 this.style.removeAttribute('filter');
-					}
-				});
 			}
 		});
 
@@ -114,7 +104,12 @@
 				$("#MenuIzquierda").html("<p>Cargando Menu...</p>");
 				$("#MenuIzquierda").load(url + "menu/");
 			}
-			
+
+			$("#content").fadeTo(100,0.33,function(){
+				if(jQuery.browser.msie){
+				 this.style.removeAttribute('filter');
+				}
+			});
 			$("#content").load(url,function(){
 					
 				$("#tabs").tabs();
