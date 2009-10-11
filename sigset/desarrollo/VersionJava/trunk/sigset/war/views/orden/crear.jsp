@@ -32,7 +32,7 @@
 				 <div class="three-column-container">
 				 	<div class="three-column-left" >
 				 		<label>Rut:</label>
-					 	<input  type="text" name="rut" title="Rut de Cliente Ej(12345456-9)" class="required rut" />
+					 	<input type="text" name="rut" title="Rut de Cliente Ej(12345456-9)" class="required rut" />
 				 	</div>
 				 	<div class="three-column-left" >
 				 		<input title="Buscar Cliente por Rut" type="button" class="button-big" value="Buscar" >
@@ -248,8 +248,8 @@
 	</form>
 </div>
 <script type="text/javascript" language="javascript">
-	InitForm = function () {
-
+	InitForm = function () 
+	{
 		//TODO: Descomentar esto
 		//$('#tabs').tabs('option', 'disabled', [1, 2]);
 		//$("#articulo input").attr("disabled","disabled");
@@ -278,24 +278,6 @@
 			
 			});
 
-
-	jQuery.validator.addMethod("rut", function(value, element) {
-
-			while( value.indexOf(".") != -1 ){
-        		value = value.replace(".","");
-        	}
-			var rut = value.split("-");
-			var T = rut[0];
-			var d = rut[1];
-			
-			var M=0,S=1;
-			for(;T;T=Math.floor(T/10))
-				S=(S+T%10*(9-M++%6))%11;
-			var digito = S?S-1:'k';
-			 
-			 return this.optional(element) || digito == d; 
-		}, 
-		"Ingrese rut valido (ej. 12345678-0)");
 		
 		$(".formularioComercial input").attr("disabled","disabled");
 		
@@ -330,25 +312,6 @@
 		    //extraClass:"tooltip"
 	 
 	});
-
-    $.datepicker.setDefaults({
-        constrainInput: true,
-        dateFormat: 'dd-mm-yy',
- 		closeText: 'Cerrar',
-		prevText: '&#x3c;Ant',
-		nextText: 'Sig&#x3e;',
-		currentText: 'Hoy',
-		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
-		'Jul','Ago','Sep','Oct','Nov','Dic'],
-		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-        firstDay: 1,
-		isRTL: false,
-		showButtonPanel: true
-    });
 
     $('#fechaCompra').datepicker();
     $('#fechaEntrega').datepicker();
