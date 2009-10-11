@@ -22,10 +22,14 @@
 			<input title="Selección de Cliente de tipo particular" type="radio" id="clienteParticular" value="0" checked="checked" name="tipoCliente">
 			<label for="clienteComercial" style="display:inline !important;">Cliente Comercial</label>
 			<input title="Selección de Cliente de tipo Comercial" type="radio" id="clienteComercial" value="1" name="tipoCliente">
-			<div id="formularioParticular">
+			
 				<fieldset>
-				<div class="tooltip"></div>
-				 <legend>Cliente Particular</legend>
+				<div class="tooltip" style="color: black;!important;"></div>
+				 <legend >
+				 	<span class="formularioParticular">Cliente Particular</span>
+				 	<span class="formularioComercial" style="display: none;">Cliente Comercial</span>
+				 </legend>
+				 
 				 <div class="three-column-container">
 				 	<div class="three-column-left" >
 				 		<label>Rut:</label>
@@ -36,7 +40,7 @@
 				 	</div>
 	 			</div>
 	 			<div class="clear" ></div>
-			 	<div class="three-column-container">
+			 	<div class="three-column-container formularioParticular">
 				 	<div class="three-column-left" >
 					 	<label>Nombres:</label>
 					 	<input title="Nombres de Cliente" type="text" name="nombre" class="required lettersonly" />
@@ -50,33 +54,19 @@
 					 	<input type="text" name="apellidoMaterno" class="required lettersonly" />
 				 	</div>
 			 	</div>
-			 	</fieldset>
-			</div>
-			<div id="formularioComercial" style="display: none;">
-				<fieldset>
-					<legend>Cliente Comercial:</legend>
-				 	<div class="three-column-container">
-						<div class="three-column-left" >
-					 		<label>Rut:</label>
-						 	<input type="text" name="rut" class="required rut" />
-					 	</div>
-					 	<div class="three-column-left" >
-					 		<input type="button" class="button-big" value="Buscar" >
-					 	</div>
-				 	</div>
-	 			<div class="clear" ></div>
-	 			<div class="three-column-container">
+			 	<div class="three-column-container formularioComercial" style="display: none;">
 				 	<div class="three-column-left" >
 						<label for="razonSocial">Razón Social:</label>
 						<input type="text" name="razonSocial" class="required" />
 					</div>
-				</div>
+				
 					<div class="three-column-left" >
 						<label for="sucursal" >Sucursal:</label>
 						<input type="text" name="sucursal" />
 					</div>
-				</fieldset>
-			</div>
+				</div>
+			 	</fieldset>
+	 			<div class="clear" ></div>
 			<div>
 	        
 	        <fieldset>
@@ -94,15 +84,20 @@
             <div class="three-column-container">
             	<div class="three-column-left">
 					<label for="region">Regi&oacute;n:</label>
-					<input type="text" name="region" class="required" />
+					<input id="Region_DISPLAY_TEXT" name="Region_DISPLAY_TEXT" type="text" value="" />
+					<input id="region" name="region" type="hidden" value="" class="required" />
     	        </div>
 	    	    <div class="three-column-middle">
 					<label for="provincia">Provincia:</label>
-					<input type="text" name="provincia" class="required" />
+					<input id="Provincia_DISPLAY_TEXT" name="Provincia_DISPLAY_TEXT" type="text" value="" />
+					<input id="provincia" name="provincia" type="hidden" value="" class="required" />
+					
             	</div>
             	<div class="three-column-right">
 					<label for="comuna">Comuna:</label>
-					<input type="text" name="comuna" class="required" />
+					<input id="Comuna_DISPLAY_TEXT" name="Comuna_DISPLAY_TEXT" type="text" value="" />
+					<input id="comuna" name="comuna" type="hidden" value="" class="required"  />
+					
             	</div>
             </div>
         	</fieldset>
@@ -211,6 +206,7 @@
                     <label for="Tipo_Orden">Tipo Orden:</label>
                     <label for="tipoGarantia" style="display:inline !important;" >Garantia:</label>
                     <input type="radio" id="tipoGarantia" name="tipoOrden" value="1">
+                    <br />
                     <label for="tipoParticular" style="display:inline !important;" >Particular:</label>
                     <input type="radio" id="tipoParticular" name="tipoOrden" value="2">
                     
@@ -302,23 +298,23 @@
 		}, 
 		"Ingrese rut valido (ej. 12345678-0)");
 		
-		$("#formularioComercial input").attr("disabled","disabled");
+		$(".formularioComercial input").attr("disabled","disabled");
 		
 	$(":radio[name='tipoCliente']").click(
 			function(){
 				switch ($(this).val()){
 				case "0": {	
-					$("#formularioParticular").show();
-					$("#formularioComercial").hide();
-					$("#formularioParticular input").removeAttr("disabled");
-					$("#formularioComercial input").attr("disabled","disabled");
+					$(".formularioParticular").show();
+					$(".formularioComercial").hide();
+					$(".formularioParticular input").removeAttr("disabled");
+					$(".formularioComercial input").attr("disabled","disabled");
 					break;
 				}
 				case "1":{
-					$("#formularioParticular").hide();
-					$("#formularioComercial").show();
-					$("#formularioComercial input").removeAttr("disabled");
-					$("#formularioParticular input").attr("disabled","disabled");
+					$(".formularioParticular").hide();
+					$(".formularioComercial").show();
+					$(".formularioComercial input").removeAttr("disabled");
+					$(".formularioParticular input").attr("disabled","disabled");
 					break;
 				}
 				}
@@ -364,12 +360,100 @@
           if($(this).val() == 2)
           {
             $('#datosGarantia').hide();
+            
+			$("#datosGarantia input").attr("disabled","disabled");
           }
           else
           {
+       	  	$("#datosGarantia input").removeAttr("disabled");
             $('#datosGarantia').show();
           }  
         }
     );
+
+    $('#Region_DISPLAY_TEXT').autocomplete('/util/encontrarRegiones', {
+    	mustMatch: true, selectFirst:true,
+    	 
+    	            autoFill: false,
+    	            max: 15,
+    	            cacheLength:0,
+    	            delay:100,
+    	            minChars:0,
+    	            dataType:'json',
+    	            parse: function(data)
+    	            {
+    	                var array = new Array();
+    	                for(var i=0;i<data.length;i++) 
+    	                {
+    	                    array[i] = { data:data[i], value: data[i].value, result: data[i].display};
+    	                }
+    	                return array;
+    	            },
+    	            formatItem: function(data,i,max,value,term) {
+    				return data.display;}
+    	   });
+    	 
+    	   $('#Region_DISPLAY_TEXT').result(function(e, d, f) {
+    	       $('#region').val(d.value);
+    	    });
+    	 
+    	 
+    	    
+    	 $('#Provincia_DISPLAY_TEXT').autocomplete('/util/encontrarProvincias', {
+    	mustMatch: true, selectFirst:true,
+    	 
+    	            autoFill: false,
+    	            max: 30,
+    	            cacheLength:0,
+    	            delay:100,
+    	            minChars:0,
+    	            dataType:'json',
+    	            parse: function(data)
+    	            {
+    	                var array = new Array();
+    	                for(var i=0;i<data.length;i++) 
+    	                {
+    	                    array[i] = { data:data[i], value: data[i].value, result: data[i].display};
+    	                }
+    	                return array;
+    	            },
+    	            formatItem: function(data,i,max,value,term) {
+    				return data.display;}
+    	, extraParams : { Region:function(){return $('#region').val();}}
+    	   });
+    	 
+    	   $('#Provincia_DISPLAY_TEXT').result(function(e, d, f) {
+    	       $('#provincia').val(d.value);
+    	    });
+    	 
+    	 
+    	    
+    	 $('#Comuna_DISPLAY_TEXT').autocomplete('/util/encontrarComunas', {
+    	mustMatch: true, selectFirst:true,
+    	 
+    	            autoFill: false,
+    	            max: 100,
+    	            cacheLength:0,
+    	            delay:100,
+    	            minChars:0,
+    	            dataType:'json',
+    	            parse: function(data)
+    	            {
+    	                var array = new Array();
+    	                for(var i=0;i<data.length;i++) 
+    	                {
+    	                    array[i] = { data:data[i], value: data[i].value, result: data[i].display};
+    	                }
+    	                return array;
+    	            },
+    	            formatItem: function(data,i,max,value,term) {
+    				return data.display;}
+    	, extraParams : { Provincia:function(){return $('#provincia').val();}}
+    	   });
+    	 
+    	   $('#Comuna_DISPLAY_TEXT').result(function(e, d, f) {
+    	       $('#comuna').val(d.value);
+    	    });
+    	    
 };
 </script>
