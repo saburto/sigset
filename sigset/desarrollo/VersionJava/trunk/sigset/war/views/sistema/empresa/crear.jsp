@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="d" %>
 <div id="tabs">
 	<ul>
 		<li><a href="#empresa">Datos Empresa</a></li>
@@ -34,38 +35,9 @@
 			</fieldset>
 			
 			<div>
-		    <fieldset>
-			   <legend>Direcci&oacute;n</legend>
-		            <div class="three-column-container">
-		            	<div class="three-column-left">
-							<label for="calle">Calle:</label>
-							<input type="text" name="calle" class="required" />
-						</div>
-		            	<div class="three-column-middle">
-							<label for="numero">Numero:</label>
-							<input type="text" name="numero" class="required" />
-		            	</div>
-		           	</div>
-		            <div class="three-column-container">
-		            	<div class="three-column-left">
-							<label for="region">Regi&oacute;n:</label>
-							<input id="Region_DISPLAY_TEXT" name="Region_DISPLAY_TEXT" type="text" value="" />
-							<input id="region" name="region" type="hidden" value="" class="required" />
-		    	        </div>
-			    	    <div class="three-column-middle">
-							<label for="provincia">Provincia:</label>
-							<input id="Provincia_DISPLAY_TEXT" name="Provincia_DISPLAY_TEXT" type="text" value="" />
-							<input id="provincia" name="provincia" type="hidden" value="" class="required" />
-							
-		            	</div>
-		            	<div class="three-column-right">
-							<label for="comuna">Comuna:</label>
-							<input id="Comuna_DISPLAY_TEXT" name="Comuna_DISPLAY_TEXT" type="text" value="" />
-							<input id="comuna" name="comuna" type="hidden" value="" class="required"  />
-							
-		            	</div>
-		            </div>
-        	</fieldset>
+			
+			<d:direccion />
+			
 			</div>
 	        
 			  <fieldset>
