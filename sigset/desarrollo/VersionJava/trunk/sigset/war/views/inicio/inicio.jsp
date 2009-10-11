@@ -28,6 +28,8 @@
 	<script src="<c:url value="/scripts/jquery.validate.min.js" />"></script>
 	<script src="<c:url value="/scripts/localization/messages_es.js" />"></script>
 	<script src="<c:url value="/scripts/jquery.history.js" />"></script>
+	<script src="<c:url value="/scripts/additional-methods.js" />"></script>
+	<script src="<c:url value="/scripts/jquery.scrollTo-1.4.2-min.js" />"></script>
 	
 	<!--<script src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
