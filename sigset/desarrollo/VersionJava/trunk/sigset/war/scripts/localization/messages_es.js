@@ -1,24 +1,20 @@
-/*
- * Translated default messages for the jQuery validation plugin.
- * Language: ES
- * Author: David Esperalta - http://www.dec.gesbit.com/
- */
+
 jQuery.extend(jQuery.validator.messages, {
   required: "Este campo es obligatorio.",
-  remote: "Por favor, rellena esta campo.",
-  email: "Por favor, escribe una dirección de correo válida",
-  url: "Por favor, escribe una URL válida.",
-  date: "Por favor, escribe una fecha válida.",
-  dateISO: "Por favor, escribe una fecha (ISO) válida.",
-  number: "Por favor, escribe un número entero válido.",
-  digits: "Por favor, escribe sólo dígitos.",
-  creditcard: "Por favor, escribe un número de tarjeta válido.",
-  equalTo: "Por favor, escribe el mismo valor de nuevo.",
-  accept: "Por favor, escribe una valor con una extensión aceptada.",
-  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
-  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
-  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
-  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
-  max: jQuery.validator.format("Por favor, escribe un valor igual o menor que {0}."),
-  min: jQuery.validator.format("Por favor, escribe un valor igual o mayor que {0}.")
+  remote: "Debe ingresar este campo",
+  email: "Debe ingresar una direcci&oacute;n de correo v&aocute;lida",
+  url: "Debe ingresar una URL v&aocute;lida.",
+  date: "Por favor, escribe una fecha v&aocute;lida..",
+  dateISO: "Por favor, escribe una fecha (ISO) v&aacute;lida.",
+  number: "Debe ingresar un n&uacute;mero entero v&aacute;lida.",
+  digits: "Debe ingresar s&oacute;lo d&iacute;gitos.",
+  creditcard: "Debe ingresar un n&uacute;mero de tarjeta v&aacute;lida.",
+  equalTo: "Debe ingresar el mismo valor de nuevo.",
+  accept: "Debe ingresar una valor con una extensi&oacute;n aceptada.",
+  maxlength: jQuery.validator.format("No debe ingresar m&aacute;s de {0} caracteres."),
+  minlength: jQuery.validator.format("No debe ingresar menos de {0} caracteres."),
+  rangelength: jQuery.validator.format("Debe ingresar un valor entre {0} y {1} caracteres."),
+  range: jQuery.validator.format("Debe ingresar un valor entre {0} y {1}."),
+  max: jQuery.validator.format("Debe ingresar un valor igual o menor que {0}."),
+  min: jQuery.validator.format("Debe ingresar un valor igual o mayor que {0}.")
 });
