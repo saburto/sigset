@@ -6,6 +6,7 @@
 	<ul>
 		<li><a href="#empresa">Datos Empresa</a></li>
 		<li><a href="#contrato">Datos Contrato</a></li>
+		<li><a href="#usuario">Datos Usuario</a></li>
 	</ul>
 	<form  method="post" action="/sistema/empresa/crear" id="formularioEmpresa">					
 		<div id="empresa">
@@ -82,7 +83,7 @@
 			  </fieldset>
 			  <fieldset>
 						<div style="text-align: right;float: right;">
-							<input type="submit" class="button-big" value="Siguiente" />
+							<input type="button" class="button-big" value="Siguiente"  id="anterior" onclick="irSiguienteDe(0,'contrato')" />
 						</div>
 		 	  </fieldset>
 		</div>	
@@ -96,10 +97,8 @@
 						<div class="three-column-container">
 						
 							<div  class="three-column-left">
-							 		<label>Usuario Encargado:</label>				 	
-							 		<input type="text" name="usuarioEncargado" />
 							 		<label>Limite de usuarios:</label>				 	
-							 		<input type="text" name="limiteUsuario" />
+							 		<input type="text" name="limiteUsuario" class="required digits" />
 						 	</div>
 							<div  class="three-column-left">
 							 		<label>Inicio Contrato:</label>	
@@ -145,12 +144,92 @@
 								id="anterior"
 								onclick="irAnteriorDe(1,'empresa')"
 								/>
+						</div>
+						<div style="text-align: left;float: right;">
+								<input 
+								type="button" 
+								class="button-big" 
+								value="Siguiente" 
+								id="siguiente"
+								onclick="irSiguienteDe(1,'usuario')"
+								/>
 	      				 </div>
-						 <div style="text-align: right;float: right;">
-								<input type="submit" class="button-big" value="Guardar" />
-						 </div>
+						
 				</fieldset>
 		</div>	
+		<div id="usuario">
+				<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
+					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
+				</div>
+				<fieldset>	
+				<legend>Usuario Encargado</legend>
+				<div class="three-column-container">
+               		 <div class="three-column-left">					   	                
+				                    <label>Nombre Usuario:</label>
+				                   	<input type="text" name="usuario" title="Nombre usuario" type="text" class="required lettersonly"  />
+				                   	 <p>	                
+				                    <label for="activo" style="display:inline !important;">Activo:</label>
+				                    <label for="si" style="display:inline !important;" >Si:</label>
+				                    <input type="radio" id="true" name="activo" value="1">
+				                	<label for="no" style="display:inline !important;" >No:</label>
+				                    <input type="radio" id="false" name="activo" value="2">
+				            		</p>	
+				     </div>
+				     <div class="three-column-left">		            	
+				             	 	<label>Contrase&ntilde;a</label> 
+				                   	<input type="password" name="password" title="Contrase&ntilde;a usuario" />				      
+				     </div>
+				     <div class="three-column-right">
+							       <label>Perfil</label> 
+							       <input type="text" name="perfil" title="Perfil de usuario" />							  
+				     </div>				     
+			     </div>				
+				</fieldset>
+				
+				<fieldset>
+				<legend>Antecedentes Personales</legend>
+				<div class="three-column-container"> 
+									   	                
+					                    <label>Rut:</label>
+					                   	<input name="rut" title="Rut de Empresa Ej(12345456-9)" class="required rut" type="text"  />	
+					
+				</div>
+				
+				
+				<div class="three-column-container">
+               		 <div class="three-column-left">					   	                
+				                    <label>Nombres:</label>
+				                   	<input type="text" name="nombre" title="Nombres" type="text" class="required lettersonly"  />
+				                   	<label>Email:</label>	
+				                  
+				     </div>
+				     <div class="three-column-left">		            	
+				             	 	<label>Apellido Paterno:</label> 
+				                   	<input type="text" name="apellidoPaterno"  />				      
+				     </div>
+				     <div class="three-column-right">
+							       <label>Apellido Materno:</label> 
+							       <input type="text" name="apellidoMaterno"/>							  
+				     </div>				     
+			     </div>										
+				</fieldset>
+				
+				<fieldset>
+				 <div style="text-align: left;float: left;">
+								<input
+								type="button" 
+								class="button-big" 
+								value="Anterior" 
+								id="anterior"
+								onclick="irAnteriorDe(2,'contrato')"
+								/>
+					</div>
+					 <div style="text-align: right;float: right;">
+						<input type="submit" class="button-big" value="Guardar" />
+					 </div>
+				</fieldset>				
+		
+		</div>
 	</form>
 </div>
 <script type="text/javascript" language="javascript">
@@ -288,6 +367,10 @@ InitForm = function () {
 
 function irAnteriorDe(indexTabActual, idTabAnterior){
 	$("#tabs").tabs( 'select' , indexTabActual - 1 );
+	$.scrollTo("#" + idTabAnterior );
+}
+function irSiguienteDe(indexTabActual, idTabAnterior){
+	$("#tabs").tabs( 'select' , indexTabActual + 1 );
 	$.scrollTo("#" + idTabAnterior );
 }
 
