@@ -72,7 +72,7 @@
 				<div  class="three-column-left">
 			 		<label>Inicio Contrato:</label>				 	
 			 		<input type="text" name="inicioContrato" />
-			 	</div>
+			 	</div> 
 			</div>
 			<div class="three-column-container">				
 				 	<label>Fin Contrato:</label>
