@@ -90,13 +90,12 @@
 					    
 					     <div class="three-column-container">
                					 <div class="three-column-left">
-					   			   <p>	                
+					   			 <p>	                
 				                    <label for="activo" style="display:inline !important;">Activo:</label>
 				                    <label for="si" style="display:inline !important;" >Si:</label>
 				                    <input type="radio" id="true" name="activo" value="1">
 				                	<label for="no" style="display:inline !important;" >No:</label>
-				                    <input type="radio" id="false" name="activo" value="2">
-				            			         
+				                    <input type="radio" id="false" name="activo" value="2">				            	    
 				           		</p>
 				           </div>
 				        </div>
@@ -139,7 +138,7 @@
                		 <div class="three-column-left">					   	                
 				                    <label>Nombre Usuario:</label>
 				                   	<input type="text" name="usuario" title="Nombre usuario" type="text" class="required lettersonly"  />
-				                   	 <p>	                
+				                   	<p>	                
 				                    <label for="activo" style="display:inline !important;">Activo:</label>
 				                    <label for="si" style="display:inline !important;" >Si:</label>
 				                    <input type="radio" id="true" name="activo" value="1">
@@ -153,7 +152,11 @@
 				     </div>
 				     <div class="three-column-right">
 							       <label>Perfil</label> 
-							       <input type="text" name="perfil" title="Perfil de usuario" />							  
+							       <select name="perfil" >
+							       		<option selected="selected" value="0">Seleccione perfil</option>
+							       		<option value="1" >Perfil Uno</option>
+							       		<option value="2" >Perfil Dos</option>
+							       </select>							  
 				     </div>				     
 			     </div>				
 				</fieldset>
@@ -162,8 +165,8 @@
 				<legend>Antecedentes Personales</legend>
 				<div class="three-column-container"> 
 									   	                
-					                    <label>Rut:</label>
-					                   	<input name="rut" title="Rut de Empresa Ej(12345456-9)" class="required rut" type="text"  />	
+					                <label>Rut:</label>
+					              	<input name="rut" title="Rut de Empresa Ej(12345456-9)" class="required rut" type="text"  />	
 					
 				</div>
 				
@@ -172,12 +175,15 @@
                		 <div class="three-column-left">					   	                
 				                    <label>Nombres:</label>
 				                   	<input type="text" name="nombre" title="Nombres" type="text" class="required lettersonly"  />
-				                   	<label>Email:</label>	
+				                   	<label>Email:</label>
+				                   	<input type="text" name="email" title="Email" class="email" /> 	
 				                  
 				     </div>
 				     <div class="three-column-left">		            	
 				             	 	<label>Apellido Paterno:</label> 
-				                   	<input type="text" name="apellidoPaterno"  />				      
+				                   	<input type="text" name="apellidoPaterno"  />	
+				                    <label>Tel&eacute;fono:</label>
+				                   	<input type="text" name="telefono" title="Telefono" class="required digits" /> 				      
 				     </div>
 				     <div class="three-column-right">
 							       <label>Apellido Materno:</label> 

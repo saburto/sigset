@@ -140,6 +140,14 @@ label {
 	font-family:Arial, Helvetica, sans-serif;
 	margin: 0;
 	}
+option{
+	font-size:0.9em;
+	/*padding:8px;*/
+	margin:0 ;
+	font-weight:Arial;
+	display:block;
+}
+	
 
 .checkbox {	
 	margin:12px 0;
