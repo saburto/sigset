@@ -7,13 +7,11 @@
 		<li><a href="#Empresa">Datos Empresa</a></li>
 		<li><a href="#Contrato">Datos Contrato</a></li>
 	</ul>
-<form  method="post" action="/sistema/empresa/crear">					
+<form  method="post" action="/sistema/empresa/crear" id="formularioEmpresa">					
 	<div id="Empresa">
-			<div id="formularioEmpresa">
-			<fieldset>
+   		<fieldset>
 			<legend>Crear Empresa</legend>
-			<div>
-			<div class="three-column-container">
+				<div class="three-column-container">
 				<div  class="three-column-left">
 			 		<label>Rut:</label>				 	
 			 		<input type="text" name="rut" />
@@ -26,11 +24,11 @@
 			 		<label>Nombre Corto:</label>				 	
 			 		<input type="text" name="nombreCorto" />			 
 			    </div>					
-			</div>
-			</fieldset>
-			 <fieldset>
-            <legend>Direcci&oacute;n</legend>
-            <div class="three-column-container">
+				</div>
+		</fieldset>
+	    <fieldset>
+           		<legend>Direcci&oacute;n</legend>
+           		<div class="three-column-container">
             	<div class="three-column-left">
 					<label for="calle">Calle:</label>
 					<input type="text" name="calle" class="required" />
@@ -39,8 +37,8 @@
 					<label for="numero">Numero:</label>
 					<input type="text" name="numero" class="required" />
             	</div>
-           	</div>
-            <div class="three-column-container">
+           		</div>
+            	<div class="three-column-container">
             	<div class="three-column-left">
 					<label for="region">Regi&oacute;n:</label>
 					<input type="text" name="region" class="required" />
@@ -53,8 +51,8 @@
 					<label for="comuna">Comuna:</label>
 					<input type="text" name="comuna" class="required" />
             	</div>
-            </div>
-        	</fieldset>
+           		</div>
+          </fieldset>
 		  <fieldset>
 					<legend>Contacto</legend>
 					<div class="three-column-container">
@@ -68,59 +66,57 @@
 					</div>
 					</div>
 		  </fieldset>
-		   <fieldset>
+		  <fieldset>
 					<div style="text-align: right;float: right;">
 						<input type="submit" class="button-big" value="Siguiente" />
 					</div>
-	 	</fieldset>
-			</div>	
-	</div>
-	</div>
+	 	  </fieldset>
+	</div>	
 	<div id="Contrato"> 
-	<fieldset>
-	<legend>Datos Contrato</legend>
-			<div>
-			<div class="three-column-container">
-				<div  class="three-column-left">
-			 		<label>Usuario Encargado:</label>				 	
-			 		<input type="text" name="usuarioEncargado" />
-			 		<label>Limite de usuarios:</label>				 	
-			 		<input type="text" name="limiteUsuario" />
-			 	</div>
-			</div>	
-			<div class="three-column-container">
-				<div  class="three-column-left">
-			 		<label>Inicio Contrato:</label>				 	
-			 		<input type="text" name="inicioContrato" />
-			 	</div> 
-			</div>
-			<div class="three-column-container">				
-				 	<label>Fin Contrato:</label>
-				 	<input type="text" name="finContrato" />   				
-			</div>				
-			</div>
+	      <fieldset>
+	      <legend>Datos Contrato</legend>
+					<div>
+					<div class="three-column-container">
+					<div  class="three-column-left">
+					 		<label>Usuario Encargado:</label>				 	
+					 		<input type="text" name="usuarioEncargado" />
+					 		<label>Limite de usuarios:</label>				 	
+					 		<input type="text" name="limiteUsuario" />
+				 	</div>
+					</div>	
+					<div class="three-column-container">
+						<div  class="three-column-left">
+					 		<label>Inicio Contrato:</label>				 	
+					 		<input type="text" name="inicioContrato" />
+					 	</div> 
+					</div>
+					<div class="three-column-container">				
+						 	<label>Fin Contrato:</label>
+						 	<input type="text" name="finContrato" />   				
+					</div>				
+					</div>
 		    </fieldset>	
 		    <fieldset>
-		    <legend>Estado</legend>
-		      <div class="three-column-container">
-				<div  class="three-column-left">
-		        	<label>Activo</label>
-				 	<input type="text" name="activo" />
-				</div>
-			</div>			    
-		    </fieldset>   		   
-		    <fieldset>
-		    <legend>Otros</legend>
-				<label for="observacion">Observaciones</label>
-				<textarea name="observaciones"></textarea>				
+				    <legend>Estado</legend>
+				      <div class="three-column-container">
+						<div  class="three-column-left">
+				        	<label>Activo</label>
+						 	<input type="text" name="activo" />
+						</div>
+					</div>			    
+			</fieldset>   		   
+			<fieldset>
+				    <legend>Otros</legend>
+						<label for="observacion">Observaciones</label>
+						<textarea name="observaciones"></textarea>				
 			</fieldset>	
-			 <fieldset>
-			 	 <div style="text-align: left;float: left;">
-						<input type="button" class="button-big" value="Anterior" />
-					</div>
-					<div style="text-align: right;float: right;">
-						<input type="submit" class="button-big" value="Guardar" />
-					</div>
+			<fieldset>
+				 	 <div style="text-align: left;float: left;">
+							<input type="button" class="button-big" value="Anterior" />
+					 </div>
+					 <div style="text-align: right;float: right;">
+							<input type="submit" class="button-big" value="Guardar" />
+					 </div>
 			</fieldset>
 	
 	</div>	
