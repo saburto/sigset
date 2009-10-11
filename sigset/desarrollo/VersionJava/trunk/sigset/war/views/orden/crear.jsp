@@ -14,8 +14,7 @@
 		
 		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 			<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
-		</div>
-		
+		</div>	
 		
 		
 			<label for="clienteParticular" style="display:inline !important;">Cliente Particular</label>
