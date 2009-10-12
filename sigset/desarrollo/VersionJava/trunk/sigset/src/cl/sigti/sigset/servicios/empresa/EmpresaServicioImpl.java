@@ -21,7 +21,6 @@ public class EmpresaServicioImpl implements EmpresaServicio
 	{
 		//empresa.getDireccion().setId(id)
 		
-		usuarioRepo.Create(empresa.getUsuarioEncargado());
 		empresaRepo.Create(empresa);
 		
 	}
