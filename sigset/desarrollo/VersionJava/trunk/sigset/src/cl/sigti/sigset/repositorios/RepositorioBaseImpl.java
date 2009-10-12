@@ -59,4 +59,10 @@ public class RepositorioBaseImpl<E> implements RepositorioBase<E> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public int Count(){
+		List<E> lista = this.getAll();
+		return lista != null ? lista.size() : 0;
+	}
 }
