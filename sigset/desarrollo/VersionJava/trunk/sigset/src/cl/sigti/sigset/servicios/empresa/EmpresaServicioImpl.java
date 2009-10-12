@@ -1,35 +1,16 @@
 package cl.sigti.sigset.servicios.empresa;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import cl.sigti.sigset.modelo.Empresa;
 import cl.sigti.sigset.repositorios.empresa.EmpresaRepositorio;
-import cl.sigti.sigset.repositorios.empresa.EmpresaRepositorioImpl;
 
-public class EmpresaServicioImpl 
+@Service
+public class EmpresaServicioImpl implements EmpresaServicio 
 {
 
-	EmpresaRepositorio repo = new EmpresaRepositorioImpl();
+	@Autowired
+	EmpresaRepositorio repo;
 	
-		public List<Empresa> getAll()
-		{
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		public Empresa Update(Empresa obj) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		public boolean Delete(Empresa obj) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		public Empresa Create(Empresa obj) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 }
 
