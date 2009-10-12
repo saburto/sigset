@@ -14,22 +14,36 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+@SuppressWarnings("serial")
+@PersistenceCapable
 public class OrdenTrabajo implements Serializable {
 	public OrdenTrabajo() {
 	}
 	
-	private java.math.BigDecimal id;
+	@Persistent
+	@PrimaryKey
+	private Long id;
 	
 	private cl.sigti.sigset.modelo.Articulo IdArticulo;
 	
+	@Persistent
 	private String serie;
 	
-	private java.sql.Timestamp fechaIngreso;
+	@Persistent
+	private Date fechaIngreso;
 	
-	private java.sql.Timestamp fechaEntrega;
+	@Persistent
+	private Date fechaEntrega;
 	
+	@Persistent
 	private String falla;
 	
+	@Persistent
 	private String condicionArticulo;
 	
 	private cl.sigti.sigset.modelo.TipoOrden TipoOrden;
@@ -38,7 +52,7 @@ public class OrdenTrabajo implements Serializable {
 	
 	private String poliza;
 	
-	private java.sql.Timestamp fechaCompra;
+	private Date fechaCompra;
 	
 	private String lugarCompra;
 	
@@ -56,15 +70,15 @@ public class OrdenTrabajo implements Serializable {
 	
 	private cl.sigti.sigset.modelo.Tecnicos Tecnicos;
 	
-	private void setId(java.math.BigDecimal value) {
+	public void setId(Long value) {
 		this.id = value;
 	}
 	
-	public java.math.BigDecimal getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Long getORMID() {
 		return getId();
 	}
 	
@@ -80,15 +94,15 @@ public class OrdenTrabajo implements Serializable {
 		this.fechaIngreso = value;
 	}
 	
-	public java.sql.Timestamp getFechaIngreso() {
+	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
 	
-	public void setFechaEntrega(java.sql.Timestamp value) {
+	public void setFechaEntrega(Date value) {
 		this.fechaEntrega = value;
 	}
 	
-	public java.sql.Timestamp getFechaEntrega() {
+	public Date getFechaEntrega() {
 		return fechaEntrega;
 	}
 	
@@ -124,11 +138,11 @@ public class OrdenTrabajo implements Serializable {
 		return poliza;
 	}
 	
-	public void setFechaCompra(java.sql.Timestamp value) {
+	public void setFechaCompra(Date value) {
 		this.fechaCompra = value;
 	}
 	
-	public java.sql.Timestamp getFechaCompra() {
+	public Date getFechaCompra() {
 		return fechaCompra;
 	}
 	

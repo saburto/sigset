@@ -12,7 +12,6 @@ import cl.sigti.sigset.repositorios.usuario.UsuarioRepositorio;
 @Service
 public class EmpresaServicioImpl implements EmpresaServicio 
 {
-
 	@Autowired
 	EmpresaRepositorio empresaRepo;
 	
@@ -22,7 +21,6 @@ public class EmpresaServicioImpl implements EmpresaServicio
 	public void crearEmpresa(Empresa empresa)
 	{
 		//empresa.getDireccion().setId(id)
-		
 		empresaRepo.Create(empresa);
 		
 	}
@@ -30,9 +28,7 @@ public class EmpresaServicioImpl implements EmpresaServicio
 	public List<Empresa> listarEmpresas()
 	{
 		//empresa.getDireccion().setId(id)
-		
 		return empresaRepo.getAll();
-		
 	}
 }
 

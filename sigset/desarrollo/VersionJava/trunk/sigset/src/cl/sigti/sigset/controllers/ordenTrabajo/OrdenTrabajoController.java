@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cl.sigti.sigset.modelo.Cliente;
@@ -15,6 +16,7 @@ import cl.sigti.sigset.modelo.ClienteComercial;
 import cl.sigti.sigset.modelo.ClienteParticular;
 import cl.sigti.sigset.modelo.Direccion;
 import cl.sigti.sigset.modelo.OrdenTrabajo;
+import cl.sigti.sigset.util.FormResult;
 import cl.sigti.sigset.validacion.DireccionValidacion;
 
 @RequestMapping("/orden")
@@ -41,35 +43,41 @@ public class OrdenTrabajoController {
 		return "orden/crear";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/crear/", method= RequestMethod.POST)
 	public String crearSubmit(	@ModelAttribute ClienteComercial clienteComercial,
 								@ModelAttribute ClienteParticular clienteParticular,
 								@ModelAttribute Direccion direccion,
 								@ModelAttribute OrdenTrabajo orden,
-								@RequestParam String contactoEmail,
-								@RequestParam String contactoTelefono,
-								@RequestParam String tipoCliente,
-								@RequestParam String observacion,
-								@RequestParam String rutCliente,
+								@RequestParam(value="contactoEmail") String contactoEmail,
+								@RequestParam(value="contactoTelefono") String contactoTelefono,
+								@RequestParam(value="tipoCliente") String tipoCliente,
+								@RequestParam(value="observacion") String observacion,
+								@RequestParam(value="rutCliente") String rutCliente,
+								@RequestParam(value="idTipoOrden") String idTipoOrden,
 								Model model
 								){
-		
-		
-		
 		DataBinder binder = new DataBinder(direccion);
 		binder.setValidator(new DireccionValidacion());
 		binder.validate();
 		
+		FormResult formResult = new FormResult();
+		formResult.setUrl("/orden/orden/");
 		
-		if(binder.getBindingResult().hasErrors()){
-			model.addAttribute("errores",binder.getBindingResult().getAllErrors());
-			return "orden/crear";
-		}
+		return formResult.ToJson();
 		
-		return "orden/orden";
+//		if(binder.getBindingResult().hasErrors()){
+//			model.addAttribute("errores",binder.getBindingResult().getAllErrors());
+//			return "orden/crear";
+//		}
+//		
+//		return "orden/orden";
 	}
 	
-	
+	@RequestMapping("/orden/")
+	public String ordenSucces(){
+		return "orden/orden";
+	}
 	
 	
 	

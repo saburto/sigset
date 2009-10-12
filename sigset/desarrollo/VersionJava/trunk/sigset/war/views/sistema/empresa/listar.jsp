@@ -3,21 +3,53 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="d" %>
-<div id="tabs">
+
+<%@page import="java.util.List"%>
+<%@page import="cl.sigti.sigset.modelo.Empresa"%><div id="tabs">
 	<ul>
 		<li><a href="#empresas">empresas</a></li>
 	</ul>
-					
 		<div id="empresas">
-			<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
-				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
-			</div>
 			<fieldset>		
 					<legend>Listado Empresas</legend>
-					<div class="three-column-container">
-					
-																    					
-					</div>
+				    <table border="0" cellpadding="0" cellspacing="0" class="data-table">
+			        <tr>
+			            <th>
+			                Id
+			            </th>
+			            <th>
+			                Nombre
+			            </th>
+			            <th>
+			                Nombre Corto
+			            </th>
+			        </tr>
+    <% boolean alter = false; %>
+    <% List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas"); %>
+    <% for(Empresa empresa : empresas)
+       { %>
+    <%if (alter)
+      { %>
+        <tr class="row-alternating">
+    <%}
+      else
+      {
+        %>  
+        <tr>
+    <%}%>
+    <%alter = !alter;%>
+          	<td>
+                <%=empresa.getId()%>
+            </td>
+            <td>
+                <%=empresa.getNombre() %>
+            </td>
+            <td>
+                <%=empresa.getNombreCorto()%>
+            </td>
+	<%}%>
+	</tr>
+	</table>				
 			</fieldset>		
 				
 		</div>
