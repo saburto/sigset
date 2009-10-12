@@ -13,8 +13,4 @@ public class EmpresaRepositorioImpl extends RepositorioBaseImpl<Empresa> impleme
 
 	}
 	
-	
-
-
-
 }

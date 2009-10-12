@@ -1,4 +1,4 @@
-package cl.sigti.sigset.repositorios.empresa;
+package cl.sigti.sigset.repositorios.usuario;
 
 import org.springframework.stereotype.Repository;
 
