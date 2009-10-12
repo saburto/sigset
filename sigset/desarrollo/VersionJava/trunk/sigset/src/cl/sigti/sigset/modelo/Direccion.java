@@ -2,6 +2,7 @@ package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -9,8 +10,9 @@ import javax.jdo.annotations.PrimaryKey;
 @SuppressWarnings("serial")
 @PersistenceCapable
 public class Direccion implements Serializable {
-	@Persistent
-	@PrimaryKey
+
+	@PrimaryKey 
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long id;
 	
 	@Persistent
