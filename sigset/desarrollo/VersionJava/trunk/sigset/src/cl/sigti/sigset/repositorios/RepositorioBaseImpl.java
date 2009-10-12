@@ -15,7 +15,9 @@ public class RepositorioBaseImpl<E> implements RepositorioBase<E> {
 
 	private Class<E> type;
 	
-	private PersistenceManager pm = PMF.get().getPersistenceManager();
+	protected PersistenceManager pm = PMF.get().getPersistenceManager();
+	
+	
 	
 	public RepositorioBaseImpl(Class<E> type){
 		this.type = type;

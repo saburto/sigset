@@ -14,25 +14,33 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+@SuppressWarnings("serial")
+@PersistenceCapable
 public class Marca implements Serializable {
 	public Marca() {
 	}
+	@Persistent
+	@PrimaryKey
+	private Long idMarca;
 	
-	private java.math.BigDecimal idMarca;
-	
+	@Persistent
 	private String descripcion;
 	
 	private java.util.Set<cl.sigti.sigset.modelo.Articulo> Articulo = new java.util.HashSet<cl.sigti.sigset.modelo.Articulo>();
 	
-	public void setIdMarca(java.math.BigDecimal value) {
+	public void setIdMarca(Long value) {
 		this.idMarca = value;
 	}
 	
-	public java.math.BigDecimal getIdMarca() {
+	public Long getIdMarca() {
 		return idMarca;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Long getORMID() {
 		return getIdMarca();
 	}
 	
