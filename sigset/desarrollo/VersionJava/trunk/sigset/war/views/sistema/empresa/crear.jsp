@@ -166,7 +166,7 @@
 				<div class="three-column-container"> 
 									   	                
 					                <label>Rut:</label>
-					              	<input name="rut" title="Rut de Empresa Ej(12345456-9)" class="required rut" type="text"  />	
+					              	<input name="rut" title="Rut de Ususario Ej(12345456-9)" class="required rut" type="text"  />	
 					
 				</div>
 				
