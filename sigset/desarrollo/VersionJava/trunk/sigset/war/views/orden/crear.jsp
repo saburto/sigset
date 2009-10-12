@@ -167,10 +167,10 @@
                 <p>
                     <label for="Tipo_Orden">Tipo Orden:</label>
                     <label for="tipoGarantia" style="display:inline !important;" >Garantia:</label>
-                    <input type="radio" id="tipoGarantia" name="tipoOrden" value="1">
+                    <input type="radio" id="tipoGarantia" name="idTipoOrden" value="1">
                     <br />
                     <label for="tipoParticular" style="display:inline !important;" >Particular:</label>
-                    <input type="radio" id="tipoParticular" name="tipoOrden" value="2">
+                    <input type="radio" id="tipoParticular" name="idTipoOrden" value="2">
                     
                 </p>
                 </div>
@@ -238,7 +238,29 @@
 				//$("#articulo input").removeAttr("disabled");
 				//$.scrollTo("articulo");
 				$(form).ajaxSubmit({
-					target: "#content"
+					target: "#content",
+					dataType: 'json',
+					success: function(data){
+						if(data){
+							if(data.mensajeSucces){
+								alert(data.mensajeSucces);
+							}
+							else if(data.mensajeError){
+
+								var mensaje = "";
+								if(data.errores){
+									for(var i =0;data.errores.length;i++){
+										mensaje += data.errores[i];
+									}
+								}
+								alert(data.mensajeError + "\n" + mensaje);	
+							}
+
+							if(data.url){
+								abrirContenido(data.url, false);
+							}
+						}
+					}
 				});
 								 
 			}

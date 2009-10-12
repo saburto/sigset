@@ -10,7 +10,6 @@ public class EmpresaRepositorioImpl extends RepositorioBaseImpl<Empresa> impleme
 
 	public EmpresaRepositorioImpl() {
 		super(Empresa.class);
-
 	}
 	
 }
