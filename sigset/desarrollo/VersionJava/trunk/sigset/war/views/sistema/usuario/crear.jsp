@@ -8,7 +8,7 @@
 		<li><a href="#usuario">Datos Usuario</a></li>
 		
 	</ul>
-	<form  method="post" action="/sistema/usuario/crear" id="formularioUsuario">
+	<form  method="post" action="/usuario/crear/" id="formularioUsuario">
 		<div id="usuario">
 				<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>

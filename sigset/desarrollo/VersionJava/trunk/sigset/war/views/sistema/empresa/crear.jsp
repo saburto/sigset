@@ -9,7 +9,7 @@
 		<li><a href="#contrato">Datos Contrato</a></li>
 		<li><a href="#usuario">Datos Usuario</a></li>
 	</ul>
-	<form  method="post" action="/sistema/empresa/crear/" id="formularioEmpresa">					
+	<form  method="post" action="/empresa/crear/" id="formularioEmpresa">					
 		<div id="empresa">
 			<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>

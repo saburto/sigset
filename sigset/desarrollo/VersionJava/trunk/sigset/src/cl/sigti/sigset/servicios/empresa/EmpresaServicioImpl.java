@@ -1,5 +1,7 @@
 package cl.sigti.sigset.servicios.empresa;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,14 @@ public class EmpresaServicioImpl implements EmpresaServicio
 		//empresa.getDireccion().setId(id)
 		
 		empresaRepo.Create(empresa);
+		
+	}
+	
+	public List<Empresa> listarEmpresas()
+	{
+		//empresa.getDireccion().setId(id)
+		
+		return empresaRepo.getAll();
 		
 	}
 }

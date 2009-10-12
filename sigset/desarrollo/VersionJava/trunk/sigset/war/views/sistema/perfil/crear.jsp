@@ -7,7 +7,7 @@
 	<ul>
 		<li><a href="#perfil">Datos Perfil</a></li>
 	</ul>
-	<form  method="post" action="/sistema/perfil/crear" id="formularioPerfil">					
+	<form  method="post" action="/perfil/crear/" id="formularioPerfil">					
 		<div id="perfil">
 			<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>

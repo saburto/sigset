@@ -7,7 +7,7 @@ import cl.sigti.sigset.modelo.Usuario;
 import cl.sigti.sigset.repositorios.usuario.UsuarioRepositorio;
 
 @Service
-public class UsuarioServicioImpl {
+public class UsuarioServicioImpl implements UsuarioServicio {
 
 	@Autowired
 	UsuarioRepositorio repo;
