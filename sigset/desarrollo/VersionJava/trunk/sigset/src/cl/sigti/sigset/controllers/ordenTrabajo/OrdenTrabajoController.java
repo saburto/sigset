@@ -2,6 +2,7 @@ package cl.sigti.sigset.controllers.ordenTrabajo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,8 @@ import cl.sigti.sigset.modelo.Cliente;
 import cl.sigti.sigset.modelo.ClienteComercial;
 import cl.sigti.sigset.modelo.ClienteParticular;
 import cl.sigti.sigset.modelo.Direccion;
+import cl.sigti.sigset.modelo.OrdenTrabajo;
+import cl.sigti.sigset.validacion.DireccionValidacion;
 
 @RequestMapping("/orden")
 @Controller
@@ -42,26 +45,32 @@ public class OrdenTrabajoController {
 	public String crearSubmit(	@ModelAttribute ClienteComercial clienteComercial,
 								@ModelAttribute ClienteParticular clienteParticular,
 								@ModelAttribute Direccion direccion,
+								@ModelAttribute OrdenTrabajo orden,
 								@RequestParam String contactoEmail,
 								@RequestParam String contactoTelefono,
 								@RequestParam String tipoCliente,
-								@RequestParam String observacion){
+								@RequestParam String observacion,
+								@RequestParam String rutCliente,
+								Model model
+								){
 		
 		
-		return "orden/crear";
+		
+		DataBinder binder = new DataBinder(direccion);
+		binder.setValidator(new DireccionValidacion());
+		binder.validate();
+		
+		
+		if(binder.getBindingResult().hasErrors()){
+			model.addAttribute("errores",binder.getBindingResult().getAllErrors());
+			return "orden/crear";
+		}
+		
+		return "orden/orden";
 	}
 	
 	
 	
-	@RequestMapping(value="/crear2/{nombre}", method= RequestMethod.GET)
-	public ModelAndView crear(@PathVariable String nombre){
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("orden/crear2");
-		modelAndView.addObject("nombre", nombre.toUpperCase());
-	
-	return modelAndView;
-	}
 	
 	
 	

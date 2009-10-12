@@ -1,5 +1,22 @@
+function irSiguienteDe(indexTabActual, idTabSiguiente, idForm){
+	
+	if($("#" + idForm).valid()){
+		$('#tabs').tabs( 'enable' , indexTabActual + 1 );
+		$("#tabs").tabs( 'select' , indexTabActual + 1 );
+		$("#" + idTabSiguiente + " input").removeAttr("disabled");
+		$.scrollTo("#" + idTabSiguiente );
+		$(".errorContainer").hide();
+	}
+}
+function irAnteriorDe(indexTabActual, idTabAnterior){
+	$("#tabs").tabs( 'select' , indexTabActual - 1 );
+	$.scrollTo("#" + idTabAnterior );
+}
+
 $(document).ready(function() {
 
+
+	
 $.validator.addMethod("rut", function(value, element) {
 
 		while( value.indexOf(".") != -1 ){

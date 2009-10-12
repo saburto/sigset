@@ -32,6 +32,7 @@
 	<script src="<c:url value="/scripts/additional-methods.js" />"></script>
 	<script src="<c:url value="/scripts/jquery.scrollTo-1.4.2-min.js" />"></script>
 	<script src="<c:url value="/scripts/jquery.autocomplete.js" />"></script>
+	<script src="<c:url value="/scripts/jquery.form.js" />"></script>
 	<script src="<c:url value="/scripts/sigset.js" />"></script>
 	
 	<!--<script src="http://www.google.com/jsapi"></script>

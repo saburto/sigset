@@ -13,11 +13,8 @@
 	<form  method="post" action="/orden/crear/" id="formCliente">
 	<div id="cliente">
 		
-		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
-			<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
-		</div>	
-		
-		
+		<d:Errores />
+
 			<label for="clienteParticular" style="display:inline !important;">Cliente Particular</label>
 			<input title="Selección de Cliente de tipo particular" type="radio" id="clienteParticular" value="0" checked="checked" name="tipoCliente">
 			<label for="clienteComercial" style="display:inline !important;">Cliente Comercial</label>
@@ -33,7 +30,7 @@
 				 <div class="three-column-container">
 				 	<div class="three-column-left" >
 				 		<label>Rut:</label>
-					 	<input type="text" name="rut" title="Rut de Cliente Ej(12345456-9)" class="required rut" />
+					 		<input type="text" name="rutCliente" title="Rut de Cliente Ej(12345456-9)" class="required rut" />
 				 	</div>
 				 	<div class="three-column-left" >
 				 		<input title="Buscar Cliente por Rut" type="button" class="button-big" value="Buscar" >
@@ -75,11 +72,11 @@
 					<legend>Contacto</legend>
 					<div class="three-column-container">
 					<div class="three-column-left">
-						<label for="rut">Email:</label>
+						<label for="email">Email:</label>
 						<input type="text" name="contactoEmail" class="email" />
 					</div>
 					<div class="three-column-left">
-						<label for="rut">Telefono:</label>
+						<label for="telefono">Telefono:</label>
 						<input type="text" name="contactoTelefono" class="required digits"  />
 					</div>
 					</div>
@@ -93,15 +90,13 @@
 			</fieldset>
 			<div style="text-align: right;">
 				<fieldset>
-					<input type="submit" class="button-big" value="Siguiente"></input>
+					<input type="button" class="button-big" value="Siguiente" onclick="irSiguienteDe(0,'articulo','formCliente')" ></input>
 				</fieldset>
 			</div>
 		
 	</div>
 	<div id="articulo">
-		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
-				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
-		</div>
+		<d:Errores />
 	<fieldset>
             <legend>Nuevo Articulo</legend>
             <div class="three-column-container">
@@ -141,19 +136,16 @@
                 <div class="clear"></div>
         </fieldset>
         <fieldset>
-					<div style="text-align: left;float: left;">
-						<input type="button" class="button-big" value="Anterior" />
-					</div>
-					<div style="text-align: right;float: right;">
-						<input type="submit" class="button-big" value="Siguiente" />
-					</div>
+			<div style="text-align: left;float: left;">
+				<input type="button" class="button-big"	value="Anterior" id="anterior" onclick="irAnteriorDe(1,'cliente','formCliente')"/>
+			</div>
+			<div style="text-align: left;float: right;">
+				<input type="button" class="button-big"	value="Siguiente" id="siguiente" onclick="irSiguienteDe(1,'orden','formCliente')"/>
+			 </div>
 		</fieldset>
 	</div>
 	<div id="orden">
-		<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
-				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
-		</div>
-		
+		<d:Errores />
         <fieldset>
             <legend>Orden de Trabajo</legend>
             <p>
@@ -209,7 +201,7 @@
         </fieldset>
         <fieldset>
 					<div style="text-align: left;float: left;">
-						<input type="button" class="button-big" value="Anterior" />
+						<input type="button" class="button-big"	value="Anterior" id="anterior" onclick="irAnteriorDe(2,'articulo','formCliente')"/>
 					</div>
 					<div style="text-align: right;float: right;">
 						<input type="submit" class="button-big" value="Guardar" />
@@ -222,9 +214,9 @@
 	InitForm = function () 
 	{
 		//TODO: Descomentar esto
-		//$('#tabs').tabs('option', 'disabled', [1, 2]);
-		//$("#articulo input").attr("disabled","disabled");
-		//$("#orden input").attr("disabled","disabled");
+		$('#tabs').tabs('option', 'disabled', [1, 2]);
+		$("#articulo input").attr("disabled","disabled");
+		$("#orden input").attr("disabled","disabled");
 		
 		$("#formCliente").validate({
 			invalidHandler: function(e, validator) {
@@ -241,10 +233,14 @@
 			},
 			submitHandler:function(form){
 				//$('#tabs').tabs('option', 'disabled', [1, 2]);
-				$('#tabs').tabs( 'enable' , 1);
-				$('#tabs').tabs( 'select' , 1 );
-				$("#articulo input").removeAttr("disabled");
-				$.scrollTo("articulo");				 
+				//$('#tabs').tabs( 'enable' , 1);
+				//$('#tabs').tabs( 'select' , 1 );
+				//$("#articulo input").removeAttr("disabled");
+				//$.scrollTo("articulo");
+				$(form).ajaxSubmit({
+					target: "#content"
+				});
+								 
 			}
 			
 			});

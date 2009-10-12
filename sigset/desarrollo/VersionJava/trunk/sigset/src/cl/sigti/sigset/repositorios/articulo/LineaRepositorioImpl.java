@@ -3,9 +3,12 @@ package cl.sigti.sigset.repositorios.articulo;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.stereotype.Repository;
+
 import cl.sigti.sigset.modelo.Linea;
 import cl.sigti.sigset.repositorios.RepositorioBaseImpl;
 
+@Repository
 public class LineaRepositorioImpl extends RepositorioBaseImpl<Linea> implements LineaRepositorio {
 	
 	private static final Logger log = Logger.getLogger(LineaRepositorioImpl.class.getName());
