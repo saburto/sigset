@@ -111,7 +111,9 @@
                 </div>
                 <div class="three-column-middle">
                 	<label for="marca">Marca:</label>
-                	<input type="text" name="marca" class="required" />
+  	                <input id="Marca_DISPLAY_TEXT" name="Marca_DISPLAY_TEXT" type="text" value="" class="required" />
+  	                <input id="marca" name="marca" type="hidden" value="" />
+                	
                 </div>
                 <div class="three-column-right">
 	                <label for="linea">Linea:</label>
@@ -301,6 +303,31 @@
           }  
         }
     );
+
+    $('#Marca_DISPLAY_TEXT').autocomplete('/articulo/marcas/', {
+    	 
+        autoFill: false,
+        max: 15,
+        cacheLength:0,
+        delay:100,
+        minChars:0,
+        dataType:'json',
+        parse: function(data)
+        {
+            var array = new Array();
+            for(var i=0;i<data.length;i++) 
+            {
+                array[i] = { data:data[i], value: data[i].value, result: data[i].display};
+            }
+            return array;
+        },
+        formatItem: function(data,i,max,value,term) {
+		return data.display;}
+		});
+		
+		$('#Marca_DISPLAY_TEXT').result(function(e, d, f) {
+		   $('#marca').val(d.value);
+		});
 
  
     	    

@@ -8,5 +8,6 @@ public interface RepositorioBase<E> {
 	public abstract E Create(E obj);
 	public abstract boolean Delete(E obj);
 	public abstract E Update(E obj);
+	public int Count();
 
 }

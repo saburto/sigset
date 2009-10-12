@@ -1,19 +1,24 @@
 package cl.sigti.sigset.repositorios.articulo;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Logger;
+
+import org.springframework.stereotype.Repository;
 
 import cl.sigti.sigset.modelo.Marca;
 import cl.sigti.sigset.repositorios.RepositorioBaseImpl;
 
-public class MarcaRepositorioImpl extends RepositorioBaseImpl<Marca> {
+@Repository
+public class MarcaRepositorioImpl extends RepositorioBaseImpl<Marca> implements MarcaRepositorio {
 
 	private static final Logger log = Logger.getLogger(MarcaRepositorioImpl.class.getName());
 	public MarcaRepositorioImpl() {
 		super(Marca.class);
 	}
 	
+    /* (non-Javadoc)
+	 * @see cl.sigti.sigset.repositorios.articulo.MarcaRepositorio#getMarcas(java.lang.String)
+	 */
     @SuppressWarnings("unchecked")
 	public List<Marca> getMarcas(String nombre)
     {
@@ -30,6 +35,9 @@ public class MarcaRepositorioImpl extends RepositorioBaseImpl<Marca> {
     }
     
     
+    /* (non-Javadoc)
+	 * @see cl.sigti.sigset.repositorios.articulo.MarcaRepositorio#getMarcaPorNombre(java.lang.String)
+	 */
     @SuppressWarnings("unchecked")
 	public Marca getMarcaPorNombre(String marcaNombre)
     {
@@ -47,18 +55,17 @@ public class MarcaRepositorioImpl extends RepositorioBaseImpl<Marca> {
 	    return marca;
     }
     
-    public Marca CrearMarca(String marca)
+    /* (non-Javadoc)
+	 * @see cl.sigti.sigset.repositorios.articulo.MarcaRepositorio#CrearMarca(java.lang.String)
+	 */
+    public Marca crearMarca(String marca)
     {
     	marca = marca.trim();
     	Marca nuevaMarca = new Marca();
     	nuevaMarca.setDescripcion(marca);
-    	nuevaMarca.setIdMarca(new Long(getCountMarcas()+1));
+    	nuevaMarca.setIdMarca(new Long(this.Count()+1));
     	this.Create(nuevaMarca);
     	return nuevaMarca;
-    }
-    
-    public int getCountMarcas(){
-    	return this.getAll().size();
     }
 
 

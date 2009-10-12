@@ -14,25 +14,34 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Persistent;
+@SuppressWarnings("serial")
+@PersistenceCapable
 public class Linea implements Serializable {
 	public Linea() {
 	}
 	
-	private java.math.BigDecimal idLinea;
+	@Persistent
+	@PrimaryKey
+	private Long idLinea;
 	
+	@Persistent
 	private String descripcion;
 	
 	private java.util.Set<cl.sigti.sigset.modelo.Articulo> Articulo = new java.util.HashSet<cl.sigti.sigset.modelo.Articulo>();
 	
-	public void setIdLinea(java.math.BigDecimal value) {
+	public void setIdLinea(Long value) {
 		this.idLinea = value;
 	}
 	
-	public java.math.BigDecimal getIdLinea() {
+	public Long getIdLinea() {
 		return idLinea;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Long getORMID() {
 		return getIdLinea();
 	}
 	
