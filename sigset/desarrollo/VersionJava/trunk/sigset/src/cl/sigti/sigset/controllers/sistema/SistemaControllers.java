@@ -75,4 +75,17 @@ public class SistemaControllers{
 	   {
 		return "sistema/empresa/crear";
 		}
+	
+	@RequestMapping("/perfil/crear/")
+	public String crearPerfil()
+	{
+		return "sistema/perfil/crear";
+		
+	}
+	
+	@RequestMapping("/usuario/crear/")
+	public String crearUsuario()
+	{
+		return "sistema/usuario/crear";		
+	}
 }
