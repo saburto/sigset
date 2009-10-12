@@ -9,7 +9,7 @@
 		<li><a href="#contrato">Datos Contrato</a></li>
 		<li><a href="#usuario">Datos Usuario</a></li>
 	</ul>
-	<form  method="post" action="/sistema/empresa/crear" id="formularioEmpresa">					
+	<form  method="post" action="/sistema/empresa/crear/" id="formularioEmpresa">					
 		<div id="empresa">
 			<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
@@ -20,7 +20,7 @@
 					
 						<div  class="three-column-left">
 					 		<label>Rut:</label>				 	
-					 		<input type="text" name="rut" title="Rut de Empresa Ej(12345456-9)" class="required rut" />
+					 		<input type="text" name="rutEmpresa" title="Rut de Empresa Ej(12345456-9)" class="required rut" />
 					 	</div>
 						<div  class="three-column-left">
 					 		<label>Raz&oacute;n social:</label>				 	
@@ -44,8 +44,9 @@
 						<legend>Contacto</legend>
 						<div class="three-column-container">
 						<div class="three-column-left">
-							<label for="rut">Email:</label>
+							<label>Email:</label>
 							<input type="text" name="contactoEmail" class="email" />
+							
 						</div>
 						<div class="three-column-left">
 							<label for="rut">Telefono:</label>
@@ -152,7 +153,7 @@
 				     </div>
 				     <div class="three-column-right">
 							       <label>Perfil</label> 
-							       <select name="perfil" >
+							       <select name="perfilTipo" >
 							       		<option selected="selected" value="0">Seleccione perfil</option>
 							       		<option value="1" >Perfil Uno</option>
 							       		<option value="2" >Perfil Dos</option>
@@ -166,7 +167,8 @@
 				<div class="three-column-container"> 
 									   	                
 					                <label>Rut:</label>
-					              	<input name="rut" title="Rut de Ususario Ej(12345456-9)" class="required rut" type="text"  />	
+					              	<input name="rutUsuario" title="Rut de Ususario Ej(12345456-9)" class="required rut" type="text"  />
+					              		
 					
 				</div>
 				
@@ -232,11 +234,7 @@ InitForm = function () {
 			}
 			},
 			submitHandler:function(form){
-				//$('#tabs').tabs('option', 'disabled', [1, 2]);
-				$('#tabs').tabs( 'enable' , 1);
-				$('#tabs').tabs( 'select' , 1 );
-				$("#contrato input").removeAttr("disabled");
-				$.scrollTo("contrato");				 
+				form.submit();
 			}
 		});
 
@@ -257,89 +255,6 @@ InitForm = function () {
 		$('#inicioContrato').datepicker();
 		$('#finContrato').datepicker();
 
-		 $('#Region_DISPLAY_TEXT').autocomplete('/util/encontrarRegiones', {
-		    	mustMatch: true, selectFirst:true,
-		    	 
-		    	            autoFill: false,
-		    	            max: 15,
-		    	            cacheLength:0,
-		    	            delay:100,
-		    	            minChars:0,
-		    	            dataType:'json',
-		    	            parse: function(data)
-		    	            {
-		    	                var array = new Array();
-		    	                for(var i=0;i<data.length;i++) 
-		    	                {
-		    	                    array[i] = { data:data[i], value: data[i].value, result: data[i].display};
-		    	                }
-		    	                return array;
-		    	            },
-		    	            formatItem: function(data,i,max,value,term) {
-		    				return data.display;}
-		    	   });
-		    	 
-		    	   $('#Region_DISPLAY_TEXT').result(function(e, d, f) {
-		    	       $('#region').val(d.value);
-		    	    });
-		    	 
-		    	 
-		    	    
-		    	 $('#Provincia_DISPLAY_TEXT').autocomplete('/util/encontrarProvincias', {
-		    	mustMatch: true, selectFirst:true,
-		    	 
-		    	            autoFill: false,
-		    	            max: 30,
-		    	            cacheLength:0,
-		    	            delay:100,
-		    	            minChars:0,
-		    	            dataType:'json',
-		    	            parse: function(data)
-		    	            {
-		    	                var array = new Array();
-		    	                for(var i=0;i<data.length;i++) 
-		    	                {
-		    	                    array[i] = { data:data[i], value: data[i].value, result: data[i].display};
-		    	                }
-		    	                return array;
-		    	            },
-		    	            formatItem: function(data,i,max,value,term) {
-		    				return data.display;}
-		    	, extraParams : { Region:function(){return $('#region').val();}}
-		    	   });
-		    	 
-		    	   $('#Provincia_DISPLAY_TEXT').result(function(e, d, f) {
-		    	       $('#provincia').val(d.value);
-		    	    });
-		    	 
-		    	 
-		    	    
-		    	 $('#Comuna_DISPLAY_TEXT').autocomplete('/util/encontrarComunas', {
-		    	mustMatch: true, selectFirst:true,
-		    	 
-		    	            autoFill: false,
-		    	            max: 100,
-		    	            cacheLength:0,
-		    	            delay:100,
-		    	            minChars:0,
-		    	            dataType:'json',
-		    	            parse: function(data)
-		    	            {
-		    	                var array = new Array();
-		    	                for(var i=0;i<data.length;i++) 
-		    	                {
-		    	                    array[i] = { data:data[i], value: data[i].value, result: data[i].display};
-		    	                }
-		    	                return array;
-		    	            },
-		    	            formatItem: function(data,i,max,value,term) {
-		    				return data.display;}
-		    	, extraParams : { Provincia:function(){return $('#provincia').val();}}
-		    	   });
-		    	 
-		    	   $('#Comuna_DISPLAY_TEXT').result(function(e, d, f) {
-		    	       $('#comuna').val(d.value);
-		    	    });
 
 		};
 
