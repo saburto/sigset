@@ -17,11 +17,12 @@ import com.google.appengine.tools.development.ApiProxyLocalImpl;
 import com.google.apphosting.api.ApiProxy;
 
 import cl.sigti.sigset.modelo.Marca;
+import cl.sigti.sigset.repositorios.articulo.MarcaRepositorio;
 import cl.sigti.sigset.repositorios.articulo.MarcaRepositorioImpl;
 
 public class Test_MarcaRepositorio {
 
-	MarcaRepositorioImpl repo;
+	MarcaRepositorio repo;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -55,15 +56,9 @@ public class Test_MarcaRepositorio {
 	@Test
 	public void testCrearMarca() {
 		
-		Marca marca = repo.CrearMarca("Sony");
+		Marca marca = repo.crearMarca("Sony");
 		assertNotNull(marca);
 		assertEquals("Sony", marca.getDescripcion());
-	}
-
-	@Test
-	public void testGetCountMarcas() {
-		int res = repo.getCountMarcas();
-		assertEquals(0, res);
 	}
 
 }
