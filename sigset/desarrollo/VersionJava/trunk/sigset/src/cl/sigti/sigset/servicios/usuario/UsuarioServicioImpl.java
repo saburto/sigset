@@ -14,8 +14,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 	
 	public void crearUsuario(Usuario usuario)
 	{
-	
-		repo.Create(usuario);
+	  repo.Create(usuario);
 		
 	}
 }
