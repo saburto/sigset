@@ -1,6 +1,6 @@
 package cl.sigti.sigset.controllers.sistema;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import cl.sigti.sigset.modelo.Empresa;
 import cl.sigti.sigset.modelo.Perfil;
 import cl.sigti.sigset.modelo.Usuario;
 import cl.sigti.sigset.servicios.empresa.EmpresaServicio;
+import cl.sigti.sigset.servicios.usuario.UsuarioServicio;
 
 @Controller
 @RequestMapping("/empresa")
@@ -22,6 +23,9 @@ public class EmpresaController {
 	
 	@Autowired
 	EmpresaServicio empresasServicio;
+	
+	@Autowired
+	UsuarioServicio usuarioServicio;
 	
 
 	@RequestMapping(value = "/crear/", method = RequestMethod.POST)
@@ -35,15 +39,16 @@ public class EmpresaController {
 		Perfil perfil = new Perfil();
 		perfil.setDescripcion(perfilTipo);
 		empresa.setDireccion(direccion);
-		empresa.setUsuarioEncargado(usuario);
+	//	empresa.setUsuarioEncargado(usuario);
 		rutEmpresa = rutEmpresa.replace(".", "");
 		rutEmpresa = rutEmpresa.split("-")[0];
 		rutUsuario = rutUsuario.replace(".", "");
 		rutUsuario = rutUsuario.split("-")[0];
 		empresa.setRut(Integer.parseInt(rutEmpresa));	    
 		usuario.setRut(Integer.parseInt(rutUsuario));		
-		empresa.setUsuarioEncargado(usuario);
-	    empresasServicio.crearEmpresa(empresa);
+	//	empresa.setUsuarioEncargado(usuario);
+		usuarioServicio.crearUsuario(usuario);
+	    empresasServicio.crearEmpresa(empresa);	    	
 		return "redirect:sistema/empresa/crear/";
 	}
 
