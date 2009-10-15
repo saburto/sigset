@@ -43,7 +43,7 @@ public class RepositorioBaseImpl<E> implements RepositorioBase<E> {
 	@Override
 	public E Create(E obj) {
 		pm.makePersistent(obj);
-		return null;
+		return obj;
 	}
 
 

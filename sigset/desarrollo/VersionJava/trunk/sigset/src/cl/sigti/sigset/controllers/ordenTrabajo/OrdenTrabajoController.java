@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +15,7 @@ import cl.sigti.sigset.modelo.ClienteComercial;
 import cl.sigti.sigset.modelo.ClienteParticular;
 import cl.sigti.sigset.modelo.Direccion;
 import cl.sigti.sigset.modelo.OrdenTrabajo;
-import cl.sigti.sigset.util.FormResult;
+import cl.sigti.sigset.util.json.FormResult;
 import cl.sigti.sigset.validacion.DireccionValidacion;
 
 @RequestMapping("/orden")
@@ -57,19 +56,20 @@ public class OrdenTrabajoController {
 								@RequestParam(value="idTipoOrden") String idTipoOrden,
 								Model model
 								){
+		FormResult formResult = new FormResult();
 		DataBinder binder = new DataBinder(direccion);
 		binder.setValidator(new DireccionValidacion());
 		binder.validate();
 		
-		FormResult formResult = new FormResult();
+		if(binder.getBindingResult().hasErrors()){
+			
+			formResult.setMensajeError("La creación de orden de trabajo causo los siguientes problemas");
+			formResult.setErrores(binder.getBindingResult().getAllErrors());
+			return formResult.ToJson();
+		}
 		formResult.setUrl("/orden/orden/");
-		
 		return formResult.ToJson();
 		
-//		if(binder.getBindingResult().hasErrors()){
-//			model.addAttribute("errores",binder.getBindingResult().getAllErrors());
-//			return "orden/crear";
-//		}
 //		
 //		return "orden/orden";
 	}

@@ -1,9 +1,11 @@
-package cl.sigti.sigset.util;
+package cl.sigti.sigset.util.json;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.validation.ObjectError;
 
 public class FormResult {
 
@@ -53,6 +55,13 @@ public class FormResult {
 			return writer.getBuffer().toString();
 		} catch (IOException e) {
 			return "";
+		}
+	}
+
+	public void setErrores(List<ObjectError> allErrors) {
+		this.errores = new String[allErrors.size()];
+		for(int i =0;i<allErrors.size();i++){
+			errores[i]= allErrors.get(i).getDefaultMessage();
 		}
 	}
 

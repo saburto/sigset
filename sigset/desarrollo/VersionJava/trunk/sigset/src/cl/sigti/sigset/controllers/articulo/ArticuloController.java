@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cl.sigti.sigset.repositorios.articulo.LineaRepositorio;
 import cl.sigti.sigset.repositorios.articulo.MarcaRepositorio;
-import cl.sigti.sigset.util.JsonAutoComplete;
+import cl.sigti.sigset.util.json.JsonAutoComplete;
 
 @Controller
 @RequestMapping("/articulo")
