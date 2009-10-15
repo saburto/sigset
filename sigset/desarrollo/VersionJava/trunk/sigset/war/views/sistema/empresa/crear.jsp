@@ -176,7 +176,7 @@
 				<div class="three-column-container">
                		 <div class="three-column-left">					   	                
 				                    <label>Nombres:</label>
-				                   	<input type="text" name="nombre" title="Nombres" type="text" class="required lettersonly"  />
+				                   	<input type="text" name="nombres" title="Nombres" type="text" class="required lettersonly"  />
 				                   	<label>Email:</label>
 				                   	<input type="text" name="email" title="Email" class="email" /> 	
 				                  

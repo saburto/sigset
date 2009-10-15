@@ -6,6 +6,9 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
 import cl.sigti.sigset.util.modelo.Form;
 import cl.sigti.sigset.util.modelo.InputType;
 
@@ -15,7 +18,7 @@ public class Usuario implements Serializable{
 	
 	@Persistent(valueStrategy= IdGeneratorStrategy.IDENTITY)
 	@PrimaryKey
-	private Long id;
+	private Key id;
 	
 
 	@Persistent
@@ -66,11 +69,11 @@ public class Usuario implements Serializable{
 	@Persistent
 	private java.util.Set<cl.sigti.sigset.modelo.UsuarioPermisos> UsuarioPermisos = new java.util.HashSet<cl.sigti.sigset.modelo.UsuarioPermisos>();
 	
-	public Long getId() {
+	public Key getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Key id) {
 		this.id = id;
 	}
 

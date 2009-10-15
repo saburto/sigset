@@ -210,7 +210,7 @@
 	</div>
 	</form>
 </div>
-<script type="text/javascript" language="javascript">
+<script type="text/javascript" language="javascript"><!--
 	InitForm = function () 
 	{
 		//TODO: Descomentar esto
@@ -242,21 +242,22 @@
 					dataType: 'json',
 					success: function(data){
 						if(data){
-							if(data.mensajeSucces){
+							if(data.mensajeSucces != null){
 								alert(data.mensajeSucces);
 							}
-							else if(data.mensajeError){
+
+							if(data.mensajeError != null){
 
 								var mensaje = "";
 								if(data.errores){
-									for(var i =0;data.errores.length;i++){
-										mensaje += data.errores[i];
+									for(var i =0;i < data.errores.length;i++){
+										mensaje += (i+1) + "-" + data.errores[i] + "\n";
 									}
 								}
 								alert(data.mensajeError + "\n" + mensaje);	
 							}
 
-							if(data.url){
+							if(data.url != null){
 								abrirContenido(data.url, false);
 							}
 						}
@@ -350,4 +351,4 @@
  
     	    
 };
-</script>
+--></script>

@@ -1,4 +1,4 @@
-package cl.sigti.sigset.util;
+package cl.sigti.sigset.util.json;
 
 import java.io.IOException;
 import java.io.StringWriter;

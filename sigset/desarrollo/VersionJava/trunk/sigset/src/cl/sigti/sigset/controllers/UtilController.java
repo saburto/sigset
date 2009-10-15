@@ -12,7 +12,7 @@ import cl.sigti.sigset.modelo.Comuna;
 import cl.sigti.sigset.modelo.Provincia;
 import cl.sigti.sigset.modelo.Region;
 import cl.sigti.sigset.repositorios.direccion.UtilDireccionRepositorio;
-import cl.sigti.sigset.util.JsonAutoComplete;
+import cl.sigti.sigset.util.json.JsonAutoComplete;
 
 @Controller
 @RequestMapping("/util")
