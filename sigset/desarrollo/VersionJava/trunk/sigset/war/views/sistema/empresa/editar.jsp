@@ -33,11 +33,13 @@
 					 	</div>
 						<div  class="three-column-left">
 					 		<label>Raz&oacute;n social:</label>				 	
-					 		<input type="text" name="nombre" title="Nombre Raz&oacute;n social" type="text" class="required lettersonly" />
+					 		<input type="text" name="nombre" title="Nombre Raz&oacute;n social" type="text" class="required lettersonly"
+					 		value="<%=empresa.getNombre() %>" />
 					 	</div>
 						<div  class="three-column-rigth">		
 					 		<label>Nombre Corto:</label>				 	
-					 		<input type="text" name="nombreCorto" title="Nombre corto" type="text" class="required lettersonly"  />			 
+					 		<input type="text" name="nombreCorto" title="Nombre corto" type="text" class="required lettersonly"
+					 		value="<%=empresa.getNombreCorto()%>"  />			 
 					    </div>
 					    					
 					</div>
@@ -45,22 +47,52 @@
 			
 			<div>
 			
-			<d:direccion />
+			<fieldset>
+	<legend>Direcci&oacute;n</legend>
+	<div class="three-column-container">
+    	<div class="three-column-left">
+			<label for="calle">Calle:</label>
+			<input type="text" name="calle"  value="<%=empresa.getDireccion().getCalle()%>" class="required" />
+		</div>
+		<div class="three-column-middle">
+			<label for="numero">N&uacute;mero:</label>
+			<input type="text" name="numero" value="<%=empresa.getDireccion().getNumero() %>" class="required" />
+       	</div>
+  	</div>
+	<div class="three-column-container">
+	  	<div class="three-column-left">
+			<label for="region">Regi&oacute;n:</label>
+			<input id="Region_DISPLAY_TEXT" name="Region_DISPLAY_TEXT" type="text" value="" class="required" />
+			<input id="region" name="region" type="hidden" value=""  />
+        </div>
+ 	    <div class="three-column-middle">
+			<label for="provincia">Provincia:</label>
+			<input id="Provincia_DISPLAY_TEXT" name="Provincia_DISPLAY_TEXT" type="text" value="" class="required" />
+			<input id="provincia" name="provincia" type="hidden" value=""  />
+    	</div>
+    	<div class="three-column-right">
+			<label for="comuna">Comuna:</label>
+			<input id="Comuna_DISPLAY_TEXT" name="Comuna_DISPLAY_TEXT" type="text" value="" class="required" />
+			<input id="comuna" name="comuna" type="hidden" value=""   />
+       	</div>
+	</div>
+	</fieldset>
 			
 			</div>
 	        
 			  <fieldset>
 						<legend>Contacto</legend>
-						<div class="three-column-container">
-						<div class="three-column-left">
-							<label>Email:</label>
-							<input type="text" name="contactoEmail" class="email" />
-							
-						</div>
-						<div class="three-column-left">
-							<label for="rut">Telefono:</label>
-							<input type="text" name="contactoTelefono" class="required digits"  />
-						</div>
+						<div class="three-column-container">					
+							<div class="three-column-left">
+								<label>Email:</label>								  		
+								<input type="text" name="contactoEmail" value="<%=empresa.getEmail()%>"  class="email"/>
+													  
+							</div>
+							<div class="three-column-left">
+								<label for="rut">Telefono:</label>
+								<input type="text" name="contactoTelefono" value="<%=empresa.getTelefono()%>"  class="required digits"  />
+							</div>
+						
 						</div>
 			  </fieldset>
 			  <fieldset>
