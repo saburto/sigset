@@ -39,17 +39,15 @@ public class EmpresaController {
 		Perfil perfil = new Perfil();
 		perfil.setDescripcion(perfilTipo);
 		empresa.setDireccion(direccion);
-	//	empresa.setUsuarioEncargado(usuario);
-		rutEmpresa = rutEmpresa.replace(".", "");
+	    rutEmpresa = rutEmpresa.replace(".", "");
 		rutEmpresa = rutEmpresa.split("-")[0];
 		rutUsuario = rutUsuario.replace(".", "");
 		rutUsuario = rutUsuario.split("-")[0];
 		empresa.setRut(Integer.parseInt(rutEmpresa));	    
 		usuario.setRut(Integer.parseInt(rutUsuario));		
-	//	empresa.setUsuarioEncargado(usuario);
-		usuarioServicio.crearUsuario(usuario);
-	    empresasServicio.crearEmpresa(empresa);	    	
-		return "redirect:sistema/empresa/crear/";
+		empresa.setUsuarioEncargado(usuario);
+		empresasServicio.crearEmpresa(empresa);	    	
+		return "sistema/empresa/crear/";
 	}
 
 	

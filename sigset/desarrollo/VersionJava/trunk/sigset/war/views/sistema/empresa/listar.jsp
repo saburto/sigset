@@ -34,6 +34,7 @@
 			            
 			        </tr>
     <% boolean alter = false; %>
+    <%if(request.getAttribute("empresas") != null){ %>
     <% List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas"); %>
     <% for(Empresa empresa : empresas)
        { %>
@@ -56,8 +57,14 @@
             <td>
                 <%=empresa.getNombreCorto()%>
             </td>
+            <td>
+            	<%if(empresa.getUsuarioEncargado() != null){ %>
+                <%=empresa.getUsuarioEncargado().getNombresApellido()%>
+                <%} %>
+            </td>
           
                          
+	<%}%>
 	<%}%>
 	</tr>
 	</table>				

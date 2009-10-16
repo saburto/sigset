@@ -191,7 +191,7 @@ public class Empresa implements Serializable {
 		return usuarioEncargado;
 	}
 
-	void setUsuarioEncargado(Usuario usuarioEncargado) {
+	public void setUsuarioEncargado(Usuario usuarioEncargado) {
 		this.usuarioEncargado = usuarioEncargado;
 	}
 
