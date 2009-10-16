@@ -9,5 +9,6 @@ public interface EmpresaServicio {
 
 	public void crearEmpresa(Empresa empresa);
 	public List<Empresa> listarEmpresas();
+	public Empresa getEmpresaPorNombreCorto(String nombreCorto);
 
 }

@@ -21,5 +21,10 @@ public class EmpresaRepositorioImpl extends RepositorioBaseImpl<Empresa> impleme
 		obj.setId(key);
 		return super.Create(obj);
 	}
+
+	@Override
+	public Empresa getEmpresaPorNombreCorto(String nombreCorto) {
+		return	pm.getObjectById(Empresa.class, nombreCorto);
+	}
 	
 }

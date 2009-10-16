@@ -30,5 +30,16 @@ public class EmpresaServicioImpl implements EmpresaServicio
 		//empresa.getDireccion().setId(id)
 		return empresaRepo.getAll();
 	}
+
+	@Override
+	public Empresa getEmpresaPorNombreCorto(String nombreCorto) {
+		try{
+			return empresaRepo.getEmpresaPorNombreCorto(nombreCorto);
+		}
+		catch(Exception ex){
+			return null;
+		}
+		
+	}
 }
 
