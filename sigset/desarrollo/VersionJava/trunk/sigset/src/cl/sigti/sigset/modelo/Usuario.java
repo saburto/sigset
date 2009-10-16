@@ -162,8 +162,7 @@ public class Usuario implements Serializable{
 
 	
 	public String getNombresApellido(){
-		return this.nombres + " " + this.apellidoPaterno;
-	
+		return (this.nombres != null ? this.nombres :"") + " " + (this.apellidoPaterno != null ? this.apellidoPaterno : "");
 	}
 	
 	@Override
