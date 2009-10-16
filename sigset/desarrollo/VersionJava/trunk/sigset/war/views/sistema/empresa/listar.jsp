@@ -30,6 +30,9 @@
 			            <th>
 			                Usuario Encargado
 			            </th>
+			             <th>
+			                
+			            </th>
 			          
 			            
 			        </tr>
@@ -61,6 +64,10 @@
             	<%if(empresa.getUsuarioEncargado() != null){ %>
                 <%=empresa.getUsuarioEncargado().getNombresApellido()%>
                 <%} %>
+            </td>
+            <td>
+            	
+                <a rel="history" href="#/empresa/editar/<%=empresa.getNombreCorto()%>">Editar</a>
             </td>
           
                          

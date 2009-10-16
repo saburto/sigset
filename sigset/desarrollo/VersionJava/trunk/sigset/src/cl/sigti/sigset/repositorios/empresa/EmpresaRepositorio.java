@@ -5,4 +5,6 @@ import cl.sigti.sigset.repositorios.RepositorioBase;
 
 public interface EmpresaRepositorio extends RepositorioBase<Empresa> {
 
+	Empresa getEmpresaPorNombreCorto(String nombreCorto);
+
 }

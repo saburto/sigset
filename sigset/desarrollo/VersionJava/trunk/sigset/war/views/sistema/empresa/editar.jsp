@@ -3,24 +3,33 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="d" %>
-<div id="tabs">
+
+
+
+
+<%@page import="cl.sigti.sigset.modelo.Empresa"%><div id="tabs">
 	<ul>
 		<li><a href="#empresa">Datos Empresa</a></li>
 		<li><a href="#contrato">Datos Contrato</a></li>
 		<li><a href="#usuario">Datos Usuario</a></li>
 	</ul>
+	<%Empresa empresa = (Empresa) request.getAttribute("empresa");%>
+	
+	
+	
 	<form  method="post" action="/empresa/crear/" id="formularioEmpresa">					
 		<div id="empresa">
 			<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
 			</div>	
 	   		<fieldset>		
-					<legend>Crear Empresa</legend>
+					<legend>Editar Empresa</legend>
 					<div class="three-column-container">
 					
 						<div  class="three-column-left">
 					 		<label>Rut:</label>				 	
-					 		<input type="text" name="rutEmpresa" title="Rut de Empresa Ej(12345456-9)" class="required rut" />
+					 		<input type="text" name="rutEmpresa" title="Rut de Empresa Ej(12345456-9)" class="required rut"
+					 			value="<%=empresa.getRut() %>"	 />
 					 	</div>
 						<div  class="three-column-left">
 					 		<label>Raz&oacute;n social:</label>				 	
@@ -86,7 +95,23 @@
 						</div>			
 						
 				</fieldset>	
-			   	<fieldset>
+			    <fieldset>
+					    <legend>Estado</legend>
+					    
+					     <div class="three-column-container">
+               					 <div class="three-column-left">
+					   			 <p>	                
+				                    <label for="activo" style="display:inline !important;">Activo:</label>
+				                    <label for="si" style="display:inline !important;" >Si:</label>
+				                    <input type="radio" id="true" name="activo" value="1">
+				                	<label for="no" style="display:inline !important;" >No:</label>
+				                    <input type="radio" id="false" name="activo" value="2">				            	    
+				           		</p>
+				           </div>
+				        </div>
+				   													    
+				</fieldset>   		   
+				<fieldset>
 					    <legend>Otros</legend>
 						<label for="observacion">Observaciones</label>
 						<textarea name="observaciones"></textarea>				
@@ -123,7 +148,13 @@
                		 <div class="three-column-left">					   	                
 				                    <label>Nombre Usuario:</label>
 				                   	<input type="text" name="usuario" title="Nombre usuario" type="text" class="required lettersonly"  />
-				                   
+				                   	<p>	                
+				                    <label for="activo" style="display:inline !important;">Activo:</label>
+				                    <label for="si" style="display:inline !important;" >Si:</label>
+				                    <input type="radio" id="true" name="activo" value="1">
+				                	<label for="no" style="display:inline !important;" >No:</label>
+				                    <input type="radio" id="false" name="activo" value="2">
+				            		</p>	
 				     </div>
 				     <div class="three-column-left">		            	
 				             	 	<label>Contrase&ntilde;a</label> 
