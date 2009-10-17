@@ -14,30 +14,39 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Modulos implements Serializable {
-	public Modulos() {
-	}
 	
-	private int id;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
 	
+	@Persistent
 	private String nombreModulo;
 	
+	@Persistent
 	private String descripcionOpcion;
 	
-	private java.util.Set<cl.sigti.sigset.modelo.Permisos> Permisos = new java.util.HashSet<cl.sigti.sigset.modelo.Permisos>();
-	
-	private void setId(int value) {
-		this.id = value;
+		
+	public void setId(Key id) {
+		this.id = id;
 	}
 	
-	public int getId() {
+	public Key getId() {
 		return id;
 	}
 	
-	public int getORMID() {
-		return getId();
-	}
-	
+		
 	public void setNombreModulo(String value) {
 		this.nombreModulo = value;
 	}
@@ -54,17 +63,5 @@ public class Modulos implements Serializable {
 		return descripcionOpcion;
 	}
 	
-	public void setPermisos(java.util.Set<cl.sigti.sigset.modelo.Permisos> value) {
-		this.Permisos = value;
-	}
-	
-	public java.util.Set<cl.sigti.sigset.modelo.Permisos> getPermisos() {
-		return Permisos;
-	}
-	
-	
-	public String toString() {
-		return String.valueOf(getId());
-	}
 	
 }

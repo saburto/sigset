@@ -5,37 +5,65 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="d" %>
 <div id="tabs">
 	<ul>
-		<li><a href="#perfil">Datos Perfil</a></li>
-	</ul>
-	<form  method="post" action="/perfil/crear/" id="formularioPerfil">					
-		<div id="perfil">
+		<li><a href="#modulos">M&oacute;dulos</a></li>
+		<li><a href="#permisos">Opciones M&oacute;dulos</a></li>
+	</ul>				
+	<div id="modulos">
+		<form  method="post" action="/modulos/crear/" id="formularioModulos">		
 			<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
 				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
 			</div>
 			<fieldset>		
-					<legend>Crear Perfil</legend>
-					<div class="three-column-container">					
-						
+					<legend>Crear M&oacute;dulos</legend>
+					<div class="three-column-container">	
 						<div  class="three-column-left">
-					 		<label>Descripci&oacute;n:</label>				 	
-					 		<input type="text" name="descripcion"  type="text" class="required lettersonly" />
+							<label>Nombre m&oacute;dulo:</label>				 	
+					 		<input type="text" name="nombreModulo"  value ="#/sistema/" type="text" />
 					 	</div>
 					 	<div  class="three-column-right">
-					 		<label>Id Empresa:</label>				 	
-					 		<input type="text" name="idEmpresa"  type="text" class="required digits" />
-					 	</div>
-											    					
+					 	<label>Descripci&oacute;n opci&oacute;n:</label>				 	
+					 		<input type="text" name="descripcionOpcion" value="sistema" type="text"  />					 		
+					 	</div>											    					
 					</div>
-			</fieldset>
-			
+			</fieldset>			
 			<fieldset>
 			     <div style="text-align: right;float: right;">
 					<input type="submit" class="button-big" value="Guardar" />
 				 </div>
 			</fieldset>	
-				
-		</div>
-	</form>
+			</form>	
+	</div>
+	<div id="permisos">
+			<form method="post" action="/modulos/permisos/crear/">
+				<div class="errorContainer ui-state-error ui-corner-all" style="display:none;">
+					<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 0.3em;"></span><span  class="errorMessage"></span></p>
+				</div>
+				<fieldset>
+					<legend>Opciones M&oacute;dulos</legend>		
+					<div class="three-column-container">
+						<div  class="three-column-left">
+							<label>Id M&oacute;dulo:</label>				 	
+					 		<input type="text" name="modulo"  type="text" class="required digits" />
+					 	</div>	
+						<div  class="three-column-left">
+							<label>Nombre Opci&oacute;n:</label>				 	
+					 		<input type="text" name="opcion"  value ="#/sistema/crear" type="text" class="required digits" />
+					 	</div>
+					 	<div  class="three-column-right">
+					 	<label>Descripci&oacute;n opci&oacute;n:</label>				 	
+					 		<input type="text" name="descripcionOpcion" value="crear sistema" type="text" class="required lettersonly" />					 		
+					 	</div>											    					
+					</div>
+				</fieldset>
+				<fieldset>
+			     <div style="text-align: right;float: right;">
+					<input type="submit" class="button-big" value="Guardar" />
+				 </div>
+			</fieldset>	
+			</form>
+	</div>
+		
+	
 </div>
 <script type="text/javascript" language="javascript">
 InitForm = function () {

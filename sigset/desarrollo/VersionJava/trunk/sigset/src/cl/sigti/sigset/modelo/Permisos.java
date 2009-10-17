@@ -14,19 +14,32 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Permisos implements Serializable {
-	public Permisos() {
-	}
 	
-	private cl.sigti.sigset.modelo.UsuarioPermisos UsuarioPermisos;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
 	
-	private cl.sigti.sigset.modelo.Modulos IdModulo;
+	@Persistent
+	private Modulos modulo;
 	
+	@Persistent
 	private String opcion;
 	
+	@Persistent
 	private String descripcionOpcion;
 	
-	private java.util.Set<cl.sigti.sigset.modelo.PerfilPermiso> PerfilPermiso = new java.util.HashSet<cl.sigti.sigset.modelo.PerfilPermiso>();
 	
 	public void setOpcion(String value) {
 		this.opcion = value;
@@ -44,37 +57,20 @@ public class Permisos implements Serializable {
 		return descripcionOpcion;
 	}
 	
-	public void setIdModulo(cl.sigti.sigset.modelo.Modulos value) {
-		this.IdModulo = value;
+	public void setIdModulo(Modulos value) {
+		this.modulo = value;
 	}
 	
-	public cl.sigti.sigset.modelo.Modulos getIdModulo() {
-		return IdModulo;
+	public Modulos getIdModulo() {
+		return modulo;
 	}
-	
-	public void setUsuarioPermisos(cl.sigti.sigset.modelo.UsuarioPermisos value) {
-		this.UsuarioPermisos = value;
+
+	public void setId(Key id) {
+		this.id = id;
 	}
-	
-	public cl.sigti.sigset.modelo.UsuarioPermisos getUsuarioPermisos() {
-		return UsuarioPermisos;
-	}
-	
-	public cl.sigti.sigset.modelo.UsuarioPermisos getORMID() {
-		return getUsuarioPermisos();
-	}
-	
-	public void setPerfilPermiso(java.util.Set<cl.sigti.sigset.modelo.PerfilPermiso> value) {
-		this.PerfilPermiso = value;
-	}
-	
-	public java.util.Set<cl.sigti.sigset.modelo.PerfilPermiso> getPerfilPermiso() {
-		return PerfilPermiso;
-	}
-	
-	
-	public String toString() {
-		return String.valueOf(((getUsuarioPermisos() == null) ? "" : String.valueOf(getUsuarioPermisos().getORMID())));
+
+	public Key getId() {
+		return id;
 	}
 	
 }
