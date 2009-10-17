@@ -41,6 +41,7 @@ public class EmpresaController {
 		
 		Perfil perfil = new Perfil();
 		perfil.setDescripcion(perfilTipo);
+		empresa.setActivo(true);
 		empresa.setDireccion(direccion);
 	    rutEmpresa = rutEmpresa.replace(".", "");
 		rutEmpresa = rutEmpresa.split("-")[0];

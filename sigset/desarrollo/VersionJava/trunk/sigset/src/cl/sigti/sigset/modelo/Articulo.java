@@ -14,40 +14,60 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
 @SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Articulo implements Serializable {
 	public Articulo() {
 	}
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
 	
-	private java.math.BigDecimal id;
-	
+	@Persistent
 	private String modelo;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.Marca Marca;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.TipoArticulo TipoArticulo;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.Categoria Categoria;
 	
+	@Persistent	
 	private cl.sigti.sigset.modelo.PrecioGarantia PrecioGarantia;
 	
+	@Persistent	
 	private cl.sigti.sigset.modelo.Linea Linea;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.Empresa IdEmpresa;
 	
+	@Persistent
 	private String observacion;
 	
+	@Persistent	
 	private java.util.Set<cl.sigti.sigset.modelo.OrdenTrabajo> OrdenTrabajo = new java.util.HashSet<cl.sigti.sigset.modelo.OrdenTrabajo>();
 	
-	private void setId(java.math.BigDecimal value) {
-		this.id = value;
+	
+	private void setId(Key id) {
+		this.id = id;
 	}
 	
-	public java.math.BigDecimal getId() {
+	public Key getId() {
 		return id;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Key getORMID() {
 		return getId();
 	}
 	

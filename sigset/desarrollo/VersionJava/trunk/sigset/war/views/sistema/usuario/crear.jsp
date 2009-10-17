@@ -21,7 +21,7 @@
 				                   	<input type="text" name="usuario" title="Nombre usuario" type="text" class="required lettersonly"  />
 				                   	 <label>Empresa:</label> 
 							        <select name="empresa" >
-							       		<option selected="selected" value="0">Seleccione Empresa</option>
+							      	<option selected="selected" value="0">Seleccione Empresa</option>
 							       		<option value="1" >Empresa 1</option>
 							       		<option value="2" >Empresa 2</option>
 							       </select>

@@ -30,6 +30,9 @@
 			            <th>
 			                Usuario Encargado
 			            </th>
+			            <th>
+			                Estado
+			            </th>
 			             <th>
 			                
 			            </th>
@@ -64,6 +67,9 @@
             	<%if(empresa.getUsuarioEncargado() != null){ %>
                 <%=empresa.getUsuarioEncargado().getNombresApellido()%>
                 <%} %>
+            </td>
+            <td>
+            	 <%=empresa.getActivo()%>               
             </td>
             <td>
             	

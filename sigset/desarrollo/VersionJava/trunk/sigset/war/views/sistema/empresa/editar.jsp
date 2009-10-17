@@ -63,17 +63,17 @@
 	  	<div class="three-column-left">
 			<label for="region">Regi&oacute;n:</label>
 			<input id="Region_DISPLAY_TEXT" name="Region_DISPLAY_TEXT" type="text" value="" class="required" />
-			<input id="region" name="region" type="hidden" value=""  />
+			<input id="region" name="region" type="hidden" value="<%=empresa.getDireccion().getRegion() %>" />
         </div>
  	    <div class="three-column-middle">
 			<label for="provincia">Provincia:</label>
 			<input id="Provincia_DISPLAY_TEXT" name="Provincia_DISPLAY_TEXT" type="text" value="" class="required" />
-			<input id="provincia" name="provincia" type="hidden" value=""  />
+			<input id="provincia" name="provincia" type="hidden" value="<%=empresa.getDireccion().getProvincia() %>"  />
     	</div>
     	<div class="three-column-right">
 			<label for="comuna">Comuna:</label>
 			<input id="Comuna_DISPLAY_TEXT" name="Comuna_DISPLAY_TEXT" type="text" value="" class="required" />
-			<input id="comuna" name="comuna" type="hidden" value=""   />
+			<input id="comuna" name="comuna" type="hidden" value="<%=empresa.getDireccion().getComuna() %>"   />
        	</div>
 	</div>
 	</fieldset>
