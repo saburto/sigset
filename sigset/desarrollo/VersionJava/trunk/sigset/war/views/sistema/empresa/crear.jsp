@@ -24,7 +24,7 @@
 					 	</div>
 						<div  class="three-column-left">
 					 		<label>Raz&oacute;n social:</label>				 	
-					 		<input type="text" name="nombre" title="Nombre Raz&oacute;n social" type="text" class="required lettersonly" />
+					 		<input type="text" name="nombre" title="Nombre Raz&oacute;n social" type="text"  />
 					 	</div>
 						<div  class="three-column-rigth">		
 					 		<label>Nombre Corto:</label>				 	

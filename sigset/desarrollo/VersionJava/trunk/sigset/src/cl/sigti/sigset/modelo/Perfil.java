@@ -14,29 +14,42 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
-public class Perfil implements Serializable {
-	public Perfil() {
-	}
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+import com.google.appengine.api.datastore.Key;
+
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class Perfil implements Serializable {	
 	
-	private int id;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
 	
+	@Persistent
 	private String descripcion;
 	
-	private int idEmpresa;
-	
+	@Persistent
+	private Key idEmpresa;
+	@Persistent
 	private java.util.Set<cl.sigti.sigset.modelo.Usuario> Usuario = new java.util.HashSet<cl.sigti.sigset.modelo.Usuario>();
-	
+	@Persistent
 	private java.util.Set<cl.sigti.sigset.modelo.PerfilPermiso> PerfilPermiso = new java.util.HashSet<cl.sigti.sigset.modelo.PerfilPermiso>();
+
 	
-	private void setId(int value) {
+	public void setId(Key value) {
 		this.id = value;
 	}
 	
-	public int getId() {
+	public Key getId() {
 		return id;
 	}
 	
-	public int getORMID() {
+	public Key getORMID() {
 		return getId();
 	}
 	
@@ -48,11 +61,11 @@ public class Perfil implements Serializable {
 		return descripcion;
 	}
 	
-	public void setIdEmpresa(int value) {
+	public void setIdEmpresa(Key value) {
 		this.idEmpresa = value;
 	}
 	
-	public int getIdEmpresa() {
+	public Key getIdEmpresa() {
 		return idEmpresa;
 	}
 	
