@@ -14,27 +14,42 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Comuna implements Serializable {
-	public Comuna() {
-	}
+
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
 	
-	private java.math.BigDecimal id;
-	
+	@Persistent
 	private cl.sigti.sigset.modelo.Provincia IdProvincia;
 	
+	@Persistent
 	private String nombre;
 	
+	@Persistent
 	private java.util.Set<cl.sigti.sigset.modelo.Direccion> Direccion = new java.util.HashSet<cl.sigti.sigset.modelo.Direccion>();
 	
-	public void setId(java.math.BigDecimal value) {
+	public void setId(Key value) {
 		this.id = value;
 	}
 	
-	public java.math.BigDecimal getId() {
+	public Key getId() {
 		return id;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Key getORMID() {
 		return getId();
 	}
 	

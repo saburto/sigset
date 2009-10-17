@@ -59,7 +59,7 @@ public class Articulo implements Serializable {
 	private java.util.Set<cl.sigti.sigset.modelo.OrdenTrabajo> OrdenTrabajo = new java.util.HashSet<cl.sigti.sigset.modelo.OrdenTrabajo>();
 	
 	
-	private void setId(Key id) {
+	public void setId(Key id) {
 		this.id = id;
 	}
 	
