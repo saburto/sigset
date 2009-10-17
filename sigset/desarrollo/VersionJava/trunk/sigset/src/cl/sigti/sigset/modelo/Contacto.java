@@ -14,29 +14,44 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Contacto implements Serializable {
-	public Contacto() {
-	}
+
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
 	
-	private java.math.BigDecimal id;
-	
+	@Persistent
 	private cl.sigti.sigset.modelo.ClienteParticular ContactoClienteDistribuidor;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.TipoContacto TipoContacto;
 	
+	@Persistent
 	private String valorContacto;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.ClienteComercial ContactoClienteDistribuidor1;
 	
-	private void setId(java.math.BigDecimal value) {
+	public void setId(Key value) {
 		this.id = value;
 	}
 	
-	public java.math.BigDecimal getId() {
+	public Key getId() {
 		return id;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Key getORMID() {
 		return getId();
 	}
 	

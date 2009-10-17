@@ -14,27 +14,41 @@
 package cl.sigti.sigset.modelo;
 
 import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@SuppressWarnings("serial")
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Categoria implements Serializable {
-	public Categoria() {
-	}
 	
-	private java.math.BigDecimal idCategoria;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key idCategoria;
 	
+	@Persistent
 	private String descripcion;
 	
+	@Persistent
 	private cl.sigti.sigset.modelo.Empresa IdEmpresa;
 	
+	@Persistent
 	private java.util.Set<cl.sigti.sigset.modelo.Articulo> Articulo = new java.util.HashSet<cl.sigti.sigset.modelo.Articulo>();
 	
-	public void setIdCategoria(java.math.BigDecimal value) {
+	public void setIdCategoria(Key value) {
 		this.idCategoria = value;
 	}
 	
-	public java.math.BigDecimal getIdCategoria() {
+	public Key getIdCategoria() {
 		return idCategoria;
 	}
 	
-	public java.math.BigDecimal getORMID() {
+	public Key getORMID() {
 		return getIdCategoria();
 	}
 	

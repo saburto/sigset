@@ -462,7 +462,6 @@ public class UtilDireccionRepositorioImpl implements UtilDireccionRepositorio  {
 	private Comuna getNuevaComuna(int idProvincia, int id, String nombre){
 		Comuna nuevaComuna = new Comuna();
 		nuevaComuna.setIdProvincia(getProviniciaPorId(idProvincia));
-		nuevaComuna.setId(new  BigDecimal(idProvincia));
 		nuevaComuna.setNombre(nombre);
 		return nuevaComuna;
 	}
