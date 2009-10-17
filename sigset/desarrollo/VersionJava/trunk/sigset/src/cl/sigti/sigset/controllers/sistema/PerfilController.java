@@ -22,7 +22,7 @@ public class PerfilController {
 	public String crearPerfil() {
 		return "sistema/perfil/crear";
 
-	}
+	}	
 	
 	@RequestMapping(value = "/crear/", method = RequestMethod.POST)
 	public String crearPerfil(@ModelAttribute Perfil perfil) {
@@ -30,4 +30,5 @@ public class PerfilController {
 		return "sistema/perfil/crear";
 
 	}
+	
 }
