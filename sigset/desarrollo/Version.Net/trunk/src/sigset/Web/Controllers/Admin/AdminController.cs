@@ -12,7 +12,7 @@ using xVal.ServerSide;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class AdminController : Controller
     {
         //

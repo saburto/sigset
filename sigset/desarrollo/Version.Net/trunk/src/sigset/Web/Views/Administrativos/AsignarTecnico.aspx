@@ -14,7 +14,7 @@
 
         <fieldset>
             <legend><%=Html.Encode("Asignación") %></legend>
-                <%= Html.Hidden("Id_Orden", Model.Id_Orden) %>
+                <%= Html.Hidden("IdOrden", Model.IdOrden) %>
                 <%= Html.Hidden("rutTecnico", TempData["rutTecnico"]) %>
             <p>
                 <label for="Detalle1"><%=Html.Encode("Detalle de la asignación:")%> </label>

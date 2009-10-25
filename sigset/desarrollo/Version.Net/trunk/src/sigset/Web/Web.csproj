@@ -11,7 +11,7 @@
     <RootNamespace>Web</RootNamespace>
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,8 +80,10 @@
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="Helpers\AutoCompleteHelper.cs" />
     <Compile Include="Helpers\CamposHelper.cs" />
+    <Compile Include="Helpers\Icon.cs" />
     <Compile Include="Helpers\ExcelResult.cs" />
     <Compile Include="Helpers\IJsonAutoComplete.cs" />
+    <Compile Include="Helpers\ImagenFondoHelper.cs" />
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Helpers\JQueryHelper.cs" />
     <Compile Include="Helpers\JsonAutoComplete.cs" />
@@ -179,7 +181,6 @@
     <Content Include="Views\TipoCargo\Lista.aspx" />
     <Content Include="Views\Usuario\Crear.aspx" />
     <Content Include="Views\Usuario\Editar.aspx" />
-    <Content Include="Views\Usuario\Lista.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +206,55 @@
     <Content Include="Views\Tecnico\Detalles.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\icons\Album.png" />
+    <Content Include="Content\icons\Badge.png" />
+    <Content Include="Content\icons\Buddy Chat.png" />
+    <Content Include="Content\icons\Buddy Group.png" />
+    <Content Include="Content\icons\Buddy.png" />
+    <Content Include="Content\icons\Calendar.png" />
+    <Content Include="Content\icons\Chart Bar.png" />
+    <Content Include="Content\icons\Chart Pie.png" />
+    <Content Include="Content\icons\Chat 2.png" />
+    <Content Include="Content\icons\Chat Video.png" />
+    <Content Include="Content\icons\Chat.png" />
+    <Content Include="Content\icons\Disk CD.png" />
+    <Content Include="Content\icons\Disk DVD.png" />
+    <Content Include="Content\icons\Document Edit.png" />
+    <Content Include="Content\icons\Document Notes.png" />
+    <Content Include="Content\icons\Document Plain.png" />
+    <Content Include="Content\icons\Edit.png" />
+    <Content Include="Content\icons\Edit_No.png" />
+    <Content Include="Content\icons\Edit_Yes.png" />
+    <Content Include="Content\icons\Egg.png" />
+    <Content Include="Content\icons\Favorite.png" />
+    <Content Include="Content\icons\Find Search.png" />
+    <Content Include="Content\icons\Folders.png" />
+    <Content Include="Content\icons\Font.png" />
+    <Content Include="Content\icons\Heart.png" />
+    <Content Include="Content\icons\Help.png" />
+    <Content Include="Content\icons\Home.png" />
+    <Content Include="Content\icons\Keys.png" />
+    <Content Include="Content\icons\Lock.png" />
+    <Content Include="Content\icons\Mail 1.png" />
+    <Content Include="Content\icons\Mail.png" />
+    <Content Include="Content\icons\Mobile.png" />
+    <Content Include="Content\icons\Music.png" />
+    <Content Include="Content\icons\Photo.png" />
+    <Content Include="Content\icons\Podcast.png" />
+    <Content Include="Content\icons\Print.png" />
+    <Content Include="Content\icons\Refresh.png" />
+    <Content Include="Content\icons\RSS 1.png" />
+    <Content Include="Content\icons\RSS 2.png" />
+    <Content Include="Content\icons\Settings.png" />
+    <Content Include="Content\icons\add.png" />
+    <Content Include="Content\icons\Symbol - Check.png" />
+    <Content Include="Content\icons\Symbol - Delete.png" />
+    <Content Include="Content\icons\Symbol - Remove.png" />
+    <Content Include="Content\icons\Tag Add.png" />
+    <Content Include="Content\icons\Tag Remove.png" />
+    <Content Include="Content\icons\Tag.png" />
+    <Content Include="Content\icons\Twitter.png" />
+    <Content Include="Content\icons\Video.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
@@ -220,7 +270,9 @@
     <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom.css" />
+    <Content Include="Content\jquery.tooltip.css" />
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
+    <Content Include="Scripts\jquery.tooltip.min.js" />
     <Content Include="Views\Administrativos\Asignar.aspx" />
     <Content Include="Views\Administrativos\AsignarTecnico.aspx" />
     <Content Include="Views\Administrativos\ConsultaOrdenes.aspx" />
@@ -239,6 +291,7 @@
     <Content Include="Views\OrdenTrabajo\Detalles.aspx" />
     <Content Include="Views\OrdenTrabajo\ListaOrdenes.ascx" />
     <Content Include="Views\OrdenTrabajo\Listar.aspx" />
+    <Content Include="Views\Usuario\Lista.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,7 +312,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1670</DevelopmentServerPort>
+          <DevelopmentServerPort>56269</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

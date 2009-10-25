@@ -21,7 +21,7 @@
         <div class="three-column-right">
         <p>
             Fecha:
-            <%= Html.Encode(String.Format("{0:g}", Model.Fecha_Ingreso)) %>
+            <%= Html.Encode(String.Format("{0:g}", Model.FechaIngreso)) %>
         </p>
         </div>
         </div>
@@ -31,7 +31,7 @@
          <p>
             Cliente:
             <br />
-             <%= Html.Encode(String.Format("{0} {1}", Model.Cliente.Nombre,Model.Cliente.Apellido_Paterno)) %>
+             <%= Html.Encode(String.Format("{0} {1}", Model.Cliente.ClienteParticular.Nombre,Model.Cliente.ClienteParticular.ApellidoPaterno)) %>
         </p>
         </div>
         <div class="three-column-middle">
@@ -40,7 +40,7 @@
         
             Rut :
             <br />
-            <%= Html.Encode(String.Format("{0}", Model.Id_Cliente.GetRutCompleto())) %>
+            <%= Html.Encode(String.Format("{0}", Model.Cliente.ClienteParticular.Rut.GetRutCompleto())) %>
         
         </p>
         </div>
@@ -48,7 +48,7 @@
         <div class="clear"></div>
         <p>
             Fecha Entrega:
-            <%= Html.Encode(String.Format("{0:d}", Model.Fecha_Entrega)) %>
+            <%= Html.Encode(String.Format("{0:d}", Model.FechaEntrega)) %>
         </p>
      
      <div class="clear"></div>
@@ -81,14 +81,14 @@
         </p>
         <p>
             Condicion Articulo:
-            <%= Html.Encode(Model.Condicion_Articulo) %>
+            <%= Html.Encode(Model.CondicionArticulo) %>
         </p>
         <p>
             Tipo de Orden:
-            <%=Html.Encode(Model.Tipo_Orden1.Descripcion) %>
+            <%=Html.Encode(Model.TipoOrden1.Descripcion) %>
         </p>
         
-            <% if (Model.Tipo_Orden != 2)
+            <% if (Model.TipoOrden != 2)
                { %>
 
         <p>
@@ -101,11 +101,11 @@
         </p>
         <p>
             Fecha Compra:
-            <%= Html.Encode(String.Format("{0:d}", Model.Fecha_Compra))%>
+            <%= Html.Encode(String.Format("{0:d}", Model.FechaCompra))%>
         </p>
         <p>
             Lugar Compra:
-            <%= Html.Encode(Model.Lugar_Compra)%>
+            <%= Html.Encode(Model.LugarCompra)%>
         </p>
         <%} %>
         
@@ -113,17 +113,17 @@
         
         <h2>Detalles</h2>
         
-        <%foreach (var detalle in Model.Detalles.OrderByDescending(x => x.Fecha_Creacion))
+        <%foreach (var detalle in Model.Detalles.OrderByDescending(x => x.FechaCreacion))
           {%>
           
           <p>Fecha:
-          <%=Html.Encode(string.Format("{0:g}",detalle.Fecha_Creacion)) %>
+          <%=Html.Encode(string.Format("{0:g}",detalle.FechaCreacion)) %>
           </p>
           
           <p>Estado:
            <%=Html.Encode(detalle.Estado1.Descripcion) %>
            <br />
-           <%=Html.Encode(detalle.Detalle1) %> 
+           <%=Html.Encode(detalle.Contenido) %> 
            </p>
           <%} %>
         

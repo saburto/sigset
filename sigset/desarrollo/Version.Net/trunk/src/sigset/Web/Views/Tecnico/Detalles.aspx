@@ -11,11 +11,11 @@
     <fieldset>
         <p>
             Nombre:
-            <%= Html.Encode(Model.Empleado.Nombre + " " + Model.Empleado.Apellido_Paterno + " " + Model.Empleado.Apellido_Materno) %>
+            <%= Html.Encode(Model.Usuario.Nombres + " " + Model.Usuario.ApellidoPaterno + " " + Model.Usuario.ApellidoMaterno) %>
         </p>
         <p>
             Rut:
-            <%= Html.Encode(String.Format("{0}", Model.Rut.GetRutCompleto())) %>
+            <%= Html.Encode(String.Format("{0}", Model.Usuario.Rut.GetRutCompleto())) %>
         </p>
         <p>
             Nivel:
@@ -52,10 +52,10 @@
         <tr>
     <%} alter = !alter; %>
              <td>
-               <%= Html.Encode(item.Tipo_Especialidad1.Id_Tipo_Especialidad) %>
+               <%= Html.Encode(item.TipoEspecialidad1.IdTipoEspecialidad) %>
               </td>
               <td>
-               <%= Html.Encode(item.Tipo_Especialidad1.Descripcion) %>
+               <%= Html.Encode(item.TipoEspecialidad1.Descripcion) %>
               </td>      
     </tr>
     

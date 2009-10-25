@@ -85,20 +85,14 @@ namespace Web.Controllers.Admin
        
         public ActionResult Crear()
         {
-             ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre");
-             ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion");
+             ViewData["PerfilUsuario"] = _servicio.TiposUsuarios().GetSelectCampos("Id", "Descripcion");
             return View();
         }
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear([Bind (Exclude="Id")]Usuario usuario,string listaTipos,string Pass,string listaEmpleados)
+        public ActionResult Crear([Bind (Exclude="Id")]Usuario usuario)
         {
             try
             {
-                if (usuario != null)
-                {
-                    usuario.Password = Pass;
-                    usuario.PerfilUsuario = int.Parse(listaTipos);
-                }
                 _servicio.CrearUsuario(usuario);
                 return RedirectToAction("Lista");
 

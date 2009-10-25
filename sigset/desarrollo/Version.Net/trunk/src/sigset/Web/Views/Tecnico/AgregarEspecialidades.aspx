@@ -35,7 +35,7 @@
                 <%= Html.ActionLink("Eliminar", "EliminarEspecialidad", new { id = item.Id, id_tecnico = ViewData["rutTecnico"] })%>
             </td>
             <td>
-                <%= Html.Encode(item.Tipo_Especialidad1.Descripcion) %>
+                <%= Html.Encode(item.TipoEspecialidad1.Descripcion) %>
             </td>
             
         </tr>    

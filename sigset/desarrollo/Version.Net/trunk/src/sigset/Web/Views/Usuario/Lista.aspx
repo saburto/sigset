@@ -4,8 +4,12 @@
 	Lista
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ContentPlaceHolderID="divContentStyle" runat="server">
+    <%=Html.ImagenFondo("icons","Buddy%20Group.png") %>
+   
+</asp:Content>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Lista de Usuarios</h2>
     <% if (TempData["MensajeError"] != null) %>
     <%{%>
@@ -16,23 +20,27 @@
 
    
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
-   
         <tr>
             <th></th>
             <th>
-                Id
+                Nombres
+            </th>
+            <th>
+                Apellidos
             </th>
             <th>
                 Usuario
             </th>
             <th>
-                Tipo Usuario
+                Perfil
             </th>
             <th>
-                Empleado
+                Email
+            </th>
+            <th>
+                Telefono
             </th>
         </tr>
-
     <%bool alter = false; %>
     <% foreach (var item in Model)
        { %>
@@ -44,22 +52,27 @@
       { %>
         <tr>
     <%} alter = !alter; %>
-       
             <th scope="row">
                 <%= Html.ActionLink("Editar", "Editar", new { id=item.Id }) %> |
                 <%= Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id })%>
             </th>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Id)) %>
+                <%= Html.Encode(item.Nombres) %>
             </td>
             <td>
-                <%= Html.Encode(item.Usuario1) %>
+                <%= Html.Encode(string.Format("{0} {1}", item.ApellidoPaterno, item.ApellidoMaterno)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Tipo_Usuario)) %>
+                <%= Html.Encode(item.User) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Empleado.GetRutCompleto())) %>
+                <%= Html.Encode(String.Format("{0}", item.Perfil != null ? item.Perfil.Descripcion : "")) %>
+            </td>
+            <td>
+                <%=string.Format("<a href='mailto:{0}'>{0}</a>", Html.AttributeEncode(item.Email))%>
+            </td>
+            <td>
+                <%= Html.Encode(item.Telefono) %>
             </td>
         </tr>
     
@@ -68,9 +81,8 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Crear Nuevo", "Crear") %>
+        <%=Html.ButtonLinkIcon(Url.Action("Crear"),"Crear Nuevo",Iconos.circle_plus) %>
     </p>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">

@@ -16,10 +16,10 @@ namespace Data.Modelo
     public class UserMetadata
     {
         [Required(ErrorMessage="Usuario requerido")]
-        public object Usuario1 { get; set; }
+        public object User { get; set; }
 
         [Required(ErrorMessage="Contraseña requerida")]
-        public object Contraseña { get; set; }
+        public object Password { get; set; }
 
         
     }

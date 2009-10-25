@@ -16,8 +16,6 @@ namespace Web.Controllers //.Admin
     [Web.Seguridad.ManejadorErrores]
     public class EmpleadoController : Controller
     {
-        //jojoj, XD
-        //la misma logica con las interfaces de servicio
         IEmpleadoServicio _servicio;
 
         public EmpleadoController()

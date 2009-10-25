@@ -90,7 +90,7 @@ namespace Services.Usuarios
 
             if (usuario.PerfilUsuario == -1)
             {
-                _errors.Add(new ErrorInfo("Tipo_Usuario", "Debe seleccionar Tipo de Usuario"));
+                _errors.Add(new ErrorInfo("PerfilUsuario", "Debe seleccionar Perfil"));
             }
 
           

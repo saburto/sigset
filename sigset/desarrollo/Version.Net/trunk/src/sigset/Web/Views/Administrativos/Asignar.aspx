@@ -43,16 +43,16 @@
        
             <th scope="row">
     
-                <%= Html.ActionLink("Asignar", "AsignarTecnico", new { rutTecnico = item.Rut, id = TempData["IdOrden"] })%> 
+                <%= Html.ActionLink("Asignar", "AsignarTecnico", new { rutTecnico = item.Id, id = TempData["IdOrden"] })%> 
             </th>
             
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Rut.GetRutCompleto())) %>
+                <%= Html.Encode(String.Format("{0}", item.Usuario.Rut.GetRutCompleto())) %>
             </td>
             <td>
-                <%= Html.Encode( item.Empleado.Nombre + " " ) %>
-                <%= Html.Encode(item.Empleado.Apellido_Paterno + " ")%>
-                <%= Html.Encode( item.Empleado.Apellido_Materno) %>
+                <%= Html.Encode( item.Usuario.Nombres + " " ) %>
+                <%= Html.Encode(item.Usuario.ApellidoPaterno + " ")%>
+                <%= Html.Encode( item.Usuario.ApellidoMaterno) %>
                 
             </td>
             <td>
@@ -62,13 +62,15 @@
              <%if (item.Especialidades != null && item.Especialidades.Count > 0)
                { %>
                 
-                <a href="javascript:VerEspcialidad('<%=item.Rut %>');" >Ver/Cerrar</a>
-                <div id="Especialidades<%=item.Rut %>" style="display:none">
+                <a href="javascript:VerEspcialidad('<%=item.Id %>');" >Ver/Cerrar</a>
+                <div id="Especialidades<%=item.Id %>" style="display:none">
+                
+                
                 
                 <%foreach (var es in item.Especialidades)
                   {%>
                   <br />
-                  -<%=es.Tipo_Especialidad1.Descripcion %>
+                  -<%=es.TipoEspecialidad1.Descripcion %>
                   
                   <%} %>
                 
@@ -81,7 +83,7 @@
 
             </td>
            <td>
-           <%=Html.ActionLink("Ver Ordenes", "OrdenesTecnico", new {id=item.Rut},null)%>
+           <%=Html.ActionLink("Ver Ordenes", "OrdenesTecnico", new {id=item.Id},null)%>
            </td>
     </tr>
     

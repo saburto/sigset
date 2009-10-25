@@ -19,11 +19,11 @@
         </p>
         <p>
             Apellido Paterno:
-            <%= Html.Encode(Model.Apellido_Paterno) %>
+            <%= Html.Encode(Model.ApellidoPaterno) %>
         </p>
         <p>
             Apellido Materno:
-            <%= Html.Encode(Model.Apellido_Materno) %>
+            <%= Html.Encode(Model.ApellidoMaterno) %>
         </p>
         <p>
             Tipo Cargo:

@@ -17,7 +17,7 @@ namespace Web.Controllers
 {
     //[Authorize]
     [Web.Seguridad.ManejadorErrores]
-    [Authorize(Roles = "Técnico,Recepcionista,Administrativo,Sistema")]
+    //[Authorize(Roles = "Técnico,Recepcionista,Administrativo,Sistema")]
     public class OrdenTrabajoController : Controller
     {
 
@@ -63,7 +63,7 @@ namespace Web.Controllers
         /// <returns></returns>
         public ActionResult CrearDetalle(decimal id, decimal rut)
         {
-            ViewData["Tipo_Orden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
+            ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
             Cliente cliente = _srvCliente.GetClientePorRut(rut);
             Data.Modelo.OrdenTrabajo ot = new Data.Modelo.OrdenTrabajo();
             ot.Cliente = cliente;
@@ -101,7 +101,7 @@ namespace Web.Controllers
                 ModelState.AddModelError("_FORM", ex.Message);
             }
             
-            ViewData["Tipo_Orden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
+            ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
             return View(ordenTrabajo);
         }
 
@@ -115,7 +115,7 @@ namespace Web.Controllers
                 {
                     List<Data.Modelo.OrdenTrabajo> or = new List<Data.Modelo.OrdenTrabajo>();
                     or.Add(ot);
-                    return this.Excel(or.AsQueryable(), "OrdenTrabajo"+ id +".xls", new string[] {"Id","Serie","Id_Cliente", "Falla","Condicion_Articulo","Tipo_Orden","Fecha_Entrega","Boleta","Poliza","Fecha_Compra","Lugar_Compra" });
+                    return this.Excel(or.AsQueryable(), "OrdenTrabajo"+ id +".xls", new string[] {"Id","Serie","Cliente.ClienteParticular.Rut", "Falla","Condicion_Articulo","TipoOrden","FechaEntrega","Boleta","Poliza","Fecha_Compra","Lugar_Compra" });
                 }
             }
 
@@ -167,7 +167,7 @@ namespace Web.Controllers
 
         public ActionResult Listar()
         {
-            ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
+            ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
             ViewData["ListaEstados"] = _srvOrdenTrabajo.GetEstadosOrden().GetSelectCampos("Id_Estado", "Descripcion");
             return View();
         }
@@ -196,7 +196,7 @@ namespace Web.Controllers
                 DateTime date = Convert.ToDateTime(Fecha_Inicio);
                 DateTime date2 = Convert.ToDateTime(Fecha_Final);
                 var ordenes = _srvOrdenTrabajo.GetOrdenesTrabajo(date, date2, ListaTipos, ListaEstados);
-                return this.Excel(ordenes.AsQueryable(), "OrdenesTrabajo.xls", new string[] { "Id", "Serie", "Id_Cliente", "Falla", "Condicion_Articulo", "Tipo_Orden", "Fecha_Entrega", "Boleta", "Poliza", "Fecha_Compra", "Lugar_Compra" });
+                return this.Excel(ordenes.AsQueryable(), "OrdenesTrabajo.xls", new string[] { "Id", "Serie", "Cliente.ClienteParticular.Rut", "Falla", "Condicion_Articulo", "TipoOrden", "FechaEntrega", "Boleta", "Poliza", "Fecha_Compra", "Lugar_Compra" });
             }
             return Content("");
         }

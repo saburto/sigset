@@ -17,6 +17,7 @@
     <link href="<%= Url.Content("~/Content/print-styles.css") %>" rel="stylesheet" type="text/css"
         media="print" />
     <link href="<%= Url.Content("~/Content/jquery-ui-1.7.2.custom.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.tooltip.css") %>" rel="stylesheet" type="text/css" />
         
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.min.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js") %>"></script>
@@ -25,9 +26,48 @@
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-ui-1.7.2.custom.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.tooltip.min.js") %>"></script>
     
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
    
+   
+    <script type="text/javascript">
+        $(function() {
+
+        $("input").tooltip({
+
+            track: true,
+            delay: 0,
+            showURL: false,
+            showBody: " - ",
+            fade: 250,
+            opacity: 1
+        });
+        
+		//all hover and click logic for buttons
+		$(".fg-button:not(.ui-state-disabled)")
+		.hover(
+			function(){ 
+				$(this).addClass("ui-state-hover"); 
+			},
+			function(){ 
+				$(this).removeClass("ui-state-hover"); 
+			}
+		)
+		.mousedown(function(){
+				$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
+				else { $(this).addClass("ui-state-active"); }	
+		})
+		.mouseup(function(){
+			if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				$(this).removeClass("ui-state-active");
+			}
+		});
+	});
+</script>
+    
+    
 </head>
 <body>
     <div class="none">
@@ -56,13 +96,14 @@
     </div>
     <div class="content-container">
         <div class="content-container-inner">
-            <div class="content-main">
-                <a name="maincontent" id="maincontent"></a>
-                <div class="breadcrumb">
-                    <%= Html.SiteMapPath(" &raquo; ") %> 
-                    <div id="loadingAjax" style="display: none;">
-                    Cargando... <img src="../../Content/images/ajax-loader.gif" />
-                    </div></div>
+            <div class="content-main"
+            <asp:ContentPlaceHolder ID="divContentStyle" runat="server">            
+            </asp:ContentPlaceHolder>
+            >
+                        <div id="loadingAjax" style="display: none;">
+                            Cargando... <img src="../../Content/images/ajax-loader.gif" />
+                        </div>
+                
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
                 <%--
             <h1 class="first">&lt;H1&gt; Header</h1>

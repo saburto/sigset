@@ -45,10 +45,10 @@
                 <%= Html.Encode(item.Nombre) %>
             </td>
             <td>
-                <%= Html.Encode(item.Apellido_Paterno) %>
+                <%= Html.Encode(item.ApellidoPaterno) %>
             </td>
             <td>
-                <%= Html.Encode(item.Apellido_Materno) %>
+                <%= Html.Encode(item.ApellidoMaterno) %>
             </td>
         </tr>
     <% } %>

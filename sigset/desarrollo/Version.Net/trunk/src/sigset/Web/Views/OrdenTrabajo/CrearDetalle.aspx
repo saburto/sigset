@@ -28,12 +28,12 @@
     });
 
     $('#Fecha_Compra').datepicker();
-    $('#Fecha_Entrega').datepicker();
+    $('#FechaEntrega').datepicker();
     
-    $('#Tipo_Orden').change(
+    $('#TipoOrden').change(
         function()
         {
-          if($('#Tipo_Orden').val() == 2)
+          if($('#TipoOrden').val() == 2)
           {
             $('#datosGarantia').hide();
           }
@@ -66,8 +66,8 @@
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-    <%= Html.Hidden("Id_Cliente", Model.Id_Cliente)%>
-    <%= Html.Hidden("Id_Articulo", Model.Id_Articulo)%>
+    <%= Html.Hidden("Cliente.ClienteParticular.Rut", Model.Cliente.ClienteParticular.Rut)%>
+    <%= Html.Hidden("IdArticulo", Model.IdArticulo)%>
 
         <fieldset>
             <legend>Orden de Trabajo</legend>
@@ -91,10 +91,10 @@
             <div class="three-column-container">
                 <div class="three-column-left">
                 <p>
-                    <label for="Tipo_Orden">Tipo Orden:</label>
-                    <%= Html.DropDownList("Tipo_Orden")%>
+                    <label for="TipoOrden">Tipo Orden:</label>
+                    <%= Html.DropDownList("TipoOrden")%>
                     
-                    <%= Html.ValidationMessage("Tipo_Orden", "*") %>
+                    <%= Html.ValidationMessage("TipoOrden", "*") %>
                 </p>
                 </div>
                 <div id="datosGarantia">
@@ -123,8 +123,8 @@
             <div class="clear"></div>
             <p>
                 <label for="Fecha Entrega">Fecha Entrega:</label>
-                <%= Html.TextBox("Fecha_Entrega", Model.Fecha_Entrega.ToShortDateString()) %>
-                <%= Html.ValidationMessage("Fecha_Entrega", "*") %>
+                <%= Html.TextBox("FechaEntrega", Model.FechaEntrega.ToShortDateString()) %>
+                <%= Html.ValidationMessage("FechaEntrega", "*") %>
             </p>
             <p>
                 <input type="submit" class="button-big" value="Guardar" />

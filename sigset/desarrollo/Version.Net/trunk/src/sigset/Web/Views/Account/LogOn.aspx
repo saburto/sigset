@@ -16,13 +16,13 @@
             <fieldset>
                 <p>
                     <label for="username">Nombre de Usuario:</label>
-                    <%= Html.TextBox("Usuario1")%>
-                    <%= Html.ValidationMessage("Usuario1","*") %>
+                    <%= Html.TextBox("User")%>
+                    <%= Html.ValidationMessage("User","*") %>
                 </p>
                 <p>
                     <label for="password">Contraseña:</label>
-                    <%= Html.Password("Contraseña")%>
-                    <%= Html.ValidationMessage("Contraseña", "*") %>
+                    <%= Html.Password("Password")%>
+                    <%= Html.ValidationMessage("Password", "*") %>
                 </p>
                 <p>
                     <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Recordar Sesi&#243;n</label>
