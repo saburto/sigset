@@ -10,7 +10,7 @@ using Data.Modelo;
 
 namespace Services.Usuarios
 {
-    public class UsuarioServicio 
+    public class UsuarioServicio : Services.Usuarios.IUsuarioServicio 
     {
         private IUsuarioRepositorio _repo;
         public UsuarioServicio(IUsuarioRepositorio repo)

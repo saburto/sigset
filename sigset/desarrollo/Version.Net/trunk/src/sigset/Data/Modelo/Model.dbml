@@ -45,8 +45,8 @@
       <Association Name="Cliente_ClienteParticular" Member="ClienteParticular" ThisKey="Id" OtherKey="Id" Type="ClienteParticular" Cardinality="One" />
       <Association Name="Cliente_Contacto" Member="Contactos" ThisKey="Id" OtherKey="IdCliente" Type="Contacto" />
       <Association Name="Cliente_OrdenTrabajo" Member="OrdenTrabajos" ThisKey="Id" OtherKey="IdCliente" Type="OrdenTrabajo" />
-      <Association Name="Direccion_Cliente" Member="Direccion" ThisKey="IdDireccion" OtherKey="Id" Type="Direccion" IsForeignKey="true" />
       <Association Name="TipoCliente_Cliente" Member="TipoCliente1" ThisKey="TipoCliente" OtherKey="Id" Type="TipoCliente" IsForeignKey="true" />
+      <Association Name="Direccion_Cliente" Member="Direccion" ThisKey="IdDireccion" OtherKey="Id" Type="Direccion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ClienteComercial" Member="ClienteComercials">
@@ -97,21 +97,6 @@
       <Association Name="Estado_Detalle" Member="Estado1" ThisKey="Estado" OtherKey="IdEstado" Type="Estado" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="OrdenTrabajo_Detalle" Member="OrdenTrabajo" ThisKey="IdOrden" OtherKey="Id" Type="OrdenTrabajo" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Usuario_Detalle" Member="Usuario" ThisKey="IdUsuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Direccion" Member="Direccions">
-    <Type Name="Direccion">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Provincia" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Calle" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Numero" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
-      <Column Name="TipoDireccion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Direccion_Cliente" Member="Clientes" ThisKey="Id" OtherKey="IdDireccion" Type="Cliente" />
-      <Association Name="Comuna_Direccion" Member="Comuna1" ThisKey="Comuna" OtherKey="Id" Type="Comuna" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Region_Direccion" Member="Region1" ThisKey="Region" OtherKey="Id" Type="Region" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="TipoDireccion_Direccion" Member="TipoDireccion1" ThisKey="TipoDireccion" OtherKey="IdTipoDireccion" Type="TipoDireccion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Especialidades" Member="Especialidades">
@@ -238,20 +223,12 @@
       <Association Name="PrecioGarantia_Porcentaje" Member="Porcentajes" ThisKey="IdPrecioGarantia" OtherKey="IdPrecio" Type="Porcentaje" />
     </Type>
   </Table>
-  <Table Name="dbo.Provincia" Member="Provincias">
-    <Type Name="Provincia">
-      <Column Name="Id" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="nombre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="IdRegion" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Region_Provincia" Member="Region" ThisKey="IdRegion" OtherKey="Id" Type="Region" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Region" Member="Regions">
     <Type Name="Region">
       <Column Name="Id" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="Region_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Region" Type="Direccion" />
       <Association Name="Region_Provincia" Member="Provincias" ThisKey="Id" OtherKey="IdRegion" Type="Provincia" />
+      <Association Name="Region_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Region" Type="Direccion" />
     </Type>
   </Table>
   <Table Name="dbo.Tecnicos" Member="Tecnicos">
@@ -322,6 +299,31 @@
       <Association Name="Usuario_Detalle" Member="Detalles" ThisKey="Id" OtherKey="IdUsuario" Type="Detalle" />
       <Association Name="Usuario_Tecnico" Member="Tecnico" ThisKey="Id" OtherKey="Id" Type="Tecnico" Cardinality="One" />
       <Association Name="Perfil_Usuario" Member="Perfil" ThisKey="PerfilUsuario" OtherKey="Id" Type="Perfil" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Provincia" Member="Provincias">
+    <Type Name="Provincia">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IdRegion" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Association Name="Provincia_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Provincia" Type="Direccion" />
+      <Association Name="Region_Provincia" Member="Region" ThisKey="IdRegion" OtherKey="Id" Type="Region" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direccion" Member="Direccions">
+    <Type Name="Direccion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Provincia" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Calle" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Numero" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Region" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoDireccion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="Direccion_Cliente" Member="Clientes" ThisKey="Id" OtherKey="IdDireccion" Type="Cliente" />
+      <Association Name="Provincia_Direccion" Member="Provincia1" ThisKey="Provincia" OtherKey="Id" Type="Provincia" IsForeignKey="true" />
+      <Association Name="Comuna_Direccion" Member="Comuna1" ThisKey="Comuna" OtherKey="Id" Type="Comuna" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Region_Direccion" Member="Region1" ThisKey="Region" OtherKey="Id" Type="Region" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TipoDireccion_Direccion" Member="TipoDireccion1" ThisKey="TipoDireccion" OtherKey="IdTipoDireccion" Type="TipoDireccion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

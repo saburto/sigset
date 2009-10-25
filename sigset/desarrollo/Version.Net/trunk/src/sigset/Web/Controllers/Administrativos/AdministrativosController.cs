@@ -53,15 +53,15 @@ namespace Web.Controllers.Administrativos
         {
             TempData["rutTecnico"] = rutTecnico;
             Detalle nuevoDetalle = new Detalle();
-            nuevoDetalle.Id_Orden = id;
+            nuevoDetalle.IdOrden = id;
             return View(nuevoDetalle);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AsignarTecnico(Detalle detalle, decimal rutTecnico)
+        public ActionResult AsignarTecnico(Detalle detalle, int rutTecnico)
         {
             _srvOr.AsginarTecnicoOrden(detalle, rutTecnico, HttpContext.User.Identity.Name);
-            var orden = _srvOr.GetOrdenTrabajo(detalle.Id_Orden);
+            var orden = _srvOr.GetOrdenTrabajo((int)detalle.IdOrden);
             return View("Detalles",orden);
         }
 

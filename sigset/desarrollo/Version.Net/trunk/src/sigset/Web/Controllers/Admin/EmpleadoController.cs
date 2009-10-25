@@ -46,12 +46,12 @@ namespace Web.Controllers //.Admin
         {
             var empleado = _servicio.BuscarEmpleadoPorRut(id);
             ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
-            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Tipo_Cargo1.Id_Tipo_Cargo.ToString());
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Perfil.Id.ToString());
             return View("Editar", empleado);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editar(int id, Empleado empleado, string listaTipos)
+        public ActionResult Editar(int id, Usuario empleado, string listaTipos)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Web.Controllers //.Admin
         {
             var empleado = _servicio.BuscarEmpleadoPorRut(id);
             ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
-            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Tipo_Cargo1.Id_Tipo_Cargo.ToString());
+            ViewData["listaTipos"] = _servicio.GetTodosLosTipoCargo().GetSelectCampos("Id_Tipo_Cargo", "Descripcion", empleado.Perfil.Id.ToString());
             return PartialView("Detalles", empleado);
         }
 
@@ -89,7 +89,7 @@ namespace Web.Controllers //.Admin
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Empleado empleado, string dv, string listaTipos)
+        public ActionResult Crear(Usuario empleado, string dv, string listaTipos)
         {
             try
             {

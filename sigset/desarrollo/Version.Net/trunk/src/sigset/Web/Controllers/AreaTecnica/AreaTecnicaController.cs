@@ -46,11 +46,11 @@ namespace Web.Controllers.AreaTecnica
                 Usuario  usuario = _srvUser.GetUsuariByNombre(HttpContext.User.Identity.Name);
                 if (usuario != null)
                 {
-                    Tecnico tecnico =  _srvTec.GetTecnicoByRut(usuario.Empleado);
+                    Tecnico tecnico =  _srvTec.GetTecnicoByRut(usuario.Rut);
 
                     if (tecnico != null)
                     {
-                        var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Rut);
+                        var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id);
                         return View(listaOrdenes);
                     }
                     
@@ -66,9 +66,9 @@ namespace Web.Controllers.AreaTecnica
 
         public ActionResult AgregarDetalle(decimal id)
         {
-            //Orden_Trabajo ot = _srvOr.GetOrdenTrabajo(id);
+            //Data.Modelo.OrdenTrabajo ot = _srvOr.GetOrdenTrabajo(id);
             Detalle nuevoDetalle = new Detalle();
-            nuevoDetalle.Id_Orden = id;
+            nuevoDetalle.IdOrden = id;
             ViewData["Estado"] = _srvOr.GetEstadosOrden().GetSelectCampos("Id_Estado","Descripcion");
             return View(nuevoDetalle);
         }
@@ -79,7 +79,7 @@ namespace Web.Controllers.AreaTecnica
             try
             {
                 _srvOr.AgregarDetalle(detalle, HttpContext.User.Identity.Name);
-                return RedirectToAction("Detalles", new { id = detalle.Id_Orden });
+                return RedirectToAction("Detalles", new { id = detalle.IdOrden });
             }
             catch (Exception ex)
             {

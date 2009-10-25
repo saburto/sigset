@@ -1,4 +1,4 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Data.Modelo.Orden_Trabajo>>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Data.Modelo.OrdenTrabajo>>" %>
 
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
