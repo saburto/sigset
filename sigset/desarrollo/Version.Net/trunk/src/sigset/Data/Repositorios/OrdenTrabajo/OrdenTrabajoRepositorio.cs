@@ -14,23 +14,23 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
             _data = new sigsetEntities();
         }
 
-        public IQueryable<Orden_Trabajo> GetTodasLasOrdenDeTrabajo()
+        public IQueryable<OrdenTrabajo> GetTodasLasOrdenDeTrabajo()
         {
-            var ordenes_trabajo = from ot in _data.Orden_Trabajos
+            var ordenes_trabajo = from ot in _data.OrdenTrabajos
                                   select ot;
             return ordenes_trabajo;        
         }
-        public IQueryable<Orden_Trabajo> GetTodasLasOrdenDeTrabajoByTecnicoId(decimal id)
+        public IQueryable<OrdenTrabajo> GetTodasLasOrdenDeTrabajoByTecnicoId(decimal id)
         {
-            var ordenes_trabajo = from ot in _data.Orden_Trabajos
-                                  where ot.Id_Tecnico_Asignado == id
+            var ordenes_trabajo = from ot in _data.OrdenTrabajos
+                                  where ot.IdTecnicoAsignado == id
                                   select ot;
                                   
             return ordenes_trabajo;
         }
-        public Orden_Trabajo GetOrdenTrabajoById(decimal id)
+        public OrdenTrabajo GetOrdenTrabajoById(decimal id)
         {
-            var ordenes_trabajo = (from o in _data.Orden_Trabajos
+            var ordenes_trabajo = (from o in _data.OrdenTrabajos
                                    where o.Id == id
                                    select o).FirstOrDefault();
             return ordenes_trabajo;
@@ -38,9 +38,9 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
 
 
 
-        public Orden_Trabajo GuardarOrdenTrabajo(Orden_Trabajo orden)
+        public OrdenTrabajo GuardarOrdenTrabajo(OrdenTrabajo orden)
         {
-            _data.Orden_Trabajos.InsertOnSubmit(orden);
+            _data.OrdenTrabajos.InsertOnSubmit(orden);
             _data.SubmitChanges();
             return orden;
         }
@@ -48,9 +48,9 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
 
 
 
-        public IQueryable<Tipo_Orden> GetTiposOrden()
+        public IQueryable<TipoOrden> GetTiposOrden()
         {
-            return _data.Tipo_Ordens;
+            return _data.TipoOrdens;
         }
 
         public void SaveChanges()

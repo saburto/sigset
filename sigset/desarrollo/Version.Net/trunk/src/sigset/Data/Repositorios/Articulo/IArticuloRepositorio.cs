@@ -6,17 +6,17 @@ namespace Data.Repositorios.Articulo
     public interface IArticuloRepositorio
     {
         System.Linq.IQueryable<global::Data.Modelo.Marca> GetMarcas(string nombre);
-        IQueryable<Tipo_Articulo> GetTipoArticulos(string nombre);
+        IQueryable<TipoArticulo> GetTipoArticulos(string nombre);
 
         IQueryable<Categoria> GetCategoria(string q);
 
-        IQueryable<Precio_Garantia> GetPrecios();
+        IQueryable<PrecioGarantia> GetPrecios();
 
         IQueryable<Linea> GetLineas(string q);
 
         IQueryable<Categoria> GetCategoria(decimal p);
 
-        IQueryable<Tipo_Articulo> GetTipoArticulos(decimal p);
+        IQueryable<TipoArticulo> GetTipoArticulos(decimal p);
 
         Marca GetMarcasPorNombre(string marca);
 

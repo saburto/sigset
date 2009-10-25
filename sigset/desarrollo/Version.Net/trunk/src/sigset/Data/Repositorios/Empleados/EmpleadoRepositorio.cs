@@ -6,7 +6,7 @@ using Data.Modelo;
 
 namespace Data.Repositorios.Empleados
 {
-    public class EmpleadoRepositorio : Data.Repositorios.Empleados.IEmpleadoRepositorio 
+    public class EmpleadoRepositorio : Data.Repositorios.Empleados.IEmpleadoRepositorio
     {
         sigsetEntities _data;
        
@@ -17,52 +17,52 @@ namespace Data.Repositorios.Empleados
         }
 
       
-        public IQueryable<Empleado> GetEmpleados()
+        public IQueryable<Usuario> GetEmpleados()
         {
-            var empleados = from v in _data.Empleados
+            var empleados = from v in _data.Usuarios
                             select v;
             return empleados;
         }
-        public Empleado GetEmpleadoByRut(decimal rut)
+        public Usuario GetEmpleadoByRut(decimal rut)
         {
-            var empleado = (from c in _data.Empleados
+            var empleado = (from c in _data.Usuarios
                            where c.Rut == rut
                            select c).FirstOrDefault();
             return empleado;
         }
 
-        public IQueryable<Tipo_Cargo> GetTipoCargo()
+        public IQueryable<Perfil> GetPerfil()
         {
-            var tipo_cargo = from tc in _data.Tipo_Cargos
+            var TipoCargo = from tc in _data.Perfils
                             select tc;
-            return tipo_cargo;
+            return TipoCargo;
         }
 
 
 
-        public void GuardarEmpleado(Empleado empleado)
+        public void GuardarEmpleado(Usuario empleado)
         {
-            _data.Empleados.InsertOnSubmit(empleado);
+            _data.Usuarios.InsertOnSubmit(empleado);
             _data.SubmitChanges();
         }
 
-        public void GuardarEmpleado(Empleado empleado, decimal tipoCargo)
+        public void GuardarEmpleado(Usuario empleado, decimal tipoCargo)
         {
-            Tipo_Cargo cargo = _data.Tipo_Cargos.Where(x => x.Id_Tipo_Cargo == tipoCargo).FirstOrDefault();
-            empleado.Tipo_Cargo1 = cargo;
+            Perfil cargo = _data.Perfils.Where(x => x.Id == tipoCargo).FirstOrDefault();
+            empleado.Perfil = cargo;
             GuardarEmpleado(empleado);
         }
 
-        public Empleado EditarEmpleado(int Rut, Empleado empleado,decimal tipoCargo)
+        public Usuario EditarEmpleado(int Rut, Usuario empleado,decimal tipoCargo)
         {
-            var empleado_original = (from eo in _data.Empleados
+            var empleado_original = (from eo in _data.Usuarios
                                      where eo.Rut == Rut
                                      select eo).FirstOrDefault();
-            empleado_original.Nombre = empleado.Nombre;
-            empleado_original.Apellido_Paterno = empleado.Apellido_Paterno;
-            empleado_original.Apellido_Materno = empleado.Apellido_Materno;
-            Tipo_Cargo cargo = _data.Tipo_Cargos.Where(x => x.Id_Tipo_Cargo == tipoCargo).FirstOrDefault();
-            empleado_original.Tipo_Cargo1 = cargo;
+            empleado_original.Nombres = empleado.Nombres;
+            empleado_original.ApellidoPaterno = empleado.ApellidoPaterno;
+            empleado_original.ApellidoMaterno = empleado.ApellidoMaterno;
+            Perfil cargo = _data.Perfils.Where(x => x.Id == tipoCargo).FirstOrDefault();
+            empleado_original.Perfil = cargo;
            
 
             _data.SubmitChanges();

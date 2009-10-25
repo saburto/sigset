@@ -14,7 +14,7 @@ namespace Data.Modelo
     {
         [Required(ErrorMessage = "ID es necesario"),
          Range(1,99999999)]
-        public object Id_Tipo_Cargo { get; set;}      
+        public object Id_TipoCargo { get; set;}      
 
         [Required(ErrorMessage = "Descripción es necesaria")]
         public object Descripcion { get; set; }

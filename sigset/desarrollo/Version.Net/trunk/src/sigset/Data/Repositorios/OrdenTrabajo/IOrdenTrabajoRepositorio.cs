@@ -5,13 +5,13 @@ namespace Data.Repositorios.OrdenTrabajoRepositorio
 {
    public  interface IOrdenTrabajoRepositorio
     {
-       Orden_Trabajo GetOrdenTrabajoById(decimal id);
-        System.Linq.IQueryable<Data.Modelo.Orden_Trabajo> GetTodasLasOrdenDeTrabajo();
-        IQueryable<Data.Modelo.Orden_Trabajo> GetTodasLasOrdenDeTrabajoByTecnicoId(decimal id);
+       OrdenTrabajo GetOrdenTrabajoById(decimal id);
+        System.Linq.IQueryable<Data.Modelo.OrdenTrabajo> GetTodasLasOrdenDeTrabajo();
+        IQueryable<Data.Modelo.OrdenTrabajo> GetTodasLasOrdenDeTrabajoByTecnicoId(decimal id);
 
-        Orden_Trabajo GuardarOrdenTrabajo(Data.Modelo.Orden_Trabajo orden);
+        OrdenTrabajo GuardarOrdenTrabajo(Data.Modelo.OrdenTrabajo orden);
 
-        IQueryable<Tipo_Orden> GetTiposOrden();
+        IQueryable<TipoOrden> GetTiposOrden();
 
         void SaveChanges();
 

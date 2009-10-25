@@ -22,9 +22,9 @@ namespace Data.Repositorios.Articulo
             return marcas;
         }
 
-        public IQueryable<Tipo_Articulo> GetTipoArticulos(string nombre)
+        public IQueryable<TipoArticulo> GetTipoArticulos(string nombre)
         {
-            var tipos = from a in _ent.Tipo_Articulos
+            var tipos = from a in _ent.TipoArticulos
                         where a.Descripcion.StartsWith(nombre)
                         select a;
             return tipos;
@@ -40,9 +40,9 @@ namespace Data.Repositorios.Articulo
         }
 
 
-        public IQueryable<Precio_Garantia> GetPrecios()
+        public IQueryable<PrecioGarantia> GetPrecios()
         {
-            return _ent.Precio_Garantias;
+            return _ent.PrecioGarantias;
         }
 
 
@@ -57,16 +57,16 @@ namespace Data.Repositorios.Articulo
         public IQueryable<Categoria> GetCategoria(decimal p)
         {
             return from c in _ent.Categorias
-                   where c.Id_Categoria == p
+                   where c.IdCategoria == p
                    select c;
         }
 
 
 
-        public IQueryable<Tipo_Articulo> GetTipoArticulos(decimal p)
+        public IQueryable<TipoArticulo> GetTipoArticulos(decimal p)
         {
-            return from t in _ent.Tipo_Articulos
-                   where t.Id_Tipo_Articulo == p
+            return from t in _ent.TipoArticulos
+                   where t.IdTipoArticulo == p
                    select t;
         }
 
@@ -84,7 +84,7 @@ namespace Data.Repositorios.Articulo
             marca = marca.Trim();
             Marca m = new Marca();
             m.Descripcion = marca;
-            m.Id_Marca = _ent.Marcas.Count() + 1;
+            m.IdMarca = _ent.Marcas.Count() + 1;
 
             _ent.Marcas.InsertOnSubmit(m);
             _ent.SubmitChanges();
@@ -108,7 +108,7 @@ namespace Data.Repositorios.Articulo
             linea = linea.Trim();
             Linea l = new Linea();
             l.Descripcion = linea;
-            l.Id_Linea = _ent.Lineas.Count() + 1;
+            l.IdLinea = _ent.Lineas.Count() + 1;
             _ent.Lineas.InsertOnSubmit(l);
             _ent.SubmitChanges();
             return l;

@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Data.Repositorios.Usuarios
 {
-    public class UsuarioRepositorio : IUsuarioRepositorio
+    public class UsuarioRepositorio : Data.Repositorios.Usuarios.IUsuarioRepositorio 
     {
         sigsetEntities _entities;
 
@@ -29,7 +29,7 @@ namespace Data.Repositorios.Usuarios
 
         public Usuario GetUsuarioByNombreUsuario(string nombreUsuario )
         {
-            return _entities.Usuarios.Where(x => x.Usuario1 == nombreUsuario).FirstOrDefault();
+            return _entities.Usuarios.Where(x => x.User == nombreUsuario).FirstOrDefault();
         }
 
         public Usuario UpdateUsuario(Usuario usuario)
@@ -38,53 +38,52 @@ namespace Data.Repositorios.Usuarios
             var usuario_original = (from uo in _entities.Usuarios
                                      where uo.Id == usuario.Id
                                      select uo).FirstOrDefault();
-            usuario_original.Usuario1 = usuario.Usuario1;
-            usuario_original.Contraseña = usuario.Contraseña;
-            usuario_original.Tipo_Usuario = usuario.Tipo_Usuario;
-            usuario_original.Empleado = usuario.Empleado;
+            usuario_original.User = usuario.User;
+            usuario_original.Password = usuario.Password;
+            usuario_original.Perfil = usuario.Perfil;
             _entities.SubmitChanges();
             return usuario;
           }
 
 
-        public Tipo_Usuario GetTipo_Usuario(decimal id)
+        public Perfil GetPerfil(decimal id)
         {
-            return _entities.Tipo_Usuarios.Where(x => x.Id_Tipo_Usuario == id).FirstOrDefault();
+            return _entities.Perfils.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public Tipo_Usuario GetTipo_UsuarioByNombre(string nombre)
+        public Perfil GetPerfilByNombre(string nombre)
         {
-            return _entities.Tipo_Usuarios.Where(x => x.Descripcion == nombre).FirstOrDefault();
+            return _entities.Perfils.Where(x => x.Descripcion == nombre).FirstOrDefault();
         }
 
-        public void CreateTipo_Usuario(string nombreTipoUsuario)
+        public void CreatePerfil(string nombreTipoUsuario)
         {
-            _entities.Tipo_Usuarios.InsertOnSubmit(new Tipo_Usuario() { Descripcion= nombreTipoUsuario });
+            _entities.Perfils.InsertOnSubmit(new Perfil() { Descripcion= nombreTipoUsuario });
             _entities.SubmitChanges();
         }
 
-        public void DeleteTipo_Usuario(decimal id)
+        public void DeletePerfil(decimal id)
         {
-            Tipo_Usuario tipo = GetTipo_Usuario(id);
-            _entities.Tipo_Usuarios.DeleteOnSubmit(tipo);
+            Perfil tipo = GetPerfil(id);
+            _entities.Perfils.DeleteOnSubmit(tipo);
             _entities.SubmitChanges();
         }
 
-        public IQueryable<Usuario> GetUsuariosTipo_Usuario(string nombreTipoUsuario)
+        public IQueryable<Usuario> GetUsuariosPerfil(string nombreTipoUsuario)
         {
-            return _entities.Usuarios.Where(x => x.Tipo_Usuario1.Descripcion == nombreTipoUsuario);
+            return _entities.Usuarios.Where(x => x.Perfil.Descripcion == nombreTipoUsuario);
         }
 
-        public IQueryable<Tipo_Usuario> GetTipos_Usuario()
+        public IQueryable<Perfil> GetTipos_Usuario()
         {
-            return _entities.Tipo_Usuarios;
+            return _entities.Perfils;
         }
 
-        public Tipo_Usuario GetTipo_UsuarioByUsuarioNombre(string usuarioNombre)
+        public Perfil GetPerfilByUsuarioNombre(string usuarioNombre)
         {
             var tipo = (from u in _entities.Usuarios
-                       where u.Usuario1 == usuarioNombre
-                        select u.Tipo_Usuario1).FirstOrDefault() ;
+                       where u.User == usuarioNombre
+                        select u.Perfil).FirstOrDefault() ;
             return tipo;
         }
         public void CreateUsuario(Usuario usuario)
@@ -92,16 +91,13 @@ namespace Data.Repositorios.Usuarios
             _entities.Usuarios.InsertOnSubmit(usuario);
             _entities.SubmitChanges();
         }
-        public Empleado FindEmpleadoByRut(decimal rut)
+        public Usuario FindEmpleadoByRut(decimal rut)
         {
-            var empleado = (from e in _entities.Empleados
-                            where e.Rut == rut
-                            select e).FirstOrDefault();
-            return empleado;
+            return new Repositorios.Empleados.EmpleadoRepositorio().GetEmpleadoByRut(rut);
         }
-        public IQueryable<Empleado> GetTodosLosEmpleados()
+        public IQueryable<Usuario> GetTodosLosEmpleados()
         {
-            return _entities.Empleados;            
+            return new Repositorios.Empleados.EmpleadoRepositorio().GetEmpleados();
         }
         public void DeleteUsuario(Usuario usuario)
         {
