@@ -2,37 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Data.Repositorios.TipoCargo;
 using Data.Modelo;
 using System.Text.RegularExpressions;
 using Services.Helpers;
 using xVal.ServerSide;
+using Data.Repositorios.Perfiles;
 
 namespace Services.TipoCargo
 {
-    public class TipoCargoServicio : Services.TipoCargo.ITipoCargoServicio
+    public class TipoCargoServicio : Services.TipoCargo.ITipoCargoServicio 
     {
-        private ITipoCargoRepositorio _repo;
+        private IPerfilRepositorio _repo;
 
-        public TipoCargoServicio(ITipoCargoRepositorio repo)
+        public TipoCargoServicio(IPerfilRepositorio repo)
         {
             _repo = repo;
         }
         public TipoCargoServicio()
-            : this(new TipoCargoRepositorio())
+            : this(new PerfilRepositorio())
         {
         }
 
-        public IList<Tipo_Cargo> GetTodosLosTiposCargo()
+        public IList<Perfil> GetTodosLosTiposCargo()
         {
-            return _repo.GetTipoCargo().ToList();
+            return _repo.GetPerfil().ToList();
         }
-        public Tipo_Cargo GetTipoCargoById(int id)
+        public Perfil GetTipoCargoById(int id)
         {
-            var tipo_cargo = _repo.GetTipoCargoById(id);
-            return tipo_cargo;
+            var Perfil = _repo.GetPerfilById(id);
+            return Perfil;
         }
-        public Tipo_Cargo EditarTipoCargo(int id, Tipo_Cargo tipo)
+        public Perfil EditarTipoCargo(int id, Perfil tipo)
         {
             if (tipo.Descripcion == "")
             {
@@ -43,19 +43,19 @@ namespace Services.TipoCargo
             {
                 throw new RulesException("Descripcion", "Descripción debe ingresar sólo letras");
             }
-            var tipo_cargo = _repo.EditarTipoCargo(id, tipo);
-            return tipo_cargo;
+            var Perfil = _repo.EditarTipoCargo(id, tipo);
+            return Perfil;
         }
         public void BorrarTipoCargo(int id)
         {
-             var tipo_cargo = _repo.GetTipoCargoById(id);
-             if (tipo_cargo == null)
+             var Perfil = _repo.GetPerfilById(id);
+             if (Perfil == null)
              {
                  throw new RulesException("Tipo Cargo", "Tipo de cargo no encontrado.");
              }
              else  
              {
-                 if (_repo.ContarEmpleadoSegunTipoCargo(tipo_cargo) > 0)
+                 if (_repo.ContarEmpleadoSegunTipoCargo(Perfil) > 0)
                  {
                      throw new RulesException("Tipo Cargo", "No se puede borrar el cargo por que tiene empleados asociados.");
                  }
@@ -69,12 +69,12 @@ namespace Services.TipoCargo
         }
 
         
-        public void CrearTipoCargo(Tipo_Cargo tipoNuevo)
+        public void CrearTipoCargo(Perfil tipoNuevo)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            if (tipoNuevo.Id_Tipo_Cargo <= 0)
+            if (tipoNuevo.Id <= 0)
             {
-                _errors.Add(new ErrorInfo("Id_Tipo_Cargo", "Id es necesario"));
+                _errors.Add(new ErrorInfo("Id_Perfil", "Id es necesario"));
             }
             if (tipoNuevo.Descripcion == "")
             {
@@ -91,8 +91,8 @@ namespace Services.TipoCargo
             }
             else
             {
-                int tipo = (int)tipoNuevo.Id_Tipo_Cargo;
-                if (_repo.GetTipoCargoById(tipo) != null)
+                int tipo = (int)tipoNuevo.Id;
+                if (_repo.GetPerfilById(tipo) != null)
                 {
                     throw new RulesException("Id Tipo Cargo", "Id ya Registrado.");
                 }

@@ -24,7 +24,7 @@ namespace Services.Clientes
             _repo = repo;
         }
 
-        public void CrearNuevoCliente(Cliente clienteNuevo, string digitoVerificador, Direccion direccion, Contacto email, Contacto telefono)
+        public void CrearNuevoCliente(Cliente clienteNuevo, string digitoVerificador, Direccion direccion, Contacto email, Contacto telefono, ClienteComercial clienteComercial, ClienteParticular clienteParticular)
         {
                 IClienteRepositorio r = new ClienteRepositorio();
                 decimal tipo_direccionDefecto = 1;
@@ -32,35 +32,45 @@ namespace Services.Clientes
                 decimal tipo_TelefonoDefecto = 1;
 
                 ClienteServicio s = new ClienteServicio(r);
-                s.CrearCliente(clienteNuevo, digitoVerificador);
-                s.CrearNuevaDireccion(clienteNuevo.Rut, direccion, tipo_direccionDefecto);
-                s.CrearNuevoContacto(clienteNuevo.Rut, email, tipo_EmailDefecto, "Email");
-                s.CrearNuevoContacto(clienteNuevo.Rut, telefono, tipo_TelefonoDefecto, "Fono");
+
+                decimal rut =0;
+                if (clienteNuevo.TipoCliente == 1)
+                {
+                    rut = clienteParticular.Rut;
+                }
+                else
+                {
+                    rut = clienteComercial.Rut;
+                }
+                s.CrearCliente(clienteNuevo, clienteParticular ,digitoVerificador);
+                s.CrearNuevaDireccion(rut, direccion, tipo_direccionDefecto);
+                s.CrearNuevoContacto(rut, email, tipo_EmailDefecto, "Email");
+                s.CrearNuevoContacto(rut, telefono, tipo_TelefonoDefecto, "Fono");
                 r.SaveChanges();
         }
 
-        public void ValidarCliente(Cliente clienteNuevo, IList<ErrorInfo> _errors)
+        public void ValidarCliente(ClienteParticular clienteNuevo, IList<ErrorInfo> _errors)
         {
             if (!clienteNuevo.Nombre.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Nombre", "Debe ingresar sólo texto en Nombre"));
             }
-            if (!clienteNuevo.Apellido_Paterno.SoloTexto())
+            if (!clienteNuevo.ApellidoPaterno.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
             }
 
-            if (!clienteNuevo.Apellido_Materno.SoloTexto())
+            if (!clienteNuevo.ApellidoMaterno.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
             }
             DataValidation.GetErrors(clienteNuevo, _errors);
         }
 
-        public void CrearCliente(Cliente clienteNuevo, string digitoVerificador)
+        public void CrearCliente(Cliente clienteNuevo, ClienteParticular cliente, string digitoVerificador)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>() ;
-            if (clienteNuevo.Rut == 0)
+            if (cliente.Rut == 0)
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut es necesario"));
             }
@@ -68,18 +78,18 @@ namespace Services.Clientes
             {   
                 _errors.Add(new ErrorInfo("Rut", "Se debe ingresar digito verificador"));
             }
-            else if (!ValidarRut.GetDigitoVerificador(clienteNuevo.Rut).Equals(digitoVerificador, StringComparison.InvariantCultureIgnoreCase))
+            else if (!ValidarRut.GetDigitoVerificador(cliente.Rut).Equals(digitoVerificador, StringComparison.InvariantCultureIgnoreCase))
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut invalido"));
             }
-            ValidarCliente(clienteNuevo, _errors);
+            ValidarCliente(cliente, _errors);
             if (_errors.Any())
             {
                 throw new RulesException(_errors);
             }
             else
             {
-                if (_repo.GetClienteByRut(clienteNuevo.Rut) != null)
+                if (_repo.GetClienteByRut(cliente.Rut) != null)
                 {
                     throw new RulesException("Rut", "Rut ya registrado.");
                 }
@@ -142,15 +152,18 @@ namespace Services.Clientes
 
         private bool DireccionNoRepetida(decimal rut, Direccion direccion, decimal tipoDireccion)
         {
-            var direcccionesCliente = from d in _repo.GetDireccionesByRutCliente(rut)
-                                      where d.Tipo_Direccion == tipoDireccion &&
-                                      d.Calle == direccion.Calle &&
-                                      d.Comuna == direccion.Comuna &&
-                                      d.Numero == direccion.Numero &&
-                                      d.Provincia == direccion.Provincia &&
-                                      d.Region == direccion.Region
-                                      select d;
-            if (direcccionesCliente != null && direcccionesCliente.Any())
+            var direcccionesCliente = _repo.GetDireccionesByRutCliente(rut);
+
+
+                //from d in _repo.GetDireccionesByRutCliente(rut)
+                //                      where d.Tipo_Direccion == tipoDireccion &&
+                //                      d.Calle == direccion.Calle &&
+                //                      d.Comuna == direccion.Comuna &&
+                //                      d.Numero == direccion.Numero &&
+                //                      d.Provincia == direccion.Provincia &&
+                //                      d.Region == direccion.Region
+                //                      select d;
+            if (direcccionesCliente != null)
             {
                 return false;
             }
@@ -201,7 +214,7 @@ namespace Services.Clientes
                 _errors.Add(new ErrorInfo(prefijo + ".Tipo_Contacto", "Tipo de Contacto es necesario"));
             }
 
-            if (string.IsNullOrEmpty(contacto.Valor_Contacto))
+            if (string.IsNullOrEmpty(contacto.ValorContacto))
             {
                 _errors.Add(new ErrorInfo(prefijo + ".Valor_Contacto", "El valor de este tipo de contacto es necesario"));
             }
@@ -211,8 +224,8 @@ namespace Services.Clientes
         private bool ContactoNoRepetido(decimal rut, Contacto contacto, decimal tipoContacto)
         {
             var contactos = from c in _repo.GetContactosByIdCliente(rut)
-                            where c.Tipo_Contacto == tipoContacto &&
-                            c.Valor_Contacto == contacto.Valor_Contacto
+                            where c.TipoContacto == tipoContacto &&
+                            c.ValorContacto == contacto.ValorContacto
                             select c;
             if (contactos != null && contactos.Any())
             {
@@ -348,10 +361,8 @@ namespace Services.Clientes
             var clienteEncontrado = GetClientePorRut(Rut, dv);
             var direcciones = _repo.GetDireccionesByRutCliente(Rut);
             var contactos = _repo.GetContactosByIdCliente(Rut);
-            foreach (var d in direcciones)
-            {
-                clienteEncontrado.Direccions.Add(d);
-            }
+             clienteEncontrado.Direccion = direcciones;
+  
             foreach (var c in contactos)
             {
                 clienteEncontrado.Contactos.Add(c);
@@ -385,34 +396,34 @@ namespace Services.Clientes
 
         public void EditarCliente(Cliente cliente, Direccion direccion, Contacto email, Contacto fono)
         {
-            
-         
-            direccion.Rut = cliente.Rut;
-            List<ErrorInfo> _errors = new List<ErrorInfo>();
-            ValidarDireccion(direccion.Rut, direccion, direccion.Tipo_Direccion, _errors);
-            email.Rut = cliente.Rut;
-            fono.Rut = cliente.Rut;
 
-            ValidarEmail(email.Rut,email,email.Tipo_Contacto.Value,_errors);
-            ValidarContacto(fono.Rut, fono, fono.Tipo_Contacto.Value, _errors, "Fono");
-            ValidarCliente(cliente, _errors);
-            if (_errors.Any())
-            {
-                throw new RulesException(_errors);
-            }
+            throw new NotImplementedException();
+            //direccion.Rut = cliente.Rut;
+            //List<ErrorInfo> _errors = new List<ErrorInfo>();
+            //ValidarDireccion(direccion.Rut, direccion, direccion.Tipo_Direccion, _errors);
+            //email.Rut = cliente.Rut;
+            //fono.Rut = cliente.Rut;
 
-            _repo.EditarDireccionCliente(direccion);
-            _repo.EditarContactoCliente(email);
-            _repo.EditarCliente(cliente);
-            _repo.SaveChanges();
+            //ValidarEmail(email.Rut,email,email.Tipo_Contacto.Value,_errors);
+            //ValidarContacto(fono.Rut, fono, fono.Tipo_Contacto.Value, _errors, "Fono");
+            //ValidarCliente(cliente, _errors);
+            //if (_errors.Any())
+            //{
+            //    throw new RulesException(_errors);
+            //}
+
+            //_repo.EditarDireccionCliente(direccion);
+            //_repo.EditarContactoCliente(email);
+            //_repo.EditarCliente(cliente);
+            //_repo.SaveChanges();
         }
 
         private void ValidarEmail(decimal p, Contacto email, decimal p_3, List<ErrorInfo> _errors)
         {
             ValidarContacto(p, email, p_3, _errors, "Email");
-            if (email.Valor_Contacto != null)
+            if (email.ValorContacto != null)
             {
-                if (!email.Valor_Contacto.EsEmail())
+                if (!email.ValorContacto.EsEmail())
                 {
                     _errors.Add(new ErrorInfo("Email.Valor_Contacto", "Formato Email incorrecto"));
                 }

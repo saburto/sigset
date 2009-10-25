@@ -10,7 +10,7 @@ using Data.Repositorios.Empleados;
 
 namespace Services.Empleados 
 {
-    public class EmpleadoServicio : Services.Empleados.IEmpleadoServicio
+    public class EmpleadoServicio : Services.Empleados.IEmpleadoServicio 
     {
         private IEmpleadoRepositorio _repo;
         public EmpleadoServicio(IEmpleadoRepositorio repo)
@@ -25,22 +25,17 @@ namespace Services.Empleados
 
         }
 
-        //Entornces ahora vamos a crear una function
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IList<Empleado> GetTodosLosEmpleados()
+        public IList<Usuario> GetTodosLosEmpleados()
         {
                    return _repo.GetEmpleados().ToList();
         }
 
-        public IList<Tipo_Cargo> GetTodosLosTipoCargo()
+        public IList<Perfil> GetTodosLosTipoCargo()
         {
-              return _repo.GetTipoCargo().ToList();
+              return _repo.GetPerfil().ToList();
         }
 
-        public Empleado BuscarEmpleadoPorRut(int rut)
+        public Usuario BuscarEmpleadoPorRut(int rut)
         {
             var empleado = _repo.GetEmpleadoByRut(rut);
             if (empleado == null)
@@ -50,23 +45,23 @@ namespace Services.Empleados
             return empleado;
         }
 
-        public void EditarEmpleado(int rut, string listaTipos, Empleado empleado)
+        public void EditarEmpleado(int rut, string listaTipos, Usuario empleado)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
             if(listaTipos == "-1")
             { 
                 _errors.Add(new ErrorInfo("Tipo Cargo" ,"Debe seleccionar Tipo de Cargo"));
             }
-            if (!empleado.Nombre.SoloTexto())
+            if (!empleado.Nombres.SoloTexto())
             { 
                  _errors.Add(new ErrorInfo("Nombre","Debe ingresar sólo texto en Nombre"));
             }
-            if (!empleado.Apellido_Paterno.SoloTexto())
+            if (!empleado.ApellidoPaterno.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
             }
 
-            if (!empleado.Apellido_Materno.SoloTexto())
+            if (!empleado.ApellidoMaterno.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
             }   
@@ -90,7 +85,7 @@ namespace Services.Empleados
         }
 
 
-        public void CrearNuevoEmpleado(Empleado empleadoNuevo, string digitoVerificador,string listaTipos)
+        public void CrearNuevoEmpleado(Usuario empleadoNuevo, string digitoVerificador,string listaTipos)
         {
             
             List<ErrorInfo> _errors = new List<ErrorInfo>();
@@ -107,16 +102,16 @@ namespace Services.Empleados
             {
                 _errors.Add(new ErrorInfo("Rut", "Rut invalido"));
             }
-            if (!empleadoNuevo.Nombre.SoloTexto())
+            if (!empleadoNuevo.Nombres.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Nombre", "Debe ingresar sólo texto en Nombre"));
             }
-            if (!empleadoNuevo.Apellido_Paterno.SoloTexto())
+            if (!empleadoNuevo.ApellidoPaterno.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
             }
 
-            if (!empleadoNuevo.Apellido_Materno.SoloTexto())
+            if (!empleadoNuevo.ApellidoMaterno.SoloTexto())
             {
                 _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
             }   
