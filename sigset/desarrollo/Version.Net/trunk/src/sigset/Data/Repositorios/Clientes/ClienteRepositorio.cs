@@ -6,7 +6,7 @@ using Data.Modelo;
 
 namespace Data.Repositorios.Clientes
 {
-    public class ClienteRepositorio : Data.Repositorios.Clientes.IClienteRepositorio, IDisposable
+    public class ClienteRepositorio :  IDisposable, Data.Repositorios.Clientes.IClienteRepositorio
     {
         sigsetEntities _ent;
         public ClienteRepositorio()
@@ -17,7 +17,7 @@ namespace Data.Repositorios.Clientes
         public Cliente GetClienteByRut(decimal rut)
         {
             var cliente = (from c in _ent.Clientes
-                           where c.Rut == rut
+                           where c.ClienteParticular.Rut == rut || c.ClienteComercial.Rut == rut
                            select c).FirstOrDefault();
             return cliente;
         }
@@ -26,14 +26,14 @@ namespace Data.Repositorios.Clientes
         {
             
             return from c in _ent.Clientes
-                   where c.Apellido_Paterno.Contains(appellido)
+                   where c.ClienteParticular.ApellidoPaterno.Contains(appellido)
                    select c;
             
         }
 
         public PagedList<Cliente> GetClientesByApellidoPaterno(string appellido, int indice, int pagina)
         {
-            return GetClientesByApellidoPaterno(appellido).OrderBy(x => x.Apellido_Paterno).ToPagedList<Cliente>(indice, pagina);
+            return GetClientesByApellidoPaterno(appellido).OrderBy(x => x.ClienteParticular.ApellidoPaterno).ToPagedList<Cliente>(indice, pagina);
         }
 
         public void CrearCliente(Cliente cliente)
@@ -50,18 +50,17 @@ namespace Data.Repositorios.Clientes
         /// </summary>
         /// <param name="rut"></param>
         /// <returns></returns>
-        public IQueryable<Direccion> GetDireccionesByRutCliente(decimal rut)
+        public Direccion GetDireccionesByRutCliente(decimal rut)
         {
-            var direcciones = from dires in _ent.Direccions
-                              where dires.Cliente.Rut == rut
-                              select dires;
-            return direcciones;
+            return GetClienteByRut(rut).Direccion;
+
         }
 
         public void CrearDirecionCliente(decimal rut, Direccion direccion, decimal idTipo)
         {
-            direccion.Rut = rut;
-            direccion.Tipo_Direccion = idTipo;
+            var cliente = GetClienteByRut(rut);
+            cliente.Direccion = direccion;
+            direccion.TipoDireccion = idTipo;
             _ent.Direccions.InsertOnSubmit(direccion);
             // _ent.SubmitChanges();
         }
@@ -72,14 +71,14 @@ namespace Data.Repositorios.Clientes
             //_ent.SubmitChanges();
         }
 
-        public IQueryable<Tipo_Direccion> GetTiposDireccion()
+        public IQueryable<TipoDireccion> GetTiposDireccion()
         {
-            return _ent.Tipo_Direccions;
+            return _ent.TipoDireccions;
         }
 
-        public Tipo_Direccion GetTipoDireccionById(decimal id)
+        public TipoDireccion GetTipoDireccionById(decimal id)
         {
-            return _ent.Tipo_Direccions.Where( x => x.Id_Tipo_Direccion == id).FirstOrDefault();
+            return _ent.TipoDireccions.Where( x => x.IdTipoDireccion == id).FirstOrDefault();
         }
 
         #endregion
@@ -87,20 +86,20 @@ namespace Data.Repositorios.Clientes
         #region "Contacto Cliente"
         
 
-        public IQueryable<Tipo_Contacto> GetTiposContacto()
+        public IQueryable<TipoContacto> GetTiposContacto()
         {
-            return _ent.Tipo_Contactos;
+            return _ent.TipoContactos;
         }
 
-        public Tipo_Contacto GetTipoContactoById(decimal id)
+        public TipoContacto GetTipoContactoById(decimal id)
         {
-            return _ent.Tipo_Contactos.Where(x => x.Id_Tipo_Contacto == id).FirstOrDefault();
+            return _ent.TipoContactos.Where(x => x.IdTipoContacto == id).FirstOrDefault();
         }
 
         public void CrearContactoCliente(decimal rut, Contacto contacto, decimal idTipoContacto)
         {
-            contacto.Rut = rut;
-            contacto.Tipo_Contacto = idTipoContacto;
+            contacto.IdCliente = GetClienteByRut(rut).Id;
+            contacto.TipoContacto = idTipoContacto;
 
             _ent.Contactos.InsertOnSubmit(contacto);
             //_ent.SubmitChanges();
@@ -108,7 +107,8 @@ namespace Data.Repositorios.Clientes
 
         public IQueryable<Contacto> GetContactosByIdCliente(decimal rut)
         {
-            return _ent.Contactos.Where(x => x.Rut == rut);
+            return GetClienteByRut(rut).Contactos.AsQueryable<Contacto>();
+            //return _ent.Contactos.Where(x => x.Rut == rut);
         }
 
         #endregion
@@ -122,14 +122,14 @@ namespace Data.Repositorios.Clientes
         public IQueryable<Provincia> GetProvinciasByRegionId(decimal idRegion)
         {
             return from p in _ent.Provincias
-                   where p.Id_Region == idRegion
+                   where p.IdRegion == idRegion
                    select p;
         }
 
         public IQueryable<Comuna> GetComunasByProvinciaId(decimal idProvincia)
         {
             return from c in _ent.Comunas
-                   where c.Id_Provincia == idProvincia
+                   where c.IdProvincia == idProvincia
                    select c;
         }
 

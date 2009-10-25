@@ -25,20 +25,20 @@ namespace Data.Repositorios.Tecnicos
 
         public Tecnico GetTecnicoByRut(decimal rut)
         {
-            var tecnico = (from t in _data.Tecnicos
-                           where t.Rut == rut
-                           select t).FirstOrDefault();
+            var tecnico = _data.Tecnicos.Where(x => x.Usuario.Rut == rut).FirstOrDefault();
             return tecnico;
         }
 
-        public IQueryable<Empleado> GetEmpleadosTecnicos()
+        public IQueryable<Usuario> GetEmpleadosTecnicos()
         {
-            var empleados_tecnicos = (from emp in _data.Empleados 
-                                     where ((emp.Tipo_Cargo == 1) && 
-                                     (!(from t in _data.Tecnicos
-                                        where t.Rut == emp.Rut 
-                                        select t).Any()))
-                                     select emp);                                      
+            var empleados_tecnicos = _data.Usuarios.Where(x => x.Tecnico != null);
+
+            //var empleados_tecnicos = (from emp in _data.Usuarios 
+            //                         where ((emp.PerfilUsuario == 1) && 
+            //                         (!(from t in _data.Tecnicos
+            //                            where t.Rut == emp.Rut 
+            //                            select t).Any()))
+            //                         select emp);                                      
                                     
             return empleados_tecnicos;
         }
@@ -60,34 +60,34 @@ namespace Data.Repositorios.Tecnicos
             return especialidades;
         }
 
-        public IQueryable<Tipo_Especialidad> GetTodosLosTiposEspecialidad()
+        public IQueryable<TipoEspecialidad> GetTodosLosTiposEspecialidad()
         {
 
-            var tipo_especialidad = from te in _data.Tipo_Especialidads
+            var TipoEspecialidad = from te in _data.TipoEspecialidads
                                     select te;
-            return tipo_especialidad;
+            return TipoEspecialidad;
 
         }
 
-        public Tipo_Especialidad GetTipoEspecialidadById(decimal id)
+        public TipoEspecialidad GetTipoEspecialidadById(decimal id)
         {
-            var tipo_especialidad = (from te in _data.Tipo_Especialidads
-                                    where te.Id_Tipo_Especialidad == id
+            var TipoEspecialidad = (from te in _data.TipoEspecialidads
+                                    where te.IdTipoEspecialidad == id
                                     select te).FirstOrDefault();
-            return tipo_especialidad;
+            return TipoEspecialidad;
         }
        
         public Nivel GetNivelById(decimal id)
         {
             var nivel = (from n in _data.Nivels
-                         where n.Id_Nivel == id
+                         where n.IdNivel == id
                          select n).FirstOrDefault();
             return nivel;
         }
         public IQueryable<Especialidade> GetEspecialidadByTecnicoId(decimal id)
         {
             var especialidades = from e in _data.Especialidades
-                                 where e.Id_Tecnico == id
+                                 where e.IdTecnico == id
                                  select e;
             return especialidades;
         }
@@ -101,16 +101,19 @@ namespace Data.Repositorios.Tecnicos
 
         public void UpdateTecnico(Tecnico tecnico)
         { 
-          Tecnico tecnicoOriginal = GetTecnicoByRut(tecnico.Rut);
+          Tecnico tecnicoOriginal = GetTecnicoById(tecnico.Id);
           tecnicoOriginal.Nivel = tecnico.Nivel;          
           _data.SubmitChanges();        
         }
 
+        public Tecnico GetTecnicoById(int id)
+        {
+            return _data.Tecnicos.Where(x => x.Id == id).FirstOrDefault();
+        }
+
         public void DeleteTecnico(Tecnico tecnico)
         {
-            var tecnicoEliminar = (from te in _data.Tecnicos
-                                   where te.Rut == tecnico.Rut
-                                   select te).FirstOrDefault();                                 
+            var tecnicoEliminar = GetTecnicoById(tecnico.Id);
             _data.Tecnicos.DeleteOnSubmit(tecnicoEliminar);
             _data.SubmitChanges();
         }
@@ -128,7 +131,7 @@ namespace Data.Repositorios.Tecnicos
         public int ContarEspecialidadesByTecnico(decimal id)
         {
             int cantidad_especialidades = (from et in _data.Especialidades
-                                           where et.Id_Tecnico == id
+                                           where et.IdTecnico == id
                                            select et).Count();
             return cantidad_especialidades;
 
