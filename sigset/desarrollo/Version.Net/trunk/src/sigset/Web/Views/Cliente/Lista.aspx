@@ -51,7 +51,7 @@
                 <%= Html.Encode(item.Rut.GetRutCompleto())%>
             </td>
             <td>
-                <%= Html.Encode(item.Apellido_Paterno)%> <%= Html.Encode(item.Apellido_Materno)%>
+                <%= Html.Encode(item.ApellidoPaterno)%> <%= Html.Encode(item.ApellidoMaterno)%>
             </td>
             <td>
                 <%= Html.Encode(item.Nombre)%>

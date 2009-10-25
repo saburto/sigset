@@ -13,7 +13,7 @@ using Helpers;
 namespace Web.Controllers.AreaTecnica
 {
     [Web.Seguridad.ManejadorErrores]
-    [Authorize(Roles = "Técnico")]
+    //[Authorize(Roles = "Técnico")]
     public class AreaTecnicaController : Controller
     {
         IOrdenTrabajoServicio _srvOr;

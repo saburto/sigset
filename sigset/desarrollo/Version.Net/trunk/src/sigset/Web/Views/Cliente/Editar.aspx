@@ -41,13 +41,13 @@
                 </div>
                 <div class="three-column-middle">
                     <label for="Apellido Paterno">Apellido Paterno:</label>
-                    <%= Html.TextBox("Apellido_Paterno", Model.Apellido_Paterno) %>
-                    <%= Html.ValidationMessage("Apellido_Paterno", "*") %>
+                    <%= Html.TextBox("ApellidoPaterno", Model.ApellidoPaterno) %>
+                    <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
                 </div>
                 <div class="three-column-right">
                     <label for="Apellido Materno">Apellido Materno:</label>
-                    <%= Html.TextBox("Apellido_Materno", Model.Apellido_Materno) %>
-                    <%= Html.ValidationMessage("Apellido_Materno", "*") %>
+                    <%= Html.TextBox("ApellidoMaterno", Model.ApellidoMaterno) %>
+                    <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
                 </div>
             </div>
             <div class="clear"></div>

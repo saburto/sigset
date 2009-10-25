@@ -8,7 +8,7 @@
 <%using (Html.BeginReady())
   { %>
   <%=Html.InitializeAutoComplete("Marca", "GetMarcas", "Articulo", false) %>
-  <%=Html.InitializeAutoComplete("Tipo_Articulo", "GetTipoArticulo", "Articulo", true)%>
+  <%=Html.InitializeAutoComplete("TipoArticulo", "GetTipoArticulo", "Articulo", true)%>
   <%=Html.InitializeAutoComplete("Categoria", "GetCategorias", "Articulo", true)%>
   <%=Html.InitializeAutoComplete("Linea", "GetLineas", "Articulo", false)%>
 <%} %>
@@ -51,15 +51,15 @@
                 </div>
                 
                 <div class="three-column-middle">
-                <label for="Tipo_Articulo">Tipo Articulo:</label>
-                <%= Html.AutoCompleteTextBox("Tipo_Articulo")%>
-                <%= Html.ValidationMessage("Tipo_Articulo", "*") %>
+                <label for="TipoArticulo">Tipo Articulo:</label>
+                <%= Html.AutoCompleteTextBox("TipoArticulo")%>
+                <%= Html.ValidationMessage("TipoArticulo", "*") %>
                 </div>
                 
                 <div class="three-column-right">
-                <label for="Precio_Garantia">Precios Garantia:</label>
-                <%= Html.DropDownList("Lista_Precio_Garantia") %>
-                <%= Html.ValidationMessage("Precio_Garantia", "*") %>
+                <label for="PrecioGarantia">Precios Garantia:</label>
+                <%= Html.DropDownList("Lista_PrecioGarantia") %>
+                <%= Html.ValidationMessage("PrecioGarantia", "*") %>
                 </div>
             </div>
                 <div class="clear"></div>

@@ -22,9 +22,9 @@
                 <%= Html.ValidationMessage("Rut", "*") %>
             </p>
              <p>
-                <label for="Apellido_Paterno">Apellido Paterno:</label>
-                <%= Html.TextBox("Apellido_Paterno") %>
-                <%= Html.ValidationMessage("Apellido_Paterno", "*") %>
+                <label for="ApellidoPaterno">Apellido Paterno:</label>
+                <%= Html.TextBox("ApellidoPaterno") %>
+                <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
             </p>
             </div>
             <div class="three-column-middle">
@@ -35,9 +35,9 @@
             </p>
            
             <p>
-                <label for="Apellido_Materno">Apellido Materno:</label>
-                <%= Html.TextBox("Apellido_Materno") %>
-                <%= Html.ValidationMessage("Apellido_Materno", "*") %>
+                <label for="ApellidoMaterno">Apellido Materno:</label>
+                <%= Html.TextBox("ApellidoMaterno") %>
+                <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
             </p>
             </div>
             <div class="clear"></div>

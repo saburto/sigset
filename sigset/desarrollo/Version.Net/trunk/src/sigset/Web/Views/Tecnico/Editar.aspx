@@ -15,10 +15,10 @@
         <fieldset>
             <legend><%= Html.Encode("Editar Técnico:")%></legend>
             <p>
-               <%= Html.Encode (Model.Empleado.Nombre + " " + Model.Empleado.Apellido_Paterno + " " + Model.Empleado.Apellido_Materno )%>
+               <%= Html.Encode (Model.Usuario.Nombres + " " + Model.Usuario.ApellidoPaterno + " " + Model.Usuario.ApellidoMaterno )%>
             </p>
             <p> 
-               <%= Html.Encode(Model.Rut.GetRutCompleto()) %>
+               <%--= Html.Encode(Model.Rut.GetRutCompleto()) --%>
             </p>
             <p>
                 <label for="Nivel">Nivel:</label>

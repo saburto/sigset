@@ -9,7 +9,7 @@
     <h2>Ordenes Tecnico
     <%if (Model.FirstOrDefault() != null)
 	{%>
-     <%=string.Format("{0} {1}",Model.FirstOrDefault().Tecnico.Empleado.Nombre,Model.FirstOrDefault().Tecnico.Empleado.Apellido_Paterno) %>
+     <%=string.Format("{0} {1}",Model.FirstOrDefault().Tecnico.Usuario.Nombres,Model.FirstOrDefault().Tecnico.Usuario.ApellidoPaterno) %>
     <%} %>
     </h2>
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
@@ -63,22 +63,22 @@
                 <%= Html.Encode(String.Format("{0}", item.Id)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Id_Cliente.GetRutCompleto())) %>
+                <%= Html.Encode(String.Format("{0}", item.Cliente.ClienteParticular.Rut.GetRutCompleto())) %>
             </td>
             <td>
                 <%= Html.Encode(item.Serie) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Fecha_Ingreso)) %>
+                <%= Html.Encode(String.Format("{0:g}", item.FechaIngreso)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:d}", item.Fecha_Entrega)) %>
+                <%= Html.Encode(String.Format("{0:d}", item.FechaEntrega)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Tipo_Orden1.Descripcion)) %>
+                <%= Html.Encode(String.Format("{0}", item.TipoOrden1.Descripcion)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault().Estado1.Descripcion))%>
+                <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado1.Descripcion))%>
             </td>
 
         </tr>

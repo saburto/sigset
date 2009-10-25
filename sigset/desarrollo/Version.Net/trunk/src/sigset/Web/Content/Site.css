@@ -81,9 +81,13 @@ h6 {
 	 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-fieldset {
-	padding:10px 20px;
-	margin:15px 0;
+fieldset 
+{
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+	padding:0 20px;
+	margin:1px 0;
 	position:relative;
 	}
 
@@ -106,16 +110,18 @@ fieldset fieldset legend {
 	font-size:.8em;
 	}
 	
-input[type="text"],input[type="password"]   {
-	/*display:block;*/
-	margin-bottom:5px;
-	vertical-align:top;
-	padding:2px;
-	color:#666666;
-	font-size:.8em;
-	border:1px solid #82b26e;
-	background:url(images/bg-input.png) no-repeat;
-	}
+input[type="text"], input[type="password"]
+{
+    /*display:block;*/
+    background-position: url(images/bg-input.png) no-repeat;
+    margin-bottom: 5px;
+    vertical-align: top;
+    padding: 2px; /*color:#666666;*/
+    font-size: .8em;
+    border: 1px solid #82b26e;
+    background: url(images/bg-input.png) no-repeat;
+    color: #000000;
+}
 
 
 fieldset p
@@ -156,7 +162,7 @@ label {
 	font-size:.65em;
 	}
 	
-input[type="submit"], input[type="button"], input.button {
+input[type="submit"], input[type="button"], input.button, .button {
 	color:#FFF;
 	background:#317f0c url(images/bg-button.png) repeat-x;
 	border:2px groove #FFF;
@@ -178,7 +184,7 @@ input[type="submit"], input[type="button"], input.button {
 }
 	
 	
-input.button-big {
+input.button-big, .big{
 	padding:6px 20px;
 	}
 	
@@ -491,7 +497,7 @@ a:active {
 	}
 	
 .content-main {
-	padding:15px 2% 20px 2%;
+	padding:0 2% 20px 2%;
 	position:relative;
 	min-height:400px;
 	_height:1px;
@@ -778,3 +784,29 @@ li {
 	background-color: #0A246A;
 	color: white;
 }
+
+
+	.fg-button { outline: 0; margin:0 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
+	.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
+	
+	a.fg-button { float:left; }
+	
+	/* remove extra button width in IE */
+	button.fg-button { width:auto; overflow:visible; }
+	
+	.fg-button-icon-left { padding-left: 2.1em; }
+	.fg-button-icon-right { padding-right: 2.1em; }
+	.fg-button-icon-left .ui-icon { right: auto; left: .2em; margin-left: 0; }
+	.fg-button-icon-right .ui-icon { left: auto; right: .2em; margin-left: 0; }
+	
+	.fg-button-icon-solo { display:block; width:8px; text-indent: -9999px; }	 /* solo icon buttons must have block properties for the text-indent to work */	
+	
+	.fg-buttonset { float:left; }
+	.fg-buttonset .fg-button { float: left; }
+	.fg-buttonset-single .fg-button, 
+	.fg-buttonset-multi .fg-button { margin-right: -1px;}
+	
+	.fg-toolbar { padding: .5em; margin: 0;  }
+	.fg-toolbar .fg-buttonset { margin-right:1.5em; padding-left: 1px; }
+	.fg-toolbar .fg-button { font-size: 1em;  }
+

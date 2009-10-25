@@ -23,8 +23,8 @@
              
             </p>
             <p>
-                <label for="Apellido_Paterno">Apellido Paterno:</label>
-                <%= Html.TextBox("Apellido_Paterno", Model.Apellido_Paterno) %>
+                <label for="ApellidoPaterno">Apellido Paterno:</label>
+                <%= Html.TextBox("ApellidoPaterno", Model.ApellidoPaterno) %>
                 <%= Html.ValidationMessage("Apellido Paterno", "*") %>            
             </p>
               </div>
@@ -36,7 +36,7 @@
             </p>
             <p>
                 <label for="Apellido Materno">Apellido Materno:</label>
-                <%= Html.TextBox("Apellido_Materno", Model.Apellido_Materno) %>
+                <%= Html.TextBox("ApellidoMaterno", Model.ApellidoMaterno) %>
                 <%= Html.ValidationMessage("Apellido Materno", "*") %>
             </p>
              </div>

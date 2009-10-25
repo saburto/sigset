@@ -66,19 +66,19 @@ namespace Web.Controllers.OrdenTrabajo
         public ActionResult Crear(int id)
         {
             TempData["rutOrden"] = id;
-            ViewData["Lista_Precio_Garantia"] = _srv.GetPrecios().GetSelectCampos("Id_Precio_Garantia", "Valor_Revision",null,"${0}");
+            ViewData["Lista_PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("Id_PrecioGarantia", "ValorRevision",null,"${0}");
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,Precio_Garantia")]Articulo articulo, string Lista_Precio_Garantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, string Rut)
+        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,PrecioGarantia")]Articulo articulo, string Lista_PrecioGarantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, string Rut)
         {
             TempData["rutOrden"] = Rut;
             try
             {
                 Marca = string.IsNullOrEmpty(Marca) ? Marca_DISPLAY_TEXT : Marca;
                 Linea = string.IsNullOrEmpty(Linea) ? Linea_DISPLAY_TEXT : Linea;
-                Articulo art = _srv.CrearArticulo(articulo, Lista_Precio_Garantia, Marca, Linea);
+                Articulo art = _srv.CrearArticulo(articulo, Lista_PrecioGarantia, Marca, Linea);
                 return RedirectToRoute(new { controller = "OrdenTrabajo", action = "CrearDetalle", id = art.Id, rut = TempData["rutOrden"] });
             }
             catch (RulesException ex)
@@ -89,7 +89,7 @@ namespace Web.Controllers.OrdenTrabajo
             {
                 ModelState.AddModelError("_FORM", ex.Message);
             }
-            ViewData["Lista_Precio_Garantia"] = _srv.GetPrecios().GetSelectCampos("Id_Precio_Garantia", "Valor_Revision", null, "${0}");
+            ViewData["Lista_PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("Id_PrecioGarantia", "ValorRevision", null, "${0}");
             return View();
         }
 
@@ -102,7 +102,7 @@ namespace Web.Controllers.OrdenTrabajo
 
         public ActionResult GetTipoArticulo(string q)
         {
-            var tipoArticuloJson = _srv.GetTipoArticulos(q).ToAutoCompleteJson("Id_Tipo_Articulo", "Descripcion");
+            var tipoArticuloJson = _srv.GetTipoArticulos(q).ToAutoCompleteJson("Id_TipoArticulo", "Descripcion");
             return Json(tipoArticuloJson);
         }
 

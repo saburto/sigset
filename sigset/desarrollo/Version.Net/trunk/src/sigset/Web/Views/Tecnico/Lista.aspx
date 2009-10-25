@@ -46,17 +46,17 @@
        
             <th scope="row">
     
-                <%= Html.ActionLink("Editar", "Editar", new { id=item.Rut }) %> 
-                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Rut })%>
+                <%= Html.ActionLink("Editar", "Editar", new { id=item.Id }) %> 
+                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
             </th>
             
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Rut.GetRutCompleto())) %>
+                <%= Html.Encode(String.Format("{0}", ((decimal)(item.Usuario.Rut)).GetRutCompleto())) %>
             </td>
             <td>
-                <%= Html.Encode( item.Empleado.Nombre + " " ) %>
-                <%= Html.Encode(item.Empleado.Apellido_Paterno + " ")%>
-                <%= Html.Encode( item.Empleado.Apellido_Materno) %>
+                <%= Html.Encode( item.Usuario.Nombres + " " ) %>
+                <%= Html.Encode(item.Usuario.ApellidoPaterno + " ")%>
+                <%= Html.Encode( item.Usuario.ApellidoMaterno) %>
                 
             </td>
             <td>

@@ -12,6 +12,67 @@ namespace Helpers
 {
     public static class CamposHelper
     {
+        public static string Button(this HtmlHelper html, string content, ButtonType type)
+        {
+            TagBuilder tagBuilder = new TagBuilder("button");
+            tagBuilder.MergeAttribute("type", type.ToString());
+            tagBuilder.AddCssClass("fg-button ui-state-default ui-corner-all");
+
+            tagBuilder.InnerHtml = html.Encode(content);
+
+            return tagBuilder.ToString();
+        }
+
+        public static string ButtonSubmit(this HtmlHelper html, string content)
+        {
+            TagBuilder tagBuilder = new TagBuilder("button");
+            tagBuilder.MergeAttribute("type", ButtonType.submit.ToString());
+            tagBuilder.AddCssClass("fg-button ui-state-default ui-corner-all");
+
+            tagBuilder.InnerHtml = html.Encode(content);
+
+            return tagBuilder.ToString();
+        }
+
+
+        public static string ButtonLinkIcon(this HtmlHelper html, string href, string content)
+        {
+            return ButtonLinkIcon(html, href, content, null);
+        }
+
+        public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon)
+        {
+            return ButtonLinkIcon(html, href, content, icon,null);
+        }
+
+        public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon, IconPosition? position)
+        {
+            TagBuilder tagBuilder = new TagBuilder("a");
+            tagBuilder.MergeAttribute("href", href);
+            tagBuilder.AddCssClass("fg-button ui-state-default ui-corner-all");
+
+            if (position != null)
+            {
+                tagBuilder.AddCssClass("fg-button-icon-" + position.ToString());
+            }
+            else
+            {
+                tagBuilder.AddCssClass("fg-button-icon-left");
+            }
+
+            TagBuilder tagBuilderSpan = new TagBuilder("span");
+            tagBuilderSpan.AddCssClass("ui-icon");
+            if (icon != null)
+            {
+                string classIcon = "ui-icon-" + icon.ToString().Replace('_', '-');
+                tagBuilderSpan.AddCssClass(classIcon);
+            }
+            tagBuilder.InnerHtml = tagBuilderSpan.ToString() + html.Encode(content);
+
+            return tagBuilder.ToString();
+        }
+
+
         public static string TextoSoloLectura(this HtmlHelper helper,string name, object value)
         {
             Dictionary<String, object> atributos = new Dictionary<string, object>();
@@ -108,6 +169,10 @@ namespace Helpers
         {
             return rut.ToString() + "-" + ValidarRut.GetDigitoVerificador(rut);
         }
+        public static string GetRutCompleto(this int rut)
+        {
+            return rut.ToString() + "-" + ValidarRut.GetDigitoVerificador(rut);
+        }
 
         public static class ValidarRut
         {
@@ -146,8 +211,16 @@ namespace Helpers
                 }
                 return (RutDigito);
             }
+
+              /*      <a href="<%=Url.Action("Crear") %>" 
+               * class="fg-button ui-state-default fg-button-icon-left ui-corner-all" >
+        <span class="ui-icon ui-icon-circle-plus"></span>Crear Nuevo
+        </a>*/
+
         }
 
+
+        
 
     }
 

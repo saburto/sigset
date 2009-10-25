@@ -53,27 +53,27 @@
                 <%= Html.Encode(String.Format("{0}", item.Id)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Id_Cliente.GetRutCompleto())) %>
+                <%= Html.Encode(String.Format("{0}", item.Cliente.ClienteParticular.Rut.GetRutCompleto())) %>
             </td>
             <td>
                 <%= Html.Encode(item.Serie) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Fecha_Ingreso)) %>
+                <%= Html.Encode(String.Format("{0:g}", item.FechaIngreso)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:d}", item.Fecha_Entrega)) %>
+                <%= Html.Encode(String.Format("{0:d}", item.FechaEntrega)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Tipo_Orden1.Descripcion)) %>
+                <%= Html.Encode(String.Format("{0}", item.TipoOrden1.Descripcion)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault().Estado1.Descripcion))%>
+                <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado1.Descripcion))%>
             </td>
             <td>
                 <%if (item.Tecnico != null)
 	            { %>
-                    <%= Html.Encode(String.Format("{0} {1}", item.Tecnico.Empleado.Nombre, item.Tecnico.Empleado.Apellido_Paterno))%>
+                    <%= Html.Encode(String.Format("{0} {1}", item.Tecnico.Usuario.Nombres, item.Tecnico.Usuario.ApellidoPaterno))%>
                 <%}else{ %>
                 <%= Html.ActionLink("Asginar", "Asignar", new { id=item.Id })%>
                 <%} %>

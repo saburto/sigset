@@ -19,7 +19,7 @@
        <div class="three-column-middle">
         <p>
             <span style="font-weight:bold">Tipo Articulo:</span>
-            <%= Html.Encode(Model.Tipo_Articulo1.Descripcion) %>
+            <%= Html.Encode(Model.TipoArticulo1.Descripcion) %>
             <br />
             <span style="font-weight:bold">Categoria:</span>
             <%= Html.Encode(Model.Categoria1.Descripcion) %>
@@ -30,9 +30,9 @@
        <p>
             <span style="font-weight:bold">Precio Garantia:</span>
             <br />
-            <%= Html.Encode("Reparación: $" + Model.Precio_Garantia1.Valor_Reparacion) %>
+            <%= Html.Encode("Reparación: $" + Model.PrecioGarantia1.ValorReparacion) %>
             <br />
-            <%= Html.Encode("Revisión: $" + Model.Precio_Garantia1.Valor_Revision) %>
+            <%= Html.Encode("Revisión: $" + Model.PrecioGarantia1.ValorRevision) %>
        </p>
        </div> 
 </div>

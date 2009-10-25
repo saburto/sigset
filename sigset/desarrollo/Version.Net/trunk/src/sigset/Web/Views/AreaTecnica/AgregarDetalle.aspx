@@ -13,7 +13,7 @@
 
         <fieldset>
             <legend><%=Html.Encode("Detalle") %></legend>
-                <%= Html.Hidden("Id_Orden", Model.Id_Orden) %>
+                <%= Html.Hidden("IdOrden", Model.IdOrden) %>
             <p>
                 <%=Html.DropDownList("Estado")%>
             </p>

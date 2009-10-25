@@ -23,16 +23,16 @@
             <%= Html.Encode(String.Format("{0:F}", Model.Marca)) %>
         </p>
         <p>
-            Tipo_Articulo:
-            <%= Html.Encode(String.Format("{0:F}", Model.Tipo_Articulo)) %>
+            TipoArticulo:
+            <%= Html.Encode(String.Format("{0:F}", Model.TipoArticulo)) %>
         </p>
         <p>
             Categoria:
             <%= Html.Encode(String.Format("{0:F}", Model.Categoria)) %>
         </p>
         <p>
-            Precio_Garantia:
-            <%= Html.Encode(String.Format("{0:F}", Model.Precio_Garantia)) %>
+            PrecioGarantia:
+            <%= Html.Encode(String.Format("{0:F}", Model.PrecioGarantia)) %>
         </p>
         <p>
             Linea:
