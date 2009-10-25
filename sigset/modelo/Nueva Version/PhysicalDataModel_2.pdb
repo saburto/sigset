@@ -12,7 +12,7 @@
 <a:Code>PHYSICALDATAMODEL_2</a:Code>
 <a:CreationDate>1256420364</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256482367</a:ModificationDate>
+<a:ModificationDate>1256482407</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:PackageOptionsText>[FolderOptions]
 
@@ -86,7 +86,7 @@ GenScriptName6=
 GenScriptName7=
 GenScriptName8=
 GenScriptName9=
-GenPathName=C:\Users\Sevazthian\Desktop\New folder\
+GenPathName=C:\svn\sigset\modelo\Nueva Version\
 GenSingleFile=Yes
 GenODBC=No
 GenCheckModel=Yes
