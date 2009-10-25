@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Data.Repositorios.Perfiles
 {
-    interface IPerfilRepositorio
+    public interface IPerfilRepositorio
     {
         void BorrarTipoCargo(int id);
         int ContarEmpleadoSegunTipoCargo(global::Data.Modelo.Perfil tipo);

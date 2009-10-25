@@ -2,7 +2,7 @@
 using Data.Modelo;
 namespace Data.Repositorios.Empleados
 {
-    interface IEmpleadoRepositorio
+    public interface IEmpleadoRepositorio
     {
         global::Data.Modelo.Usuario EditarEmpleado(int Rut, global::Data.Modelo.Usuario empleado, decimal tipoCargo);
         Usuario GetEmpleadoByRut(decimal rut);

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Data.Repositorios.Tecnicos
 {
-    interface ITecnicoRepositorio
+    public interface ITecnicoRepositorio
     {
         int ContarEspecialidadesByTecnico(decimal id);
         void CrearEspecialidad(global::Data.Modelo.Especialidade especialidad);

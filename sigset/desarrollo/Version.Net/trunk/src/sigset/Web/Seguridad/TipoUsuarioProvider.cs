@@ -51,12 +51,12 @@ namespace Web.Seguridad
 
         public override string[] GetAllRoles()
         {
-           return _auto.GetTipos_Usuarios().ToArray();
+           return _auto.GetPerfiless().ToArray();
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            return _auto.GetTipos_UsuarioByUsuario(username).ToArray();
+            return _auto.GetPerfilesByUsuario(username).ToArray();
         }
 
         public override string[] GetUsersInRole(string roleName)

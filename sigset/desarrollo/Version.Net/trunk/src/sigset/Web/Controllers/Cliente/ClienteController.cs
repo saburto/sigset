@@ -91,8 +91,8 @@ namespace Web.Controllers
         {
             try
             {
-                _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
-                return RedirectToAction("Detalles", new { id = cliente.Rut });
+                //_serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
+                return RedirectToAction("Detalles", new { id = cliente.Id });
             }
             catch (RulesException ex)
             {
@@ -141,7 +141,7 @@ namespace Web.Controllers
             try
             {
                 _serv.EditarCliente(cliente, direccion, email, fono);
-                return RedirectToAction("Detalles", new {id = cliente.Rut });
+                return RedirectToAction("Detalles", new {id = cliente.Id });
             }
             catch (RulesException e)
             {
@@ -156,7 +156,7 @@ namespace Web.Controllers
             direccion.Provincia1 = _serv.GetProvinciasByRegion(direccion.Region).Where(x => x.Id == direccion.Provincia).FirstOrDefault();
             direccion.Comuna1 = _serv.GetComunasByProvincia(direccion.Provincia).Where(x => x.Id == direccion.Comuna).FirstOrDefault();
 
-            cliente.Direccions.Add(direccion);
+            cliente.Direccion = direccion;
             cliente.Contactos.Add(email);
             cliente.Contactos.Add(fono);
             return View(cliente);

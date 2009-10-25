@@ -49,7 +49,7 @@ namespace Web.Controllers
         {
             if (rut.HasValue)
             {
-                var orden = new Data.Modelo.Orden_Trabajo();
+                var orden = new Data.Modelo.OrdenTrabajo();
                 orden.Cliente = _srvCliente.GetClientePorRut(rut.Value);
                 return View(orden);                
             }
@@ -65,21 +65,21 @@ namespace Web.Controllers
         {
             ViewData["Tipo_Orden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_Tipo_Orden", "Descripcion");
             Cliente cliente = _srvCliente.GetClientePorRut(rut);
-            Orden_Trabajo ot = new Orden_Trabajo();
+            Data.Modelo.OrdenTrabajo ot = new Data.Modelo.OrdenTrabajo();
             ot.Cliente = cliente;
-            ot.Id_Cliente =cliente.Rut;
+            
 
             Articulo articulo = _srvArticulo.GetArticulo(id);
             ot.Articulo = articulo;
-            ot.Id_Articulo = articulo.Id;
+            ot.IdArticulo = articulo.Id;
 
-            ot.Fecha_Entrega = DateTime.Now.AddDays(5);
+            ot.FechaEntrega = DateTime.Now.AddDays(5);
 
             return View(ot);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult CrearDetalle(Orden_Trabajo ordenTrabajo)
+        public ActionResult CrearDetalle(Data.Modelo.OrdenTrabajo ordenTrabajo)
         {
             try
             {
@@ -107,13 +107,13 @@ namespace Web.Controllers
 
         public ActionResult Detalles(decimal id, string format)
         {
-            Orden_Trabajo ot = _srvOrdenTrabajo.GetOrdenTrabajo(id);
+            Data.Modelo.OrdenTrabajo ot = _srvOrdenTrabajo.GetOrdenTrabajo(id);
 
             if (format != null)
             {
                 if (format == "xls")
                 {
-                    List<Orden_Trabajo> or = new List<Orden_Trabajo>();
+                    List<Data.Modelo.OrdenTrabajo> or = new List<Data.Modelo.OrdenTrabajo>();
                     or.Add(ot);
                     return this.Excel(or.AsQueryable(), "OrdenTrabajo"+ id +".xls", new string[] {"Id","Serie","Id_Cliente", "Falla","Condicion_Articulo","Tipo_Orden","Fecha_Entrega","Boleta","Poliza","Fecha_Compra","Lugar_Compra" });
                 }
@@ -158,7 +158,7 @@ namespace Web.Controllers
                 }
                 else
                 {
-                    var lista = new List<Orden_Trabajo>();
+                    var lista = new List<Data.Modelo.OrdenTrabajo>();
                     lista.Add(ordenTrabajo);
                     return PartialView("ListaOrdenes", lista);
                 }

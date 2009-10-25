@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Data.Modelo;
-using Data.Repositorios.TipoCargo;
+
 using Services.TipoCargo;
 using xVal.ServerSide;
 using Web.Helpers;
@@ -43,7 +43,7 @@ namespace Web.Controllers
             return View("Editar" ,tipo_cargo);
         }
         [AcceptVerbs (HttpVerbs.Post)]
-        public ActionResult Editar(int id, Tipo_Cargo tipo)
+        public ActionResult Editar(int id, Perfil tipo)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace Web.Controllers
             return View("Crear");
         }
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Tipo_Cargo tipo)
+        public ActionResult Crear(Perfil tipo)
         {
             try
             {

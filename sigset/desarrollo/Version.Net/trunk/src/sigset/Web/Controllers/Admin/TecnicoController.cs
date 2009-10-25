@@ -47,7 +47,7 @@ namespace Web.Controllers.Admin
         {
             try
             {
-                tecnico.Rut = id;
+                tecnico.Id = id;
                 tecnico.Nivel = decimal.Parse(niveles);
                 _servicio.EditarTecnico(tecnico);
                 return RedirectToAction("Lista");
@@ -79,7 +79,7 @@ namespace Web.Controllers.Admin
         {
             try
             {
-                tecnico.Rut = decimal.Parse(listaEmpleadosTecnicos);
+                tecnico.Id = int.Parse(listaEmpleadosTecnicos);
                 tecnico.Nivel = decimal.Parse(niveles);
                 _servicio.CrearTecnico(tecnico);
                 return RedirectToAction("Lista");
@@ -121,12 +121,12 @@ namespace Web.Controllers.Admin
 
          }
 
-        public ActionResult AgregarNuevaEspecialidad(decimal id)
+        public ActionResult AgregarNuevaEspecialidad(int id)
         {
             var tecnico = _servicio.GetTecnicoByRut(id);
             ViewData["tipoEspecialidades"] = _servicio.GetEspecialidadesNoRepetidas(id).GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
 
-            return View(new Especialidade { Id_Tecnico = id });
+            return View(new Especialidade { IdTecnico = id });
         }
 
         [AcceptVerbs (HttpVerbs.Post)]
@@ -134,8 +134,8 @@ namespace Web.Controllers.Admin
         {
             try
             {
-                especialidad.Id_Tecnico = id;
-                especialidad.Tipo_Especialidad = decimal.Parse(tipoEspecialidades);
+                especialidad.IdTecnico =(int) id;
+                especialidad.TipoEspecialidad = decimal.Parse(tipoEspecialidades);
                 _servicio.CrearEspecialidad(especialidad);
                 return RedirectToAction("AgregarEspecialidades",new {id=id});
             }

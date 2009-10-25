@@ -74,7 +74,7 @@ namespace Data.Repositorios.Usuarios
             return _entities.Usuarios.Where(x => x.Perfil.Descripcion == nombreTipoUsuario);
         }
 
-        public IQueryable<Perfil> GetTipos_Usuario()
+        public IQueryable<Perfil> GetPerfiles()
         {
             return _entities.Perfils;
         }
