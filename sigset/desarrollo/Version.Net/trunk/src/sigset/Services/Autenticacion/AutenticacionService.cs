@@ -9,7 +9,7 @@ using xVal.ServerSide;
 
 namespace Services.Autenticacion
 {
-    public class AutenticacionService : IAutenticacionService
+    public class AutenticacionService : Services.Autenticacion.IAutenticacionService
     {
         private IUsuarioRepositorio _repo;
         public AutenticacionService():
@@ -28,8 +28,8 @@ namespace Services.Autenticacion
             if (ValidarUsuario(actualUserName, actualContrasena))
             {
                 Usuario usuario = _repo.GetUsuarioByNombreUsuario(actualUserName);
-                usuario.Usuario1 = actualUserName;
-                usuario.Contraseña = nuevaContrasena;
+                usuario.User = actualUserName;
+                usuario.Password = nuevaContrasena;
                 _repo.UpdateUsuario(usuario);
             }
         }
@@ -39,7 +39,7 @@ namespace Services.Autenticacion
             if (ValidarUsuario(user, actualContrasena))
             {
                 Usuario usuario = _repo.GetUsuarioByNombreUsuario(user);
-                usuario.Contraseña = nuevaContrasena;
+                usuario.Password = nuevaContrasena;
                 _repo.UpdateUsuario(usuario);
                 return true;
             }
@@ -48,7 +48,7 @@ namespace Services.Autenticacion
 
         public bool ValidarUsuario(string user, string contrasena)
         {
-            Usuario usuario = new Usuario(){Usuario1=user,Contraseña=contrasena};
+            Usuario usuario = new Usuario(){User=user,Password=contrasena};
             var errors = DataValidation.GetErrors(usuario);
             if (errors.Any())
             {
@@ -57,7 +57,7 @@ namespace Services.Autenticacion
             else
             {
                 Usuario u = _repo.GetUsuarioByNombreUsuario(user);
-                return  u != null ? u.Contraseña  == contrasena : false;
+                return  u != null ? u.Password  == contrasena : false;
             }
         }
     }

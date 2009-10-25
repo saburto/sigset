@@ -9,7 +9,7 @@ using Data.Repositorios.Tecnicos;
 
 namespace Services.Tecnicos
 {
-    public class TecnicoServicio : Services.Tecnicos.ITecnicoServicio
+    public class TecnicoServicio : Services.Tecnicos.ITecnicoServicio 
     {
         private ITecnicoRepositorio _repo;
         public TecnicoServicio(ITecnicoRepositorio repo)
@@ -23,7 +23,7 @@ namespace Services.Tecnicos
         {
             return _repo.GetTecnicoByRut(rut);
         }
-        public IList<Empleado> GetTodosLosTecnicosEmpleados()
+        public IList<Usuario> GetTodosLosTecnicosEmpleados()
         {
             return _repo.GetEmpleadosTecnicos().ToList();
         }
@@ -33,7 +33,7 @@ namespace Services.Tecnicos
             return _repo.GetTodosLosTecnicos().ToList();
         }
        
-        public IList<Tipo_Especialidad> GetTodosLosTiposDeEspecialidad()
+        public IList<TipoEspecialidad> GetTodosLosTiposDeEspecialidad()
         {
             return _repo.GetTodosLosTiposEspecialidad().ToList();
         }
@@ -45,7 +45,7 @@ namespace Services.Tecnicos
         public void CrearTecnico(Tecnico tecnico)
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            if (tecnico.Rut == -1)
+            if (tecnico.Id == -1)
             {
                 _errors.Add(new ErrorInfo("Rut", "Debe seleccionar empleado a registrar como técnico"));
 
@@ -100,7 +100,7 @@ namespace Services.Tecnicos
         {
 
             List<ErrorInfo> _errors = new List<ErrorInfo>();
-            if (especialidad.Tipo_Especialidad == -1)
+            if (especialidad.TipoEspecialidad == -1)
             {
                 _errors.Add(new ErrorInfo("Nivel", "Debe seleccionar Tipo de Especialidad"));
 
@@ -116,11 +116,11 @@ namespace Services.Tecnicos
             }    
         }
 
-        public IList<Tipo_Especialidad> GetEspecialidadesNoRepetidas(decimal id)
+        public IList<TipoEspecialidad> GetEspecialidadesNoRepetidas(decimal id)
         {
             var especialidadesActuales = _repo.GetEspecialidadByTecnicoId(id);
             var especialidades = _repo.GetTodosLosTiposEspecialidad().ToList();
-            IList<Tipo_Especialidad> especialidadFaltantes = new List<Tipo_Especialidad>();
+            IList<TipoEspecialidad> especialidadFaltantes = new List<TipoEspecialidad>();
           
             for (int i = 0; i < especialidades.Count; i++)
             {
@@ -129,9 +129,9 @@ namespace Services.Tecnicos
 
             foreach(var e in especialidadesActuales)
             {
-                if (especialidadFaltantes.Where(x => x.Id_Tipo_Especialidad == e.Tipo_Especialidad).Any())
+                if (especialidadFaltantes.Where(x => x.IdTipoEspecialidad == e.TipoEspecialidad).Any())
                 {
-                    especialidadFaltantes.Remove(especialidadFaltantes.Where(x => x.Id_Tipo_Especialidad == e.Tipo_Especialidad).FirstOrDefault());
+                    especialidadFaltantes.Remove(especialidadFaltantes.Where(x => x.IdTipoEspecialidad == e.TipoEspecialidad).FirstOrDefault());
                 }
             }
 

@@ -10,7 +10,7 @@ using Data.Modelo;
 
 namespace Services.Usuarios
 {
-    public class UsuarioServicio : Services.Usuarios.IUsuarioServicio
+    public class UsuarioServicio 
     {
         private IUsuarioRepositorio _repo;
         public UsuarioServicio(IUsuarioRepositorio repo)
@@ -36,17 +36,17 @@ namespace Services.Usuarios
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();
 
-            if (usuario.Tipo_Usuario == -1)
+            if (usuario.PerfilUsuario == -1)
             {
                 _errors.Add(new ErrorInfo("Tipo_Usuario", "Debe seleccionar Tipo de Usuario"));
             }
       
-            var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.Usuario1);
+            var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.User);
             if (usuarioRepetido != null)
             {
-                if (usuario.Usuario1.ToLower().Equals(usuarioRepetido.Usuario1.ToLower()) && usuario.Id != usuarioRepetido.Id)
+                if (usuario.User.ToLower().Equals(usuarioRepetido.User.ToLower()) && usuario.Id != usuarioRepetido.Id)
                 {
-                    throw new RulesException("Usuario1", "Nombre de usuario ya esta en uso");
+                    throw new RulesException("User", "Nombre de usuario ya esta en uso");
                 }
             }
 
@@ -70,16 +70,16 @@ namespace Services.Usuarios
             _repo.DeleteUsuario(usuario);
         }
 
-        public IList<Tipo_Usuario> TiposUsuarios()
+        public IList<Perfil> TiposUsuarios()
         {
-            return _repo.GetTipos_Usuario().ToList();
+            return _repo.GetPerfiles().ToList();
         }
-        public IList<Empleado> TodosLosEmpleados()
+        public IList<Usuario> TodosLosEmpleados()
         {
             return _repo.GetTodosLosEmpleados().ToList();
         }
 
-        public Empleado BuscarEmpleadoByRut(decimal rut)
+        public Usuario BuscarEmpleadoByRut(decimal rut)
         {
             return _repo.FindEmpleadoByRut(rut);
         }
@@ -88,15 +88,11 @@ namespace Services.Usuarios
         {
             List<ErrorInfo> _errors = new List<ErrorInfo>();                     
 
-            if (usuario.Tipo_Usuario == -1)
+            if (usuario.PerfilUsuario == -1)
             {
                 _errors.Add(new ErrorInfo("Tipo_Usuario", "Debe seleccionar Tipo de Usuario"));
             }
 
-            if (usuario.Empleado == -1)
-            {
-                _errors.Add(new ErrorInfo("Empleado", "Debe seleccionar Empleado asociado a nuevo usuario"));
-            }
           
             DataValidation.GetErrors(usuario, _errors);
             if (_errors.Any())
@@ -106,12 +102,12 @@ namespace Services.Usuarios
             else
             {
 
-                var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.Usuario1);
+                var usuarioRepetido = _repo.GetUsuarioByNombreUsuario(usuario.User);
                 if (usuarioRepetido != null)
                 {
-                  if (usuario.Usuario1.ToLower().Equals(usuarioRepetido.Usuario1.ToLower()))
+                  if (usuario.User.ToLower().Equals(usuarioRepetido.User.ToLower()))
                    {
-                    throw new RulesException("Usuario1", "Nombre de usario ya esta en uso");
+                    throw new RulesException("User", "Nombre de usario ya esta en uso");
                    }
                 }
                 else

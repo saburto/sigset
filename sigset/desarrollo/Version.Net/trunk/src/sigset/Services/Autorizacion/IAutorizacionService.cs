@@ -9,7 +9,7 @@ namespace Services.Autorizacion
         bool EsUsuarioTipo_Usuario(string nombreUsuario, decimal tipo);
         bool ExisteTipo_Usuario(string nombreTipo);
         IList<String> GetUsuariosTipo_Usuario(string nombreTipo);
-        IList<String> GetTipos_Usuarios();
-        IList<String> GetTipos_UsuarioByUsuario(String user);
+        IList<String> GetPerfiless();
+        IList<String> GetPerfilesByUsuario(String user);
     }
 }

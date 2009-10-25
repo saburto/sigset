@@ -24,41 +24,41 @@ namespace Services.Autorizacion
 
         public void CrearTipo_Usuario(string nombreTipoUsuario)
         {
-            _repo.CreateTipo_Usuario(nombreTipoUsuario);
+            _repo.CreatePerfil(nombreTipoUsuario);
         }
 
         public bool ExisteTipo_Usuario(string nombreTipo)
         {
-            return _repo.GetTipo_UsuarioByNombre(nombreTipo) != null;
+            return _repo.GetPerfilByNombre(nombreTipo) != null;
         }
 
         public bool EsUsuarioTipo_Usuario(string nombreUsuario, decimal tipo)
         {
-            return _repo.GetUsuarioByNombreUsuario(nombreUsuario).Tipo_Usuario1.Id_Tipo_Usuario == tipo;
+            return _repo.GetUsuarioByNombreUsuario(nombreUsuario).Perfil.Id == tipo;
         }
 
         public bool EsUsuarioTipo_Usuario(string nombreUsuario, string nombreTipo)
         {
-            return _repo.GetUsuarioByNombreUsuario(nombreUsuario).Tipo_Usuario1.Descripcion == nombreTipo;
+            return _repo.GetUsuarioByNombreUsuario(nombreUsuario).Perfil.Descripcion == nombreTipo;
         }
 
         public IList<String> GetUsuariosTipo_Usuario(string nombreTipo)
         {
-            return _repo.GetUsuariosTipo_Usuario(nombreTipo).Select(x => x.Usuario1).ToList();
+            return _repo.GetUsuariosPerfil(nombreTipo).Select(x => x.User).ToList();
         }
 
-        public IList<String> GetTipos_Usuarios()
+        public IList<String> GetPerfiless()
         {
-            var tipos = from t in _repo.GetTipos_Usuario()
+            var tipos = from t in _repo.GetPerfiles()
                         select t.Descripcion;
             return tipos.ToList();
         }
 
 
-        public IList<string> GetTipos_UsuarioByUsuario(string user)
+        public IList<string> GetPerfilesByUsuario(string user)
         {
             IList<String> lista = new List<String>();
-            Tipo_Usuario tipo = _repo.GetTipo_UsuarioByUsuarioNombre(user);
+            Perfil tipo = _repo.GetPerfilByUsuarioNombre(user);
             if (tipo != null)
             {
                 lista.Add(tipo.Descripcion);

@@ -29,7 +29,7 @@ namespace Services.Articulos
 
 
 
-        public IList<Tipo_Articulo> GetTipoArticulos(string nombre)
+        public IList<TipoArticulo> GetTipoArticulos(string nombre)
         {
             return _rep.GetTipoArticulos(nombre).ToList();
         }
@@ -41,7 +41,7 @@ namespace Services.Articulos
         }
 
 
-        public IList<Precio_Garantia> GetPrecios()
+        public IList<PrecioGarantia> GetPrecios()
         {
             return _rep.GetPrecios().ToList();
         }
@@ -59,7 +59,7 @@ namespace Services.Articulos
             {
                m = _rep.CrearMarca(marca);
             }
-            return m.Id_Marca;
+            return m.IdMarca;
         }
 
         private decimal CrearLinea(string linea)
@@ -69,13 +69,13 @@ namespace Services.Articulos
             {
                 l = _rep.CrearLinea(linea);
             }
-            return l.Id_Linea;
+            return l.IdLinea;
         }
 
-        public Articulo CrearArticulo(Articulo articulo, string Lista_Precio_Garantia, string Marca, string Linea)
+        public Articulo CrearArticulo(Articulo articulo, string Lista_PrecioGarantia, string Marca, string Linea)
         {
             IList<ErrorInfo> _error = new List<ErrorInfo>();
-            ValidarArticulo(articulo, Lista_Precio_Garantia, Marca, Linea, _error);
+            ValidarArticulo(articulo, Lista_PrecioGarantia, Marca, Linea, _error);
             if (_error.Any())
             {
                 throw new RulesException(_error);
@@ -85,7 +85,7 @@ namespace Services.Articulos
             {
                 articulo.Linea = CrearLinea(Linea);    
             }
-            articulo.Precio_Garantia = decimal.Parse(Lista_Precio_Garantia);
+            articulo.PrecioGarantia = decimal.Parse(Lista_PrecioGarantia);
 
             NoRepetidoModeloMarca(articulo,Marca);
             return _rep.CrearArticulo(articulo);
@@ -115,16 +115,16 @@ namespace Services.Articulos
                 _error.Add(new ErrorInfo("Modelo", "Modelo es necesario."));
             }
 
-            if (articulo.Tipo_Articulo == 0)
+            if (articulo.TipoArticulo == 0)
             {
-                _error.Add(new ErrorInfo("Tipo_Articulo", "Tipo Articulo es necesario."));
+                _error.Add(new ErrorInfo("TipoArticulo", "Tipo Articulo es necesario."));
             }
             else
             {
-                var tipo = _rep.GetTipoArticulos(articulo.Tipo_Articulo);
+                var tipo = _rep.GetTipoArticulos(articulo.TipoArticulo);
                 if (tipo == null)
                 {
-                    _error.Add(new ErrorInfo("Tipo_Articulo", "Tipo Articulo invalido"));
+                    _error.Add(new ErrorInfo("TipoArticulo", "Tipo Articulo invalido"));
                 }
 
             }
@@ -145,7 +145,7 @@ namespace Services.Articulos
             decimal garantia_precio;
             if (!decimal.TryParse(precio,out garantia_precio))
             {
-                _error.Add(new ErrorInfo("Precio_Garantia","Precio invalido"));
+                _error.Add(new ErrorInfo("PrecioGarantia","Precio invalido"));
             }
 
             if (string.IsNullOrEmpty(marca))

@@ -12,7 +12,7 @@ using Data.Repositorios.Usuarios;
 
 namespace Services.OrdenTrabajo
 {
-    public class OrdenTrabajoServicio : Services.OrdenTrabajo.IOrdenTrabajoServicio
+    public class OrdenTrabajoServicio : Services.OrdenTrabajo.IOrdenTrabajoServicio 
     {
         private IOrdenTrabajoRepositorio _repo;
         private ITecnicoRepositorio _repoTecnico;
@@ -29,19 +29,19 @@ namespace Services.OrdenTrabajo
         {
         }
 
-        public decimal CrearOrdenTrabajo(Orden_Trabajo orden, string usuario)
+        public decimal CrearOrdenTrabajo(Data.Modelo.OrdenTrabajo orden, string usuario)
         {
-            orden.Fecha_Ingreso = DateTime.Now;
+            orden.FechaIngreso = DateTime.Now;
             ValidarOrden(orden, null);
-            Orden_Trabajo ot = _repo.GuardarOrdenTrabajo(orden);
+            Data.Modelo.OrdenTrabajo ot = _repo.GuardarOrdenTrabajo(orden);
             Detalle detalle = new Detalle();
-            detalle.Id_Orden = ot.Id;
+            detalle.IdOrden = ot.Id;
             //aca se cae.
             var user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
 
-            detalle.Id_Usuario = user != null ? user.Id: 1;
+            detalle.IdUsuario = user != null ? user.Id: 1;
             detalle.Estado = 1;
-            detalle.Fecha_Creacion = ot.Fecha_Ingreso;
+            detalle.FechaCreacion = ot.FechaIngreso;
             _repo.GuardarDetalle(detalle);
 
 
@@ -55,16 +55,16 @@ namespace Services.OrdenTrabajo
             return ot.Id;
         }
 
-        public void AsigancionAutomatica(Orden_Trabajo ot)
+        public void AsigancionAutomatica(Data.Modelo.OrdenTrabajo ot)
         {
             //var tecnicos = _repoTecnico.GetTodosLosTecnicos();
             //var tecnicosLibre = from t in tecnicos
-            //                    orderby t.Orden_Trabajos.Min()
+            //                    orderby t.OrdenTrabajos.Min()
             //                    select t;
             //foreach (var tec in tecnicosLibre)
             //{
             //    //Si existe algun tecnico ocioso
-            //    if (tec.Orden_Trabajos.Count() == 0)
+            //    if (tec.OrdenTrabajos.Count() == 0)
             //    {
             //        ot.Id_Tecnico_Asignado = tec.Rut;
             //        ot.Tecnico = tec;
@@ -76,7 +76,7 @@ namespace Services.OrdenTrabajo
         }
 
 
-        private void ValidarOrden(Orden_Trabajo orden, IList<ErrorInfo> _error)
+        private void ValidarOrden(Data.Modelo.OrdenTrabajo orden, IList<ErrorInfo> _error)
         {
             if (_error == null)
             {
@@ -93,16 +93,16 @@ namespace Services.OrdenTrabajo
                 _error.Add(new ErrorInfo("Falla","Falla es necesario"));
             }
 
-            if (orden.Fecha_Entrega == null)
+            if (orden.FechaEntrega == null)
             {
                 _error.Add(new ErrorInfo("Fecha_Entrega","Fecha de entrega debe ser informada"));
             }
 
-            if (orden.Tipo_Orden <= 0)
+            if (orden.TipoOrden <= 0)
             {
                 _error.Add(new ErrorInfo("Tipo_Orden","Tipo de orden debe ser seleccionado"));
             }
-            else if (orden.Tipo_Orden != 2)
+            else if (orden.TipoOrden != 2)
             {
                 if (string.IsNullOrEmpty(orden.Boleta))
                 {
@@ -114,12 +114,12 @@ namespace Services.OrdenTrabajo
                     _error.Add(new ErrorInfo("Poliza", "Se debe informar Poliza"));
                 }
 
-                if (string.IsNullOrEmpty(orden.Lugar_Compra))
+                if (string.IsNullOrEmpty(orden.LugarCompra))
                 {
                     _error.Add(new ErrorInfo("Lugar_Compra", "Se debe informar lugar de compra"));
                 }
 
-                if (orden.Fecha_Compra == null)
+                if (orden.FechaCompra == null)
                 {
                     _error.Add(new ErrorInfo("Fecha_Compra", "Se debe informar fecha de compra"));
                 }
@@ -133,14 +133,14 @@ namespace Services.OrdenTrabajo
 
         }
 
-        public IList<Tipo_Orden> GetTiposOrden()
+        public IList<TipoOrden> GetTiposOrden()
         {
             return _repo.GetTiposOrden().ToList();
         }
 
 
 
-        public Orden_Trabajo GetOrdenTrabajo(decimal id)
+        public Data.Modelo.OrdenTrabajo GetOrdenTrabajo(decimal id)
         {
             return _repo.GetOrdenTrabajoById(id);
         }
@@ -148,9 +148,9 @@ namespace Services.OrdenTrabajo
 
 
 
-        public IList<Orden_Trabajo> GetOrdenesTrabajoByRut(decimal p)
+        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByRut(decimal p)
         {
-            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.Id_Cliente == p).OrderBy(x=> x.Fecha_Ingreso).ToList();
+            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.IdCliente == p).OrderBy(x=> x.FechaIngreso).ToList();
         }
 
 
@@ -159,7 +159,7 @@ namespace Services.OrdenTrabajo
             return _repo.GetEstadosOrden().ToList();
         }
 
-        public IList<Orden_Trabajo> GetOrdenesTrabajo(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
+        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajo(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
         {
             if (Fecha_Final == null || Fecha_Inicio == null)
             {
@@ -172,18 +172,18 @@ namespace Services.OrdenTrabajo
                 throw new Exception("Fecha final debe ser mayor que fecha de inicio");
             }
 
-            IQueryable<Orden_Trabajo> ordenes;
+            IQueryable<Data.Modelo.OrdenTrabajo> ordenes;
             if (string.IsNullOrEmpty(ListaTipos) || ListaTipos == "-1")
             {
                 ordenes = from o in _repo.GetTodasLasOrdenDeTrabajo()
-                          where o.Fecha_Ingreso >= Fecha_Inicio && o.Fecha_Ingreso <= Fecha_Final
+                          where o.FechaIngreso >= Fecha_Inicio && o.FechaIngreso <= Fecha_Final
                           select o;    
             }
             else
             {
                 ordenes = from o in _repo.GetTodasLasOrdenDeTrabajo()
-                          where o.Fecha_Ingreso >= Fecha_Inicio && o.Fecha_Ingreso <= Fecha_Final
-                            && o.Tipo_Orden == decimal.Parse(ListaTipos)
+                          where o.FechaIngreso >= Fecha_Inicio && o.FechaIngreso <= Fecha_Final
+                            && o.TipoOrden == decimal.Parse(ListaTipos)
                           select o;
             }
 
@@ -194,35 +194,35 @@ namespace Services.OrdenTrabajo
             else
             {
                 var ord = from o in ordenes
-                          where o.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
+                          where o.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
                           select o;
                 return ord.ToList();                          
             }
         }
 
 
-        public IList<Orden_Trabajo> GetOrdenesTrabajoSinAsignar()
+        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoSinAsignar()
         {
             var ord = from o in _repo.GetTodasLasOrdenDeTrabajo()
-                      where o.Detalles.OrderByDescending(x => x.Fecha_Creacion).FirstOrDefault().Estado == 1
+                      where o.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado == 1
                       select o;
             return ord.ToList();
         }
 
 
-        public void AsginarTecnicoOrden(Detalle detalle, decimal rutTecnico, string usuario)
+        public void AsginarTecnicoOrden(Detalle detalle, int rutTecnico, string usuario)
         {
-            var orden = GetOrdenTrabajo(detalle.Id_Orden);
-            orden.Id_Tecnico_Asignado = rutTecnico;
+            var orden = GetOrdenTrabajo(detalle.IdOrden.Value);
+            orden.IdTecnicoAsignado = rutTecnico;
             _repo.SaveChanges();
 
 
             detalle.Estado = 2;
-            detalle.Fecha_Creacion = DateTime.Now;
+            detalle.FechaCreacion = DateTime.Now;
 
             var user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
 
-            detalle.Id_Usuario = user != null ? user.Id : 9;
+            detalle.IdUsuario = user != null ? user.Id : 9;
 
             _repo.GuardarDetalle(detalle);
 
@@ -230,17 +230,17 @@ namespace Services.OrdenTrabajo
 
 
 
-        public IList<Orden_Trabajo> GetOrdenesTrabajoByTecnico(decimal id)
+        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByTecnico(decimal id)
         {
-            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.Id_Tecnico_Asignado == id).ToList();
+            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.IdTecnicoAsignado == id).ToList();
         }
 
 
         public void AgregarDetalle(Detalle detalle, string p)
         {
-            detalle.Fecha_Creacion = DateTime.Now;
+            detalle.FechaCreacion = DateTime.Now;
             var user = _repoUsuarios.GetUsuarioByNombreUsuario(p);
-            detalle.Id_Usuario = user != null ? user.Id : 9;
+            detalle.IdUsuario = user != null ? user.Id : 9;
             _repo.GuardarDetalle(detalle);
         }
 
