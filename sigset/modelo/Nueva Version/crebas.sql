@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     24-10-2009 23:45:23                          */
+/* Created on:     25-10-2009 11:53:29                          */
 /*==============================================================*/
 
 
@@ -170,6 +170,13 @@ if exists (select 1
    where r.fkeyid = object_id('OrdenTrabajo') and o.name = 'FK_Orden_Trabajo_Tipo_Orden')
 alter table OrdenTrabajo
    drop constraint FK_Orden_Trabajo_Tipo_Orden
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('OrdenTrabajo') and o.name = 'FK_ORDENTRA_REFERENCE_TECNICOS')
+alter table OrdenTrabajo
+   drop constraint FK_ORDENTRA_REFERENCE_TECNICOS
 go
 
 if exists (select 1
@@ -995,6 +1002,11 @@ alter table OrdenTrabajo
    add constraint FK_Orden_Trabajo_Tipo_Orden foreign key (TipoOrden)
       references TipoOrden (IdTipoOrden)
          on update cascade on delete cascade
+go
+
+alter table OrdenTrabajo
+   add constraint FK_ORDENTRA_REFERENCE_TECNICOS foreign key (IdTecnicoAsignado)
+      references Tecnicos (Id)
 go
 
 alter table PerfilPermiso
