@@ -21,7 +21,12 @@
    
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th></th>
+            <th>
+                Editar
+            </th>
+            <th>
+                Eliminar
+            </th>
             <th>
                 Nombres
             </th>
@@ -40,6 +45,12 @@
             <th>
                 Telefono
             </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Permisos
+            </th>
         </tr>
     <%bool alter = false; %>
     <% foreach (var item in Model)
@@ -53,8 +64,10 @@
         <tr>
     <%} alter = !alter; %>
             <th scope="row">
-                <%= Html.ActionLink("Editar", "Editar", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id })%>
+                <%= Html.ButtonLinkIcon(Url.Action("Editar", new { id = item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title="Editar Usuario" })%> 
+            </th>
+            <th scope="row">
+                <%= Html.ButtonLinkIcon(Url.Action("Eliminar", new { id = item.Id }), "Eliminar", Iconos.trash, IconPosition.solo, new { onclick = "return eliminar(this);", title="Eliminar Usuario" })%>
             </th>
             <td>
                 <%= Html.Encode(item.Nombres) %>
@@ -74,6 +87,12 @@
             <td>
                 <%= Html.Encode(item.Telefono) %>
             </td>
+            <td>
+                <%= Html.Encode(item.Activo ? "Activo":"Desactivado") %>
+            </td>
+            <th scope="row">
+                <%= Html.ButtonLinkIcon(Url.Action("Eliminar", new { id = item.Id }), "Eliminar", Iconos.locked, IconPosition.solo, new { onclick = "return eliminar(this);", title="Permisos Usuario" })%>
+            </th>
         </tr>
     
     <% } %>
@@ -83,6 +102,18 @@
     <p>
         <%=Html.ButtonLinkIcon(Url.Action("Crear"),"Crear Nuevo",Iconos.circle_plus) %>
     </p>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript" language="javascript">
+        function eliminar(a) {
+            if (confirm("Esta Seguro de eliminar este elemento")) {
+                location.href = a.href;
+            }
+            return false;
+        }
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">

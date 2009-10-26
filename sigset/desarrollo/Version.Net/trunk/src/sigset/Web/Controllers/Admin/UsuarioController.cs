@@ -52,40 +52,38 @@ namespace Web.Controllers.Admin
         public ActionResult Editar(int id)
         {
             var usuario = _servicio.GetUsuarioById(id);
-            ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion", usuario.PerfilUsuario.ToString());
-            ViewData["listaNombreEmpleado"] = usuario.Nombres.ToString() + " " + usuario.ApellidoPaterno.ToString() + " " + usuario.ApellidoMaterno.ToString();
+            SetPerfilSelect(usuario.PerfilUsuario.ToString());
             return View("Editar", usuario);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editar(Usuario usuario, string listaTipos,string Pass)
+        public ActionResult Editar(Usuario usuario)
         {
             try
             {
-
-                if (usuario != null)
-                {
-                    usuario.Password = Pass;
-                    usuario.PerfilUsuario = int.Parse(listaTipos);                    
-                    var user = _servicio.GetUsuarioById(usuario.Id);
-                   
-                }
                 _servicio.ModificarUsuario(usuario);
                 return RedirectToAction("Lista");
             }
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion", usuario.PerfilUsuario.ToString());
-                ViewData["listaNombreEmpleado"] = usuario.Nombres.ToString() + " " + usuario.ApellidoPaterno.ToString() + " " + usuario.ApellidoMaterno.ToString();
+                SetPerfilSelect();
                 return View(usuario);
-               
             }
+        }
+
+        private void SetPerfilSelect()
+        {
+            SetPerfilSelect(null);
+        }
+        private void SetPerfilSelect(string seleccionado)
+        {
+            ViewData["PerfilUsuario"] = _servicio.TiposUsuarios().GetSelectCampos("Id", "Descripcion",seleccionado);
         }
        
         public ActionResult Crear()
         {
-             ViewData["PerfilUsuario"] = _servicio.TiposUsuarios().GetSelectCampos("Id", "Descripcion");
+            SetPerfilSelect();
             return View();
         }
         [AcceptVerbs(HttpVerbs.Post)]
@@ -100,8 +98,7 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                ViewData["listaEmpleados"] = _servicio.TodosLosEmpleados().GetSelectCampos("Rut", "Nombre");
-                ViewData["listaTipos"] = _servicio.TiposUsuarios().GetSelectCampos("Id_Tipo_Usuario", "Descripcion");
+                SetPerfilSelect();
                 return View();
             }
         

@@ -34,13 +34,18 @@ namespace Data.Repositorios.Usuarios
 
         public Usuario UpdateUsuario(Usuario usuario)
         {
-
-            var usuario_original = (from uo in _entities.Usuarios
-                                     where uo.Id == usuario.Id
-                                     select uo).FirstOrDefault();
+            var usuario_original = GetUsuario(usuario.Id);
+            
             usuario_original.User = usuario.User;
             usuario_original.Password = usuario.Password;
-            usuario_original.Perfil = usuario.Perfil;
+            usuario_original.PerfilUsuario = usuario.PerfilUsuario;
+            usuario_original.Nombres = usuario.Nombres;
+            usuario_original.Activo = usuario.Activo;
+            usuario_original.ApellidoMaterno = usuario.ApellidoMaterno;
+            usuario_original.ApellidoPaterno = usuario.ApellidoPaterno;
+            usuario_original.Email = usuario.Email;
+            usuario_original.Telefono = usuario.Telefono;
+
             _entities.SubmitChanges();
             return usuario;
           }
