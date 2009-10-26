@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
 using Data.Modelo;
+using System.Web.Routing;
 
 
 namespace Helpers
@@ -47,8 +48,21 @@ namespace Helpers
 
         public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon, IconPosition? position)
         {
+            return ButtonLinkIcon(html, href, content, icon, position,null);
+        }
+
+        public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon, IconPosition? position, object htmlAtributtes)
+        {
             TagBuilder tagBuilder = new TagBuilder("a");
             tagBuilder.MergeAttribute("href", href);
+
+            if (htmlAtributtes != null)
+            {
+                IDictionary<string, object> htmlAttributes1 = new RouteValueDictionary(htmlAtributtes);
+                tagBuilder.MergeAttributes(htmlAttributes1);
+            }
+            
+
             tagBuilder.AddCssClass("fg-button ui-state-default ui-corner-all");
 
             if (position != null)
@@ -105,6 +119,7 @@ namespace Helpers
             htmlAtributtes.Add("maxlength", "10");
             htmlAtributtes.Add("size", "10");
             htmlAtributtes.Add("style", "text-align: right");
+            htmlAtributtes.Add("title","Rut solo numeros sin puntos Ej: 12345678-9");
             if (soloLectura)
             {
                 htmlAtributtes.Add("readonly", "readonly");
@@ -115,6 +130,7 @@ namespace Helpers
             htmlAtributtes["maxlength"] = "1";
             htmlAtributtes["size"] = "1";
             htmlAtributtes["style"] = "width: 10px";
+            htmlAtributtes["title"] = "Digito verificador puede ser un digito o la letra k";
 
             string textBoxDV = InputExtensions.TextBox(helper, nombreCampoDV, dataDv, htmlAtributtes);
             return textBoxRut + " - " + textBoxDV;

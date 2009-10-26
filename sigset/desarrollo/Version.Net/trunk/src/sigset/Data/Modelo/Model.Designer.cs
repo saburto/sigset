@@ -5338,7 +5338,7 @@ namespace Data.Modelo
 			OnCreated();
 		}
 		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public int Id
 		{
 			get
@@ -5358,7 +5358,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Name="[User]", Storage="_User", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Name="[User]", Storage="_User", DbType="NVarChar(255) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string User
 		{
 			get
@@ -5378,7 +5378,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Password", DbType="NVarChar(255) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Password
 		{
 			get
@@ -5398,7 +5398,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_PerfilUsuario", DbType="Int NOT NULL")]
+		[Column(Storage="_PerfilUsuario", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public int PerfilUsuario
 		{
 			get
@@ -5422,7 +5422,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Nombres", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_Nombres", DbType="NVarChar(100) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Nombres
 		{
 			get
@@ -5442,7 +5442,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_ApellidoPaterno", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_ApellidoPaterno", DbType="NVarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string ApellidoPaterno
 		{
 			get
@@ -5462,7 +5462,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_ApellidoMaterno", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_ApellidoMaterno", DbType="NVarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string ApellidoMaterno
 		{
 			get
@@ -5482,7 +5482,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Email", DbType="NVarChar(50)")]
+		[Column(Storage="_Email", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
 		public string Email
 		{
 			get
@@ -5502,7 +5502,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Rut", DbType="Int NOT NULL")]
+		[Column(Storage="_Rut", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public int Rut
 		{
 			get
@@ -5522,7 +5522,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Telefono", DbType="NVarChar(20)")]
+		[Column(Storage="_Telefono", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
 		public string Telefono
 		{
 			get
@@ -5542,7 +5542,7 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Column(Storage="_Activo", DbType="Bit NOT NULL")]
+		[Column(Storage="_Activo", DbType="Bit NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public bool Activo
 		{
 			get

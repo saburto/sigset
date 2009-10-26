@@ -25,7 +25,7 @@
                     <label for="Pass">
                         Contrase&ntilde;a
                     </label>
-                    <%= Html.Password("Password") %>
+                    <%= Html.Password("Password", null, new { title="Contraseña de usuario" })%>
                     <%= Html.ValidationMessage("Password", "*")%>
                 </p>
             </div>
@@ -33,7 +33,7 @@
                 <p>
                     <label for="Perfil">
                         Perfil:</label>
-                    <%= Html.DropDownList("PerfilUsuario") %>
+                    <%= Html.DropDownList("PerfilUsuario", null, new { title="Perfil de usuario, define permisos" })%>
                 </p>
             </div>
             <div class="clear">
@@ -55,7 +55,7 @@
                     <p>
                         <label for="Nombre">
                             Nombres:</label>
-                        <%= Html.TextBox("Nombres") %>
+                        <%= Html.TextBox("Nombres", null, new {title="Nombre o nombres del usuario" })%>
                         <%= Html.ValidationMessage("Nombres", "*") %>
                     </p>
                 </div>
@@ -66,7 +66,7 @@
                     <p>
                         <label for="ApellidoPaterno">
                             Apellido Paterno:</label>
-                        <%= Html.TextBox("ApellidoPaterno") %>
+                        <%= Html.TextBox("ApellidoPaterno", null, new { title="Apellido Paterno del Usuario" })%>
                         <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
                     </p>
                 </div>
@@ -74,7 +74,7 @@
                     <p>
                         <label for="ApellidoMaterno">
                             Apellido Materno:</label>
-                        <%= Html.TextBox("ApellidoMaterno") %>
+                        <%= Html.TextBox("ApellidoMaterno", null, new { title = "Apellido Materno del Usuario" })%>
                         <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
                     </p>
                 </div>
@@ -85,7 +85,7 @@
                     <p>
                         <label for="Email">
                             Email:</label>
-                        <%= Html.TextBox("Email") %>
+                        <%= Html.TextBox("Email", null, new { title = "Email del usuario, ej: email@email.com" })%>
                         <%= Html.ValidationMessage("Email", "*") %>
                     </p>
                 </div>
@@ -93,7 +93,7 @@
                     <p>
                         <label for="Telefono">
                             Telefono:</label>
-                        <%= Html.TextBox("Telefono")%>
+                        <%= Html.TextBox("Telefono", null, new { title = "Telefono del Usuario, formato solo numeros ej:02328123" })%>
                         <%= Html.ValidationMessage("Telefono", "*")%>
                     </p>
                 </div>
@@ -101,7 +101,7 @@
         <div class="clear"></div>
     </fieldset>
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("Lista"),"Volver", Iconos.arrow_1_w, IconPosition.left) %>
+        <%=Html.ButtonLinkIcon(Url.Action("Lista"), "Volver", Iconos.arrow_1_w, IconPosition.left, new {title="Volver a lista de usuarios" })%>
     </p>
     <p style="float: right">
         <%=Html.ButtonSubmit("Crear") %>

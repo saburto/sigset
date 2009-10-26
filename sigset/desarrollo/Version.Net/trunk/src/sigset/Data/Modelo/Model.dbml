@@ -251,17 +251,17 @@
   </Table>
   <Table Name="dbo.Usuario" Member="Usuarios">
     <Type Name="Usuario">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="PerfilUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Nombres" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="ApellidoPaterno" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ApellidoMaterno" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Rut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Telefono" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="PerfilUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Nombres" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ApellidoPaterno" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ApellidoMaterno" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Rut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Usuario_UsuarioPermiso" Member="UsuarioPermiso" ThisKey="Id" OtherKey="Id" Type="UsuarioPermiso" Cardinality="One" />
       <Association Name="Usuario_Detalle" Member="Detalles" ThisKey="Id" OtherKey="IdUsuario" Type="Detalle" />
       <Association Name="Usuario_Tecnico" Member="Tecnico" ThisKey="Id" OtherKey="Id" Type="Tecnico" Cardinality="One" />

@@ -34,7 +34,7 @@
     <script type="text/javascript">
         $(function() {
 
-        $("input").tooltip({
+        $("input, buttom, a, select").tooltip({
 
             track: true,
             delay: 0,
