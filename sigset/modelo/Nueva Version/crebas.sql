@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     25-10-2009 11:53:29                          */
+/* Created on:     30-10-2009 17:29:24                          */
 /*==============================================================*/
 
 
@@ -195,13 +195,6 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Permisos') and o.name = 'FKPermisos30739')
-alter table Permisos
-   drop constraint FKPermisos30739
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('Permisos') and o.name = 'FKPermisos544499')
 alter table Permisos
    drop constraint FKPermisos544499
@@ -244,9 +237,16 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('UsuarioPermisos') and o.name = 'FKUsuarioPer233199')
+   where r.fkeyid = object_id('UsuarioPermisos') and o.name = 'FK_USUARIOP_REFERENCE_USUARIO')
 alter table UsuarioPermisos
-   drop constraint FKUsuarioPer233199
+   drop constraint FK_USUARIOP_REFERENCE_USUARIO
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('UsuarioPermisos') and o.name = 'FK_USUARIOP_REFERENCE_PERMISOS')
+alter table UsuarioPermisos
+   drop constraint FK_USUARIOP_REFERENCE_PERMISOS
 go
 
 if exists (select 1
@@ -710,6 +710,7 @@ create table PerfilPermiso (
    Id                   int                  not null,
    IdPerfil             int                  not null,
    Estado               bit                  not null,
+   IdPermiso            int                  null,
    constraint PK_PERFILPERMISO primary key (Id)
 )
 go
@@ -863,8 +864,9 @@ go
 /*==============================================================*/
 create table UsuarioPermisos (
    Id                   int                  not null,
-   IdPerfilPermiso      int                  not null,
-   Activo               bit                  not null,
+   IdUsuario            int                  not null,
+   IdPermiso            int                  null,
+   Estado               bit                  not null,
    constraint PK_USUARIOPERMISOS primary key (Id)
 )
 go
@@ -1010,18 +1012,13 @@ alter table OrdenTrabajo
 go
 
 alter table PerfilPermiso
-   add constraint FKPerfilPerm618277 foreign key (Id)
+   add constraint FKPerfilPerm618277 foreign key (IdPermiso)
       references Permisos (Id)
 go
 
 alter table PerfilPermiso
    add constraint FKPerfilPerm713727 foreign key (IdPerfil)
       references Perfil (Id)
-go
-
-alter table Permisos
-   add constraint FKPermisos30739 foreign key (Id)
-      references UsuarioPermisos (Id)
 go
 
 alter table Permisos
@@ -1058,7 +1055,12 @@ alter table Usuario
 go
 
 alter table UsuarioPermisos
-   add constraint FKUsuarioPer233199 foreign key (Id)
+   add constraint FK_USUARIOP_REFERENCE_USUARIO foreign key (IdUsuario)
       references Usuario (Id)
+go
+
+alter table UsuarioPermisos
+   add constraint FK_USUARIOP_REFERENCE_PERMISOS foreign key (IdPermiso)
+      references Permisos (Id)
 go
 
