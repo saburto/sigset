@@ -111,6 +111,7 @@
         <%=Html.ButtonSubmit("Guardar") %>
     </p>
     <% } %>
+    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Usuario)) %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

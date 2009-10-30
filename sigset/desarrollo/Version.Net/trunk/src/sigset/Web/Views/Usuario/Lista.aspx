@@ -6,7 +6,6 @@
 
 <asp:Content ContentPlaceHolderID="divContentStyle" runat="server">
     <%=Html.ImagenFondo("icons","Buddy%20Group.png") %>
-   
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -91,7 +90,7 @@
                 <%= Html.Encode(item.Activo ? "Activo":"Desactivado") %>
             </td>
             <th scope="row">
-                <%= Html.ButtonLinkIcon(Url.Action("Eliminar", new { id = item.Id }), "Eliminar", Iconos.locked, IconPosition.solo, new { onclick = "return eliminar(this);", title="Permisos Usuario" })%>
+                <%= Html.ButtonLinkIcon(Url.Action("Permiso", new { id = item.Id }), "Permisos", Iconos.locked, IconPosition.solo, new { onclick = "return eliminar(this);", title="Permisos Usuario" })%>
             </th>
         </tr>
     

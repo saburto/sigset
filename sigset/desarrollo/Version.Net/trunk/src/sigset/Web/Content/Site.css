@@ -61,6 +61,7 @@ h2 {
 h3 {
 	font-size:.9em;
 	background:url(images/bg-line.png) repeat-x bottom;
+
 	}
 	
 h4 {
@@ -86,9 +87,12 @@ fieldset
     -moz-border-radius:5px;  
     border-radius: 5px;  
     -webkit-border-radius: 5px;
+
 	padding:0 20px;
 	margin:1px 0;
 	position:relative;
+
+
 	}
 
 fieldset fieldset {
@@ -112,11 +116,14 @@ fieldset fieldset legend {
 	
 input[type="text"], input[type="password"]
 {
+
     /*display:block;*/
     background-position: url(images/bg-input.png) no-repeat;
     margin-bottom: 5px;
     vertical-align: top;
     padding: 2px; /*color:#666666;*/
+
+
     font-size: .8em;
     border: 1px solid #82b26e;
     background: url(images/bg-input.png) no-repeat;
@@ -144,6 +151,14 @@ label {
 	font-family:Arial, Helvetica, sans-serif;
 	margin: 0;
 	}
+
+
+
+
+
+
+
+
 
 .checkbox {	
 	margin:12px 0;
@@ -489,15 +504,16 @@ a:active {
 	}
 
 .content-container-inner {
-	background:url(images/bg-column-right.png) repeat-y right;
+	/*background:url(images/bg-column-right.png) repeat-y right;*/
 	_height:1px;
 	min-height:1px;
-	padding:0 200px;
+
+	padding:0 0 0 200px;
 	position:relative;
 	}
 	
 .content-main {
-	padding:0 2% 20px 2%;
+	padding:15px 2% 20px 2%;
 	position:relative;
 	min-height:400px;
 	_height:1px;
@@ -617,7 +633,31 @@ a:active {
 .three-column-right {
 	margin-right:0;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
+
+
+
+
+
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 
 	 DATA TABLES
@@ -712,14 +752,17 @@ li {
 	margin:0;
 	}
 	
+
 .field-validation-error
 {
+    display:block;
+    font-size:0.7em;
     color: #ff0000;
 }
 
 .input-validation-error
 {
-    border: 1px solid #ff0000;
+    border: 1px solid #ff0000 !important;
     background-color: #ffeeee;
 }
 
@@ -790,6 +833,23 @@ li {
 	.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
 	
 	a.fg-button { float:left; }
+	a.fg-button:link
+	{
+	    color:#FFFFFF;
+	}
+	
+    a.fg-button:visited {
+	    color:#FFFFFF;
+	}
+
+    a.fg-button:hover {
+	    text-decoration:none;
+	}
+
+    a.fg-button:active {
+	    color:#FFFFFF;
+	}
+	
 	
 	/* remove extra button width in IE */
 	button.fg-button { width:auto; overflow:visible; }
@@ -809,4 +869,20 @@ li {
 	.fg-toolbar { padding: .5em; margin: 0;  }
 	.fg-toolbar .fg-buttonset { margin-right:1.5em; padding-left: 1px; }
 	.fg-toolbar .fg-button { font-size: 1em;  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

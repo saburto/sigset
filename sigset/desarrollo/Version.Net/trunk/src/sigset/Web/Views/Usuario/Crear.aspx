@@ -6,7 +6,9 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="divContentStyle" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Html.ValidationSummary("No se puede crear usuario. Favor corrija los siguientes errores.") %>
+    <div id="validationSummary">
+        <%= Html.ValidationSummary("No se puede crear usuario. Favor corrija los siguientes errores.") %>
+    </div>
     <% using (Html.BeginForm())
        {%>
     <fieldset>
@@ -107,6 +109,9 @@
         <%=Html.ButtonSubmit("Crear") %>
     </p>
     <% } %>
+    
+    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Usuario)) %>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">
 </asp:Content>

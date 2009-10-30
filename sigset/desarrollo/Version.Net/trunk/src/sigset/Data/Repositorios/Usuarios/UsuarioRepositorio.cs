@@ -111,5 +111,15 @@ namespace Data.Repositorios.Usuarios
         }
 
 
+
+        #region IUsuarioRepositorio Members
+
+
+        public IQueryable<Permiso> GetTodosLosPermisos()
+        {
+            return _entities.Permisos;
+        }
+
+        #endregion
     }
 }

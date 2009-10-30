@@ -30,10 +30,10 @@ namespace Helpers
             //Aca guardamos la realacion de controller padre e hijos.
             //mira controllerHijos es de tipo diccionario, donde la clave va a ser el padre
             //y los hijos una lista de controlladores, entiendes???sipis
-            controllerHijos = new Dictionary<string,List<string>>();
-            
+            controllerHijos = new Dictionary<string, List<string>>();
+
             List<String> hijos = new List<string>();
-            
+
             //Estos son los hijos de Admin
             hijos.Add("Usuario");
             hijos.Add("Empleado");
@@ -56,7 +56,7 @@ namespace Helpers
             controllerHijos.Add("Administrativos", hijos);
 
 
-            
+
 
         }
 
@@ -64,7 +64,7 @@ namespace Helpers
         {
             if (controllerHijos == null)
             {
-                InitControllerHijo();   
+                InitControllerHijo();
             }
             string currentControllerName = (string)helper.ViewContext.RouteData.Values["controller"];
             string currentActionName = (string)helper.ViewContext.RouteData.Values["action"];
@@ -80,7 +80,7 @@ namespace Helpers
             }
             catch
             {
-                foreach (KeyValuePair<string,List<string>> item in controllerHijos)
+                foreach (KeyValuePair<string, List<string>> item in controllerHijos)
                 {
                     foreach (string c in item.Value)
                     {
@@ -102,33 +102,56 @@ namespace Helpers
 
             if (provider.RootNode.HasChildNodes)
             {
-                sb.Append("<ul>");
-                foreach (SiteMapNode item in provider.RootNode.ChildNodes)
-                {
-                    if (item is MvcSiteMapNode)
-                    {
-                        MvcSiteMapNode nodeHijo = (MvcSiteMapNode)item;
-                        sb.Append("<li>");
-                        string url = nodeHijo.Url;
-                        if (url.StartsWith("~"))
-                        {
-                            url = urlHelper.Content(nodeHijo.Url);
-                        }
-                        if (nodeHijo.Action == currentActionName && nodeHijo.Controller == currentControllerName)
-                        {
-                            sb.AppendFormat("<a style=\"color:black;font-weight: bold;\" class=\"{0}\" href=\"{0}\">{1}</a>", url, helper.Encode(nodeHijo.Title), cssName);
-                        }
-                        else
-                        {
-                            sb.AppendFormat("<a href=\"{0}\">{1}</a>", url, helper.Encode(nodeHijo.Title));
-                        }
-                        sb.Append("</li> ");
-                    }
-                                    //sb.Append(MvcSiteMap.Core.Helpers.SiteMapHelper.SiteMap(helper, node.ChildNodes[i]));
-                }
-                sb.Append("</ul>");
+                
+                AppendMenuItem(helper, cssName, currentControllerName, currentActionName, sb, provider, urlHelper);
+
+                
             }
             return sb.ToString();
+        }
+
+        private static void AppendMenuItem(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, SiteMapProvider provider, UrlHelper urlHelper)
+        {
+            foreach (SiteMapNode item in provider.RootNode.ChildNodes)
+            {
+                if (item is MvcSiteMapNode)
+                {
+                    MvcSiteMapNode nodeHijo = (MvcSiteMapNode)item;
+                    if (nodeHijo.HasChildNodes)
+                    {
+                        sb.Append("<h3>");
+                        sb.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
+                        sb.Append("</h3>");
+                        sb.Append("<div>");
+                        sb.Append("<ul>");
+                        foreach (var menu in nodeHijo.ChildNodes)
+                        {
+                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sb, urlHelper, (MvcSiteMapNode)menu);    
+                        }
+                        sb.Append("</ul>");
+                        sb.Append("</div>");
+                    }
+                }
+            }
+        }
+
+        private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo)
+        {
+            sb.Append("<li>");
+            string url = nodeHijo.Url;
+            if (url.StartsWith("~"))
+            {
+                url = urlHelper.Content(nodeHijo.Url);
+            }
+            if (nodeHijo.Action == currentActionName && nodeHijo.Controller == currentControllerName)
+            {
+                sb.AppendFormat("<a style=\"color:black;font-weight: bold;\" class=\"{0}\" href=\"{0}\">{1}</a>", url, helper.Encode(nodeHijo.Title), cssName);
+            }
+            else
+            {
+                sb.AppendFormat("<a href=\"{0}\">{1}</a>", url, helper.Encode(nodeHijo.Title));
+            }
+            sb.Append("</li>");
         }
 
     }
