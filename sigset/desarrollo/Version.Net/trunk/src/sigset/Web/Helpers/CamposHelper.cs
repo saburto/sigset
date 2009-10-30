@@ -119,6 +119,7 @@ namespace Helpers
             htmlAtributtes.Add("maxlength", "10");
             htmlAtributtes.Add("size", "10");
             htmlAtributtes.Add("style", "text-align: right");
+            htmlAtributtes.Add("class", "rut");
             htmlAtributtes.Add("title","Rut solo numeros sin puntos Ej: 12345678-9");
             if (soloLectura)
             {
@@ -129,6 +130,7 @@ namespace Helpers
 
             htmlAtributtes["maxlength"] = "1";
             htmlAtributtes["size"] = "1";
+            htmlAtributtes["class"] = "dv";
             htmlAtributtes["style"] = "width: 10px";
             htmlAtributtes["title"] = "Digito verificador puede ser un digito o la letra k";
 

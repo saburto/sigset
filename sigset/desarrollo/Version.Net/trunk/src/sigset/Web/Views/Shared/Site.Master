@@ -16,12 +16,13 @@
         media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
     <link href="<%= Url.Content("~/Content/print-styles.css") %>" rel="stylesheet" type="text/css"
         media="print" />
-    <link href="<%= Url.Content("~/Content/jquery-ui-1.7.2.custom.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/south-street/jquery-ui-1.7.2.custom.css") %>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Content("~/Content/jquery.tooltip.css") %>" rel="stylesheet" type="text/css" />
         
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.min.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.jquery.validate.js") %>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.Messages.es-ES.js")%>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js") %>"></script>
@@ -30,9 +31,44 @@
     
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
    
+    <script type="text/javascript">
+        $.validator.addMethod("rut", function(value, element) {
+            while (value.indexOf(".") != -1) {
+                value = value.replace(".", "");
+            }
+
+            var T = value;
+            var d = $("#dv").val();
+            d = d.toLowerCase();
+
+            var M = 0, S = 1;
+            for (; T; T = Math.floor(T / 10))
+                S = (S + T % 10 * (9 - M++ % 6)) % 11;
+            var digito = S ? S - 1 : 'k';
+
+            return this.optional(element) || digito == d;
+        },
+	"Ingrese rut valido (ej. 12345678-0)");
+
+        $.validator.addMethod("dv", function(value, element) {
+            var re = new RegExp(/^[0-9kK]+$/);
+            return this.optional(element) || value.match(re);
+        },
+	"Ingrese digito o letra k");
+
+    
+    
+    </script>
+   
+   
    
     <script type="text/javascript">
         $(function() {
+
+        $("#accordion").accordion({
+			fillSpace: true
+		});
+
 
         $("input, buttom, a, select").tooltip({
 
@@ -226,16 +262,17 @@
 --%>
             </div>
             <div class="content-left">
-            
-            
-            <div class="side-bucket">
-                 <%=Html.MenuIzquierda("active") %>
+                <div class="side-bucket">
+                    <div style="font-size:80%">
+                        <div id="accordion">
+                         <%=Html.MenuIzquierda("active") %>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            </div>
-            <div class="content-right">
+            <%--<div class="content-right">--%>
                 <asp:ContentPlaceHolder ID="MenuDerecha" runat="server" />
-            </div>
+            <%--</div>--%>
             <div class="clear">
             </div>
         </div>

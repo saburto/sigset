@@ -65,5 +65,10 @@ namespace Services.Autorizacion
             }
             return lista;
         }
+
+        public IList<Permiso> GetPermisos()
+        {
+            return _repo.GetTodosLosPermisos().ToList();
+        }
     }
 }

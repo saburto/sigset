@@ -61,9 +61,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
-    <Reference Include="xVal, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="xVal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f8fbed92c68c4006, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\xVal.0.8\xVal.dll</HintPath>
+      <HintPath>..\..\..\lib\xVal.1.0\xVal.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +71,7 @@
     <Compile Include="Controllers\Administrativos\AdministrativosController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
+    <Compile Include="Controllers\Admin\PermisosController.cs" />
     <Compile Include="Controllers\Admin\TecnicoController.cs" />
     <Compile Include="Controllers\Admin\TipoCargoController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
@@ -271,6 +272,22 @@
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui-1.7.2.custom.css" />
     <Content Include="Content\jquery.tooltip.css" />
+    <Content Include="Content\south-street\images\ui-bg_glass_55_fcf0ba_1x400.png" />
+    <Content Include="Content\south-street\images\ui-bg_gloss-wave_100_ece8da_500x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_highlight-hard_100_f5f3e5_1x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_highlight-hard_100_fafaf4_1x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_highlight-hard_15_459e00_1x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_highlight-hard_95_cccccc_1x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_highlight-soft_25_67b021_1x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_highlight-soft_95_ffedad_1x100.png" />
+    <Content Include="Content\south-street\images\ui-bg_inset-soft_15_2b2922_1x100.png" />
+    <Content Include="Content\south-street\images\ui-icons_808080_256x240.png" />
+    <Content Include="Content\south-street\images\ui-icons_847e71_256x240.png" />
+    <Content Include="Content\south-street\images\ui-icons_8DC262_256x240.png" />
+    <Content Include="Content\south-street\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\south-street\images\ui-icons_eeeeee_256x240.png" />
+    <Content Include="Content\south-street\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\south-street\jquery-ui-1.7.2.custom.css" />
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Scripts\jquery.tooltip.min.js" />
     <Content Include="Views\Administrativos\Asignar.aspx" />
@@ -291,6 +308,10 @@
     <Content Include="Views\OrdenTrabajo\Detalles.aspx" />
     <Content Include="Views\OrdenTrabajo\ListaOrdenes.ascx" />
     <Content Include="Views\OrdenTrabajo\Listar.aspx" />
+    <Content Include="Views\Permisos\Crear.aspx" />
+    <Content Include="Views\Permisos\Editar.aspx" />
+    <Content Include="Views\Permisos\Lista.aspx" />
+    <Content Include="Views\Permisos\Usuario.aspx" />
     <Content Include="Views\Usuario\Lista.aspx" />
   </ItemGroup>
   <ItemGroup>

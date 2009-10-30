@@ -18,5 +18,7 @@ namespace Data.Repositorios.Usuarios
         System.Linq.IQueryable<global::Data.Modelo.Usuario> GetUsuarios();
         System.Linq.IQueryable<global::Data.Modelo.Usuario> GetUsuariosPerfil(string nombreTipoUsuario);
         global::Data.Modelo.Usuario UpdateUsuario(global::Data.Modelo.Usuario usuario);
+
+        System.Linq.IQueryable<Data.Modelo.Permiso> GetTodosLosPermisos();
     }
 }
