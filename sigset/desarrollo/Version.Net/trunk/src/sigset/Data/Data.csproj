@@ -84,6 +84,7 @@
     <Compile Include="Repositorios\Empleados\IEmpleadoRepositorio.cs" />
     <Compile Include="Repositorios\OrdenTrabajo\IOrdenTrabajoRepositorio.cs" />
     <Compile Include="Repositorios\OrdenTrabajo\OrdenTrabajoRepositorio.cs" />
+    <Compile Include="Repositorios\RepoGenerico.cs" />
     <Compile Include="Repositorios\Tecnicos\ITecnicoRepositorio.cs" />
     <Compile Include="Repositorios\Tecnicos\TecnicoRepositorio.cs" />
     <Compile Include="Repositorios\TipoCargo\IPerfilRepositorio.cs" />

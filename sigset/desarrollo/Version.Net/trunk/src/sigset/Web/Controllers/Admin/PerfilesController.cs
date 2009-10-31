@@ -14,18 +14,18 @@ using Web.Seguridad;
 namespace Web.Controllers
 {
     [ManejadorErrores]
-    public class TipoCargoController : Controller
+    public class PerfilesController : Controller
     {
 
         ITipoCargoServicio _servicio;
 
-        public TipoCargoController()
+        public PerfilesController()
             : this(new TipoCargoServicio())
         {
 
         }
 
-        public TipoCargoController(ITipoCargoServicio ser)
+        public PerfilesController(ITipoCargoServicio ser)
         {
             _servicio = ser;
         }

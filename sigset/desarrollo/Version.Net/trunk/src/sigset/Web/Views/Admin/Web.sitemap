@@ -14,7 +14,14 @@
       <mvcSiteMapNode title="Lista" controller="Usuario" action="Lista" />
     </mvcSiteMapNode>
 
+    <mvcSiteMapNode title="Permisos" controller="Permisos" action="">
+      <mvcSiteMapNode title="Nuevo"  action="Crear" />
+      <mvcSiteMapNode title="Lista"  action="Lista" />
+    </mvcSiteMapNode>
 
+    <mvcSiteMapNode title="Perfiles" controller="Perfiles" action="">
+      <mvcSiteMapNode title="Lista"  controller="Perfiles" action="Lista" />
+    </mvcSiteMapNode>
 
 
   </mvcSiteMapNode>

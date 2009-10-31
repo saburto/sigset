@@ -38,6 +38,8 @@ namespace Helpers
             hijos.Add("Usuario");
             hijos.Add("Empleado");
             hijos.Add("Tecnico");
+            hijos.Add("Permisos");
+            hijos.Add("Perfiles");
             //Aqui guardo a Admin y a sus hijos.
             controllerHijos.Add("Admin", hijos);
 
@@ -112,13 +114,22 @@ namespace Helpers
 
         private static void AppendMenuItem(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, SiteMapProvider provider, UrlHelper urlHelper)
         {
+            int index = 0, active = 0;
+            sb.Append("<div id=\"accordion\">");
             foreach (SiteMapNode item in provider.RootNode.ChildNodes)
             {
+                
                 if (item is MvcSiteMapNode)
                 {
                     MvcSiteMapNode nodeHijo = (MvcSiteMapNode)item;
                     if (nodeHijo.HasChildNodes)
                     {
+                        
+                        if (nodeHijo.Controller == currentControllerName)
+                        {
+                            active = index;
+                        }
+
                         sb.Append("<h3>");
                         sb.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
                         sb.Append("</h3>");
@@ -130,9 +141,15 @@ namespace Helpers
                         }
                         sb.Append("</ul>");
                         sb.Append("</div>");
+                        index++;
                     }
                 }
             }
+            sb.Append("</div>");
+            TagBuilder tagScript = new TagBuilder("script");
+            tagScript.Attributes.Add("type", "text/javascript");
+            tagScript.InnerHtml = "$(function(){ $('#accordion').accordion( 'activate' , "+ active +" );});";
+            sb.Append(tagScript.ToString());
         }
 
         private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo)
