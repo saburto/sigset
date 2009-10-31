@@ -264,9 +264,9 @@
             <div class="content-left">
                 <div class="side-bucket">
                     <div style="font-size:80%">
-                        <div id="accordion">
+                        
                          <%=Html.MenuIzquierda("active") %>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

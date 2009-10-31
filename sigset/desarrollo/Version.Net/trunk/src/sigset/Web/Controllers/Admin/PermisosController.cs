@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using System.Reflection;
+using Web.Helpers;
+using Helpers;
 
 namespace Web.Controllers.Admin
 {
@@ -28,6 +31,8 @@ namespace Web.Controllers.Admin
 
         public ActionResult Crear()
         {
+            Data.Repositorios.RepoGenerico<Data.Modelo.Modulo> repo = new Data.Repositorios.RepoGenerico<Data.Modelo.Modulo>();
+            ViewData["Mod_Id"] = repo.GetAll().ToList().GetSelectCampos("Id","DescripcionOpcion");
             return View();
         }
 

@@ -1,49 +1,42 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Permiso>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Crear
+	Crear Permiso
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Crear</h2>
-
-    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("Favor de corregir los siguientes errores:") %>
 
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Nuevo Permiso</legend>
             <p>
-                <label for="Id">Id:</label>
-                <%= Html.TextBox("Id") %>
-                <%= Html.ValidationMessage("Id", "*") %>
-            </p>
-            <p>
-                <label for="Mod_Id">Mod_Id:</label>
-                <%= Html.TextBox("Mod_Id") %>
+                <label for="Mod_Id">Modulo:</label>
+                <%= Html.DropDownList("Mod_Id") %>
                 <%= Html.ValidationMessage("Mod_Id", "*") %>
             </p>
             <p>
-                <label for="Opcion">Opcion:</label>
+                <label for="Opcion">Opci&oacute;n:</label>
                 <%= Html.TextBox("Opcion") %>
                 <%= Html.ValidationMessage("Opcion", "*") %>
             </p>
             <p>
-                <label for="DescripcionOpcion">DescripcionOpcion:</label>
+                <label for="DescripcionOpcion">Descripci&oacute;n:</label>
                 <%= Html.TextBox("DescripcionOpcion") %>
                 <%= Html.ValidationMessage("DescripcionOpcion", "*") %>
             </p>
-            <p>
-                <input type="submit" value="Create" />
-            </p>
         </fieldset>
+        <p style="float: left">
+            <%=Html.ButtonLinkIcon(Url.Action("Lista"), "Volver", Iconos.arrow_1_w, IconPosition.left, new {title="Volver a lista de permisos" })%>
+        </p>
+        <p style="float: right">
+            <%=Html.ButtonSubmit("Crear") %>
+        </p>
 
     <% } %>
 
-    <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 </asp:Content>
 

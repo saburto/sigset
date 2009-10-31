@@ -635,7 +635,18 @@ a:active {
 	}
 
 
+.two-column-container {
+	margin:0px 0px;
+	}
 
+
+.two-column-left {
+	float:left;
+	}
+
+.two-column-right {
+	float: right;
+	}
 
 
 

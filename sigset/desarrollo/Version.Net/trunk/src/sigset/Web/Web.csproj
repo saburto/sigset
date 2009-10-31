@@ -73,7 +73,7 @@
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\PermisosController.cs" />
     <Compile Include="Controllers\Admin\TecnicoController.cs" />
-    <Compile Include="Controllers\Admin\TipoCargoController.cs" />
+    <Compile Include="Controllers\Admin\PerfilesController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\AreaTecnica\AreaTecnicaController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
@@ -177,9 +177,7 @@
     <Content Include="Views\Shared\ActualAction.ascx" />
     <Content Include="Views\Tecnico\Crear.aspx" />
     <Content Include="Views\Tecnico\Lista.aspx" />
-    <Content Include="Views\TipoCargo\Crear.aspx" />
-    <Content Include="Views\TipoCargo\Editar.aspx" />
-    <Content Include="Views\TipoCargo\Lista.aspx" />
+    <Content Include="Views\Perfiles\Lista.aspx" />
     <Content Include="Views\Usuario\Crear.aspx" />
     <Content Include="Views\Usuario\Editar.aspx" />
     <Content Include="Web.sitemap" />
@@ -313,9 +311,11 @@
     <Content Include="Views\Permisos\Lista.aspx" />
     <Content Include="Views\Permisos\Usuario.aspx" />
     <Content Include="Views\Usuario\Lista.aspx" />
+    <Content Include="Views\Usuario\SubirFotoUsuario.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\usuarios\" />
     <Folder Include="Logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
