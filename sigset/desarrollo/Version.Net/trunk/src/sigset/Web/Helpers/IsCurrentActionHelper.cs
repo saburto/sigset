@@ -154,6 +154,12 @@ namespace Helpers
 
         private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo)
         {
+            
+            if(!nodeHijo.IsAccessibleToUser(HttpContext.Current)){
+                return;
+            }
+
+
             sb.Append("<li>");
             string url = nodeHijo.Url;
             if (url.StartsWith("~"))
