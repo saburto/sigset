@@ -1,4 +1,4 @@
-
+﻿
 /*  9 of 12 Microsoft Internet Explorer Design Templates 
 
 
@@ -642,10 +642,16 @@ a:active {
 
 .two-column-left {
 	float:left;
+	width:46%;
+	position:relative;
+
 	}
 
 .two-column-right {
 	float: right;
+	width:46%;
+	position:relative;
+
 	}
 
 
