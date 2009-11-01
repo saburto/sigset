@@ -12,8 +12,11 @@
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
     <link rel="shortcut icon" href="<%= Url.Content("~/Content/images/favicon.ico") %>" />
+
     <link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css"
         media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
+	<link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+        
     <link href="<%= Url.Content("~/Content/print-styles.css") %>" rel="stylesheet" type="text/css"
         media="print" />
     <link href="<%= Url.Content("~/Content/south-street/jquery-ui-1.7.2.custom.css") %>" rel="stylesheet" type="text/css" />
