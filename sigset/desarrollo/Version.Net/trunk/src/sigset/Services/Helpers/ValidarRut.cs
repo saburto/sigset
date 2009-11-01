@@ -5,8 +5,17 @@ using System.Text;
 
 namespace Services.Helpers
 {
-    public static class ValidarRut
+    public class ValidarRut
     {
+        public static bool RutEsValido(string rut, string dv)
+        {
+            return GetDigitoVerificador(rut).Equals(dv, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public static string GetDigitoVerificador(string rut)
+        {
+            return GetDigitoVerificador(int.Parse(rut));
+        }
 
         public static string GetDigitoVerificador(decimal rut)
         {

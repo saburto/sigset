@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Modelo\ValidationModel\Cliente\Cliente.cs" />
     <Compile Include="Modelo\ValidationModel\Empleado\Empleado.cs" />
+    <Compile Include="Modelo\ValidationModel\RegEx.cs" />
     <Compile Include="Modelo\ValidationModel\TipoCargo\TipoCargo.cs" />
     <Compile Include="Modelo\ValidationModel\Usuario\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

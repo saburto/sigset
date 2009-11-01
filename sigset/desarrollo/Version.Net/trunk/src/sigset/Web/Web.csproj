@@ -133,16 +133,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{F046A285-A437-4076-B056-888152578225}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{821EB115-E7D9-4318-94A6-365736479A4F}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\images\ad.gif" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\bg-button.png" />
@@ -312,6 +302,16 @@
     <Content Include="Views\Permisos\Usuario.aspx" />
     <Content Include="Views\Usuario\Lista.aspx" />
     <Content Include="Views\Usuario\SubirFotoUsuario.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{F046A285-A437-4076-B056-888152578225}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{821EB115-E7D9-4318-94A6-365736479A4F}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

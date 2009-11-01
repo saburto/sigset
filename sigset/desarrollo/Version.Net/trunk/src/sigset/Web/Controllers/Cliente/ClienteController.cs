@@ -87,12 +87,12 @@ namespace Web.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Cliente cliente, string dv, Direccion direccion, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Email")] Contacto email, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Fono")] Contacto fono)
+        public ActionResult Crear(Cliente cliente,string rut, string dv, Direccion direccion, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Email")] Contacto email, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Fono")] Contacto fono)
         {
             try
             {
-                //_serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
-                return RedirectToAction("Detalles", new { id = cliente.Id });
+                //var idCliente = _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
+                return RedirectToAction("Detalles", new { id = cliente });
             }
             catch (RulesException ex)
             {
@@ -136,7 +136,7 @@ namespace Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editar(Cliente cliente, string dv,[Bind(Prefix="Dire")] Direccion direccion, [Bind(Exclude = "Rut", Prefix = "Email")] Contacto email, [Bind(Exclude = "Rut", Prefix = "Fono")] Contacto fono)
+        public ActionResult Editar(Cliente cliente, string rut, string dv,[Bind(Prefix="Dire")] Direccion direccion, [Bind(Exclude = "Rut", Prefix = "Email")] Contacto email, [Bind(Exclude = "Rut", Prefix = "Fono")] Contacto fono)
         {
             try
             {

@@ -23,5 +23,7 @@ namespace Services.Clientes
         System.Collections.Generic.IList<Data.Modelo.Region> GetRegiones();
         System.Collections.Generic.IList<Data.Modelo.Region> GetRegionesPorNombre(string regionNombre);
         void ValidarCliente(Data.Modelo.ClienteParticular clienteNuevo, System.Collections.Generic.IList<xVal.ServerSide.ErrorInfo> _errors);
+
+        int CrearNuevoCliente(Data.Modelo.Cliente cliente,string rut, string dv, Data.Modelo.Direccion direccion, Data.Modelo.Contacto email, Data.Modelo.Contacto fono);
     }
 }
