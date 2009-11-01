@@ -46,8 +46,8 @@
         <legend>Datos Personales</legend>
         <table style="width:100%">
         <tr >
-            <td>
-                <div style="width:70%">
+            <td style="width:100%">
+                <div style="width:90%">
             <div class="two-column-container">
                     <div class="two-column-left">
                         <p>
