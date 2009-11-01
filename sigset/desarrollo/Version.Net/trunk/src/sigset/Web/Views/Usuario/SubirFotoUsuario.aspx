@@ -41,8 +41,15 @@
     <%using(Html.BeginForm("SubirFotoUsuario","Usuario",FormMethod.Post, new {enctype="multipart/form-data"})){ %>
     <div class="photo-container" style="width: 128px;">
         <div class="photo-content">
-            <%if (Model != null){ %>
-                <img width="128px" height="128px" src="<%=Url.Content("~/Content/usuarios/" + Model.ToString() + ".jpg")%>" />
+            <%if (Model != null && !string.IsNullOrEmpty(Model.ToString())){ %>
+                <%if (Model.ToString().Contains(".jpg"))
+                  { %>
+                    <img width="128px" height="128px" src="<%=Url.Content("~/Content/usuarios/" + Model.ToString())%>" />
+                <%}
+                  else
+                  { %>
+                    <img width="128px" height="128px" src="<%=Url.Content("~/Content/usuarios/" + Model.ToString() + ".jpg" )%>" />
+                <%} %>
             <%}else{ %>
                 <img width="128px" height="128px" src="<%=Url.Content("~/Content/icons/Buddy.png")%>" />
             <%} %>
