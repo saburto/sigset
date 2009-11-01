@@ -45,6 +45,7 @@ namespace Web.Controllers
             return View();
         }
 
+
         public ActionResult Crear(decimal? rut)
         {
             if (rut.HasValue)
@@ -165,6 +166,7 @@ namespace Web.Controllers
             }
         }
 
+      //  [Authorize(Roles="ordenes_listar")]
         public ActionResult Listar()
         {
             ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
