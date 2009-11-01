@@ -9,9 +9,9 @@
     </mvcSiteMapNode>
 
     <mvcSiteMapNode title="Clientes" controller="Cliente" action="" >
-      <mvcSiteMapNode title="Crear Cliente" controller="Cliente" action="Crear" />
-      <mvcSiteMapNode title="Lista de Clientes" controller="Cliente" action="Lista" />
-      <mvcSiteMapNode title="Buscar Cliente" controller="Cliente" action="Buscar" />
+      <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />
+      <mvcSiteMapNode title="Lista" controller="Cliente" action="Lista" />
+      <mvcSiteMapNode title="Buscar" controller="Cliente" action="Buscar" />
     </mvcSiteMapNode>
 
   </mvcSiteMapNode>

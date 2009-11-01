@@ -24,6 +24,19 @@ namespace Services.Clientes
             _repo = repo;
         }
 
+
+        public int CrearNuevoCliente(
+            Cliente cliente, 
+            string rut, string dv, 
+            Direccion direccion, Contacto email, Contacto fono)
+        {
+            
+
+            return 0;
+        }
+
+
+
         public void CrearNuevoCliente(Cliente clienteNuevo, string digitoVerificador, Direccion direccion, Contacto email, Contacto telefono, ClienteComercial clienteComercial, ClienteParticular clienteParticular)
         {
                 IClienteRepositorio r = new ClienteRepositorio();
@@ -49,23 +62,7 @@ namespace Services.Clientes
                 r.SaveChanges();
         }
 
-        public void ValidarCliente(ClienteParticular clienteNuevo, IList<ErrorInfo> _errors)
-        {
-            if (!clienteNuevo.Nombre.SoloTexto())
-            {
-                _errors.Add(new ErrorInfo("Nombre", "Debe ingresar sólo texto en Nombre"));
-            }
-            if (!clienteNuevo.ApellidoPaterno.SoloTexto())
-            {
-                _errors.Add(new ErrorInfo("Apellido_Paterno", "Debe ingresar sólo texto en Apellido Paterno"));
-            }
 
-            if (!clienteNuevo.ApellidoMaterno.SoloTexto())
-            {
-                _errors.Add(new ErrorInfo("Apellido_Materno", "Debe ingresar sólo texto en Apellido Materno"));
-            }
-            DataValidation.GetErrors(clienteNuevo, _errors);
-        }
 
         public void CrearCliente(Cliente clienteNuevo, ClienteParticular cliente, string digitoVerificador)
         {
@@ -438,6 +435,17 @@ namespace Services.Clientes
         public void CrearNuevoContacto(decimal rut, Contacto contacto, decimal tipoContacto)
         {
             CrearNuevoContacto(rut, contacto, tipoContacto, "");
+        }
+
+        #endregion
+
+
+        #region IClienteServicio Members
+
+
+        public void ValidarCliente(ClienteParticular clienteNuevo, IList<ErrorInfo> _errors)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
