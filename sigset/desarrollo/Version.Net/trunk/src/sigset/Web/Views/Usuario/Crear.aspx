@@ -4,9 +4,7 @@
     Crear Usuario
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="validationSummary">
-        <%= Html.ValidationSummary("No se puede crear usuario. Favor corrija los siguientes errores.") %>
-    </div>
+    <%= Html.ValidationSummary("No se puede crear usuario. Favor corrija los siguientes errores.") %>
     <% using (Html.BeginForm())
        {%>
     <fieldset>

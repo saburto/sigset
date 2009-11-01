@@ -51,7 +51,6 @@
             <tr>
                 <td style="width: 100%">
                     <div style="width: 90%">
-                        <div class="two-column-container">
                             <div class="two-column-left">
                                 <p>
                                     <label for="Rut">
@@ -68,11 +67,8 @@
                                     <%= Html.ValidationMessage("Nombres", "*") %>
                                 </p>
                             </div>
-                        </div>
-                        <div class="clear">
-                        </div>
-                        <div class="two-column-container">
-                            <div class="two-column-left">
+							<div class="clear"></div>
+							<div class="two-column-left">
                                 <p>
                                     <label for="ApellidoPaterno">
                                         Apellido Paterno:</label>
@@ -88,10 +84,7 @@
                                     <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
                                 </p>
                             </div>
-                        </div>
-                        <div class="clear">
-                        </div>
-                        <div class="two-column-container">
+							<div class="clear"></div>
                             <div class="two-column-left">
                                 <p>
                                     <label for="Email">
@@ -108,9 +101,7 @@
                                     <%= Html.ValidationMessage("Telefono", "*")%>
                                 </p>
                             </div>
-                        </div>
-                        <div class="clear">
-                        </div>
+							<div class="clear"></div>
                     </div>
                 </td>
                 <td valign="top">
