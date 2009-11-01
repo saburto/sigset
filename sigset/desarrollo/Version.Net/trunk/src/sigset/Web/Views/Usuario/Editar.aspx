@@ -5,18 +5,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%= Html.ValidationSummary("No se ha modificado usuario. Favor corrija los siguientes errores.") %>
-    <% using (Html.BeginForm()) {%>
+    <% using (Html.BeginForm())
+       {%>
     <fieldset>
         <legend>Editar Usuario</legend>
-        
         <p>
-           <label for="Activo" style="display:inline !important" >Estado Activo:</label>
-           <%=Html.CheckBox("Activo", Model.Activo, new { title="Define si el usuario esta activo o desactivado" })%>
+            <label for="Activo" style="display: inline !important">
+                Estado Activo:</label>
+            <%=Html.CheckBox("Activo", Model.Activo, new { title="Define si el usuario esta activo o desactivado" })%>
         </p>
-        <div class="clear"></div>
+        <div class="clear">
+        </div>
         <div class="three-column-container">
             <div class="three-column-left">
-                
                 <p>
                     <label for="User">
                         Nombre Usuario:</label>
@@ -46,73 +47,77 @@
     </fieldset>
     <fieldset>
         <legend>Editar Datos Personales</legend>
-        <table style="width:100%">
-        <tr >
-            <td>
-            <div style="width:70%">
-        <div class="two-column-container">
-                <div class="two-column-left">
-                    <p>
-                        <label for="Rut">
-                            Rut:</label>
-                        <%=Html.Hidden("Rut",Model.Rut) %>
-                        <%=Html.Encode(Model.Rut.GetRutCompleto()) %>
-                    </p>
-                </div>
-                <div class="two-column-right">
-                    <p>
-                        <label for="Nombre">
-                            Nombres:</label>
-                        <%= Html.TextBox("Nombres", Model.Nombres, new {title="Nombre o nombres del usuario" })%>
-                        <%= Html.ValidationMessage("Nombres", "*") %>
-                    </p>
-                </div>
-        </div>
-        <div class="clear"></div>
-        <div class="two-column-container">
-                <div class="two-column-left">
-                    <p>
-                        <label for="ApellidoPaterno">
-                            Apellido Paterno:</label>
-                        <%= Html.TextBox("ApellidoPaterno", Model.ApellidoPaterno, new { title="Apellido Paterno del Usuario" })%>
-                        <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
-                    </p>
-                </div>
-                <div class="two-column-right">
-                    <p>
-                        <label for="ApellidoMaterno">
-                            Apellido Materno:</label>
-                        <%= Html.TextBox("ApellidoMaterno", Model.ApellidoMaterno, new { title = "Apellido Materno del Usuario" })%>
-                        <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
-                    </p>
-                </div>
-        </div>
-        <div class="clear"></div>
-                <div class="two-column-container">
-                <div class="two-column-left">
-                    <p>
-                        <label for="Email">
-                            Email:</label>
-                        <%= Html.TextBox("Email", Model.Email, new { title = "Email del usuario, ej: email@email.com" })%>
-                        <%= Html.ValidationMessage("Email", "*") %>
-                    </p>
-                </div>
-                <div class="two-column-right">
-                    <p>
-                        <label for="Telefono">
-                            Telefono:</label>
-                        <%= Html.TextBox("Telefono", Model.Telefono, new { title = "Telefono del Usuario, formato solo numeros ej:02328123" })%>
-                        <%= Html.ValidationMessage("Telefono", "*")%>
-                    </p>
-                </div>
-        </div>
-        <div class="clear"></div>
-            </div>
-        </td>
-            <td valign="top">
-                  <iframe scrolling="no" frameborder="0" width="200" height="200" src="<%=Url.Action("SubirFotoUsuario", new {id=Model.Id })%>"></iframe>
-            </td>
-        </tr>
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 100%">
+                    <div style="width: 90%">
+                        <div class="two-column-container">
+                            <div class="two-column-left">
+                                <p>
+                                    <label for="Rut">
+                                        Rut:</label>
+                                    <%=Html.Hidden("Rut",Model.Rut) %>
+                                    <%=Html.Encode(Model.Rut.GetRutCompleto()) %>
+                                </p>
+                            </div>
+                            <div class="two-column-right">
+                                <p>
+                                    <label for="Nombre">
+                                        Nombres:</label>
+                                    <%= Html.TextBox("Nombres", Model.Nombres, new {title="Nombre o nombres del usuario" })%>
+                                    <%= Html.ValidationMessage("Nombres", "*") %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="two-column-container">
+                            <div class="two-column-left">
+                                <p>
+                                    <label for="ApellidoPaterno">
+                                        Apellido Paterno:</label>
+                                    <%= Html.TextBox("ApellidoPaterno", Model.ApellidoPaterno, new { title="Apellido Paterno del Usuario" })%>
+                                    <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
+                                </p>
+                            </div>
+                            <div class="two-column-right">
+                                <p>
+                                    <label for="ApellidoMaterno">
+                                        Apellido Materno:</label>
+                                    <%= Html.TextBox("ApellidoMaterno", Model.ApellidoMaterno, new { title = "Apellido Materno del Usuario" })%>
+                                    <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="two-column-container">
+                            <div class="two-column-left">
+                                <p>
+                                    <label for="Email">
+                                        Email:</label>
+                                    <%= Html.TextBox("Email", Model.Email, new { title = "Email del usuario, ej: email@email.com" })%>
+                                    <%= Html.ValidationMessage("Email", "*") %>
+                                </p>
+                            </div>
+                            <div class="two-column-right">
+                                <p>
+                                    <label for="Telefono">
+                                        Telefono:</label>
+                                    <%= Html.TextBox("Telefono", Model.Telefono, new { title = "Telefono del Usuario, formato solo numeros ej:02328123" })%>
+                                    <%= Html.ValidationMessage("Telefono", "*")%>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </td>
+                <td valign="top">
+                    <iframe scrolling="no" frameborder="0" width="200" height="200" src="<%=Url.Action("SubirFotoUsuario", new {id=Model.Id })%>">
+                    </iframe>
+                </td>
+            </tr>
         </table>
     </fieldset>
     <p style="float: left">
