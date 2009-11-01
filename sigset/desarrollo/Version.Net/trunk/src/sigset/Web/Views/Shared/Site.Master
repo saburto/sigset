@@ -15,7 +15,7 @@
 
     <link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css"
         media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
-	<link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+	
         
     <link href="<%= Url.Content("~/Content/print-styles.css") %>" rel="stylesheet" type="text/css"
         media="print" />
