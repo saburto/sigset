@@ -129,7 +129,13 @@ namespace Web.Controllers.Admin
                     TempData["imagen"].ToString()
                     );
                 FileInfo fileInfo = new FileInfo(savedFileName);
-                fileInfo.MoveTo(Path.Combine(carpeta, usuario.Id + Path.GetExtension(TempData["imagen"].ToString())));
+                var newPath = Path.Combine(carpeta, usuario.Id + Path.GetExtension(TempData["imagen"].ToString()));
+                FileInfo newFileInfo = new FileInfo(newPath);
+                if (newFileInfo.Exists)
+                {
+                    newFileInfo.Delete();
+                }
+                fileInfo.MoveTo(newPath);
             }
         }
 
