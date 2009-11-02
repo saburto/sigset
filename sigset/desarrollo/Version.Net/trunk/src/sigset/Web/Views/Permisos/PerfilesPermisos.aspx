@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Permisos del Perfil</h2>
+   
+    <h2>Permisos del Perfil <%=Html.ViewData["perfil"] %>  </h2>
    
     <% if (TempData["MensajeError"] != null) %>
     <%{%>
@@ -82,7 +82,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Agregar Permiso a este Perfil", "AgregarPermiso") %>
+        <%= Html.ActionLink("Agregar Permiso a este Perfil", "AgregarPermiso",new { id =  Html.ViewData["idperfil"] })%>
     </p>
 
 </asp:Content>

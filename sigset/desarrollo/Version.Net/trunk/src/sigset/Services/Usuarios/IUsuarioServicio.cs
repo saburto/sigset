@@ -12,5 +12,6 @@ namespace Services.Usuarios
         void ModificarUsuario(global::Data.Modelo.Usuario usuario);
         System.Collections.Generic.IList<global::Data.Modelo.Perfil> TiposUsuarios();
         System.Collections.Generic.IList<global::Data.Modelo.Usuario> TodosLosEmpleados();
+        global::Data.Modelo.Perfil GetPerfilById(decimal id);
     }
 }
