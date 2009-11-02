@@ -1,14 +1,21 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Data.Modelo.Permiso>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	AgregarPermiso
+	Agregar Permiso
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>AgregarPermiso</h2>
+    <h2>Permisos disponibles</h2>
 
-    <table>
+    <% if (TempData["MensajeError"] != null) %>
+    <%{%>
+    <h2 class="field-validation-error" >
+    <%=Html.Encode(TempData["MensajeError"])%>
+    </h2>
+    <%} %>    
+
+       <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th></th>
             <th>
@@ -25,12 +32,22 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
-    
+          
+    <%bool alter = false; %>
+    <% foreach (var item in Model)
+       { %>
+    <%if (alter)
+      { %>
+        <tr class="row-alternating">
+    <%}
+      else
+      { %>
         <tr>
+    <%}%>
+    
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
+                <%= Html.ActionLink("Agregar", "Agregar", new { id=item.Id }) %>
+            
             </td>
             <td>
                 <%= Html.Encode(item.Id) %>
@@ -46,13 +63,11 @@
             </td>
         </tr>
     
-    <% } %>
+      <% alter = !alter;
+       } %>
 
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
+ 
 
 </asp:Content>
 
