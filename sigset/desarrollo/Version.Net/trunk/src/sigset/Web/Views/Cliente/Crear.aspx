@@ -148,14 +148,14 @@
             <div class="three-column-left">
                 <label for="Valor_Contacto">
                     <%=Html.Encode("Correo Electrónico:") %></label>
-                <%= Html.TextBox("Email.Valor_Contacto")%>
-                <%= Html.ValidationMessage("Email.Valor_Contacto", "*") %>
+                <%= Html.TextBox("Email.ValorContacto", null, new { Class="email" })%>
+                <%= Html.ValidationMessage("Email.ValorContacto", "*") %>
             </div>
             <div class="three-column-middle">
                 <label for="Valor_Contacto">
                     <%=Html.Encode("Teléfono:") %></label>
-                <%= Html.TextBox("Fono.Valor_Contacto") %>
-                <%= Html.ValidationMessage("Fono.Valor_Contacto", "*") %>
+                <%= Html.TextBox("Fono.ValorContacto") %>
+                <%= Html.ValidationMessage("Fono.ValorContacto", "*") %>
             </div>
         </div>
         <div class="clear">
@@ -167,6 +167,11 @@
     </p>
     <% } %>
     
-    
+    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Cliente)) %>
+    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Direccion)) %>
+    <%=Html.ClientSideValidation("Email", typeof(Data.Modelo.Contacto))%>
+    <%=Html.ClientSideValidation("Fono",typeof(Data.Modelo.Contacto)) %>
+    <%=Html.ClientSideValidation("ClienteParticular", typeof(Data.Modelo.ClienteParticular))%>
+    <%=Html.ClientSideValidation("ClienteComercial", typeof(Data.Modelo.ClienteComercial))%>
     
 </asp:Content>
