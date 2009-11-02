@@ -50,7 +50,7 @@ namespace Web.Controllers.Admin
             return View(servAut.GetPermisosByPerfil(id));
         }
         
-        public ActionResult AgregarPermiso(string id)
+        public ActionResult AgregarPermiso(decimal id)
         {
            
             return View(servAut.GetPermisos());
