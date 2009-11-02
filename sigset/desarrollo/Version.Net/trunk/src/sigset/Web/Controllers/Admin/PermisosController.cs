@@ -53,7 +53,7 @@ namespace Web.Controllers.Admin
         public ActionResult AgregarPermiso(decimal id)
         {
            
-            return View(servAut.GetPermisos());
+            return View(servAut.GetPermisosDisponibles(id));
         }
     }
 }

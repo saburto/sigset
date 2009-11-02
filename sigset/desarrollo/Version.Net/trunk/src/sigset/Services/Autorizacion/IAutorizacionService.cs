@@ -13,5 +13,6 @@ namespace Services.Autorizacion
         IList<String> GetPerfiless();
         IList<String> GetPerfilesByUsuario(String user);
         IList<PerfilPermiso> GetPermisosByPerfil(decimal id);
+        IList<Permiso> GetPermisosDisponibles(decimal id);
     }
 }
