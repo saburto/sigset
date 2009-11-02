@@ -1,4 +1,5 @@
 ﻿using System;
+using Data.Modelo;
 namespace Data.Repositorios.Usuarios
 {
     public interface IUsuarioRepositorio
@@ -22,5 +23,6 @@ namespace Data.Repositorios.Usuarios
         System.Linq.IQueryable<Data.Modelo.Permiso> GetTodosLosPermisos();
         System.Linq.IQueryable<Data.Modelo.PerfilPermiso> GetPermisosByPerfil(decimal id);
         global::Data.Modelo.Perfil GetPerfilById(decimal id);
+        System.Linq.IQueryable<Permiso> GetPermisosDisponibles(decimal id);
     }
 }
