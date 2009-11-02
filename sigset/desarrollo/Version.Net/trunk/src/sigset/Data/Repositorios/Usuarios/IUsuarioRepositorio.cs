@@ -20,5 +20,6 @@ namespace Data.Repositorios.Usuarios
         global::Data.Modelo.Usuario UpdateUsuario(global::Data.Modelo.Usuario usuario);
 
         System.Linq.IQueryable<Data.Modelo.Permiso> GetTodosLosPermisos();
+        System.Linq.IQueryable<Data.Modelo.PerfilPermiso> GetPermisosByPerfil(decimal id);
     }
 }

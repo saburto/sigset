@@ -41,5 +41,11 @@ namespace Web.Controllers.Admin
             return View();
         }
 
+        public ActionResult PerfilesPermisos(decimal id)
+        {
+            servAut.GetPermisosByPerfil(id);
+            return View(servAut.GetPermisosByPerfil(id));
+        }
+
     }
 }

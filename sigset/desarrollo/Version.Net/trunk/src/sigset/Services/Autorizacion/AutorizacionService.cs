@@ -10,8 +10,8 @@ namespace Services.Autorizacion
     public class AutorizacionService : IAutorizacionService
     {
         private IUsuarioRepositorio _repo;
-        public AutorizacionService():
-               this(new UsuarioRepositorio())
+        public AutorizacionService() :
+            this(new UsuarioRepositorio())
         {
 
         }
@@ -69,6 +69,11 @@ namespace Services.Autorizacion
         public IList<Permiso> GetPermisos()
         {
             return _repo.GetTodosLosPermisos().ToList();
+        }
+
+        public IList<PerfilPermiso> GetPermisosByPerfil(decimal id)
+        {
+            return _repo.GetPermisosByPerfil(id).ToList();
         }
     }
 }

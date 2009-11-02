@@ -120,6 +120,11 @@ namespace Data.Repositorios.Usuarios
             return _entities.Permisos;
         }
 
+        public IQueryable<PerfilPermiso> GetPermisosByPerfil(decimal id)
+        {
+            return _entities.PerfilPermisos.Where(x => x.IdPerfil == id);
+        }
+
         #endregion
     }
 }

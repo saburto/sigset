@@ -42,7 +42,7 @@
                 <%=Html.ButtonLinkIcon(Url.Action("ListaPerfil","Usuario",new { perfil = item.Id  }),"Usuarios", Iconos.person) %>
             </td>
             <td>
-                <%=Html.ButtonLinkIcon(Url.Action("Perfiles","Permisos",new { id = item.Id  }),"Permisos", Iconos.locked) %>
+                <%=Html.ButtonLinkIcon(Url.Action("PerfilesPermisos","Permisos",new { id = item.Id  }),"Permisos", Iconos.locked) %>
             </td>            
         </tr>
     
