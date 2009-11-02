@@ -103,6 +103,7 @@ namespace Helpers
             return RutTextBox(helper, null, false);
         }
 
+
         public static string RutTextBox(this HtmlHelper helper,string rutName, object dataRut, bool soloLectura)
         {
             return RutTextBox(helper, rutName, "dv", dataRut, null, soloLectura);
@@ -119,7 +120,7 @@ namespace Helpers
             htmlAtributtes.Add("maxlength", "10");
             htmlAtributtes.Add("size", "10");
             htmlAtributtes.Add("style", "text-align: right");
-            htmlAtributtes.Add("class", "rut");
+            htmlAtributtes.Add("class", "rut required");
             htmlAtributtes.Add("title","Rut solo numeros sin puntos Ej: 12345678-9");
             if (soloLectura)
             {

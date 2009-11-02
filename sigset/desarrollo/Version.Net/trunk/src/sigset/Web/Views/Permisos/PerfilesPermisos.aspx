@@ -82,14 +82,12 @@
     </table>
 
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso"), "Agregar Permiso a este Perfil", Iconos.arrow_1_w, IconPosition.left, new { id = 1})%>
+        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso", new { id = ViewData["idperfil"] }), "Agregar Permiso a este Perfil", Iconos.arrow_1_w, IconPosition.left, null)%>
     </p>
     <p style="float: right">
         <%=Html.ButtonSubmit("Crear") %>
     </p>
-    <p>
-        <%= Html.ActionLink("Agregar Permiso a este Perfil", "AgregarPermiso",new { id =  ViewData["idperfil"] })%>
-    </p>
+    
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">
