@@ -14,7 +14,7 @@
         <%=Html.Encode(TempData["MensajeError"])%>
      </h2>
     <%}%>
-    
+    <% var id = Convert.ToDecimal(Html.ViewData["idperfil"]); %>
 
      <table border="0" cellpadding="0" cellspacing="0" class="data-table">
        <tr>
@@ -53,8 +53,8 @@
     <%}%>
     
           <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
+                <%= Html.ActionLink("Quitar", "Quitar", new { id=item.Id }) %> |
+                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
             </td>
             <td>
                 <%= Html.Encode(item.Id) %>
@@ -81,8 +81,14 @@
 
     </table>
 
+    <p style="float: left">
+        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso"), "Agregar Permiso a este Perfil", Iconos.arrow_1_w, IconPosition.left, new { id = 1})%>
+    </p>
+    <p style="float: right">
+        <%=Html.ButtonSubmit("Crear") %>
+    </p>
     <p>
-        <%= Html.ActionLink("Agregar Permiso a este Perfil", "AgregarPermiso",new { id =  Html.ViewData["idperfil"] })%>
+        <%= Html.ActionLink("Agregar Permiso a este Perfil", "AgregarPermiso",new { id =  ViewData["idperfil"] })%>
     </p>
 
 </asp:Content>
