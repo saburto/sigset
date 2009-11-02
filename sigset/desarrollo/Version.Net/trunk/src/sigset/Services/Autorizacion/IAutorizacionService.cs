@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Data.Modelo;
 namespace Services.Autorizacion
 {
     public interface IAutorizacionService
@@ -11,5 +12,6 @@ namespace Services.Autorizacion
         IList<String> GetUsuariosTipo_Usuario(string nombreTipo);
         IList<String> GetPerfiless();
         IList<String> GetPerfilesByUsuario(String user);
+        IList<PerfilPermiso> GetPermisosByPerfil(decimal id);
     }
 }
