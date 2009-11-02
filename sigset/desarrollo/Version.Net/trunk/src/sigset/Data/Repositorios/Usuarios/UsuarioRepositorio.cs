@@ -109,9 +109,7 @@ namespace Data.Repositorios.Usuarios
             _entities.Usuarios.DeleteOnSubmit(usuario);
             _entities.SubmitChanges();
         }
-
-
-
+        
         #region IUsuarioRepositorio Members
 
 
@@ -123,6 +121,11 @@ namespace Data.Repositorios.Usuarios
         public IQueryable<PerfilPermiso> GetPermisosByPerfil(decimal id)
         {
             return _entities.PerfilPermisos.Where(x => x.IdPerfil == id);
+        }
+
+        public Perfil GetPerfilById(decimal id)
+        {
+            return _entities.Perfils.Where(x => x.Id == id).FirstOrDefault();
         }
 
         #endregion

@@ -123,6 +123,11 @@ namespace Services.Usuarios
             return _repo.GetUsuarioByNombreUsuario(p);
         }
 
+        public Perfil GetPerfilById(decimal id)
+        { 
+          return _repo.GetPerfilById(id);
+        }
+
     }
 }
     

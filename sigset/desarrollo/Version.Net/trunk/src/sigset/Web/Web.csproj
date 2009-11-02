@@ -296,6 +296,7 @@
     <Content Include="Views\OrdenTrabajo\Detalles.aspx" />
     <Content Include="Views\OrdenTrabajo\ListaOrdenes.ascx" />
     <Content Include="Views\OrdenTrabajo\Listar.aspx" />
+    <Content Include="Views\Permisos\AgregarPermiso.aspx" />
     <Content Include="Views\Permisos\Crear.aspx" />
     <Content Include="Views\Permisos\Editar.aspx" />
     <Content Include="Views\Permisos\Lista.aspx" />

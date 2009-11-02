@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using System.Reflection;
 using Web.Helpers;
 using Helpers;
+using Data.Modelo;
 
 namespace Web.Controllers.Admin
 {
@@ -44,8 +45,16 @@ namespace Web.Controllers.Admin
         public ActionResult PerfilesPermisos(decimal id)
         {
             servAut.GetPermisosByPerfil(id);
+            ViewData["idperfil"] = servUsuario.GetPerfilById(id).Id;
+            ViewData["perfil"] = servUsuario.GetPerfilById(id).Descripcion;
             return View(servAut.GetPermisosByPerfil(id));
         }
+        
 
+        public ActionResult AgregarPermiso(decimal id)
+        {
+           
+            return View(servAut.GetPermisos());
+        }
     }
 }
