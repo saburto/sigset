@@ -299,6 +299,7 @@
     <Content Include="Views\OrdenTrabajo\Listar.aspx" />
     <Content Include="Views\Permisos\AgregarPermiso.aspx" />
     <Content Include="Views\Permisos\Crear.aspx" />
+    <Content Include="Views\Permisos\DetallesPermiso.aspx" />
     <Content Include="Views\Permisos\DetallesPermisos.ascx" />
     <Content Include="Views\Permisos\Editar.aspx" />
     <Content Include="Views\Permisos\Lista.aspx" />

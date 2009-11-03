@@ -68,9 +68,17 @@ namespace Web.Controllers.Admin
             return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
         }
 
-        public ActionResult DetallesPermisos(decimal id)
+        public ActionResult DetallesPermisos(decimal idPermiso, decimal idPerfil)
         {
-            return View();
+
+            /*Cuando sea via el popup via ajax va a renderizar el partial view*/
+            if (Request.IsAjaxRequest())
+            {   
+                return PartialView(/*Aqui le pasas el model*/);
+            }
+            
+            /*Cuando sea un link nomral va mostrar la pagina completa*/
+            return View(/*Aqui modelo*/); 
         }
     }
 }
