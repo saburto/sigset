@@ -134,6 +134,20 @@ namespace Data.Repositorios.Usuarios
             return _entities.PermisosDispPerfil((int?)id).AsQueryable();
         }
 
+       
+
+        public void AddPerfilPermiso(PerfilPermiso perfilPermiso)
+        {
+           
+            _entities.PerfilPermisos.InsertOnSubmit(perfilPermiso);
+            _entities.SubmitChanges();
+        }
+
+        public Permiso GetPermisoById(decimal id)
+        {
+            return _entities.Permisos.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+        }
+
         #endregion
     }
 }

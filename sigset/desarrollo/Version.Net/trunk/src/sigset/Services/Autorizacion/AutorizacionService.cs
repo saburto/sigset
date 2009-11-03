@@ -80,5 +80,18 @@ namespace Services.Autorizacion
         {
             return _repo.GetPermisosDisponibles(id).ToList();
         }
+
+        public void AgregarPermisoAPerfil(decimal idPermiso, decimal idPerfil)
+        { 
+            PerfilPermiso perfilPermiso = new PerfilPermiso();
+            Perfil perfil = new Perfil();
+            Permiso permiso = new Permiso();
+            perfil = _repo.GetPerfilById(idPerfil);
+            permiso = _repo.GetPermisoById(idPermiso);
+            perfilPermiso.Permiso = permiso;
+            perfilPermiso.Perfil = perfil;
+            perfilPermiso.Estado = true;      
+            _repo.AddPerfilPermiso(perfilPermiso);
+        }
     }
 }

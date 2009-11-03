@@ -33,7 +33,7 @@ namespace Web.Controllers.Admin
         public ActionResult Crear()
         {
             Data.Repositorios.RepoGenerico<Data.Modelo.Modulo> repo = new Data.Repositorios.RepoGenerico<Data.Modelo.Modulo>();
-            ViewData["Mod_Id"] = repo.GetAll().ToList().GetSelectCampos("Id","DescripcionOpcion");
+            ViewData["Mod_Id"] = repo.GetAll().ToList().GetSelectCampos("Id", "DescripcionOpcion");
             return View();
         }
 
@@ -49,11 +49,17 @@ namespace Web.Controllers.Admin
             ViewData["perfil"] = servUsuario.GetPerfilById(id).Descripcion;
             return View(servAut.GetPermisosByPerfil(id));
         }
-        
+
         public ActionResult AgregarPermiso(decimal id)
         {
-           
+            ViewData["idperfil"] = servUsuario.GetPerfilById(id).Id;
             return View(servAut.GetPermisosDisponibles(id));
+        }
+
+        public ActionResult Agregar(decimal id, decimal perfil)
+        {
+            servAut.AgregarPermisoAPerfil(id, perfil);  
+            return View("PerfilesPermisos");
         }
     }
 }
