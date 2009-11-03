@@ -41,10 +41,8 @@
             <tr>
                 <%}%>
                 <td>
-                    <p style="float: left">
-                        <%=Html.ButtonLinkIcon(Url.Action("Agregar", new { id = item.Id, perfil = ViewData["idperfil"] }), "Agregar", Iconos.arrow_1_w, IconPosition.left, null)%>
-                    </p>
-                </td>
+                    <%=Html.ButtonLinkIcon(Url.Action("Agregar", new { id = item.Id, perfil = ViewData["idperfil"] }), "Agregar", Iconos.arrow_1_w, IconPosition.left, null)%>
+                 </td>
                 <td>
                     <%= Html.Encode(item.Id) %>
                 </td>
@@ -61,6 +59,9 @@
             <% alter = !alter;
        } %>
     </table>
+    <p style="float: left">
+        <%=Html.ButtonLinkIcon(Url.Action("PerfilesPermisos", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.right, null)%>
+    </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
