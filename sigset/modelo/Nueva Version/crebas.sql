@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     30-10-2009 17:29:24                          */
+/* Created on:     03-11-2009 15:31:34                          */
 /*==============================================================*/
 
 
@@ -510,7 +510,7 @@ go
 /* Table: Cliente                                               */
 /*==============================================================*/
 create table Cliente (
-   Id                   int                  not null,
+   Id                   int                  identity,
    TipoCliente          int                  null,
    Observacion          nvarchar(255)        null,
    IdDireccion          int                  null,
@@ -558,7 +558,7 @@ go
 /* Table: Contacto                                              */
 /*==============================================================*/
 create table Contacto (
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    ValorContacto        varchar(50)          not null,
    TipoContacto         numeric(18, 0)       null,
    IdCliente            int                  null,
@@ -584,7 +584,7 @@ go
 /* Table: Direccion                                             */
 /*==============================================================*/
 create table Direccion (
-   Id                   int                  not null,
+   Id                   int                  identity,
    Provincia            numeric(3, 0)        not null,
    Comuna               numeric(3, 0)        not null,
    Calle                varchar(250)         not null,
@@ -707,7 +707,7 @@ go
 /* Table: PerfilPermiso                                         */
 /*==============================================================*/
 create table PerfilPermiso (
-   Id                   int                  not null,
+   Id                   int                  identity,
    IdPerfil             int                  not null,
    Estado               bit                  not null,
    IdPermiso            int                  null,
