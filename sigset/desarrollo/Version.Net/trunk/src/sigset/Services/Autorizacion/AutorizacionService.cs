@@ -82,7 +82,7 @@ namespace Services.Autorizacion
         }
 
         public void AgregarPermisoAPerfil(decimal idPermiso, decimal idPerfil)
-        { 
+        {
             PerfilPermiso perfilPermiso = new PerfilPermiso();
             Perfil perfil = new Perfil();
             Permiso permiso = new Permiso();
@@ -90,15 +90,25 @@ namespace Services.Autorizacion
             permiso = _repo.GetPermisoById(idPermiso);
             perfilPermiso.Permiso = permiso;
             perfilPermiso.Perfil = perfil;
-            perfilPermiso.Estado = true;      
+            perfilPermiso.Estado = true;
             _repo.AddPerfilPermiso(perfilPermiso);
         }
         public void EliminarPerfilPermiso(decimal idPermiso, decimal idPerfi)
         {
             PerfilPermiso perfilPermiso = new PerfilPermiso();
             perfilPermiso = _repo.GetPermisoPerfil(idPermiso, idPerfi);
-            _repo.DeletePerfilPermiso(perfilPermiso);           
-          
+            _repo.DeletePerfilPermiso(perfilPermiso);
+
+        }
+
+        public PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil)
+        {
+            return _repo.GetPermisoPerfil(idPermiso, idPerfil);
+        }
+
+        public Permiso GetPermisoById(decimal idPermiso)
+        {
+            return _repo.GetPermisoById(idPermiso);
         }
     }
 }
