@@ -80,7 +80,7 @@
         <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso", new { id = ViewData["idperfil"] }), "Agregar Permiso a este Perfil", Iconos.circle_plus, IconPosition.left, null)%>
     </p>
     
-    <div id="detallePermiso"></div>
+    <div id="detallePermiso" title ="Detalles Permiso"></div>
     
 </asp:Content>
 <asp:Content runat="server" ID="headContent" ContentPlaceHolderID="HeadContent">
