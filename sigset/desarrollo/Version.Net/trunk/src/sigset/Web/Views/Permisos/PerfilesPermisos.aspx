@@ -75,10 +75,14 @@
        } %>
 
     </table>
-
+     <p style="float: left">
+        <%=Html.ButtonLinkIcon(Url.Action("Lista","Perfiles", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.right, null)%>
+    </p>
     <p style="float: left">
         <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso", new { id = ViewData["idperfil"] }), "Agregar Permiso a este Perfil", Iconos.arrow_1_w, IconPosition.left, null)%>
     </p>
+   
+    
  
     
 
