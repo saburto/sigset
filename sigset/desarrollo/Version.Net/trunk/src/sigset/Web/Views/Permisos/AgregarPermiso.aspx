@@ -41,7 +41,7 @@
             <tr>
                 <%}%>
                 <td>
-                    <%=Html.ButtonLinkIcon(Url.Action("Agregar", new { id = item.Id, perfil = ViewData["idperfil"] }), "Agregar", Iconos.arrow_1_w, IconPosition.left, null)%>
+                    <%=Html.ButtonLinkIcon(Url.Action("Agregar", new { id = item.Id, perfil = ViewData["idperfil"] }), "Agregar", Iconos.circle_plus, IconPosition.left, null)%>
                  </td>
                 <td>
                     <%= Html.Encode(item.Id) %>
