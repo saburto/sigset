@@ -24,6 +24,11 @@ namespace Services.Clientes
             _repo = repo;
         }
 
+        public Cliente GetClientePorId(int id)
+        {
+            return _repo.GetCliente(id);
+        }
+
 
         public int CrearNuevoCliente(
             Cliente cliente,
@@ -334,5 +339,10 @@ namespace Services.Clientes
 
 
         #endregion
+
+        
+        
+
+        
     }
 }

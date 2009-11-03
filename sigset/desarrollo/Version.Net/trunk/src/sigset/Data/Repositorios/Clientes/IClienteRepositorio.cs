@@ -23,5 +23,7 @@ namespace Data.Repositorios.Clientes
         System.Linq.IQueryable<global::Data.Modelo.TipoContacto> GetTiposContacto();
         System.Linq.IQueryable<global::Data.Modelo.TipoDireccion> GetTiposDireccion();
         void SaveChanges();
+
+        Data.Modelo.Cliente GetCliente(int id);
     }
 }

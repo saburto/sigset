@@ -110,7 +110,7 @@ namespace Web.Controllers
         {
             try
             {
-                var cliente = _serv.GetClientePorRut(id);
+                var cliente = _serv.GetClientePorId(id);
                 if (Request.IsAjaxRequest())
                 {
                     return PartialView(cliente);
@@ -130,8 +130,8 @@ namespace Web.Controllers
 
         public ActionResult Editar(int id)
         {
-            var cliente = _serv.GetClientePorRut(id);
-            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(id);
+            var cliente = _serv.GetClientePorId(id);
+            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(cliente.Rut());
             return View("Editar",cliente);
         }
 

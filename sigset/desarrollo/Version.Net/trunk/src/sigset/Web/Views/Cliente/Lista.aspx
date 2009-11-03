@@ -8,20 +8,17 @@
 
     <h2>Clientes</h2>
     
-    <table>
-    <tr>
-    <td style="width:60%;vertical-align:top;">
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th></th>
+            <th>Editar / Ver</th>
             <th>
                 Rut
             </th>
             <th>
-                Apellidos
+                Apellidos / Raz&oacute;n Social
             </th>
             <th>
-                Nombre
+                Nombre / Sucursal
             </th>
             <th>
                 Orden de Trabajo
@@ -44,37 +41,70 @@
       alter = !alter;       %>
        
             <th scope="row">
-                <%= Html.ActionLink("Editar", "Editar", new { id = item.Rut })%> |
-                <%= Ajax.ActionLink("Ver", "Detalles", new { id = item.Rut }, new AjaxOptions { HttpMethod = "GET", LoadingElementId = "loadingAjax", UpdateTargetId = "detallesCliente" })%>
+                <%= Html.ButtonLinkIcon(Url.Action("Editar", new { id = item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title="Editar información de cliente"})%>
+                <%= Html.ButtonLinkIcon(Url.Action("Detalles", new { id = item.Id }), "Ver", Iconos.zoomin, IconPosition.solo, new {title="Ver información de cliente", onclick = "Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: 'GET', loadingElementId: 'loadingAjax', updateTargetId: 'detallesCliente', onComplete: Function.createDelegate(this, abrirVentana) });" })%>
             </th>
+            <%if (item.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteParticular)
+              {%>
+                    <td>
+                        <%= Html.Encode(item.ClienteParticular.Rut.GetRutCompleto())%>
+                    </td>
+                    <td>
+                        <%= Html.Encode(item.ClienteParticular.ApellidoPaterno)%> <%= Html.Encode(item.ClienteParticular.ApellidoMaterno)%>
+                    </td>
+                    <td>
+                        <%= Html.Encode(item.ClienteParticular.Nombre)%>
+                    </td>
+            <%}
+              else if (item.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteComercial)
+              { %>
+                    <td>
+                        <%= Html.Encode(item.ClienteComercial.Rut.GetRutCompleto())%>
+                    </td>
+                    <td>
+                        <%= Html.Encode(item.ClienteComercial.RazonSocial)%>
+                    </td>
+                    <td>
+                        <%= Html.Encode(item.ClienteComercial.Sucursal)%>
+                    </td>            
+            <%} %>
             <td>
-                <%= Html.Encode(item.Rut.GetRutCompleto())%>
-            </td>
-            <td>
-                <%= Html.Encode(item.ApellidoPaterno)%> <%= Html.Encode(item.ApellidoMaterno)%>
-            </td>
-            <td>
-                <%= Html.Encode(item.Nombre)%>
-            </td>
-            <td>
-                <%=Html.ActionLink("Agregar", "Crear", "OrdenTrabajo", new { rut = item.Rut }, null)%>
+                <%=Html.ActionLink("Agregar", "Crear", "OrdenTrabajo", new { rut = item.Id }, null)%>
             </td>
         </tr>
     
     <% } %>      
     </table>
-    </td>
-    <td id="detallesCliente" style="width:40%; vertical-align:top;" ></td>
-    </tr>
-    </table>
 
     <p>
-        <%= Html.ActionLink("Nuevo Cliente", "Crear") %>
+        <%=Html.ButtonLinkIcon(Url.Action("Crear"), "Nuevo Cliente", Iconos.circle_plus, IconPosition.left, new {title="Agregar Nuevo Cliente" })%>
     </p>
+    
+    <div id="detallesCliente" style="display:none" title="Datos Cliente" >
+    </div>
+    
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript" language="javascript">
+        $(function() {
+            $("#detallesCliente").dialog({
+                bgiframe: true,
+                modal: true,
+                autoOpen: false,
+                height: 400,
+                width:500
+
+            });
+         });
+    
+    
+        function abrirVentana() {
+            $('#detallesCliente').dialog('open');
+        }
+
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="MenuDerecha" runat="server">

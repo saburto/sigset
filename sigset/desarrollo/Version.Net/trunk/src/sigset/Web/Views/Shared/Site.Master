@@ -100,7 +100,7 @@
 		});
 
 
-        $("input, buttom, a, select").tooltip({
+        $("input, buttom, a, select, textarea").tooltip({
 
             track: true,
             delay: 0,

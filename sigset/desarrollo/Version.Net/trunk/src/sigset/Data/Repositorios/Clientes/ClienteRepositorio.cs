@@ -9,6 +9,12 @@ namespace Data.Repositorios.Clientes
     public class ClienteRepositorio :  IDisposable, Data.Repositorios.Clientes.IClienteRepositorio
     {
         sigsetEntities _ent;
+
+        public Cliente GetCliente(int id)
+        {
+            return _ent.Clientes.Where(x => x.Id == id).FirstOrDefault();
+        }
+
         public ClienteRepositorio()
         {
             _ent = new sigsetEntities();
