@@ -1,3 +1,14 @@
+SET IDENTITY_INSERT [dbo].[TipoCliente] ON
+GO
+INSERT INTO [dbo].[TipoCliente]([Id], [Descripcion])
+  VALUES(1, N'Cliente Particular')
+GO
+INSERT INTO [dbo].[TipoCliente]([Id], [Descripcion])
+  VALUES(2, N'Cliente Comercial')
+GO
+SET IDENTITY_INSERT [dbo].[TipoCliente] OFF
+GO
+
 
 INSERT INTO TipoOrden(IdTipoOrden, Descripcion)
   VALUES(1, 'Garantia')
@@ -25,6 +36,9 @@ INSERT INTO Perfil(Id, Descripcion)
 GO
 INSERT INTO Perfil(Id, Descripcion)
   VALUES(5, 'Gerente')
+GO
+INSERT INTO Perfil(Id, Descripcion)
+  VALUES(6, 'Super Usuario')
 GO
 set IDENTITY_INSERT Perfil OFF
 
