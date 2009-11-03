@@ -65,9 +65,9 @@
     <Compile Include="Autenticacion\IAutenticacionService.cs" />
     <Compile Include="Autorizacion\AutorizacionService.cs" />
     <Compile Include="Autorizacion\IAutorizacionService.cs" />
-    <Compile Include="Cliente\ClienteServicio.cs" />
-    <Compile Include="Cliente\IClienteServicio.cs" />
-    <Compile Include="Cliente\ValidacionCliente.cs">
+    <Compile Include="Clientes\ClienteServicio.cs" />
+    <Compile Include="Clientes\IClienteServicio.cs" />
+    <Compile Include="Clientes\ValidacionCliente.cs">
     </Compile>
     <Compile Include="Empleados\EmpleadoServicio.cs" />
     <Compile Include="Empleados\IEmpleadoServicio.cs" />

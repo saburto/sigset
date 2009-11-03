@@ -91,8 +91,8 @@ namespace Web.Controllers
         {
             try
             {
-                //var idCliente = _serv.CrearNuevoCliente(cliente, dv,direccion,email, fono);
-                return RedirectToAction("Detalles", new { id = cliente });
+                var idCliente = _serv.CrearNuevoCliente(cliente, rut, dv, direccion, email, fono);
+                return RedirectToAction("Detalles", new { id = idCliente });
             }
             catch (RulesException ex)
             {

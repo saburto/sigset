@@ -36,10 +36,15 @@ namespace Data.Repositorios.Clientes
             return GetClientesByApellidoPaterno(appellido).OrderBy(x => x.ClienteParticular.ApellidoPaterno).ToPagedList<Cliente>(indice, pagina);
         }
 
-        public void CrearCliente(Cliente cliente)
+        public Cliente CrearCliente(Cliente cliente)
         {
-            _ent.Clientes.InsertOnSubmit(cliente);
-//            _ent.SubmitChanges();
+
+            _ent.Contactos.InsertAllOnSubmit(cliente.Contactos);
+
+           _ent.Clientes.InsertOnSubmit(cliente);
+
+           _ent.SubmitChanges();
+           return cliente;
         }
 
 
@@ -56,15 +61,7 @@ namespace Data.Repositorios.Clientes
 
         }
 
-        public void CrearDirecionCliente(decimal rut, Direccion direccion, decimal idTipo)
-        {
-            var cliente = GetClienteByRut(rut);
-            cliente.Direccion = direccion;
-            direccion.TipoDireccion = idTipo;
-            _ent.Direccions.InsertOnSubmit(direccion);
-            // _ent.SubmitChanges();
-        }
-
+        
         public void EditarDireccionCliente(Direccion direccion)
         {
             _ent.Direccions.Attach(direccion, true);

@@ -100,43 +100,37 @@ namespace Helpers
         /// <returns></returns>
         public static string RutTextBox(this HtmlHelper helper)
         {
-            return RutTextBox(helper, null, false);
+            return RutTextBox(helper, null,null, false);
         }
 
 
-        public static string RutTextBox(this HtmlHelper helper,string rutName, object dataRut, bool soloLectura)
-        {
-            return RutTextBox(helper, rutName, "dv", dataRut, null, soloLectura);
-        }
 
-        public static string RutTextBox(this HtmlHelper helper, object dataRut, bool soloLectura)
-        {
-            return RutTextBox(helper, "Rut", "dv", dataRut, null, soloLectura);
-        }
-
-        public static string RutTextBox(this HtmlHelper helper, string nombreCampoRut, string nombreCampoDV, object dataRut, object dataDv, bool soloLectura)
+        public static string RutTextBox(this HtmlHelper helper, object dataRut, object dataDv, bool soloLectura)
         {
             Dictionary<string, object> htmlAtributtes = new Dictionary<string, object>();
-            htmlAtributtes.Add("maxlength", "10");
-            htmlAtributtes.Add("size", "10");
-            htmlAtributtes.Add("style", "text-align: right");
+            htmlAtributtes.Add("maxlength", "15");
+            //htmlAtributtes.Add("size", "10");
+            //htmlAtributtes.Add("style", "text-align: right");
             htmlAtributtes.Add("class", "rut required");
-            htmlAtributtes.Add("title","Rut solo numeros sin puntos Ej: 12345678-9");
+            htmlAtributtes.Add("title","Rut sin puntos Ej: 12345678-9");
             if (soloLectura)
             {
                 htmlAtributtes.Add("readonly", "readonly");
             }
 
-            string textBoxRut = InputExtensions.TextBox(helper, nombreCampoRut, dataRut, htmlAtributtes);
+            string textBoxRut = helper.TextBox("RutDisplay", dataRut, htmlAtributtes);
+            string rutHidden = helper.Hidden("Rut", dataRut);
+            string dvHidden = helper.Hidden("dv", dataDv);
 
-            htmlAtributtes["maxlength"] = "1";
-            htmlAtributtes["size"] = "1";
-            htmlAtributtes["class"] = "dv";
-            htmlAtributtes["style"] = "width: 10px";
-            htmlAtributtes["title"] = "Digito verificador puede ser un digito o la letra k";
+            //htmlAtributtes["maxlength"] = "1";
+            //htmlAtributtes["size"] = "1";
+            //htmlAtributtes["class"] = "dv";
+            //htmlAtributtes["style"] = "width: 10px";
+            //htmlAtributtes["title"] = "Digito verificador puede ser un digito o la letra k";
 
-            string textBoxDV = InputExtensions.TextBox(helper, nombreCampoDV, dataDv, htmlAtributtes);
-            return textBoxRut + " - " + textBoxDV;
+            //string textBoxDV = InputExtensions.TextBox(helper, nombreCampoDV, dataDv, htmlAtributtes);
+            //return textBoxRut + " - " + textBoxDV;
+            return textBoxRut + rutHidden + dvHidden;
         }
 
 

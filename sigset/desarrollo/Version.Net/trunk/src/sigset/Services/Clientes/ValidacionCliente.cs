@@ -23,7 +23,7 @@ namespace Services.Clientes
         }
         private void ValidarRutCliente(string rut, string dv)
         {
-            if (ValidarRut.RutEsValido(rut,dv))
+            if (!ValidarRut.RutEsValido(rut,dv))
             {
                 _errors.Add(new ErrorInfo("rut", "Rut no valido"));
             }

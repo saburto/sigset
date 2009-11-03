@@ -38,20 +38,45 @@
    
     <script type="text/javascript">
         $.validator.addMethod("rut", function(value, element) {
+            $("#Rut").val('');
+            $("#dv").val('');
             while (value.indexOf(".") != -1) {
                 value = value.replace(".", "");
             }
+            value = value.toLowerCase(); ;
+            var rut = value.split("-");
 
-            var T = value;
-            var d = $("#dv").val();
-            d = d.toLowerCase();
+            if (rut.length > 1) {
+                try {
+                    var T = rut[0];
+                    var d = rut[1];
 
-            var M = 0, S = 1;
-            for (; T; T = Math.floor(T / 10))
-                S = (S + T % 10 * (9 - M++ % 6)) % 11;
-            var digito = S ? S - 1 : 'k';
+                    if (T == 0 && T.trim() == "") {
+                        throw "Error";
+                    }
 
-            return this.optional(element) || digito == d;
+                    if (d.trim() == "") {
+                        throw "Error";
+                    }
+
+                    var M = 0, S = 1;
+                    for (; T; T = Math.floor(T / 10))
+                        S = (S + T % 10 * (9 - M++ % 6)) % 11;
+                    var digito = S ? S - 1 : 'k';
+
+                    if (digito == d) {
+                        $("#Rut").val(rut[0]);
+                        $("#dv").val(rut[1]);
+                    }
+                    return this.optional(element) || digito == d;
+                }
+                catch (err) {
+                    return this.optional(element) || false;
+                }
+            }
+            else {
+                return this.optional(element) || false;
+            }
         },
 	"Ingrese rut valido (ej. 12345678-0)");
 
