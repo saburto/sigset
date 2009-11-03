@@ -103,6 +103,10 @@ namespace Helpers
             return RutTextBox(helper, null,null, false);
         }
 
+        public static string RutTextBox(this HtmlHelper helper, bool soloLectura)
+        {
+            return RutTextBox(helper, null, null, soloLectura);
+        }
 
 
         public static string RutTextBox(this HtmlHelper helper, object dataRut, object dataDv, bool soloLectura)

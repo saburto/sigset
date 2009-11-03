@@ -61,11 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Paginado.cs" />
+    <Compile Include="Modelo\Enums\TipoClientes.cs" />
     <Compile Include="Modelo\Model.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ValidationModel\Cliente\Cliente.cs" />
     <Compile Include="Modelo\ValidationModel\Cliente\ClienteComercial.cs" />
     <Compile Include="Modelo\ValidationModel\Cliente\ClienteParticular.cs" />
     <Compile Include="Modelo\ValidationModel\Cliente\Direccion.cs" />

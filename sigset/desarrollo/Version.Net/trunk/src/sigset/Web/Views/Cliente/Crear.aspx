@@ -59,36 +59,36 @@
                 <%= Html.RutTextBox() %>
                 <%= Html.ValidationMessage("Rut", "*")%>
             </div>
+            
             <div class="three-column-middle">
                 <label for="particular" style="display: inline !important">
                     Particular:
                 </label>
-                <input type="radio" name="TipoCliente" checked="checked" id="particular" value="1" />
+                <input type="radio" name="TipoCliente" checked="checked" id="particular" value="1" title="Opción para ingresar datos de cliente particular" />
                 <label for="comercial" style="display: inline !important">
                     Comercial:
                 </label>
-                <input type="radio" name="TipoCliente" id="comercial" value="2" />
+                <input type="radio" name="TipoCliente" id="comercial" value="2"  title="Opción para ingresar datos de cliente comercial" />
             </div>
-            <div class="clear">
-            </div>
+            <div class="clear"></div>
         </div>
         <div class="three-column-container" id="datosParticular">
             <div class="three-column-left">
                 <label for="Nombre">
                     Nombre:</label>
-                <%= Html.TextBox("ClienteParticular.Nombre")%>
+                <%= Html.TextBox("ClienteParticular.Nombre", null, new { title="Nombre de cliente" })%>
                 <%= Html.ValidationMessage("ClienteParticular.Nombre", "*")%>
             </div>
             <div class="three-column-middle">
                 <label for="ApellidoPaterno">
                     Apellido Paterno:</label>
-                <%= Html.TextBox("ClienteParticular.ApellidoPaterno")%>
+                <%= Html.TextBox("ClienteParticular.ApellidoPaterno", null, new { title="Apellido paterno de cliente" })%>
                 <%= Html.ValidationMessage("ClienteParticular.ApellidoPaterno", "*")%>
             </div>
             <div class="three-column-right">
                 <label for="ApellidoMaterno">
                     Apellido Materno:</label>
-                <%= Html.TextBox("ClienteParticular.ApellidoMaterno")%>
+                <%= Html.TextBox("ClienteParticular.ApellidoMaterno", null, new { title = "Apellido materno de cliente" })%>
                 <%= Html.ValidationMessage("ClienteParticular.ApellidoMaterno", "*")%>
             </div>
             <div class="clear">
@@ -96,16 +96,16 @@
         </div>
         <div class="three-column-container" id="datosComercial" style="display: none">
             <div class="three-column-left">
-                <label for="RazonSocial">
+                <label for="ClienteComercial.RazonSocial">
                     Raz&oacute;n Social:</label>
-                <%= Html.TextBox("ClienteComercial.RazonSocial")%>
+                <%= Html.TextBox("ClienteComercial.RazonSocial", null, new { title="Nombre o razón social de la empresa" })%>
                 <%= Html.ValidationMessage("ClienteComercial.RazonSocial", "*")%>
             </div>
             <div class="three-column-middle">
-                <label for="ApellidoPaterno">
+                <label for="ClienteComercial.Sucursal">
                     Sucursal:</label>
-                <%= Html.TextBox("ClienteComercial.RazonSocial")%>
-                <%= Html.ValidationMessage("ClienteComercial.RazonSocial", "*")%>
+                <%= Html.TextBox("ClienteComercial.Sucursal", null, new { title="Sucursal de la empresa si la tuviese" })%>
+                <%= Html.ValidationMessage("ClienteComercial.Sucursal", "*")%>
             </div>
             <div class="clear">
             </div>
@@ -118,13 +118,13 @@
             <div class="three-column-left">
                 <label for="Calle">
                     Calle:</label>
-                <%= Html.TextBox("Calle")%>
+                <%= Html.TextBox("Calle", null, new { title="Nombre de Calle de Cliente"})%>
                 <%= Html.ValidationMessage("Calle", "*")%>
             </div>
             <div class="three-column-middle">
                 <label for="Numero">
                     <%=Html.Encode("Número:") %></label>
-                <%= Html.TextBox("Numero")%>
+                <%= Html.TextBox("Numero", null, new { title="Número de domicilio de Cliente" })%>
                 <%= Html.ValidationMessage("Numero", "*")%>
             </div>
         </div>
@@ -134,19 +134,19 @@
             <div class="three-column-left">
                 <label for="Region">
                     <%=Html.Encode("Region:")%></label>
-                <%= Html.AutoCompleteTextBox("Region")%>
+                <%= Html.AutoCompleteTextBox("Region", new { title="Region de dirección del cliente" })%>
                 <%= Html.ValidationMessage("Region", "*")%>
             </div>
             <div class="three-column-middle">
                 <label for="Provincia">
                     Provincia:</label>
-                <%= Html.AutoCompleteTextBox("Provincia")%>
+                <%= Html.AutoCompleteTextBox("Provincia", new { title = "Provincia de dirección del cliente" })%>
                 <%= Html.ValidationMessage("Provincia", "*")%>
             </div>
             <div class="three-column-right">
                 <label for="Comuna">
                     Comuna:</label>
-                <%= Html.AutoCompleteTextBox("Comuna")%>
+                <%= Html.AutoCompleteTextBox("Comuna", new { title = "Comuna de dirección del cliente" })%>
                 <%= Html.ValidationMessage("Comuna", "*")%>
             </div>
             <div class="clear">
@@ -159,18 +159,23 @@
             <div class="three-column-left">
                 <label for="Valor_Contacto">
                     <%=Html.Encode("Correo Electrónico:") %></label>
-                <%= Html.TextBox("Email.ValorContacto", null, new { Class="email" })%>
+                <%= Html.TextBox("Email.ValorContacto", null, new { Class="email", title="Correo electrónico de cliente para se notificado" })%>
                 <%= Html.ValidationMessage("Email.ValorContacto", "*") %>
             </div>
             <div class="three-column-middle">
                 <label for="Valor_Contacto">
                     <%=Html.Encode("Teléfono:") %></label>
-                <%= Html.TextBox("Fono.ValorContacto") %>
+                <%= Html.TextBox("Fono.ValorContacto", null, new { title="Teléfono de contacto de cliente para ser notificado", Class="required" })%>
                 <%= Html.ValidationMessage("Fono.ValorContacto", "*") %>
             </div>
         </div>
         <div class="clear">
         </div>
+        <br />
+    </fieldset>
+    <fieldset>
+        <legend>Observaciones</legend>
+        <%=Html.TextArea("Observacion", new { style = "width: 100%", title="Información adicional de cliente"})%>
         <br />
     </fieldset>
     <p>

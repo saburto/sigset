@@ -1,166 +1,202 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Cliente>" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Editar Cliente
-</asp:Content>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    Editar Cliente
+</asp:Content>
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
-    <%using (Html.BeginReady()) {%>
-    
+    <%using (Html.BeginReady())
+      {%>
     <%= Html.InitializeAutoComplete("Dire.Region", "EncontrarRegiones", "Cliente", true,15) %>
     <%= Html.InitializeAutoComplete("Dire.Provincia", "EncontrarProvincias", "Cliente", true, "Dire.Region", 30, 0) %>
     <%= Html.InitializeAutoComplete("Dire.Comuna", "EncontrarComunas", "Cliente", true, "Dire.Provincia",100,0 ) %>
-    
     <%} %>
-
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<h2>Editar Cliente</h2>
-
+    <h2>
+        Editar Cliente</h2>
     <%= Html.ValidationSummary("Edición de cliente con los siguientes errores.") %>
-
     <% using (Html.BeginForm())
-    {%>
-        <fieldset>
-            <legend>Cliente</legend>
-            
-            <div class="three-column-container">
-                <div class="three-column-left">
-                <label for="Rut">Rut:</label>
-                <%= Html.RutTextBox(Model.Rut,true)%>
-                <%= Html.ValidationMessage("Rut", "*") %>
-                </div>
-                <div class="clear"></div>
-            </di>
-            
-            <div class="three-column-container">
-                <div class="three-column-left">
-                    <label for="Nombre">Nombre:</label>
-                    <%= Html.TextBox("Nombre", Model.Nombre) %>
-                    <%= Html.ValidationMessage("Nombre", "*") %>
-                </div>
-                <div class="three-column-middle">
-                    <label for="Apellido Paterno">Apellido Paterno:</label>
-                    <%= Html.TextBox("ApellidoPaterno", Model.ApellidoPaterno) %>
-                    <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
-                </div>
-                <div class="three-column-right">
-                    <label for="Apellido Materno">Apellido Materno:</label>
-                    <%= Html.TextBox("ApellidoMaterno", Model.ApellidoMaterno) %>
-                    <%= Html.ValidationMessage("ApellidoMaterno", "*") %>
-                </div>
-            </div>
-            <div class="clear"></div>
-            </div>
-        </fieldset>
-        
-        <%if(Model.Direccions != null && Model.Direccions.FirstOrDefault() != null){ %>
-          <fieldset>
-            <legend><%=Html.Encode("Dirección")%></legend>
-            <div class="three-column-container">
-            
+       {%>
+    <fieldset>
+        <legend>Cliente</legend>
+        <div class="three-column-container">
             <div class="three-column-left">
-
-                    <label for="Calle">Calle:</label>
-                    <%= Html.TextBox("Dire.Calle", Model.Direccions.FirstOrDefault().Calle)%>
-                    <%= Html.ValidationMessage("Calle", "*")%>
-                    <%= Html.Hidden("Dire.Tipo_Direccion", Model.Direccions.FirstOrDefault().Tipo_Direccion)%>
-                    <%= Html.Hidden("Dire.Id", Model.Direccions.FirstOrDefault().Id)%>
+                <p>     
+                Rut: <%= Html.Encode(Model.Rut().GetRutCompleto())%>
+                </p>
             </div>
-            
             <div class="three-column-middle">
-
-                <label for="Numero"><%=Html.Encode("Número:") %></label>
-                <%= Html.TextBox("Dire.Numero", Model.Direccions.FirstOrDefault().Numero)%>
-                <%= Html.ValidationMessage("Numero", "*")%>
-
-            </div>
-            </div>
-            <br /><br />
-            <div class="three-column-container">
-            <div class="three-column-left">
-
-                    <label for="Region"><%=Html.Encode("Región:")%></label>
-                    <%if (Model.Direccions.FirstOrDefault().Region1 != null)
-                    { %>
-                    <%= Html.AutoCompleteTextBox("Dire.Region", Model.Direccions.FirstOrDefault().Region1.Nombre, Model.Direccions.FirstOrDefault().Region, null)%>
-                    <%}
-                    else { %>
-                    <%= Html.AutoCompleteTextBox("Dire.Region")%>
-                    <%} %>
-                    <%= Html.ValidationMessage("Region", "*")%>
-            </div>
-            
-            <div class="three-column-middle">
-   
-                    <label for="Provincia">Provincia:</label>
-                    <%if (Model.Direccions.FirstOrDefault().Provincia1 != null)
-                    { %>
-                    <%= Html.AutoCompleteTextBox("Dire.Provincia", Model.Direccions.FirstOrDefault().Provincia1.nombre, Model.Direccions.FirstOrDefault().Provincia, null)%>
-                    <%}
-                    else { %>
-                    <%= Html.AutoCompleteTextBox("Dire.Provincia")%>
-                    <%} %>
-
-                    <%= Html.ValidationMessage("Provincia", "*")%>
-            </div>
-            
-            <div class="three-column-right">
-            
-                <label for="Comuna">Comuna:</label>
-                <%if (Model.Direccions.FirstOrDefault().Comuna1 != null)
-                { %>
-                <%= Html.AutoCompleteTextBox("Dire.Comuna", Model.Direccions.FirstOrDefault().Comuna1.Nombre, Model.Direccions.FirstOrDefault().Comuna, null)%>
+                <%if (Model.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteParticular)
+                  { %>
+                <p>
+                    Cliente Particular
+                </p>
                 <%}
-                else { %>
+                  else
+                  { %>
+                <p>
+                    Cliente Comercial
+                </p>
+                <%} %>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <%if (Model.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteParticular)
+          {%>
+        <div class="three-column-container">
+            <div class="three-column-left">
+                <label for="Nombre">
+                    Nombre:</label>
+                <%= Html.TextBox("ClienteParticular.Nombre", Model.ClienteParticular.Nombre, new { title="Nombre de cliente" })%>
+                <%= Html.ValidationMessage("ClienteParticular.Nombre", "*")%>
+            </div>
+            <div class="three-column-middle">
+                <label for="ApellidoPaterno">
+                    Apellido Paterno:</label>
+                <%= Html.TextBox("ClienteParticular.ApellidoPaterno", Model.ClienteParticular.ApellidoPaterno, new { title="Apellido paterno de cliente" })%>
+                <%= Html.ValidationMessage("ClienteParticular.ApellidoPaterno", "*")%>
+            </div>
+            <div class="three-column-right">
+                <label for="ApellidoMaterno">
+                    Apellido Materno:</label>
+                <%= Html.TextBox("ClienteParticular.ApellidoMaterno", Model.ClienteParticular.ApellidoPaterno, new { title = "Apellido materno de cliente" })%>
+                <%= Html.ValidationMessage("ClienteParticular.ApellidoMaterno", "*")%>
+            </div>
+        </div>
+        <%}
+          else if (Model.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteComercial)
+          {%>
+        <div class="three-column-container">
+            <div class="three-column-left">
+                <label for="ClienteComercial.RazonSocial">
+                    Raz&oacute;n Social:</label>
+                <%= Html.TextBox("ClienteComercial.RazonSocial", Model.ClienteComercial.RazonSocial, new { title="Nombre o razón social de la empresa" })%>
+                <%= Html.ValidationMessage("ClienteComercial.RazonSocial", "*")%>
+            </div>
+            <div class="three-column-middle">
+                <label for="ClienteComercial.Sucursal">
+                    Sucursal:</label>
+                <%= Html.TextBox("ClienteComercial.Sucursal", Model.ClienteComercial.Sucursal, new { title="Sucursal de la empresa si la tuviese" })%>
+                <%= Html.ValidationMessage("ClienteComercial.Sucursal", "*")%>
+            </div>
+        </div>
+        <%} %>
+        <div class="clear">
+        </div>
+        <br />
+    </fieldset>
+    <%if (Model.Direccion != null)
+      { %>
+    <fieldset>
+        <legend>
+            <%=Html.Encode("Dirección")%></legend>
+        <div class="three-column-container">
+            <div class="three-column-left">
+                <label for="Dire.Calle">
+                    Calle:</label>
+                <%= Html.TextBox("Dire.Calle", Model.Direccion.Calle, new { title="Nombre de Calle de Cliente"})%>
+                <%= Html.ValidationMessage("Dire.Calle", "*")%>
+                <%= Html.Hidden("Dire.TipoDireccion", Model.Direccion.TipoDireccion)%>
+                <%= Html.Hidden("Dire.Id", Model.Direccion.Id)%>
+            </div>
+            <div class="three-column-middle">
+                <label for="Dire.Numero">
+                    <%=Html.Encode("Número:") %></label>
+                <%= Html.TextBox("Dire.Numero", Model.Direccion.Numero, new { title="Número de domicilio de Cliente" })%>
+                <%= Html.ValidationMessage("Dire.Numero", "*")%>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="three-column-container">
+            <div class="three-column-left">
+                <label for="Dire.Region">
+                    <%=Html.Encode("Región:")%></label>
+                <%if (Model.Direccion.Region1 != null)
+                  { %>
+                <%= Html.AutoCompleteTextBox("Dire.Region", Model.Direccion.Region1.Nombre, Model.Direccion.Region, new { title="Region de dirección del cliente" } )%>
+                <%}
+                  else
+                  { %>
+                <%= Html.AutoCompleteTextBox("Dire.Region", new { title = "Region de dirección del cliente" })%>
+                <%} %>
+                <%= Html.ValidationMessage("Dire.Region", "*")%>
+            </div>
+            <div class="three-column-middle">
+                <label for="Dire.Provincia">
+                    Provincia:</label>
+                <%if (Model.Direccion.Provincia1 != null)
+                  { %>
+                <%= Html.AutoCompleteTextBox("Dire.Provincia", Model.Direccion.Provincia1.nombre, Model.Direccion.Provincia, new { title = "Provincia de dirección del cliente" })%>
+                <%}
+                  else
+                  { %>
+                <%= Html.AutoCompleteTextBox("Dire.Provincia")%>
+                <%} %>
+                <%= Html.ValidationMessage("Dire.Provincia", "*")%>
+            </div>
+            <div class="three-column-right">
+                <label for="Dire.Comuna">
+                    Comuna:</label>
+                <%if (Model.Direccion.Comuna1 != null)
+                  { %>
+                <%= Html.AutoCompleteTextBox("Dire.Comuna", Model.Direccion.Comuna1.Nombre, Model.Direccion.Comuna, new { title = "Comuna de dirección del cliente" })%>
+                <%}
+                  else
+                  { %>
                 <%= Html.AutoCompleteTextBox("Dire.Comuna")%>
                 <%} %>
-                <%= Html.ValidationMessage("Comuna", "*")%>
-            
+                <%= Html.ValidationMessage("Dire.Comuna", "*")%>
             </div>
-            <div class="clear"></div>
+            <div class="clear">
             </div>
-        </fieldset>
-        <%} %>
-        
-        <%if(Model.Contactos != null && Model.Contactos.Any()){ %>
-        <fieldset>
-            <legend>Contacto</legend>
-            <div class="three-column-container">
+        </div>
+    </fieldset>
+    <%} %>
+    <%if (Model.Contactos != null && Model.Contactos.Any())
+      { %>
+    <fieldset>
+        <legend>Contacto</legend>
+        <div class="three-column-container">
             <div class="three-column-left">
-
-
-                <label for="Valor_Contacto"><%=Html.Encode("Correo Electrónico:") %></label>
-                <%= Html.TextBox("Email.Valor_Contacto", Model.Contactos.Where(x=> x.Tipo_Contacto == 3).FirstOrDefault().Valor_Contacto)%>
-                <%= Html.ValidationMessage("Email.Valor_Contacto", "*")%>
-                <%= Html.Hidden("Email.Tipo_Contacto", Model.Contactos.Where(x => x.Tipo_Contacto == 3).FirstOrDefault().Tipo_Contacto) %>
-                <%= Html.Hidden("Email.Id", Model.Contactos.Where(x => x.Tipo_Contacto == 3).FirstOrDefault().Id) %>
-
+                <label for="Email.ValorContacto">
+                    <%=Html.Encode("Correo Electrónico:") %></label>
+                <%= Html.TextBox("Email.ValorContacto", Model.Contactos.Where(x=> x.TipoContacto == 3).FirstOrDefault().ValorContacto)%>
+                <%= Html.ValidationMessage("Email.ValorContacto", "*")%>
+                <%= Html.Hidden("Email.TipoContacto", Model.Contactos.Where(x => x.TipoContacto == 3).FirstOrDefault().TipoContacto) %>
+                <%= Html.Hidden("Email.Id", Model.Contactos.Where(x => x.TipoContacto == 3).FirstOrDefault().Id) %>
             </div>
             <div class="three-column-middle">
-
-                <label for="Valor_Contacto"><%=Html.Encode("Teléfono:") %></label>
-                <%= Html.TextBox("Fono.Valor_Contacto", Model.Contactos.Where(x => x.Tipo_Contacto == 1).FirstOrDefault().Valor_Contacto)%>
-                <%= Html.ValidationMessage("Fono.Valor_Contacto", "*")%>
-                <%= Html.Hidden("Fono.Tipo_Contacto", Model.Contactos.Where(x => x.Tipo_Contacto == 1).FirstOrDefault().Tipo_Contacto) %>
-                <%= Html.Hidden("Fono.Id", Model.Contactos.Where(x => x.Tipo_Contacto == 1).FirstOrDefault().Id) %>
-            </p>
+                <label for="Fono.ValorContacto">
+                    <%=Html.Encode("Teléfono:") %></label>
+                <%= Html.TextBox("Fono.ValorContacto", Model.Contactos.Where(x => x.TipoContacto == 1).FirstOrDefault().ValorContacto)%>
+                <%= Html.ValidationMessage("Fono.ValorContacto", "*")%>
+                <%= Html.Hidden("Fono.TipoContacto", Model.Contactos.Where(x => x.TipoContacto == 1).FirstOrDefault().TipoContacto) %>
+                <%= Html.Hidden("Fono.Id", Model.Contactos.Where(x => x.TipoContacto == 1).FirstOrDefault().Id) %>
+                </p>
             </div>
+            <div class="clear">
             </div>
-        </fieldset>
-        <%} %>
-        
-        <fieldset>
-                <input type="submit" class="button-big" value="Grabar" />
-        </fieldset>
+        </div>
+    </fieldset>
+    <%} %>
+    <fieldset>
+        <legend>Observaciones</legend>
+        <%=Html.TextArea("Observacion",Model.Observacion, new { style = "width: 100%", title="Información adicional de cliente"})%>
+        <br />
+    </fieldset>
+    <p style="float: left">
+        <%=Html.ButtonLinkIcon(Url.Action("Lista"), "Cancelar", Iconos.arrow_1_w, IconPosition.left, new {title="Volver a lista de Clientes" })%>
+    </p>
+    <p style="float: right">
+        <%=Html.ButtonSubmit("Guardar") %>
+    </p>
     <% } %>
     <%= Html.ClientSideValidation("Dire", typeof(Data.Modelo.Direccion)) %>
     <%= Html.ClientSideValidation("Fono", typeof(Data.Modelo.Contacto)) %>
     <%= Html.ClientSideValidation("Email", typeof(Data.Modelo.Contacto)) %>
     <%= Html.ClientSideValidation("", typeof(Data.Modelo.Cliente)) %>
-    
-    <p>
-       <%=Html.ActionLink("Cancelar", "Lista")%>
-    </p>
+    <%=Html.ClientSideValidation("ClienteParticular", typeof(Data.Modelo.ClienteParticular))%>
+    <%=Html.ClientSideValidation("ClienteComercial", typeof(Data.Modelo.ClienteComercial))%>
 </asp:Content>
-
