@@ -61,5 +61,11 @@ namespace Web.Controllers.Admin
             servAut.AgregarPermisoAPerfil(id, perfil);
             return RedirectToAction("PerfilesPermisos", new { id= perfil });
         }
+
+        public ActionResult QuitarPerfilPermiso(decimal idPermiso, decimal idPerfil)
+        {
+            servAut.EliminarPerfilPermiso(idPermiso,idPerfil);
+            return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
+        }
     }
 }

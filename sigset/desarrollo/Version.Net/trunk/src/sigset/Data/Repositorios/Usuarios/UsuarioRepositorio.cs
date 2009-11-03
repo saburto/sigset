@@ -123,6 +123,11 @@ namespace Data.Repositorios.Usuarios
             return _entities.PerfilPermisos.Where(x => x.IdPerfil == id);
         }
 
+        public PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil)
+        {
+           return _entities.PerfilPermisos.Where(x => x.IdPermiso == idPermiso && x.IdPerfil == idPerfil).FirstOrDefault();
+        }
+
         public Perfil GetPerfilById(decimal id)
         {
             return _entities.Perfils.Where(x => x.Id == id).FirstOrDefault();
@@ -146,6 +151,13 @@ namespace Data.Repositorios.Usuarios
         public Permiso GetPermisoById(decimal id)
         {
             return _entities.Permisos.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+        }
+
+        public void DeletePerfilPermiso(PerfilPermiso perfilPermiso)
+        {
+             _entities.PerfilPermisos.DeleteOnSubmit(perfilPermiso);
+             _entities.SubmitChanges();
+                      
         }
 
         #endregion

@@ -51,7 +51,7 @@
     <%}%>
     
           <td>
-                <%= Html.ActionLink("Quitar", "Quitar", new { id=item.Id }) %> |
+                <%= Html.ActionLink("Quitar", "QuitarPerfilPermiso", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] })%> |
                 <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
             </td>
             <td>

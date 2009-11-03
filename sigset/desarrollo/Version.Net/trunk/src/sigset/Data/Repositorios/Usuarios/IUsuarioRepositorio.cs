@@ -26,5 +26,8 @@ namespace Data.Repositorios.Usuarios
         global::Data.Modelo.Permiso GetPermisoById(decimal id);
         System.Linq.IQueryable<Permiso> GetPermisosDisponibles(decimal id);
         void AddPerfilPermiso(global::Data.Modelo.PerfilPermiso perfilPermiso);
+        void DeletePerfilPermiso(PerfilPermiso perfilPermiso);
+        global::Data.Modelo.PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil);
+    
     }
 }

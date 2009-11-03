@@ -15,6 +15,6 @@ namespace Services.Autorizacion
         IList<PerfilPermiso> GetPermisosByPerfil(decimal id);
         IList<Permiso> GetPermisosDisponibles(decimal id);
         void AgregarPermisoAPerfil(decimal idPermiso, decimal idPerfil);
-       
+        void EliminarPerfilPermiso(decimal idPermiso, decimal idPerfi);
     }
 }

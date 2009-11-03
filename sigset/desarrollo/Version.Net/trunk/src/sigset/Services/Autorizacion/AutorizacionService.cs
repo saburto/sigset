@@ -93,5 +93,12 @@ namespace Services.Autorizacion
             perfilPermiso.Estado = true;      
             _repo.AddPerfilPermiso(perfilPermiso);
         }
+        public void EliminarPerfilPermiso(decimal idPermiso, decimal idPerfi)
+        {
+            PerfilPermiso perfilPermiso = new PerfilPermiso();
+            perfilPermiso = _repo.GetPermisoPerfil(idPermiso, idPerfi);
+            _repo.DeletePerfilPermiso(perfilPermiso);           
+          
+        }
     }
 }
