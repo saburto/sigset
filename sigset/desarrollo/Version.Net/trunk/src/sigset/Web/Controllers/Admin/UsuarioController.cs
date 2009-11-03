@@ -64,7 +64,25 @@ namespace Web.Controllers.Admin
         {
             var usuario = _servicio.GetUsuarioById(id);
             SetPerfilSelect(usuario.PerfilUsuario.ToString());
+
+            ViewData["imagen"] = ImagenUsuarioExiste(usuario.Id);
+
             return View("Editar", usuario);
+        }
+
+        private bool? ImagenUsuarioExiste(int id)
+        {
+            var carpeta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios");
+            var newPath = Path.Combine(carpeta, id + ".jpg");
+            FileInfo fileInfo = new FileInfo(newPath);
+            if (fileInfo.Exists)
+            {
+                return true;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

@@ -13,20 +13,31 @@
 
     <script type="text/javascript">
         $(function() {
+
+        $("#datosParticular input").removeAttr("disabled");
+        $("#datosComercial input").attr("disabled", "disabled");
+        
+        
         $(":radio[name='TipoCliente']").click(function() {
 
                 switch ($(this).val()) {
-                    case "0":
+                    case "1":
                         {
                             $("#datosParticular").show();
                             $("#datosComercial").hide();
+
+                            $("#datosParticular input").removeAttr("disabled");
+                            $("#datosComercial input").attr("disabled", "disabled");
+                            
                             break;
                         }
-                    case "1":
+                    case "2":
                         {
                             $("#datosParticular").hide();
                             $("#datosComercial").show();
-                            
+
+                            $("#datosComercial input").removeAttr("disabled");
+                            $("#datosParticular input").attr("disabled", "disabled");
                             break;
                         }
                 }
@@ -52,11 +63,11 @@
                 <label for="particular" style="display: inline !important">
                     Particular:
                 </label>
-                <input type="radio" name="TipoCliente" checked="checked" id="particular" value="0" />
+                <input type="radio" name="TipoCliente" checked="checked" id="particular" value="1" />
                 <label for="comercial" style="display: inline !important">
                     Comercial:
                 </label>
-                <input type="radio" name="TipoCliente" id="comercial" value="1" />
+                <input type="radio" name="TipoCliente" id="comercial" value="2" />
             </div>
             <div class="clear">
             </div>
