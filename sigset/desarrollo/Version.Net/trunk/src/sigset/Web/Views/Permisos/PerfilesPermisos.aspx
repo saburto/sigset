@@ -49,7 +49,7 @@
                 <td>
                     <%=Html.ButtonLinkIcon(Url.Action("QuitarPerfilPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
                     <%=Html.ButtonLinkIcon(Url.Action("Detalles", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Detalles", Iconos.bookmark, IconPosition.solo, new { title = "Detalles Permiso" })%>
-                     <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Estado Permisos" })%>
+                     <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                 </td>
                 <td>
                     <%= Html.Encode(item.Estado) %>
