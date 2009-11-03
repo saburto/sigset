@@ -190,18 +190,8 @@
     <Type Name="Perfil">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="Perfil_PerfilPermiso" Member="PerfilPermisos" OtherKey="IdPerfil" Type="PerfilPermiso" />
       <Association Name="Perfil_Usuario" Member="Usuarios" OtherKey="PerfilUsuario" Type="Usuario" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PerfilPermiso" Member="PerfilPermisos">
-    <Type Name="PerfilPermiso">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IdPerfil" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IdPermiso" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Perfil_PerfilPermiso" Member="Perfil" ThisKey="IdPerfil" Type="Perfil" IsForeignKey="true" />
-      <Association Name="Permiso_PerfilPermiso" Member="Permiso" ThisKey="IdPermiso" Type="Permiso" IsForeignKey="true" />
+      <Association Name="Perfil_PerfilPermiso" Member="PerfilPermisos" OtherKey="IdPerfil" Type="PerfilPermiso" />
     </Type>
   </Table>
   <Table Name="dbo.Permisos" Member="Permisos">
@@ -210,8 +200,8 @@
       <Column Name="Mod_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Opcion" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="DescripcionOpcion" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="Permiso_PerfilPermiso" Member="PerfilPermisos" OtherKey="IdPermiso" Type="PerfilPermiso" />
       <Association Name="Permiso_UsuarioPermiso" Member="UsuarioPermisos" OtherKey="IdPermiso" Type="UsuarioPermiso" />
+      <Association Name="Permiso_PerfilPermiso" Member="PerfilPermisos" OtherKey="IdPermiso" Type="PerfilPermiso" />
       <Association Name="Modulo_Permiso" Member="Modulo" ThisKey="Mod_Id" Type="Modulo" IsForeignKey="true" />
     </Type>
   </Table>
@@ -328,6 +318,16 @@
       <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Permiso_UsuarioPermiso" Member="Permiso" ThisKey="IdPermiso" Type="Permiso" IsForeignKey="true" />
       <Association Name="Usuario_UsuarioPermiso" Member="Usuario" ThisKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PerfilPermiso" Member="PerfilPermisos">
+    <Type Name="PerfilPermiso">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdPerfil" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdPermiso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Permiso_PerfilPermiso" Member="Permiso" ThisKey="IdPermiso" Type="Permiso" IsForeignKey="true" />
+      <Association Name="Perfil_PerfilPermiso" Member="Perfil" ThisKey="IdPerfil" Type="Perfil" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.PermisosDispPerfil" Method="PermisosDispPerfil">

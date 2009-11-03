@@ -19,9 +19,7 @@
      <table border="0" cellpadding="0" cellspacing="0" class="data-table">
        <tr>
             <th></th>
-            <th>
-                Id
-            </th>            
+              
             <th>
                 Estado
             </th>
@@ -57,9 +55,6 @@
                 <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
             </td>
             <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.Estado) %>
             </td>
             <td>
@@ -84,9 +79,7 @@
     <p style="float: left">
         <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso", new { id = ViewData["idperfil"] }), "Agregar Permiso a este Perfil", Iconos.arrow_1_w, IconPosition.left, null)%>
     </p>
-    <p style="float: right">
-        <%=Html.ButtonSubmit("Crear") %>
-    </p>
+ 
     
 
 </asp:Content>
