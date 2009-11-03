@@ -84,9 +84,6 @@ namespace Data.Modelo
     partial void InsertPerfil(Perfil instance);
     partial void UpdatePerfil(Perfil instance);
     partial void DeletePerfil(Perfil instance);
-    partial void InsertPerfilPermiso(PerfilPermiso instance);
-    partial void UpdatePerfilPermiso(PerfilPermiso instance);
-    partial void DeletePerfilPermiso(PerfilPermiso instance);
     partial void InsertPermiso(Permiso instance);
     partial void UpdatePermiso(Permiso instance);
     partial void DeletePermiso(Permiso instance);
@@ -129,6 +126,9 @@ namespace Data.Modelo
     partial void InsertUsuarioPermiso(UsuarioPermiso instance);
     partial void UpdateUsuarioPermiso(UsuarioPermiso instance);
     partial void DeleteUsuarioPermiso(UsuarioPermiso instance);
+    partial void InsertPerfilPermiso(PerfilPermiso instance);
+    partial void UpdatePerfilPermiso(PerfilPermiso instance);
+    partial void DeletePerfilPermiso(PerfilPermiso instance);
     #endregion
 		
 		public sigsetEntities() : 
@@ -305,14 +305,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		public System.Data.Linq.Table<PerfilPermiso> PerfilPermisos
-		{
-			get
-			{
-				return this.GetTable<PerfilPermiso>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Permiso> Permisos
 		{
 			get
@@ -422,6 +414,14 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<UsuarioPermiso>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PerfilPermiso> PerfilPermisos
+		{
+			get
+			{
+				return this.GetTable<PerfilPermiso>();
 			}
 		}
 		
@@ -4390,9 +4390,9 @@ namespace Data.Modelo
 		
 		private string _Descripcion;
 		
-		private EntitySet<PerfilPermiso> _PerfilPermisos;
-		
 		private EntitySet<Usuario> _Usuarios;
+		
+		private EntitySet<PerfilPermiso> _PerfilPermisos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4406,8 +4406,8 @@ namespace Data.Modelo
 		
 		public Perfil()
 		{
-			this._PerfilPermisos = new EntitySet<PerfilPermiso>(new Action<PerfilPermiso>(this.attach_PerfilPermisos), new Action<PerfilPermiso>(this.detach_PerfilPermisos));
 			this._Usuarios = new EntitySet<Usuario>(new Action<Usuario>(this.attach_Usuarios), new Action<Usuario>(this.detach_Usuarios));
+			this._PerfilPermisos = new EntitySet<PerfilPermiso>(new Action<PerfilPermiso>(this.attach_PerfilPermisos), new Action<PerfilPermiso>(this.detach_PerfilPermisos));
 			OnCreated();
 		}
 		
@@ -4451,19 +4451,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Association(Name="Perfil_PerfilPermiso", Storage="_PerfilPermisos", OtherKey="IdPerfil")]
-		public EntitySet<PerfilPermiso> PerfilPermisos
-		{
-			get
-			{
-				return this._PerfilPermisos;
-			}
-			set
-			{
-				this._PerfilPermisos.Assign(value);
-			}
-		}
-		
 		[Association(Name="Perfil_Usuario", Storage="_Usuarios", OtherKey="PerfilUsuario")]
 		public EntitySet<Usuario> Usuarios
 		{
@@ -4477,6 +4464,19 @@ namespace Data.Modelo
 			}
 		}
 		
+		[Association(Name="Perfil_PerfilPermiso", Storage="_PerfilPermisos", OtherKey="IdPerfil")]
+		public EntitySet<PerfilPermiso> PerfilPermisos
+		{
+			get
+			{
+				return this._PerfilPermisos;
+			}
+			set
+			{
+				this._PerfilPermisos.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4495,18 +4495,6 @@ namespace Data.Modelo
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_PerfilPermisos(PerfilPermiso entity)
-		{
-			this.SendPropertyChanging();
-			entity.Perfil = this;
-		}
-		
-		private void detach_PerfilPermisos(PerfilPermiso entity)
-		{
-			this.SendPropertyChanging();
-			entity.Perfil = null;
 		}
 		
 		private void attach_Usuarios(Usuario entity)
@@ -4520,221 +4508,17 @@ namespace Data.Modelo
 			this.SendPropertyChanging();
 			entity.Perfil = null;
 		}
-	}
-	
-	[Table(Name="dbo.PerfilPermiso")]
-	public partial class PerfilPermiso : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _IdPerfil;
-		
-		private bool _Estado;
-		
-		private System.Nullable<int> _IdPermiso;
-		
-		private EntityRef<Perfil> _Perfil;
-		
-		private EntityRef<Permiso> _Permiso;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdPerfilChanging(int value);
-    partial void OnIdPerfilChanged();
-    partial void OnEstadoChanging(bool value);
-    partial void OnEstadoChanged();
-    partial void OnIdPermisoChanging(System.Nullable<int> value);
-    partial void OnIdPermisoChanged();
-    #endregion
-		
-		public PerfilPermiso()
+		private void attach_PerfilPermisos(PerfilPermiso entity)
 		{
-			this._Perfil = default(EntityRef<Perfil>);
-			this._Permiso = default(EntityRef<Permiso>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Perfil = this;
 		}
 		
-		[Column(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
+		private void detach_PerfilPermisos(PerfilPermiso entity)
 		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdPerfil", DbType="Int NOT NULL")]
-		public int IdPerfil
-		{
-			get
-			{
-				return this._IdPerfil;
-			}
-			set
-			{
-				if ((this._IdPerfil != value))
-				{
-					if (this._Perfil.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdPerfilChanging(value);
-					this.SendPropertyChanging();
-					this._IdPerfil = value;
-					this.SendPropertyChanged("IdPerfil");
-					this.OnIdPerfilChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Estado", DbType="Bit NOT NULL")]
-		public bool Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this.OnEstadoChanging(value);
-					this.SendPropertyChanging();
-					this._Estado = value;
-					this.SendPropertyChanged("Estado");
-					this.OnEstadoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdPermiso", DbType="Int")]
-		public System.Nullable<int> IdPermiso
-		{
-			get
-			{
-				return this._IdPermiso;
-			}
-			set
-			{
-				if ((this._IdPermiso != value))
-				{
-					if (this._Permiso.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdPermisoChanging(value);
-					this.SendPropertyChanging();
-					this._IdPermiso = value;
-					this.SendPropertyChanged("IdPermiso");
-					this.OnIdPermisoChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Perfil_PerfilPermiso", Storage="_Perfil", ThisKey="IdPerfil", IsForeignKey=true)]
-		public Perfil Perfil
-		{
-			get
-			{
-				return this._Perfil.Entity;
-			}
-			set
-			{
-				Perfil previousValue = this._Perfil.Entity;
-				if (((previousValue != value) 
-							|| (this._Perfil.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Perfil.Entity = null;
-						previousValue.PerfilPermisos.Remove(this);
-					}
-					this._Perfil.Entity = value;
-					if ((value != null))
-					{
-						value.PerfilPermisos.Add(this);
-						this._IdPerfil = value.Id;
-					}
-					else
-					{
-						this._IdPerfil = default(int);
-					}
-					this.SendPropertyChanged("Perfil");
-				}
-			}
-		}
-		
-		[Association(Name="Permiso_PerfilPermiso", Storage="_Permiso", ThisKey="IdPermiso", IsForeignKey=true)]
-		public Permiso Permiso
-		{
-			get
-			{
-				return this._Permiso.Entity;
-			}
-			set
-			{
-				Permiso previousValue = this._Permiso.Entity;
-				if (((previousValue != value) 
-							|| (this._Permiso.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Permiso.Entity = null;
-						previousValue.PerfilPermisos.Remove(this);
-					}
-					this._Permiso.Entity = value;
-					if ((value != null))
-					{
-						value.PerfilPermisos.Add(this);
-						this._IdPermiso = value.Id;
-					}
-					else
-					{
-						this._IdPermiso = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Permiso");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Perfil = null;
 		}
 	}
 	
@@ -4752,9 +4536,9 @@ namespace Data.Modelo
 		
 		private string _DescripcionOpcion;
 		
-		private EntitySet<PerfilPermiso> _PerfilPermisos;
-		
 		private EntitySet<UsuarioPermiso> _UsuarioPermisos;
+		
+		private EntitySet<PerfilPermiso> _PerfilPermisos;
 		
 		private EntityRef<Modulo> _Modulo;
 		
@@ -4774,8 +4558,8 @@ namespace Data.Modelo
 		
 		public Permiso()
 		{
-			this._PerfilPermisos = new EntitySet<PerfilPermiso>(new Action<PerfilPermiso>(this.attach_PerfilPermisos), new Action<PerfilPermiso>(this.detach_PerfilPermisos));
 			this._UsuarioPermisos = new EntitySet<UsuarioPermiso>(new Action<UsuarioPermiso>(this.attach_UsuarioPermisos), new Action<UsuarioPermiso>(this.detach_UsuarioPermisos));
+			this._PerfilPermisos = new EntitySet<PerfilPermiso>(new Action<PerfilPermiso>(this.attach_PerfilPermisos), new Action<PerfilPermiso>(this.detach_PerfilPermisos));
 			this._Modulo = default(EntityRef<Modulo>);
 			OnCreated();
 		}
@@ -4864,19 +4648,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		[Association(Name="Permiso_PerfilPermiso", Storage="_PerfilPermisos", OtherKey="IdPermiso")]
-		public EntitySet<PerfilPermiso> PerfilPermisos
-		{
-			get
-			{
-				return this._PerfilPermisos;
-			}
-			set
-			{
-				this._PerfilPermisos.Assign(value);
-			}
-		}
-		
 		[Association(Name="Permiso_UsuarioPermiso", Storage="_UsuarioPermisos", OtherKey="IdPermiso")]
 		public EntitySet<UsuarioPermiso> UsuarioPermisos
 		{
@@ -4887,6 +4658,19 @@ namespace Data.Modelo
 			set
 			{
 				this._UsuarioPermisos.Assign(value);
+			}
+		}
+		
+		[Association(Name="Permiso_PerfilPermiso", Storage="_PerfilPermisos", OtherKey="IdPermiso")]
+		public EntitySet<PerfilPermiso> PerfilPermisos
+		{
+			get
+			{
+				return this._PerfilPermisos;
+			}
+			set
+			{
+				this._PerfilPermisos.Assign(value);
 			}
 		}
 		
@@ -4944,18 +4728,6 @@ namespace Data.Modelo
 			}
 		}
 		
-		private void attach_PerfilPermisos(PerfilPermiso entity)
-		{
-			this.SendPropertyChanging();
-			entity.Permiso = this;
-		}
-		
-		private void detach_PerfilPermisos(PerfilPermiso entity)
-		{
-			this.SendPropertyChanging();
-			entity.Permiso = null;
-		}
-		
 		private void attach_UsuarioPermisos(UsuarioPermiso entity)
 		{
 			this.SendPropertyChanging();
@@ -4963,6 +4735,18 @@ namespace Data.Modelo
 		}
 		
 		private void detach_UsuarioPermisos(UsuarioPermiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.Permiso = null;
+		}
+		
+		private void attach_PerfilPermisos(PerfilPermiso entity)
+		{
+			this.SendPropertyChanging();
+			entity.Permiso = this;
+		}
+		
+		private void detach_PerfilPermisos(PerfilPermiso entity)
 		{
 			this.SendPropertyChanging();
 			entity.Permiso = null;
@@ -7137,6 +6921,222 @@ namespace Data.Modelo
 						this._IdUsuario = default(int);
 					}
 					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.PerfilPermiso")]
+	public partial class PerfilPermiso : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _IdPerfil;
+		
+		private bool _Estado;
+		
+		private int _IdPermiso;
+		
+		private EntityRef<Permiso> _Permiso;
+		
+		private EntityRef<Perfil> _Perfil;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIdPerfilChanging(int value);
+    partial void OnIdPerfilChanged();
+    partial void OnEstadoChanging(bool value);
+    partial void OnEstadoChanged();
+    partial void OnIdPermisoChanging(int value);
+    partial void OnIdPermisoChanged();
+    #endregion
+		
+		public PerfilPermiso()
+		{
+			this._Permiso = default(EntityRef<Permiso>);
+			this._Perfil = default(EntityRef<Perfil>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdPerfil", DbType="Int NOT NULL")]
+		public int IdPerfil
+		{
+			get
+			{
+				return this._IdPerfil;
+			}
+			set
+			{
+				if ((this._IdPerfil != value))
+				{
+					if (this._Perfil.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdPerfilChanging(value);
+					this.SendPropertyChanging();
+					this._IdPerfil = value;
+					this.SendPropertyChanged("IdPerfil");
+					this.OnIdPerfilChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this.OnEstadoChanging(value);
+					this.SendPropertyChanging();
+					this._Estado = value;
+					this.SendPropertyChanged("Estado");
+					this.OnEstadoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdPermiso", DbType="Int NOT NULL")]
+		public int IdPermiso
+		{
+			get
+			{
+				return this._IdPermiso;
+			}
+			set
+			{
+				if ((this._IdPermiso != value))
+				{
+					if (this._Permiso.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdPermisoChanging(value);
+					this.SendPropertyChanging();
+					this._IdPermiso = value;
+					this.SendPropertyChanged("IdPermiso");
+					this.OnIdPermisoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Permiso_PerfilPermiso", Storage="_Permiso", ThisKey="IdPermiso", IsForeignKey=true)]
+		public Permiso Permiso
+		{
+			get
+			{
+				return this._Permiso.Entity;
+			}
+			set
+			{
+				Permiso previousValue = this._Permiso.Entity;
+				if (((previousValue != value) 
+							|| (this._Permiso.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Permiso.Entity = null;
+						previousValue.PerfilPermisos.Remove(this);
+					}
+					this._Permiso.Entity = value;
+					if ((value != null))
+					{
+						value.PerfilPermisos.Add(this);
+						this._IdPermiso = value.Id;
+					}
+					else
+					{
+						this._IdPermiso = default(int);
+					}
+					this.SendPropertyChanged("Permiso");
+				}
+			}
+		}
+		
+		[Association(Name="Perfil_PerfilPermiso", Storage="_Perfil", ThisKey="IdPerfil", IsForeignKey=true)]
+		public Perfil Perfil
+		{
+			get
+			{
+				return this._Perfil.Entity;
+			}
+			set
+			{
+				Perfil previousValue = this._Perfil.Entity;
+				if (((previousValue != value) 
+							|| (this._Perfil.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Perfil.Entity = null;
+						previousValue.PerfilPermisos.Remove(this);
+					}
+					this._Perfil.Entity = value;
+					if ((value != null))
+					{
+						value.PerfilPermisos.Add(this);
+						this._IdPerfil = value.Id;
+					}
+					else
+					{
+						this._IdPerfil = default(int);
+					}
+					this.SendPropertyChanged("Perfil");
 				}
 			}
 		}
