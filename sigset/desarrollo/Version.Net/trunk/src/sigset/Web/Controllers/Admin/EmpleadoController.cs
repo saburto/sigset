@@ -29,12 +29,12 @@ namespace Web.Controllers //.Admin
             _servicio = ser;
         }
 
-        //voy a hacer una lista de empleados, okis??Doki
-        public ActionResult Lista()//fijate como se crea la vistaspis
+      
+        public ActionResult Lista()
         {
-            //aqui llamo al serivicio, que ha su vez llama al repositorio, okis??
+          
             var empleados = _servicio.GetTodosLosEmpleados();
-            //aqui le paso el modelo a la vista
+           
             return View(empleados);
         }
 
