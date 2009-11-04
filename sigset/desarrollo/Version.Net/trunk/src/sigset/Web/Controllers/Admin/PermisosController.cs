@@ -59,25 +59,30 @@ namespace Web.Controllers.Admin
         public ActionResult Agregar(decimal id, decimal perfil)
         {
             servAut.AgregarPermisoAPerfil(id, perfil);
-            return RedirectToAction("PerfilesPermisos", new { id= perfil });
+            return RedirectToAction("PerfilesPermisos", new { id = perfil });
         }
 
         public ActionResult QuitarPerfilPermiso(decimal idPermiso, decimal idPerfil)
         {
-            servAut.EliminarPerfilPermiso(idPermiso,idPerfil);
+            servAut.EliminarPerfilPermiso(idPermiso, idPerfil);
             return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
         }
 
         public ActionResult DetallesPermisos(decimal idPermiso, decimal idPerfil)
         {
             var permiso = servAut.GetPermisoById(idPermiso);
-            /*Cuando sea via el popup via ajax va a renderizar el partial view*/
             if (Request.IsAjaxRequest())
             {
                 return PartialView("DetallesPermiso", permiso);
-            }            
-            /*Cuando sea un link nomral va mostrar la pagina completa*/
-            return View(permiso); 
+            }
+            return View(permiso);
+        }
+
+        public ActionResult EstadoPermiso(decimal idPerfilPermiso, decimal idPerfil)
+        {
+            var perfilPermiso = servAut.GetPerfilPermisoById(idPerfilPermiso);
+            servAut.ActualizarEstadoPerfilPermiso(perfilPermiso);
+            return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
         }
     }
 }

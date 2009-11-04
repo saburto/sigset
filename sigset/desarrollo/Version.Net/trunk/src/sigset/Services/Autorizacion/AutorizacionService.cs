@@ -110,5 +110,17 @@ namespace Services.Autorizacion
         {
             return _repo.GetPermisoById(idPermiso);
         }
+
+
+        public PerfilPermiso GetPerfilPermisoById(decimal id)
+        {
+            return _repo.GetPerfilPermisoById(id);
+        }
+
+        public void ActualizarEstadoPerfilPermiso(PerfilPermiso perfilPermiso)
+        {
+            _repo.ActualizarEstadoPerfilPermiso(perfilPermiso);
+        }
+
     }
 }
