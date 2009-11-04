@@ -14,5 +14,13 @@
       <mvcSiteMapNode title="Buscar" controller="Cliente" action="Buscar" />
     </mvcSiteMapNode>
 
+    <mvcSiteMapNode title="Articulos" controller="Articulo" action="" >
+      <mvcSiteMapNode title="Crear" controller="Articulo" action="Crear" />
+      <mvcSiteMapNode title="Lista" controller="Articulo" action="Lista" />
+      <mvcSiteMapNode title="Buscar" controller="Articulo" action="Buscar" />
+    </mvcSiteMapNode>
+      
+      
+
   </mvcSiteMapNode>
 </siteMap>

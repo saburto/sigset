@@ -28,9 +28,12 @@ namespace Web.Controllers.OrdenTrabajo
 
         }
 
-        public ActionResult Buscar(decimal id)
+        public ActionResult Buscar(decimal? id)
         {
-            TempData["rutOrden"] = id;
+            if (id.HasValue)
+            {
+                TempData["rutOrden"] = id;
+            }
             return View();
         }
 

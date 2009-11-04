@@ -98,7 +98,7 @@ namespace Data.Repositorios.Usuarios
         }
         public Usuario FindEmpleadoByRut(decimal rut)
         {
-            return new Repositorios.Empleados.EmpleadoRepositorio().GetEmpleadoByRut(rut);
+            return _entities.Usuarios.Where(x => x.Rut == rut).FirstOrDefault();
         }
         public IQueryable<Usuario> GetTodosLosEmpleados()
         {

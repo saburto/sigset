@@ -192,5 +192,31 @@ namespace Web.Controllers.Admin
             TempData["imagen"] = filename;
             return View((object)filename);
         }
+
+        public RemoteValidationResult UsuarioExiste(Usuario usuario)
+        {
+            var usuarioExiste = _servicio.GetUsuariByNombre(usuario.User);
+            if (usuarioExiste == null)
+            {
+                return RemoteValidationResult.Success;
+            }
+            else
+            {
+                return RemoteValidationResult.Failure("Usuario ya existe");
+            }
+        }
+
+        public RemoteValidationResult RutExiste(Usuario usuario)
+        {
+            var usuarioExiste = _servicio.BuscarEmpleadoByRut(usuario.Rut);
+            if (usuarioExiste == null)
+            {
+                return RemoteValidationResult.Success;
+            }
+            else
+            {
+                return RemoteValidationResult.Failure("Rut ya existe");
+            }
+        }
     }
 }

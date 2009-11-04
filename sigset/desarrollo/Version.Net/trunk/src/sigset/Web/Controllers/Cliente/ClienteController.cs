@@ -167,7 +167,18 @@ namespace Web.Controllers
             return View(cliente);
         }
 
-
+        public RemoteValidationResult RutExiste(string Rut)
+        {
+            var existe = _serv.GetClientePorRut(decimal.Parse(Rut));
+            if (existe == null)
+            {
+                return RemoteValidationResult.Success;
+            }
+            else
+            {
+                return RemoteValidationResult.Failure("Cliente con rut ya existe");
+            }
+        }
         
         public ActionResult EncontrarRegiones(string q)
         {
