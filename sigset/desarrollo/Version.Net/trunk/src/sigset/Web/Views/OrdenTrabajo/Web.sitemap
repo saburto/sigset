@@ -3,7 +3,7 @@
   <mvcSiteMapNode title="Inicio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
 
     <mvcSiteMapNode title="Ordenes" controller="OrdenTrabajo" action="">
-      <mvcSiteMapNode title="Crear Orden" controller="OrdenTrabajo" action="Crear"  />
+      <mvcSiteMapNode title="Crear Orden" controller="OrdenTrabajo" action="Crear" isDynamic="false"  />
       <mvcSiteMapNode title="Consulta" controller="OrdenTrabajo" action="Consulta" />
       <mvcSiteMapNode title="Listar" controller="OrdenTrabajo" action="Listar" />  
     </mvcSiteMapNode>

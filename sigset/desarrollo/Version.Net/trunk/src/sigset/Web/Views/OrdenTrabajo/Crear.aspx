@@ -7,6 +7,15 @@
 </asp:Content>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+
+<%using (Html.BeginReady())
+  { %>
+  <%=Html.InitializeAutoComplete("Marca", "GetMarcas", "Articulo", false) %>
+  <%=Html.InitializeAutoComplete("TipoArticulo", "GetTipoArticulo", "Articulo", true)%>
+  <%=Html.InitializeAutoComplete("Categoria", "GetCategorias", "Articulo", true)%>
+  <%=Html.InitializeAutoComplete("Linea", "GetLineas", "Articulo", false)%>
+<%} %>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -17,22 +26,17 @@
       <% Html.RenderPartial("DatosCliente", Model.Cliente); %>
     <%} %>
     
+     <%= Html.ValidationSummary("Creación de articulo con errores.") %>
+    
+    <%using (Html.BeginForm()) { %>
+    
+    <%=Html.Hidden("IdCliente", Model.Cliente.Id) %>
+    <% Html.RenderPartial("../Articulo/CrearArticulo"); %>
+    
     <p>
-    <%=Html.ActionLink("Agregar Articulo", "Buscar", "Articulo", new {id=Model.Cliente.Id }, null)%>
+        <% =Html.ButtonSubmit("Guardar")%>
     </p>
     
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">
-
-<%--
-<ol>
-<li>
-    <%=Ajax.ActionLink("Buscar Cliente", "Buscar", "Cliente", new AjaxOptions { LoadingElementId = "loadingAjax", UpdateTargetId = "datosCliente", HttpMethod = "GET" })%>
-</li>
-<li>
-    <%=Ajax.ActionLink("Nuevo Cliente", "Crear", "Cliente", new AjaxOptions{ LoadingElementId="loadingAjax",UpdateTargetId="datosCliente", HttpMethod="GET"}) %>
-</li>
-</ol>
---%>
+    <%} %>
+    
 </asp:Content>
