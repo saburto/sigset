@@ -18,7 +18,7 @@
     <%} %>
     
     <p>
-    <%=Html.ActionLink("Agregar Articulo", "Buscar", "Articulo", new {id=Model.Cliente.Rut }, null)%>
+    <%=Html.ActionLink("Agregar Articulo", "Buscar", "Articulo", new {id=Model.Cliente.Id }, null)%>
     </p>
     
 </asp:Content>

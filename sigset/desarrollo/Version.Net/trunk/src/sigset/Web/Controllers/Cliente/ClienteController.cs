@@ -44,17 +44,23 @@ namespace Web.Controllers
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Buscar(decimal? Rut, string dv)
+        public ActionResult Buscar(string RutDisplay)
         {
             try
             {
-                if (Rut == null)
+                if (string.IsNullOrEmpty(RutDisplay) && !RutDisplay.Contains('-'))
                 {
-                    throw new Exception("Debe ingresar rut (12345678-0) sin puntos");
+                     return PartialView("Mensaje","Debe ingresar rut (12345678-0) sin puntos");
+                }
+                var dataRut = RutDisplay.Split('-');
+                decimal numeroRut;
+                
+
+                if(!decimal.TryParse(dataRut[0],out numeroRut)){
+                    return PartialView("Mensaje", "Debe ingresar rut (12345678-0) sin puntos");
                 }
 
-                decimal rut = Rut.Value;
-                Cliente cliente = _serv.GetClienteCompletoPorRut(rut, dv);
+                Cliente cliente = _serv.GetClienteCompletoPorRut(numeroRut, dataRut[1]);
                 if (cliente != null)
                 {
                     return PartialView("Detalles", cliente);
@@ -62,19 +68,19 @@ namespace Web.Controllers
                 else
                 {
                     string clienteNoEncontrado = "Cliente no encontrado. " + "<a href='" + Url.Action("Crear") + ">Agregar nuevo cliente</a>";
-                    return Content(clienteNoEncontrado);
+                    return PartialView("Mensaje", clienteNoEncontrado);
                 }
                 
             }
             catch (RulesException ex)
             {
                 string error = "<span class=" + HtmlHelper.ValidationMessageCssClassName + ">" + ex.Errors.FirstOrDefault().ErrorMessage + "</span>";
-                return Content(error);
+                return PartialView("Mensaje", error);
             }
             catch(Exception e)
             {
                 string error = "<span class=" + HtmlHelper.ValidationMessageCssClassName + ">" + e.Message + "</span>";
-                return Content(error);
+                return PartialView("Mensaje", error);
             }
             
         }
@@ -131,12 +137,11 @@ namespace Web.Controllers
         public ActionResult Editar(int id)
         {
             var cliente = _serv.GetClientePorId(id);
-            ViewData["dv"] = Services.Helpers.ValidarRut.GetDigitoVerificador(cliente.Rut());
             return View("Editar",cliente);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Editar(Cliente cliente, string rut, string dv,[Bind(Prefix="Dire")] Direccion direccion, [Bind(Exclude = "Rut", Prefix = "Email")] Contacto email, [Bind(Exclude = "Rut", Prefix = "Fono")] Contacto fono)
+        public ActionResult Editar(Cliente cliente,[Bind(Prefix="Dire")] Direccion direccion, [Bind(Prefix = "Email")] Contacto email, [Bind( Prefix = "Fono")] Contacto fono)
         {
             try
             {
@@ -151,7 +156,7 @@ namespace Web.Controllers
             {
                 ModelState.AddModelError("_FORM", ex.Message);
             }
-            ViewData["dv"] = dv;
+            
             direccion.Region1 = _serv.GetRegiones().Where(x => x.Id == direccion.Region).FirstOrDefault();
             direccion.Provincia1 = _serv.GetProvinciasByRegion(direccion.Region).Where(x => x.Id == direccion.Provincia).FirstOrDefault();
             direccion.Comuna1 = _serv.GetComunasByProvincia(direccion.Provincia).Where(x => x.Id == direccion.Comuna).FirstOrDefault();

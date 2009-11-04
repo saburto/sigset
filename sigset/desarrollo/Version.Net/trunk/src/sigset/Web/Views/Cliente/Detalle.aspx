@@ -8,9 +8,6 @@
 <%Html.RenderPartial("Detalles", Model); %>
 <div class="clear"></div>
 <br />
-    <p>
-        <%=Html.ActionLink("Volver a la lista", "Lista") %>
-    </p>
 
 </asp:Content>
 

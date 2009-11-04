@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Data.Modelo;
+using Data.Modelo.Enums;
 
 namespace Data.Repositorios.Clientes
 {
@@ -70,8 +71,14 @@ namespace Data.Repositorios.Clientes
         
         public void EditarDireccionCliente(Direccion direccion)
         {
-            _ent.Direccions.Attach(direccion, true);
-            //_ent.SubmitChanges();
+            var direccionOriginal = _ent.Direccions.Where(x => x.Id == direccion.Id).FirstOrDefault();
+            direccionOriginal.Calle = direccion.Calle;
+            direccionOriginal.Comuna = direccion.Comuna;
+            direccionOriginal.Numero = direccion.Numero;
+            direccionOriginal.Provincia = direccion.Provincia;
+            direccionOriginal.Region = direccion.Region;
+            
+
         }
 
         public IQueryable<TipoDireccion> GetTiposDireccion()
@@ -156,12 +163,30 @@ namespace Data.Repositorios.Clientes
 
         public void EditarCliente(Cliente cliente)
         {
-            _ent.Clientes.Attach(cliente, true);
+            var clienteOriginal = _ent.Clientes.Where(x => x.Id == cliente.Id).FirstOrDefault();
+            clienteOriginal.Observacion = cliente.Observacion;
+
+            if (cliente.TipoCliente == (int) TipoClientes.ClienteParticular)
+            {
+                var clienteParticularOriginal = _ent.ClienteParticulars.Where(x => x.Id == cliente.Id).FirstOrDefault();
+                clienteParticularOriginal.ApellidoMaterno = cliente.ClienteParticular.ApellidoMaterno;
+                clienteParticularOriginal.ApellidoPaterno = cliente.ClienteParticular.ApellidoPaterno;
+                clienteParticularOriginal.Nombre = cliente.ClienteParticular.Nombre;
+                clienteOriginal.ClienteParticular = clienteParticularOriginal;
+            }
+            else if (cliente.TipoCliente == (int)TipoClientes.ClienteComercial)
+            {
+                var clienteComercialOriginal = _ent.ClienteComercials.Where(x => x.Id == cliente.Id).FirstOrDefault();
+                clienteComercialOriginal.RazonSocial = cliente.ClienteComercial.RazonSocial;
+                clienteComercialOriginal.Sucursal = cliente.ClienteComercial.Sucursal;
+                clienteOriginal.ClienteComercial = clienteComercialOriginal;
+            }
+
         }
 
 
 
-        #region IClienteRepositorio Members
+ 
 
 
         public IQueryable<Cliente> GetClientes()
@@ -169,16 +194,14 @@ namespace Data.Repositorios.Clientes
             return _ent.Clientes;
         }
 
-        #endregion
-
-        #region IClienteRepositorio Members
+    
 
 
         public void EditarContactoCliente(Contacto contactoNuevo)
         {
-            _ent.Contactos.Attach(contactoNuevo,true);
+            var contactoOriginal = _ent.Contactos.Where(x => x.Id == contactoNuevo.Id).FirstOrDefault();
+            contactoOriginal.ValorContacto = contactoNuevo.ValorContacto;
         }
 
-        #endregion
     }
 }

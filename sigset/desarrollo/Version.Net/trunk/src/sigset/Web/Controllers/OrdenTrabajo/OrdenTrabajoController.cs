@@ -46,12 +46,12 @@ namespace Web.Controllers
         }
 
 
-        public ActionResult Crear(decimal? rut)
+        public ActionResult Crear(int? id)
         {
-            if (rut.HasValue)
+            if (id.HasValue)
             {
                 var orden = new Data.Modelo.OrdenTrabajo();
-                orden.Cliente = _srvCliente.GetClientePorRut(rut.Value);
+                orden.Cliente = _srvCliente.GetClientePorId(id.Value);
                 return View(orden);                
             }
             return RedirectToRoute(new { action = "Buscar", controller = "Cliente", id = "" });

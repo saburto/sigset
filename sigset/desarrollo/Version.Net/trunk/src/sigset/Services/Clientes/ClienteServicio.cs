@@ -60,7 +60,46 @@ namespace Services.Clientes
             }
         }
 
+        public void EditarCliente(Cliente cliente, Direccion direccion, Contacto email, Contacto fono)
+        {
+            IList<ErrorInfo> errores = new List<ErrorInfo>();
+            ValidacionCliente validarCliente = new ValidacionCliente(cliente, cliente.Rut().ToString(), ValidarRut.GetDigitoVerificador(cliente.Rut()), errores);
+            ValidarDireccion(direccion, errores);
+            ValidarEmail(email, errores);
 
+            if (validarCliente.esValido() && !errores.Any())
+            {
+                _repo.EditarDireccionCliente(direccion);
+                _repo.EditarContactoCliente(email);
+                _repo.EditarContactoCliente(fono);
+                _repo.EditarCliente(cliente);
+                _repo.SaveChanges();
+            }
+            else
+            {
+                throw new RulesException(errores);
+            }
+
+
+            //direccion.Rut = cliente.Rut;
+            //List<ErrorInfo> _errors = new List<ErrorInfo>();
+            //ValidarDireccion(direccion.Rut, direccion, direccion.Tipo_Direccion, _errors);
+            //email.Rut = cliente.Rut;
+            //fono.Rut = cliente.Rut;
+
+            //ValidarEmail(email.Rut,email,email.Tipo_Contacto.Value,_errors);
+            //ValidarContacto(fono.Rut, fono, fono.Tipo_Contacto.Value, _errors, "Fono");
+            //ValidarCliente(cliente, _errors);
+            //if (_errors.Any())
+            //{
+            //    throw new RulesException(_errors);
+            //}
+
+            //_repo.EditarDireccionCliente(direccion);
+            //_repo.EditarContactoCliente(email);
+            //_repo.EditarCliente(cliente);
+            //_repo.SaveChanges();
+        }
 
         private int CrearNuevoCliente(Cliente clienteNuevo, Direccion direccion, Contacto email, Contacto telefono)
         {
@@ -259,29 +298,12 @@ namespace Services.Clientes
         public Cliente GetClienteCompletoPorRut(decimal Rut, string dv)
         {
             var clienteEncontrado = GetClientePorRut(Rut, dv);
-            var direcciones = _repo.GetDireccionesByRutCliente(Rut);
-            var contactos = _repo.GetContactosByIdCliente(Rut);
-            clienteEncontrado.Direccion = direcciones;
-
-            foreach (var c in contactos)
-            {
-                clienteEncontrado.Contactos.Add(c);
-            }
+ 
             return clienteEncontrado;
         }
 
-        public void EditarCliente(Cliente cliente)
-        {
-            List<ErrorInfo> _errors = new List<ErrorInfo>();
-            DataValidation.GetErrors(cliente, _errors);
-            if (_errors.Any())
-            {
-                throw new RulesException(_errors);
-            }
-            _repo.EditarCliente(cliente);
-        }
 
-        #region IClienteServicio Members
+
 
 
         public IList<Cliente> GetClientes()
@@ -289,34 +311,11 @@ namespace Services.Clientes
             return _repo.GetClientes().ToList();
         }
 
-        #endregion
-
-        #region IClienteServicio Members
 
 
-        public void EditarCliente(Cliente cliente, Direccion direccion, Contacto email, Contacto fono)
-        {
+     
 
-            throw new NotImplementedException();
-            //direccion.Rut = cliente.Rut;
-            //List<ErrorInfo> _errors = new List<ErrorInfo>();
-            //ValidarDireccion(direccion.Rut, direccion, direccion.Tipo_Direccion, _errors);
-            //email.Rut = cliente.Rut;
-            //fono.Rut = cliente.Rut;
-
-            //ValidarEmail(email.Rut,email,email.Tipo_Contacto.Value,_errors);
-            //ValidarContacto(fono.Rut, fono, fono.Tipo_Contacto.Value, _errors, "Fono");
-            //ValidarCliente(cliente, _errors);
-            //if (_errors.Any())
-            //{
-            //    throw new RulesException(_errors);
-            //}
-
-            //_repo.EditarDireccionCliente(direccion);
-            //_repo.EditarContactoCliente(email);
-            //_repo.EditarCliente(cliente);
-            //_repo.SaveChanges();
-        }
+ 
 
         private void ValidarEmail(Contacto email, IList<ErrorInfo> _errors)
         {
@@ -329,16 +328,10 @@ namespace Services.Clientes
             }
         }
 
-        #endregion
-
-
-
-        #region IClienteServicio Members
 
 
 
 
-        #endregion
 
         
         

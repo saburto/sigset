@@ -15,3 +15,17 @@ namespace Web.Helpers
       
     }
 }
+
+namespace Helpers
+{
+    public static class StringHelpers
+    {
+        public static bool isNotNull(this string str)
+        {
+            return !string.IsNullOrEmpty(str);
+        }
+      
+    }
+}
+
+
