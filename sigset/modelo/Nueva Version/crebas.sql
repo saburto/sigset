@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     03-11-2009 15:31:34                          */
+/* Created on:     04-11-2009 16:34:18                          */
 /*==============================================================*/
 
 
@@ -484,7 +484,7 @@ go
 /* Table: Articulo                                              */
 /*==============================================================*/
 create table Articulo (
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    Modelo               varchar(50)          not null,
    Observacion          nvarchar(255)        null,
    Marca                numeric(18, 0)       not null,
