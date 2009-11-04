@@ -19,7 +19,7 @@
     <%= Html.Encode(Model.ClienteComercial.RazonSocial) %>
     <% if (!string.IsNullOrEmpty(Model.ClienteComercial.Sucursal))
        { %>
-    |
+     Sucursal:
     <%= Html.Encode(Model.ClienteComercial.Sucursal) %>
     <%} %>
 </p>
@@ -46,8 +46,12 @@
 </div>
 <div class="clear">
 </div>
+
+<%if(Model.Observacion.isNotNull()){ %>
 <h2>Observaciones</h2>
 <p><%=Html.Encode(Model.Observacion) %></p>
+<%} %>
+
 <br />
 <p>
     <%= Html.ButtonLinkIcon(Url.Action("Editar", new { id = Model.Id }), "Editar", Iconos.pencil, IconPosition.left, new { title="Editar información de cliente"})%>
