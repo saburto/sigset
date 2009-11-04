@@ -90,7 +90,7 @@
                 <%= Html.Encode(item.Activo ? "Activo":"Desactivado") %>
             </td>
             <th scope="row">
-                <%= Html.ButtonLinkIcon(Url.Action("Permiso", new { id = item.Id }), "Permisos", Iconos.locked, IconPosition.solo, new { onclick = "return eliminar(this);", title="Permisos Usuario" })%>
+                <%= Html.ButtonLinkIcon(Url.Action("AgregarPermisoUsuario","Permisos", new { idUsuario = item.Id }), "Permisos", Iconos.locked, IconPosition.solo, new { title="Permisos Usuario" })%>
             </th>
         </tr>
     

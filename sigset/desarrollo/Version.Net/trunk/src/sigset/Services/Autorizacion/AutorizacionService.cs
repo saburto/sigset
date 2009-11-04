@@ -122,5 +122,15 @@ namespace Services.Autorizacion
             _repo.ActualizarEstadoPerfilPermiso(perfilPermiso);
         }
 
+        public IList<UsuarioPermiso> GetUsuariosPermisos(decimal idUsuario)
+        { 
+            return _repo.GetUsuariosPermisos(idUsuario).ToList();
+        }
+
+        public IList<PerfilPermiso> GetPerfilPermisoByIdUsuario(decimal idUsuario)
+        {
+           return _repo.GetPerfilPermisoByIdUsuario(idUsuario).ToList();
+        }
+
     }
 }
