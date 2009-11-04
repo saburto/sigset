@@ -77,7 +77,7 @@ GO
 
 
 INSERT INTO TipoContacto(IdTipoContacto, Descripcion)
-  VALUES(1, 'Telefono Casa')
+  VALUES(1, 'Telefono')
 GO
 INSERT INTO TipoContacto(IdTipoContacto, Descripcion)
   VALUES(2, 'Celular')
