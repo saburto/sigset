@@ -59,7 +59,7 @@ namespace Web.Controllers.Admin
         public ActionResult Agregar(decimal id, decimal perfil)
         {
             servAut.AgregarPermisoAPerfil(id, perfil);
-            return RedirectToAction("PerfilesPermisos", new { id = perfil });
+            return RedirectToAction("AgregarPermiso", new { id = perfil });
         }
 
         public ActionResult QuitarPerfilPermiso(decimal idPermiso, decimal idPerfil)

@@ -45,7 +45,7 @@ namespace Web.Controllers
             return View();
         }
 
-
+        [Authorize(Roles = "ordenes_crear")]
         public ActionResult Crear(int? id)
         {
             if (id.HasValue)
@@ -123,11 +123,13 @@ namespace Web.Controllers
             return View(ot);
         }
 
+        [Authorize(Roles="ordenes_consulta")]
         public ActionResult Consulta()
         {
             return View();
         }
 
+        [Authorize(Roles = "ordenes_consulta")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Consulta(decimal? Id, decimal? Rut, string dv)
         {
