@@ -54,7 +54,7 @@ namespace Web.Controllers
                 orden.Cliente = _srvCliente.GetClientePorId(id.Value);
                 return View(orden);                
             }
-            return RedirectToRoute(new { action = "Buscar", controller = "Cliente", id = "" });
+            return RedirectToRoute(new { action = "Crear", controller = "Cliente", id = "" });
         }
 
         /// <summary>

@@ -14,6 +14,15 @@
     <script type="text/javascript">
         $(function() {
 
+        $("#resultado").dialog({
+            bgiframe: true,
+            modal: true,
+            autoOpen: false,
+            height: 500,
+            width: 500
+
+        });
+
         $("#datosParticular input").removeAttr("disabled");
         $("#datosComercial input").attr("disabled", "disabled");
         
@@ -43,7 +52,30 @@
                 }
             });
         });
+
+
+        function buscarCliente(link) {
+            if ($("#RutDisplay").valid()) {
+
+                $("#loadingAjax").show();
+                $("#resultado").load(link.href, $("#RutDisplay"), abrirVentana);
+            }
+            return false;
+        }
+
+        function abrirVentana() {
+            $("#loadingAjax").hide();
+            $('#resultado').dialog('open');
+        }
+        
     </script>
+    <style type="text/css">
+        #RutDisplay, #Rut, #dv
+        {
+            display:inline !important;
+        }
+    
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -57,7 +89,12 @@
                 <label for="Rut">
                     Rut:</label>
                 <%= Html.RutTextBox() %>
-                <%= Html.ValidationMessage("Rut", "*")%>
+            
+                    <%= Html.ValidationMessage("Rut", "*")%>
+                    <div style="font-size:50%; display:inline !important; float:right;width:46%;position:relative;">
+                    <%= Html.ButtonLinkIcon(Url.Action("Buscar"), "Buscar", Iconos.search, IconPosition.solo, new { onclick = "return buscarCliente(this)" })%>
+                    </div>
+            
             </div>
             
             <div class="three-column-middle">
@@ -191,4 +228,5 @@
     <%=Html.ClientSideValidation("ClienteParticular", typeof(Data.Modelo.ClienteParticular)) %>
     <%=Html.ClientSideValidation("ClienteComercial", typeof(Data.Modelo.ClienteComercial))%>
     
+    <div id="resultado"  style="display:none" title="Resultado"></div>
 </asp:Content>
