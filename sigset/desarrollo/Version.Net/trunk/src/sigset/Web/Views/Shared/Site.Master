@@ -96,7 +96,7 @@
         $(function() {
 
         $("#accordion").accordion({
-			fillSpace: true
+			fillSpace: false
 		});
 
 

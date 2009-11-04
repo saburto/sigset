@@ -1,5 +1,6 @@
 ﻿using System;
 using Data.Modelo;
+using System.Collections.Generic;
 namespace Services.Articulos
 {
     public interface IArticuloServicio
@@ -21,5 +22,7 @@ namespace Services.Articulos
         Articulo GetArticuloPorModeloMarca(string Modelo, string Marca);
 
         Articulo GetArticulo(decimal id);
+
+        IList<Data.Modelo.Articulo> GetArticulos();
     }
 }

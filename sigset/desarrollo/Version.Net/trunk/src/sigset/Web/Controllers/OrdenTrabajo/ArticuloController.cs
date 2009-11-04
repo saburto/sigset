@@ -66,23 +66,21 @@ namespace Web.Controllers.OrdenTrabajo
            return View("Detalles",_srv.GetArticulo(id));
         }
 
-        public ActionResult Crear(int id)
+        public ActionResult Crear()
         {
-            TempData["rutOrden"] = id;
-            ViewData["Lista_PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("Id_PrecioGarantia", "ValorRevision",null,"${0}");
+            ViewData["Lista_PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision",null,"${0}");
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,PrecioGarantia")]Articulo articulo, string Lista_PrecioGarantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, string Rut)
+        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,PrecioGarantia")]Articulo articulo, string Lista_PrecioGarantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT)
         {
-            TempData["rutOrden"] = Rut;
             try
             {
                 Marca = string.IsNullOrEmpty(Marca) ? Marca_DISPLAY_TEXT : Marca;
                 Linea = string.IsNullOrEmpty(Linea) ? Linea_DISPLAY_TEXT : Linea;
                 Articulo art = _srv.CrearArticulo(articulo, Lista_PrecioGarantia, Marca, Linea);
-                return RedirectToRoute(new { controller = "OrdenTrabajo", action = "CrearDetalle", id = art.Id, rut = TempData["rutOrden"] });
+                return RedirectToAction("Lista");
             }
             catch (RulesException ex)
             {
@@ -92,10 +90,14 @@ namespace Web.Controllers.OrdenTrabajo
             {
                 ModelState.AddModelError("_FORM", ex.Message);
             }
-            ViewData["Lista_PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("Id_PrecioGarantia", "ValorRevision", null, "${0}");
-            return View();
+            return Crear();
         }
 
+        public ActionResult Lista()
+        {
+            var articulos = _srv.GetArticulos();
+            return View(articulos);
+        }
 
         public ActionResult GetMarcas(string q)
         {
@@ -105,13 +107,13 @@ namespace Web.Controllers.OrdenTrabajo
 
         public ActionResult GetTipoArticulo(string q)
         {
-            var tipoArticuloJson = _srv.GetTipoArticulos(q).ToAutoCompleteJson("Id_TipoArticulo", "Descripcion");
+            var tipoArticuloJson = _srv.GetTipoArticulos(q).ToAutoCompleteJson("IdTipoArticulo", "Descripcion");
             return Json(tipoArticuloJson);
         }
 
         public ActionResult GetCategorias(string q)
         {
-            var categoriaJson = _srv.GetCategoria(q).ToAutoCompleteJson("Id_Categoria", "Descripcion");
+            var categoriaJson = _srv.GetCategoria(q).ToAutoCompleteJson("IdCategoria", "Descripcion");
             return Json(categoriaJson);
         }
 

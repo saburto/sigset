@@ -45,16 +45,41 @@ namespace Web.Controllers
             return View();
         }
 
-        [Authorize(Roles = "ordenes_crear")]
+        //[Authorize(Roles = "ordenes_crear")]
         public ActionResult Crear(int? id)
         {
             if (id.HasValue)
             {
                 var orden = new Data.Modelo.OrdenTrabajo();
                 orden.Cliente = _srvCliente.GetClientePorId(id.Value);
+
+                ViewData["Lista_PrecioGarantia"] = _srvArticulo.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
+
                 return View(orden);                
             }
             return RedirectToRoute(new { action = "Crear", controller = "Cliente", id = "" });
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,PrecioGarantia")]Articulo articulo,
+            string Lista_PrecioGarantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, int IdCliente)
+        {
+            try
+            {
+                Marca = string.IsNullOrEmpty(Marca) ? Marca_DISPLAY_TEXT : Marca;
+                Linea = string.IsNullOrEmpty(Linea) ? Linea_DISPLAY_TEXT : Linea;
+                Articulo art = _srvArticulo.CrearArticulo(articulo, Lista_PrecioGarantia, Marca, Linea);
+                return RedirectToRoute(new { controller = "OrdenTrabajo", action = "CrearDetalle", id = art.Id, idCliente = IdCliente });
+            }
+            catch (RulesException ex)
+            {
+                ModelState.AddRuleErrors(ex.Errors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("_FORM", ex.Message);
+            }
+            return Crear(IdCliente);
         }
 
         /// <summary>
@@ -62,10 +87,10 @@ namespace Web.Controllers
         /// </summary>
         /// <param name="id">Id de articulo</param>
         /// <returns></returns>
-        public ActionResult CrearDetalle(decimal id, decimal rut)
+        public ActionResult CrearDetalle(decimal id, int idCliente)
         {
-            ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
-            Cliente cliente = _srvCliente.GetClientePorRut(rut);
+            ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
+            Cliente cliente = _srvCliente.GetClientePorId(idCliente);
             Data.Modelo.OrdenTrabajo ot = new Data.Modelo.OrdenTrabajo();
             ot.Cliente = cliente;
             
@@ -129,7 +154,7 @@ namespace Web.Controllers
             return View();
         }
 
-        [Authorize(Roles = "ordenes_consulta")]
+        //[Authorize(Roles = "ordenes_consulta")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Consulta(decimal? Id, decimal? Rut, string dv)
         {

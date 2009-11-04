@@ -175,5 +175,13 @@ namespace Services.Articulos
             return _rep.GetArticuloPorModeloMarca(Modelo, Marca);
         }
 
+
+
+        public IList<Articulo> GetArticulos()
+        {
+            Data.Repositorios.RepoGenerico<Articulo> repositorio = new Data.Repositorios.RepoGenerico<Articulo>();
+            return repositorio.GetAll().ToList();
+        }
+
     }
 }
