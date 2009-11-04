@@ -12,6 +12,8 @@
   <%=Html.InitializeAutoComplete("Categoria", "GetCategorias", "Articulo", true)%>
   <%=Html.InitializeAutoComplete("Linea", "GetLineas", "Articulo", false)%>
 <%} %>
+
+<%=Html.ClientSideValidation("",typeof(Data.Modelo.Articulo)) %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
