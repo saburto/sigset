@@ -30,5 +30,7 @@ namespace Data.Repositorios.Usuarios
         global::Data.Modelo.PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil);
         void ActualizarEstadoPerfilPermiso(global::Data.Modelo.PerfilPermiso perfilPermiso);
         global::Data.Modelo.PerfilPermiso GetPerfilPermisoById(decimal id);
+        System.Linq.IQueryable<UsuarioPermiso> GetUsuariosPermisos(decimal idUsuario);
+        System.Linq.IQueryable<PerfilPermiso> GetPerfilPermisoByIdUsuario(decimal idUsuario);
     }
 }

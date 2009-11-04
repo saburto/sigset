@@ -173,6 +173,17 @@ namespace Data.Repositorios.Usuarios
             _entities.SubmitChanges();
         }
 
+        public IQueryable<UsuarioPermiso> GetUsuariosPermisos(decimal idUsuario)
+        {
+            return _entities.UsuarioPermisos.Where(x => x.IdUsuario == idUsuario); 
+        }
+
+        public IQueryable<PerfilPermiso> GetPerfilPermisoByIdUsuario(decimal idUsuario)
+        { 
+            var usuarioPerfil = _entities.Usuarios.Where(x => x.Id == idUsuario).FirstOrDefault();
+            return _entities.PerfilPermisos.Where(x => x.IdPerfil == usuarioPerfil.Perfil.Id);     
+        }
+
         #endregion
     }
 }

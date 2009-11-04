@@ -8,6 +8,7 @@ using System.Reflection;
 using Web.Helpers;
 using Helpers;
 using Data.Modelo;
+using Web.ViewModel;
 
 namespace Web.Controllers.Admin
 {
@@ -83,6 +84,14 @@ namespace Web.Controllers.Admin
             var perfilPermiso = servAut.GetPerfilPermisoById(idPerfilPermiso);
             servAut.ActualizarEstadoPerfilPermiso(perfilPermiso);
             return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
+        }
+
+        public ActionResult AgregarPermisoUsuario(decimal idUsuario)
+        {
+            PermisosUsuariosView permisosUsuario = new PermisosUsuariosView();
+            permisosUsuario.ListaUsuarioPermiso = servAut.GetUsuariosPermisos(idUsuario);
+            permisosUsuario.ListaPerfilPermiso = servAut.GetPerfilPermisoByIdUsuario(idUsuario);
+            return View(permisosUsuario);
         }
     }
 }
