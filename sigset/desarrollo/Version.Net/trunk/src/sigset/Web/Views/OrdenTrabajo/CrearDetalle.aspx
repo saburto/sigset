@@ -45,14 +45,14 @@
     );
       
   <%} %>
+  
 
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Orden de trabajo</h2>
-    <p>Fecha de Ingreso: <%=DateTime.Now.ToShortDateString()%></p>
+    <h2>Crear Orden de Trabajo</h2>
    <%if (Model != null && Model.Cliente != null)
    { %>
       <% Html.RenderPartial("DatosCliente", Model.Cliente); %>
@@ -79,12 +79,12 @@
 
             <p>
                 <label for="Falla">Falla Articulo:</label>
-                <%= Html.TextArea("Falla", new { cols="60", rows="4" })%>
+                <%= Html.TextArea("Falla", new { rows = "4", style = "width:100%" })%>
                 <%= Html.ValidationMessage("Falla", "*") %>
             </p>
             <p>
                 <label for="Condicion Articulo">Condicion Articulo:</label>
-                <%= Html.TextArea("Condicion_Articulo", new { cols = "60", rows = "4" })%>
+                <%= Html.TextArea("Condicion_Articulo", new { rows = "4", style="width:100%"})%>
                 <%= Html.ValidationMessage("Condicion_Articulo", "*") %>
             </p>
 
@@ -111,7 +111,9 @@
                 <div class="three-column-right">
                 <p>
                 <label for="Fecha_Compra">Fecha Compra:</label>
+                
                 <%= Html.TextBox("Fecha_Compra") %>
+                
                 <%= Html.ValidationMessage("Fecha_Compra", "*") %>
                 <label for="Lugar_Compra">Lugar Compra:</label>
                 <%= Html.TextBox("Lugar_Compra") %>
@@ -126,10 +128,10 @@
                 <%= Html.TextBox("FechaEntrega", Model.FechaEntrega.ToShortDateString()) %>
                 <%= Html.ValidationMessage("FechaEntrega", "*") %>
             </p>
-            <p>
-                <input type="submit" class="button-big" value="Guardar" />
-            </p>
         </fieldset>
+        <p>
+            <%=Html.ButtonSubmit("Guardar") %>
+        </p>
 
     <% } %>
 </asp:Content>
