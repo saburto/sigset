@@ -1,7 +1,8 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Data.Modelo.Articulo>" %>
 
-<h2>Articulo</h2>
-<div class="three-column-container">
+<fieldset>
+<legend>Articulo</legend>
+<div class="three-column-container" style="font-size:75%;">
        <div class="three-column-left">            
        <p>
          <span style="font-weight:bold">Modelo:</span>
@@ -37,3 +38,4 @@
        </div> 
 </div>
 <div class="clear"></div>       
+</fieldset>

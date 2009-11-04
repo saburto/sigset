@@ -6,12 +6,12 @@
             <p>
                 
     <%if(Model.TipoCliente == (int) Data.Modelo.Enums.TipoClientes.ClienteParticular){ %>
-        Nombre:<br />
+       <span style="font-weight:bold">Nombre:</span><br />
        <%= Html.Encode(Model.ClienteParticular.Nombre) %> <%= Html.Encode(Model.ClienteParticular.ApellidoPaterno) %> <%= Html.Encode(Model.ClienteParticular.ApellidoMaterno) %>
     <%}
       else if (Model.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteComercial)
       { %>
-        Raz&oacute;n Social:<br />
+       <span style="font-weight:bold">Raz&oacute;n Social:</span><br />
         <%= Html.Encode(Model.ClienteComercial.RazonSocial) %>
         <%if(Model.ClienteComercial.Sucursal.isNotNull()){ %>
         <br />
@@ -22,7 +22,7 @@
         </div>
         <div class="two-column-right">
             <p>
-                Rut :
+                 <span style="font-weight:bold">Rut :</span>
                 <br />
                 <%if(Model.TipoCliente == (int) Data.Modelo.Enums.TipoClientes.ClienteParticular){ %>
                     <%= Html.Encode(String.Format("{0}", Model.ClienteParticular.Rut.GetRutCompleto())) %>
