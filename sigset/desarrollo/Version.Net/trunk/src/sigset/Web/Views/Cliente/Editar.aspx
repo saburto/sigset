@@ -42,6 +42,7 @@
             <div class="clear">
             </div>
         </div>
+        <%=Html.Hidden("TipoCliente", Model.TipoCliente) %>
         <%if (Model.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteParticular)
           {%>
         <div class="three-column-container">
@@ -50,6 +51,7 @@
                     Nombre:</label>
                 <%= Html.TextBox("ClienteParticular.Nombre", Model.ClienteParticular.Nombre, new { title="Nombre de cliente" })%>
                 <%= Html.ValidationMessage("ClienteParticular.Nombre", "*")%>
+                <%=Html.Hidden("ClienteParticular.Rut", Model.ClienteParticular.Rut)%>
             </div>
             <div class="three-column-middle">
                 <label for="ApellidoPaterno">
@@ -60,7 +62,7 @@
             <div class="three-column-right">
                 <label for="ApellidoMaterno">
                     Apellido Materno:</label>
-                <%= Html.TextBox("ClienteParticular.ApellidoMaterno", Model.ClienteParticular.ApellidoPaterno, new { title = "Apellido materno de cliente" })%>
+                <%= Html.TextBox("ClienteParticular.ApellidoMaterno", Model.ClienteParticular.ApellidoMaterno, new { title = "Apellido materno de cliente" })%>
                 <%= Html.ValidationMessage("ClienteParticular.ApellidoMaterno", "*")%>
             </div>
         </div>
@@ -73,6 +75,7 @@
                     Raz&oacute;n Social:</label>
                 <%= Html.TextBox("ClienteComercial.RazonSocial", Model.ClienteComercial.RazonSocial, new { title="Nombre o razón social de la empresa" })%>
                 <%= Html.ValidationMessage("ClienteComercial.RazonSocial", "*")%>
+                <%= Html.Hidden("ClienteComercial.Rut", Model.ClienteComercial.Rut)%>
             </div>
             <div class="three-column-middle">
                 <label for="ClienteComercial.Sucursal">
@@ -184,6 +187,7 @@
     <fieldset>
         <legend>Observaciones</legend>
         <%=Html.TextArea("Observacion",Model.Observacion, new { style = "width: 100%", title="Información adicional de cliente"})%>
+        <br />
         <br />
     </fieldset>
     <p style="float: left">

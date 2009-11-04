@@ -69,7 +69,7 @@
                     </td>            
             <%} %>
             <td>
-                <%=Html.ActionLink("Agregar", "Crear", "OrdenTrabajo", new { rut = item.Id }, null)%>
+              <%= Html.ButtonLinkIcon(Url.Action("Crear","OrdenTrabajo", new {id = item.Id }),"Agregar Orden Trabajo",Iconos.circle_plus,IconPosition.solo,new{title="Agregar Nueva Orden de trabajo"})  %>
             </td>
         </tr>
     
@@ -93,7 +93,7 @@
                 bgiframe: true,
                 modal: true,
                 autoOpen: false,
-                height: 400,
+                height: 500,
                 width:500
 
             });

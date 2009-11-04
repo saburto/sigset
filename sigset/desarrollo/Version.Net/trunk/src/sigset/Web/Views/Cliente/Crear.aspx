@@ -177,6 +177,7 @@
         <legend>Observaciones</legend>
         <%=Html.TextArea("Observacion", new { style = "width: 100%", title="Información adicional de cliente"})%>
         <br />
+        <br />
     </fieldset>
     <p>
         <%=Html.ButtonSubmit("Grabar") %>
