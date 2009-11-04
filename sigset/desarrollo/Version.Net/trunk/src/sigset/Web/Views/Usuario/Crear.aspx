@@ -113,7 +113,11 @@
         <%=Html.ButtonSubmit("Crear") %>
     </p>
     <% } %>
-    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Usuario)) %>
+    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Usuario))
+        .AddRule("User", new xVal.Rules.RemoteRule(Url.Action("UsuarioExiste")))
+        .AddRule("Rut", new xVal.Rules.RemoteRule(Url.Action("RutExiste")))
+            
+            %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">
 </asp:Content>

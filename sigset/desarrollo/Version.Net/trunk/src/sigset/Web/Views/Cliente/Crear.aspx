@@ -184,11 +184,11 @@
     </p>
     <% } %>
     
-    <%=Html.ClientSideValidation("",typeof(Data.Modelo.Cliente)) %>
+    <%=Html.ClientSideValidation("", typeof(Data.Modelo.Cliente)).AddRule("Rut", new xVal.Rules.RemoteRule(Url.Action("RutExiste")))%>
     <%=Html.ClientSideValidation("",typeof(Data.Modelo.Direccion)) %>
     <%=Html.ClientSideValidation("Email", typeof(Data.Modelo.Contacto))%>
     <%=Html.ClientSideValidation("Fono",typeof(Data.Modelo.Contacto)) %>
-    <%=Html.ClientSideValidation("ClienteParticular", typeof(Data.Modelo.ClienteParticular))%>
+    <%=Html.ClientSideValidation("ClienteParticular", typeof(Data.Modelo.ClienteParticular)) %>
     <%=Html.ClientSideValidation("ClienteComercial", typeof(Data.Modelo.ClienteComercial))%>
     
 </asp:Content>
