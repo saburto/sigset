@@ -48,11 +48,10 @@
                 <%}%>
                 <td>
                     <%=Html.ButtonLinkIcon(Url.Action("QuitarPerfilPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
-                    <%--=Html.ButtonLinkIcon(Url.Action("DetallesPermisos", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Detalles", Iconos.bookmark, IconPosition.solo, new { title = "Detalles Permiso" })--%>
-                    
+                                          
                     <%=Html.ButtonLinkIcon(Url.Action("DetallesPermisos","Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Ver", Iconos.zoomin, IconPosition.solo, new { title = "Detalles Permiso", onclick = "Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: 'GET', loadingElementId: 'loadingAjax', updateTargetId: 'detallePermiso', onComplete: Function.createDelegate(this, abrirVentana) });" })%>
                     
-                    <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
+                    <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPerfilPermiso = item.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                 </td>
                 <td>
                     <%= Html.Encode(item.Estado) %>

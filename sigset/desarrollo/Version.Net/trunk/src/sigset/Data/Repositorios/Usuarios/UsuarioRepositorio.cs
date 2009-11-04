@@ -160,6 +160,19 @@ namespace Data.Repositorios.Usuarios
                       
         }
 
+        public PerfilPermiso GetPerfilPermisoById(decimal id)
+        {
+           return  _entities.PerfilPermisos.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public void ActualizarEstadoPerfilPermiso(PerfilPermiso perfilPermiso)
+        {
+            var nuevoPerfilPermiso = GetPerfilPermisoById(perfilPermiso.Id);
+            nuevoPerfilPermiso.Estado = !perfilPermiso.Estado;
+            nuevoPerfilPermiso = perfilPermiso;
+            _entities.SubmitChanges();
+        }
+
         #endregion
     }
 }

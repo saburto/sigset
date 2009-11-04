@@ -18,5 +18,7 @@ namespace Services.Autorizacion
         void EliminarPerfilPermiso(decimal idPermiso, decimal idPerfi);
         PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil);
         Permiso GetPermisoById(decimal idPermiso);
+        PerfilPermiso GetPerfilPermisoById(decimal id);
+        void ActualizarEstadoPerfilPermiso(PerfilPermiso perfilPermiso);
     }
 }

@@ -28,6 +28,7 @@ namespace Data.Repositorios.Usuarios
         void AddPerfilPermiso(global::Data.Modelo.PerfilPermiso perfilPermiso);
         void DeletePerfilPermiso(PerfilPermiso perfilPermiso);
         global::Data.Modelo.PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil);
-    
+        void ActualizarEstadoPerfilPermiso(global::Data.Modelo.PerfilPermiso perfilPermiso);
+        global::Data.Modelo.PerfilPermiso GetPerfilPermisoById(decimal id);
     }
 }
