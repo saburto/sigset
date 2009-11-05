@@ -3244,7 +3244,7 @@ CARD 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o82">
 <a:CreationDate>1256420390</a:CreationDate>
 <a:ModificationDate>1256934432</a:ModificationDate>
-<a:Rect>((-10393,30125), (8563,30612))</a:Rect>
+<a:Rect>((-10393,30125), (8563,31709))</a:Rect>
 <a:ListOfPoints>((-10393,30612),(8563,30125))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -3424,7 +3424,7 @@ CARD 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o102">
 <a:CreationDate>1256482367</a:CreationDate>
 <a:ModificationDate>1256482367</a:ModificationDate>
-<a:Rect>((-29404,26334), (-28404,47876))</a:Rect>
+<a:Rect>((-36735,26334), (-20835,47876))</a:Rect>
 <a:ListOfPoints>((-29354,26334),(-28454,47876))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -3464,7 +3464,7 @@ CARD 0 Arial,8,N</a:FontList>
 <o:ReferenceSymbol Id="o107">
 <a:CreationDate>1256934477</a:CreationDate>
 <a:ModificationDate>1256934477</a:ModificationDate>
-<a:Rect>((7133,27900), (26691,46650))</a:Rect>
+<a:Rect>((7133,27900), (26849,46650))</a:Rect>
 <a:ListOfPoints>((26691,46650),(7133,27900))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>12615680</a:LineColor>
@@ -5526,10 +5526,9 @@ TableComment 0 Arial,8,N</a:FontList>
 <a:Code>IdTecnicoAsignado</a:Code>
 <a:CreationDate>1256420390</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256482377</a:ModificationDate>
+<a:ModificationDate>1257454735</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:DataType>int</a:DataType>
-<a:Mandatory>1</a:Mandatory>
 </o:Column>
 <o:Column Id="o221">
 <a:ObjectID>A83F324B-6001-4407-AF20-D3A534B04775</a:ObjectID>
