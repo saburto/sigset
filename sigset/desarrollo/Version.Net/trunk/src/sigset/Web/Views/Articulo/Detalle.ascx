@@ -48,7 +48,10 @@
 <%}else{ %>
     
     <h2>Articulo no encontrado</h2>
+     <% if (ViewData["idCliente"] == null)
+     {%>
     <p>
         <%=Html.ButtonLinkIcon(Url.Action("Crear"),"Crear Nuevo Articulo",Iconos.circle_plus,IconPosition.left) %>
     </p>
+     <%} %>
 <%} %>
