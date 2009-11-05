@@ -21,7 +21,7 @@
   </Table>
   <Table Name="dbo.Categoria" Member="Categorias">
     <Type Name="Categoria">
-      <Column Name="IdCategoria" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdCategoria" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Categoria_Articulo" Member="Articulos" ThisKey="IdCategoria" OtherKey="Categoria" Type="Articulo" />
     </Type>
@@ -206,7 +206,7 @@
   </Table>
   <Table Name="dbo.Permisos" Member="Permisos">
     <Type Name="Permiso" Id="ID1">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Mod_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Opcion" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="DescripcionOpcion" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />

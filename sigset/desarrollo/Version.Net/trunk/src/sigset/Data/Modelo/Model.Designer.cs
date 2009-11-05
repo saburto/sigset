@@ -924,7 +924,7 @@ namespace Data.Modelo
 			OnCreated();
 		}
 		
-		[Column(Storage="_IdCategoria", DbType="Decimal(18,0) NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_IdCategoria", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public decimal IdCategoria
 		{
 			get
@@ -4780,7 +4780,7 @@ namespace Data.Modelo
 			OnCreated();
 		}
 		
-		[Column(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
