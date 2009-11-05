@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     05-11-2009 15:03:52                          */
+/* Created on:     05-11-2009 17:59:09                          */
 /*==============================================================*/
 
 
@@ -685,7 +685,7 @@ create table OrdenTrabajo (
    Poliza               varchar(50)          null,
    FechaCompra          datetime             null,
    LugarCompra          varchar(100)         null,
-   IdTecnicoAsignado    int                  not null,
+   IdTecnicoAsignado    int                  null,
    Observacion          nvarchar(255)        null,
    TipoOrden            numeric(18, 0)       null,
    IdCliente            int                  null,
