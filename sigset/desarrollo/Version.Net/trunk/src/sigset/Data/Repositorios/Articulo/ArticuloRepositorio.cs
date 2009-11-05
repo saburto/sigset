@@ -84,7 +84,7 @@ namespace Data.Repositorios.Articulo
             marca = marca.Trim();
             Marca m = new Marca();
             m.Descripcion = marca;
-            m.IdMarca = _ent.Marcas.Count() + 1;
+            //m.IdMarca = _ent.Marcas.Count() + 1;
 
             _ent.Marcas.InsertOnSubmit(m);
             _ent.SubmitChanges();
@@ -108,7 +108,7 @@ namespace Data.Repositorios.Articulo
             linea = linea.Trim();
             Linea l = new Linea();
             l.Descripcion = linea;
-            l.IdLinea = _ent.Lineas.Count() + 1;
+            //l.IdLinea = _ent.Lineas.Count() + 1;
             _ent.Lineas.InsertOnSubmit(l);
             _ent.SubmitChanges();
             return l;

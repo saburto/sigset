@@ -15,7 +15,7 @@ namespace Services.Articulos
 
         System.Collections.Generic.IList<global::Data.Modelo.Linea> GetLineas(string q);
 
-        Articulo CrearArticulo(Data.Modelo.Articulo articulo, string ListaPrecioGarantia, string Marca, string Linea);
+        Articulo CrearArticulo(Data.Modelo.Articulo articulo, string Marca, string Linea);
 
         Articulo GetArticuloPorModelo(string Modelo);
 
