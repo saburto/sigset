@@ -40,7 +40,10 @@
 <div class="clear"></div>       
 
     <p>
-        [<%=Html.ActionLink("Agregar a Orden de Trabajo", "CrearDetalle", "OrdenTrabajo", new { id = Model.Id, rut = TempData["rutOrden"] }, null)%>]
+        <% if (ViewData["idCliente"] != null)
+           {%>
+            <%=Html.ButtonLinkIcon(Url.Action("CrearDetalle","OrdenTrabajo",new { id = Model.Id,idCliente =ViewData["idCliente"]}),"Agregar a Orden de Trabajo",Iconos.circle_plus) %>
+        <%} %>
     </p>
 <%}else{ %>
     
