@@ -23,7 +23,19 @@
             errorClass: "field-validation-error",
             errorElement: "span",
             highlight: function(element) { $(element).addClass("input-validation-error"); },
-            unhighlight: function(element) { $(element).removeClass("input-validation-error");}
+            unhighlight: function(element) { $(element).removeClass("input-validation-error");},
+            rules: {
+                PrecioGarantia: {
+                    required: true,
+                    min: 1
+                }
+            },
+            messages:{
+                PrecioGarantia:{
+                    min:"Seleccione un precio"
+                }
+            }
+
   });
   
 <%} %>
