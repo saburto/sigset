@@ -138,8 +138,7 @@ namespace Data.Repositorios.Usuarios
 
             return _entities.PermisosDispPerfil((int?)id).AsQueryable();
         }
-
-       
+               
 
         public void AddPerfilPermiso(PerfilPermiso perfilPermiso)
         {
@@ -183,6 +182,12 @@ namespace Data.Repositorios.Usuarios
             var usuarioPerfil = _entities.Usuarios.Where(x => x.Id == idUsuario).FirstOrDefault();
             return _entities.PerfilPermisos.Where(x => x.IdPerfil == usuarioPerfil.Perfil.Id);     
         }
+
+        public IQueryable<Permiso> GetPermisosDisponiblesUsuario(decimal idUsuario, decimal idPerfil)
+        {
+            return  _entities.PermisosDispUsuario((int?)idPerfil, (int?)idUsuario).AsQueryable();
+        }
+        
 
         #endregion
     }

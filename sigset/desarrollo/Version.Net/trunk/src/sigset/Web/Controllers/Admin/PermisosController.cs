@@ -97,10 +97,9 @@ namespace Web.Controllers.Admin
 
         public ActionResult AgregarUsuariosPermisos(decimal idUsuario)
         {
-            // mostrar los Permisos disponibles para asignar al usuario, no 
-            //mostrar los permisos de su perfil ya que los tiene por defecto servAut.GetPermisosDisponiblesParaAsignar(idUsuario, usuario.Perfil.Id)
-            var usuario  = servUsuario.GetUsuarioById(idUsuario);
-            return View();
+           var usuario  = servUsuario.GetUsuarioById(idUsuario);
+            IList<Permiso> permisos = servAut.GetPermisosDisponiblesUsuario(idUsuario, usuario.Perfil.Id);
+            return View(permisos);
          }
 
 
