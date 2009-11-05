@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     04-11-2009 16:34:18                          */
+/* Created on:     05-11-2009 13:17:38                          */
 /*==============================================================*/
 
 
@@ -570,7 +570,7 @@ go
 /* Table: Detalle                                               */
 /*==============================================================*/
 create table Detalle (
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    FechaCreacion        datetime             not null,
    Contenido            varchar(250)         null,
    IdOrden              numeric              null,
@@ -599,7 +599,7 @@ go
 /* Table: Especialidades                                        */
 /*==============================================================*/
 create table Especialidades (
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    TipoEspecialidad     numeric(18, 0)       not null,
    IdTecnico            int                  null,
    constraint PK_Especialidades_1 primary key (Id)
@@ -610,7 +610,7 @@ go
 /* Table: Estado                                                */
 /*==============================================================*/
 create table Estado (
-   IdEstado             numeric(18, 0)       not null,
+   IdEstado             numeric(18, 0)       identity,
    Descripcion          varchar(20)          not null,
    constraint PK_Estado primary key (IdEstado)
 )
@@ -620,7 +620,7 @@ go
 /* Table: HistorialModificacionOrden                            */
 /*==============================================================*/
 create table HistorialModificacionOrden (
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    Usuario              numeric(18, 0)       not null,
    Fecha                datetime             not null,
    Detalle              varchar(100)         null,
@@ -633,7 +633,7 @@ go
 /* Table: Linea                                                 */
 /*==============================================================*/
 create table Linea (
-   IdLinea              numeric(18, 0)       not null,
+   IdLinea              numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
    constraint PK_Linea primary key (IdLinea)
 )
@@ -643,7 +643,7 @@ go
 /* Table: Marca                                                 */
 /*==============================================================*/
 create table Marca (
-   IdMarca              numeric(18, 0)       not null,
+   IdMarca              numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
    constraint PK_Marca primary key (IdMarca)
 )
@@ -664,7 +664,7 @@ go
 /* Table: Nivel                                                 */
 /*==============================================================*/
 create table Nivel (
-   IdNivel              numeric(18, 0)       not null,
+   IdNivel              numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
    constraint PK_Nivel primary key (IdNivel)
 )
@@ -675,7 +675,7 @@ go
 /*==============================================================*/
 create table OrdenTrabajo (
    IdArticulo           numeric              null,
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    Serie                varchar(50)          not null,
    FechaIngreso         datetime             not null,
    FechaEntrega         datetime             not null,
@@ -731,7 +731,7 @@ go
 /* Table: Porcentaje                                            */
 /*==============================================================*/
 create table Porcentaje (
-   Id                   numeric              not null,
+   Id                   numeric              identity,
    Porcentaje           numeric(18, 0)       not null,
    IdPrecio             numeric(18, 0)       not null,
    constraint PK_Porcentaje primary key (Id)
@@ -742,7 +742,7 @@ go
 /* Table: PrecioGarantia                                        */
 /*==============================================================*/
 create table PrecioGarantia (
-   IdPrecioGarantia     numeric(18, 0)       not null,
+   IdPrecioGarantia     numeric(18, 0)       identity,
    ValorRevision        numeric(18, 0)       not null,
    ValorReparacion      numeric(18, 0)       not null,
    constraint PK_Precio_Garantia primary key (IdPrecioGarantia)
@@ -784,7 +784,7 @@ go
 /* Table: TipoArticulo                                          */
 /*==============================================================*/
 create table TipoArticulo (
-   IdTipoArticulo       numeric(18, 0)       not null,
+   IdTipoArticulo       numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
    constraint PK_Tipo_Articulo primary key (IdTipoArticulo)
 )
@@ -824,7 +824,7 @@ go
 /* Table: TipoEspecialidad                                      */
 /*==============================================================*/
 create table TipoEspecialidad (
-   IdTipoEspecialidad   numeric(18, 0)       not null,
+   IdTipoEspecialidad   numeric(18, 0)       identity,
    Descripcion          varchar(255)         not null,
    constraint PK_Tipo_Especialidad primary key (IdTipoEspecialidad)
 )
@@ -834,7 +834,7 @@ go
 /* Table: TipoOrden                                             */
 /*==============================================================*/
 create table TipoOrden (
-   IdTipoOrden          numeric(18, 0)       not null,
+   IdTipoOrden          numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
    constraint PK_Tipo_Orden primary key (IdTipoOrden)
 )
@@ -863,7 +863,7 @@ go
 /* Table: UsuarioPermisos                                       */
 /*==============================================================*/
 create table UsuarioPermisos (
-   Id                   int                  not null,
+   Id                   int                  identity,
    IdUsuario            int                  not null,
    IdPermiso            int                  null,
    Estado               bit                  not null,
