@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.OrdenTrabajo>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	CrearDetalle
+	Crear Orden de Trabajo
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
  <script type="text/javascript">
@@ -29,7 +29,7 @@
 		showButtonPanel: true
     });
 
-    $('#Fecha_Compra').datepicker();
+    $('#FechaCompra').datepicker();
     $('#FechaEntrega').datepicker();
     
     $('#TipoOrden').change(
@@ -50,6 +50,9 @@
   
   //]]>
 </script>
+
+<%=Html.ClientSideValidation("",typeof(Data.Modelo.OrdenTrabajo)) %>
+
 </asp:Content>
 
 
@@ -69,8 +72,6 @@
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-    <%= Html.Hidden("Cliente.ClienteParticular.Rut", Model.Cliente.ClienteParticular.Rut)%>
-    <%= Html.Hidden("IdArticulo", Model.IdArticulo)%>
 
         <fieldset>
             <legend>Orden de Trabajo</legend>
@@ -86,9 +87,9 @@
                 <%= Html.ValidationMessage("Falla", "*") %>
             </p>
             <p>
-                <label for="Condicion Articulo">Condicion Articulo:</label>
-                <%= Html.TextArea("Condicion_Articulo", new { rows = "4", style="width:100%"})%>
-                <%= Html.ValidationMessage("Condicion_Articulo", "*") %>
+                <label for="CondicionArticulo">Condicion Articulo:</label>
+                <%= Html.TextArea("CondicionArticulo", new { rows = "4", style="width:100%"})%>
+                <%= Html.ValidationMessage("CondicionArticulo", "*") %>
             </p>
 
             <div class="three-column-container">
@@ -113,14 +114,14 @@
                 </div>
                 <div class="three-column-right">
                 <p>
-                <label for="Fecha_Compra">Fecha Compra:</label>
+                <label for="FechaCompra">Fecha Compra:</label>
                 
-                <%= Html.TextBox("Fecha_Compra") %>
+                <%= Html.TextBox("FechaCompra") %>
                 
-                <%= Html.ValidationMessage("Fecha_Compra", "*") %>
-                <label for="Lugar_Compra">Lugar Compra:</label>
-                <%= Html.TextBox("Lugar_Compra") %>
-                <%= Html.ValidationMessage("Lugar_Compra", "*") %>
+                <%= Html.ValidationMessage("FechaCompra", "*") %>
+                <label for="LugarCompra">Lugar Compra:</label>
+                <%= Html.TextBox("LugarCompra") %>
+                <%= Html.ValidationMessage("LugarCompra", "*") %>
                 </p>
                 </div>
                 </div>
@@ -132,7 +133,15 @@
                 <%= Html.ValidationMessage("FechaEntrega", "*") %>
             </p>
         </fieldset>
+          <fieldset>
+            <legend>Observaciones</legend>
+            <%=Html.TextArea("Observacion", new { style = "width: 100%", title="Información adicional de Orden de trabajo"})%>
+            <br />
+            
+        </fieldset>
         <p>
+            <%= Html.Hidden("IdCliente", Model.Cliente.Id)%>
+            <%= Html.Hidden("IdArticulo", Model.IdArticulo)%>
             <%=Html.ButtonSubmit("Guardar") %>
         </p>
 
