@@ -4273,9 +4273,10 @@ TableComment 0 Arial,8,N</a:FontList>
 <a:Code>Id</a:Code>
 <a:CreationDate>1256420390</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256934487</a:ModificationDate>
+<a:ModificationDate>1257436133</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:DataType>int</a:DataType>
+<a:Identity>1</a:Identity>
 <a:Mandatory>1</a:Mandatory>
 </o:Column>
 <o:Column Id="o144">
@@ -4508,10 +4509,11 @@ TableComment 0 Arial,8,N</a:FontList>
 <a:Code>IdTipoOrden</a:Code>
 <a:CreationDate>1256420390</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256420390</a:ModificationDate>
+<a:ModificationDate>1257436203</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:DataType>numeric(18, 0)</a:DataType>
 <a:Length>18</a:Length>
+<a:Identity>1</a:Identity>
 <a:Mandatory>1</a:Mandatory>
 </o:Column>
 <o:Column Id="o161">
@@ -4567,10 +4569,11 @@ TableComment 0 Arial,8,N</a:FontList>
 <a:Code>IdTipoEspecialidad</a:Code>
 <a:CreationDate>1256420390</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256420390</a:ModificationDate>
+<a:ModificationDate>1257436237</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:DataType>numeric(18, 0)</a:DataType>
 <a:Length>18</a:Length>
+<a:Identity>1</a:Identity>
 <a:Mandatory>1</a:Mandatory>
 </o:Column>
 <o:Column Id="o164">
@@ -4799,10 +4802,11 @@ TableComment 0 Arial,8,N</a:FontList>
 <a:Code>IdTipoArticulo</a:Code>
 <a:CreationDate>1256420390</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256420390</a:ModificationDate>
+<a:ModificationDate>1257436441</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:DataType>numeric(18, 0)</a:DataType>
 <a:Length>18</a:Length>
+<a:Identity>1</a:Identity>
 <a:Mandatory>1</a:Mandatory>
 </o:Column>
 <o:Column Id="o176">
@@ -6729,9 +6733,10 @@ TableComment 0 Arial,8,N</a:FontList>
 <a:Code>Id</a:Code>
 <a:CreationDate>1256420390</a:CreationDate>
 <a:Creator>Sevazthian</a:Creator>
-<a:ModificationDate>1256420390</a:ModificationDate>
+<a:ModificationDate>1257363246</a:ModificationDate>
 <a:Modifier>Sevazthian</a:Modifier>
 <a:DataType>numeric</a:DataType>
+<a:Identity>1</a:Identity>
 <a:Mandatory>1</a:Mandatory>
 </o:Column>
 <o:Column Id="o295">
