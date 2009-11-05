@@ -61,9 +61,9 @@
                 <%= Html.ValidationMessage("Modelo", "*")%>
                 </div>
                 <div class="three-column-middle">
-                <label for="Modelo">Marca:</label>
-                <%= Html.TextBox("Marca", null, new { @class = "required" })%>
-                <%= Html.ValidationMessage("Marca", "*")%>
+                <label for="Marca_DISPLAY_TEXT">Marca:</label>
+                <%= Html.TextBox("Marca_DISPLAY_TEXT", null, new { @class = "required" })%>
+                <%= Html.ValidationMessage("Marca_DISPLAY_TEXT", "*")%>
                 </div>
             </div>
             <div class="clear"></div>    

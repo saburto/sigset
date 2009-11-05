@@ -38,13 +38,14 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Buscar(string Modelo, string Marca)
+        public ActionResult Buscar(string Modelo, string Marca_DISPLAY_TEXT, string idCliente)
         {
+            ViewData["idCliente"] = idCliente;
             string returnContent = "";
             returnContent = "<p><span class='" + HtmlHelper.ValidationMessageCssClassName + "'>";
             try
             {
-                Articulo art = _srv.GetArticuloPorModeloMarca(Modelo, Marca);
+                Articulo art = _srv.GetArticuloPorModeloMarca(Modelo, Marca_DISPLAY_TEXT);
                 return PartialView("Detalle", art);
 
             }
