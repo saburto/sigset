@@ -1,5 +1,6 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Data.Modelo.Articulo>" %>
 
+<%if(Model != null) {%>
 <h2>Articulo</h2>
 <div class="three-column-container">
        <div class="three-column-left">            
@@ -41,5 +42,10 @@
     <p>
         [<%=Html.ActionLink("Agregar a Orden de Trabajo", "CrearDetalle", "OrdenTrabajo", new { id = Model.Id, rut = TempData["rutOrden"] }, null)%>]
     </p>
-
-
+<%}else{ %>
+    
+    <h2>Articulo no encontrado</h2>
+    <p>
+        <%=Html.ButtonLinkIcon(Url.Action("Crear"),"Crear Nuevo Articulo",Iconos.circle_plus,IconPosition.left) %>
+    </p>
+<%} %>

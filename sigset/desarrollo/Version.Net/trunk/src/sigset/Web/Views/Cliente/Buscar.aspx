@@ -35,7 +35,9 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
-    <script type="text/javascript" language="javascript">
+<script type="text/javascript" >
+    //<![CDATA[
+
         $(function() {
 
         $("#formBuscar").validate();
@@ -65,5 +67,6 @@
             $('#resultado').dialog('open');
         }
 
+//]]>
     </script>
 </asp:Content>

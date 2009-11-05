@@ -38,20 +38,15 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Buscar(string Modelo, string Marca, string Rut)
+        public ActionResult Buscar(string Modelo, string Marca)
         {
             string returnContent = "";
             returnContent = "<p><span class='" + HtmlHelper.ValidationMessageCssClassName + "'>";
             try
             {
                 Articulo art = _srv.GetArticuloPorModeloMarca(Modelo, Marca);
-                if (art != null)
-                {
-                    TempData["rutOrden"] = Rut;
-                    return PartialView("Detalle", art);
-                }
-                returnContent += "Modelo No encontrado <a href='" + Url.Action("Crear", new {id=Rut }) + "'>Crear nuevo articulo</a>";
-                
+                return PartialView("Detalle", art);
+
             }
             catch (Exception ex)
             {
