@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     05-11-2009 13:17:38                          */
+/* Created on:     05-11-2009 14:08:54                          */
 /*==============================================================*/
 
 
@@ -500,7 +500,7 @@ go
 /* Table: Categoria                                             */
 /*==============================================================*/
 create table Categoria (
-   IdCategoria          numeric(18, 0)       not null,
+   IdCategoria          numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
    constraint PK_Categoria primary key (IdCategoria)
 )
