@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     05-11-2009 14:08:54                          */
+/* Created on:     05-11-2009 15:03:52                          */
 /*==============================================================*/
 
 
@@ -719,7 +719,7 @@ go
 /* Table: Permisos                                              */
 /*==============================================================*/
 create table Permisos (
-   Id                   int                  not null,
+   Id                   int                  identity,
    Mod_Id               int                  null,
    Opcion               nvarchar(255)        not null,
    DescripcionOpcion    nvarchar(255)        not null,
