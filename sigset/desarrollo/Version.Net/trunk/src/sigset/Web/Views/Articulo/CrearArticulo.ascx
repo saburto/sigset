@@ -5,17 +5,17 @@
             <div class="three-column-container">
                 <div class="three-column-left">
                 <label for="Modelo">Modelo:</label>
-                <%= Html.TextBox("Modelo") %>
+                <%= Html.TextBox("Modelo", null, new { @class = "required" })%>
                 <%= Html.ValidationMessage("Modelo", "*") %>
                 </div>
                 <div class="three-column-middle">
                 <label for="Marca">Marca:</label>
-                <%= Html.AutoCompleteTextBox("Marca") %>
+                <%= Html.AutoCompleteTextBox("Marca", new { @class = "required" })%>
                 <%= Html.ValidationMessage("Marca", "*") %>
                 </div>
                 <div class="three-column-right">
                 <label for="Linea">Linea:</label>
-                <%= Html.AutoCompleteTextBox("Linea")%>
+                <%= Html.AutoCompleteTextBox("Linea", new { @class = "required" })%>
                 <%= Html.ValidationMessage("Linea", "*") %>
                 </div>
             </div>
@@ -24,19 +24,19 @@
             <div class="three-column-container">
                 <div class="three-column-left">
                 <label for="Categoria">Categoria:</label>
-                <%= Html.AutoCompleteTextBox("Categoria")%>
+                <%= Html.AutoCompleteTextBox("Categoria", new { @class = "required" })%>
                 <%= Html.ValidationMessage("Categoria", "*") %>                
                 </div>
                 
                 <div class="three-column-middle">
                 <label for="TipoArticulo">Tipo Articulo:</label>
-                <%= Html.AutoCompleteTextBox("TipoArticulo")%>
+                <%= Html.AutoCompleteTextBox("TipoArticulo", new { @class = "required" })%>
                 <%= Html.ValidationMessage("TipoArticulo", "*") %>
                 </div>
                 
                 <div class="three-column-right">
                 <label for="PrecioGarantia">Precios Garantia:</label>
-                <%= Html.DropDownList("Lista_PrecioGarantia") %>
+                <%= Html.DropDownList("PrecioGarantia", null, new { @class = "required" })%>
                 <%= Html.ValidationMessage("PrecioGarantia", "*") %>
                 </div>
             </div>

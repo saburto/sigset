@@ -72,10 +72,10 @@ namespace Services.Articulos
             return l.IdLinea;
         }
 
-        public Articulo CrearArticulo(Articulo articulo, string Lista_PrecioGarantia, string Marca, string Linea)
+        public Articulo CrearArticulo(Articulo articulo, string Marca, string Linea)
         {
             IList<ErrorInfo> _error = new List<ErrorInfo>();
-            ValidarArticulo(articulo, Lista_PrecioGarantia, Marca, Linea, _error);
+            ValidarArticulo(articulo, Marca, Linea, _error);
             if (_error.Any())
             {
                 throw new RulesException(_error);
@@ -85,7 +85,7 @@ namespace Services.Articulos
             {
                 articulo.Linea = CrearLinea(Linea);    
             }
-            articulo.PrecioGarantia = decimal.Parse(Lista_PrecioGarantia);
+            
 
             NoRepetidoModeloMarca(articulo,Marca);
             return _rep.CrearArticulo(articulo);
@@ -103,7 +103,7 @@ namespace Services.Articulos
         }
 
 
-        private void ValidarArticulo(Articulo articulo, string precio, string marca, string linea, IList<ErrorInfo> _error)
+        private void ValidarArticulo(Articulo articulo,  string marca, string linea, IList<ErrorInfo> _error)
         {
             if (articulo == null)
             {
@@ -142,11 +142,6 @@ namespace Services.Articulos
                 }
             }
 
-            decimal garantia_precio;
-            if (!decimal.TryParse(precio,out garantia_precio))
-            {
-                _error.Add(new ErrorInfo("PrecioGarantia","Precio invalido"));
-            }
 
             if (string.IsNullOrEmpty(marca))
             {

@@ -5,31 +5,40 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+<script type="text/javascript">
+//<![CDATA[
+
 <%using (Html.BeginReady())
   { %>
   <%=Html.InitializeAutoComplete("Marca", "GetMarcas", "Articulo", false) %>
   <%=Html.InitializeAutoComplete("TipoArticulo", "GetTipoArticulo", "Articulo", true)%>
   <%=Html.InitializeAutoComplete("Categoria", "GetCategorias", "Articulo", true)%>
   <%=Html.InitializeAutoComplete("Linea", "GetLineas", "Articulo", false)%>
+  
+    $("#formArticulo").validate({
+  
+            errorClass: "field-validation-error",
+            errorElement: "span",
+            highlight: function(element) { $(element).addClass("input-validation-error"); },
+            unhighlight: function(element) { $(element).removeClass("input-validation-error");}
+  });
+  
 <%} %>
 
-<%=Html.ClientSideValidation("",typeof(Data.Modelo.Articulo)) %>
+//]]>
+</script>
+
+
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Crear</h2>
-
     <%= Html.ValidationSummary("Creación de articulo con errores.") %>
-
-    <% using (Html.BeginForm()) {%>
-    
-    
-    <%=Html.Hidden("Rut", TempData["rutOrden"])%>
-        
+    <% using (Html.BeginForm("Crear", "Articulo", FormMethod.Post, new { id = "formArticulo" }))
+       {%>
         <% Html.RenderPartial("CrearArticulo"); %>
         <br />
-        <% =Html.ButtonSubmit("Guardar") %>
+        <% =Html.ButtonSubmit("Guardar")%>
     <% } %>
 
 

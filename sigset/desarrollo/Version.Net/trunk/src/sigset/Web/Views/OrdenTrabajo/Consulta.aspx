@@ -6,6 +6,8 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+ <script type="text/javascript">
+    //<![CDATA[
 <%using (Html.BeginReady())
   {%>
 
@@ -32,7 +34,8 @@
 
   
   <%} %>
-
+  //]]>
+</script>
 </asp:Content>
 
 

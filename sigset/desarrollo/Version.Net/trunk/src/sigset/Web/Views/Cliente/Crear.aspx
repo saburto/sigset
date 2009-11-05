@@ -4,6 +4,9 @@
     Crear Cliente
 </asp:Content>
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+<script type="text/javascript">
+//<![CDATA[
+
     <%using (Html.BeginReady())
       {%>
     <%= Html.InitializeAutoComplete("Region", "EncontrarRegiones", "Cliente", true,15) %>
@@ -11,7 +14,8 @@
     <%= Html.InitializeAutoComplete("Comuna", "EncontrarComunas", "Cliente", true, "Provincia",100,0 ) %>
     <%} %>
 
-    <script type="text/javascript">
+    
+    
         $(function() {
 
         $("#resultado").dialog({
@@ -68,6 +72,7 @@
             $('#resultado').dialog('open');
         }
         
+//]]>        
     </script>
     <style type="text/css">
         #RutDisplay, #Rut, #dv

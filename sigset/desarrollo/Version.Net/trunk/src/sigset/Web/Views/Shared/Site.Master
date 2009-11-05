@@ -5,7 +5,7 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Sistema de Gestion de Servicio Tecnico" />
     <meta name="keywords" content="servicio tecnico, servicio electronico" />
     <title>
@@ -37,6 +37,8 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
    
     <script type="text/javascript">
+    //<![CDATA[
+
         $.validator.addMethod("rut", function(value, element) {
             $("#Rut").val('');
             $("#dv").val('');
@@ -86,13 +88,7 @@
         },
 	"Ingrese digito o letra k");
 
-    
-    
-    </script>
-   
-   
-   
-    <script type="text/javascript">
+
         $(function() {
 
         $("#accordion").accordion({
@@ -130,7 +126,9 @@
 				$(this).removeClass("ui-state-active");
 			}
 		});
-	});
+});
+
+//]]>
 </script>
     
     
@@ -156,9 +154,9 @@
         </div>
     </div>
     <div class="nav-main">
-        <ul>
+        
             <%Html.RenderPartial("ActualAction"); %>
-        </ul>
+        
     </div>
     <div class="content-container">
         <div class="content-container-inner">
@@ -167,7 +165,7 @@
             </asp:ContentPlaceHolder>
             >
                         <div id="loadingAjax" style="display: none;">
-                            Cargando... <img src="../../Content/images/ajax-loader.gif" />
+                            Cargando... <img src="../../Content/images/ajax-loader.gif" alt="Cargando..." />
                         </div>
                 
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />

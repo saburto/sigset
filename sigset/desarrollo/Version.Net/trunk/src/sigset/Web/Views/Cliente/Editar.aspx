@@ -4,12 +4,18 @@
     Editar Cliente
 </asp:Content>
 <asp:Content ID="ContentHead" ContentPlaceHolderID="HeadContent" runat="server">
+<script type="text/javascript">
+//<![CDATA[
     <%using (Html.BeginReady())
       {%>
     <%= Html.InitializeAutoComplete("Dire.Region", "EncontrarRegiones", "Cliente", true,15) %>
     <%= Html.InitializeAutoComplete("Dire.Provincia", "EncontrarProvincias", "Cliente", true, "Dire.Region", 30, 0) %>
     <%= Html.InitializeAutoComplete("Dire.Comuna", "EncontrarComunas", "Cliente", true, "Dire.Provincia",100,0 ) %>
     <%} %>
+    
+//]]>
+</script>    
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>

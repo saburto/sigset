@@ -25,8 +25,8 @@ namespace Helpers
                 throw new ArgumentNullException("httpResponse");
             }
             _httpResponse = httpResponse;
-            _httpResponse.Write("<script type=\"text/javascript\" language=\"javascript\">");
-            _httpResponse.Write("$(document).ready(function() {");
+            //_httpResponse.Write("<script type=\"text/javascript\">");
+            _httpResponse.Write(" $(document).ready(function() {");
         }
 
         public void Dispose() {
@@ -38,7 +38,7 @@ namespace Helpers
             if (!_disposed) {
                 _disposed = true;
                 _httpResponse.Write(" });");
-                _httpResponse.Write("</script>");
+                //_httpResponse.Write("</script>");
             }
         }
 

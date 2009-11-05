@@ -15,10 +15,10 @@ namespace Data.Modelo
     {
         [Required]
         public object Categoria { get; set; }
-        [Required]
-        public object Linea { get; set; }
-        [Required]
-        public object Marca { get; set; }
+        ////[Required]
+        //public object Linea { get; set; }
+        ////[Required]
+        //public object Marca { get; set; }
         [Required]
         public object Modelo { get; set; }
         [Required]

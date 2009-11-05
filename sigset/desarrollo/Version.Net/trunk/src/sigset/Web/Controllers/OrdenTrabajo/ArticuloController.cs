@@ -68,18 +68,18 @@ namespace Web.Controllers.OrdenTrabajo
 
         public ActionResult Crear()
         {
-            ViewData["Lista_PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision",null,"${0}");
+            ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,PrecioGarantia")]Articulo articulo, string Lista_PrecioGarantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT)
+        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea")]Articulo articulo,string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT)
         {
             try
             {
                 Marca = string.IsNullOrEmpty(Marca) ? Marca_DISPLAY_TEXT : Marca;
                 Linea = string.IsNullOrEmpty(Linea) ? Linea_DISPLAY_TEXT : Linea;
-                Articulo art = _srv.CrearArticulo(articulo, Lista_PrecioGarantia, Marca, Linea);
+                Articulo art = _srv.CrearArticulo(articulo, Marca, Linea);
                 return RedirectToAction("Lista");
             }
             catch (RulesException ex)

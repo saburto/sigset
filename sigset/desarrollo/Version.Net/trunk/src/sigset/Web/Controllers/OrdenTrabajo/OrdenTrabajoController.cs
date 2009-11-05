@@ -53,7 +53,7 @@ namespace Web.Controllers
                 var orden = new Data.Modelo.OrdenTrabajo();
                 orden.Cliente = _srvCliente.GetClientePorId(id.Value);
 
-                ViewData["Lista_PrecioGarantia"] = _srvArticulo.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
+                ViewData["PrecioGarantia"] = _srvArticulo.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
 
                 return View(orden);                
             }
@@ -61,14 +61,14 @@ namespace Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea,PrecioGarantia")]Articulo articulo,
-            string Lista_PrecioGarantia, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, int IdCliente)
+        public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea")]Articulo articulo,
+             string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, int IdCliente)
         {
             try
             {
                 Marca = string.IsNullOrEmpty(Marca) ? Marca_DISPLAY_TEXT : Marca;
                 Linea = string.IsNullOrEmpty(Linea) ? Linea_DISPLAY_TEXT : Linea;
-                Articulo art = _srvArticulo.CrearArticulo(articulo, Lista_PrecioGarantia, Marca, Linea);
+                Articulo art = _srvArticulo.CrearArticulo(articulo, Marca, Linea);
                 return RedirectToRoute(new { controller = "OrdenTrabajo", action = "CrearDetalle", id = art.Id, idCliente = IdCliente });
             }
             catch (RulesException ex)
