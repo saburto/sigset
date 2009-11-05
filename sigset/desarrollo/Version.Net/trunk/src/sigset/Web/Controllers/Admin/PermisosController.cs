@@ -88,10 +88,21 @@ namespace Web.Controllers.Admin
 
         public ActionResult AgregarPermisoUsuario(decimal idUsuario)
         {
+            ViewData["idUsuario"] = idUsuario;
             PermisosUsuariosView permisosUsuario = new PermisosUsuariosView();
             permisosUsuario.ListaUsuarioPermiso = servAut.GetUsuariosPermisos(idUsuario);
             permisosUsuario.ListaPerfilPermiso = servAut.GetPerfilPermisoByIdUsuario(idUsuario);
             return View(permisosUsuario);
         }
+
+        public ActionResult AgregarUsuariosPermisos(decimal idUsuario)
+        {
+            // mostrar los Permisos disponibles para asignar al usuario, no 
+            //mostrar los permisos de su perfil ya que los tiene por defecto servAut.GetPermisosDisponiblesParaAsignar(idUsuario, usuario.Perfil.Id)
+            var usuario  = servUsuario.GetUsuarioById(idUsuario);
+            return View();
+         }
+
+
     }
 }
