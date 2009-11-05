@@ -10,6 +10,8 @@ SET IDENTITY_INSERT [dbo].[TipoCliente] OFF
 GO
 
 
+SET IDENTITY_INSERT [dbo].TipoOrden ON
+GO
 INSERT INTO TipoOrden(IdTipoOrden, Descripcion)
   VALUES(1, 'Garantia')
 GO
@@ -19,6 +21,9 @@ GO
 INSERT INTO TipoOrden(IdTipoOrden, Descripcion)
   VALUES(3, 'Reingreso')
 GO
+SET IDENTITY_INSERT [dbo].TipoOrden OFF
+GO
+
 
 set IDENTITY_INSERT Perfil ON
 
@@ -41,8 +46,10 @@ INSERT INTO Perfil(Id, Descripcion)
   VALUES(6, 'Super Usuario')
 GO
 set IDENTITY_INSERT Perfil OFF
+GO
 
-
+set IDENTITY_INSERT TipoEspecialidad ON
+GO
 INSERT INTO TipoEspecialidad(IdTipoEspecialidad, Descripcion)
   VALUES(1, 'Televisión')
 GO
@@ -62,6 +69,10 @@ INSERT INTO TipoEspecialidad(IdTipoEspecialidad, Descripcion)
   VALUES(6, 'Electrodomésticos')
 GO
 
+set IDENTITY_INSERT TipoEspecialidad OFF
+GO
+
+--*******************************************+
 
 
 INSERT INTO TipoDireccion(IdTipoDireccion, Descripcion)
@@ -76,6 +87,10 @@ GO
 
 
 
+--*************************************************
+
+
+
 INSERT INTO TipoContacto(IdTipoContacto, Descripcion)
   VALUES(1, 'Telefono')
 GO
@@ -87,6 +102,11 @@ INSERT INTO TipoContacto(IdTipoContacto, Descripcion)
 GO
 
 
+
+--*************************************************
+
+set IDENTITY_INSERT TipoArticulo ON
+GO
 
 INSERT INTO TipoArticulo(IdTipoArticulo, Descripcion)
   VALUES(1, 'Televisión')
@@ -152,7 +172,13 @@ INSERT INTO TipoArticulo(IdTipoArticulo, Descripcion)
   VALUES(21, 'Camara Video')
 GO
 
+SET IDENTITY_INSERT TipoArticulo OFF
+GO
 
+--*************************************************
+
+set IDENTITY_INSERT PrecioGarantia ON
+GO
 
 INSERT INTO PrecioGarantia(IdPrecioGarantia, ValorRevision, ValorReparacion)
   VALUES(1, 10500, 18000)
@@ -166,8 +192,13 @@ GO
 INSERT INTO PrecioGarantia(IdPrecioGarantia, ValorRevision, ValorReparacion)
   VALUES(4, 6900, 12000)
 GO
+SET IDENTITY_INSERT PrecioGarantia OFF
+GO
 
+--*************************************************
 
+SET IDENTITY_INSERT Estado ON
+GO
 
 INSERT INTO Estado(IdEstado, Descripcion)
   VALUES(1, 'Ingresado')
@@ -197,6 +228,14 @@ INSERT INTO Estado(IdEstado, Descripcion)
   VALUES(9, 'Anulado')
 GO
 
+
+SET IDENTITY_INSERT Estado OFF
+GO
+
+--*************************************************
+
+SET IDENTITY_INSERT Categoria ON
+GO
 
 INSERT INTO Categoria(IdCategoria, Descripcion)
   VALUES(1, 'Fotografia/Video')
@@ -235,6 +274,13 @@ INSERT INTO Categoria(IdCategoria, Descripcion)
   VALUES(12, 'Electrodoméstico Pequeño')
 GO
 
+SET IDENTITY_INSERT Categoria OFF
+GO
+
+--*************************************************
+
+SET IDENTITY_INSERT Nivel ON
+GO
 
 INSERT INTO Nivel(IdNivel, Descripcion)
   VALUES(1, 'Básico')
@@ -246,6 +292,12 @@ INSERT INTO Nivel(IdNivel, Descripcion)
   VALUES(3, 'Avanzado')
 GO
 
+SET IDENTITY_INSERT Nivel OFF
+GO
+--*************************************************
+
+SET IDENTITY_INSERT Marca ON
+GO
 
 INSERT INTO Marca(IdMarca, Descripcion)
   VALUES(1, 'Sony ')
@@ -261,6 +313,14 @@ INSERT INTO Marca(IdMarca, Descripcion)
 GO
 INSERT INTO Marca(IdMarca, Descripcion)
   VALUES(5, 'Recco')
+GO
+
+SET IDENTITY_INSERT Marca OFF
+GO
+
+--*************************************************
+
+SET IDENTITY_INSERT Linea ON
 GO
 
 INSERT INTO Linea(IdLinea, Descripcion)
@@ -292,5 +352,8 @@ INSERT INTO Linea(IdLinea, Descripcion)
 GO
 INSERT INTO Linea(IdLinea, Descripcion)
   VALUES(10, 'Trinitron')
+GO
+
+SET IDENTITY_INSERT Linea OFF
 GO
 
