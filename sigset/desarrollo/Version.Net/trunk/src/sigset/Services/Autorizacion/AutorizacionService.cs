@@ -132,5 +132,9 @@ namespace Services.Autorizacion
            return _repo.GetPerfilPermisoByIdUsuario(idUsuario).ToList();
         }
 
+        public IList<Permiso> GetPermisosDisponiblesUsuario(decimal idUsuario, decimal idPerfil)
+        {
+            return _repo.GetPermisosDisponiblesUsuario(idUsuario, idPerfil).ToList();
+        }
     }
 }

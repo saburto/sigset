@@ -22,5 +22,6 @@ namespace Services.Autorizacion
         void ActualizarEstadoPerfilPermiso(PerfilPermiso perfilPermiso);
         IList<UsuarioPermiso> GetUsuariosPermisos(decimal idUsuario);
         IList<PerfilPermiso> GetPerfilPermisoByIdUsuario(decimal idUsuario);
+        IList<Permiso> GetPermisosDisponiblesUsuario(decimal idUsuario, decimal idPerfil);
     }
 }

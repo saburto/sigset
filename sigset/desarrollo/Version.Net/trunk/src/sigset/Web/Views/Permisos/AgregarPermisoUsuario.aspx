@@ -15,6 +15,9 @@
                 Id Perfil
             </th>
             <th>
+                Id Permiso
+            </th>
+            <th>
                 <%=Html.Encode("Descripción opción") %>
             </th>
             <th>
@@ -42,6 +45,9 @@
                 </td>
                 <td>
                     <%= Html.Encode(item.IdPerfil) %>
+                </td>
+                <td>
+                    <%= Html.Encode(item.IdPermiso) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.Permiso.DescripcionOpcion) %>
@@ -72,6 +78,9 @@
                     <td>
                         <%=Html.ButtonLinkIcon(Url.Action("QuitarPerfilPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
                         <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPerfilPermiso = item.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
+                    </td>
+                    <td>
+                      
                     </td>
                     <td>
                         <%= Html.Encode(item.IdPermiso) %>
