@@ -89,6 +89,8 @@ namespace Web.Controllers.Admin
         public ActionResult AgregarPermisoUsuario(decimal idUsuario)
         {
             ViewData["idUsuario"] = idUsuario;
+            var usuario  = servUsuario.GetUsuarioById(idUsuario);
+            ViewData["idperfil"] = usuario.Perfil.Id;
             PermisosUsuariosView permisosUsuario = new PermisosUsuariosView();
             permisosUsuario.ListaUsuarioPermiso = servAut.GetUsuariosPermisos(idUsuario);
             permisosUsuario.ListaPerfilPermiso = servAut.GetPerfilPermisoByIdUsuario(idUsuario);
@@ -102,6 +104,22 @@ namespace Web.Controllers.Admin
             return View(permisos);
          }
 
+        public ActionResult QuitarUsuarioPermiso(decimal idPermiso, decimal idPerfil,decimal idUsuario)
+        {
+            servAut.EliminarUsuarioPermiso(idPermiso, idPerfil,idUsuario);
+            return RedirectToAction("AgregarPermisoUsuario", new { idUsuario = idUsuario });
+        }
 
+        public ActionResult EstadoUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        {
+            servAut.CambiarEstadoUsuarioPermiso(idPermiso,idUsuario);
+            return RedirectToAction("AgregarPermisoUsuario", new { idUsuario = idUsuario });
+        }
+        public ActionResult CambiarEstadoPerfilUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        {
+            servAut.GuardarUsuarioPermiso(idPermiso, idUsuario);
+            return RedirectToAction("AgregarPermisoUsuario", new { idUsuario = idUsuario });
+        }
+        
     }
 }

@@ -27,10 +27,10 @@
                 <%=Html.Encode("Estado") %>
             </th>
         </tr>
-        <%if (Model.ListaPerfilPermiso != null) %>
+        <%if (Model.ListaUsuarioPermiso != null && Model.ListaUsuarioPermiso.Count > 0) %>
         <%{%>
         <%bool alter = false; %>
-        <%foreach (var item in Model.ListaPerfilPermiso)
+        <%foreach (var item in Model.ListaUsuarioPermiso)
           { %>
         <%if (alter)
           { %>
@@ -41,10 +41,10 @@
             <tr>
                 <%} alter = !alter; %>
                 <td>
-                     <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPerfilPermiso = item.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
+                    <%=Html.ButtonLinkIcon(Url.Action("QuitarUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idPerfil = ViewData["idperfil"], idUsuario = ViewData["idUsuario"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
+                    <%=Html.ButtonLinkIcon(Url.Action("EstadoUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                 </td>
                 <td>
-                    <%= Html.Encode(item.IdPerfil) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.IdPermiso) %>
@@ -62,10 +62,11 @@
           alter = !alter; %>
                 <%}%>
             </tr>
-            <%if (Model.ListaUsuarioPermiso != null && Model.ListaUsuarioPermiso.Count > 0) %>
+            <%if (Model.ListaPerfilPermiso != null) %>
             <%{%>
             <%bool alter = false; %>
-            <%foreach (var item in Model.ListaUsuarioPermiso)
+            <%            
+              foreach (var item in Model.ListaPerfilUsuarioPermiso)
               { %>
             <%if (alter)
               { %>
@@ -76,11 +77,10 @@
                 <tr>
                     <%} alter = !alter; %>
                     <td>
-                        <%=Html.ButtonLinkIcon(Url.Action("QuitarPerfilPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
-                        <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPerfilPermiso = item.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
+                        <%=Html.ButtonLinkIcon(Url.Action("CambiarEstadoPerfilUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                     </td>
                     <td>
-                      
+                        <%= Html.Encode(item.IdPerfil) %>
                     </td>
                     <td>
                         <%= Html.Encode(item.IdPermiso) %>
