@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Data.Repositorios.Usuarios
 {
-    public class UsuarioRepositorio : Data.Repositorios.Usuarios.IUsuarioRepositorio 
+    public class UsuarioRepositorio : Data.Repositorios.Usuarios.IUsuarioRepositorio
     {
         sigsetEntities _entities;
 
@@ -27,7 +27,7 @@ namespace Data.Repositorios.Usuarios
         }
 
 
-        public Usuario GetUsuarioByNombreUsuario(string nombreUsuario )
+        public Usuario GetUsuarioByNombreUsuario(string nombreUsuario)
         {
             return _entities.Usuarios.Where(x => x.User == nombreUsuario).FirstOrDefault();
         }
@@ -35,7 +35,7 @@ namespace Data.Repositorios.Usuarios
         public Usuario UpdateUsuario(Usuario usuario)
         {
             var usuario_original = GetUsuario(usuario.Id);
-            
+
             usuario_original.User = usuario.User;
             usuario_original.Password = usuario.Password;
             usuario_original.PerfilUsuario = usuario.PerfilUsuario;
@@ -48,7 +48,7 @@ namespace Data.Repositorios.Usuarios
 
             _entities.SubmitChanges();
             return usuario;
-          }
+        }
 
 
         public Perfil GetPerfil(decimal id)
@@ -63,7 +63,7 @@ namespace Data.Repositorios.Usuarios
 
         public void CreatePerfil(string nombreTipoUsuario)
         {
-            _entities.Perfils.InsertOnSubmit(new Perfil() { Descripcion= nombreTipoUsuario });
+            _entities.Perfils.InsertOnSubmit(new Perfil() { Descripcion = nombreTipoUsuario });
             _entities.SubmitChanges();
         }
 
@@ -87,8 +87,8 @@ namespace Data.Repositorios.Usuarios
         public Perfil GetPerfilByUsuarioNombre(string usuarioNombre)
         {
             var tipo = (from u in _entities.Usuarios
-                       where u.User == usuarioNombre
-                        select u.Perfil).FirstOrDefault() ;
+                        where u.User == usuarioNombre
+                        select u.Perfil).FirstOrDefault();
             return tipo;
         }
         public void CreateUsuario(Usuario usuario)
@@ -109,7 +109,7 @@ namespace Data.Repositorios.Usuarios
             _entities.Usuarios.DeleteOnSubmit(usuario);
             _entities.SubmitChanges();
         }
-        
+
         #region IUsuarioRepositorio Members
 
 
@@ -119,13 +119,13 @@ namespace Data.Repositorios.Usuarios
         }
 
         public IQueryable<PerfilPermiso> GetPermisosByPerfil(decimal id)
-        { 
+        {
             return _entities.PerfilPermisos.Where(x => x.IdPerfil == id);
         }
 
         public PerfilPermiso GetPermisoPerfil(decimal idPermiso, decimal idPerfil)
         {
-           return _entities.PerfilPermisos.Where(x => x.IdPermiso == idPermiso && x.IdPerfil == idPerfil).FirstOrDefault();
+            return _entities.PerfilPermisos.Where(x => x.IdPermiso == idPermiso && x.IdPerfil == idPerfil).FirstOrDefault();
         }
 
         public Perfil GetPerfilById(decimal id)
@@ -138,11 +138,11 @@ namespace Data.Repositorios.Usuarios
 
             return _entities.PermisosDispPerfil((int?)id).AsQueryable();
         }
-               
+
 
         public void AddPerfilPermiso(PerfilPermiso perfilPermiso)
         {
-           
+
             _entities.PerfilPermisos.InsertOnSubmit(perfilPermiso);
             _entities.SubmitChanges();
         }
@@ -154,14 +154,14 @@ namespace Data.Repositorios.Usuarios
 
         public void DeletePerfilPermiso(PerfilPermiso perfilPermiso)
         {
-             _entities.PerfilPermisos.DeleteOnSubmit(perfilPermiso);
-             _entities.SubmitChanges();
-                      
+            _entities.PerfilPermisos.DeleteOnSubmit(perfilPermiso);
+            _entities.SubmitChanges();
+
         }
 
         public PerfilPermiso GetPerfilPermisoById(decimal id)
         {
-           return  _entities.PerfilPermisos.Where(x => x.Id == id).FirstOrDefault();
+            return _entities.PerfilPermisos.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void ActualizarEstadoPerfilPermiso(PerfilPermiso perfilPermiso)
@@ -174,20 +174,43 @@ namespace Data.Repositorios.Usuarios
 
         public IQueryable<UsuarioPermiso> GetUsuariosPermisos(decimal idUsuario)
         {
-            return _entities.UsuarioPermisos.Where(x => x.IdUsuario == idUsuario); 
+            return _entities.UsuarioPermisos.Where(x => x.IdUsuario == idUsuario);
         }
 
         public IQueryable<PerfilPermiso> GetPerfilPermisoByIdUsuario(decimal idUsuario)
-        { 
+        {
             var usuarioPerfil = _entities.Usuarios.Where(x => x.Id == idUsuario).FirstOrDefault();
-            return _entities.PerfilPermisos.Where(x => x.IdPerfil == usuarioPerfil.Perfil.Id);     
+            return _entities.PerfilPermisos.Where(x => x.IdPerfil == usuarioPerfil.Perfil.Id);
         }
 
         public IQueryable<Permiso> GetPermisosDisponiblesUsuario(decimal idUsuario, decimal idPerfil)
         {
-            return  _entities.PermisosDispUsuario((int?)idPerfil, (int?)idUsuario).AsQueryable();
+            return _entities.PermisosDispUsuario((int?)idPerfil, (int?)idUsuario).AsQueryable();
         }
-        
+
+        public void DeleteUsuarioPermiso(decimal idPermiso, decimal idPerfil, decimal idUsuario)
+        {
+            var usuarioPermiso = _entities.UsuarioPermisos.Where(x => x.IdPermiso == idPermiso && x.IdUsuario == idUsuario).FirstOrDefault();
+            _entities.UsuarioPermisos.DeleteOnSubmit(usuarioPermiso);
+            _entities.SubmitChanges();
+        }
+
+        public UsuarioPermiso GetUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        {
+            return _entities.UsuarioPermisos.Where(x => x.IdPermiso == idPermiso && x.IdUsuario == idUsuario).FirstOrDefault();
+        }
+
+        public void CambiarEstadoUsuarioPermiso(UsuarioPermiso usuarioPermisoNuevo)
+        {
+            UsuarioPermiso usuarioPermisoAnterior = GetUsuarioPermiso(Convert.ToDecimal(usuarioPermisoNuevo.IdPermiso), Convert.ToDecimal(usuarioPermisoNuevo.IdUsuario));
+            usuarioPermisoAnterior = usuarioPermisoNuevo;
+            _entities.SubmitChanges();
+        }
+        public void CrearUsuarioPermiso(UsuarioPermiso usuarioPermiso)
+        {
+            _entities.UsuarioPermisos.InsertOnSubmit(usuarioPermiso);
+            _entities.SubmitChanges();
+        }
 
         #endregion
     }

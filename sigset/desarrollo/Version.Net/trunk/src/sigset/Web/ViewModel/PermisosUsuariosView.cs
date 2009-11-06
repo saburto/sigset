@@ -18,5 +18,27 @@ namespace Web.ViewModel
     {
         public IList<PerfilPermiso> ListaPerfilPermiso { get; set; }
         public IList<UsuarioPermiso> ListaUsuarioPermiso { get; set; }
+
+        IList<PerfilPermiso> listaPerfilUsuarioPermiso;
+
+        public IList<PerfilPermiso> ListaPerfilUsuarioPermiso { 
+            
+            get {
+
+                if (listaPerfilUsuarioPermiso == null)
+                {
+                    listaPerfilUsuarioPermiso = new List<PerfilPermiso>();
+                    foreach (var item in ListaPerfilPermiso)
+                    {
+                        if (!ListaUsuarioPermiso.Where(x=> x.IdPermiso == item.IdPermiso).Any())
+                        {
+                            listaPerfilUsuarioPermiso.Add(item);
+                        }
+                    }
+                }
+                return listaPerfilUsuarioPermiso;
+            } 
+        }
+
     }
 }

@@ -136,5 +136,39 @@ namespace Services.Autorizacion
         {
             return _repo.GetPermisosDisponiblesUsuario(idUsuario, idPerfil).ToList();
         }
+
+        public void EliminarUsuarioPermiso(decimal idPermiso, decimal idPerfil, decimal idUsuario)
+        {
+            _repo.DeleteUsuarioPermiso(idPermiso, idPerfil, idUsuario);
+        }
+
+        public void CambiarEstadoUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        {
+            var usuarioPermisoNuevo = _repo.GetUsuarioPermiso(idPermiso, idUsuario);
+            usuarioPermisoNuevo.Estado = !usuarioPermisoNuevo.Estado;
+            _repo.CambiarEstadoUsuarioPermiso(usuarioPermisoNuevo);
+        }
+
+        public void GuardarUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        {
+           
+            var permiso = _repo.GetPermisoById(idPermiso);
+            var usuario = _repo.GetUsuario(idUsuario);
+
+            if (permiso != null && usuario != null)
+            {
+                UsuarioPermiso usuarioPermiso = new UsuarioPermiso();
+                usuarioPermiso.Permiso = permiso;
+                usuarioPermiso.Usuario = usuario;
+                usuarioPermiso.Estado = false;
+                // guardar en usuarioPermiso;
+                _repo.CrearUsuarioPermiso(usuarioPermiso);
+            }
+            else
+            { 
+            // datos invalidos
+            }
+
+        }
     }
 }
