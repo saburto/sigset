@@ -13,6 +13,15 @@ using Web.Helpers;
 using Helpers;
 using xVal.ServerSide;
 
+using System.IO;
+using System.Net;
+using System.Collections;
+
+using System.Xml;
+using Microsoft.Reporting.WebForms;
+using System.Web.UI.WebControls;
+
+
 namespace Web.Controllers
 {
     //[Authorize]
@@ -109,11 +118,14 @@ namespace Web.Controllers
         {
             try
             {
-                string usuario = "rmorales";
-                if(HttpContext.User != null)
+                string usuario = null;
+                if (Request.IsAuthenticated)
                 {
-                    usuario = HttpContext.User.Identity.Name;
+                    if (HttpContext.User != null)
+                    {
+                        usuario = HttpContext.User.Identity.Name;
 
+                    }
                 }
                 decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo,usuario);
                 return RedirectToAction("Detalles", new { id = idOrden });
@@ -127,25 +139,18 @@ namespace Web.Controllers
                 ModelState.AddModelError("_FORM", ex.Message);
             }
             
-            ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
+            ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
             return View(ordenTrabajo);
         }
 
         public ActionResult Detalles(decimal id, string format)
         {
-            Data.Modelo.OrdenTrabajo ot = _srvOrdenTrabajo.GetOrdenTrabajo(id);
-
             if (format != null)
             {
-                if (format == "xls")
-                {
-                    List<Data.Modelo.OrdenTrabajo> or = new List<Data.Modelo.OrdenTrabajo>();
-                    or.Add(ot);
-                    return this.Excel(or.AsQueryable(), "OrdenTrabajo"+ id +".xls", new string[] {"Id","Serie","Cliente.ClienteParticular.Rut", "Falla","Condicion_Articulo","TipoOrden","FechaEntrega","Boleta","Poliza","Fecha_Compra","Lugar_Compra" });
-                }
+                return Export(id, format);
             }
-
-            return View(ot);
+            Data.Modelo.OrdenTrabajo orden = _srvOrdenTrabajo.GetOrdenTrabajo(id);
+            return View(orden);
         }
 
         [Authorize(Roles="ordenes_consulta")]
@@ -196,8 +201,8 @@ namespace Web.Controllers
       //  [Authorize(Roles="ordenes_listar")]
         public ActionResult Listar()
         {
-            ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("Id_TipoOrden", "Descripcion");
-            ViewData["ListaEstados"] = _srvOrdenTrabajo.GetEstadosOrden().GetSelectCampos("Id_Estado", "Descripcion");
+            ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
+            ViewData["ListaEstados"] = _srvOrdenTrabajo.GetEstadosOrden().GetSelectCampos("IdEstado", "Descripcion");
             return View();
         }
 
@@ -228,6 +233,45 @@ namespace Web.Controllers
                 return this.Excel(ordenes.AsQueryable(), "OrdenesTrabajo.xls", new string[] { "Id", "Serie", "Cliente.ClienteParticular.Rut", "Falla", "Condicion_Articulo", "TipoOrden", "FechaEntrega", "Boleta", "Poliza", "Fecha_Compra", "Lugar_Compra" });
             }
             return Content("");
+        }
+
+        [NonAction]
+        private ActionResult Export(decimal id, string exportFormat)
+        {
+            var exporType = Enum.Parse(typeof(ExportType),exportFormat.ToUpper());
+            string format = exporType.ToString().ToUpper();
+            ReportViewer rview = new Microsoft.Reporting.WebForms.ReportViewer();
+            var file = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Reportes"),"OrdenTrabajo.rdlc");
+            StreamReader reader = new StreamReader(file);
+
+            rview.LocalReport.LoadReportDefinition(reader);
+            
+            List<ReportParameter> param = new List<ReportParameter>();
+            param.Add(new ReportParameter("Id",id.ToString()));
+            rview.LocalReport.SetParameters(param);
+            
+
+            ObjectDataSource obje = new ObjectDataSource(
+                "Web.OrdenTrabajoDataSetTableAdapters.OrdenTrabajoVistaTableAdapter", "GetData");
+            rview.LocalReport.DataSources.Add(new ReportDataSource("OrdenTrabajoDataSet_OrdenTrabajoVista", obje));
+
+            
+            string devInfo = @"<DeviceInfo><Toolbar>False</Toolbar></DeviceInfo>";
+            string mimeType, enconding, fileExt;
+            string[] streams;
+            Warning[] warnings;
+            try
+            {
+                var result = rview.LocalReport.Render(format, devInfo, out mimeType, out enconding, out fileExt, out streams, out warnings);
+                return File(result, mimeType);
+            }
+            catch(Exception ex)
+            {
+                reader.Close();
+                reader.Dispose();
+                throw ex;
+            }
+            
         }
     }
 }

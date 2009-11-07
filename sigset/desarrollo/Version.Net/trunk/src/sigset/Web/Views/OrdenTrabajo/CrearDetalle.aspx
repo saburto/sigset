@@ -137,7 +137,7 @@
             <legend>Observaciones</legend>
             <%=Html.TextArea("Observacion", new { style = "width: 100%", title="Información adicional de Orden de trabajo"})%>
             <br />
-            
+            <br />
         </fieldset>
         <p>
             <%= Html.Hidden("IdCliente", Model.Cliente.Id)%>

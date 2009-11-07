@@ -8,6 +8,8 @@ using xVal.ServerSide;
 using System.Threading;
 using Data.Repositorios.Tecnicos;
 using Data.Repositorios.Usuarios;
+using Data.Modelo.Constantes;
+using Data.Modelo.Enums;
 
 
 namespace Services.OrdenTrabajo
@@ -36,14 +38,19 @@ namespace Services.OrdenTrabajo
             Data.Modelo.OrdenTrabajo ot = _repo.GuardarOrdenTrabajo(orden);
             Detalle detalle = new Detalle();
             detalle.IdOrden = ot.Id;
-            //aca se cae.
-            var user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
+            
 
-            detalle.IdUsuario = user != null ? user.Id: 1;
-            detalle.Estado = 1;
+            //Obtiene el usuario
+            Usuario user = null;
+            if (!string.IsNullOrEmpty(usuario))
+            {
+                user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
+            }
+
+            detalle.IdUsuario = user != null ? user.Id :(int) Constantes.ID_USUARIO_SISTEMA;
+            detalle.Estado =(decimal) EstadoOrden.Ingresado;
             detalle.FechaCreacion = ot.FechaIngreso;
             _repo.GuardarDetalle(detalle);
-
 
 
             //Asignacion de tecnicos automaticamente asincronicamente

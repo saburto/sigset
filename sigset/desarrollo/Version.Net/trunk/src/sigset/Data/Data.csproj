@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Paginado.cs" />
+    <Compile Include="Modelo\Constantes\Constantes.cs" />
+    <Compile Include="Modelo\Enums\EstadoOrden.cs" />
     <Compile Include="Modelo\Enums\TipoClientes.cs" />
     <Compile Include="Modelo\Model.designer.cs">
       <AutoGen>True</AutoGen>

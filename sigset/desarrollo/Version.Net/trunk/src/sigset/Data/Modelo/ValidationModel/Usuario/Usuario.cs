@@ -10,7 +10,18 @@ namespace Data.Modelo
     [MetadataType(typeof(UserMetadata))]
     public partial class Usuario
     {
+        public string NombreCompleto
+        {
+            get
+            {
+                return string.Format("{0} {1}",this.Nombres, this.ApellidoPaterno?? "" );
+            }
+        }
 
+        public bool esSistema()
+        {
+            return this.Id == Constantes.Constantes.ID_USUARIO_SISTEMA;
+        }
     }
 
     public class UserMetadata
