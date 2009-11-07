@@ -40,6 +40,7 @@ namespace Helpers
             hijos.Add("Tecnico");
             hijos.Add("Permisos");
             hijos.Add("Perfiles");
+            hijos.Add("Configuracion");
             //Aqui guardo a Admin y a sus hijos.
             controllerHijos.Add("Admin", hijos);
 

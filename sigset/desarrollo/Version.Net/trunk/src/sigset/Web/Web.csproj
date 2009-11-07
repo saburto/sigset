@@ -73,6 +73,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Administrativos\AdministrativosController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
+    <Compile Include="Controllers\Admin\ConfiguracionController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\PermisosController.cs" />
     <Compile Include="Controllers\Admin\TecnicoController.cs" />
@@ -302,6 +303,7 @@
     <Content Include="Views\AreaTecnica\SinOrdenes.aspx" />
     <Content Include="Views\Articulo\CrearArticulo.ascx" />
     <Content Include="Views\Articulo\Lista.aspx" />
+    <Content Include="Views\Configuracion\Lista.aspx" />
     <Content Include="Views\OrdenTrabajo\Consulta.aspx" />
     <Content Include="Views\OrdenTrabajo\CrearDetalle.aspx" />
     <Content Include="Views\OrdenTrabajo\DatosArticulo.ascx" />

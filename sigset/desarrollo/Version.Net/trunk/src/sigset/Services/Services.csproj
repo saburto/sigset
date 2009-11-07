@@ -69,6 +69,7 @@
     <Compile Include="Clientes\IClienteServicio.cs" />
     <Compile Include="Clientes\ValidacionCliente.cs">
     </Compile>
+    <Compile Include="Configuraciones\ConfiguracionServicio.cs" />
     <Compile Include="Empleados\EmpleadoServicio.cs" />
     <Compile Include="Empleados\IEmpleadoServicio.cs" />
     <Compile Include="Helpers\DataAnnotationsValidationRunner.cs" />

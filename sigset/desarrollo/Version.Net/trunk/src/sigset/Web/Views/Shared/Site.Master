@@ -149,7 +149,8 @@
             </ul>
         </div>
         <div class="logo">
-            <a href="<%= Url.Action("Index", "Home") %>">SERVICIO T&#201;CNICO</a></div>
+            <%=Html.ActionLink(Services.Configuraciones.Configuracion.NombreEmpresa,"Index","Home")  %>
+        </div>
         <div class="clear">
         </div>
     </div>
@@ -318,7 +319,8 @@
                     <%= Html.ActionLink("Acerca", "About", "Home") %></li>
             </ul>
             <p class="copyright">
-                &copy; 2009 Servicio T&#233;cnico</p>
+                &copy; <%=DateTime.Now.Year %> <%=Html.Encode(Services.Configuraciones.Configuracion.NombreEmpresa) %>
+            </p>
         </div>
     </div>
 </body>

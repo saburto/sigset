@@ -257,21 +257,21 @@
         <classShapeMoniker Id="a5e3c8b3-c6a0-442c-a569-39f033f066f2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 6.34699625651042); (9 : 6.34699625651042); (9 : 9.8189111328125); (9.01041666666667 : 9.8189111328125 : JumpStart); (9.17708333333333 : 9.8189111328125 : JumpEnd); (9.99479416666667 : 9.8189111328125 : JumpStart); (10.1614608333333 : 9.8189111328125 : JumpEnd); (16.7447916666667 : 9.8189111328125 : JumpStart); (16.9270833333333 : 9.8189111328125 : JumpEnd); (19.7916666666667 : 9.8189111328125 : JumpStart); (19.9583333333333 : 9.8189111328125 : JumpEnd); (20 : 9.8189111328125); (20 : 9.95359537760417); (21.25 : 9.95359537760417); (21.25 : 10.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 6.34699625651042); (9 : 6.34699625651042); (9 : 9.8189111328125); (9.99479416666667 : 9.8189111328125 : JumpStart); (10.1614608333333 : 9.8189111328125 : JumpEnd); (16.7447916666667 : 9.8189111328125 : JumpStart); (16.9270833333333 : 9.8189111328125 : JumpEnd); (19.7916666666667 : 9.8189111328125 : JumpStart); (19.9583333333333 : 9.8189111328125 : JumpEnd); (20 : 9.8189111328125); (20 : 9.95359537760417); (21.25 : 9.95359537760417); (21.25 : 10.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Perfil/Perfil_PerfilPermiso" />
       <nodes>
         <classShapeMoniker Id="e7cd8a66-1d54-4d19-a12c-9c4b6fafe734" />
         <classShapeMoniker Id="d2892160-2c88-4f21-aac9-276d49514ba5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(18.5 : 15.875); (18.5 : 11.5392976888021); (19.7916666666667 : 11.5392976888021 : JumpStart); (19.9583333333333 : 11.5392976888021 : JumpEnd); (20.25 : 11.5392976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(18.5 : 15.875); (18.5 : 11.5392976888021); (20.25 : 11.5392976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Permiso/Permiso_PerfilPermiso" />
       <nodes>
         <classShapeMoniker Id="79a46ca6-b733-4a1e-8750-3a5bad951df6" />
         <classShapeMoniker Id="d2892160-2c88-4f21-aac9-276d49514ba5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.75 : 16.5681469726563); (16.7604166666667 : 16.5681469726563 : JumpStart); (16.9270833333333 : 16.5681469726563 : JumpEnd); (17.5 : 16.5681469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(16.75 : 16.5681469726563); (17.5 : 16.5681469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Modulo/Modulo_Permiso" />
       <nodes>
         <classShapeMoniker Id="4718e84e-3286-44e3-b6f9-f0ab71781d10" />
@@ -313,7 +313,7 @@
         <classShapeMoniker Id="b7dfbeb9-4a89-4c91-a5c0-3cf83e373372" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13 : 3.875); (13 : 1.44314697265625); (14.75 : 1.44314697265625)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13 : 3.875); (13 : 1.44314697265625); (14.75 : 1.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Tecnico/Tecnico_Especialidade" />
       <nodes>
         <classShapeMoniker Id="f0ec0e5c-c9d1-4738-b9ca-6a51ceb9d432" />
@@ -327,14 +327,14 @@
         <classShapeMoniker Id="f0ec0e5c-c9d1-4738-b9ca-6a51ceb9d432" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 25.9719962565104); (13 : 25.9719962565104); (13 : 25.3478011067708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11.25 : 25.9719962565104); (11.5416666666667 : 25.9719962565104 : JumpStart); (11.7083333333333 : 25.9719962565104 : JumpEnd); (13 : 25.9719962565104); (13 : 25.3478011067708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/TipoArticulo/TipoArticulo_Articulo" />
       <nodes>
         <classShapeMoniker Id="657967d0-3242-4ad9-b158-d9571f694316" />
         <classShapeMoniker Id="a5e3c8b3-c6a0-442c-a569-39f033f066f2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 9.37283918131511); (8.91666666666667 : 9.37283918131511 : JumpStart); (9.17708333333333 : 9.37283918131511 : JumpEnd); (10.0781275 : 9.37283918131511); (10.0781275 : 11.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.25 : 9.37283918131511); (10.0781275 : 9.37283918131511); (10.0781275 : 11.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/TipoCliente/TipoCliente_Cliente" />
       <nodes>
         <classShapeMoniker Id="1f56af7b-45f5-4bdc-be7d-741b26916caa" />
@@ -355,14 +355,14 @@
         <classShapeMoniker Id="d39176dd-eb60-4476-82ef-21346508eb78" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 6.25091745577925); (14.375 : 5.87591745577925); (14.375 : 1.44314697265625); (14.75 : 1.44314697265625)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14 : 6.25091745577925); (14.375 : 5.87591745577925); (14.375 : 1.44314697265625); (14.75 : 1.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/TipoEspecialidad/TipoEspecialidad_Especialidade" />
       <nodes>
         <classShapeMoniker Id="03c60020-c15e-4cf5-aed2-7cbf1f317fb3" />
         <classShapeMoniker Id="e6b60ce0-6d38-4677-8bd8-55caec149b06" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 5.21559895833333); (11.7709776771334 : 5.21559895833333 : JumpStart); (11.9376443438001 : 5.21559895833333 : JumpEnd); (14.2916666666667 : 5.21559895833333 : JumpStart); (14.4583333333333 : 5.21559895833333 : JumpEnd); (16.7447916666667 : 5.21559895833333 : JumpStart); (16.9114583333333 : 5.21559895833333 : JumpEnd); (17.5 : 5.21559895833333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.25 : 5.21559895833333); (14.2916666666667 : 5.21559895833333 : JumpStart); (14.4583333333333 : 5.21559895833333 : JumpEnd); (16.7447916666667 : 5.21559895833333 : JumpStart); (16.9114583333333 : 5.21559895833333 : JumpEnd); (17.5 : 5.21559895833333)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Usuario/Usuario_Detalle" />
       <nodes>
         <classShapeMoniker Id="020babcc-418e-47f0-9c2b-6c3c120471c5" />
@@ -390,7 +390,7 @@
         <classShapeMoniker Id="7d3b2cba-3609-48a7-971d-5fe3c93783cc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 2.90625); (12.9166666666667 : 2.90625 : JumpStart); (13.0833333333333 : 2.90625 : JumpEnd); (14.2916666666667 : 2.90625 : JumpStart); (14.4583333333333 : 2.90625 : JumpEnd); (21.25 : 2.90625); (21.25 : 8.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11.25 : 2.90625); (21.25 : 2.90625); (21.25 : 8.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Usuario/Usuario_UsuarioPermiso" />
       <nodes>
         <classShapeMoniker Id="020babcc-418e-47f0-9c2b-6c3c120471c5" />
@@ -403,47 +403,53 @@
         <elementListCompartment Id="4112ca8a-f99e-4817-aafc-0c5ab099b6ea" absoluteBounds="14.89, 6.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(16.84375 : 5.875); (16.84375 : 5.57655147916667); (17.5 : 5.57655147916667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(16.84375 : 5.875); (16.84375 : 5.57655147916667); (17.5 : 5.57655147916667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/OrdenTrabajo/OrdenTrabajo_Detalle" />
       <nodes>
         <classShapeMoniker Id="c41d7421-e68c-44cb-9a9f-6229e90b0176" />
         <classShapeMoniker Id="aa166d84-d115-45fa-ae19-5bb7d19451d1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.875 : 8.01044840494792); (17.5 : 8.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(16.875 : 8.01044840494792); (17.5 : 8.01044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/OrdenTrabajo/OrdenTrabajo_HistorialModificacionOrden" />
       <nodes>
         <classShapeMoniker Id="c41d7421-e68c-44cb-9a9f-6229e90b0176" />
         <classShapeMoniker Id="90312db1-b4cb-4376-8b58-bda67b9109ea" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 24.1739005533854); (16.84375 : 24.1739005533854); (16.84375 : 9.5689111328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14 : 24.1739005533854); (16.84375 : 24.1739005533854); (16.84375 : 9.5689111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Articulo/Articulo_OrdenTrabajo" />
       <nodes>
         <classShapeMoniker Id="a5e3c8b3-c6a0-442c-a569-39f033f066f2" />
         <classShapeMoniker Id="c41d7421-e68c-44cb-9a9f-6229e90b0176" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 18.2219962565104); (16.828125 : 18.2219962565104); (16.828125 : 9.5689111328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14 : 18.2219962565104); (16.828125 : 18.2219962565104); (16.828125 : 9.5689111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/TipoOrden/TipoOrden_OrdenTrabajo" />
       <nodes>
         <classShapeMoniker Id="01050067-4e63-43c3-919b-86f1a43ca901" />
         <classShapeMoniker Id="c41d7421-e68c-44cb-9a9f-6229e90b0176" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 4.91274251302083); (14.2916666666667 : 4.91274251302083 : JumpStart); (14.4583333333333 : 4.91274251302083 : JumpEnd); (16.828125 : 4.91274251302083); (16.828125 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14 : 4.91274251302083); (14.2916666666667 : 4.91274251302083 : JumpStart); (14.4583333333333 : 4.91274251302083 : JumpEnd); (16.828125 : 4.91274251302083); (16.828125 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Tecnico/Tecnico_OrdenTrabajo" />
       <nodes>
         <classShapeMoniker Id="f0ec0e5c-c9d1-4738-b9ca-6a51ceb9d432" />
         <classShapeMoniker Id="c41d7421-e68c-44cb-9a9f-6229e90b0176" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.09375 : 11.25); (9.09375 : 8.50216584716797); (14.875 : 8.50216584716797)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.09375 : 11.25); (9.09375 : 8.50216584716797); (14.875 : 8.50216584716797)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/sigsetEntities/Cliente/Cliente_OrdenTrabajo" />
       <nodes>
         <classShapeMoniker Id="dbb49fd6-7c48-47dc-a6ea-557e7b8cf138" />
         <classShapeMoniker Id="c41d7421-e68c-44cb-9a9f-6229e90b0176" />
       </nodes>
     </associationConnector>
+    <classShape Id="cca7525a-07ce-4e9b-8a8e-66bc00c9e3d9" absoluteBounds="1.75, 4.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/sigsetEntities/Configuracion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1ad983b4-fe14-4af0-94d6-3cd37da7df66" absoluteBounds="1.7650000000000001, 5.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
