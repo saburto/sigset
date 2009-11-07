@@ -1,15 +1,13 @@
-CREATE PROCEDURE [dbo].[PermisosDispUsuario]
+CREATE PROCEDURE [dbo].[PermisosDispPerfil]
 @idPerfil int
 
 AS
 
 select *
 from Permisos where  not Id  in( select IdPermiso from PerfilPermiso
-where IdPerfil = @idPerfil) and not Id in (select IdPermiso from UsuarioPermisos where IdUsuario =2)  
+where IdPerfil = @idPerfil)
 
-
--- Para agregar los permisos que no tiene el usuario--
-CREATE PROCEDURE [dbo].[PermisosDispUsuarioPermiso]
+CREATE PROCEDURE [dbo].[PermisosDispUsuario]
 @idPerfil int,@idUsusario int
 
 AS
