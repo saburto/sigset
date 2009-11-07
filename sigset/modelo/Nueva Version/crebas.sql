@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     05-11-2009 17:59:09                          */
+/* Created on:     07-11-2009 1:09:03                           */
 /*==============================================================*/
 
 
@@ -293,6 +293,13 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('Configuracion')
+            and   type = 'U')
+   drop table Configuracion
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('Contacto')
             and   type = 'U')
    drop table Contacto
@@ -551,6 +558,17 @@ create table Comuna (
    IdProvincia          numeric(3, 0)        not null,
    Nombre               varchar(255)         not null,
    constraint PK_comuna primary key (Id)
+)
+go
+
+/*==============================================================*/
+/* Table: Configuracion                                         */
+/*==============================================================*/
+create table Configuracion (
+   Id                   int                  not null,
+   Valor                varchar(Max)         not null,
+   Descripcion          varchar(255)         null,
+   constraint PK_CONFIGURACION primary key (Id)
 )
 go
 
