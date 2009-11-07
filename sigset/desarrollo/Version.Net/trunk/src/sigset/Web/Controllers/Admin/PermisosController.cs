@@ -118,7 +118,7 @@ namespace Web.Controllers.Admin
         }
         public ActionResult CambiarEstadoPerfilUsuarioPermiso(decimal idPermiso, decimal idUsuario)
         {
-            servAut.GuardarUsuarioPermiso(idPermiso, idUsuario);
+            servAut.GuardarUsuarioPermisoBloqueado(idPermiso, idUsuario);
             return RedirectToAction("AgregarPermisoUsuario", new { idUsuario = idUsuario });
         }
 

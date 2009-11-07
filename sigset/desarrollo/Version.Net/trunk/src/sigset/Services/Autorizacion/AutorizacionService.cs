@@ -149,7 +149,7 @@ namespace Services.Autorizacion
             _repo.CambiarEstadoUsuarioPermiso(usuarioPermisoNuevo);
         }
 
-        public void GuardarUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        public void GuardarUsuarioPermisoBloqueado(decimal idPermiso, decimal idUsuario)
         {
            
             var permiso = _repo.GetPermisoById(idPermiso);
