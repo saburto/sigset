@@ -6,6 +6,7 @@ using Data.Modelo;
 using Services.Helpers;
 using xVal.ServerSide;
 using Data.Repositorios.Tecnicos;
+using Data.Modelo.Enums;
 
 namespace Services.Tecnicos
 {
@@ -19,10 +20,17 @@ namespace Services.Tecnicos
         public TecnicoServicio() : this(new TecnicoRepositorio())
         { 
         }
+        
         public Tecnico GetTecnicoByRut(decimal rut)
         {
             return _repo.GetTecnicoByRut(rut);
         }
+
+        public Tecnico GetTecnicoById(int id)
+        {
+            return _repo.GetTecnicoById(id);
+        }
+
         public IList<Usuario> GetTodosLosTecnicosEmpleados()
         {
             return _repo.GetEmpleadosTecnicos().ToList();
@@ -143,6 +151,17 @@ namespace Services.Tecnicos
            _repo.DeleteEspecialidad(especialidad);       
         }
 
-           
+
+
+        public void CrearTecnicoDefecto(int idUsuario)
+        {
+            if (GetTecnicoById(idUsuario) == null)
+            {
+                Tecnico nuevoTecnico = new Tecnico();
+                nuevoTecnico.Id = idUsuario;
+                nuevoTecnico.Nivel = (int)NivelesTecnicos.Basico;
+                _repo.CreateTecnico(nuevoTecnico);
+            }
+        }
     }
 }

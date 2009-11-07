@@ -39,7 +39,7 @@ namespace Web.Controllers.Admin
         public ActionResult Editar(int id)
         {
             var tecnico = _servicio.GetTecnicoByRut(id);
-            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("Id_Nivel", "Descripcion",tecnico.Nivel.ToString());
+            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion",tecnico.Nivel.ToString());
             return View(tecnico);   
         }
         [AcceptVerbs (HttpVerbs.Post)]
@@ -56,7 +56,7 @@ namespace Web.Controllers.Admin
             {
                 ModelState.AddRuleErrors(e.Errors);
                 var t = _servicio.GetTecnicoByRut(id);
-                ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("Id_Nivel", "Descripcion");
+                ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion");
                 return View(t);  
             
             }
@@ -71,7 +71,7 @@ namespace Web.Controllers.Admin
         public ActionResult Crear()
         {
             ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre"); 
-            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("Id_Nivel", "Descripcion");
+            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion");
             return View();           
         }
         [AcceptVerbs(HttpVerbs.Post)]
@@ -89,7 +89,7 @@ namespace Web.Controllers.Admin
             {
                 ModelState.AddRuleErrors(e.Errors);
                 ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre");
-                ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("Id_Nivel", "Descripcion");
+                ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion");
                 return View(tecnico);   
 
             
@@ -124,7 +124,7 @@ namespace Web.Controllers.Admin
         public ActionResult AgregarNuevaEspecialidad(int id)
         {
             var tecnico = _servicio.GetTecnicoByRut(id);
-            ViewData["tipoEspecialidades"] = _servicio.GetEspecialidadesNoRepetidas(id).GetSelectCampos("Id_Tipo_Especialidad", "Descripcion");
+            ViewData["tipoEspecialidades"] = _servicio.GetEspecialidadesNoRepetidas(id).GetSelectCampos("IdTipoEspecialidad", "Descripcion");
 
             return View(new Especialidade { IdTecnico = id });
         }

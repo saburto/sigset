@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Data.Modelo;
+using Data.Modelo.Enums;
 
 
 
@@ -18,28 +19,21 @@ namespace Data.Repositorios.Tecnicos
 
         public IQueryable<Tecnico> GetTodosLosTecnicos()
         { 
-              var tecnicos = from t in _data.Tecnicos
-                             select t;
+              var tecnicos = from t in _data.Usuarios
+                             where t.PerfilUsuario == (int)PerfilUsuarios.Tecnico 
+                             select t.Tecnico;
              return tecnicos;
         }
 
         public Tecnico GetTecnicoByRut(decimal rut)
         {
-            var tecnico = _data.Tecnicos.Where(x => x.Usuario.Rut == rut).FirstOrDefault();
+            var tecnico = _data.Usuarios.Where(x => x.PerfilUsuario == (int)PerfilUsuarios.Tecnico && x.Rut == rut).Select(x => x.Tecnico).FirstOrDefault();
             return tecnico;
         }
 
         public IQueryable<Usuario> GetEmpleadosTecnicos()
         {
-            var empleados_tecnicos = _data.Usuarios.Where(x => x.Tecnico != null);
-
-            //var empleados_tecnicos = (from emp in _data.Usuarios 
-            //                         where ((emp.PerfilUsuario == 1) && 
-            //                         (!(from t in _data.Tecnicos
-            //                            where t.Rut == emp.Rut 
-            //                            select t).Any()))
-            //                         select emp);                                      
-                                    
+            var empleados_tecnicos = _data.Usuarios.Where(x => x.PerfilUsuario == (int)PerfilUsuarios.Tecnico);
             return empleados_tecnicos;
         }
 
