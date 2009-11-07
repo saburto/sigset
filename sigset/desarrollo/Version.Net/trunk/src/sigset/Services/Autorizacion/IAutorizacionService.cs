@@ -25,7 +25,7 @@ namespace Services.Autorizacion
         IList<Permiso> GetPermisosDisponiblesUsuario(decimal idUsuario, decimal idPerfil);
         void EliminarUsuarioPermiso(decimal idPermiso, decimal idPerfil, decimal idUsuario);
         void CambiarEstadoUsuarioPermiso(decimal idPermiso, decimal idUsuario);
-        void GuardarUsuarioPermiso(decimal idPermiso, decimal idUsuario);
+        void GuardarUsuarioPermisoBloqueado(decimal idPermiso, decimal idUsuario);
         void GuardarNuevoUsuarioPermiso(decimal idPermiso, decimal idUsuario);
     }
 }
