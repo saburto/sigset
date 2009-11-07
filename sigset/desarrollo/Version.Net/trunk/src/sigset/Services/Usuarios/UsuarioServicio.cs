@@ -7,6 +7,8 @@ using Services.Helpers;
 using xVal.ServerSide;
 using Data.Modelo;
 using Data.Modelo.Constantes;
+using Data.Modelo.Enums;
+using Services.Tecnicos;
 
 
 namespace Services.Usuarios
@@ -14,6 +16,9 @@ namespace Services.Usuarios
     public class UsuarioServicio : Services.Usuarios.IUsuarioServicio 
     {
         private IUsuarioRepositorio _repo;
+        private TecnicoServicio _tecnicoSrv;
+
+
         public UsuarioServicio(IUsuarioRepositorio repo)
         {
             _repo = repo;
@@ -64,6 +69,11 @@ namespace Services.Usuarios
             else
             {
                 _repo.UpdateUsuario(usuario);
+                if (usuario.PerfilUsuario == (int)PerfilUsuarios.Tecnico)
+                {
+                    _tecnicoSrv = new TecnicoServicio();
+                    _tecnicoSrv.CrearTecnicoDefecto(usuario.Id);
+                }
             }
         }
             
@@ -121,12 +131,22 @@ namespace Services.Usuarios
                 }
                 else
                 {
+                    usuario.Activo = true;
                     _repo.CreateUsuario(usuario);
+
+                    if (usuario.PerfilUsuario == (int) PerfilUsuarios.Tecnico )
+                    {
+                        _tecnicoSrv = new TecnicoServicio();
+                        _tecnicoSrv.CrearTecnicoDefecto(usuario.Id);
+                    }
+
                 }
 
             }
 
         }
+
+
         public Usuario GetUsuariByNombre(string p)
         {
             return _repo.GetUsuarioByNombreUsuario(p);
