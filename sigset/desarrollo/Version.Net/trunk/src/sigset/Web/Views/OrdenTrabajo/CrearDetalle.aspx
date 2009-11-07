@@ -77,18 +77,18 @@
             <legend>Orden de Trabajo</legend>
             <p>
                 <label for="Serie">N° Serie de Articulo:</label>
-                <%= Html.TextBox("Serie") %>
+                <%= Html.TextBox("Serie", null, new { title="Número de serie unico que posee el articulo" })%>
                 <%= Html.ValidationMessage("Serie", "*") %>
             </p>
 
             <p>
                 <label for="Falla">Falla Articulo:</label>
-                <%= Html.TextArea("Falla", new { rows = "4", style = "width:100%" })%>
+                <%= Html.TextArea("Falla", new { rows = "4", style = "width:100%", title="Descripción del fallo del articulo por el cual se necesita la revisión" })%>
                 <%= Html.ValidationMessage("Falla", "*") %>
             </p>
             <p>
-                <label for="CondicionArticulo">Condicion Articulo:</label>
-                <%= Html.TextArea("CondicionArticulo", new { rows = "4", style="width:100%"})%>
+                <label for="CondicionArticulo">Condici&oacute;n Articulo:</label>
+                <%= Html.TextArea("CondicionArticulo", new { rows = "4", style="width:100%", title="Descripción de la condición en que se ingreso el articulo"})%>
                 <%= Html.ValidationMessage("CondicionArticulo", "*") %>
             </p>
 
@@ -96,7 +96,7 @@
                 <div class="three-column-left">
                 <p>
                     <label for="TipoOrden">Tipo Orden:</label>
-                    <%= Html.DropDownList("TipoOrden")%>
+                    <%= Html.DropDownList("TipoOrden", null, new { title="Define si la orden es de tipo garantia o particular" })%>
                     
                     <%= Html.ValidationMessage("TipoOrden", "*") %>
                 </p>
@@ -105,10 +105,10 @@
                 <div class="three-column-middle">
                 <p>
                 <label for="Boleta">Boleta:</label>
-                <%= Html.TextBox("Boleta") %>
+                <%= Html.TextBox("Boleta", null, new { title="Boleta de la compra del articulo para hacer valida la garantia" })%>
                 <%= Html.ValidationMessage("Boleta", "*") %>
                 <label for="Poliza">Poliza:</label>
-                <%= Html.TextBox("Poliza") %>
+                <%= Html.TextBox("Poliza", null, new {title="Poliza de garantia del producto" })%>
                 <%= Html.ValidationMessage("Poliza", "*") %>
                 </p>
                 </div>
@@ -116,11 +116,11 @@
                 <p>
                 <label for="FechaCompra">Fecha Compra:</label>
                 
-                <%= Html.TextBox("FechaCompra") %>
+                <%= Html.TextBox("FechaCompra", null, new {title="Fecha en que se compro el articulo" })%>
                 
                 <%= Html.ValidationMessage("FechaCompra", "*") %>
                 <label for="LugarCompra">Lugar Compra:</label>
-                <%= Html.TextBox("LugarCompra") %>
+                <%= Html.TextBox("LugarCompra", null, new {title="Tienda comercial donde se compro el articulo" })%>
                 <%= Html.ValidationMessage("LugarCompra", "*") %>
                 </p>
                 </div>
@@ -129,7 +129,7 @@
             <div class="clear"></div>
             <p>
                 <label for="Fecha Entrega">Fecha Entrega:</label>
-                <%= Html.TextBox("FechaEntrega", Model.FechaEntrega.ToShortDateString()) %>
+                <%= Html.TextBox("FechaEntrega", Model.FechaEntrega.ToShortDateString(), new { title="Fecha en que se entregara el articulo reparado" })%>
                 <%= Html.ValidationMessage("FechaEntrega", "*") %>
             </p>
         </fieldset>
