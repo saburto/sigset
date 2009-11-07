@@ -290,6 +290,7 @@
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Scripts\jquery.tooltip.min.js" />
     <Content Include="Scripts\localization\messages_es.js" />
+    <Content Include="Scripts\sigset.js" />
     <Content Include="Views\Administrativos\Asignar.aspx" />
     <Content Include="Views\Administrativos\AsignarTecnico.aspx" />
     <Content Include="Views\Administrativos\ConsultaOrdenes.aspx" />
