@@ -89,6 +89,7 @@
     <Compile Include="Repositorios\Articulo\IArticuloRepositorio.cs" />
     <Compile Include="Repositorios\Clientes\ClienteRepositorio.cs" />
     <Compile Include="Repositorios\Clientes\IClienteRepositorio.cs" />
+    <Compile Include="Repositorios\Configuraciones\ConfiguracionRepositorio.cs" />
     <Compile Include="Repositorios\Empleados\EmpleadoRepositorio.cs" />
     <Compile Include="Repositorios\Empleados\IEmpleadoRepositorio.cs" />
     <Compile Include="Repositorios\OrdenTrabajo\IOrdenTrabajoRepositorio.cs" />

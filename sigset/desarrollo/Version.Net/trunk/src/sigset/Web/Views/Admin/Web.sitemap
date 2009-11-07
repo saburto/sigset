@@ -28,6 +28,9 @@
       <mvcSiteMapNode title="Especialidades"   action="Especialidad" />
       <mvcSiteMapNode title="Niveles"   action="Niveles" />
     </mvcSiteMapNode>
+    <mvcSiteMapNode title="Configuraciones" controller="Configuracion" action="">
+      <mvcSiteMapNode title="Lista"  controller="Configuracion" action="Lista" />
+    </mvcSiteMapNode>
 
 
   </mvcSiteMapNode>

@@ -129,6 +129,9 @@ namespace Data.Modelo
     partial void InsertOrdenTrabajo(OrdenTrabajo instance);
     partial void UpdateOrdenTrabajo(OrdenTrabajo instance);
     partial void DeleteOrdenTrabajo(OrdenTrabajo instance);
+    partial void InsertConfiguracion(Configuracion instance);
+    partial void UpdateConfiguracion(Configuracion instance);
+    partial void DeleteConfiguracion(Configuracion instance);
     #endregion
 		
 		public sigsetEntities() : 
@@ -422,6 +425,14 @@ namespace Data.Modelo
 			get
 			{
 				return this.GetTable<OrdenTrabajo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Configuracion> Configuracions
+		{
+			get
+			{
+				return this.GetTable<Configuracion>();
 			}
 		}
 		
@@ -7166,6 +7177,116 @@ namespace Data.Modelo
 		{
 			this.SendPropertyChanging();
 			entity.OrdenTrabajo = null;
+		}
+	}
+	
+	[Table(Name="dbo.Configuracion")]
+	public partial class Configuracion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Valor;
+		
+		private string _Descripcion;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnValorChanging(string value);
+    partial void OnValorChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    #endregion
+		
+		public Configuracion()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Valor", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Valor
+		{
+			get
+			{
+				return this._Valor;
+			}
+			set
+			{
+				if ((this._Valor != value))
+				{
+					this.OnValorChanging(value);
+					this.SendPropertyChanging();
+					this._Valor = value;
+					this.SendPropertyChanged("Valor");
+					this.OnValorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Descripcion", DbType="VarChar(255)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

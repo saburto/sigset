@@ -330,6 +330,13 @@
       <Association Name="Cliente_OrdenTrabajo" Member="Cliente" ThisKey="IdCliente" OtherKey="Id" Type="Cliente" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Configuracion" Member="Configuracions">
+    <Type Name="Configuracion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Valor" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.PermisosDispPerfil" Method="PermisosDispPerfil">
     <Parameter Name="idPerfil" Type="System.Int32" DbType="Int" />
     <ElementType IdRef="ID1" />
