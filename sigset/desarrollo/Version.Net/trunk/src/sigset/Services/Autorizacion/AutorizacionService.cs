@@ -170,5 +170,26 @@ namespace Services.Autorizacion
             }
 
         }
+
+        public void GuardarNuevoUsuarioPermiso(decimal idPermiso, decimal idUsuario)
+        {
+            var permiso = _repo.GetPermisoById(idPermiso);
+            var usuario = _repo.GetUsuario(idUsuario);
+
+            if (permiso != null && usuario != null)
+            {
+                UsuarioPermiso usuarioPermiso = new UsuarioPermiso();
+                usuarioPermiso.Permiso = permiso;
+                usuarioPermiso.Usuario = usuario;
+                usuarioPermiso.Estado = true;
+                // guardar en usuarioPermiso;
+                _repo.CrearUsuarioPermiso(usuarioPermiso);
+            }
+            else
+            {
+                // datos invalidos
+            }
+            
+        }
     }
 }

@@ -26,5 +26,6 @@ namespace Services.Autorizacion
         void EliminarUsuarioPermiso(decimal idPermiso, decimal idPerfil, decimal idUsuario);
         void CambiarEstadoUsuarioPermiso(decimal idPermiso, decimal idUsuario);
         void GuardarUsuarioPermiso(decimal idPermiso, decimal idUsuario);
+        void GuardarNuevoUsuarioPermiso(decimal idPermiso, decimal idUsuario);
     }
 }
