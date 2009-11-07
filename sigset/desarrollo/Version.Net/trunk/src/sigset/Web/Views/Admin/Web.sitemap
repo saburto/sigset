@@ -23,6 +23,12 @@
       <mvcSiteMapNode title="Lista"  controller="Perfiles" action="Lista" />
     </mvcSiteMapNode>
 
+    <mvcSiteMapNode title="Tecnicos" controller="Tecnico" action="" >
+      <mvcSiteMapNode title="Agregar"  action="Crear" />
+      <mvcSiteMapNode title="Especialidades"   action="Especialidad" />
+      <mvcSiteMapNode title="Niveles"   action="Niveles" />
+    </mvcSiteMapNode>
+
 
   </mvcSiteMapNode>
 </siteMap>
