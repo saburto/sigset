@@ -24,9 +24,23 @@ namespace Helpers
             return tagBuilder.ToString();
         }
 
+
         public static string ButtonSubmit(this HtmlHelper html, string content)
         {
+            return ButtonSubmit(html, content, null);
+        }
+
+        public static string ButtonSubmit(this HtmlHelper html, string content, object htmlAtributes)
+        {
             TagBuilder tagBuilder = new TagBuilder("button");
+
+            if (htmlAtributes != null)
+            {
+                IDictionary<string, object> htmlAttributes1 = new RouteValueDictionary(htmlAtributes);
+                tagBuilder.MergeAttributes(htmlAttributes1);
+            }
+
+
             tagBuilder.MergeAttribute("type", ButtonType.submit.ToString());
             tagBuilder.AddCssClass("fg-button ui-state-default ui-corner-all");
 

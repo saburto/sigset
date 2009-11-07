@@ -1,11 +1,11 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Listar
+    Listar
 </asp:Content>
-
 <asp:Content ID="Content5" ContentPlaceHolderID="HeadContent" runat="server">
-<script type="text/javascript">
+
+    <script type="text/javascript">
     //<![CDATA[
 <%using (Html.BeginReady())
   {%>
@@ -43,55 +43,53 @@
 
 <%} %>
   //]]>
-</script>
+    </script>
+
 </asp:Content>
-
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Listar Ordenes de Trabajo</h2>
-    <%using(Ajax.BeginForm(new AjaxOptions{ UpdateTargetId="resultados", HttpMethod="POST", LoadingElementId="loadingAjax"})) {%>
-    <fieldset>
-    <div class="three-column-container">
-      <div class="three-column-left">
-    <label for="Fecha_Inicio">Rango de Fecha:</label>
-    <%=Html.TextBox("Fecha_Inicio") %> 
+        
+        <div class="no-print" style="float:right;font-size:53%">
+            <%=Html.ButtonLinkIcon(Url.Action("ListarExcel",new { format = "xls" }),"Excel", Iconos.calculator, IconPosition.left, new{id="excelLink", title="Exportar Lista a excel"}) %>
         </div>
-        <div class="three-column-middle">
-    <label for="Fecha_Final">hasta:</label>
-    <%=Html.TextBox("Fecha_Final") %>
-    </div>
-    </div>
+    <h2>Listar Ordenes de Trabajo</h2>
     
-    <br /><br />
-    
-    <div class="three-column-container">
-      <div class="three-column-left">    
-    <label for="ListaTipos">Tipos de Orden</label>
-    <%=Html.DropDownList("ListaTipos")%>
-    </div>
-    
-    <div class="three-column-middle">
-    <label for="ListaEstados">Estados de Orden</label>
-    <%=Html.DropDownList("ListaEstados")%>
-    </div>
-    </div>
-    <div class="clear"></div>
-    <br /><br />
-    <input type="submit" value="Listar" id="submitLista" />
-    
+    <%using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "resultados", HttpMethod = "POST", LoadingElementId = "loadingAjax" }))
+      {%>
+    <fieldset>
+        <div class="three-column-container">
+            <div class="three-column-left">
+                <label for="Fecha_Inicio">
+                    Rango de Fecha:</label>
+                <%=Html.TextBox("Fecha_Inicio") %>
+            </div>
+            <div class="three-column-middle">
+                <label for="Fecha_Final">
+                    hasta:</label>
+                <%=Html.TextBox("Fecha_Final") %>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="three-column-container">
+            <div class="three-column-left">
+                <label for="ListaTipos">
+                    Tipos de Orden</label>
+                <%=Html.DropDownList("ListaTipos")%>
+            </div>
+            <div class="three-column-middle">
+                <label for="ListaEstados">
+                    Estados de Orden</label>
+                <%=Html.DropDownList("ListaEstados")%>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <br />
+        <br />
     </fieldset>
+    <%=Html.ButtonSubmit("Listar", new { id = "submitLista" })%>
     <%} %>
-    <div id="resultados"></div>
-
+    <br />
+    <div id="resultados">
+    </div>
 </asp:Content>
-
-
-<asp:Content ID="Content4" ContentPlaceHolderID="MenuDerecha" runat="server">
-<ul>
-<li>
-<%=Html.ActionLink("Exportar a Excel", "ListarExcel", new { format = "xls" }, new {id="excelLink"})%>
-</li>
-</ul>
-</asp:Content>
-

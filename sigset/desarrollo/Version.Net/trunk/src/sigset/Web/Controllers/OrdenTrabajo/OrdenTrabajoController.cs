@@ -145,11 +145,19 @@ namespace Web.Controllers
 
         public ActionResult Detalles(decimal id, string format)
         {
+            
+
             if (format != null)
             {
                 return Export(id, format);
             }
             Data.Modelo.OrdenTrabajo orden = _srvOrdenTrabajo.GetOrdenTrabajo(id);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("DetallesOrden", orden);
+            }
+
             return View(orden);
         }
 

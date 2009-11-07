@@ -4,16 +4,16 @@
     Detalles
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<div class="no-print" style="float:right;font-size:53%">
+    <%=Html.ButtonLinkIcon("javascript:window.print()", "Imprimir", Iconos.print, IconPosition.left, new{ title="Imprimir Pagina web"}) %>
+    <%=Html.ButtonLinkIcon(Url.Action("Detalles",new {id=Model.Id,format="pdf"} ), "Pdf", Iconos.document, IconPosition.left, new{ title="Exportar a pdf"}) %>
+    <%=Html.ButtonLinkIcon(Url.Action("Detalles",new {id=Model.Id,format="excel"} ), "Excel", Iconos.calculator, IconPosition.left, new{ title="Exportar a excel"}) %>
+</div>   
+<br /> 
+
 <%Html.RenderPartial("DetallesOrden", Model); %>
-    <ul>
-        <li><a href="javascript:window.print()">Imprimir</a></li>
-        <li>
-            <%=Html.ActionLink("Exportar a Excel","Detalles",new {id=Model.Id,format="excel"}) %>
-        </li>
-        <li>
-            <%=Html.ActionLink("Exportar a PDF","Detalles",new {id=Model.Id,format="pdf"}) %>
-        </li>
-    </ul>
+
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
