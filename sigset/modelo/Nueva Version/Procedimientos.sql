@@ -9,7 +9,7 @@ where IdPerfil = @idPerfil) and not Id in (select IdPermiso from UsuarioPermisos
 
 
 -- Para agregar los permisos que no tiene el usuario--
-CREATE PROCEDURE [dbo].[PermisosDispUsuario]
+CREATE PROCEDURE [dbo].[PermisosDispUsuarioPermiso]
 @idPerfil int,@idUsusario int
 
 AS
