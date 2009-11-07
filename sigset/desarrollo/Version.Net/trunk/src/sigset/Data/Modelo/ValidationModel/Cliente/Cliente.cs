@@ -11,19 +11,42 @@ namespace Data.Modelo
     {
         public decimal Rut()
         {
-            if (this.TipoCliente == (int) Data.Modelo.Enums.TipoClientes.ClienteParticular)
+            if (esClienteParticular())
             {
                 if (this.ClienteParticular != null)
                 {
                     return this.ClienteParticular.Rut;
                 }
             }
-            else if (this.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteComercial)
+            else if (esClienteComercial())
             {
                 if (this.ClienteComercial != null)
                 {
                     return this.ClienteComercial.Rut;
                 }
+            }
+            throw new NullReferenceException("No existe cliente particular ni comercial asociado");
+        }
+
+        public bool esClienteParticular()
+        {
+            return (this.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteParticular);
+        }
+
+        public bool esClienteComercial()
+        {
+            return (this.TipoCliente == (int)Data.Modelo.Enums.TipoClientes.ClienteComercial);
+        }
+
+        public string NombreCompleto()
+        {
+            if (esClienteParticular())
+            {
+                return string.Format("{0} {1}", this.ClienteParticular.Nombre, this.ClienteParticular.ApellidoPaterno);
+            }
+            else if(esClienteComercial())
+            {
+                return this.ClienteComercial.RazonSocial;
             }
             throw new NullReferenceException("No existe cliente particular ni comercial asociado");
         }

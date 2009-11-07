@@ -6,6 +6,7 @@ using Data.Repositorios.Usuarios;
 using Services.Helpers;
 using xVal.ServerSide;
 using Data.Modelo;
+using Data.Modelo.Constantes;
 
 
 namespace Services.Usuarios
@@ -34,6 +35,11 @@ namespace Services.Usuarios
 
         public void ModificarUsuario(Usuario usuario)
         {
+            if (usuario.Id == Constantes.ID_USUARIO_SISTEMA)
+            {   
+                return;
+            }
+
             List<ErrorInfo> _errors = new List<ErrorInfo>();
 
             if (usuario.PerfilUsuario == -1)
@@ -66,8 +72,11 @@ namespace Services.Usuarios
 
         public void EliminarUsuario(decimal id)
         {
-            var usuario = _repo.GetUsuario(id);
-            _repo.DeleteUsuario(usuario);
+            if (Constantes.ID_USUARIO_SISTEMA != id)
+            {
+                var usuario = _repo.GetUsuario(id);
+                _repo.DeleteUsuario(usuario);
+            }
         }
 
         public IList<Perfil> TiposUsuarios()
