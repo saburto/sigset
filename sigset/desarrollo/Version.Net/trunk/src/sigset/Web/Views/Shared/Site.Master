@@ -27,7 +27,7 @@
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/localization/messages_es.js") %>"></script>
     
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.jquery.validate.js") %>"></script>
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/xVal.Messages.es-ES.js")%>"></script>
+
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>"></script>
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js") %>"></script>
@@ -65,12 +65,10 @@
     </div>
     <div class="content-container">
         <div class="content-container-inner">
-            <div class="content-main"
-            <asp:ContentPlaceHolder ID="divContentStyle" runat="server">            
-            </asp:ContentPlaceHolder>
-            >
+            <div class="content-main" <asp:ContentPlaceHolder ID="divContentStyle" runat="server"></asp:ContentPlaceHolder>>
+                        
                         <div id="loadingAjax" style="display: none;">
-                            Cargando... <img src="../../Content/images/ajax-loader.gif" alt="Cargando..." />
+                            Cargando... <img src="<%=Url.Content("~/Content/images/ajax-loader.gif")%>" alt="Cargando..." />
                         </div>
                 
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
