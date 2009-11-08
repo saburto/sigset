@@ -4,18 +4,16 @@
     Agregar Permiso Usuario
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Agregar Permiso Usuario</h2>
-    <legend>Permisos del usuario</legend>
+    <h2>Permisos del usuario</h2>
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th>
             </th>
             <th>
-                Id Perfil
+                <%=Html.Encode("Estado") %>
             </th>
             <th>
-                Id Permiso
+                <%=Html.Encode("Opción") %>
             </th>
             <th>
                 <%=Html.Encode("Descripción opción") %>
@@ -23,31 +21,21 @@
             <th>
                 <%=Html.Encode("Módulo") %>
             </th>
-            <th>
-                <%=Html.Encode("Estado") %>
-            </th>
         </tr>
         <%if (Model.ListaUsuarioPermiso != null && Model.ListaUsuarioPermiso.Count > 0) %>
         <%{%>
-        <%bool alter = false; %>
         <%foreach (var item in Model.ListaUsuarioPermiso)
           { %>
-        <%if (alter)
-          { %>
-        <tr class="row-alternating">
-            <%}
-          else
-          { %>
             <tr>
-                <%} alter = !alter; %>
                 <td>
                     <%=Html.ButtonLinkIcon(Url.Action("QuitarUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idPerfil = ViewData["idperfil"], idUsuario = ViewData["idUsuario"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
                     <%=Html.ButtonLinkIcon(Url.Action("EstadoUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                 </td>
                 <td>
+                    <%= Html.Encode(item.Estado.toEstado()) %>
                 </td>
                 <td>
-                    <%= Html.Encode(item.IdPermiso) %>
+                    <%= Html.Encode(item.Permiso.Opcion.toOpcion()) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.Permiso.DescripcionOpcion) %>
@@ -55,35 +43,24 @@
                 <td>
                     <%= Html.Encode(item.Permiso.Modulo.NombreModulo) %>
                 </td>
-                <td>
-                    <%= Html.Encode(item.Estado) %>
-                </td>
-                <%}
-          alter = !alter; %>
+                <%} %>
                 <%}%>
             </tr>
             <%if (Model.ListaPerfilPermiso != null) %>
             <%{%>
-            <%bool alter = false; %>
+            
             <%            
               foreach (var item in Model.ListaPerfilUsuarioPermiso)
               { %>
-            <%if (alter)
-              { %>
-            <tr class="row-alternating">
-                <%}
-              else
-              { %>
                 <tr>
-                    <%} alter = !alter; %>
                     <td>
                         <%=Html.ButtonLinkIcon(Url.Action("CambiarEstadoPerfilUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                     </td>
                     <td>
-                        <%= Html.Encode(item.IdPerfil) %>
+                        <%= Html.Encode(item.Estado.toEstado()) %>
                     </td>
                     <td>
-                        <%= Html.Encode(item.IdPermiso) %>
+                        <%= Html.Encode(item.Permiso.Opcion.toOpcion()) %>
                     </td>
                     <td>
                         <%= Html.Encode(item.Permiso.DescripcionOpcion) %>
@@ -91,22 +68,32 @@
                     <td>
                         <%= Html.Encode(item.Permiso.Modulo.NombreModulo) %>
                     </td>
-                    <td>
-                        <%= Html.Encode(item.Estado) %>
-                    </td>
-                    <%}
-              alter = !alter; %>
+                    <%}%>
                     <%}%>
                 </tr>
     </table>
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("Lista","Perfiles", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.right, null)%>
+        <%=Html.ButtonLinkIcon("javascript:history.go(-1)", "Volver", Iconos.arrow_1_w, IconPosition.left, new { title = "Volver" })%>
     </p>
     <p style="float: left">
         <%=Html.ButtonLinkIcon(Url.Action("AgregarUsuariosPermisos", "Permisos", new { idUsuario = ViewData["idUsuario"] }), "Agregar Permiso a este Usuario", Iconos.circle_plus, IconPosition.left, null)%>
     </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    $(function() {
+
+        $("tr:even").addClass('row-alternating');
+    });
+
+//]]>
+</script>
+
+
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="divContentStyle" runat="server">
 </asp:Content>

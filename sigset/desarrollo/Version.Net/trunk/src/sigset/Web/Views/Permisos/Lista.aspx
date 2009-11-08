@@ -6,54 +6,44 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Lista</h2>
+    <h2>Lista de Permisos del Sistema</h2>
 
-    <table>
+    <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th></th>
             <th>
-                Id
+                <%=Html.Encode("Módulo") %>
             </th>
             <th>
-                Mod_Id
+                <%=Html.Encode("Opción") %>
             </th>
             <th>
-                Opcion
-            </th>
-            <th>
-                DescripcionOpcion
+                <%=Html.Encode("Descripción Opción") %>
             </th>
         </tr>
-
-    <% foreach (var item in Model) { %>
-    
-        <tr>
-            <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Mod_Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Opcion) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.DescripcionOpcion) %>
-            </td>
-        </tr>
-    
-    <% } %>
-
+        <%bool alter = false; %>
+        <% foreach (var item in Model)
+           { %>
+        <%if (alter)
+          { %>
+        <tr class="row-alternating">
+            <%}
+          else
+          { %>
+            <tr>
+                <%}%>
+                <td>
+                    <%= Html.Encode(item.Modulo.DescripcionOpcion) %>
+                </td>
+                <td>
+                    <%= Html.Encode(item.Opcion.toOpcion()) %>
+                </td>
+                <td>
+                    <%= Html.Encode(item.DescripcionOpcion) %>
+                </td>
+            </tr>
+            <% alter = !alter;
+           } %>
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">

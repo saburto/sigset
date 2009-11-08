@@ -23,9 +23,6 @@
                 Estado
             </th>
             <th>
-                Id Permiso
-            </th>
-            <th>
                 <%=Html.Encode("Opción")%>
             </th>
             <th>
@@ -48,19 +45,13 @@
                 <%}%>
                 <td>
                     <%=Html.ButtonLinkIcon(Url.Action("QuitarPerfilPermiso", "Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
-                                          
-                    <%=Html.ButtonLinkIcon(Url.Action("DetallesPermisos","Permisos", new { idPermiso = item.Permiso.Id, idPerfil = ViewData["idperfil"] }), "Ver", Iconos.zoomin, IconPosition.solo, new { title = "Detalles Permiso", onclick = "Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: 'GET', loadingElementId: 'loadingAjax', updateTargetId: 'detallePermiso', onComplete: Function.createDelegate(this, abrirVentana) });" })%>
-                    
                     <%=Html.ButtonLinkIcon(Url.Action("EstadoPermiso", "Permisos", new { idPerfilPermiso = item.Id, idPerfil = ViewData["idperfil"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
                 </td>
                 <td>
-                    <%= Html.Encode(item.Estado) %>
+                    <%= Html.Encode(item.Estado.toEstado()) %>
                 </td>
                 <td>
-                    <%= Html.Encode(item.Permiso.Id) %>
-                </td>
-                <td>
-                    <%= Html.Encode(item.Permiso.Opcion) %>
+                    <%= Html.Encode(item.Permiso.Opcion.toOpcion()) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.Permiso.DescripcionOpcion) %>
@@ -73,35 +64,14 @@
        } %>
     </table>
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("Lista","Perfiles", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.right, null)%>
+        <%=Html.ButtonLinkIcon(Url.Action("Lista", "Perfiles", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.left, new {title="Volver a lista de perfiles" })%>
     </p>
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso", new { id = ViewData["idperfil"] }), "Agregar Permiso a este Perfil", Iconos.circle_plus, IconPosition.left, null)%>
+        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermiso", new { id = ViewData["idperfil"] }), "Agregar Permiso a este Perfil", Iconos.circle_plus, IconPosition.right, new { title="Agregar nuevo permiso" })%>
     </p>
     
     <div id="detallePermiso" title ="Detalles Permiso"></div>
     
-</asp:Content>
-<asp:Content runat="server" ID="headContent" ContentPlaceHolderID="HeadContent">
-    <script type="text/javascript" language="javascript">
-        $(function(){
-            $("#detallePermiso").dialog({
-                bgiframe: true,
-                modal: true,
-                autoOpen: false,
-                height: 400,
-                width:500
-
-            });
-        
-        });
-        
-          function abrirVentana() {
-            $('#detallePermiso').dialog('open');
-        }
-           
-    
-    </script>
 </asp:Content>
 
 

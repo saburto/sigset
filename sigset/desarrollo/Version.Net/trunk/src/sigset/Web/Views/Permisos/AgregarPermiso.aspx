@@ -15,9 +15,7 @@
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th>
-            </th>
-            <th>
-                Id Permiso
+                Agregar
             </th>
             <th>
                 <%=Html.Encode("Módulo")%>
@@ -41,16 +39,13 @@
             <tr>
                 <%}%>
                 <td>
-                    <%=Html.ButtonLinkIcon(Url.Action("Agregar", new { id = item.Id, perfil = ViewData["idperfil"] }), "Agregar", Iconos.circle_plus, IconPosition.left, null)%>
+                    <%=Html.ButtonLinkIcon(Url.Action("Agregar", new { id = item.Id, perfil = ViewData["idperfil"] }), "Agregar", Iconos.circle_plus, IconPosition.solo, new {title="Agregar" })%>
                  </td>
-                <td>
-                    <%= Html.Encode(item.Id) %>
-                </td>
                 <td>
                     <%= Html.Encode(item.Modulo.DescripcionOpcion) %>
                 </td>
                 <td>
-                    <%= Html.Encode(item.Opcion) %>
+                    <%= Html.Encode(item.Opcion.toOpcion()) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.DescripcionOpcion) %>
@@ -60,7 +55,7 @@
        } %>
     </table>
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("PerfilesPermisos", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.right, null)%>
+        <%=Html.ButtonLinkIcon(Url.Action("PerfilesPermisos", new { id = ViewData["idperfil"] }), "Volver", Iconos.arrow_1_w, IconPosition.left, new {title="Volver a lista de permisos del perfil" })%>
     </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
