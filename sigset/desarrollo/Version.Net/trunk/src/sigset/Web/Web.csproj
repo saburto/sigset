@@ -292,10 +292,13 @@
     <Content Include="Content\south-street\images\ui-icons_eeeeee_256x240.png" />
     <Content Include="Content\south-street\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\south-street\jquery-ui-1.7.2.custom.css" />
+    <Content Include="Content\starts\ui.stars.css" />
+    <Content Include="Content\starts\ui.stars.gif" />
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Scripts\jquery.tooltip.min.js" />
     <Content Include="Scripts\localization\messages_es.js" />
     <Content Include="Scripts\sigset.js" />
+    <Content Include="Scripts\ui.stars.min.js" />
     <Content Include="Views\Administrativos\Asignar.aspx" />
     <Content Include="Views\Administrativos\AsignarTecnico.aspx" />
     <Content Include="Views\Administrativos\ConsultaOrdenes.aspx" />
