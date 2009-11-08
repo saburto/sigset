@@ -221,6 +221,59 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
   <Body>
     <ColumnSpacing>0cm</ColumnSpacing>
     <ReportItems>
+      <Textbox Name="textbox39">
+        <Top>20cm</Top>
+        <Width>2.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>39</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>12.25cm</Left>
+        <Value>Firma Cliente</Value>
+      </Textbox>
+      <Textbox Name="textbox38">
+        <rd:DefaultName>textbox38</rd:DefaultName>
+        <Top>20cm</Top>
+        <Width>3.5cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>38</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1.5cm</Left>
+        <Value>Firma Recepcionista</Value>
+      </Textbox>
+      <Line Name="line5">
+        <Top>19.75cm</Top>
+        <Width>4.25cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <ZIndex>37</ZIndex>
+        <Left>11.25cm</Left>
+        <Height>0cm</Height>
+      </Line>
+      <Line Name="line4">
+        <Top>19.75cm</Top>
+        <Width>4.25cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <ZIndex>36</ZIndex>
+        <Left>1.25cm</Left>
+        <Height>0cm</Height>
+      </Line>
       <Textbox Name="textbox37">
         <rd:DefaultName>textbox37</rd:DefaultName>
         <Top>9.75cm</Top>
@@ -298,6 +351,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         </Style>
         <ZIndex>31</ZIndex>
         <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
         <Value>=Fields!CondicionArticulo.Value</Value>
       </Textbox>
       <Textbox Name="textbox30">
@@ -769,7 +823,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <Value>Nombre:</Value>
       </Textbox>
     </ReportItems>
-    <Height>13.38492cm</Height>
+    <Height>20.63492cm</Height>
   </Body>
   <Language>es-CL</Language>
   <PageFooter>
