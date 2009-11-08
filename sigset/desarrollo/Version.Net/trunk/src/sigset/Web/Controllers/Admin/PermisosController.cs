@@ -12,6 +12,8 @@ using Web.ViewModel;
 
 namespace Web.Controllers.Admin
 {
+
+    [Seguridad.ManejadorErrores]
     public class PermisosController : Controller
     {
         Services.Usuarios.UsuarioServicio servUsuario = new Services.Usuarios.UsuarioServicio();

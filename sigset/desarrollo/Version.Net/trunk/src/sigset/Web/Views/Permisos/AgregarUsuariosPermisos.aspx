@@ -15,9 +15,7 @@
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
             <th>
-            </th>
-            <th>
-                Id
+                Agregar
             </th>
             <th>
                 <%=Html.Encode("Módulo") %>
@@ -41,16 +39,13 @@
             <tr>
                 <%}%>
                 <td>
-                    <%=Html.ButtonLinkIcon(Url.Action("AgregarUsuarioPermiso","Permisos", new { idPermiso = item.Id, idUsuario = ViewData["idUsuario"] }), "Agregar", Iconos.circle_plus, IconPosition.left, null)%>
-                </td>
-                <td>
-                    <%= Html.Encode(item.Id) %>
+                    <%=Html.ButtonLinkIcon(Url.Action("AgregarUsuarioPermiso", "Permisos", new { idPermiso = item.Id, idUsuario = ViewData["idUsuario"] }), "Agregar", Iconos.circle_plus, IconPosition.solo, new {title="Agregar" })%>
                 </td>
                 <td>
                     <%= Html.Encode(item.Modulo.DescripcionOpcion) %>
                 </td>
                 <td>
-                    <%= Html.Encode(item.Opcion) %>
+                    <%= Html.Encode(item.Opcion.toOpcion()) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.DescripcionOpcion) %>
@@ -60,7 +55,7 @@
            } %>
     </table>
     <p style="float: left">
-        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermisoUsuario", "Permisos", new { idUsuario = ViewData["idUsuario"] }), "Volver", Iconos.arrow_1_w, IconPosition.right, null)%>
+        <%=Html.ButtonLinkIcon(Url.Action("AgregarPermisoUsuario", "Permisos", new { idUsuario = ViewData["idUsuario"] }), "Volver", Iconos.arrow_1_w, IconPosition.left, null)%>
     </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">

@@ -6,8 +6,7 @@
       puedena habepr varios action que tienen el mismo controller, pero no pueden haber dos action para un controller
       
     -->
-     <mvcSiteMapNode title="Empleados" controller="Empleado" action="Lista" />
-     <mvcSiteMapNode title="Tecnicos" controller="Tecnico" action="Lista" />
+     
 
     <mvcSiteMapNode title="Usuarios" controller="Usuario" action="">
       <mvcSiteMapNode title="Nuevo" controller="Usuario" action="Crear" />
@@ -15,7 +14,6 @@
     </mvcSiteMapNode>
 
     <mvcSiteMapNode title="Permisos" controller="Permisos" action="">
-      <mvcSiteMapNode title="Nuevo"  action="Crear" />
       <mvcSiteMapNode title="Lista"  action="Lista" />
     </mvcSiteMapNode>
 
@@ -24,7 +22,7 @@
     </mvcSiteMapNode>
 
     <mvcSiteMapNode title="Tecnicos" controller="Tecnico" action="" >
-      <mvcSiteMapNode title="Agregar"  action="Crear" />
+      <mvcSiteMapNode title="Lista" controller="Tecnico" action="Lista" /> 
       <mvcSiteMapNode title="Especialidades"   action="Especialidad" />
       <mvcSiteMapNode title="Niveles"   action="Niveles" />
     </mvcSiteMapNode>

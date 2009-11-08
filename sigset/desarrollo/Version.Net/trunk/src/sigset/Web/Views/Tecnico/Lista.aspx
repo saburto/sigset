@@ -21,9 +21,6 @@
                 Nivel
             </th>
             <th>
-                <%=Html.Encode("Descripción") +  " " + "nivel" %>
-            </th>
-            <th>
                 Especialidades
             </th>
              <th>
@@ -60,9 +57,6 @@
                 
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0}", item.Nivel)) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.Nivel1.Descripcion)%>
             </td>
              <td>
@@ -77,18 +71,13 @@
 
             </td>
             <td>
-                <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades" , new { id=item.Rut }) %>
+                <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades" , new { id=item.Id }) %>
             </td>
     </tr>
     
     <% } %>
 
     </table>
-
-    <p>
-        <%= Html.ActionLink("Crear Nuevo Técnico", "Crear") %>
-    </p>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
