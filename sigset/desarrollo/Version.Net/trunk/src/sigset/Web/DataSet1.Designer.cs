@@ -306,6 +306,8 @@ namespace Web {
             
             private global::System.Data.DataColumn columnObservacion;
             
+            private global::System.Data.DataColumn columnNombreEmpresa;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public OrdenTrabajoVistaDataTable() {
                 this.TableName = "OrdenTrabajoVista";
@@ -491,6 +493,13 @@ namespace Web {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NombreEmpresaColumn {
+                get {
+                    return this.columnNombreEmpresa;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -541,7 +550,8 @@ namespace Web {
                         string Poliza, 
                         System.DateTime FechaCompra, 
                         string LugarCompra, 
-                        string Observacion) {
+                        string Observacion, 
+                        string NombreEmpresa) {
                 OrdenTrabajoVistaRow rowOrdenTrabajoVistaRow = ((OrdenTrabajoVistaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -565,7 +575,8 @@ namespace Web {
                         Poliza,
                         FechaCompra,
                         LugarCompra,
-                        Observacion};
+                        Observacion,
+                        NombreEmpresa};
                 rowOrdenTrabajoVistaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrdenTrabajoVistaRow);
                 return rowOrdenTrabajoVistaRow;
@@ -613,6 +624,7 @@ namespace Web {
                 this.columnFechaCompra = base.Columns["FechaCompra"];
                 this.columnLugarCompra = base.Columns["LugarCompra"];
                 this.columnObservacion = base.Columns["Observacion"];
+                this.columnNombreEmpresa = base.Columns["NombreEmpresa"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -661,6 +673,8 @@ namespace Web {
                 base.Columns.Add(this.columnLugarCompra);
                 this.columnObservacion = new global::System.Data.DataColumn("Observacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnObservacion);
+                this.columnNombreEmpresa = new global::System.Data.DataColumn("NombreEmpresa", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreEmpresa);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -693,6 +707,8 @@ namespace Web {
                 this.columnPoliza.MaxLength = 50;
                 this.columnLugarCompra.MaxLength = 100;
                 this.columnObservacion.MaxLength = 255;
+                this.columnNombreEmpresa.ReadOnly = true;
+                this.columnNombreEmpresa.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1125,6 +1141,21 @@ namespace Web {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string NombreEmpresa {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenTrabajoVista.NombreEmpresaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreEmpresa\' in table \'OrdenTrabajoVista\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenTrabajoVista.NombreEmpresaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsNombreNull() {
                 return this.IsNull(this.tableOrdenTrabajoVista.NombreColumn);
             }
@@ -1282,6 +1313,16 @@ namespace Web {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetObservacionNull() {
                 this[this.tableOrdenTrabajoVista.ObservacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsNombreEmpresaNull() {
+                return this.IsNull(this.tableOrdenTrabajoVista.NombreEmpresaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetNombreEmpresaNull() {
+                this[this.tableOrdenTrabajoVista.NombreEmpresaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1457,6 +1498,7 @@ namespace Web.OrdenTrabajoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("FechaCompra", "FechaCompra");
             tableMapping.ColumnMappings.Add("LugarCompra", "LugarCompra");
             tableMapping.ColumnMappings.Add("Observacion", "Observacion");
+            tableMapping.ColumnMappings.Add("NombreEmpresa", "NombreEmpresa");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1468,17 +1510,11 @@ namespace Web.OrdenTrabajoDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT Id, Nombre, Rut, Modelo, Marca, Linea, TipoArticulo, Categoria, ValorReparacion, ValorRevision, Serie, Falla, CondicionArticulo, FechaIngreso, FechaEntrega, TipoOrden, DescripTipoOrden, Boleta, Poliza, FechaCompra, LugarCompra, Observacion FROM dbo.OrdenTrabajoVista";
+            this._commandCollection[0].CommandText = @"SELECT Id, Nombre, Rut, Modelo, Marca, Linea, TipoArticulo, Categoria, ValorReparacion, ValorRevision, Serie, Falla, CondicionArticulo, FechaIngreso, FechaEntrega, TipoOrden, DescripTipoOrden, Boleta, Poliza, FechaCompra, LugarCompra, Observacion, NombreEmpresa FROM dbo.OrdenTrabajoVista";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT Id, Nombre, Rut, Modelo, Marca, Linea, TipoArticulo, Categoria, ValorReparacion, ValorRevision, Serie, Falla, CondicionArticulo, FechaIngreso, FechaEntrega, TipoOrden, DescripTipoOrden, Boleta, Poliza, FechaCompra, LugarCompra, Observacion FROM dbo.OrdenTrabajoVista
-where Id = @Id";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1498,30 +1534,6 @@ where Id = @Id";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable dataTable = new OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByID(OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable dataTable, decimal Id) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Id));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable GetDataByID(decimal Id) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Id));
             OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable dataTable = new OrdenTrabajoDataSet.OrdenTrabajoVistaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

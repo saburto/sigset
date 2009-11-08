@@ -256,6 +256,7 @@ namespace Web.Controllers
             
             List<ReportParameter> param = new List<ReportParameter>();
             param.Add(new ReportParameter("Id",id.ToString()));
+            param.Add(new ReportParameter("NombreEmpresa", Services.Configuraciones.Configuracion.NombreEmpresa));
             rview.LocalReport.SetParameters(param);
             
 
