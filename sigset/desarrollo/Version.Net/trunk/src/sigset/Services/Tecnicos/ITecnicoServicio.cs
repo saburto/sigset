@@ -15,5 +15,13 @@ namespace Services.Tecnicos
         System.Collections.Generic.IList<global::Data.Modelo.Tecnico> GetTodosLosTecnicos();
         System.Collections.Generic.IList<global::Data.Modelo.Usuario> GetTodosLosTecnicosEmpleados();
         System.Collections.Generic.IList<global::Data.Modelo.TipoEspecialidad> GetTodosLosTiposDeEspecialidad();
+
+        void ModificarNivel(int idTecnico, int idNivel);
+
+        global::Data.Modelo.Tecnico GetTecnicoById(int id);
+
+        System.Collections.Generic.IList<global::Data.Modelo.TipoEspecialidad> GetTodasEspecialidades();
+
+        void ModificarEspecialidades(int idTecnico, int[] especialidades);
     }
 }

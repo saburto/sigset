@@ -20,5 +20,7 @@ namespace Data.Repositorios.Tecnicos
         System.Linq.IQueryable<global::Data.Modelo.Tecnico> GetTodosLosTecnicos();
         System.Linq.IQueryable<global::Data.Modelo.TipoEspecialidad> GetTodosLosTiposEspecialidad();
         void UpdateTecnico(global::Data.Modelo.Tecnico tecnico);
+
+        void RemoverTodasLasEspcialidades(int idTecnico);
     }
 }

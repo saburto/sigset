@@ -163,5 +163,51 @@ namespace Services.Tecnicos
                 _repo.CreateTecnico(nuevoTecnico);
             }
         }
+
+  
+
+
+        public void ModificarNivel(int idTecnico, int idNivel)
+        {
+            var tecnico = _repo.GetTecnicoById(idTecnico);
+            tecnico.Nivel = idNivel;
+            _repo.UpdateTecnico(tecnico);
+        }
+
+
+        
+
+
+        public IList<TipoEspecialidad> GetTodasEspecialidades()
+        {
+            return _repo.GetTodosLosTiposEspecialidad().ToList();
+        }
+
+
+
+        
+
+
+        public void ModificarEspecialidades(int idTecnico, int[] especialidades)
+        {
+            List<ErrorInfo> errores = new List<ErrorInfo>();
+            if (especialidades == null)
+            {   
+                errores.Add(new ErrorInfo("especialidades", "Especialdades no pueden ser null"));
+                throw new RulesException(errores);
+            }
+
+            
+            _repo.RemoverTodasLasEspcialidades(idTecnico);
+
+
+            foreach (var espe in especialidades)
+            {
+                _repo.CrearEspecialidad(new Especialidade() { IdTecnico= idTecnico, TipoEspecialidad= espe });
+            }
+
+        }
+
+        
     }
 }

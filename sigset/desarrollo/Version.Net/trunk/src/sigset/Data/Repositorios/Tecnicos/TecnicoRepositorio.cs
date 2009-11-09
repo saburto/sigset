@@ -139,5 +139,17 @@ namespace Data.Repositorios.Tecnicos
             return especialidad;       
         }
 
+
+        
+
+
+        public void RemoverTodasLasEspcialidades(int idTecnico)
+        {
+            var especialidades = _data.Especialidades.Where(x => x.IdTecnico == idTecnico);
+            _data.Especialidades.DeleteAllOnSubmit(especialidades);
+            _data.SubmitChanges();
+        }
+
+        
     }
 }
