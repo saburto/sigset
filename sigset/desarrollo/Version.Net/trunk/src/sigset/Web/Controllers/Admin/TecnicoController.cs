@@ -36,67 +36,8 @@ namespace Web.Controllers.Admin
             return View(tecnicos);
         }
 
-        public ActionResult Editar(int id)
-        {
-            var tecnico = _servicio.GetTecnicoByRut(id);
-            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion",tecnico.Nivel.ToString());
-            return View(tecnico);   
-        }
-        [AcceptVerbs (HttpVerbs.Post)]
-        public ActionResult Editar(int id, Tecnico tecnico,string niveles)
-        {
-            try
-            {
-                tecnico.Id = id;
-                tecnico.Nivel = decimal.Parse(niveles);
-                _servicio.EditarTecnico(tecnico);
-                return RedirectToAction("Lista");
-            }
-            catch (RulesException e)
-            {
-                ModelState.AddRuleErrors(e.Errors);
-                var t = _servicio.GetTecnicoByRut(id);
-                ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion");
-                return View(t);  
-            
-            }
-        }
-        public ActionResult Detalles(decimal id)
-        {
-            var tecnico = _servicio.GetTecnicoByRut(id);
-            return View(tecnico);
 
-        }
 
-        public ActionResult Crear()
-        {
-            ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre"); 
-            ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion");
-            return View();           
-        }
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Crear(Tecnico tecnico, string niveles, string listaEmpleadosTecnicos)
-        {
-            try
-            {
-                tecnico.Id = int.Parse(listaEmpleadosTecnicos);
-                tecnico.Nivel = decimal.Parse(niveles);
-                _servicio.CrearTecnico(tecnico);
-                return RedirectToAction("Lista");
-
-            }
-            catch (RulesException e)
-            {
-                ModelState.AddRuleErrors(e.Errors);
-                ViewData["listaEmpleadosTecnicos"] = _servicio.GetTodosLosTecnicosEmpleados().GetSelectCampos("Rut", "Nombre");
-                ViewData["niveles"] = _servicio.GetTodosLosNiveles().GetSelectCampos("IdNivel", "Descripcion");
-                return View(tecnico);   
-
-            
-            }
-           
-        }
-        
         public ActionResult AgregarEspecialidades(decimal id)
         {
             ViewData["tecnico"] = _servicio.GetTecnicoByRut(id);
@@ -123,29 +64,33 @@ namespace Web.Controllers.Admin
 
         public ActionResult AgregarNuevaEspecialidad(int id)
         {
-            var tecnico = _servicio.GetTecnicoByRut(id);
-            ViewData["tipoEspecialidades"] = _servicio.GetEspecialidadesNoRepetidas(id).GetSelectCampos("IdTipoEspecialidad", "Descripcion");
+            var tecnico = _servicio.GetTecnicoById(id);
+            ViewData["tipoEspecialidades"] = _servicio.GetTodasEspecialidades();
 
-            return View(new Especialidade { IdTecnico = id });
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("AgregarNuevaEsp",tecnico);
+            }
+
+            return View(tecnico);
         }
 
         [AcceptVerbs (HttpVerbs.Post)]
-        public ActionResult AgregarNuevaEspecialidad(decimal id, Especialidade especialidad, string tipoEspecialidades)
+        public ActionResult AgregarNuevaEspecialidad(int idTecnico,int[] especialidades)
         {
-            try
-            {
-                especialidad.IdTecnico =(int) id;
-                especialidad.TipoEspecialidad = decimal.Parse(tipoEspecialidades);
-                _servicio.CrearEspecialidad(especialidad);
-                return RedirectToAction("AgregarEspecialidades",new {id=id});
-            }
-            catch (RulesException e)
-            {
+                                    
+            _servicio.ModificarEspecialidades(idTecnico,especialidades);
+            return AgregarNuevaEspecialidad(idTecnico);
+        }
 
-                ModelState.AddRuleErrors(e.Errors);
-                return View(especialidad); 
-            }
-        }  
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public string Nivel(int idTecnico, int idNivel)
+        {
+            _servicio.ModificarNivel(idTecnico, idNivel);
+
+            return idNivel.ToString();
+        }
 
 
     }

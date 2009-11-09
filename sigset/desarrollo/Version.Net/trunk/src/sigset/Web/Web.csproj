@@ -181,7 +181,6 @@
     <Content Include="Views\OrdenTrabajo\Crear.aspx" />
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />
-    <Content Include="Views\Tecnico\Crear.aspx" />
     <Content Include="Views\Tecnico\Lista.aspx" />
     <Content Include="Views\Perfiles\Lista.aspx" />
     <Content Include="Views\Usuario\Crear.aspx" />
@@ -196,9 +195,7 @@
     <Content Include="Views\AreaTecnica\Lista.aspx" />
     <Content Include="Views\Cliente\Detalle.aspx" />
     <Content Include="Views\OrdenTrabajo\Web.sitemap" />
-    <Content Include="Views\Tecnico\AgregarEspecialidades.aspx" />
     <Content Include="Views\Tecnico\AgregarNuevaEspecialidad.aspx" />
-    <Content Include="Views\Tecnico\Editar.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Administrativos\Index.aspx" />
@@ -332,6 +329,7 @@
     <Content Include="Views\Permisos\PerfilesPermisos.aspx" />
     <Content Include="Views\Permisos\Usuario.aspx" />
     <Content Include="Views\Shared\Mensaje.ascx" />
+    <Content Include="Views\Tecnico\AgregarNuevaEsp.ascx" />
     <Content Include="Views\Usuario\Lista.aspx" />
     <Content Include="Views\Usuario\SubirFotoUsuario.aspx" />
   </ItemGroup>

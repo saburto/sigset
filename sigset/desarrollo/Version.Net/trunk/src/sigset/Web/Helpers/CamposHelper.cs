@@ -7,12 +7,34 @@ using System.Web.Mvc.Html;
 using System.Web.UI.WebControls;
 using Data.Modelo;
 using System.Web.Routing;
+using Data.Modelo.Enums;
+using System.Text;
 
 
 namespace Helpers
 {
     public static class CamposHelper
     {
+
+        public static string NivelesTecnicos(this HtmlHelper html, int seleccionado)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(var nivel in Enum.GetNames(typeof(NivelesTecnicos))){
+                TagBuilder tagBuilder = new TagBuilder("option");
+                tagBuilder.InnerHtml = nivel;
+                NivelesTecnicos nivelTecnico = (NivelesTecnicos)Enum.Parse(typeof(NivelesTecnicos), nivel);
+                tagBuilder.Attributes.Add("value", ((int)nivelTecnico).ToString());
+
+                if (seleccionado == (int)nivelTecnico)
+                {
+                    tagBuilder.Attributes.Add("selected", "selected");
+                }
+                sb.AppendLine(tagBuilder.ToString());
+            }
+            return sb.ToString();
+        }
+
+
         public static string Button(this HtmlHelper html, string content, ButtonType type)
         {
             TagBuilder tagBuilder = new TagBuilder("button");

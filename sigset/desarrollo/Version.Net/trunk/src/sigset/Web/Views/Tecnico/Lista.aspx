@@ -5,34 +5,34 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
-<link href="<%= Url.Content("~/Content/starts/ui.starts.css") %>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%= Url.Content("~/Scripts/ui.starts.min.js") %>"></script>
+
 
 
 <script type="text/javascript">
     //<![CDATA[
 
     $(function() {
-        $("#nivel").children().not("select").hide();
+        $(".nivel").children().not("select").hide();
 
         // Create target element for onHover titles
-        $caption = $("<span/>");
 
-        $("#nivel").stars({
-            inputType: "select",
-            captionEl: $caption, // point to our newly created element
-            callback: function(ui, type, value) {
 
-                alert(value);
-                /*$.post("demo2.php", { rate: value }, function(data) {
-                $("#ajax_response").html(data);
-                });*/
-            }
+        $.each($(".nivel"), function(i, e) {
+
+
+            $(e).stars({
+                inputType: "select",
+                cancelShow: false,
+                captionEl: $("#desc" + e.id),
+                callback: function(ui, type, value) {
+
+                    $.post($('.nivel').attr('action'), { idTecnico: this.name, idNivel: value });
+                }
+
+            });
+                
 
         });
-
-        // Make it available in DOM tree
-        $caption.appendTo("#nivel");
     });
 
     //]]>	    
@@ -92,21 +92,12 @@
                 
             </td>
             <td>
-		        <form id="nivel" method="post">
-
-			        <select name="rate">
-				        <option value="1">Very poor</option>
-				        <option value="2">Not that bad</option>
-				        <option value="3">Average</option>
-				        <option value="4">Good</option>
-
-				        <option value="5">Perfect</option>
+                <form id="<%=item.Id %>"  class="nivel" method="post" action="<%=Url.Action("Nivel", "Tecnico")%>">
+		            <select name="<%=item.Id %>">
+				        <%=Html.NivelesTecnicos((int)item.Nivel) %>
 			        </select>
-
-			        <input type="submit" value="Rate it!" />
-
-		        </form>
-                <%= Html.Encode(item.Nivel1.Descripcion)%>
+	            </form>
+	            <span id="desc<%=item.Id %>" ></span>
             </td>
              <td>
              <%if (item.Especialidades != null && item.Especialidades.Count > 0)
@@ -120,7 +111,7 @@
 
             </td>
             <td>
-                <%= Html.ActionLink("Agregar Especialidades", "AgregarEspecialidades" , new { id=item.Id }) %>
+                <%= Html.ButtonLinkIcon(Url.Action("AgregarNuevaEspecialidad"), "Agregar Especialidades", Iconos.circle_plus, IconPosition.left, new{title="Agregar nueva especialidad"})%>
             </td>
     </tr>
     
