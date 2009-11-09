@@ -36,6 +36,10 @@ namespace Web.Controllers.Admin
             return View(tecnicos);
         }
 
+        public ActionResult Detalles(int id)
+        {
+            return View(_servicio.GetTecnicoById(id));
+        }
 
 
         public ActionResult AgregarEspecialidades(decimal id)
@@ -69,6 +73,7 @@ namespace Web.Controllers.Admin
 
             if (Request.IsAjaxRequest())
             {
+                ViewData["ventana"] = true;
                 return PartialView("AgregarNuevaEsp",tecnico);
             }
 

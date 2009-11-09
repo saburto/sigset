@@ -20,6 +20,9 @@
             <th>
                 Estado
             </th>
+            <th>
+                Tecnico
+            </th>
         </tr>
 
             
@@ -62,6 +65,7 @@
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado1.Descripcion))%>
             </td>
+            <td class="tecnicoAsignado" id="tecnico<%=item.Id %>" ></td>
         </tr>
         <tr id="fila<%=item.Id %>" class="filaDetalle" style="display:none">
             <td colspan="8">
