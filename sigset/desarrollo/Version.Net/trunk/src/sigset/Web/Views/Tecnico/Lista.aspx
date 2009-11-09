@@ -12,6 +12,17 @@
     //<![CDATA[
 
     $(function() {
+
+        $("#resultado").dialog({
+            bgiframe: true,
+            modal: false,
+            autoOpen: false,
+            height: 380,
+            width: 500
+
+        });
+    
+    
         $(".nivel").children().not("select").hide();
 
         // Create target element for onHover titles
@@ -35,6 +46,21 @@
         });
     });
 
+    function abrirEspc(link) {
+        $("#loadingAjax").show();
+        $("#resultado").load(link.href, abrirVentana);
+        return false;
+    }
+
+    function abrirVentana() {
+        $("#loadingAjax").hide();
+        $('#resultado').dialog('open');
+    }
+
+    function VerEspcialidad(idTecnico) {
+        $('#Especialidades' + idTecnico).toggle();
+    } 
+
     //]]>	    
 </script>
 </asp:Content>
@@ -45,7 +71,8 @@
     <h2>Lista Técnicos Registrados</h2>
      <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th></th>
+            <th>Edtar</th>
+            <th>Detalles</th>
             <th>
                 Rut
             </th>
@@ -59,7 +86,7 @@
                 Especialidades
             </th>
              <th>
-             
+                Agregar Especialidades
             </th>
         </tr>
 
@@ -77,8 +104,9 @@
     <%} alter = !alter; %>
        
             <th scope="row">
-    
-                <%= Html.ActionLink("Editar", "Editar", new { id=item.Id }) %> 
+                <%= Html.ButtonLinkIcon(Url.Action("Editar", "Usuario", new { id = item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title = "Editar Usuario" })%> 
+            </th>                
+            <th scope="row">
                 <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
             </th>
             
@@ -99,10 +127,24 @@
 	            </form>
 	            <span id="desc<%=item.Id %>" ></span>
             </td>
-             <td>
+                <td>
              <%if (item.Especialidades != null && item.Especialidades.Count > 0)
                { %>
-                <%= Html.Encode(String.Format("{0}", item.Especialidades.Count))%>
+                
+                <%=Html.ButtonLinkIcon("javascript:VerEspcialidad('" + item.Id + "');", "Ver", Iconos.zoomin, IconPosition.solo, new { title="Ver Especialidades del Tecnico" })%>
+                <br />
+                <div id="Especialidades<%=item.Id %>" style="display:none">
+                
+                
+                
+                <%foreach (var es in item.Especialidades)
+                  {%>
+                  <br />
+                  -<%=es.TipoEspecialidad1.Descripcion %>
+                  
+                  <%} %>
+                
+                </div>
                 <%}
                else
                { %>
@@ -111,13 +153,16 @@
 
             </td>
             <td>
-                <%= Html.ButtonLinkIcon(Url.Action("AgregarNuevaEspecialidad"), "Agregar Especialidades", Iconos.circle_plus, IconPosition.left, new{title="Agregar nueva especialidad"})%>
+                <p>
+                    <%= Html.ButtonLinkIcon(Url.Action("AgregarNuevaEspecialidad", new {id=item.Id }), "Agregar Especialidad", Iconos.circle_plus, IconPosition.solo, new { onclick = "return abrirEspc(this)", title = "Agregar nueva especialidad" })%>
+                </p>
             </td>
     </tr>
     
     <% } %>
-
     </table>
+    
+    <div id="resultado"  style="display:none" title="Especialidades"></div>
 </asp:Content>
 
 

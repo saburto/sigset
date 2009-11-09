@@ -28,19 +28,10 @@
             </th>
         </tr>
 
-   <%bool alter = false; %>
+   
     <% foreach (var item in Model)
        { %>
-    <%if (alter)
-      { %>
-        <tr class="row-alternating">
-    <%}
-      else
-      { %>
-      
         <tr>
-    <%} alter = !alter; %>
-       
             <th scope="row">
     
                 <%= Html.ActionLink("Asignar", "AsignarTecnico", new { rutTecnico = item.Id, id = TempData["IdOrden"] })%> 
@@ -93,10 +84,21 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
+//<![CDATA[
+
+    $(function() {
+
+     $("tr:even").addClass("row-alternating"); 
+
+    });
+
+
     function VerEspcialidad(idTecnico) {
         $('#Especialidades' + idTecnico).toggle();
     } 
+    
+//]]>
 </script>
 </asp:Content>
 
