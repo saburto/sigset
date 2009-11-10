@@ -23,6 +23,7 @@
             <th>
                 Tecnico
             </th>
+            <th></th>
         </tr>
 
             
@@ -66,9 +67,10 @@
                 <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado1.Descripcion))%>
             </td>
             <td class="tecnicoAsignado" id="tecnico<%=item.Id %>" ></td>
+            <td></td>
         </tr>
         <tr id="fila<%=item.Id %>" class="filaDetalle" style="display:none">
-            <td colspan="8">
+            <td colspan="9">
                 <p id="loading<%=item.Id %>">Cargando detalles...</p>
                 <div style="font-size:53%" >
                     <%= Html.ButtonLinkIcon(Url.Action("Detalles", "OrdenTrabajo", new { id = item.Id }), "Detalles", Iconos.newwin, IconPosition.solo, new { title = "Abrir en nueva ventana", target = "_blank" })%>
@@ -77,6 +79,8 @@
                 <div id="resultado<%=item.Id %>" style="font-size:1.6em;display:none">
                 </div>
             </td>
+            
+            
         </tr>
     <% } %>
     </table>

@@ -10,6 +10,7 @@ using xVal.ServerSide;
 using Services.OrdenTrabajo;
 using Services.Tecnicos;
 using Data.Modelo;
+using Web.ViewModel;
 
 namespace Web.Controllers.Administrativos
 {
@@ -39,8 +40,15 @@ namespace Web.Controllers.Administrativos
 
         public ActionResult ListaSinAsignar()
         {
+            
             var lista = _srvOr.GetOrdenesTrabajoSinAsignar();
-            return View(lista);
+            var tecnicos = _srvTecnicos.GetTodosLosTecnicos();
+            OrdenesTecnicosView model = new OrdenesTecnicosView()
+            {
+                Ordenes = lista,
+                Tecnicos = tecnicos
+            };
+            return View(model);
         }
 
         public ActionResult Asignar(decimal id)
