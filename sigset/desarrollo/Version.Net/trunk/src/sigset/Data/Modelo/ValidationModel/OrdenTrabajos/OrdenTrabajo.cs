@@ -4,12 +4,32 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Data.Modelo.ValidationModel;
+using Data.Modelo.Enums;
 
 namespace Data.Modelo
 {
     [MetadataType(typeof(OrdenTrabajoMetadata))]
     public partial class OrdenTrabajo
     {
+        public Estado EstadoActual()
+        {
+            var ultimoDetalle = this.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault();
+            if (ultimoDetalle != null)
+            {
+                return ultimoDetalle.Estado1;
+            }
+            return null;
+        }
+
+        public decimal IdEstadoActual()
+        {
+            var ultimoDetalle = this.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault();
+            if (ultimoDetalle != null)
+            {
+                return ultimoDetalle.Estado1.IdEstado;
+            }
+            return -1;
+        }
     }
 
     public class OrdenTrabajoMetadata
