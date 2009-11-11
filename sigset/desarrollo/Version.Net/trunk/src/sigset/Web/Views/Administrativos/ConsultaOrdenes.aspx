@@ -30,8 +30,6 @@
 <%using (Html.BeginReady())
   {%>
 
-
-
             $(".starsDiv").stars({
                 inputType: "select",
                 disabled: true,
@@ -39,7 +37,6 @@
             });
 
             
-
             $("#tecnicos").dialog({
 
                 position: 'right',
