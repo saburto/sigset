@@ -45,7 +45,6 @@
         <tr>
             <th scope="row">
                 <%= Html.Hidden("Id" + item.Id, item.Id) %>
-                <%= Html.ActionLink("Asginar", "Asignar", new { id=item.Id })%> |
                 <%= Html.ButtonLinkIcon(Url.Action("Detalles","OrdenTrabajo",new { id=item.Id }), "Detalles", Iconos.zoomin,IconPosition.solo, new{ onclick="return verDetalles(this,"+ item.Id +")" }) %>
             </th>
             <td>
@@ -66,8 +65,22 @@
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault() == null ? "" : item.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado1.Descripcion))%>
             </td>
-            <td class="tecnicoAsignado" id="tecnico<%=item.Id %>" ></td>
-            <td></td>
+            <td class="tecnicoAsignado" id="<%=item.Id %>" >
+                <%if (item.Tecnico != null)
+                  { %>
+                <%= Html.Encode(item.Tecnico.Usuario.NombreCompleto) %>
+                <%}
+                  else
+                  { %>
+                    Sin tecnico asignado
+                <%} %>
+            </td>
+            <td>
+                <%if (item.Tecnico != null)
+                  { %>
+                    <%=Html.ImagenUsuario(item.IdTecnicoAsignado.Value, "imagenUsuario", "Tecnico", null)%>
+                <%}%>
+            </td>
         </tr>
         <tr id="fila<%=item.Id %>" class="filaDetalle" style="display:none">
             <td colspan="9">

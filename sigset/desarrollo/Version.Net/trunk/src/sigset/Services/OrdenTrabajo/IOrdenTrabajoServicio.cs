@@ -14,5 +14,7 @@ namespace Services.OrdenTrabajo
         System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoSinAsignar();
         global::Data.Modelo.OrdenTrabajo GetOrdenTrabajo(decimal id);
         System.Collections.Generic.IList<global::Data.Modelo.TipoOrden> GetTiposOrden();
+
+        void AsginarTecnicoOrden(int idOrden, int idTecnico, string usuario);
     }
 }
