@@ -122,7 +122,16 @@ $(function() {
 /////////////////////////////////////////
 
 function verDetalles(link, id) {
-    $("#fila" + id).toggle();
+    var displ = $("#fila" + id).css('display');
+    if (displ == "none") {
+        $("#fila" + id).show();
+    } else {
+        $("#fila" + id).hide();
+    }
+
+    
+    
+    
     if ($("#resultado" + id).html().trim() == "") {
         $("#resultado" + id).load(link.href, function() {
             $("#loading" + id).hide();
