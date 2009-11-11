@@ -235,6 +235,26 @@ namespace Services.OrdenTrabajo
 
         }
 
+        public void AsginarTecnicoOrden(int idOrden, int idTecnico, string usuario)
+        {
+            var orden = GetOrdenTrabajo(idOrden);
+            orden.IdTecnicoAsignado = idTecnico;
+            _repo.SaveChanges();
+
+            var detalle = new Detalle();
+            detalle.Estado = (int) EstadoOrden.Asignado;
+            detalle.FechaCreacion = DateTime.Now;
+            detalle.IdOrden = idOrden;
+            
+            var user = _repoUsuarios.GetUsuarioByNombreUsuario(usuario);
+
+            detalle.IdUsuario = user != null ? user.Id : (int)Constantes.ID_USUARIO_SISTEMA;
+
+            _repo.GuardarDetalle(detalle);
+
+
+        }
+
 
 
         public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByTecnico(decimal id)
@@ -251,6 +271,6 @@ namespace Services.OrdenTrabajo
             _repo.GuardarDetalle(detalle);
         }
 
-        
+
     }
 }

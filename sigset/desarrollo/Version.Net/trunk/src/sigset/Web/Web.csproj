@@ -304,6 +304,7 @@
     <Content Include="Views\Administrativos\ListaOrdenes.ascx" />
     <Content Include="Views\Administrativos\ListaSinAsignar.aspx" />
     <Content Include="Views\Administrativos\OrdenesTecnico.aspx" />
+    <Content Include="Views\Administrativos\ListaTecnicos.ascx" />
     <Content Include="Views\Administrativos\Web.sitemap" />
     <Content Include="Views\AreaTecnica\AgregarDetalle.aspx" />
     <Content Include="Views\AreaTecnica\Detalles.aspx" />

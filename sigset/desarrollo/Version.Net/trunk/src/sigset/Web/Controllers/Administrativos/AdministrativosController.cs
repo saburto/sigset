@@ -65,12 +65,26 @@ namespace Web.Controllers.Administrativos
             return View(nuevoDetalle);
         }
 
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult AsignarTecnico(Detalle detalle, int rutTecnico)
+        //{
+        //    _srvOr.AsginarTecnicoOrden(detalle, rutTecnico, HttpContext.User.Identity.Name);
+        //    var orden = _srvOr.GetOrdenTrabajo((int)detalle.IdOrden);
+        //    return View("Detalles",orden);
+        //}
+
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AsignarTecnico(Detalle detalle, int rutTecnico)
+        public string AsignarTecnico(int idOrden, int idTecnico)
         {
-            _srvOr.AsginarTecnicoOrden(detalle, rutTecnico, HttpContext.User.Identity.Name);
-            var orden = _srvOr.GetOrdenTrabajo((int)detalle.IdOrden);
-            return View("Detalles",orden);
+            string usuario = null;
+            if (Request.IsAuthenticated)
+            {
+                usuario = Request.LogonUserIdentity.Name;
+            }
+
+            _srvOr.AsginarTecnicoOrden(idOrden, idTecnico, usuario);
+            return "ok";
+            
         }
 
         public ActionResult OrdenesTecnico(decimal id)
@@ -81,7 +95,10 @@ namespace Web.Controllers.Administrativos
 
         public ActionResult ConsultaOrdenes()
         {
-            return new OrdenTrabajoController().Listar();
+            var tecnicos = _srvTecnicos.GetTodosLosTecnicos();
+            ViewData["ListaTipos"] = _srvOr.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
+            ViewData["ListaEstados"] = _srvOr.GetEstadosOrden().GetSelectCampos("IdEstado", "Descripcion");
+            return View(tecnicos);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
