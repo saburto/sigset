@@ -54,32 +54,35 @@ namespace Services.OrdenTrabajo
 
 
             //Asignacion de tecnicos automaticamente asincronicamente
-            ThreadStart star = delegate { AsigancionAutomatica(orden); };
-            Thread asigancion = new Thread(star);
-            asigancion.Start();
-            
+            if (Configuraciones.Configuracion.AsignacionAutHabilitada)
+            {
+                ThreadStart star = delegate { AsigancionAutomatica(orden); };
+                Thread asigancion = new Thread(star);
+                asigancion.Start();
+            }
             
             return ot.Id;
         }
 
         public void AsigancionAutomatica(Data.Modelo.OrdenTrabajo ot)
         {
-            //var tecnicos = _repoTecnico.GetTodosLosTecnicos();
-            //var tecnicosLibre = from t in tecnicos
-            //                    orderby t.OrdenTrabajos.Min()
-            //                    select t;
-            //foreach (var tec in tecnicosLibre)
-            //{
-            //    //Si existe algun tecnico ocioso
-            //    if (tec.OrdenTrabajos.Count() == 0)
-            //    {
-            //        ot.Id_Tecnico_Asignado = tec.Rut;
-            //        ot.Tecnico = tec;
-            //        _repo.SaveChanges();
-            //        return;
-            //    }
-            //}
+            IEnumerable<Tecnico> tecnicos = _repoTecnico.GetTodosLosTecnicos().ToList();
 
+            tecnicos = tecnicos.Where(x => x.OrdenesAsignadas() <= Configuraciones.Configuracion.MaxOrdenesAsignadas).OrderBy( x=> x.OrdenesAsignadas());
+            tecnicos = tecnicos.Where(x => x.OrdenesEnRevision() <= Configuraciones.Configuracion.MaxOrdenesEnRevision).OrderBy(x=> x.OrdenesEnRevision());
+
+            if (Configuraciones.Configuracion.AsignacionPorNivel)
+            {
+                tecnicos = tecnicos.OrderByDescending(x => x.Nivel);    
+            }
+
+            Tecnico tecnico = tecnicos.FirstOrDefault();
+
+            if (tecnico == null)
+            {
+                tecnico = tecnicos.OrderBy(x => x.OrdenesAsignadas()).ThenBy(x=> x.OrdenesEnRevision()).ThenByDescending( x=> x.Nivel).FirstOrDefault();
+            }   
+            this.AsginarTecnicoOrden((int)ot.Id, tecnico.Id, null);
         }
 
 

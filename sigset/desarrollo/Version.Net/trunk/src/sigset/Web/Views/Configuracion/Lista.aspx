@@ -43,14 +43,30 @@
             <td>
                 
                 <div id="disp<%=item.Id %>" class="disp display<%=item.Id %>" >
-                        <%= Html.Encode(item.Valor) %>
+                <%if (item.Id == 3 || item.Id == 6 || item.Id == 7)
+                  {%>
+                    <%=Html.CheckBox("displa", item.Valor.Contains("true"), new { disabled = "disabled" })%>
+                 <%}
+                  else
+                  {%>
+                        <%= Html.Encode(item.Valor)%>
+                <%} %>
                 </div>
                 
                 <%using (Html.BeginForm("Editar", "Configuracion", FormMethod.Post, new { id="formuConfig" + item.Id }))
                   { %>
                 <div class="formu form<%=item.Id %>" style="display:none;">
                     <%= Html.Hidden("Id", item.Id)%>
+                    
+                    <%if (item.Id == 3 || item.Id == 6 || item.Id == 7)
+                      { %>
+                      <%=Html.CheckBox("Valor" + item.Id, item.Valor.Contains("true"))%>
+                    <%}else if(item.Id == 4 || item.Id == 5) {%>
+                    <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required digits" })%>  
+                      <%}else
+                      {%>
                     <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required" })%>  
+                    <%} %>
                 </div>
                 <%} %>
             </td>
