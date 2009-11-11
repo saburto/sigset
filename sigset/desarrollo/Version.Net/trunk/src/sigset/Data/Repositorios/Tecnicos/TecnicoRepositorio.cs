@@ -20,7 +20,7 @@ namespace Data.Repositorios.Tecnicos
         public IQueryable<Tecnico> GetTodosLosTecnicos()
         { 
               var tecnicos = from t in _data.Usuarios
-                             where t.PerfilUsuario == (int)PerfilUsuarios.Tecnico 
+                             where t.PerfilUsuario == (int)PerfilUsuarios.Tecnico && t.Activo 
                              select t.Tecnico;
              return tecnicos;
         }

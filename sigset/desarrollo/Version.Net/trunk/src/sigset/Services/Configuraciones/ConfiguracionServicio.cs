@@ -20,17 +20,6 @@ namespace Services.Configuraciones
             return nomnbre.Valor;
         }
 
-        public string SetNombreEmpresa(string nombre)
-        {
-            if (string.IsNullOrEmpty(nombre))
-            {
-                throw new xVal.ServerSide.RulesException("_FORM", "Nombre de empresa no puede estar vacio");
-            }
-
-            nombre = nombre.Trim();
-            repo.ModificarConfiguracion(1, nombre);
-            return nombre;
-        }
 
         public void ModificarConfiguracion(int id,string valor)
         {
@@ -48,11 +37,85 @@ namespace Services.Configuraciones
         {
             return repo.GetConfiguraciones().ToList();
         }
+
+        public bool? GetAsignacionHabilitada()
+        {
+            var nomnbre = repo.GetConfiguracion(3);
+            if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
+            {
+                return nomnbre.Valor.Contains("true");
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int? GetMaxOrdenesAsignadas()
+        {
+            var config = repo.GetConfiguracion(4);
+            int valor;
+            if (config != null)
+            {
+                if (int.TryParse(config.Valor, out valor))
+                {
+                    return valor;
+                }
+            }
+            return 999;
+
+        }
+
+        public int? GetMaxOrdenesEnRevision()
+        {
+            var config = repo.GetConfiguracion(5);
+            int valor;
+            if (config != null)
+            {
+                if (int.TryParse(config.Valor, out valor))
+                {
+                    return valor;
+                }
+            }
+            return 999;
+
+        }
+
+        public bool? GetAsignacionPorNivel()
+        {
+            var nomnbre = repo.GetConfiguracion(6);
+            if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
+            {
+                return nomnbre.Valor.Contains("true");
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool? GetAsignacionMasDesocupado()
+        {
+            var nomnbre = repo.GetConfiguracion(7);
+            if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
+            {
+                return nomnbre.Valor.Contains("true");
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
     public static class Configuracion
     {
         static string _nombreEmpresa;
+        static bool? _asignacionAutHabilitada = null;
+        static int? _maxOrdenesAsignadas = null;
+        static int? _maxOrdenesRevision = null;
+        static bool? _asignacionPorNivel = null;
+        static bool? _asignacionMasDesocupado = null;
         internal static bool _modificada;
         public static string NombreEmpresa { 
         get
@@ -65,10 +128,76 @@ namespace Services.Configuraciones
             }
             return _nombreEmpresa;
         }
-            set
+
+        }
+
+        public static bool AsignacionAutHabilitada
+        {
+            get
             {
-                ConfiguracionServicio serv = new ConfiguracionServicio();
-                _nombreEmpresa = serv.SetNombreEmpresa(value);
+                if (!_asignacionAutHabilitada.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _asignacionAutHabilitada = serv.GetAsignacionHabilitada();
+                    _modificada = false;
+                }
+                return _asignacionAutHabilitada.Value;
+            }
+        }
+
+        public static int MaxOrdenesAsignadas
+        {
+            get
+            {
+                if (!_maxOrdenesAsignadas.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _maxOrdenesAsignadas = serv.GetMaxOrdenesAsignadas();
+                    _modificada = false;
+                }
+                return _maxOrdenesAsignadas.Value;
+            }
+        }
+
+        public static int MaxOrdenesEnRevision
+        {
+            get
+            {
+                if (!_maxOrdenesRevision.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _maxOrdenesRevision = serv.GetMaxOrdenesEnRevision();
+                    _modificada = false;
+                }
+                return _maxOrdenesRevision.Value;
+            }
+        }
+
+        public static bool AsignacionPorNivel
+        {
+            get
+            {
+                if (!_asignacionPorNivel.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _asignacionPorNivel = serv.GetAsignacionPorNivel();
+                    _modificada = false;
+                }
+                return _asignacionPorNivel.Value;
+            }
+        }
+
+        public static bool AsignacionMasDesocupado
+        {
+            get
+            {
+                if (!_asignacionMasDesocupado.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _asignacionMasDesocupado = serv.GetAsignacionMasDesocupado();
+                    _modificada = false;
+                }
+                return _asignacionMasDesocupado.Value;
             }
         }
             
