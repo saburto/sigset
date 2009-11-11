@@ -28,5 +28,10 @@ namespace Data.Modelo
         {
             return CountOrdenes(EstadoOrden.EnRevisión);
         }
+
+        public int OrdenesAsignadas()
+        {
+            return CountOrdenes(EstadoOrden.Asignado);
+        }
     }
 }

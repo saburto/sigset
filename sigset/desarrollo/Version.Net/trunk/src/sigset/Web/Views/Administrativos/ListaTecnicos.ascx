@@ -20,9 +20,9 @@
                         </td>
                         <td 
                             style="padding: 2px; vertical-align: top; text-align: left; color: #000000">
-                            Ordenes:<br />
-                            En revision: <%=tecnico.OrdenesEnRevision() %><br />
-                            Revisadas: <%=tecnico.OrdenesReparadas() %><br />
+                            Asignados: <%=tecnico.OrdenesAsignadas() %><br />
+                            En revisi&oacute;n: <%=tecnico.OrdenesEnRevision() %><br />
+                            Revisados: <%=tecnico.OrdenesReparadas() %><br />
                             
                             <div class="starsDiv">
                                 <select>
