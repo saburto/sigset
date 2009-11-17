@@ -81,6 +81,7 @@
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\ConfiguracionController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
+    <Compile Include="Controllers\Admin\EspecialidadController.cs" />
     <Compile Include="Controllers\Admin\PermisosController.cs" />
     <Compile Include="Controllers\Admin\TecnicoController.cs" />
     <Compile Include="Controllers\Admin\PerfilesController.cs" />
@@ -346,7 +347,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reportes\OrdenTrabajo.rdlc" />
+    <Content Include="Reportes\OrdenTrabajo.rdlc" />
+    <Content Include="Views\Especialidad\Lista.aspx" />
+    <Content Include="Views\Especialidad\Crear.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet1.xsc">

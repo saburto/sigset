@@ -41,12 +41,13 @@ namespace Web.Controllers.AreaTecnica
 
         public ActionResult Lista()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                Usuario  usuario = _srvUser.GetUsuariByNombre(HttpContext.User.Identity.Name);
+            //if (HttpContext.User.Identity.IsAuthenticated)
+            //{
+                //Usuario  usuario = _srvUser.GetUsuariByNombre(HttpContext.User.Identity.Name);
+                Usuario usuario = _srvUser.GetUsuariByNombre("seba");
                 if (usuario != null)
                 {
-                    Tecnico tecnico =  _srvTec.GetTecnicoByRut(usuario.Rut);
+                    Tecnico tecnico =  _srvTec.GetTecnicoById(usuario.Id);
 
                     if (tecnico != null)
                     {
@@ -55,13 +56,13 @@ namespace Web.Controllers.AreaTecnica
                     }
                     
                 }
-            }
+            //}
             return View("SinOrdenes");
         }
 
         public ActionResult Detalles(decimal id)
         {
-            return new OrdenTrabajoController().Detalles(id, null);
+            return RedirectToAction("Detalles", "OrdenTrabajo", new { id = id });
         }
 
         public ActionResult AgregarDetalle(decimal id)
@@ -69,7 +70,7 @@ namespace Web.Controllers.AreaTecnica
             //Data.Modelo.OrdenTrabajo ot = _srvOr.GetOrdenTrabajo(id);
             Detalle nuevoDetalle = new Detalle();
             nuevoDetalle.IdOrden = id;
-            ViewData["Estado"] = _srvOr.GetEstadosOrden().GetSelectCampos("Id_Estado","Descripcion");
+            ViewData["Estado"] = _srvOr.GetEstadosOrden().GetSelectCampos("IdEstado","Descripcion");
             return View(nuevoDetalle);
         }
 

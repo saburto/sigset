@@ -22,5 +22,11 @@ namespace Data.Repositorios.Tecnicos
         void UpdateTecnico(global::Data.Modelo.Tecnico tecnico);
 
         void RemoverTodasLasEspcialidades(int idTecnico);
+
+        void CreateTipoEspecialdad(string descripcion);
+
+        void UpdateTipoEspecialidad(Data.Modelo.TipoEspecialidad tipo);
+
+        void DeleteTipoEspecialidad(Data.Modelo.TipoEspecialidad tipo);
     }
 }

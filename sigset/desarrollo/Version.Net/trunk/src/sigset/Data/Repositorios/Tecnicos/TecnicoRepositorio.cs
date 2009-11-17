@@ -150,6 +150,30 @@ namespace Data.Repositorios.Tecnicos
             _data.SubmitChanges();
         }
 
-        
+
+
+        #region ITecnicoRepositorio Members
+
+
+        public void CreateTipoEspecialdad(string descripcion)
+        {
+            var nuevoTipo = new TipoEspecialidad();
+            nuevoTipo.Descripcion = descripcion;
+            _data.TipoEspecialidads.InsertOnSubmit(nuevoTipo);
+            _data.SubmitChanges();
+        }
+
+        public void UpdateTipoEspecialidad(TipoEspecialidad tipo)
+        {
+            _data.SubmitChanges();
+        }
+
+        public void DeleteTipoEspecialidad(TipoEspecialidad tipo)
+        {
+            _data.TipoEspecialidads.DeleteOnSubmit(tipo);
+            _data.SubmitChanges();
+        }
+
+        #endregion
     }
 }
