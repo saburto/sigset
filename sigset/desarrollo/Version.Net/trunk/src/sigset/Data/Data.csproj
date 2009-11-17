@@ -80,6 +80,7 @@
     <Compile Include="Modelo\ValidationModel\OrdenTrabajos\OrdenTrabajo.cs" />
     <Compile Include="Modelo\ValidationModel\RegEx.cs" />
     <Compile Include="Modelo\ValidationModel\Tecnicos\Tecnico.cs" />
+    <Compile Include="Modelo\ValidationModel\Tecnicos\TipoEspecialidad.cs" />
     <Compile Include="Modelo\ValidationModel\TipoCargo\TipoCargo.cs" />
     <Compile Include="Modelo\ValidationModel\Usuario\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

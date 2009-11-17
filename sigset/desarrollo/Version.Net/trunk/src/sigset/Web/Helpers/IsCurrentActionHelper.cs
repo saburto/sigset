@@ -29,7 +29,6 @@ namespace Helpers
         {
             //Aca guardamos la realacion de controller padre e hijos.
             //mira controllerHijos es de tipo diccionario, donde la clave va a ser el padre
-            //y los hijos una lista de controlladores, entiendes???sipis
             controllerHijos = new Dictionary<string, List<string>>();
 
             List<String> hijos = new List<string>();
@@ -41,6 +40,7 @@ namespace Helpers
             hijos.Add("Permisos");
             hijos.Add("Perfiles");
             hijos.Add("Configuracion");
+            hijos.Add("Especialidad");
             //Aqui guardo a Admin y a sus hijos.
             controllerHijos.Add("Admin", hijos);
 

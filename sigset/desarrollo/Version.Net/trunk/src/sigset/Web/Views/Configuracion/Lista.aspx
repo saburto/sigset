@@ -17,7 +17,7 @@
                 Valor
             </th>
             <th>
-                Descripcion
+                Descripci&oacute;n
             </th>
         </tr>
     <%bool alter = false; %>

@@ -23,5 +23,8 @@ namespace Services.Tecnicos
         System.Collections.Generic.IList<global::Data.Modelo.TipoEspecialidad> GetTodasEspecialidades();
 
         void ModificarEspecialidades(int idTecnico, int[] especialidades);
+
+        void ModificarTipoEspecialidad(string idTipoEspecialidad, string descripcion);
+        void EliminarTipoEspecialidad(string idTipoEspecialidad);
     }
 }

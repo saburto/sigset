@@ -208,6 +208,52 @@ namespace Services.Tecnicos
 
         }
 
-        
+
+
+      
+
+
+        public void ModificarTipoEspecialidad(string idTipoEspecialidad, string descripcion)
+        {
+            if (string.IsNullOrEmpty(descripcion))
+            {
+                throw new RulesException("_FORM", "Descripción no puede ser un elemento vacio");
+            }
+
+
+            decimal id;
+            if (!string.IsNullOrEmpty(idTipoEspecialidad) && decimal.TryParse(idTipoEspecialidad, out id))
+            {
+               var tipo = _repo.GetTipoEspecialidadById(id);
+               if (tipo != null)
+               {
+                   tipo.Descripcion = descripcion.Trim();
+                   _repo.UpdateTipoEspecialidad(tipo);
+               }
+            }
+            else
+            {
+                _repo.CreateTipoEspecialdad(descripcion);
+            }
+        }
+
+        public void EliminarTipoEspecialidad(string idTipoEspecialidad)
+        {
+            decimal id;
+            if (decimal.TryParse(idTipoEspecialidad, out id))
+            {
+                var tipo = _repo.GetTipoEspecialidadById(id);
+                if (tipo.Especialidades.Any() || tipo.Categorias.Any())
+                {
+                    throw new ArgumentException("No se puede eliminar tipo especialidad asociadad a una categoria o un tecnico");
+                }
+                else
+                {
+                    _repo.DeleteTipoEspecialidad(tipo);
+                }
+            }
+
+        }
+      
     }
 }

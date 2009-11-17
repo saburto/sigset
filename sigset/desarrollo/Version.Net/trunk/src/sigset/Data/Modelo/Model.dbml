@@ -23,7 +23,9 @@
     <Type Name="Categoria">
       <Column Name="IdCategoria" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdTipoEspecialidad" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Association Name="Categoria_Articulo" Member="Articulos" ThisKey="IdCategoria" OtherKey="Categoria" Type="Articulo" />
+      <Association Name="TipoEspecialidad_Categoria" Member="TipoEspecialidad" ThisKey="IdTipoEspecialidad" OtherKey="IdTipoEspecialidad" Type="TipoEspecialidad" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cliente" Member="Clientes">
@@ -67,6 +69,13 @@
       <Association Name="Comuna_Direccion" Member="Direccions" ThisKey="Id" OtherKey="Comuna" Type="Direccion" />
     </Type>
   </Table>
+  <Table Name="dbo.Configuracion" Member="Configuracions">
+    <Type Name="Configuracion">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Valor" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Contacto" Member="Contactos">
     <Type Name="Contacto">
       <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -86,8 +95,8 @@
       <Column Name="Estado" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="IdUsuario" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Estado_Detalle" Member="Estado1" ThisKey="Estado" OtherKey="IdEstado" Type="Estado" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Usuario_Detalle" Member="Usuario" ThisKey="IdUsuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
       <Association Name="OrdenTrabajo_Detalle" Member="OrdenTrabajo" ThisKey="IdOrden" OtherKey="Id" Type="OrdenTrabajo" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Usuario_Detalle" Member="Usuario" ThisKey="IdUsuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Direccion" Member="Direccions">
@@ -159,6 +168,31 @@
       <Column Name="IdNivel" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Nivel_Tecnico" Member="Tecnicos" ThisKey="IdNivel" OtherKey="Nivel" Type="Tecnico" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrdenTrabajo" Member="OrdenTrabajos">
+    <Type Name="OrdenTrabajo">
+      <Column Name="IdArticulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Serie" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaIngreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEntrega" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Falla" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="CondicionArticulo" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Boleta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaCompra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LugarCompra" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdTecnicoAsignado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Observacion" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TipoOrden" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IdCliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="OrdenTrabajo_Detalle" Member="Detalles" ThisKey="Id" OtherKey="IdOrden" Type="Detalle" />
+      <Association Name="OrdenTrabajo_HistorialModificacionOrden" Member="HistorialModificacionOrdens" ThisKey="Id" OtherKey="IdOrden" Type="HistorialModificacionOrden" />
+      <Association Name="Articulo_OrdenTrabajo" Member="Articulo" ThisKey="IdArticulo" OtherKey="Id" Type="Articulo" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Cliente_OrdenTrabajo" Member="Cliente" ThisKey="IdCliente" OtherKey="Id" Type="Cliente" IsForeignKey="true" />
+      <Association Name="Tecnico_OrdenTrabajo" Member="Tecnico" ThisKey="IdTecnicoAsignado" OtherKey="Id" Type="Tecnico" IsForeignKey="true" />
+      <Association Name="TipoOrden_OrdenTrabajo" Member="TipoOrden1" ThisKey="TipoOrden" OtherKey="IdTipoOrden" Type="TipoOrden" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Perfil" Member="Perfils">
@@ -266,6 +300,7 @@
     <Type Name="TipoEspecialidad">
       <Column Name="IdTipoEspecialidad" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="TipoEspecialidad_Categoria" Member="Categorias" ThisKey="IdTipoEspecialidad" OtherKey="IdTipoEspecialidad" Type="Categoria" />
       <Association Name="TipoEspecialidad_Especialidade" Member="Especialidades" ThisKey="IdTipoEspecialidad" OtherKey="TipoEspecialidad" Type="Especialidade" />
     </Type>
   </Table>
@@ -303,38 +338,6 @@
       <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Permiso_UsuarioPermiso" Member="Permiso" ThisKey="IdPermiso" OtherKey="Id" Type="Permiso" IsForeignKey="true" />
       <Association Name="Usuario_UsuarioPermiso" Member="Usuario" ThisKey="IdUsuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.OrdenTrabajo" Member="OrdenTrabajos">
-    <Type Name="OrdenTrabajo">
-      <Column Name="IdArticulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Serie" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FechaIngreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FechaEntrega" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Falla" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="CondicionArticulo" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="Boleta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FechaCompra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LugarCompra" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdTecnicoAsignado" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Observacion" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TipoOrden" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="IdCliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="OrdenTrabajo_Detalle" Member="Detalles" ThisKey="Id" OtherKey="IdOrden" Type="Detalle" />
-      <Association Name="OrdenTrabajo_HistorialModificacionOrden" Member="HistorialModificacionOrdens" ThisKey="Id" OtherKey="IdOrden" Type="HistorialModificacionOrden" />
-      <Association Name="Articulo_OrdenTrabajo" Member="Articulo" ThisKey="IdArticulo" OtherKey="Id" Type="Articulo" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="TipoOrden_OrdenTrabajo" Member="TipoOrden1" ThisKey="TipoOrden" OtherKey="IdTipoOrden" Type="TipoOrden" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="Tecnico_OrdenTrabajo" Member="Tecnico" ThisKey="IdTecnicoAsignado" OtherKey="Id" Type="Tecnico" IsForeignKey="true" />
-      <Association Name="Cliente_OrdenTrabajo" Member="Cliente" ThisKey="IdCliente" OtherKey="Id" Type="Cliente" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Configuracion" Member="Configuracions">
-    <Type Name="Configuracion">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Valor" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.PermisosDispPerfil" Method="PermisosDispPerfil">
