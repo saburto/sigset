@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     07-11-2009 1:09:03                           */
+/* Created on:     17-11-2009 14:03:08                          */
 /*==============================================================*/
 
 
@@ -37,6 +37,13 @@ if exists (select 1
    where r.fkeyid = object_id('Articulo') and o.name = 'FK_Articulo_Tipo_Articulo')
 alter table Articulo
    drop constraint FK_Articulo_Tipo_Articulo
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('Categoria') and o.name = 'FK_CATEGORI_REFERENCE_TIPOESPE')
+alter table Categoria
+   drop constraint FK_CATEGORI_REFERENCE_TIPOESPE
 go
 
 if exists (select 1
@@ -509,6 +516,7 @@ go
 create table Categoria (
    IdCategoria          numeric(18, 0)       identity,
    Descripcion          varchar(50)          not null,
+   IdTipoEspecialidad   numeric(18,0)        null,
    constraint PK_Categoria primary key (IdCategoria)
 )
 go
@@ -917,6 +925,11 @@ alter table Articulo
    add constraint FK_Articulo_Tipo_Articulo foreign key (TipoArticulo)
       references TipoArticulo (IdTipoArticulo)
          on update cascade on delete cascade
+go
+
+alter table Categoria
+   add constraint FK_CATEGORI_REFERENCE_TIPOESPE foreign key (IdTipoEspecialidad)
+      references TipoEspecialidad (IdTipoEspecialidad)
 go
 
 alter table Cliente
