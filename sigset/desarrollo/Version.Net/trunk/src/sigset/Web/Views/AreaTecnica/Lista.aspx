@@ -96,7 +96,7 @@
             <label for="Contenido">Causa:</label>
             <%=Html.AntiForgeryToken() %>
             <input  name="IdOrden" value="" type="hidden" />
-            <%=Html.TextArea("Contenido", null, new { style="width:100%", rows="8" })%>
+            <%=Html.TextArea("Contenido", null, new { style = "width:100%", rows = "8", @class = "required" })%>
   <br />
     
     <%=Html.ButtonSubmit("Guardar") %>
@@ -110,13 +110,14 @@
             <input name="IdOrden" value="" type="hidden" />
             
             <label for="Estado">Estado:</label>
-            <%=Html.ListaEstadosTecnicos("Estado")%>
+            <%=Html.ListaEstadosTecnicos("Estado",true)%>
             <label for="Contenido">Contenido:</label>
-            <%=Html.TextArea("Contenido", null, new { style="width:100%;", rows="8" })%>
+            <%=Html.TextArea("Contenido", null, new { style="width:100%;", rows="8", @class="required" })%>
   <br />
     
     <%=Html.ButtonSubmit("Guardar") %>
     <%} %>
+    <%=Html.ClientSideValidation("", typeof(Data.Modelo.Detalle)) %>
 </div>
 
 

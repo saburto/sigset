@@ -41,6 +41,7 @@ namespace Helpers
             hijos.Add("Perfiles");
             hijos.Add("Configuracion");
             hijos.Add("Especialidad");
+            hijos.Add("Categoria");
             //Aqui guardo a Admin y a sus hijos.
             controllerHijos.Add("Admin", hijos);
 
@@ -57,10 +58,7 @@ namespace Helpers
             hijos = new List<string>();
             hijos.Add("OrdenesTrabajo");
             controllerHijos.Add("Administrativos", hijos);
-
-
-
-
+            
         }
 
         public static string MenuIzquierda(this HtmlHelper helper, string cssName)
@@ -112,7 +110,7 @@ namespace Helpers
             }
             return sb.ToString();
         }
-
+        private static string nodeHijoControllerActive = null;
         private static void AppendMenuItem(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, SiteMapProvider provider, UrlHelper urlHelper)
         {
             int index = 0, active = 0;
@@ -126,7 +124,7 @@ namespace Helpers
                     if (nodeHijo.HasChildNodes)
                     {
                         
-                        string nodeHijoControllerActive = null;
+                        
 
                         sb.Append("<h3>");
                         sb.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
@@ -135,7 +133,7 @@ namespace Helpers
                         sb.Append("<ul>");
                         foreach (var menu in nodeHijo.ChildNodes)
                         {
-                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sb, urlHelper, (MvcSiteMapNode)menu, out nodeHijoControllerActive);    
+                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sb, urlHelper, (MvcSiteMapNode)menu);    
                         }
                         sb.Append("</ul>");
                         sb.Append("</div>");
@@ -156,9 +154,9 @@ namespace Helpers
             sb.Append(tagScript.ToString());
         }
 
-        private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo, out string controllerHijoActive)
+        private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo)
         {
-            controllerHijoActive = null;
+        
             if(!nodeHijo.IsAccessibleToUser(HttpContext.Current)){
                 return;
             }
@@ -172,7 +170,7 @@ namespace Helpers
             }
             if (nodeHijo.Action == currentActionName && nodeHijo.Controller == currentControllerName)
             {
-                controllerHijoActive = nodeHijo.Controller;
+                nodeHijoControllerActive = nodeHijo.Controller;
                 sb.AppendFormat("<a style=\"color:black;font-weight: bold;\" class=\"{0}\" href=\"{0}\">{1}</a>", url, helper.Encode(nodeHijo.Title), cssName);
             }
             else

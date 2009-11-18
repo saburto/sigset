@@ -24,5 +24,11 @@ namespace Services.Articulos
         Articulo GetArticulo(decimal id);
 
         IList<Data.Modelo.Articulo> GetArticulos();
+
+        System.Collections.Generic.IList<global::Data.Modelo.Categoria> GetCategorias();
+
+        void EliminarCategoria(string IdCategoria);
+
+        void ModificarCategoria(string idCategoria, string descripcion, string idTipoEspecialidad);
     }
 }

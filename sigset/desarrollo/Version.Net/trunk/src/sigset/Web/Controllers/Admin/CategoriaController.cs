@@ -4,41 +4,44 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
-using Services.Tecnicos;
 using xVal.ServerSide;
-using Web.Helpers;
+using Services.Articulos;
+using Services.Tecnicos;
 using Helpers;
+using Web.Helpers;
 
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
-    public class EspecialidadController : Controller
+    public class CategoriaController : Controller
     {
-        ITecnicoServicio _srvTecnicos;
+         IArticuloServicio _srvArt;
+         ITecnicoServicio _srvTecnico;
 
-        public EspecialidadController()
-            :this(null)
+        public CategoriaController()
+            :this(null, null)
         {
 
         }
 
-        public EspecialidadController(ITecnicoServicio srvTecnico)
+        public CategoriaController(IArticuloServicio srvArt, ITecnicoServicio srvTecnico)
         {
-            _srvTecnicos = srvTecnico ?? new TecnicoServicio();
+            _srvArt = srvArt ?? new ArticuloServicio();
+            _srvTecnico = srvTecnico ?? new TecnicoServicio();
         }
 
         public ActionResult Lista()
         {
-            
-            return View("Lista",_srvTecnicos.GetTodasEspecialidades());
+            ViewData["TipoEspcialidad"] = _srvTecnico.GetTodosLosTiposDeEspecialidad().GetSelectCampos("IdTipoEspecialidad", "Descripcion");
+            return View("Lista", _srvArt.GetCategorias());
         }
 
 
-        public ActionResult Eliminar(string IdTipoEspecialidad)
+        public ActionResult Eliminar(string IdCategoria)
         {
             try
             {
-                _srvTecnicos.EliminarTipoEspecialidad(IdTipoEspecialidad);
+                _srvArt.EliminarCategoria(IdCategoria);
                 return RedirectToAction("Lista");
             }
             catch (Exception ex)
@@ -57,9 +60,10 @@ namespace Web.Controllers.Admin
         {
             try
             {
-                string idTipoEspecialidad = collection[0];
+                string idCategoria = collection[0];
                 string descripcion = collection[1];
-                _srvTecnicos.ModificarTipoEspecialidad(idTipoEspecialidad, descripcion);
+                string idTipoEspecialidad = collection[2];
+                _srvArt.ModificarCategoria(idCategoria, descripcion, idTipoEspecialidad);
                 return RedirectToAction("Lista");
             }
             catch (RulesException e)
@@ -70,5 +74,5 @@ namespace Web.Controllers.Admin
             
         }
 
-      }
+    }
 }
