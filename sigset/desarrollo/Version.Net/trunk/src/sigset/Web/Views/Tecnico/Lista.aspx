@@ -107,7 +107,7 @@
                 <%= Html.ButtonLinkIcon(Url.Action("Editar", "Usuario", new { id = item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title = "Editar Usuario" })%> 
             </th>                
             <th scope="row">
-                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
+                <%= Html.ButtonLinkIcon(Url.Action("Detalles", "Tecnico", new { id = item.Id }), "Detalles", Iconos.zoomin, IconPosition.solo, new { title = "Ver detalles de Usuario" })%> 
             </th>
             
             <td>

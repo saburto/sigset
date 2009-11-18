@@ -49,7 +49,18 @@ namespace Services.Autenticacion
         public bool ValidarUsuario(string user, string contrasena)
         {
             Usuario usuario = new Usuario(){User=user,Password=contrasena};
-            var errors = DataValidation.GetErrors(usuario);
+            var errors = new List<ErrorInfo>();
+
+            if (string.IsNullOrEmpty(user))
+            {
+                errors.Add(new ErrorInfo("User", "Nombre de Usuario debe ser ingresado"));    
+            }
+
+            if (string.IsNullOrEmpty(contrasena))
+            {
+                errors.Add(new ErrorInfo("Password", "Password de Usuario debe ser ingresado"));    
+            }
+
             if (errors.Any())
             {
                 throw new RulesException(errors);

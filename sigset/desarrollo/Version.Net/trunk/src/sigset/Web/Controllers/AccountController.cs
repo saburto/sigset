@@ -55,15 +55,15 @@ namespace Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
             Justification = "Needs to take same parameter type as Controller.Redirect()")]
-        public ActionResult LogOn(string Usuario1, string Contraseña, bool rememberMe, string returnUrl)
+        public ActionResult LogOn(string User, string Password, bool rememberMe, string returnUrl)
         {
 
-            if (!ValidateLogOn(Usuario1, Contraseña))
+            if (!ValidateLogOn(User, Password))
             {
                 return View();
             }
 
-            FormsAuth.SignIn(Usuario1, rememberMe);
+            FormsAuth.SignIn(User, rememberMe);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
