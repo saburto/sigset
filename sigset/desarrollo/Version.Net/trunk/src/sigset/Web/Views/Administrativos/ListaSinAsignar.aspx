@@ -40,8 +40,7 @@
 
 
             });
-
-            $("tr:even").addClass("row-alternating");
+           
 
             $("#tecnicos").dialog({
 

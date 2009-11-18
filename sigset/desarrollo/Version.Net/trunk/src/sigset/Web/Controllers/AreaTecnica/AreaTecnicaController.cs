@@ -9,6 +9,7 @@ using Services.Tecnicos;
 using Services.Usuarios;
 using Data.Modelo;
 using Helpers;
+using Data.Modelo.Enums;
 
 namespace Web.Controllers.AreaTecnica
 {
@@ -16,6 +17,8 @@ namespace Web.Controllers.AreaTecnica
     //[Authorize(Roles = "Técnico")]
     public class AreaTecnicaController : Controller
     {
+        public const string USUARIO_TEST = "saburto";
+
         IOrdenTrabajoServicio _srvOr;
         ITecnicoServicio _srvTec;
         IUsuarioServicio _srvUser;
@@ -41,10 +44,10 @@ namespace Web.Controllers.AreaTecnica
 
         public ActionResult Lista()
         {
-            //if (HttpContext.User.Identity.IsAuthenticated)
-            //{
-                //Usuario  usuario = _srvUser.GetUsuariByNombre(HttpContext.User.Identity.Name);
-                Usuario usuario = _srvUser.GetUsuariByNombre("seba");
+            if (EstaAutenticado())
+            {
+                Usuario usuario = GetUsuarioActual();
+                
                 if (usuario != null)
                 {
                     Tecnico tecnico =  _srvTec.GetTecnicoById(usuario.Id);
@@ -56,9 +59,10 @@ namespace Web.Controllers.AreaTecnica
                     }
                     
                 }
-            //}
+            }
             return View("SinOrdenes");
         }
+
 
         public ActionResult Detalles(decimal id)
         {
@@ -87,9 +91,53 @@ namespace Web.Controllers.AreaTecnica
                 ModelState.AddModelError("_FORM", ex.Message);
                 return View(detalle);
             }
-            
-            
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Aceptar(decimal id)
+        {
+            if (EstaAutenticado())
+            {
+                _srvOr.AceptarOrden(id, GetUsuarioActual() );
+            }
+
+            return RedirectToAction("Lista");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Rechazar(Detalle detalle)
+        {
+            if (EstaAutenticado())
+            {
+                detalle.IdOrden
+                detalle.Estado = (int)EstadoOrden.Anulado;
+                _srvOr.AgregarDetalle(detalle, GetUsuarioActual().User);
+            }
+
+            return RedirectToAction("Lista");
+        }
+
+        private Usuario GetUsuarioActual()
+        {
+            Usuario usuario = null;
+            if (!string.IsNullOrEmpty(USUARIO_TEST))
+            {
+                usuario = _srvUser.GetUsuariByNombre(USUARIO_TEST);
+            }
+            else
+            {
+                usuario = _srvUser.GetUsuariByNombre(HttpContext.User.Identity.Name);
+            }
+            return usuario;
+        }
+
+        private bool EstaAutenticado()
+        {
+            return HttpContext.User.Identity.IsAuthenticated || !string.IsNullOrEmpty(USUARIO_TEST);
+        }
+
 
     }
 }

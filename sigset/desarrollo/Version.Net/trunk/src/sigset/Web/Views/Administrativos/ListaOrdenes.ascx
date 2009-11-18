@@ -25,23 +25,9 @@
             </th>
             <th></th>
         </tr>
-
-            
-    <%bool alter = false; %>
     <% foreach (var item in Model)
        { %>
-    <%if (alter)
-      { %>
-        <tr class="row-alternating">
-    <%}
-      else
-      {
-        %>  
-        <tr>
-    <%}
 
-      alter = !alter;       %>
-    
         <tr>
             <th scope="row">
                 <%= Html.Hidden("Id" + item.Id, item.Id) %>

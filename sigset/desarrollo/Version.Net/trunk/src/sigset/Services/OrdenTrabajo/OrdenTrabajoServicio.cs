@@ -66,23 +66,31 @@ namespace Services.OrdenTrabajo
 
         public void AsigancionAutomatica(Data.Modelo.OrdenTrabajo ot)
         {
-            IEnumerable<Tecnico> tecnicos = _repoTecnico.GetTodosLosTecnicos().ToList();
-
-            tecnicos = tecnicos.Where(x => x.OrdenesAsignadas() <= Configuraciones.Configuracion.MaxOrdenesAsignadas).OrderBy( x=> x.OrdenesAsignadas());
-            tecnicos = tecnicos.Where(x => x.OrdenesEnRevision() <= Configuraciones.Configuracion.MaxOrdenesEnRevision).OrderBy(x=> x.OrdenesEnRevision());
-
-            if (Configuraciones.Configuracion.AsignacionPorNivel)
+            try
             {
-                tecnicos = tecnicos.OrderByDescending(x => x.Nivel);    
+                IEnumerable<Tecnico> tecnicos = _repoTecnico.GetTodosLosTecnicos().ToList();
+
+                tecnicos = tecnicos.Where(x => x.OrdenesAsignadas() <= Configuraciones.Configuracion.MaxOrdenesAsignadas).OrderBy(x => x.OrdenesAsignadas());
+                tecnicos = tecnicos.Where(x => x.OrdenesEnRevision() <= Configuraciones.Configuracion.MaxOrdenesEnRevision).OrderBy(x => x.OrdenesEnRevision());
+
+                if (Configuraciones.Configuracion.AsignacionPorNivel)
+                {
+                    tecnicos = tecnicos.OrderByDescending(x => x.Nivel);
+                }
+
+                Tecnico tecnico = tecnicos.FirstOrDefault();
+
+                if (tecnico == null)
+                {
+                    tecnicos = _repoTecnico.GetTodosLosTecnicos().ToList();
+                    tecnico = tecnicos.OrderBy(x => x.OrdenesAsignadas()).ThenBy(x => x.OrdenesEnRevision()).ThenByDescending(x => x.Nivel).FirstOrDefault();
+                }
+                this.AsginarTecnicoOrden((int)ot.Id, tecnico.Id, null);
             }
-
-            Tecnico tecnico = tecnicos.FirstOrDefault();
-
-            if (tecnico == null)
+            catch
             {
-                tecnico = tecnicos.OrderBy(x => x.OrdenesAsignadas()).ThenBy(x=> x.OrdenesEnRevision()).ThenByDescending( x=> x.Nivel).FirstOrDefault();
-            }   
-            this.AsginarTecnicoOrden((int)ot.Id, tecnico.Id, null);
+                
+            }
         }
 
 
@@ -266,14 +274,29 @@ namespace Services.OrdenTrabajo
         }
 
 
-        public void AgregarDetalle(Detalle detalle, string p)
+        public void AgregarDetalle(Detalle detalle, string nombreUsuario)
         {
             detalle.FechaCreacion = DateTime.Now;
-            var user = _repoUsuarios.GetUsuarioByNombreUsuario(p);
-            detalle.IdUsuario = user != null ? user.Id : 9;
+            var user = _repoUsuarios.GetUsuarioByNombreUsuario(nombreUsuario);
+            detalle.IdUsuario = user != null ? user.Id :(int) Constantes.ID_USUARIO_SISTEMA;
             _repo.GuardarDetalle(detalle);
         }
 
 
+
+        #region IOrdenTrabajoServicio Members
+
+
+        public void AceptarOrden(decimal id, Usuario usuario)
+        {
+            var nuevoDetalle = new Detalle();
+            nuevoDetalle.Estado = (int)EstadoOrden.EnRevisión;
+            nuevoDetalle.IdOrden = id;
+            nuevoDetalle.FechaCreacion = DateTime.Now;
+            nuevoDetalle.IdUsuario = usuario.Id;
+            _repo.GuardarDetalle(nuevoDetalle);
+        }
+
+        #endregion
     }
 }

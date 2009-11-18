@@ -719,6 +719,12 @@ table.data-table td{
 table.data-table tr.row-alternating td{
 	background:#e0e0e0;
 	}
+	
+table.data-table tr.row-highlight td
+{
+    
+    background: #FFFFFF;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 

@@ -126,10 +126,7 @@ namespace Helpers
                     if (nodeHijo.HasChildNodes)
                     {
                         
-                        if (nodeHijo.Controller == currentControllerName)
-                        {
-                            active = index;
-                        }
+                        string nodeHijoControllerActive = null;
 
                         sb.Append("<h3>");
                         sb.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
@@ -138,10 +135,16 @@ namespace Helpers
                         sb.Append("<ul>");
                         foreach (var menu in nodeHijo.ChildNodes)
                         {
-                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sb, urlHelper, (MvcSiteMapNode)menu);    
+                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sb, urlHelper, (MvcSiteMapNode)menu, out nodeHijoControllerActive);    
                         }
                         sb.Append("</ul>");
                         sb.Append("</div>");
+
+                        if (nodeHijo.Controller == currentControllerName || (!string.IsNullOrEmpty(nodeHijoControllerActive) && nodeHijoControllerActive == currentControllerName ))
+                        {
+                            active = index;
+                        }
+
                         index++;
                     }
                 }
@@ -153,9 +156,9 @@ namespace Helpers
             sb.Append(tagScript.ToString());
         }
 
-        private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo)
+        private static void AppendItemMenuLink(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, UrlHelper urlHelper, MvcSiteMapNode nodeHijo, out string controllerHijoActive)
         {
-            
+            controllerHijoActive = null;
             if(!nodeHijo.IsAccessibleToUser(HttpContext.Current)){
                 return;
             }
@@ -169,6 +172,7 @@ namespace Helpers
             }
             if (nodeHijo.Action == currentActionName && nodeHijo.Controller == currentControllerName)
             {
+                controllerHijoActive = nodeHijo.Controller;
                 sb.AppendFormat("<a style=\"color:black;font-weight: bold;\" class=\"{0}\" href=\"{0}\">{1}</a>", url, helper.Encode(nodeHijo.Title), cssName);
             }
             else

@@ -79,7 +79,7 @@
             <%foreach (var detalle in Model.Detalles.OrderByDescending(x => x.FechaCreacion))
               {%>
             <p>
-                <%if (detalle.Usuario.esSistema())
+                <%if (!detalle.Usuario.esSistema())
                   {%>
                 <span style="font-weight: bold;">Usuario:</span> <span style="margin-right: 15px;">
                     <%=Html.Encode(detalle.Usuario.NombreCompleto)%>
@@ -94,7 +94,9 @@
                 <br />
                 <%=Html.Encode(detalle.Contenido) %>
             </p>
+            <hr />
             <%} %>
+            
         </div>
     </fieldset>
     <%} %>
