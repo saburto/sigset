@@ -726,6 +726,11 @@ table.data-table tr.row-highlight td
     background: #FFFFFF;
 }
 
+table.data-table .activeDrop
+{
+    background:#e0e0e0;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 
 	 LISTS

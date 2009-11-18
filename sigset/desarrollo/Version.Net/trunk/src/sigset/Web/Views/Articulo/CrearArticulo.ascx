@@ -23,7 +23,7 @@
             bgiframe: true,
             modal: true,
             autoOpen: false,
-            height: 500,
+            height: 300,
             width: 500
 
         });

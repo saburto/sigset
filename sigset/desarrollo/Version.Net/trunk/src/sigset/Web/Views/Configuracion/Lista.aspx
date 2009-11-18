@@ -74,13 +74,41 @@
                 <%= Html.Encode(item.Descripcion) %>
             </td>
         </tr>
-    
     <% } %>
+        <tr>
+            
+            <td>
+                <%using(Html.BeginForm("Logo", "Configuracion", FormMethod.Post, new {enctype="multipart/form-data"})){ %>
+                <div style="position:absolute" class="fg-button-icon-solo fg-button ui-state-default ui-corner-all" ><span class="ui-icon-folder-open ui-icon"></span>Abrir</div>
+                <input type="file" name="Imagen" class="realupload" onchange="this.form.submit()" />
+                <%} %>
+            </td>
+            <td>
+                <%=Html.ImagenLogo(35,100) %>
+            </td>
+            <td>Logo empresa</td>
+        </tr>
     </table>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 <style type="text/css">
+.realupload {
+/*	position:absolute;
+	top:0;
+	right:0;*/
+
+	/* start of transparency styles */
+	opacity:0;
+	-moz-opacity:0;
+	filter:alpha(opacity:0);
+	/* end of transparency styles */
+
+	z-index:999; /* bring the real upload interactivity up front */
+	width:5px;
+}    
+    
+    
 .data-table input
 {
     font-size:1.2em;

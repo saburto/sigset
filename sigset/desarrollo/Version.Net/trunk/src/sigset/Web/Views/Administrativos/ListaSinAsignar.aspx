@@ -64,10 +64,19 @@
                 $(e).droppable({
                     accept: '.tecnico',
                     tolerance: 'pointer',
+                    hoverClass: 'activeDrop',
+                    over: function() {
+
+                        $(e).parent().addClass("activeDrop");
+                    },
+                    out: function() {
+
+                        $(e).parent().removeClass("activeDrop");
+
+                    },
                     drop: function(ev, ui) {
 
-
-
+                        $(e).parent().removeClass("activeDrop");
                         var idTecnico = ui.draggable.find("input:hidden[name='idTecnico']");
                         var imagenTecnico = ui.draggable.find(".imagenUsuario");
 
