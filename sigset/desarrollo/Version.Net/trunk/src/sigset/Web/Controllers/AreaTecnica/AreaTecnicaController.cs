@@ -55,7 +55,7 @@ namespace Web.Controllers.AreaTecnica
                     if (tecnico != null)
                     {
                         var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id);
-                        return View(listaOrdenes);
+                        return View("Lista",listaOrdenes);
                     }
                     
                 }
@@ -79,17 +79,22 @@ namespace Web.Controllers.AreaTecnica
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
         public ActionResult AgregarDetalle(Detalle detalle)
         {
             try
             {
-                _srvOr.AgregarDetalle(detalle, HttpContext.User.Identity.Name);
-                return RedirectToAction("Detalles", new { id = detalle.IdOrden });
+                if (this.EstaAutenticado())
+                {
+                    _srvOr.AgregarDetalle(detalle, this.GetUsuarioActual().User);    
+                }
+
+                return RedirectToAction("Lista");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("_FORM", ex.Message);
-                return View(detalle);
+                return Lista();
             }
         }
 
@@ -111,7 +116,6 @@ namespace Web.Controllers.AreaTecnica
         {
             if (EstaAutenticado())
             {
-                detalle.IdOrden
                 detalle.Estado = (int)EstadoOrden.Anulado;
                 _srvOr.AgregarDetalle(detalle, GetUsuarioActual().User);
             }
