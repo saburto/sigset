@@ -16,7 +16,7 @@
                     </tr>
                     <tr>
                         <td  style="padding: 2px;">
-                            <%=Html.ImagenUsuario(tecnico.Id, "imagenUsuario", "Usuario", null) %>
+                            <%=Html.ImagenUsuario(tecnico.Usuario.User, "imagenUsuario", "Usuario", null) %>
                         </td>
                         <td 
                             style="padding: 2px; vertical-align: top; text-align: left; color: #000000">

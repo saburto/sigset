@@ -11,7 +11,7 @@
     <RootNamespace>Web</RootNamespace>
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -177,10 +177,6 @@
     <Content Include="Views\Cliente\Crear.aspx" />
     <Content Include="Views\Cliente\Detalles.ascx" />
     <Content Include="Views\Cliente\Lista.aspx" />
-    <Content Include="Views\Empleado\Crear.aspx" />
-    <Content Include="Views\Empleado\Detalles.aspx" />
-    <Content Include="Views\Empleado\Editar.aspx" />
-    <Content Include="Views\Empleado\Lista.aspx" />
     <Content Include="Views\OrdenTrabajo\Crear.aspx" />
     <Content Include="Views\OrdenTrabajo\Index.aspx" />
     <Content Include="Views\Shared\ActualAction.ascx" />

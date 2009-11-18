@@ -66,12 +66,12 @@ namespace Web.Controllers.Admin
             var usuario = _servicio.GetUsuarioById(id);
             SetPerfilSelect(usuario.PerfilUsuario.ToString());
 
-            ViewData["imagen"] = ImagenUsuarioExiste(usuario.Id);
+            ViewData["imagen"] = ImagenUsuarioExiste(usuario.User);
 
             return View("Editar", usuario);
         }
 
-        private bool? ImagenUsuarioExiste(int id)
+        private bool? ImagenUsuarioExiste(string id)
         {
             var carpeta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios");
             var newPath = Path.Combine(carpeta, id + ".jpg");
@@ -93,7 +93,7 @@ namespace Web.Controllers.Admin
             {
                 _servicio.ModificarUsuario(usuario);
 
-                RenameImagen(usuario);
+                RenameImagen(usuario.User);
 
                 return RedirectToAction("Lista");
             }
@@ -125,7 +125,7 @@ namespace Web.Controllers.Admin
             try
             {
                 _servicio.CrearUsuario(usuario);
-                RenameImagen(usuario);
+                RenameImagen(usuario.User);
 
                 return RedirectToAction("Lista");
 
@@ -138,7 +138,7 @@ namespace Web.Controllers.Admin
             }
         }
 
-        private void RenameImagen(Usuario usuario)
+        private void RenameImagen(string usuario)
         {
             if (TempData["imagen"] != null)
             {
@@ -148,7 +148,7 @@ namespace Web.Controllers.Admin
                     TempData["imagen"].ToString()
                     );
                 FileInfo fileInfo = new FileInfo(savedFileName);
-                var newPath = Path.Combine(carpeta, usuario.Id + Path.GetExtension(TempData["imagen"].ToString()));
+                var newPath = Path.Combine(carpeta, usuario + Path.GetExtension(TempData["imagen"].ToString()));
                 FileInfo newFileInfo = new FileInfo(newPath);
                 if (newFileInfo.Exists)
                 {
