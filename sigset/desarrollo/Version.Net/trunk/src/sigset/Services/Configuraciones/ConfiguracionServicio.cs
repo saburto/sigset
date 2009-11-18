@@ -81,9 +81,23 @@ namespace Services.Configuraciones
 
         }
 
+        public int? GetMaxOrdenesEnReparacion()
+        {
+            var config = repo.GetConfiguracion(6);
+            int valor;
+            if (config != null)
+            {
+                if (int.TryParse(config.Valor, out valor))
+                {
+                    return valor;
+                }
+            }
+            return 999;
+        }
+
         public bool? GetAsignacionPorNivel()
         {
-            var nomnbre = repo.GetConfiguracion(6);
+            var nomnbre = repo.GetConfiguracion(7);
             if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
             {
                 return nomnbre.Valor.Contains("true");
@@ -94,9 +108,26 @@ namespace Services.Configuraciones
             }
         }
 
+     
+
         public bool? GetAsignacionMasDesocupado()
         {
-            var nomnbre = repo.GetConfiguracion(7);
+            var nomnbre = repo.GetConfiguracion(9);
+            if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
+            {
+                return nomnbre.Valor.Contains("true");
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        public bool? GetAsignacionSoloEspecialista()
+        {
+            var nomnbre = repo.GetConfiguracion(8);
             if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
             {
                 return nomnbre.Valor.Contains("true");
@@ -114,9 +145,23 @@ namespace Services.Configuraciones
         static bool? _asignacionAutHabilitada = null;
         static int? _maxOrdenesAsignadas = null;
         static int? _maxOrdenesRevision = null;
+        static int? _maxOrdenesEnReparacion = null;
         static bool? _asignacionPorNivel = null;
         static bool? _asignacionMasDesocupado = null;
+        static bool? _asginacionSoloEspecialista = null;
         internal static bool _modificada;
+
+        public static bool EsConfiguracionNumerico(int id)
+        {
+            return id == 4 || id == 5 || id == 6;
+        }
+
+        public static bool EsConfiguracionBoolean(int id)
+        {
+            return id == 3 || id == 7 || id == 8 || id == 9;
+        }
+
+
         public static string NombreEmpresa { 
         get
         {
@@ -145,6 +190,20 @@ namespace Services.Configuraciones
             }
         }
 
+        public static bool AsignacionSoloEspecialista
+        {
+            get
+            {
+                if (!_asginacionSoloEspecialista.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _asginacionSoloEspecialista = serv.GetAsignacionSoloEspecialista();
+                    _modificada = false;
+                }
+                return _asginacionSoloEspecialista.Value;
+            }
+        }
+
         public static int MaxOrdenesAsignadas
         {
             get
@@ -156,6 +215,20 @@ namespace Services.Configuraciones
                     _modificada = false;
                 }
                 return _maxOrdenesAsignadas.Value;
+            }
+        }
+
+        public static int MaxOrdenesEnReparacion
+        {
+            get
+            {
+                if (!_maxOrdenesEnReparacion.HasValue || _modificada)
+                {
+                    ConfiguracionServicio serv = new ConfiguracionServicio();
+                    _maxOrdenesEnReparacion = serv.GetMaxOrdenesEnReparacion();
+                    _modificada = false;
+                }
+                return _maxOrdenesEnReparacion.Value;
             }
         }
 

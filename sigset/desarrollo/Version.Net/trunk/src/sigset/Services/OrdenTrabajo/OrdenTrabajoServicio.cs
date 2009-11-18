@@ -70,8 +70,20 @@ namespace Services.OrdenTrabajo
             {
                 IEnumerable<Tecnico> tecnicos = _repoTecnico.GetTodosLosTecnicos().ToList();
 
+                if (Configuraciones.Configuracion.AsignacionSoloEspecialista)
+                {
+                    if (ot.Articulo.Categoria1 != null)
+                    {
+                        tecnicos = tecnicos.Where(x => x.Especialidades.Where(y => y.TipoEspecialidad == ot.Articulo.Categoria1.IdTipoEspecialidad).Any());
+                    }
+                }
+
                 tecnicos = tecnicos.Where(x => x.OrdenesAsignadas() <= Configuraciones.Configuracion.MaxOrdenesAsignadas).OrderBy(x => x.OrdenesAsignadas());
                 tecnicos = tecnicos.Where(x => x.OrdenesEnRevision() <= Configuraciones.Configuracion.MaxOrdenesEnRevision).OrderBy(x => x.OrdenesEnRevision());
+                tecnicos = tecnicos.Where(x => x.OrdenesEnReparacion() <= Configuraciones.Configuracion.MaxOrdenesEnReparacion).OrderBy(x => x.OrdenesEnReparacion());
+
+
+
 
                 if (Configuraciones.Configuracion.AsignacionPorNivel)
                 {
