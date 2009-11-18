@@ -15,6 +15,27 @@ namespace Helpers
 {
     public static class CamposHelper
     {
+        public static string ListaEstadosTecnicos(this HtmlHelper html, string name)
+        {
+            IList<SelectListItem> lista = new List<SelectListItem>();
+            
+            
+            foreach(var item in Enum.GetNames(typeof(EstadoOrden))){
+                
+                var selectItem = new SelectListItem();
+                selectItem.Text=item;
+                var estado = ((EstadoOrden) Enum.Parse(typeof(EstadoOrden), item));
+                if (estado == EstadoOrden.Anulado || estado == EstadoOrden.Asignado || estado == EstadoOrden.Entregado || estado == EstadoOrden.Ingresado || estado == EstadoOrden.SinGarantia)
+                {
+                    continue;
+                }
+                selectItem.Value = ((int)estado).ToString();
+                lista.Add(selectItem);
+            }
+
+            return html.DropDownList(name, lista, "Seleccione");
+        }
+
 
         public static string NivelesTecnicos(this HtmlHelper html, int seleccionado)
         {

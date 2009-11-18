@@ -70,10 +70,13 @@
                         <%=Html.AntiForgeryToken()%>
                         <input type="hidden" name="Id" value='<%=item.Id %>' />
                     <%} %>
-                <%} %>
+                <%}else{ %>
+                    
+                    <%= Html.ButtonLinkIcon("#", "Agregar Detalle", Iconos.plus, IconPosition.left, new { title = "Agregar nuevo detalle a Orden de trabajo", onclick = "return abrirIngresoDetalle('" + item.Id + "')" })%>
                     
                     
-                    <%= Html.ButtonLinkIcon("#", "Rechazar", Iconos.closethick, IconPosition.left, new { title = "Rechazar Orden de trabajo", onclick = "return abrirVentana('"+ item.Id +"')" })%>
+                    <%} %>
+                    <%= Html.ButtonLinkIcon("#", "Rechazar", Iconos.closethick, IconPosition.left, new { title = "Rechazar Orden de trabajo", onclick = "return abrirRechazo('" + item.Id + "')" })%>
                     
                 </div>
                 <br />
@@ -87,27 +90,46 @@
     <% } %>
     </table>
 
-<div id="resultado" title="Rechazar">
+<div id="ventanaRechazo" class="ventana" title="Rechazar">
   <%using(Html.BeginForm("Rechazar", "AreaTecnica", FormMethod.Post)) {%>
     
             <label for="Contenido">Causa:</label>
             <%=Html.AntiForgeryToken() %>
-            <input id="IdOrden" name="IdOrden" value="" type="hidden" />
-            <%=Html.TextArea("Contenido", null, new { style="width:100%" })%>
+            <input  name="IdOrden" value="" type="hidden" />
+            <%=Html.TextArea("Contenido", null, new { style="width:100%", rows="8" })%>
   <br />
     
     <%=Html.ButtonSubmit("Guardar") %>
     <%} %>
 </div>
+
+<div id="ventanaDetalle" class="ventana" title="Ingresar Detalle">
+  <%using (Html.BeginForm("AgregarDetalle", "AreaTecnica", FormMethod.Post))
+    {%>
+            <%=Html.AntiForgeryToken() %>
+            <input name="IdOrden" value="" type="hidden" />
+            
+            <label for="Estado">Estado:</label>
+            <%=Html.ListaEstadosTecnicos("Estado")%>
+            <label for="Contenido">Contenido:</label>
+            <%=Html.TextArea("Contenido", null, new { style="width:100%;", rows="8" })%>
+  <br />
+    
+    <%=Html.ButtonSubmit("Guardar") %>
+    <%} %>
+</div>
+
+
     
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 <style type="text/css">
-    #resultado
+    
+    .ui-dialog
     {
-        font-size:80%;
+        font-size:70%
     }
 
 
@@ -122,17 +144,28 @@
         return false;
     }
 
-    function abrirVentana(id) {
-        $("#IdOrden").val(id);
-        $("#Contenido").val("");
-        $("#resultado").dialog('open');
+    function abrirRechazo(id) {
+        var $ventana = $("#ventanaRechazo");
+        abrirVentana($ventana, id);
+    }
+
+    function abrirIngresoDetalle(id) {
+        var $ventana = $("#ventanaDetalle");
+        abrirVentana($ventana, id);
+    }
+
+    function abrirVentana($ventana, id) {
+        $ventana.find(":input[name='IdOrden']").val(id);
+        $ventana.find(":input[name='Contenido']").val("");
+        $ventana.dialog('open');
     }
 
     $(function() {
 
-        $("#resultado").dialog({
+    $(".ventana").dialog({
             autoOpen : false,
-            width: 500
+            width: 500,
+            height:280
         });
 
     });
