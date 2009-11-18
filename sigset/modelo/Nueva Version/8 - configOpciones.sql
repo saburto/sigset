@@ -1,5 +1,5 @@
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(1, 'SERVICIO TÉCNICO 2', 'Nombre de empresa')
+  VALUES(1, 'SERVICIO TÉCNICO', 'Nombre de empresa')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(2, '33', 'Telefono de empresa')
@@ -14,8 +14,14 @@ INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(5, '4', 'Asignación Automatica: Número maximo de ordenes en revision que puede tener un tecnico')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(6, 'true,false', 'Asignación Automatica: Selecciona por mejor nivel')
+  VALUES(6, '10', 'Asignación Automatica: Número maximo de ordenes en estado reparacion')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(7, 'false', 'Asignación Automatica: Seleccionar a más desocupado si no existe ningun tecnico segun el criterio o dejar sin asignacion')
+  VALUES(7, 'true,false', 'Asignación Automatica: Selecciona por mejor nivel')
+GO
+INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
+  VALUES(8, 'true', 'Asignación Automatica: Solo seleccionar tecnicos especialistas')
+GO
+INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
+  VALUES(9, 'false', 'Asignación Automatica: Seleccionar a más desocupado si no existe ningun tecnico segun el criterio o dejar sin asignacion')
 GO
