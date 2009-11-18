@@ -43,7 +43,7 @@
             <td>
                 
                 <div id="disp<%=item.Id %>" class="disp display<%=item.Id %>" >
-                <%if (item.Id == 3 || item.Id == 6 || item.Id == 7)
+                <%if (Services.Configuraciones.Configuracion.EsConfiguracionBoolean(item.Id))
                   {%>
                     <%=Html.CheckBox("displa", item.Valor.Contains("true"), new { disabled = "disabled" })%>
                  <%}
@@ -58,10 +58,10 @@
                 <div class="formu form<%=item.Id %>" style="display:none;">
                     <%= Html.Hidden("Id", item.Id)%>
                     
-                    <%if (item.Id == 3 || item.Id == 6 || item.Id == 7)
+                    <%if (Services.Configuraciones.Configuracion.EsConfiguracionBoolean(item.Id))
                       { %>
                       <%=Html.CheckBox("Valor" + item.Id, item.Valor.Contains("true"))%>
-                    <%}else if(item.Id == 4 || item.Id == 5) {%>
+                    <%}else if(Services.Configuraciones.Configuracion.EsConfiguracionNumerico(item.Id)) {%>
                     <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required digits" })%>  
                       <%}else
                       {%>
