@@ -15,7 +15,7 @@ namespace Helpers
 {
     public static class CamposHelper
     {
-        public static string ListaEstadosTecnicos(this HtmlHelper html, string name)
+        public static string ListaEstadosTecnicos(this HtmlHelper html, string name, bool required)
         {
             IList<SelectListItem> lista = new List<SelectListItem>();
             
@@ -33,7 +33,12 @@ namespace Helpers
                 lista.Add(selectItem);
             }
 
-            return html.DropDownList(name, lista, "Seleccione");
+            object atrr = null;
+            if (required)
+            {
+                atrr = new { @class = "required" };
+            }
+            return html.DropDownList(name, lista, "Seleccione", atrr);
         }
 
 

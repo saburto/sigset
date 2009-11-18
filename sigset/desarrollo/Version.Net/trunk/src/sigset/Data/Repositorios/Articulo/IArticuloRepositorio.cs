@@ -34,5 +34,11 @@ namespace Data.Repositorios.Articulo
 
 
         Data.Modelo.Articulo GetArticuloPorModelo(string Modelo);
+
+        void EliminarCategoria(Categoria categoria);
+
+        void ModificarCategoria(Categoria categoria);
+
+        void CrearCategoria(string descripcion, string idTipoEspecialidad);
     }
 }

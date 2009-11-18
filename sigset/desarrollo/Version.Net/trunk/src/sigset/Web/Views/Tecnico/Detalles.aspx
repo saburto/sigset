@@ -65,7 +65,7 @@
         	<ul>
 		        <li><a href="#tabs-1">Asignadas</a></li>
 		        <li><a href="#tabs-2">En revisi&oacute;n</a></li>
-		        <li><a href="#tabs-2">En reparaci&oacute;n</a></li>
+		        <li><a href="#tabs-4">En reparaci&oacute;n</a></li>
 		        <li><a href="#tabs-3">Reparadas</a></li>
 	        </ul>
 	        <div id="tabs-1">
@@ -73,6 +73,9 @@
 	        </div>
 	        <div id="tabs-2">
 		         <%Html.RenderPartial("../Administrativos/ListaOrdenes", Model.GetOrdenesEnRevision()); %>
+	        </div>
+	        <div id="tabs-4">
+		         <%Html.RenderPartial("../Administrativos/ListaOrdenes", Model.GetOrdenesEnReparacion()); %>
 	        </div>
 	        <div id="tabs-3">
 		         <%Html.RenderPartial("../Administrativos/ListaOrdenes", Model.GetOrdenesReparados()); %>

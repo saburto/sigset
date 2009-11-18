@@ -152,5 +152,31 @@ namespace Data.Repositorios.Articulo
                    select a).FirstOrDefault();
         }
 
+
+        #region IArticuloRepositorio Members
+
+
+        public void EliminarCategoria(Categoria categoria)
+        {
+            _ent.Categorias.DeleteOnSubmit(categoria);
+            _ent.SubmitChanges();
+        }
+
+        public void ModificarCategoria(Categoria categoria)
+        {
+            _ent.SubmitChanges();
+        }
+
+        public void CrearCategoria(string descripcion, string idTipoEspecialidad)
+        {
+            var categoria = new Categoria();
+            categoria.Descripcion = descripcion;
+            categoria.IdTipoEspecialidad = decimal.Parse(idTipoEspecialidad);
+
+            _ent.Categorias.InsertOnSubmit(categoria);
+            _ent.SubmitChanges();
+        }
+
+        #endregion
     }
 }

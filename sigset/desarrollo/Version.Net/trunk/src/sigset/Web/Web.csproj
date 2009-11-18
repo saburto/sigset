@@ -79,6 +79,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Administrativos\AdministrativosController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
+    <Compile Include="Controllers\Admin\CategoriaController.cs" />
     <Compile Include="Controllers\Admin\ConfiguracionController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\EspecialidadController.cs" />
@@ -348,6 +349,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reportes\OrdenTrabajo.rdlc" />
+    <Content Include="Views\Categoria\Crear.ascx" />
+    <Content Include="Views\Categoria\Lista.aspx" />
     <Content Include="Views\Especialidad\Lista.aspx" />
     <Content Include="Views\Especialidad\Crear.ascx" />
   </ItemGroup>

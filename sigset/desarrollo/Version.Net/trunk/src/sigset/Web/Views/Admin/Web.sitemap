@@ -13,21 +13,18 @@
       <mvcSiteMapNode title="Lista" controller="Usuario" action="Lista" />
     </mvcSiteMapNode>
 
-    <mvcSiteMapNode title="Permisos" controller="Permisos" action="">
-      <mvcSiteMapNode title="Lista"  action="Lista" />
-    </mvcSiteMapNode>
-
-    <mvcSiteMapNode title="Perfiles" controller="Perfiles" action="">
-      <mvcSiteMapNode title="Lista"  controller="Perfiles" action="Lista" />
-    </mvcSiteMapNode>
-
+    
     <mvcSiteMapNode title="Tecnicos" controller="Tecnico" action="" >
       <mvcSiteMapNode title="Lista" controller="Tecnico" action="Lista" /> 
       <mvcSiteMapNode title="Especialidades" controller="Especialidad"  action="Lista" />
-     
     </mvcSiteMapNode>
+    
+    
     <mvcSiteMapNode title="Configuraciones" controller="Configuracion" action="">
-      <mvcSiteMapNode title="Lista"  controller="Configuracion" action="Lista" />
+      <mvcSiteMapNode title="Generales"  controller="Configuracion" action="Lista" />
+      <mvcSiteMapNode title="Permisos"  action="Lista" controller="Permisos" />
+      <mvcSiteMapNode title="Perfiles"  controller="Perfiles" action="Lista" />
+      <mvcSiteMapNode title="Categorias"  controller="Categoria" action="Lista" />
     </mvcSiteMapNode>
 
 

@@ -178,5 +178,53 @@ namespace Services.Articulos
             return repositorio.GetAll().ToList();
         }
 
+
+        #region IArticuloServicio Members
+
+
+        public IList<Categoria> GetCategorias()
+        {
+            Data.Repositorios.RepoGenerico<Categoria> repositorio = new Data.Repositorios.RepoGenerico<Categoria>();
+            return repositorio.GetAll().ToList();
+        }
+
+        #endregion
+
+        #region IArticuloServicio Members
+
+
+        public void EliminarCategoria(string IdCategoria)
+        {
+            var categoria = _rep.GetCategoria(decimal.Parse(IdCategoria)).FirstOrDefault();
+            if (categoria == null || categoria.Articulos.Any())
+            {
+                throw new ArgumentException("No se puede borrar categoria que tiene asociado un articulo");
+            }
+            else
+            {
+                _rep.EliminarCategoria(categoria);
+            }
+            
+        }
+
+        public void ModificarCategoria(string idCategoria, string descripcion, string idTipoEspecialidad)
+        {
+            if (!string.IsNullOrEmpty(idCategoria))
+            {
+
+                var categoria = _rep.GetCategoria(decimal.Parse(idCategoria)).FirstOrDefault();
+                if (categoria != null)
+                {
+                    categoria.Descripcion = descripcion;
+                    categoria.IdTipoEspecialidad = decimal.Parse(idTipoEspecialidad);
+                    _rep.ModificarCategoria(categoria);
+                    return;
+                }
+            }
+            _rep.CrearCategoria(descripcion, idTipoEspecialidad);
+
+        }
+
+        #endregion
     }
 }
