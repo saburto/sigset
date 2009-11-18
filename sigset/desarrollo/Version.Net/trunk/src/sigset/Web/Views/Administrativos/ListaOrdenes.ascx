@@ -64,7 +64,7 @@
             <td>
                 <%if (item.Tecnico != null)
                   { %>
-                    <%=Html.ImagenUsuario(item.IdTecnicoAsignado.Value, "imagenUsuario", "Tecnico", null)%>
+                    <%=Html.ImagenUsuario(item.Tecnico.Usuario.User, "imagenUsuario", "Tecnico", null)%>
                 <%}%>
             </td>
         </tr>

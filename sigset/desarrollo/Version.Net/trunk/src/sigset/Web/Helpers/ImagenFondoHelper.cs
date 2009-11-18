@@ -31,11 +31,11 @@ namespace Helpers
         }
 
 
-        public static string ImagenUsuario(this HtmlHelper html, int idUsuario,string cssClass , string alt ,object htmlAtributtes)
+        public static string ImagenUsuario(this HtmlHelper html, string nombreUsuario,string cssClass , string alt ,object htmlAtributtes)
         {
             UrlHelper url = new UrlHelper(html.ViewContext.RequestContext);
 
-            string imgUsuario  = string.Format("Content/usuarios/{0}.jpg", idUsuario);
+            string imgUsuario  = string.Format("Content/usuarios/{0}.jpg", nombreUsuario);
             string imgUsuarioPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, imgUsuario);
 
             string urlImagen = url.Content("~/Content/icons/Buddy.png");

@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-   <%=Html.RenderPartial("DetallesPermiso.ascx", Model); %>
+   <%Html.RenderPartial("DetallesPermiso.ascx", Model); %>
 
 </asp:Content>
 
