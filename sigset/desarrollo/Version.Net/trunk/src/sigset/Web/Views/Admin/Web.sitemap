@@ -24,7 +24,7 @@
     <mvcSiteMapNode title="Tecnicos" controller="Tecnico" action="" >
       <mvcSiteMapNode title="Lista" controller="Tecnico" action="Lista" /> 
       <mvcSiteMapNode title="Especialidades" controller="Especialidad"  action="Lista" />
-      <mvcSiteMapNode title="Niveles"   action="Niveles" />
+     
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Configuraciones" controller="Configuracion" action="">
       <mvcSiteMapNode title="Lista"  controller="Configuracion" action="Lista" />

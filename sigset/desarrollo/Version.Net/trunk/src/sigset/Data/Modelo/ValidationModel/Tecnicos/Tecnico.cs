@@ -24,14 +24,46 @@ namespace Data.Modelo
             return ordenes;
         }
 
+
         public int OrdenesEnRevision()
         {
             return CountOrdenes(EstadoOrden.EnRevisión);
+        }
+
+        public int OrdenesEnReparacion()
+        {
+            return CountOrdenes(EstadoOrden.EnReparación);
         }
 
         public int OrdenesAsignadas()
         {
             return CountOrdenes(EstadoOrden.Asignado);
         }
+
+        private IEnumerable<OrdenTrabajo> GetOrdenesPorEstado(EstadoOrden estado)
+        {
+            return this.OrdenTrabajos.Where(x => x.IdEstadoActual() == (int)estado);
+        }
+
+        public IEnumerable<OrdenTrabajo> GetOrdenesAsignadas()
+        {
+            return this.GetOrdenesPorEstado(EstadoOrden.Asignado);
+        }
+
+        public IEnumerable<OrdenTrabajo> GetOrdenesEnRevision()
+        {
+            return this.GetOrdenesPorEstado(EstadoOrden.EnRevisión);
+        }
+
+        public IEnumerable<OrdenTrabajo> GetOrdenesEnReparacion()
+        {
+            return this.GetOrdenesPorEstado(EstadoOrden.EnReparación);
+        }
+
+        public IEnumerable<OrdenTrabajo> GetOrdenesReparados()
+        {
+            return this.GetOrdenesPorEstado(EstadoOrden.Reparado);
+        }
+        
     }
 }

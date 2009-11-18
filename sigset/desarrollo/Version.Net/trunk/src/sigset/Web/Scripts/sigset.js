@@ -82,6 +82,16 @@ $(function() {
         fillSpace: false
     });
 
+    $(".data-table tr").hover(
+       function() {
+           $(this).addClass("row-highlight");
+       },
+       function() {
+           $(this).removeClass("row-highlight");
+       }
+    );
+
+
 
     //Funcion para tooltipo
     $("input, buttom, a, select, textarea").tooltip({

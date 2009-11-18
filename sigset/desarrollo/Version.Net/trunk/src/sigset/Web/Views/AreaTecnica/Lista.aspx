@@ -61,8 +61,20 @@
             <td colspan="7">
                 <p id="loading<%=item.Id %>">Cargando detalles...</p>
                 <div style="font-size:80%" >
-                    <%= Html.ButtonLinkIcon("#", "Aceptar", Iconos.check, IconPosition.left, new { title = "Aceptar Orden de trabajo"})%>
-                    <%= Html.ButtonLinkIcon("#", "Rechazar", Iconos.closethick, IconPosition.left, new { title = "Rechazar Orden de trabajo"})%>
+                
+                <%if (item.EstadoActual().IdEstado == (int)Data.Modelo.Enums.EstadoOrden.Asignado)
+                  { %>
+                    <%= Html.ButtonLinkIcon("#", "Aceptar", Iconos.check, IconPosition.left, new { title = "Aceptar Orden de trabajo", onclick = "return aceptarOrden('" + item.Id + "')" })%>
+                                        <%using (Html.BeginForm("Aceptar", "AreaTecnica", FormMethod.Post, new { id = "formu" + item.Id }))
+                                          { %>
+                        <%=Html.AntiForgeryToken()%>
+                        <input type="hidden" name="Id" value='<%=item.Id %>' />
+                    <%} %>
+                <%} %>
+                    
+                    
+                    <%= Html.ButtonLinkIcon("#", "Rechazar", Iconos.closethick, IconPosition.left, new { title = "Rechazar Orden de trabajo", onclick = "return abrirVentana('"+ item.Id +"')" })%>
+                    
                 </div>
                 <br />
                 <br />
@@ -75,18 +87,53 @@
     <% } %>
     </table>
 
+<div id="resultado" title="Rechazar">
+  <%using(Html.BeginForm("Rechazar", "AreaTecnica", FormMethod.Post)) {%>
+    
+            <label for="Contenido">Causa:</label>
+            <%=Html.AntiForgeryToken() %>
+            <input id="IdOrden" name="IdOrden" value="" type="hidden" />
+            <%=Html.TextArea("Contenido", null, new { style="width:100%" })%>
+  <br />
+    
+    <%=Html.ButtonSubmit("Guardar") %>
+    <%} %>
+</div>
     
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+<style type="text/css">
+    #resultado
+    {
+        font-size:80%;
+    }
+
+
+</style>
+
+
 <script type="text/javascript">
 //<![CDATA[
-    
+
+    function aceptarOrden(id) {
+        $("#formu" + id).submit();
+        return false;
+    }
+
+    function abrirVentana(id) {
+        $("#IdOrden").val(id);
+        $("#Contenido").val("");
+        $("#resultado").dialog('open');
+    }
 
     $(function() {
 
-        $("tr:visible:even").addClass("row-alternating");
+        $("#resultado").dialog({
+            autoOpen : false,
+            width: 500
+        });
 
     });
     
