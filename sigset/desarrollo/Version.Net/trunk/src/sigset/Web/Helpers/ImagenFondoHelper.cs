@@ -9,6 +9,28 @@ namespace Helpers
 {
     public static class ImagenFondoHelper
     {
+        public static string ImagenLogo(this HtmlHelper html, int heigth, int width)
+        {
+            
+            string filePath = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/images"), "Logo.jpg");
+            FileInfo fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
+            {
+                UrlHelper url = new UrlHelper(html.ViewContext.RequestContext);
+                string urlImagen = url.Content("~/Content/images/Logo.jpg");
+                TagBuilder img = new TagBuilder("img");
+                img.Attributes.Add("src", urlImagen);
+                img.Attributes.Add("alt", Services.Configuraciones.Configuracion.NombreEmpresa);
+                img.Attributes.Add("style", "height:"+  heigth  +"px;width:"+ width +"px;");
+                return img.ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+
         public static string ImagenUsuario(this HtmlHelper html, int idUsuario,string cssClass , string alt ,object htmlAtributtes)
         {
             UrlHelper url = new UrlHelper(html.ViewContext.RequestContext);

@@ -202,6 +202,9 @@ namespace Services.OrdenTrabajo
                 throw new Exception("Fecha final debe ser mayor que fecha de inicio");
             }
 
+
+            Fecha_Final = Fecha_Final.AddMinutes(1439);
+            
             IQueryable<Data.Modelo.OrdenTrabajo> ordenes;
             if (string.IsNullOrEmpty(ListaTipos) || ListaTipos == "-1")
             {
