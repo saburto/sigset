@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using System.Web.Routing;
 
 namespace Helpers
 {
@@ -45,11 +46,20 @@ namespace Helpers
                 urlImagen = url.Content(string.Format("~/{0}", imgUsuario));   
             }
 
+
+            
+
             TagBuilder tag = new TagBuilder("img");
             tag.AddCssClass(cssClass);
             tag.Attributes.Add("alt", alt);
             tag.Attributes.Add("title", alt);
             tag.Attributes.Add("src", urlImagen);
+            if (htmlAtributtes != null)
+            {
+                IDictionary<string, object> htmlAttributes1 = new RouteValueDictionary(htmlAtributtes);
+                tag.MergeAttributes(htmlAttributes1);
+            }
+
 
             return tag.ToString() ;
         }

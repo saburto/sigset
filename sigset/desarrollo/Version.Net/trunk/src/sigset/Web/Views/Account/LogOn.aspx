@@ -27,10 +27,10 @@
                 <p>
                     <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Recordar Sesi&#243;n</label>
                 </p>
-                <p>
-                    <input type="submit" value="Iniciar Sesi&#243;n" />
-                </p>
             </fieldset>
+            <p>
+                <%=Html.ButtonSubmit("Inciar Sesión") %>
+            </p>
         </div>
     <% } %>
     <%=Html.ClientSideValidation("",typeof(Data.Modelo.Usuario))%>

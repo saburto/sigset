@@ -49,12 +49,24 @@
     <div class="none">
         <a href="#maincontent"></a>
     </div>
+    
+    <div style="float: right; z-index: 100; position: absolute; right: 0pt; top: 0pt; margin-top: 4px; background-color: black; width: 66px; height: 66px;">
+        <%if (Request.IsAuthenticated)
+              { %>
+                <%=Html.ImagenUsuario(Page.User.Identity.Name, "", "Imagen usuario", new { style = "margin: 1px; width: 64px; height: 64px;" })%>
+            <%} %>    
+    </div>            
+            
+
+    
     <div class="header-container">
+            
         <div class="nav-login">
             <ul>
                 <li class="first">
                     <%Html.RenderPartial("LogOnUserControl"); %></li>
             </ul>
+            
         </div>
         <div class="logo">
             <%=Html.ActionLink(Services.Configuraciones.Configuracion.NombreEmpresa,"Index","Home")  %>
