@@ -51,22 +51,22 @@ namespace Web.Seguridad
 
         public override string[] GetAllRoles()
         {
-           return _auto.GetPerfiless().ToArray();
+           return _auto.GetPermisos().ToArray();
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            return _auto.GetPerfilesByUsuario(username).ToArray();
+            return _auto.GetPermisosByUsuario(username).ToArray();
         }
 
         public override string[] GetUsersInRole(string roleName)
         {
-            return _auto.GetUsuariosTipo_Usuario(roleName).ToArray() ;
+            return _auto.GetUsuariosDePermiso(roleName).ToArray() ;
         }
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            return _auto.EsUsuarioTipo_Usuario(username, roleName);
+            return _auto.UsuarioTienePermiso(username, roleName);
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
@@ -76,7 +76,7 @@ namespace Web.Seguridad
 
         public override bool RoleExists(string roleName)
         {
-            return _auto.ExisteTipo_Usuario(roleName);
+            return _auto.ExistePermiso(roleName);
         }
     }
 }
