@@ -1,21 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-1.0" enableLocalization="true">
-  <mvcSiteMapNode title="Incio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
-
-    <mvcSiteMapNode title="Orden de Trabajo" controller="OrdenTrabajo" action="Index">
-      <mvcSiteMapNode title="Crear Orden" action="Crear" />
-      <mvcSiteMapNode title="Consulta" action="Consulta" />
-      <mvcSiteMapNode title="Detalles" action="Detalles" isDynamic="true" dynamicParameters="*"/>
-
-      <mvcSiteMapNode title="Listar" action="Listar" />
-      <mvcSiteMapNode title="Crear" controller="Cliente" action="Crear" />
-      <mvcSiteMapNode title="Crear" controller="Cliente" action="Lista" />
-
-      <mvcSiteMapNode title="Crear Articulo" controller="Articulo" action="Crear" />
-      <mvcSiteMapNode title="Buscar Articulo" controller="Articulo" action="Buscar" />
-
-    </mvcSiteMapNode>
-
+  <mvcSiteMapNode title="Inicio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
+    <mvcSiteMapNode title="Orden de Trabajo" controller="OrdenTrabajo" action="Index" />
      <mvcSiteMapNode title="Administración" controller="Admin" action="Index" />
      <mvcSiteMapNode title="Area Técnica" controller="AreaTecnica" action="Index" />
      <mvcSiteMapNode title="Administrativos" controller="Administrativos" action="Index" />
