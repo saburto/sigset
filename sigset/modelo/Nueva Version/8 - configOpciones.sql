@@ -23,5 +23,8 @@ INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(8, 'true', 'Asignación Automatica: Solo seleccionar tecnicos especialistas')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(9, 'false', 'Asignación Automatica: Seleccionar a más desocupado si no existe ningun tecnico segun el criterio o dejar sin asignacion')
+  VALUES(9, 'true,false', 'Asignación Automatica: Seleccionar a más desocupado si no existe ningun tecnico segun el criterio o dejar sin asignacion')
+GO
+INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
+  VALUES(10, 'true,false', 'Mostrar Logo')
 GO
