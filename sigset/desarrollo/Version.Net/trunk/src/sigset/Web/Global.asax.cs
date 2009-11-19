@@ -49,6 +49,21 @@ namespace Web
                             "\nSTACKTRACE: " + ex.StackTrace;
 
             Logger.Write(message);
+            TagBuilder tag = new TagBuilder("html");
+            TagBuilder tagBody = new TagBuilder("body");
+           
+            TagBuilder tagH2 = new TagBuilder("h2");
+            tagH2.InnerHtml = "Error desconocido.";
+
+            TagBuilder tagP = new TagBuilder("p");
+            tagP.InnerHtml = ex.Message;
+
+            tagBody.InnerHtml = tagH2.ToString() + tagP.ToString();
+
+            tag.InnerHtml = tagBody.ToString() ;
+
+
+            Response.Write(tag.ToString());
         }
 
     }
