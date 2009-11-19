@@ -9,6 +9,7 @@ using System.IO;
 
 namespace Web.Controllers.Admin
 {
+    [Seguridad.ManejadorErrores]
     public class ConfiguracionController : Controller
     {
         ConfiguracionServicio srv;
@@ -26,7 +27,7 @@ namespace Web.Controllers.Admin
         public ActionResult Editar(FormCollection collecion)
         {
             srv.ModificarConfiguracion(int.Parse(collecion[0]), collecion[1]);
-            return Lista();
+            return RedirectToAction("Lista");
         }
 
         public ActionResult Logo()
