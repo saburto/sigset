@@ -27,5 +27,15 @@ namespace Services.Autorizacion
         void CambiarEstadoUsuarioPermiso(decimal idPermiso, decimal idUsuario);
         void GuardarUsuarioPermisoBloqueado(decimal idPermiso, decimal idUsuario);
         void GuardarNuevoUsuarioPermiso(decimal idPermiso, decimal idUsuario);
+
+        IList<String> GetPermisos();
+
+        IList<String> GetPermisosByUsuario(string username);
+
+        IList<String> GetUsuariosDePermiso(string roleName);
+
+        bool UsuarioTienePermiso(string username, string roleName);
+
+        bool ExistePermiso(string roleName);
     }
 }

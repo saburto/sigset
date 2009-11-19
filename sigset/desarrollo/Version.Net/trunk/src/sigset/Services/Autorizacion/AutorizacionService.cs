@@ -191,5 +191,52 @@ namespace Services.Autorizacion
             }
             
         }
+
+        #region IAutorizacionService Members
+
+
+        Data.Repositorios.RepoGenerico<Permiso> repoPermisos;
+
+        IList<string> IAutorizacionService.GetPermisos()
+        {
+            repoPermisos = new Data.Repositorios.RepoGenerico<Permiso>();
+            return repoPermisos.GetAll().Select(x => x.Opcion).ToList(); ;
+        }
+
+        public IList<string> GetPermisosByUsuario(string username)
+        {
+            var usuario =  _repo.GetUsuarioByNombreUsuario(username);
+            List<String> listaPermisosUsuario = usuario.UsuarioPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
+            List<String> listaPerfil = usuario.Perfil.PerfilPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList();
+            listaPermisosUsuario.AddRange(listaPerfil);
+            HashSet<String> permisos = new HashSet<string>(listaPermisosUsuario);
+            return permisos.ToList();
+        }
+
+        public IList<string> GetUsuariosDePermiso(string roleName)
+        {
+            repoPermisos = new Data.Repositorios.RepoGenerico<Permiso>();
+            var permiso = repoPermisos.GetAll().Where(x => x.Opcion == roleName).FirstOrDefault();
+            return permiso.UsuarioPermisos.Select(x => x.Usuario.User).ToArray() ;
+
+        }
+
+        public bool UsuarioTienePermiso(string username, string roleName)
+        {
+            var usuario = _repo.GetUsuarioByNombreUsuario(username);
+            List<String> listaPermisosUsuario = usuario.UsuarioPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
+            List<String> listaPerfil = usuario.Perfil.PerfilPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList();
+            listaPermisosUsuario.AddRange(listaPerfil);
+
+            return listaPermisosUsuario.Contains(roleName);
+        }
+
+        public bool ExistePermiso(string roleName)
+        {
+            repoPermisos = new Data.Repositorios.RepoGenerico<Permiso>();
+            return repoPermisos.GetAll().Where(x => x.Opcion == roleName).Any();
+        }
+
+        #endregion
     }
 }
