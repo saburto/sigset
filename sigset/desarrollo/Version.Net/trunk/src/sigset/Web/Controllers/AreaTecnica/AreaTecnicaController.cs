@@ -39,6 +39,7 @@ namespace Web.Controllers.AreaTecnica
 
         public ActionResult Index()
         {
+            Session["ModuloActual"] = "AreaTecnica";
             return View();
         }
 

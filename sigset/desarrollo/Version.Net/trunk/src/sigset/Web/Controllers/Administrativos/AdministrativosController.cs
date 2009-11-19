@@ -35,6 +35,7 @@ namespace Web.Controllers.Administrativos
 
         public ActionResult Index()
         {
+            Session["ModuloActual"] = "Administrativos";
             return View();
         }
 

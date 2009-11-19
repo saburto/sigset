@@ -76,21 +76,13 @@ namespace Helpers
 
             try
             {
-                List<string> hijos = controllerHijos[currentControllerName];
-                provider = SiteMap.Providers[currentControllerName];
+                List<string> hijos = controllerHijos[helper.ViewContext.HttpContext.Session["ModuloActual"].ToString()];
+                provider = SiteMap.Providers[helper.ViewContext.HttpContext.Session["ModuloActual"].ToString()];
             }
             catch
             {
-                foreach (KeyValuePair<string, List<string>> item in controllerHijos)
-                {
-                    foreach (string c in item.Value)
-                    {
-                        if (c == currentControllerName)
-                        {
-                            provider = SiteMap.Providers[item.Key];
-                        }
-                    }
-                }
+                //Ante cualquier error solo retornar nada
+                return "";
             }
 
             if (provider == null)
@@ -123,9 +115,6 @@ namespace Helpers
                     MvcSiteMapNode nodeHijo = (MvcSiteMapNode)item;
                     if (nodeHijo.HasChildNodes)
                     {
-                        
-                        
-
                         sb.Append("<h3>");
                         sb.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
                         sb.Append("</h3>");
@@ -141,8 +130,8 @@ namespace Helpers
                         if (nodeHijo.Controller == currentControllerName || (!string.IsNullOrEmpty(nodeHijoControllerActive) && nodeHijoControllerActive == currentControllerName ))
                         {
                             active = index;
+                            nodeHijoControllerActive = null;
                         }
-
                         index++;
                     }
                 }

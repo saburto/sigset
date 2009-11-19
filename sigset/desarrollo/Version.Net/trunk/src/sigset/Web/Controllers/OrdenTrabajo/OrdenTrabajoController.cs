@@ -51,6 +51,8 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
+            //Vista principal, carga en session menu actual.
+            Session["ModuloActual"] = "OrdenTrabajo";
             return View();
         }
 

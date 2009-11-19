@@ -20,6 +20,7 @@ namespace Web.Controllers.Admin
 
         public ActionResult Index()
         {
+            Session["ModuloActual"] = "Admin";
             return View();
         }
       
