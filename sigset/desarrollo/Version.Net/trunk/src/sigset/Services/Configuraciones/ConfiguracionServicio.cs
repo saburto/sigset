@@ -137,6 +137,19 @@ namespace Services.Configuraciones
                 return false;
             }
         }
+
+        public bool? GetMostrarLogo()
+        {
+            var nomnbre = repo.GetConfiguracion(10);
+            if (nomnbre != null && !string.IsNullOrEmpty(nomnbre.Valor))
+            {
+                return nomnbre.Valor.Contains("true");
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
     public static class Configuracion
@@ -149,6 +162,8 @@ namespace Services.Configuraciones
         static bool? _asignacionPorNivel = null;
         static bool? _asignacionMasDesocupado = null;
         static bool? _asginacionSoloEspecialista = null;
+        static bool? _mostrarLogo = null;
+
         internal static bool _modificada;
 
         public static bool EsConfiguracionNumerico(int id)
@@ -158,7 +173,7 @@ namespace Services.Configuraciones
 
         public static bool EsConfiguracionBoolean(int id)
         {
-            return id == 3 || id == 7 || id == 8 || id == 9;
+            return id == 3 || id == 7 || id == 8 || id == 9 || id == 10;
         }
 
 
@@ -167,9 +182,7 @@ namespace Services.Configuraciones
         {
             if (string.IsNullOrEmpty(_nombreEmpresa) || _modificada )
             {
-                ConfiguracionServicio serv = new ConfiguracionServicio();
-                _nombreEmpresa = serv.GetNombreEmpresa();
-                _modificada = false;
+                LoadConfiguraciones();
             }
             return _nombreEmpresa;
         }
@@ -182,9 +195,7 @@ namespace Services.Configuraciones
             {
                 if (!_asignacionAutHabilitada.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _asignacionAutHabilitada = serv.GetAsignacionHabilitada();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _asignacionAutHabilitada.Value;
             }
@@ -196,9 +207,7 @@ namespace Services.Configuraciones
             {
                 if (!_asginacionSoloEspecialista.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _asginacionSoloEspecialista = serv.GetAsignacionSoloEspecialista();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _asginacionSoloEspecialista.Value;
             }
@@ -210,9 +219,7 @@ namespace Services.Configuraciones
             {
                 if (!_maxOrdenesAsignadas.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _maxOrdenesAsignadas = serv.GetMaxOrdenesAsignadas();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _maxOrdenesAsignadas.Value;
             }
@@ -224,9 +231,7 @@ namespace Services.Configuraciones
             {
                 if (!_maxOrdenesEnReparacion.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _maxOrdenesEnReparacion = serv.GetMaxOrdenesEnReparacion();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _maxOrdenesEnReparacion.Value;
             }
@@ -238,9 +243,7 @@ namespace Services.Configuraciones
             {
                 if (!_maxOrdenesRevision.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _maxOrdenesRevision = serv.GetMaxOrdenesEnRevision();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _maxOrdenesRevision.Value;
             }
@@ -252,9 +255,7 @@ namespace Services.Configuraciones
             {
                 if (!_asignacionPorNivel.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _asignacionPorNivel = serv.GetAsignacionPorNivel();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _asignacionPorNivel.Value;
             }
@@ -266,12 +267,37 @@ namespace Services.Configuraciones
             {
                 if (!_asignacionMasDesocupado.HasValue || _modificada)
                 {
-                    ConfiguracionServicio serv = new ConfiguracionServicio();
-                    _asignacionMasDesocupado = serv.GetAsignacionMasDesocupado();
-                    _modificada = false;
+                    LoadConfiguraciones();
                 }
                 return _asignacionMasDesocupado.Value;
             }
+        }
+
+        public static bool MostrarLogo
+        {
+            get
+            {
+                if (!_mostrarLogo.HasValue || _modificada)
+                {
+                    LoadConfiguraciones();
+                }
+                return _mostrarLogo.Value;
+            }
+        }
+
+        private static void LoadConfiguraciones()
+        {
+            ConfiguracionServicio serv = new ConfiguracionServicio();
+            _mostrarLogo = serv.GetMostrarLogo();
+            _asignacionMasDesocupado = serv.GetAsignacionMasDesocupado();
+            _asignacionPorNivel = serv.GetAsignacionPorNivel();
+            _maxOrdenesAsignadas = serv.GetMaxOrdenesAsignadas();
+            _maxOrdenesEnReparacion = serv.GetMaxOrdenesEnReparacion();
+            _maxOrdenesRevision = serv.GetMaxOrdenesEnRevision();
+            _asginacionSoloEspecialista = serv.GetAsignacionSoloEspecialista();
+            _nombreEmpresa = serv.GetNombreEmpresa();
+            _asignacionAutHabilitada = serv.GetAsignacionHabilitada();
+            _modificada = false;
         }
             
     }

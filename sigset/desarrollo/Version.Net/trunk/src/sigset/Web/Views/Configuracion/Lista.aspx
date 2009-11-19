@@ -79,7 +79,7 @@
             
             <td>
                 <%using(Html.BeginForm("Logo", "Configuracion", FormMethod.Post, new {enctype="multipart/form-data"})){ %>
-                <div style="position:absolute" class="fg-button-icon-solo fg-button ui-state-default ui-corner-all" ><span class="ui-icon-folder-open ui-icon"></span>Abrir</div>
+                <span class="ui-icon-folder-open ui-icon"  style="position:absolute;margin-left:10px;z-index:0"></span>
                 <input type="file" name="Imagen" class="realupload" onchange="this.form.submit()" />
                 <%} %>
             </td>
@@ -105,7 +105,7 @@
 	/* end of transparency styles */
 
 	z-index:999; /* bring the real upload interactivity up front */
-	width:5px;
+	width:70px;
 }    
     
     
