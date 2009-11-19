@@ -107,7 +107,7 @@
                 <td valign="top">
                     <%if (ViewData["imagen"] != null)
                       { %>
-                    <iframe scrolling="no" frameborder="0" width="200" height="200" src="<%=Url.Action("SubirFotoUsuario", new {id=Model.Id })%>">
+                    <iframe scrolling="no" frameborder="0" width="200" height="200" src="<%=Url.Action("SubirFotoUsuario", new {id=Model.User })%>">
                     </iframe>
                     <%}
                       else
