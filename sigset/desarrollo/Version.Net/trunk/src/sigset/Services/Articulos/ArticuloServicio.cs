@@ -226,5 +226,45 @@ namespace Services.Articulos
         }
 
         #endregion
+
+        
+
+
+        public void ModificarTipoArticulo(string IdTipoArticulo, string descripcion)
+        {
+            if (!string.IsNullOrEmpty(IdTipoArticulo))
+            {
+
+                var tipoArticulo = _rep.GetTipoArticulos(decimal.Parse(IdTipoArticulo)).FirstOrDefault();
+                if (tipoArticulo != null)
+                {
+                    tipoArticulo.Descripcion = descripcion;
+                    _rep.ModificarTipoArticulo(tipoArticulo);
+                    return;
+                }
+            }
+            _rep.CrearArticulo(descripcion);
+        }
+
+        public void EliminarTipoArticulo(string IdTipoArticulo)
+        {
+            var tipoArticulo = _rep.GetTipoArticulos(decimal.Parse(IdTipoArticulo)).FirstOrDefault();
+            if (tipoArticulo == null || tipoArticulo.Articulos.Any())
+            {
+                throw new ArgumentException("No se puede borrar tipo articulo que tiene asociado un articulo");
+            }
+            else
+            {
+                _rep.EliminarTipoArticulo(tipoArticulo);
+            }
+        }
+
+        public IList<TipoArticulo> GetTiposArticulos()
+        {
+            Data.Repositorios.RepoGenerico<TipoArticulo> repo = new Data.Repositorios.RepoGenerico<TipoArticulo>();
+            return repo.GetAll().ToList();
+        }
+
+        
     }
 }

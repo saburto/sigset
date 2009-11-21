@@ -81,6 +81,7 @@
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\CategoriaController.cs" />
     <Compile Include="Controllers\Admin\ConfiguracionController.cs" />
+    <Compile Include="Controllers\Admin\TipoArticuloController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\EspecialidadController.cs" />
     <Compile Include="Controllers\Admin\PermisosController.cs" />
@@ -345,10 +346,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reportes\OrdenTrabajo.rdlc" />
+    <Content Include="Views\Articulo\Editar.aspx" />
     <Content Include="Views\Categoria\Crear.ascx" />
     <Content Include="Views\Categoria\Lista.aspx" />
     <Content Include="Views\Especialidad\Lista.aspx" />
     <Content Include="Views\Especialidad\Crear.ascx" />
+    <Content Include="Views\TipoArticulo\Crear.ascx" />
+    <Content Include="Views\TipoArticulo\Lista.aspx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet1.xsc">

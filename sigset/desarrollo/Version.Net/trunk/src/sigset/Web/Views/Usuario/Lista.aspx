@@ -53,7 +53,9 @@
         </tr>
     <%bool alter = false; %>
     <% foreach (var item in Model)
-       { %>
+       {
+            if (item.Id != Data.Modelo.Constantes.Constantes.ID_USUARIO_SISTEMA){ continue;}
+    %>
     <%if (alter)
       { %>
         <tr class="row-alternating">

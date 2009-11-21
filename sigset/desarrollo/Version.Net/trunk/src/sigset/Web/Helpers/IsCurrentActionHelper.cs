@@ -103,6 +103,7 @@ namespace Helpers
             return sb.ToString();
         }
         private static string nodeHijoControllerActive = null;
+        private static int hijosAgregados = 0;
         private static void AppendMenuItem(HtmlHelper helper, string cssName, string currentControllerName, string currentActionName, StringBuilder sb, SiteMapProvider provider, UrlHelper urlHelper)
         {
             int index = 0, active = 0;
@@ -115,23 +116,36 @@ namespace Helpers
                     MvcSiteMapNode nodeHijo = (MvcSiteMapNode)item;
                     if (nodeHijo.HasChildNodes)
                     {
-                        sb.Append("<h3>");
-                        sb.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
-                        sb.Append("</h3>");
-                        sb.Append("<div>");
-                        sb.Append("<ul>");
+                        StringBuilder sbNode = new StringBuilder();
+
+                        sbNode.Append("<h3>");
+                        sbNode.Append("<a href=\"#\">").Append(helper.Encode(nodeHijo.Title)).Append("</a>");
+                        sbNode.Append("</h3>");
+                        sbNode.Append("<div>");
+                        sbNode.Append("<ul>");
                         foreach (var menu in nodeHijo.ChildNodes)
                         {
-                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sb, urlHelper, (MvcSiteMapNode)menu);    
+                            AppendItemMenuLink(helper, cssName, currentControllerName, currentActionName, sbNode, urlHelper, (MvcSiteMapNode)menu);    
                         }
-                        sb.Append("</ul>");
-                        sb.Append("</div>");
+                        sbNode.Append("</ul>");
+                        sbNode.Append("</div>");
+
+                        if (hijosAgregados == 0)
+                        {
+
+                            continue;
+                        }
+                        else
+                        {
+                            sb.Append(sbNode.ToString());
+                        }
 
                         if (nodeHijo.Controller == currentControllerName || (!string.IsNullOrEmpty(nodeHijoControllerActive) && nodeHijoControllerActive == currentControllerName ))
                         {
                             active = index;
                             nodeHijoControllerActive = null;
                         }
+                        hijosAgregados = 0;
                         index++;
                     }
                 }
@@ -150,6 +164,7 @@ namespace Helpers
                 return;
             }
 
+            hijosAgregados++;
 
             sb.Append("<li>");
             string url = nodeHijo.Url;

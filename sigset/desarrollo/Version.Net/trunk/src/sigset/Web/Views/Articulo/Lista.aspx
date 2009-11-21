@@ -8,17 +8,13 @@
 
     <h2>Lista</h2>
 
-    <table>
+     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th></th>
             <th>
-                Id
+                Editar
             </th>
             <th>
                 Modelo
-            </th>
-            <th>
-                Observacion
             </th>
             <th>
                 Marca
@@ -30,53 +26,55 @@
                 Categoria
             </th>
             <th>
-                PrecioGarantia
+                Valor Reparaci&oacute;n
+            </th>
+            <th>
+                Valor Revisi&oacute;n
             </th>
             <th>
                 Linea
             </th>
         </tr>
-
-    <% foreach (var item in Model) { %>
     
+    <%bool alter = false; %>
+    <% foreach (var item in Model) { %>
+    <%if (alter)
+      { %>
+        <tr class="row-alternating">
+    <%}
+      else
+      { %>
         <tr>
+    <%} %>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:F}", item.Id)) %>
+                <%= Html.ButtonLinkIcon(Url.Action("Editar", new { id=item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title = "Editar Articulo" })%>
             </td>
             <td>
                 <%= Html.Encode(item.Modelo) %>
             </td>
             <td>
-                <%= Html.Encode(item.Observacion) %>
+                <%= Html.Encode(item.Marca1.Descripcion) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.Marca)) %>
+                <%= Html.Encode(item.TipoArticulo1.Descripcion) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.TipoArticulo)) %>
+                <%= Html.Encode(item.Categoria1.Descripcion) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.Categoria)) %>
+                <%= Html.Encode(string.Format("{0:c0}", item.PrecioGarantia1.ValorReparacion)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.PrecioGarantia)) %>
+                <%= Html.Encode(string.Format("{0:c0}",item.PrecioGarantia1.ValorRevision)) %>
             </td>
+            
             <td>
-                <%= Html.Encode(String.Format("{0:F}", item.Linea)) %>
+                <%= Html.Encode(item.Linea1.Descripcion) %>
             </td>
         </tr>
     
     <% } %>
-
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
 
 </asp:Content>
 

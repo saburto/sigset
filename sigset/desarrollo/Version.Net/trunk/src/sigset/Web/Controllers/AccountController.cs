@@ -48,7 +48,7 @@ namespace Web.Controllers
 
         public ActionResult LogOn()
         {
-
+            Session["ModuloActual"] = null;
             return View();
         }
 
@@ -76,7 +76,7 @@ namespace Web.Controllers
 
         public ActionResult LogOff()
         {
-
+            Session["ModuloActual"] = null;
             FormsAuth.SignOut();
 
             return RedirectToAction("Index", "Home");
