@@ -207,5 +207,26 @@ namespace Data.Repositorios.Articulo
         }
 
         #endregion
+
+        #region IArticuloRepositorio Members
+
+
+        public Data.Modelo.Articulo ModificarArticulo(Data.Modelo.Articulo articulo)
+        {
+            var articuloOriginal = _ent.Articulos.Where(x => x.Id == articulo.Id).FirstOrDefault();
+
+            articuloOriginal.Categoria = articulo.Categoria;
+            articuloOriginal.Linea = articulo.Linea;
+            articuloOriginal.Marca = articulo.Marca;
+            articuloOriginal.Modelo = articulo.Modelo;
+            articuloOriginal.Observacion = articulo.Observacion;
+            articuloOriginal.PrecioGarantia = articulo.PrecioGarantia;
+            articuloOriginal.TipoArticulo = articulo.TipoArticulo;
+
+            _ent.SubmitChanges();
+            return articuloOriginal;
+        }
+
+        #endregion
     }
 }

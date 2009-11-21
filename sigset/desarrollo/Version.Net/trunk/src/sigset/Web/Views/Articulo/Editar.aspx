@@ -5,20 +5,21 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary() %>
 
-    <% using (Html.BeginForm()) {%>
+    <% using (Html.BeginForm("Editar", "Articulo", FormMethod.Post, new { id = "formArticulo" })){%>
             <fieldset>
             <legend>Editar Articulo</legend>
             <div class="three-column-container">
                 <div class="three-column-left">
                 <label for="Modelo">Modelo:</label>
+                <%= Html.Hidden("Id", Model.Id) %>
                 <%= Html.TextBox("Modelo", Model.Modelo, new { @class = "required", title="Modelo del articulo" })%>
                 <%= Html.ValidationMessage("Modelo", "*") %>
                 </div>
                 <div class="three-column-middle">
                 <label for="Marca">Marca:</label>
-                <%= Html.AutoCompleteTextBox("Marca",Model.Marca1.Descripcion, Model.Marca, new { @class = "required", title="Marca a la que pertenece el articulo, si no existe en la lista se agrega" })%>
+                <%= Html.AutoCompleteTextBox("Marca", Model.Marca1.Descripcion, Model.Marca, new { @class = "required", title="Marca a la que pertenece el articulo, si no existe en la lista se agrega" })%>
                 <%= Html.ValidationMessage("Marca", "*") %>
                 </div>
                 <div class="three-column-right">
@@ -51,11 +52,12 @@
                 <div class="clear"></div>
                 <br />
         </fieldset>
-    <% } %>
-
-    <div>
+        <div>
         <%=Html.ButtonSubmit("Guardar") %>
     </div>
+    <% } %>
+
+    
 
 </asp:Content>
 

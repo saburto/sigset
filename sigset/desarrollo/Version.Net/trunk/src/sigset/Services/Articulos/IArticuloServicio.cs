@@ -36,5 +36,7 @@ namespace Services.Articulos
         void EliminarTipoArticulo(string IdTipoArticulo);
 
         IList<Data.Modelo.TipoArticulo> GetTiposArticulos();
+
+        Articulo ModificarArticulo(Articulo articulo, string Marca, string Linea);
     }
 }

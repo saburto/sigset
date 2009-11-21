@@ -91,6 +91,22 @@ namespace Services.Articulos
             return _rep.CrearArticulo(articulo);
         }
 
+        public Articulo ModificarArticulo(Articulo articulo, string Marca, string Linea)
+        {
+            IList<ErrorInfo> _error = new List<ErrorInfo>();
+            ValidarArticulo(articulo, Marca, Linea, _error);
+            if (_error.Any())
+            {
+                throw new RulesException(_error);
+            }
+            articulo.Marca = CrearMarca(Marca);
+            if (!string.IsNullOrEmpty(Linea))
+            {
+                articulo.Linea = CrearLinea(Linea);
+            }
+
+            return _rep.ModificarArticulo(articulo);
+        }
 
         private bool NoRepetidoModeloMarca(Articulo articulo, string marca)
         {
@@ -265,6 +281,12 @@ namespace Services.Articulos
             return repo.GetAll().ToList();
         }
 
-        
+
+
+        #region IArticuloServicio Members
+
+
+   
+        #endregion
     }
 }
