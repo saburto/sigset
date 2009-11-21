@@ -40,5 +40,11 @@ namespace Data.Repositorios.Articulo
         void ModificarCategoria(Categoria categoria);
 
         void CrearCategoria(string descripcion, string idTipoEspecialidad);
+
+        void ModificarTipoArticulo(TipoArticulo tipoArticulo);
+
+        void EliminarTipoArticulo(TipoArticulo tipoArticulo);
+
+        void CrearArticulo(string descripcion);
     }
 }

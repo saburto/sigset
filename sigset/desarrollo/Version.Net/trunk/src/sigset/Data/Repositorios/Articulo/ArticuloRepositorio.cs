@@ -178,5 +178,34 @@ namespace Data.Repositorios.Articulo
         }
 
         #endregion
+
+        #region IArticuloRepositorio Members
+
+
+        public void ModificarTipoArticulo(TipoArticulo tipoArticulo)
+        {
+            _ent.SubmitChanges();
+        }
+
+        public void EliminarTipoArticulo(TipoArticulo tipoArticulo)
+        {
+            _ent.TipoArticulos.DeleteOnSubmit(tipoArticulo);
+            _ent.SubmitChanges();
+        }
+
+        #endregion
+
+        #region IArticuloRepositorio Members
+
+
+        public void CrearArticulo(string descripcion)
+        {
+            var tipoArticulo = new TipoArticulo();
+            tipoArticulo.Descripcion = descripcion;
+            _ent.TipoArticulos.InsertOnSubmit(tipoArticulo);
+            _ent.SubmitChanges();
+        }
+
+        #endregion
     }
 }

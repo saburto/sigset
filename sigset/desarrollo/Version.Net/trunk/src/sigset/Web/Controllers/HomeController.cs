@@ -13,6 +13,8 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
+            Session["ModuloActual"] = null;
+
             ViewData["Message"] = "Bienvenido";
 
             return View();

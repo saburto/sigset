@@ -203,12 +203,34 @@ namespace Services.Autorizacion
             return repoPermisos.GetAll().Select(x => x.Opcion).ToList(); ;
         }
 
+        public IList<PerfilPermiso> ListaPerfilUsuarioPermiso(IList<UsuarioPermiso> ListaUsuarioPermiso, IList<PerfilPermiso> ListaPerfilPermiso)
+        {
+            IList<PerfilPermiso> listaPerfilUsuarioPermiso = new List<PerfilPermiso>();
+            foreach (var item in ListaPerfilPermiso)
+            {
+                if (!ListaUsuarioPermiso.Where(x => x.IdPermiso == item.IdPermiso).Any())
+                {
+                    listaPerfilUsuarioPermiso.Add(item);
+                }
+            }
+            return listaPerfilUsuarioPermiso;
+        }
+
         public IList<string> GetPermisosByUsuario(string username)
         {
-            var usuario =  _repo.GetUsuarioByNombreUsuario(username);
-            List<String> listaPermisosUsuario = usuario.UsuarioPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
-            List<String> listaPerfil = usuario.Perfil.PerfilPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList();
-            listaPermisosUsuario.AddRange(listaPerfil);
+            List<String> listaPermisosUsuario = new List<string>();
+            var repo = new UsuarioRepositorio();
+            var usuario =  repo.GetUsuarioByNombreUsuario(username);
+
+            var permisosUsuario = usuario.UsuarioPermisos.ToList();
+            if (permisosUsuario.Any())
+            {
+                listaPermisosUsuario = permisosUsuario.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
+            }
+
+            var listaPerfil = ListaPerfilUsuarioPermiso(permisosUsuario,usuario.Perfil.PerfilPermisos.Where(x => x.Estado).ToList());
+            listaPermisosUsuario.AddRange(listaPerfil.Select(x=> x.Permiso.Opcion));
+
             HashSet<String> permisos = new HashSet<string>(listaPermisosUsuario);
             return permisos.ToList();
         }
@@ -223,12 +245,22 @@ namespace Services.Autorizacion
 
         public bool UsuarioTienePermiso(string username, string roleName)
         {
-            var usuario = _repo.GetUsuarioByNombreUsuario(username);
-            List<String> listaPermisosUsuario = usuario.UsuarioPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
-            List<String> listaPerfil = usuario.Perfil.PerfilPermisos.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList();
-            listaPermisosUsuario.AddRange(listaPerfil);
+            List<String> listaPermisosUsuario = new List<string>();
+            var repo = new UsuarioRepositorio();
+            var usuario = repo.GetUsuarioByNombreUsuario(username);
 
-            return listaPermisosUsuario.Contains(roleName);
+            var permisosUsuario = usuario.UsuarioPermisos.ToList();
+            if (permisosUsuario.Any())
+            {
+                listaPermisosUsuario = permisosUsuario.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
+            }
+
+            var listaPerfil = ListaPerfilUsuarioPermiso(permisosUsuario, usuario.Perfil.PerfilPermisos.Where(x => x.Estado).ToList());
+            listaPermisosUsuario.AddRange(listaPerfil.Select(x => x.Permiso.Opcion));
+
+            HashSet<String> permisos = new HashSet<string>(listaPermisosUsuario);
+            return permisos.Contains(roleName);
+
         }
 
         public bool ExistePermiso(string roleName)

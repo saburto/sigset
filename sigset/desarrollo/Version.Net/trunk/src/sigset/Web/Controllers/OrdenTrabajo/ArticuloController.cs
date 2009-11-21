@@ -89,6 +89,14 @@ namespace Web.Controllers.OrdenTrabajo
             return Crear();
         }
 
+
+        public ActionResult Editar(decimal id)
+        {
+            var articulo = _srv.GetArticulo(id);
+            ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", articulo.PrecioGarantia.ToString() , "${0}");
+            return View("Editar",articulo);
+        }
+
         public ActionResult Lista()
         {
             var articulos = _srv.GetArticulos();

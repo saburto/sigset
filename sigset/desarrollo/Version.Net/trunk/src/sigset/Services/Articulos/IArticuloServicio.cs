@@ -30,5 +30,11 @@ namespace Services.Articulos
         void EliminarCategoria(string IdCategoria);
 
         void ModificarCategoria(string idCategoria, string descripcion, string idTipoEspecialidad);
+
+        void ModificarTipoArticulo(string IdTipoArticulo, string descripcion);
+
+        void EliminarTipoArticulo(string IdTipoArticulo);
+
+        IList<Data.Modelo.TipoArticulo> GetTiposArticulos();
     }
 }

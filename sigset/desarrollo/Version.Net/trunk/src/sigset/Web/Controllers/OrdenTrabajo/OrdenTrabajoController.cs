@@ -24,9 +24,8 @@ using System.Web.UI.WebControls;
 
 namespace Web.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "ordenes_crear, ordenes_consulta, ordenes_listar")]
     [Web.Seguridad.ManejadorErrores]
-    //[Authorize(Roles = "Técnico,Recepcionista,Administrativo,Sistema")]
     public class OrdenTrabajoController : Controller
     {
 
@@ -56,7 +55,7 @@ namespace Web.Controllers
             return View();
         }
 
-        //[Authorize(Roles = "ordenes_crear")]
+        [Authorize(Roles = "ordenes_crear")]
         public ActionResult Crear(int? id)
         {
             if (id.HasValue)
@@ -71,6 +70,7 @@ namespace Web.Controllers
             return RedirectToRoute(new { action = "Crear", controller = "Cliente", id = "" });
         }
 
+        [Authorize(Roles = "ordenes_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea")]Articulo articulo,
              string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT, int IdCliente)
@@ -169,7 +169,7 @@ namespace Web.Controllers
             return View();
         }
 
-        //[Authorize(Roles = "ordenes_consulta")]
+        [Authorize(Roles = "ordenes_consulta")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Consulta(decimal? Id, decimal? Rut, string dv)
         {
@@ -208,7 +208,7 @@ namespace Web.Controllers
             }
         }
 
-      //  [Authorize(Roles="ordenes_listar")]
+        [Authorize(Roles="ordenes_listar")]
         public ActionResult Listar()
         {
             ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
@@ -218,6 +218,7 @@ namespace Web.Controllers
 
         
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "ordenes_listar")]
         public ActionResult Listar(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos,string ListaEstados)
         {
             try
@@ -232,6 +233,7 @@ namespace Web.Controllers
             
         }
 
+        [Authorize(Roles = "ordenes_listar")]
         public ActionResult ListarExcel(string Fecha_Inicio, string Fecha_Final, string ListaTipos, string ListaEstados, string format)
         {
 

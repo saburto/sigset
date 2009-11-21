@@ -30,6 +30,8 @@ namespace Web.Controllers
             _serv = ser;
         }
 
+
+        [Authorize(Roles = "clientes_listar")]
         public ActionResult Lista()
         {
             var clientes = _serv.GetClientes();
@@ -37,12 +39,14 @@ namespace Web.Controllers
         }
 
         
+        [Authorize(Roles="clientes_consulta")]
         public ActionResult Buscar()
         {
             return View("Buscar");
         }
 
 
+        [Authorize(Roles = "clientes_consulta")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Buscar(string RutDisplay)
         {
@@ -86,12 +90,14 @@ namespace Web.Controllers
         }
 
 
+        [Authorize(Roles = "clientes_crear")]
         public ActionResult Crear()
         {
             return View("Crear");
         }
 
 
+        [Authorize(Roles = "clientes_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear(Cliente cliente,string rut, string dv, Direccion direccion, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Email")] Contacto email, [Bind(Exclude = "Id,Rut,Tipo_Contacto", Prefix = "Fono")] Contacto fono)
         {
@@ -133,13 +139,14 @@ namespace Web.Controllers
             
         }
 
-
+        [Authorize(Roles = "clientes_crear")]
         public ActionResult Editar(int id)
         {
             var cliente = _serv.GetClientePorId(id);
             return View("Editar",cliente);
         }
 
+        [Authorize(Roles = "clientes_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Editar(Cliente cliente,[Bind(Prefix="Dire")] Direccion direccion, [Bind(Prefix = "Email")] Contacto email, [Bind( Prefix = "Fono")] Contacto fono)
         {
