@@ -46,5 +46,7 @@ namespace Data.Repositorios.Articulo
         void EliminarTipoArticulo(TipoArticulo tipoArticulo);
 
         void CrearArticulo(string descripcion);
+
+        Data.Modelo.Articulo ModificarArticulo(Data.Modelo.Articulo articulo);
     }
 }

@@ -90,11 +90,34 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
 
+
+
         public ActionResult Editar(decimal id)
         {
             var articulo = _srv.GetArticulo(id);
             ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", articulo.PrecioGarantia.ToString() , "${0}");
             return View("Editar",articulo);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editar([Bind(Exclude = "Marca,Linea")]Articulo articulo, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT)
+        {
+            try
+            {
+                Marca = Marca_DISPLAY_TEXT;
+                Linea = Linea_DISPLAY_TEXT;
+                Articulo art = _srv.ModificarArticulo(articulo, Marca, Linea);
+                return RedirectToAction("Lista");
+            }
+            catch (RulesException ex)
+            {
+                ModelState.AddRuleErrors(ex.Errors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("_FORM", ex.Message);
+            }
+            return Editar(articulo.Id);
         }
 
         public ActionResult Lista()
