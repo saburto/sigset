@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     21-11-2009 14:32:48                          */
+/* Created on:     21-11-2009 14:46:32                          */
 /*==============================================================*/
 
 
@@ -870,7 +870,7 @@ go
 /* Table: Usuario                                               */
 /*==============================================================*/
 create table Usuario (
-   Id                   int                  not null,
+   Id                   int                  identity,
    "User"               nvarchar(255)        not null,
    Password             nvarchar(255)        not null,
    PerfilUsuario        int                  not null,
