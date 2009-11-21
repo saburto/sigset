@@ -1,7 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     17-11-2009 14:03:08                          */
+/* Created on:     21-11-2009 13:58:41                          */
 /*==============================================================*/
+
+use sigset
+
 
 
 if exists (select 1
@@ -195,9 +198,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PerfilPermiso') and o.name = 'FKPerfilPerm713727')
+   where r.fkeyid = object_id('PerfilPermiso') and o.name = 'FK_PERFILPE_REFERENCE_PERFIL')
 alter table PerfilPermiso
-   drop constraint FKPerfilPerm713727
+   drop constraint FK_PERFILPE_REFERENCE_PERFIL
 go
 
 if exists (select 1
@@ -237,9 +240,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Usuario') and o.name = 'Usuario-TipoUsuario')
+   where r.fkeyid = object_id('Usuario') and o.name = 'FK_USUARIO_REFERENCE_PERFIL')
 alter table Usuario
-   drop constraint "Usuario-TipoUsuario"
+   drop constraint FK_USUARIO_REFERENCE_PERFIL
 go
 
 if exists (select 1
@@ -723,9 +726,9 @@ go
 /* Table: Perfil                                                */
 /*==============================================================*/
 create table Perfil (
-   Id                   int                  identity,
+   Id                   int                  not null,
    Descripcion          nvarchar(255)        not null,
-   constraint PK_Tipo_Usuario primary key (Id)
+   constraint PK_PERFIL primary key (Id)
 )
 go
 
@@ -733,7 +736,7 @@ go
 /* Table: PerfilPermiso                                         */
 /*==============================================================*/
 create table PerfilPermiso (
-   Id                   int                  identity,
+   Id                   int                  not null,
    IdPerfil             int                  not null,
    Estado               bit                  not null,
    IdPermiso            int                  null,
@@ -870,8 +873,8 @@ go
 /* Table: Usuario                                               */
 /*==============================================================*/
 create table Usuario (
-   Id                   int                  identity,
-   "User"               nvarchar(255)        not null,
+   Id                   int                  not null,
+   [User]               nvarchar(255)        not null,
    Password             nvarchar(255)        not null,
    PerfilUsuario        int                  not null,
    Nombres              nvarchar(100)        not null,
@@ -1048,7 +1051,7 @@ alter table PerfilPermiso
 go
 
 alter table PerfilPermiso
-   add constraint FKPerfilPerm713727 foreign key (IdPerfil)
+   add constraint FK_PERFILPE_REFERENCE_PERFIL foreign key (IdPerfil)
       references Perfil (Id)
 go
 
@@ -1081,7 +1084,7 @@ alter table Tecnicos
 go
 
 alter table Usuario
-   add constraint "Usuario-TipoUsuario" foreign key (PerfilUsuario)
+   add constraint FK_USUARIO_REFERENCE_PERFIL foreign key (PerfilUsuario)
       references Perfil (Id)
 go
 
