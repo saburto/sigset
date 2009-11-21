@@ -198,11 +198,9 @@ INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
   VALUES(65, 5, 1, 27)
 GO
 
+SET IDENTITY_INSERT [dbo].[PerfilPermiso] OFF
+
+GO
 INSERT INTO PerfilPermiso(IdPerfil,Estado, IdPermiso)
 SELECT 6, 1, Id
 FROM Permisos   
-
-GO
-SET IDENTITY_INSERT [dbo].[PerfilPermiso] OFF
-
-
