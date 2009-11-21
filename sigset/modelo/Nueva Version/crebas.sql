@@ -2,8 +2,9 @@
 /* DBMS name:      Microsoft SQL Server 2005                    */
 /* Created on:     21-11-2009 14:46:32                          */
 /*==============================================================*/
-
-
+use sigset
+go
+ 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('Articulo') and o.name = 'FK_Articulo_Categoria')

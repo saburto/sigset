@@ -1,3 +1,5 @@
+USE [sigset]
+
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(1, 'SERVICIO TÉCNICO', 'Nombre de empresa')
 GO

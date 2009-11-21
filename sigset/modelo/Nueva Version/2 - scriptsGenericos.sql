@@ -1,3 +1,5 @@
+USE [sigset]
+
 SET IDENTITY_INSERT [dbo].[TipoCliente] ON
 GO
 INSERT INTO [dbo].[TipoCliente]([Id], [Descripcion])
@@ -26,7 +28,7 @@ GO
 
 
 set IDENTITY_INSERT Perfil ON
-
+go
 INSERT INTO Perfil(Id, Descripcion)
   VALUES(1, 'Técnico')
 GO

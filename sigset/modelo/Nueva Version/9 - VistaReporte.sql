@@ -1,3 +1,5 @@
+USE [sigset]
+go
 CREATE VIEW [dbo].[OrdenTrabajoVista]
 AS
 SELECT     o.Id, (CASE c.TipoCliente WHEN 1 THEN
