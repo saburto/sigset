@@ -1,10 +1,7 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     21-11-2009 13:58:41                          */
+/* Created on:     21-11-2009 14:32:48                          */
 /*==============================================================*/
-
-use sigset
-
 
 
 if exists (select 1
@@ -736,7 +733,7 @@ go
 /* Table: PerfilPermiso                                         */
 /*==============================================================*/
 create table PerfilPermiso (
-   Id                   int                  not null,
+   Id                   int                  identity,
    IdPerfil             int                  not null,
    Estado               bit                  not null,
    IdPermiso            int                  null,
@@ -874,7 +871,7 @@ go
 /*==============================================================*/
 create table Usuario (
    Id                   int                  not null,
-   [User]               nvarchar(255)        not null,
+   "User"               nvarchar(255)        not null,
    Password             nvarchar(255)        not null,
    PerfilUsuario        int                  not null,
    Nombres              nvarchar(100)        not null,
