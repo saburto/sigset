@@ -51,7 +51,7 @@
     </div>
     <%if (Request.IsAuthenticated)
               { %>
-    <div style="float: right; z-index: 100; position: absolute; right: 0pt; top: 0pt; margin-top: 4px; background-color: #373737; width: 66px; height: 66px;border-style:solid; border-color:#373737; border-width:3px">
+    <div style="float: right; z-index: 100; position: absolute; right: 0pt; top: 0pt; margin-top: 4px; background-color: #FFFFFF; width: 66px; height: 66px;border-style:solid; border-color:#373737; border-width:3px">
 
                 <%=Html.ImagenUsuario(Page.User.Identity.Name, "", "Imagen usuario", new { style = "margin: 1px; width: 64px; height: 64px;" })%>
 
