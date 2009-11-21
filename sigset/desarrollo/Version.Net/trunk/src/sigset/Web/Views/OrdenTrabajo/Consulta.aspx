@@ -41,9 +41,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Consulta</h2>
 
-    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
+
+    <%= Html.ValidationSummary() %>
 
     <% using (Ajax.BeginForm("Consulta", new AjaxOptions { HttpMethod="POST", LoadingElementId="loadingAjax", UpdateTargetId="resultado" }))
        {%>
@@ -67,10 +67,11 @@
             </div>
             </div>
             <div class="clear"></div>
-            <p>
-                <input type="submit" value="Consultar" />
-            </p>
+            
         </fieldset>
+        <p>
+           <%=Html.ButtonSubmit("Consultar") %>
+        </p>
 
     <% } %>
     <div id="resultado"></div>

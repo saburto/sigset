@@ -180,7 +180,12 @@ namespace Services.OrdenTrabajo
 
         public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByRut(decimal p)
         {
-            return _repo.GetTodasLasOrdenDeTrabajo().Where(x => x.IdCliente == p).OrderBy(x=> x.FechaIngreso).ToList();
+            var lista = _repo.GetTodasLasOrdenDeTrabajo().OrderBy(x=> x.FechaIngreso).ToList();
+            if (lista.Any())
+            {
+                return lista.Where(x => x.Cliente.Rut() == p).ToList();
+            }
+            return lista;
         }
 
 

@@ -20,6 +20,7 @@ using System.Collections;
 using System.Xml;
 using Microsoft.Reporting.WebForms;
 using System.Web.UI.WebControls;
+using Services.Helpers;
 
 
 namespace Web.Controllers
@@ -32,7 +33,7 @@ namespace Web.Controllers
         IClienteServicio _srvCliente;
         IArticuloServicio _srvArticulo;
         IOrdenTrabajoServicio _srvOrdenTrabajo;
-        
+
 
         public OrdenTrabajoController(IClienteServicio serv, IArticuloServicio servArt, IOrdenTrabajoServicio serOrd)
         {
@@ -42,7 +43,7 @@ namespace Web.Controllers
         }
 
         public OrdenTrabajoController()
-            :this(new ClienteServicio(), new ArticuloServicio(), new OrdenTrabajoServicio())
+            : this(new ClienteServicio(), new ArticuloServicio(), new OrdenTrabajoServicio())
         {
 
         }
@@ -65,7 +66,7 @@ namespace Web.Controllers
 
                 ViewData["PrecioGarantia"] = _srvArticulo.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
 
-                return View(orden);                
+                return View(orden);
             }
             return RedirectToRoute(new { action = "Crear", controller = "Cliente", id = "" });
         }
@@ -104,7 +105,7 @@ namespace Web.Controllers
             Cliente cliente = _srvCliente.GetClientePorId(idCliente);
             Data.Modelo.OrdenTrabajo ot = new Data.Modelo.OrdenTrabajo();
             ot.Cliente = cliente;
-            
+
 
             Articulo articulo = _srvArticulo.GetArticulo(id);
             ot.Articulo = articulo;
@@ -129,25 +130,25 @@ namespace Web.Controllers
 
                     }
                 }
-                decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo,usuario);
+                decimal idOrden = _srvOrdenTrabajo.CrearOrdenTrabajo(ordenTrabajo, usuario);
                 return RedirectToAction("Detalles", new { id = idOrden });
             }
             catch (RulesException ex)
             {
                 ModelState.AddRuleErrors(ex.Errors);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("_FORM", ex.Message);
             }
-            
+
             ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
             return View(ordenTrabajo);
         }
 
         public ActionResult Detalles(decimal id, string format)
         {
-            
+
 
             if (format != null)
             {
@@ -163,7 +164,7 @@ namespace Web.Controllers
             return View(orden);
         }
 
-        [Authorize(Roles="ordenes_consulta")]
+        [Authorize(Roles = "ordenes_consulta")]
         public ActionResult Consulta()
         {
             return View();
@@ -171,33 +172,47 @@ namespace Web.Controllers
 
         [Authorize(Roles = "ordenes_consulta")]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Consulta(decimal? Id, decimal? Rut, string dv)
+        public ActionResult Consulta(decimal? Id, string RutDisplay)
         {
-            if (!Id.HasValue)
+            if (string.IsNullOrEmpty(RutDisplay) && !Id.HasValue)
             {
-                if (!Rut.HasValue)
+                return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">Debe ingresar número de orden o rut para consulta.</span></p>");
+            }
+            else if (!string.IsNullOrEmpty(RutDisplay))
+            {
+                try
                 {
-                    return Content("<p><span class="+ HtmlHelper.ValidationMessageCssClassName +">Debe ingresar número de orden o rut para consulta.</span></p>");
-                }
-                else
-                {
-                    var ordenesTrabajo = _srvOrdenTrabajo.GetOrdenesTrabajoByRut(Rut.Value);
+                    decimal rut;
+                    ValidarRut.RutEsValido(RutDisplay.Split('-')[0], RutDisplay.Split('-')[1]);
+                    rut = decimal.Parse(RutDisplay.Split('-')[0]);
+                    var ordenesTrabajo = _srvOrdenTrabajo.GetOrdenesTrabajoByRut(rut);
+
+
+                    if (Id.HasValue)
+                    {
+                        ordenesTrabajo = ordenesTrabajo.Where(x => x.Id == Id).ToList();
+                    }
+
                     if (!ordenesTrabajo.Any())
                     {
-                        return Content("<p><span class="+ HtmlHelper.ValidationMessageCssClassName +">Rut no posee orden de trabajo asociado.</span></p>");
+                        return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">Rut no posee orden de trabajo asociado.</span></p>");
                     }
                     else
                     {
                         return PartialView("ListaOrdenes", ordenesTrabajo);
                     }
                 }
-            }
-            else
+                catch
+                {
+                    return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">Debe ingresar rut valido</span></p>");
+                }
+            }        
+            else if(Id.HasValue)
             {
                 var ordenTrabajo = _srvOrdenTrabajo.GetOrdenTrabajo(Id.Value);
                 if (ordenTrabajo == null)
                 {
-                    return Content("<p><span class="+ HtmlHelper.ValidationMessageCssClassName +">Orden de trabajo con ese número no se encuentra.</span></p>");
+                    return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">Orden de trabajo con ese número no se encuentra.</span></p>");
                 }
                 else
                 {
@@ -206,9 +221,10 @@ namespace Web.Controllers
                     return PartialView("ListaOrdenes", lista);
                 }
             }
+            return null;
         }
 
-        [Authorize(Roles="ordenes_listar")]
+        [Authorize(Roles = "ordenes_listar")]
         public ActionResult Listar()
         {
             ViewData["ListaTipos"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
@@ -216,21 +232,21 @@ namespace Web.Controllers
             return View();
         }
 
-        
+
         [AcceptVerbs(HttpVerbs.Post)]
         [Authorize(Roles = "ordenes_listar")]
-        public ActionResult Listar(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos,string ListaEstados)
+        public ActionResult Listar(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
         {
             try
             {
                 var ordenes = _srvOrdenTrabajo.GetOrdenesTrabajo(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);
-                 return PartialView("ListaOrdenes", ordenes);
+                return PartialView("ListaOrdenes", ordenes);
             }
             catch (Exception ex)
             {
-                return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">"+ ex.Message +"</span></p>");
+                return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">" + ex.Message + "</span></p>");
             }
-            
+
         }
 
         [Authorize(Roles = "ordenes_listar")]
@@ -250,25 +266,25 @@ namespace Web.Controllers
         [NonAction]
         private ActionResult Export(decimal id, string exportFormat)
         {
-            var exporType = Enum.Parse(typeof(ExportType),exportFormat.ToUpper());
+            var exporType = Enum.Parse(typeof(ExportType), exportFormat.ToUpper());
             string format = exporType.ToString().ToUpper();
             ReportViewer rview = new Microsoft.Reporting.WebForms.ReportViewer();
-            var file = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Reportes"),"OrdenTrabajo.rdlc");
+            var file = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reportes"), "OrdenTrabajo.rdlc");
             StreamReader reader = new StreamReader(file);
 
             rview.LocalReport.LoadReportDefinition(reader);
-            
+
             List<ReportParameter> param = new List<ReportParameter>();
-            param.Add(new ReportParameter("Id",id.ToString()));
+            param.Add(new ReportParameter("Id", id.ToString()));
             param.Add(new ReportParameter("NombreEmpresa", Services.Configuraciones.Configuracion.NombreEmpresa));
             rview.LocalReport.SetParameters(param);
-            
+
 
             ObjectDataSource obje = new ObjectDataSource(
                 "Web.OrdenTrabajoDataSetTableAdapters.OrdenTrabajoVistaTableAdapter", "GetData");
             rview.LocalReport.DataSources.Add(new ReportDataSource("OrdenTrabajoDataSet_OrdenTrabajoVista", obje));
 
-            
+
             string devInfo = @"<DeviceInfo><Toolbar>False</Toolbar></DeviceInfo>";
             string mimeType, enconding, fileExt;
             string[] streams;
@@ -278,13 +294,13 @@ namespace Web.Controllers
                 var result = rview.LocalReport.Render(format, devInfo, out mimeType, out enconding, out fileExt, out streams, out warnings);
                 return File(result, mimeType);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 reader.Close();
                 reader.Dispose();
                 throw ex;
             }
-            
+
         }
     }
 }
