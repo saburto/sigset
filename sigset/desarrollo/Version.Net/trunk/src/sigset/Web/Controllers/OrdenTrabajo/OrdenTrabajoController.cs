@@ -162,8 +162,29 @@ namespace Web.Controllers
             }
 
             ViewData["Estado"] = _srvOrdenTrabajo.GetEstadosOrden().GetSelectCampos("IdEstado", "Descripcion");
-            return View(orden);
+            return View("Detalles",orden);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarDetalle(Detalle detalle)
+        {
+            try
+            {
+                if (Request.IsAuthenticated)
+                {
+                    _srvOrdenTrabajo.AgregarDetalle(detalle, User.Identity.Name);
+                }
+
+                return RedirectToAction("Detalles", new { id=detalle.IdOrden });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("_FORM", ex.Message);
+                return Detalles((decimal)detalle.IdOrden, null);
+            }
+        }
+
 
         [Authorize(Roles = "ordenes_consulta")]
         public ActionResult Consulta()

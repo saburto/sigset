@@ -19,11 +19,12 @@
 </div>
 <br />
 <div id="divAgregar" style="display:none;">
-<% using (Html.BeginForm())
+<% using (Html.BeginForm("AgregarDetalle", "OrdenTrabajo"))
    {%>
         <fieldset>
             <legend>Agregar detalle</legend>
             <p>
+                <%=Html.AntiForgeryToken() %>
                 <%= Html.Hidden("IdOrden", Model.Id) %>
                 <label for="Estado">Estado:</label>
                 <%=Html.DropDownList("Estado")%>
