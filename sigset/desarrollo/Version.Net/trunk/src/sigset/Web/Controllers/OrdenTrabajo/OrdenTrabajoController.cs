@@ -25,7 +25,7 @@ using Services.Helpers;
 
 namespace Web.Controllers
 {
-    [Authorize(Roles = "ordenes_crear, ordenes_consulta, ordenes_listar")]
+    [Authorize(Roles = "ordenes_crear, ordenes_consulta, ordenes_listar, clientes_crear, clientes_consulta, clientes_listar, articulo_crear, articulo_consulta, articulo_listar")]
     [Web.Seguridad.ManejadorErrores]
     public class OrdenTrabajoController : Controller
     {
@@ -99,6 +99,7 @@ namespace Web.Controllers
         /// </summary>
         /// <param name="id">Id de articulo</param>
         /// <returns></returns>
+        [Authorize(Roles = "ordenes_crear")]
         public ActionResult CrearDetalle(decimal id, int idCliente)
         {
             ViewData["TipoOrden"] = _srvOrdenTrabajo.GetTiposOrden().GetSelectCampos("IdTipoOrden", "Descripcion");
@@ -116,6 +117,7 @@ namespace Web.Controllers
             return View(ot);
         }
 
+        [Authorize(Roles = "ordenes_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CrearDetalle(Data.Modelo.OrdenTrabajo ordenTrabajo)
         {
@@ -167,6 +169,7 @@ namespace Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ordenes_crear")]
         public ActionResult AgregarDetalle(Detalle detalle)
         {
             try

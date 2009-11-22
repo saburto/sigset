@@ -18,6 +18,7 @@ using Data.Modelo.Constantes;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
+    [Authorize]
     public class UsuarioController : Controller
     {
         //
@@ -32,13 +33,14 @@ namespace Web.Controllers.Admin
             _servicio = servicio;
         }
 
-
+        [Authorize(Roles="usuarios_listar")]
         public ActionResult Lista()
         {
             var usuarios = _servicio.GetTodosLosUsuario();
             return View(usuarios);
         }
 
+        [Authorize(Roles = "usuarios_listar")]
         public ActionResult ListaPerfil(int perfil)
         {
             var usuarios = _servicio.GetTodosLosUsuario().Where(x => x.PerfilUsuario == perfil);
@@ -61,6 +63,8 @@ namespace Web.Controllers.Admin
             }
 
         }
+
+        [Authorize(Roles = "usuarios_crear")]
         public ActionResult Editar(int id)
         {
             var usuario = _servicio.GetUsuarioById(id);
@@ -87,6 +91,7 @@ namespace Web.Controllers.Admin
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "usuarios_crear")]
         public ActionResult Editar(Usuario usuario)
         {
             try
@@ -114,11 +119,14 @@ namespace Web.Controllers.Admin
             ViewData["PerfilUsuario"] = _servicio.TiposUsuarios().GetSelectCampos("Id", "Descripcion", seleccionado);
         }
 
+        [Authorize(Roles = "usuarios_crear")]
         public ActionResult Crear()
         {
             SetPerfilSelect();
             return View();
         }
+
+        [Authorize(Roles = "usuarios_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear([Bind(Exclude = "Id")]Usuario usuario)
         {

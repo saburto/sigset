@@ -18,9 +18,9 @@
     <mvcSiteMapNode title="Configuraciones" controller="Configuracion" action="">
       <mvcSiteMapNode title="Generales"  controller="Configuracion" action="Lista" />
       <mvcSiteMapNode title="Permisos"  action="Lista" controller="Permisos" />
-      
       <mvcSiteMapNode title="Categorias"  controller="Categoria" action="Lista" />
       <mvcSiteMapNode title="Tipo Articulos"  controller="TipoArticulo" action="Lista" />
+      <mvcSiteMapNode title="Precios"  controller="PrecioGarantia" action="Lista" />
       
     </mvcSiteMapNode>
 

@@ -81,6 +81,7 @@
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\CategoriaController.cs" />
     <Compile Include="Controllers\Admin\ConfiguracionController.cs" />
+    <Compile Include="Controllers\Admin\PrecioGarantiaController.cs" />
     <Compile Include="Controllers\Admin\TipoArticuloController.cs" />
     <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\EspecialidadController.cs" />
@@ -352,6 +353,8 @@
     <Content Include="Views\Especialidad\Lista.aspx" />
     <Content Include="Views\Especialidad\Crear.ascx" />
     <Content Include="Views\OrdenTrabajo\AgregarDetalle.ascx" />
+    <Content Include="Views\PrecioGarantia\Crear.ascx" />
+    <Content Include="Views\PrecioGarantia\Lista.aspx" />
     <Content Include="Views\TipoArticulo\Crear.ascx" />
     <Content Include="Views\TipoArticulo\Lista.aspx" />
   </ItemGroup>
