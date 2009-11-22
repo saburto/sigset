@@ -52,7 +52,7 @@
                 <%} %>
             </td>
             <td>
-                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.cancel,IconPosition.solo, new{ onclick="elimnar('"+ item.IdTipoEspecialidad +"')", title="Elimnar Especialidad" }) %>
+                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdTipoEspecialidad +"')", title="Elimnar Especialidad" }) %>
             </td>
         </tr>
     

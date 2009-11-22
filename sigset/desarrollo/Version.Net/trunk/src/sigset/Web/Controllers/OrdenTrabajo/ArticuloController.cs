@@ -14,6 +14,7 @@ using Web.Seguridad;
 namespace Web.Controllers.OrdenTrabajo
 {
     [ManejadorErrores]
+    [Authorize]
     public class ArticuloController : Controller
     {
         IArticuloServicio _srv;
@@ -28,6 +29,7 @@ namespace Web.Controllers.OrdenTrabajo
 
         }
 
+        [Authorize(Roles = "articulo_consulta")]
         public ActionResult Buscar(decimal? id)
         {
             if (id.HasValue)
@@ -38,6 +40,7 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "articulo_consulta")]
         public ActionResult Buscar(string Modelo, string Marca_DISPLAY_TEXT, string idCliente)
         {
             ViewData["idCliente"] = idCliente;
@@ -62,12 +65,14 @@ namespace Web.Controllers.OrdenTrabajo
            return View("Detalles",_srv.GetArticulo(id));
         }
 
+        [Authorize(Roles="articulo_crear")]
         public ActionResult Crear()
         {
             ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
             return View();
         }
 
+        [Authorize(Roles = "articulo_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear([Bind(Exclude = "Id,Marca,Linea")]Articulo articulo,string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT)
         {
@@ -90,8 +95,7 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
 
-
-
+        [Authorize(Roles = "articulo_crear")]
         public ActionResult Editar(decimal id)
         {
             var articulo = _srv.GetArticulo(id);
@@ -100,6 +104,7 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "articulo_crear")]
         public ActionResult Editar([Bind(Exclude = "Marca,Linea")]Articulo articulo, string Marca, string Marca_DISPLAY_TEXT, string Linea, string Linea_DISPLAY_TEXT)
         {
             try
@@ -120,6 +125,7 @@ namespace Web.Controllers.OrdenTrabajo
             return Editar(articulo.Id);
         }
 
+        [Authorize(Roles = "articulo_listar")]
         public ActionResult Lista()
         {
             var articulos = _srv.GetArticulos();

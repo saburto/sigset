@@ -15,7 +15,7 @@ using Web.ViewModel;
 namespace Web.Controllers.Administrativos
 {
     [Seguridad.ManejadorErrores]
-    //[Authorize(Roles = "Administrativo,Sistema")]
+    [Authorize(Roles = "ordenes_pendientes, asignacion_manual, ordenes_consulta")]
     public class AdministrativosController : Controller
     {
         IOrdenTrabajoServicio _srvOr;
@@ -39,6 +39,7 @@ namespace Web.Controllers.Administrativos
             return View();
         }
 
+        [Authorize(Roles = "ordenes_pendientes")]
         public ActionResult ListaSinAsignar()
         {
             
@@ -52,12 +53,14 @@ namespace Web.Controllers.Administrativos
             return View(model);
         }
 
+        [Authorize(Roles = "asignacion_manual")]
         public ActionResult Asignar(decimal id)
         {
             TempData["IdOrden"] = id;
             return View(_srvTecnicos.GetTodosLosTecnicos());
         }
 
+        [Authorize(Roles = "asignacion_manual")]
         public ActionResult AsignarTecnico(decimal rutTecnico, decimal id )
         {
             TempData["rutTecnico"] = rutTecnico;
@@ -75,6 +78,7 @@ namespace Web.Controllers.Administrativos
         //}
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "asignacion_manual")]
         public string AsignarTecnico(int idOrden, int idTecnico)
         {
             string usuario = null;
@@ -94,6 +98,7 @@ namespace Web.Controllers.Administrativos
             return View(ordenes);
         }
 
+        [Authorize(Roles = "ordenes_consulta")]
         public ActionResult ConsultaOrdenes()
         {
             var tecnicos = _srvTecnicos.GetTodosLosTecnicos();
@@ -103,6 +108,7 @@ namespace Web.Controllers.Administrativos
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "ordenes_consulta")]
         public ActionResult ConsultaOrdenes(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
         {
             return new OrdenTrabajoController().Listar(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);

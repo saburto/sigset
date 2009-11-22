@@ -35,13 +35,12 @@ namespace Helpers
 
             //Estos son los hijos de Admin
             hijos.Add("Usuario");
-            hijos.Add("Empleado");
-            hijos.Add("Tecnico");
             hijos.Add("Permisos");
             hijos.Add("Perfiles");
             hijos.Add("Configuracion");
             hijos.Add("Especialidad");
             hijos.Add("Categoria");
+            hijos.Add("PrecioGarantia");
             //Aqui guardo a Admin y a sus hijos.
             controllerHijos.Add("Admin", hijos);
 

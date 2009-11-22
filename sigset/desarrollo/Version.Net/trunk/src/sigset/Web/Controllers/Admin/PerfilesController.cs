@@ -14,6 +14,7 @@ using Web.Seguridad;
 namespace Web.Controllers
 {
     [ManejadorErrores]
+    [Authorize]
     public class PerfilesController : Controller
     {
 

@@ -14,7 +14,7 @@ using Data.Modelo.Enums;
 namespace Web.Controllers.AreaTecnica
 {
     [Web.Seguridad.ManejadorErrores]
-    //[Authorize(Roles = "Técnico")]
+    [Authorize(Roles = "ordenes_asignadas")]
     public class AreaTecnicaController : Controller
     {
         public const string USUARIO_TEST = "saburto";
@@ -43,6 +43,8 @@ namespace Web.Controllers.AreaTecnica
             return View();
         }
 
+
+        [Authorize(Roles = "ordenes_asignadas")]
         public ActionResult Lista()
         {
             if (EstaAutenticado())
