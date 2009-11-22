@@ -351,6 +351,7 @@
     <Content Include="Views\Categoria\Lista.aspx" />
     <Content Include="Views\Especialidad\Lista.aspx" />
     <Content Include="Views\Especialidad\Crear.ascx" />
+    <Content Include="Views\OrdenTrabajo\AgregarDetalle.ascx" />
     <Content Include="Views\TipoArticulo\Crear.ascx" />
     <Content Include="Views\TipoArticulo\Lista.aspx" />
   </ItemGroup>

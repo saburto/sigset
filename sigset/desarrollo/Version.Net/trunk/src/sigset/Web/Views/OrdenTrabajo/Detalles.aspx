@@ -12,10 +12,52 @@
 <br /> 
 
 <%Html.RenderPartial("DetallesOrden", Model); %>
-
-
+<div>
+    <p>
+        <%= Html.ButtonLinkIcon("#", "Agregar Detalle", Iconos.circle_plus, IconPosition.left, new { onclick="return abrirDetalle(this)" })%>
+    </p>
+</div>
+<br />
+<div id="divAgregar" style="display:none;">
+<% using (Html.BeginForm())
+   {%>
+        <fieldset>
+            <legend>Agregar detalle</legend>
+            <p>
+                <%= Html.Hidden("IdOrden", Model.Id) %>
+                <label for="Estado">Estado:</label>
+                <%=Html.DropDownList("Estado")%>
+            </p>
+            <p>
+                <label for="Contenido">Contenido:</label>
+                <%=Html.TextArea("Contenido", null, new { style="width:100%;", rows="8", @class="required" })%>
+                <%= Html.ValidationMessage("Contenido", "*")%>
+            </p>
+            
+        </fieldset>
+        <p>
+            <%= Html.ButtonSubmit("Guardar") %>
+        </p>
+<%} %>
+</div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+
+<script type="text/javascript">
+//<![CDATA[
+
+    function abrirDetalle(boton) {
+        $(boton).hide();
+        $("#divAgregar").show();
+        $("#Estado").focus();
+    
+        return false;
+    }
+
+//]]>
+</script>
+<%=Html.ClientSideValidation("", typeof(Data.Modelo.Detalle)) %>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MenuDerecha" runat="server">
 </asp:Content>

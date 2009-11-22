@@ -161,6 +161,7 @@ namespace Web.Controllers
                 return PartialView("DetallesOrden", orden);
             }
 
+            ViewData["Estado"] = _srvOrdenTrabajo.GetEstadosOrden().GetSelectCampos("IdEstado", "Descripcion");
             return View(orden);
         }
 
