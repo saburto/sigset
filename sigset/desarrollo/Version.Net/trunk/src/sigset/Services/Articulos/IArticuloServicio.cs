@@ -38,5 +38,9 @@ namespace Services.Articulos
         IList<Data.Modelo.TipoArticulo> GetTiposArticulos();
 
         Articulo ModificarArticulo(Articulo articulo, string Marca, string Linea);
+
+        void EliminarPrecioGarantia(string IdTipoArticulo);
+
+        void ModificarPrecioGarantia(string IdPrecioGarantia, string valorRevision, string valorReparacion);
     }
 }

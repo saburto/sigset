@@ -228,5 +228,31 @@ namespace Data.Repositorios.Articulo
         }
 
         #endregion
+
+        #region IArticuloRepositorio Members
+
+
+        public void EliminarPrecioGarantia(PrecioGarantia precioGarantia)
+        {
+            _ent.PrecioGarantias.DeleteOnSubmit(precioGarantia);
+            _ent.SubmitChanges();
+        }
+
+        public void ModificarPrecioGarantia(PrecioGarantia precioGarantia)
+        {
+            _ent.SubmitChanges();
+        }
+
+        public void CrearPrecioGarantia(string valorRevision, string valorReparacion)
+        {
+            var precioGarantia = new PrecioGarantia();
+            precioGarantia.ValorReparacion = decimal.Parse( valorReparacion);
+            precioGarantia.ValorRevision = decimal.Parse(valorRevision);
+
+            _ent.PrecioGarantias.InsertOnSubmit(precioGarantia);
+            _ent.SubmitChanges();
+        }
+
+        #endregion
     }
 }

@@ -51,7 +51,7 @@
                   { %>
                         <div class="formu form<%=item.IdPrecioGarantia %>" style="display:none;">
                             <input type="hidden" name="IdPrecioGarantia" value="<%=item.IdPrecioGarantia %>" />
-                            <%=Html.TextBox("ValorRv" + item.IdPrecioGarantia, item.ValorRevision, new { @class = "required digits" })%>  
+                            <%=Html.TextBox("ValorRv" + item.IdPrecioGarantia, item.ValorRevision, new { @class = "required digits " })%>  
                             <input type="hidden" name="ValorRp<%=item.IdPrecioGarantia%>" value="" />
                         </div>
                 <%} %>
@@ -62,7 +62,9 @@
                 </div>
                 
                 <div class="formu form<%=item.IdPrecioGarantia %>" style="display:none;">
-                    <%=Html.TextBox("ValorRp" + item.IdPrecioGarantia, item.ValorReparacion, new { @class = "required digits" })%>  
+                    <form method="post" action="" id="formu2<%=item.IdPrecioGarantia %>">
+                        <%=Html.TextBox("ValorRp" + item.IdPrecioGarantia, item.ValorReparacion, new { @class = "required digits" })%>  
+                    </form>
                 </div>
             </td>
             <td>
@@ -121,9 +123,12 @@
 
 
     function submit(id) {
+
+        $("#formu2" + id).validate();
+        
         if ($("#ValorRp" + id + ", #ValorRv" + id).valid()) {
 
-            $("#formuEsp" + id).find(":input[name=ValorRp" + + "]" ).val($("#ValorRv" + id));
+            $("#formuEsp" + id).find(":input[name=ValorRp" + id + "]" ).val($("#ValorRv" + id).val());
         
             $("#formuEsp" + id).submit();
         }

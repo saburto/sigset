@@ -48,5 +48,11 @@ namespace Data.Repositorios.Articulo
         void CrearArticulo(string descripcion);
 
         Data.Modelo.Articulo ModificarArticulo(Data.Modelo.Articulo articulo);
+
+        void EliminarPrecioGarantia(PrecioGarantia precioGarantia);
+
+        void ModificarPrecioGarantia(PrecioGarantia precioGarantia);
+
+        void CrearPrecioGarantia(string valorRevision, string valorReparacion);
     }
 }
