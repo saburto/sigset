@@ -288,5 +288,42 @@ namespace Services.Articulos
 
    
         #endregion
+
+        #region IArticuloServicio Members
+
+
+        public void EliminarPrecioGarantia(string idPrecioGarantia)
+        {
+            var precioGarantia = _rep.GetPrecios().Where(x => x.IdPrecioGarantia == decimal.Parse(idPrecioGarantia)).FirstOrDefault();
+            if (precioGarantia == null || precioGarantia.Articulos.Any())
+            {
+                throw new ArgumentException("No se puede borrar precio garantia que tiene asociado un articulo");
+            }
+            else
+            {
+                _rep.EliminarPrecioGarantia(precioGarantia);
+            }
+
+        }
+
+        public void ModificarPrecioGarantia(string IdPrecioGarantia, string valorRevision, string valorReparacion)
+        {
+            if (!string.IsNullOrEmpty(IdPrecioGarantia))
+            {
+
+                var precioGarantia = _rep.GetPrecios().Where( x=> x.IdPrecioGarantia ==  decimal.Parse(IdPrecioGarantia)).FirstOrDefault();
+                if (precioGarantia != null)
+                {
+                    precioGarantia.ValorRevision = decimal.Parse(valorRevision);
+                    precioGarantia.ValorReparacion = decimal.Parse(valorReparacion);
+                    _rep.ModificarPrecioGarantia(precioGarantia);
+                    return;
+                }
+            }
+            _rep.CrearPrecioGarantia(valorRevision, valorReparacion);
+
+        }
+
+        #endregion
     }
 }

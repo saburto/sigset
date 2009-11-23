@@ -35,11 +35,11 @@ namespace Web.Controllers.Admin
         }
 
 
-        public ActionResult Eliminar(string IdTipoArticulo)
+        public ActionResult Eliminar(string IdPrecioGarantia)
         {
             try
             {
-                _srvArt.EliminarTipoArticulo(IdTipoArticulo);
+                _srvArt.EliminarPrecioGarantia(IdPrecioGarantia);
                 return RedirectToAction("Lista");
             }
             catch (Exception ex)
@@ -57,9 +57,11 @@ namespace Web.Controllers.Admin
         {
             try
             {
-                string IdTipoArticulo = collection[0];
-                string descripcion = collection[1];
-                _srvArt.ModificarTipoArticulo(IdTipoArticulo, descripcion);
+                string IdPrecioGarantia = collection[0];
+                string valorRevision = collection[1];
+                string valorReparacion = collection[2];
+
+                _srvArt.ModificarPrecioGarantia(IdPrecioGarantia, valorRevision, valorReparacion);
                 return RedirectToAction("Lista");
             }
             catch (RulesException e)

@@ -7,6 +7,9 @@
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Acerca de...</h2>
     <p>
-        Sistema de Gestión de Servicio Técnico Electronico desarrollado para taller 3 por RM y SA.
+        Sistema de Gestión de Servicio Técnico Electronico desarrollado para taller integral de proyecto informático.
+    </p>
+    <p>
+        Integrantes: Sebastián Aburto, Rumina Morales
     </p>
 </asp:Content>

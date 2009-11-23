@@ -15,7 +15,7 @@ using Web.ViewModel;
 namespace Web.Controllers.Administrativos
 {
     [Seguridad.ManejadorErrores]
-    [Authorize(Roles = "ordenes_pendientes, asignacion_manual, ordenes_consulta")]
+    [Authorize(Roles = "ordenes_pendientes, asignacion_manual")]
     public class AdministrativosController : Controller
     {
         IOrdenTrabajoServicio _srvOr;

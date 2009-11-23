@@ -56,7 +56,7 @@ namespace Web
             tagH2.InnerHtml = "Ha ocurrido un problema dentro del sistema. Favor contactarse con administrador de sistema";
 
             TagBuilder tagP = new TagBuilder("p");
-            tagP.InnerHtml = ex.Message +" <br />"  +  ex.InnerException != null ? ex.InnerException.Message: "" ;
+            tagP.InnerHtml = ex.Message +" <br />"  +  (ex.InnerException != null ? ex.InnerException.Message: "") ;
 
             tagBody.InnerHtml = tagH2.ToString() + tagP.ToString();
 
