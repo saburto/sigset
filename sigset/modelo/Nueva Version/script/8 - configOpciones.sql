@@ -30,3 +30,6 @@ GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(10, 'true,false', 'Mostrar Logo')
 GO
+INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
+  VALUES(22, 'Vicuña Mackena 123', 'Dirección de Empresa ')
+GO
