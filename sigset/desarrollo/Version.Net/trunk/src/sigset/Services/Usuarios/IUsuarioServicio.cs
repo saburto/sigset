@@ -13,5 +13,7 @@ namespace Services.Usuarios
         System.Collections.Generic.IList<global::Data.Modelo.Perfil> TiposUsuarios();
         System.Collections.Generic.IList<global::Data.Modelo.Usuario> TodosLosEmpleados();
         global::Data.Modelo.Perfil GetPerfilById(decimal id);
+
+        System.Collections.Generic.IList<global::Data.Modelo.Usuario> BuscarUsuario(Data.Modelo.Usuario parametros);
     }
 }
