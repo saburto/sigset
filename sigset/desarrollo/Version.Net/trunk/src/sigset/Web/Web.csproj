@@ -83,7 +83,6 @@
     <Compile Include="Controllers\Admin\ConfiguracionController.cs" />
     <Compile Include="Controllers\Admin\PrecioGarantiaController.cs" />
     <Compile Include="Controllers\Admin\TipoArticuloController.cs" />
-    <Compile Include="Controllers\Admin\EmpleadoController.cs" />
     <Compile Include="Controllers\Admin\EspecialidadController.cs" />
     <Compile Include="Controllers\Admin\PermisosController.cs" />
     <Compile Include="Controllers\Admin\TecnicoController.cs" />

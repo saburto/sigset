@@ -14,9 +14,6 @@
                 <%=Html.Encode("Módulo") %>
             </th>
             <th>
-                <%=Html.Encode("Opción") %>
-            </th>
-            <th>
                 <%=Html.Encode("Descripción Opción") %>
             </th>
         </tr>
@@ -33,9 +30,6 @@
                 <%}%>
                 <td>
                     <%= Html.Encode(item.Modulo.DescripcionOpcion) %>
-                </td>
-                <td>
-                    <%= Html.Encode(item.Opcion.toOpcion()) %>
                 </td>
                 <td>
                     <%= Html.Encode(item.DescripcionOpcion) %>

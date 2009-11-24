@@ -14,7 +14,7 @@ using Data.Modelo.Enums;
 namespace Web.Controllers.AreaTecnica
 {
     [Web.Seguridad.ManejadorErrores]
-    [Authorize(Roles = "ordenes_asignadas")]
+    [Authorize(Roles = "tec_ordenes_asignadas,tec_ordenes_reparadas")]
     public class AreaTecnicaController : Controller
     {
         
@@ -55,7 +55,7 @@ namespace Web.Controllers.AreaTecnica
         }
 
 
-        [Authorize(Roles = "ordenes_asignadas")]
+        [Authorize(Roles = "tec_ordenes_asignadas")]
         public ActionResult Lista()
         {
             if (EstaAutenticado())
@@ -78,6 +78,7 @@ namespace Web.Controllers.AreaTecnica
             return View("SinOrdenes");
         }
 
+        [Authorize(Roles = "tec_ordenes_reparadas")]
         public ActionResult ListaReparadas() 
         {
             if (EstaAutenticado())

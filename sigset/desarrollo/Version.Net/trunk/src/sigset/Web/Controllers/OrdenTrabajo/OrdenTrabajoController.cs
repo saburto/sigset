@@ -25,7 +25,7 @@ using Services.Helpers;
 
 namespace Web.Controllers
 {
-    [Authorize(Roles = "ordenes_crear, ordenes_consulta, ordenes_listar, clientes_crear, clientes_consulta, clientes_listar, articulo_crear, articulo_consulta, articulo_listar")]
+    [Authorize(Roles = "ordenes_crear,ordenes_consulta,ordenes_listar,clientes_crear,clientes_buscar,clientes_listar,articulo_crear,articulo_buscar,articulo_listar")]
     [Web.Seguridad.ManejadorErrores]
     public class OrdenTrabajoController : Controller
     {
@@ -148,6 +148,7 @@ namespace Web.Controllers
             return View(ordenTrabajo);
         }
 
+        [Authorize(Roles = "ordenes_consulta")]
         public ActionResult Detalles(decimal id, string format)
         {
 

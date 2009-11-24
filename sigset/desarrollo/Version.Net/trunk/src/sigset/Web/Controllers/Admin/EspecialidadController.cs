@@ -12,6 +12,7 @@ using Helpers;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles = "ad_tecnicos_especialidades")]
     public class EspecialidadController : Controller
     {
         ITecnicoServicio _srvTecnicos;

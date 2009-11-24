@@ -13,6 +13,7 @@ using Services.Articulos;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles="config_tipo_articulo")]
     public class TipoArticuloController : Controller
     {
         IArticuloServicio _srvArt;

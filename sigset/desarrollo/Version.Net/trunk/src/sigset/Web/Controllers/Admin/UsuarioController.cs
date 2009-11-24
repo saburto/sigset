@@ -48,7 +48,7 @@ namespace Web.Controllers.Admin
             return View("Lista", usuarios);
         }
 
-
+        [Authorize(Roles = "usuarios_crear")]
         public ActionResult Eliminar(decimal id)
         {
             try
@@ -127,7 +127,7 @@ namespace Web.Controllers.Admin
             return View();
         }
 
-        //[Authorize(Roles = "usuarios_buscar")]
+        [Authorize(Roles = "usuarios_buscar")]
         public ActionResult Buscar()
         {
             SetPerfilSelect();
@@ -137,6 +137,7 @@ namespace Web.Controllers.Admin
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
+        [Authorize(Roles = "usuarios_buscar")]
         public ActionResult Buscar(Usuario usuario, string RutDisplay)
         {
 
@@ -200,9 +201,9 @@ namespace Web.Controllers.Admin
         {
             if (Session["imagen"] != null)
             {
-                var carpeta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios");
+                var carpeta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\usuarios");
                 string savedFileName = Path.Combine(
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios"),
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\usuarios"),
                     Session["imagen"].ToString()
                     );
                 FileInfo fileInfo = new FileInfo(savedFileName);
@@ -213,9 +214,11 @@ namespace Web.Controllers.Admin
                     newFileInfo.Delete();
                 }
                 fileInfo.MoveTo(newPath);
+                Session["imagen"] = null;
             }
         }
-        
+
+        [Authorize(Roles = "usuarios_crear")]
         public ActionResult SubirFotoUsuario(string id)
         {
             if (id != null)
@@ -226,6 +229,7 @@ namespace Web.Controllers.Admin
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "usuarios_crear")]
         public ActionResult SubirFotoUsuario()
         {
             var hpf = Request.Files[0];
