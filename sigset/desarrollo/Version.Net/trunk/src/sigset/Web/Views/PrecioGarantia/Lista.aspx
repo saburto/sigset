@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Data.Modelo.PrecioGarantia>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Lista de Precio Garantia
+	Lista de Precio <%=Html.Encode("Garantía")%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Lista de Tipo de Articulos</h2>
+    <h2>Lista de Precio <%=Html.Encode("Garantía")%></h2>
     <%=Html.ValidationSummary() %>
       <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
@@ -35,7 +35,7 @@
     <%} alter = !alter; %>
             <td>
                 <div class="disp display<%=item.IdPrecioGarantia %>">
-                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.IdPrecioGarantia +")", title="Editar Precio Garantia" }) %>
+                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.IdPrecioGarantia +")", title="Editar Precio Garantía" }) %>
                 </div>
                 <div class="formu form<%=item.IdPrecioGarantia %>" style="display:none;">
                     <%=Html.ButtonLinkIcon("#","Editar",Iconos.minus,IconPosition.solo, new{ onclick="esconder("+ item.IdPrecioGarantia +")", title="Cancelar Edición" }) %>
@@ -51,7 +51,7 @@
                   { %>
                         <div class="formu form<%=item.IdPrecioGarantia %>" style="display:none;">
                             <input type="hidden" name="IdPrecioGarantia" value="<%=item.IdPrecioGarantia %>" />
-                            <%=Html.TextBox("ValorRv" + item.IdPrecioGarantia, item.ValorRevision, new { @class = "required digits " })%>  
+                            <%=Html.TextBox("ValorRv" + item.IdPrecioGarantia, item.ValorRevision, new { @class = "required digits ", title="Editar precio de revisión" })%>  
                             <input type="hidden" name="ValorRp<%=item.IdPrecioGarantia%>" value="" />
                         </div>
                 <%} %>
@@ -63,22 +63,22 @@
                 
                 <div class="formu form<%=item.IdPrecioGarantia %>" style="display:none;">
                     <form method="post" action="" id="formu2<%=item.IdPrecioGarantia %>">
-                        <%=Html.TextBox("ValorRp" + item.IdPrecioGarantia, item.ValorReparacion, new { @class = "required digits" })%>  
+                        <%=Html.TextBox("ValorRp" + item.IdPrecioGarantia, item.ValorReparacion, new { @class = "required digits", title="Editar precio de reparación" })%>  
                     </form>
                 </div>
             </td>
             <td>
-                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdPrecioGarantia +"')", title="Elimnar Precio Garantia" }) %>
+                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdPrecioGarantia +"')", title="Eliminar Precio Garantía" }) %>
             </td>
         </tr>
     
     <% } %>
     </table>
     <p>
-        <%=Html.ButtonLinkIcon("#","Nueva Precio Garantia", Iconos.circle_plus, IconPosition.left, new{title="Agregar nuevo precio garantia", onclick="abrirNuevo()"}) %>
+        <%=Html.ButtonLinkIcon("#","Nueva Precio Garantia", Iconos.circle_plus, IconPosition.left, new{title="Agregar nuevo precio garantía", onclick="abrirNuevo()"}) %>
     
     </p>
-    <div id="nuevo" style="font-size:80%;" title="Nueva Precio Garantia" >
+    <div id="nuevo" style="font-size:80%;" title="Nueva Precio Garantía" >
         <%Html.RenderPartial("Crear"); %>
     </div>
 </asp:Content>
@@ -112,7 +112,7 @@
     }
 
     function elimnar(id) {
-        if (confirm("¿Esta seguro de elimnar este precio garantia?")) {
+        if (confirm("¿Esta seguro de elimnar este precio garantía?")) {
             var $formu = $("#formuEsp" + id)
             $formu.removeAttr("action");
             $formu.attr("action", '<%=Url.Action("Eliminar", "PrecioGarantia") %>');

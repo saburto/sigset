@@ -20,10 +20,10 @@
                 Marca
             </th>
             <th>
-                TipoArticulo
+                Tipo <%=Html.Encode("Artículo")%>
             </th>
             <th>
-                Categoria
+                <%=Html.Encode("Categoría")%>:
             </th>
             <th>
                 Valor Reparaci&oacute;n
@@ -47,7 +47,7 @@
         <tr>
     <%} %>
             <td>
-                <%= Html.ButtonLinkIcon(Url.Action("Editar", new { id=item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title = "Editar Articulo" })%>
+                <%= Html.ButtonLinkIcon(Url.Action("Editar", new { id=item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title = "Editar Artículo" })%>
             </td>
             <td>
                 <%= Html.Encode(item.Modelo) %>

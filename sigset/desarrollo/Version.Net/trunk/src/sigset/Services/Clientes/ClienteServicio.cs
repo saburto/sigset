@@ -181,7 +181,7 @@ namespace Services.Clientes
                             select r).FirstOrDefault();
             if (regiones == null)
             {
-                errores.Add(new ErrorInfo("Region", "Region invalidad"));
+                errores.Add(new ErrorInfo("Region", "Región invalidad"));
                 return false;
             }
 

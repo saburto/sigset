@@ -23,11 +23,11 @@
             <%= Html.Encode(String.Format("{0:F}", Model.Marca)) %>
         </p>
         <p>
-            TipoArticulo:
+            <%=Html.Encode("Tipo Artículo")%>:
             <%= Html.Encode(String.Format("{0:F}", Model.TipoArticulo)) %>
         </p>
         <p>
-            Categoria:
+            <%=Html.Encode("Categoría")%>:
             <%= Html.Encode(String.Format("{0:F}", Model.Categoria)) %>
         </p>
         <p>

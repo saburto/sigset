@@ -10,7 +10,7 @@
             <p>
                 <label for="Descripcion">Descripci&oacute;n:</label>
                 <%= Html.Hidden("IdCategoria", null)%>
-                <%= Html.TextBox("Descripcion", null, new { title="Descripción de nueva categoria", @class="required" })%>
+                <%= Html.TextBox("Descripcion", null, new { title="Descripción de nueva categoría", @class="required" })%>
                 <%= Html.ValidationMessage("Descripcion", "*") %>
                 
                 <label>Especialidad:</label>

@@ -1,7 +1,7 @@
 ﻿var xVal = xVal || {};
 xVal.Messages = {
     "Required": "Este valor es necesario.",
-    "DataType_EmailAddress": "Por favor ingrese una direccion de email valida.",
+    "DataType_EmailAddress": "Por favor ingrese una dirección de email valida.",
     "DataType_Integer": "Por favor ingrese un numero entero.",
     "DataType_Decimal": "Por favor ingrese un valor numerico.",
     "DataType_Date": "Por favor ingrese una fecha valida.",

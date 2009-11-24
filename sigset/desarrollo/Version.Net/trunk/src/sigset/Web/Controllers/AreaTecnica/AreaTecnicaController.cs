@@ -17,7 +17,7 @@ namespace Web.Controllers.AreaTecnica
     [Authorize(Roles = "ordenes_asignadas")]
     public class AreaTecnicaController : Controller
     {
-        public const string USUARIO_TEST = "saburto";
+        
 
         IOrdenTrabajoServicio _srvOr;
         ITecnicoServicio _srvTec;
@@ -39,7 +39,18 @@ namespace Web.Controllers.AreaTecnica
 
         public ActionResult Index()
         {
-            Session["ModuloActual"] = "AreaTecnica";
+            var usuario = this.GetUsuarioActual();
+            if (usuario.PerfilUsuario == (int) PerfilUsuarios.Tecnico)
+            {
+                Session["ModuloActual"] = "AreaTecnica";
+                
+            }
+            else
+            {
+                Session["ModuloActual"] = null;
+                ViewData["MensajeAreaTecnica"] = "Usuario Actual no es tecnico";
+
+            }
             return View();
         }
 
@@ -58,12 +69,35 @@ namespace Web.Controllers.AreaTecnica
                     if (tecnico != null)
                     {
                         var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id);
+                        listaOrdenes = listaOrdenes.Where(x => x.EstadoActual().IdEstado != (int)EstadoOrden.Reparado).ToList();
                         return View("Lista",listaOrdenes);
                     }
                     
                 }
             }
             return View("SinOrdenes");
+        }
+
+        public ActionResult ListaReparadas() 
+        {
+            if (EstaAutenticado())
+            {
+                Usuario usuario = GetUsuarioActual();
+
+                if (usuario != null)
+                {
+                    Tecnico tecnico = _srvTec.GetTecnicoById(usuario.Id);
+
+                    if (tecnico != null)
+                    {
+                        var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id).Where(x=> x.EstadoActual().IdEstado == (int) EstadoOrden.Reparado);
+                        return View("ListaReparadas", listaOrdenes);
+                    }
+
+                }
+            }
+            return View("ListaReparadas");
+        
         }
 
 
@@ -129,20 +163,20 @@ namespace Web.Controllers.AreaTecnica
         private Usuario GetUsuarioActual()
         {
             Usuario usuario = null;
-            if (!string.IsNullOrEmpty(USUARIO_TEST))
-            {
-                usuario = _srvUser.GetUsuariByNombre(USUARIO_TEST);
-            }
-            else
-            {
+            //if (!string.IsNullOrEmpty(USUARIO_TEST))
+            //{
+            //    usuario = _srvUser.GetUsuariByNombre(USUARIO_TEST);
+            //}
+            //else
+            //{
                 usuario = _srvUser.GetUsuariByNombre(HttpContext.User.Identity.Name);
-            }
+            //}
             return usuario;
         }
 
         private bool EstaAutenticado()
         {
-            return HttpContext.User.Identity.IsAuthenticated || !string.IsNullOrEmpty(USUARIO_TEST);
+            return HttpContext.User.Identity.IsAuthenticated;// || !string.IsNullOrEmpty(USUARIO_TEST);
         }
 
 

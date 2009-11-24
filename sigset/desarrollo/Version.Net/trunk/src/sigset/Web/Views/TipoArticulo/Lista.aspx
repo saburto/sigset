@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Data.Modelo.TipoArticulo>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Lista de Tipo de Articulos
+	Lista de Tipo de <%=Html.Encode("Artículos")%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Lista de Tipo de Articulos</h2>
+    <h2>Lista de Tipo de <%=Html.Encode("Artículos")%></h2>
     <%=Html.ValidationSummary() %>
       <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
@@ -31,7 +31,7 @@
     <%} alter = !alter; %>
             <td>
                 <div class="disp display<%=item.IdTipoArticulo %>">
-                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.IdTipoArticulo +")", title="Editar Tipo de Articulo" }) %>
+                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.IdTipoArticulo +")", title="Editar Tipo de Artículo" }) %>
                 </div>
                 <div class="formu form<%=item.IdTipoArticulo %>" style="display:none;">
                     <%=Html.ButtonLinkIcon("#","Editar",Iconos.minus,IconPosition.solo, new{ onclick="esconder("+ item.IdTipoArticulo +")", title="Cancelar Edición" }) %>
@@ -47,22 +47,22 @@
                   { %>
                         <div class="formu form<%=item.IdTipoArticulo %>" style="display:none;">
                             <input type="hidden" name="IdTipoArticulo" value="<%=item.IdTipoArticulo %>" />
-                            <%=Html.TextBox("Descripcion" + item.IdTipoArticulo, item.Descripcion, new { @class = "required" })%>  
+                            <%=Html.TextBox("Descripcion" + item.IdTipoArticulo, item.Descripcion, new { @class = "required", title="Editar descripción de tipo de artículo" })%>  
                         </div>
                 <%} %>
             </td>
             <td>
-                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdTipoArticulo +"')", title="Elimnar tipo de articulo" }) %>
+                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdTipoArticulo +"')", title="Eliminar tipo de artículo" }) %>
             </td>
         </tr>
     
     <% } %>
     </table>
     <p>
-        <%=Html.ButtonLinkIcon("#","Nueva Tipo Articulo", Iconos.circle_plus, IconPosition.left, new{title="Agregar nuevo tipo de articulo", onclick="abrirNuevo()"}) %>
+        <%=Html.ButtonLinkIcon("#","Nueva Tipo Artículo", Iconos.circle_plus, IconPosition.left, new{title="Agregar nuevo tipo de artículo", onclick="abrirNuevo()"}) %>
     
     </p>
-    <div id="nuevo" style="font-size:80%;" title="Nueva Tipo Articulo" >
+    <div id="nuevo" style="font-size:80%;" title="Nueva Tipo Artículo" >
         <%Html.RenderPartial("Crear"); %>
     </div>
 </asp:Content>
@@ -96,7 +96,7 @@
     }
 
     function elimnar(id) {
-        if (confirm("¿Esta seguro de elimnar este tipo de articulo?")) {
+        if (confirm("¿Esta seguro de elimnar este tipo de artículo?")) {
             var $formu = $("#formuEsp" + id)
             $formu.removeAttr("action");
             $formu.attr("action", '<%=Url.Action("Eliminar", "TipoArticulo") %>');

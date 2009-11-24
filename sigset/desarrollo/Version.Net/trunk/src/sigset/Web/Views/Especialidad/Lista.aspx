@@ -47,12 +47,12 @@
                   { %>
                         <div class="formu form<%=item.IdTipoEspecialidad %>" style="display:none;">
                             <input type="hidden" name="IdTipoEspecialidad" value="<%=item.IdTipoEspecialidad %>" />
-                            <%=Html.TextBox("Descripcion" + item.IdTipoEspecialidad, item.Descripcion, new { @class = "required" })%>  
+                            <%=Html.TextBox("Descripcion" + item.IdTipoEspecialidad, item.Descripcion, new { @class = "required" , title="Editar descripción de especialidad"})%>  
                         </div>
                 <%} %>
             </td>
             <td>
-                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdTipoEspecialidad +"')", title="Elimnar Especialidad" }) %>
+                <%=Html.ButtonLinkIcon("#","Elimnar",Iconos.close,IconPosition.solo, new{ onclick="elimnar('"+ item.IdTipoEspecialidad +"')", title="Eliminar Especialidad" }) %>
             </td>
         </tr>
     

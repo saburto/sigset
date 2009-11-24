@@ -1,7 +1,7 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Data.Modelo.Articulo>" %>
 
 <fieldset>
-<legend>Articulo</legend>
+<legend><%=Html.Encode("Artículo")%></legend>
 <div class="three-column-container" style="font-size:75%;">
        <div class="three-column-left">            
        <p>
@@ -19,17 +19,17 @@
        
        <div class="three-column-middle">
         <p>
-            <span style="font-weight:bold">Tipo Articulo:</span>
+            <span style="font-weight:bold">Tipo <%=Html.Encode("Artículo")%>:</span>
             <%= Html.Encode(Model.TipoArticulo1.Descripcion) %>
             <br />
-            <span style="font-weight:bold">Categoria:</span>
+            <span style="font-weight:bold"><%=Html.Encode("Categoría")%>:</span>
             <%= Html.Encode(Model.Categoria1.Descripcion) %>
         </p>
        </div>
        
        <div class="three-column-right">
        <p>
-            <span style="font-weight:bold">Precio Garantia:</span>
+            <span style="font-weight:bold">Precio <%=Html.Encode("Garantía")%>:</span>
             <br />
             <%= Html.Encode("Reparación: $" + Model.PrecioGarantia1.ValorReparacion) %>
             <br />

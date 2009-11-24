@@ -198,15 +198,15 @@ namespace Web.Controllers.Admin
 
         private void RenameImagen(string usuario)
         {
-            if (TempData["imagen"] != null)
+            if (Session["imagen"] != null)
             {
                 var carpeta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios");
                 string savedFileName = Path.Combine(
                     Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios"),
-                    TempData["imagen"].ToString()
+                    Session["imagen"].ToString()
                     );
                 FileInfo fileInfo = new FileInfo(savedFileName);
-                var newPath = Path.Combine(carpeta, usuario + Path.GetExtension(TempData["imagen"].ToString()));
+                var newPath = Path.Combine(carpeta, usuario + ".jpg" );
                 FileInfo newFileInfo = new FileInfo(newPath);
                 if (newFileInfo.Exists)
                 {
@@ -215,7 +215,7 @@ namespace Web.Controllers.Admin
                 fileInfo.MoveTo(newPath);
             }
         }
-
+        
         public ActionResult SubirFotoUsuario(string id)
         {
             if (id != null)
@@ -247,8 +247,15 @@ namespace Web.Controllers.Admin
                                     Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content/usuarios"),
                                     Path.GetFileName(hpf.FileName)
                                     );
+
+            FileInfo fileInfo = new FileInfo(savedFileName);
+            if (fileInfo.Exists)
+            {
+                fileInfo.Delete();
+            }
+
             hpf.SaveAs(savedFileName);
-            TempData["imagen"] = filename;
+            Session["imagen"] = filename;
             return View((object)filename);
         }
 

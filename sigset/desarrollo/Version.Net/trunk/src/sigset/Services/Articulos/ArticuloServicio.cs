@@ -123,7 +123,7 @@ namespace Services.Articulos
         {
             if (articulo == null)
             {
-                _error.Add(new ErrorInfo("_FORM", "Articulo invalidoS"));
+                _error.Add(new ErrorInfo("_FORM", "Artículo invalidoS"));
             }
 
             if (string.IsNullOrEmpty(articulo.Modelo))
@@ -133,28 +133,28 @@ namespace Services.Articulos
 
             if (articulo.TipoArticulo == 0)
             {
-                _error.Add(new ErrorInfo("TipoArticulo", "Tipo Articulo es necesario."));
+                _error.Add(new ErrorInfo("TipoArticulo", "Tipo Artículo es necesario."));
             }
             else
             {
                 var tipo = _rep.GetTipoArticulos(articulo.TipoArticulo);
                 if (tipo == null)
                 {
-                    _error.Add(new ErrorInfo("TipoArticulo", "Tipo Articulo invalido"));
+                    _error.Add(new ErrorInfo("TipoArticulo", "Tipo Artículo invalido"));
                 }
 
             }
 
             if (articulo.Categoria == 0)
             {
-                _error.Add(new ErrorInfo("Categoria", "Tipo Articulo es necesario."));
+                _error.Add(new ErrorInfo("Categoria", "Tipo Artículo es necesario."));
             }
             else
             {
                 var c = _rep.GetCategoria(articulo.Categoria);
                 if (c == null)
                 {
-                    _error.Add(new ErrorInfo("Categoria", "Categoria invalida"));
+                    _error.Add(new ErrorInfo("Categoria", "Categoría invalida"));
                 }
             }
 
@@ -214,7 +214,7 @@ namespace Services.Articulos
             var categoria = _rep.GetCategoria(decimal.Parse(IdCategoria)).FirstOrDefault();
             if (categoria == null || categoria.Articulos.Any())
             {
-                throw new ArgumentException("No se puede borrar categoria que tiene asociado un articulo");
+                throw new ArgumentException("No se puede borrar categoría que tiene asociado un artículo");
             }
             else
             {
@@ -267,7 +267,7 @@ namespace Services.Articulos
             var tipoArticulo = _rep.GetTipoArticulos(decimal.Parse(IdTipoArticulo)).FirstOrDefault();
             if (tipoArticulo == null || tipoArticulo.Articulos.Any())
             {
-                throw new ArgumentException("No se puede borrar tipo articulo que tiene asociado un articulo");
+                throw new ArgumentException("No se puede borrar tipo artículo que tiene asociado un artículo");
             }
             else
             {
@@ -297,7 +297,7 @@ namespace Services.Articulos
             var precioGarantia = _rep.GetPrecios().Where(x => x.IdPrecioGarantia == decimal.Parse(idPrecioGarantia)).FirstOrDefault();
             if (precioGarantia == null || precioGarantia.Articulos.Any())
             {
-                throw new ArgumentException("No se puede borrar precio garantia que tiene asociado un articulo");
+                throw new ArgumentException("No se puede borrar precio garantía que tiene asociado un artículo");
             }
             else
             {
