@@ -1,87 +1,87 @@
 
 USE [sigset]
+
 SET IDENTITY_INSERT [dbo].[Permisos] ON
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(1, 1, 'ordenes_crear', 'Crear')
+  VALUES(1, 1, 'ordenes_crear', 'Crear orden de trabajo')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(2, 1, 'ordenes_consulta', 'Consulta')
+  VALUES(2, 1, 'ordenes_consulta', 'Consulta ordenes de trabajo')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(3, 1, 'ordenes_listar', 'Listar')
+  VALUES(3, 1, 'ordenes_listar', 'Listar ordenes de trabajo')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(4, 1, 'clientes_crear', 'Crear')
+  VALUES(4, 1, 'clientes_crear', 'Crear nuevo cliente')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(5, 1, 'clientes_consulta', 'Consulta')
+  VALUES(5, 1, 'clientes_buscar', 'Busca cliente')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(6, 1, 'clientes_listar', 'Listar')
+  VALUES(6, 1, 'clientes_listar', 'Listar clientes')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(7, 1, 'articulo_crear', 'Crear')
+  VALUES(7, 1, 'articulo_crear', 'Crear nuevo artículo')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(8, 1, 'articulo_consulta', 'Consulta')
+  VALUES(8, 1, 'articulo_buscar', 'Busca artículo')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(9, 1, 'articulo_listar', 'Listar')
+  VALUES(9, 1, 'articulo_listar', 'Listar artículos')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(10, 4, 'ordenes_ingresadas', 'Ingresadas')
+  VALUES(10, 2, 'usuarios_crear', 'Crear nuevo usuario')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(11, 4, 'ordenes_pendientes', 'Pendientes')
+  VALUES(11, 2, 'usuarios_listar', 'Listar usuarios')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(12, 4, 'ordenes_consulta', 'Consulta')
+  VALUES(12, 2, 'usuarios_buscar', 'Busca usuarios')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(13, 4, 'asignacion_manual', 'Manual')
+  VALUES(13, 2, 'usuarios_perfiles', 'Lista perfiles de usuario')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(14, 4, 'asignacion_automatica', 'Automática')
+  VALUES(14, 2, 'config_generales', 'Configuración de sistema')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(15, 3, 'ordenes_asignadas', 'Asignadas')
+  VALUES(15, 2, 'config_permisos', 'Configuración de permisos')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(16, 3, 'ordenes_pendientes', 'Pendientes')
+  VALUES(16, 2, 'config_categoria', 'Configuración de categorías')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(17, 3, 'ordenes_consulta', 'Consulta')
+  VALUES(17, 2, 'config_tipo_articulo', 'Configuración de tipo artículos')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(18, 3, 'articulo_consulta', 'Consulta')
+  VALUES(18, 2, 'config_precios', 'Configuración de precios')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(19, 3, 'articulo_listar', 'Listar')
+  VALUES(19, 3, 'tec_ordenes_asignadas', 'Ordenes de trabajo asignadas')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(20, 5, 'informes_ordenes', 'Ordenes')
+  VALUES(20, 3, 'tec_ordenes_reparadas', 'Ordenes de trabajo en estado reparado')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(21, 5, 'informes_tecnicos', 'Técnicos')
+  VALUES(21, 4, 'ad_ordenes_consulta', 'Consulta Ordenes de trabajo')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(22, 2, 'usuarios_crear', 'Crear')
+  VALUES(22, 4, 'ad_ordenes_sin_asignar', 'Lista ordenes sin asignar')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(23, 2, 'usuarios_listar', 'Listar')
+  VALUES(23, 4, 'ad_tecnicos_lista', 'Lista de técnicos')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(24, 2, 'permisos_crear', 'Crear')
+  VALUES(24, 4, 'ad_tecnicos_especialidades', 'Especialidades de técnicos')
+GO
+
+INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
+  VALUES(25, 5, 'informes_ordenes', 'Ordenes')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(25, 2, 'permisos_listar', 'Listar')
+  VALUES(26, 5, 'informes_tecnicos', 'Técnicos')
 GO
-INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(26, 2, 'perfiles_listar', 'Listar')
-GO
-INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(27, 2, 'sistema_configuracio', 'Configuración')
-GO
+
 SET IDENTITY_INSERT [dbo].[Permisos] OFF
 GO

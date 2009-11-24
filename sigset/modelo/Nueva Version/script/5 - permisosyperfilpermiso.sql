@@ -3,199 +3,265 @@ USE [sigset]
 SET IDENTITY_INSERT [dbo].[PerfilPermiso] ON
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(1, 1, 1, 15)
+  VALUES(1, 6, 1, 1)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(2, 1, 1, 16)
+  VALUES(2, 6, 1, 2)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(3, 1, 1, 17)
+  VALUES(3, 6, 1, 3)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(4, 1, 1, 18)
+  VALUES(4, 6, 1, 4)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(5, 1, 1, 19)
+  VALUES(5, 6, 1, 5)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(6, 2, 1, 1)
+  VALUES(6, 6, 1, 6)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(7, 2, 1, 2)
+  VALUES(7, 6, 1, 7)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(8, 2, 1, 3)
+  VALUES(8, 6, 1, 8)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(9, 2, 1, 4)
+  VALUES(9, 6, 1, 9)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(10, 2, 1, 5)
+  VALUES(10, 6, 1, 10)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(11, 2, 1, 6)
+  VALUES(11, 6, 1, 11)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(12, 2, 1, 7)
+  VALUES(12, 6, 1, 12)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(13, 2, 1, 8)
+  VALUES(13, 6, 1, 13)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(14, 2, 1, 9)
+  VALUES(14, 6, 1, 14)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(15, 3, 1, 1)
+  VALUES(15, 6, 1, 15)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(16, 3, 1, 2)
+  VALUES(16, 6, 1, 16)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(17, 3, 1, 3)
+  VALUES(17, 6, 1, 17)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(18, 3, 1, 4)
+  VALUES(18, 6, 1, 18)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(19, 3, 1, 5)
+  VALUES(19, 6, 1, 19)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(20, 3, 1, 6)
+  VALUES(20, 6, 1, 20)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(21, 3, 1, 7)
+  VALUES(21, 6, 1, 21)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(22, 3, 1, 8)
+  VALUES(22, 6, 1, 22)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(23, 3, 1, 9)
+  VALUES(23, 6, 1, 23)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(24, 3, 1, 10)
+  VALUES(24, 6, 1, 24)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(25, 3, 1, 11)
+  VALUES(25, 6, 1, 25)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(26, 3, 1, 12)
+  VALUES(26, 6, 1, 26)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(27, 3, 1, 13)
+  VALUES(27, 1, 1, 19)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(28, 3, 1, 14)
+  VALUES(28, 1, 1, 20)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(29, 4, 1, 27)
+  VALUES(29, 1, 1, 2)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(30, 4, 1, 26)
+  VALUES(30, 1, 1, 3)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(31, 4, 1, 25)
+  VALUES(31, 1, 1, 8)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(32, 4, 1, 24)
+  VALUES(32, 1, 1, 9)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(33, 4, 1, 23)
+  VALUES(33, 2, 1, 1)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(34, 4, 1, 22)
+  VALUES(34, 2, 1, 2)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(35, 5, 1, 1)
+  VALUES(35, 2, 1, 3)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(36, 5, 1, 2)
+  VALUES(36, 2, 1, 4)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(37, 5, 1, 3)
+  VALUES(37, 2, 1, 5)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(38, 5, 1, 4)
+  VALUES(38, 2, 1, 6)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(39, 5, 1, 5)
+  VALUES(39, 2, 1, 7)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(40, 5, 1, 6)
+  VALUES(40, 2, 1, 8)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(41, 5, 1, 7)
+  VALUES(41, 2, 1, 9)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(42, 5, 1, 9)
+  VALUES(42, 3, 1, 21)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(43, 5, 1, 8)
+  VALUES(43, 3, 1, 22)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(44, 5, 1, 11)
+  VALUES(44, 3, 1, 23)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(45, 5, 1, 10)
+  VALUES(45, 3, 1, 24)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(46, 5, 1, 12)
+  VALUES(46, 3, 1, 1)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(47, 5, 1, 14)
+  VALUES(47, 3, 1, 2)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(48, 5, 1, 13)
+  VALUES(48, 3, 1, 3)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(49, 5, 1, 13)
+  VALUES(49, 3, 1, 4)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(50, 5, 1, 15)
+  VALUES(50, 3, 1, 5)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(51, 5, 1, 16)
+  VALUES(51, 3, 1, 6)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(52, 5, 1, 16)
+  VALUES(52, 3, 1, 7)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(53, 5, 1, 17)
+  VALUES(53, 3, 1, 8)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(54, 5, 1, 18)
+  VALUES(54, 3, 1, 9)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(55, 5, 1, 18)
+  VALUES(55, 4, 1, 10)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(56, 5, 1, 19)
+  VALUES(56, 4, 1, 11)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(57, 5, 1, 20)
+  VALUES(57, 4, 1, 12)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(58, 5, 1, 21)
+  VALUES(58, 4, 1, 13)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(59, 5, 1, 22)
+  VALUES(59, 4, 1, 14)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(60, 5, 1, 22)
+  VALUES(60, 4, 1, 15)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(61, 5, 1, 23)
+  VALUES(61, 4, 1, 16)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(62, 5, 1, 24)
+  VALUES(62, 4, 1, 17)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(63, 5, 1, 25)
+  VALUES(63, 4, 1, 18)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(64, 5, 1, 26)
+  VALUES(64, 5, 1, 1)
 GO
 INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
-  VALUES(65, 5, 1, 27)
+  VALUES(65, 5, 1, 2)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(66, 5, 1, 3)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(67, 5, 1, 4)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(68, 5, 1, 5)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(69, 5, 1, 6)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(70, 5, 1, 7)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(71, 5, 1, 8)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(72, 5, 1, 9)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(73, 5, 1, 10)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(74, 5, 1, 11)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(75, 5, 1, 12)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(76, 5, 1, 13)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(77, 5, 1, 14)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(78, 5, 1, 15)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(79, 5, 1, 16)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(80, 5, 1, 17)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(81, 5, 1, 18)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(82, 5, 1, 21)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(83, 5, 1, 22)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(84, 5, 1, 23)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(85, 5, 1, 24)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(86, 5, 1, 25)
+GO
+INSERT INTO [dbo].[PerfilPermiso]([Id], [IdPerfil], [Estado], [IdPermiso])
+  VALUES(87, 5, 1, 26)
 GO
 
 SET IDENTITY_INSERT [dbo].[PerfilPermiso] OFF
