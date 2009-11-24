@@ -313,5 +313,28 @@ namespace Services.OrdenTrabajo
         }
 
         #endregion
+
+        #region IOrdenTrabajoServicio Members
+
+
+        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByArticulo(string Serie, string Modelo)
+        {
+            var ordenes = _repo.GetTodasLasOrdenDeTrabajo();
+            if (!string.IsNullOrEmpty(Modelo))
+            {
+                Modelo = Modelo.Trim();
+                ordenes= ordenes.Where(x=> x.Articulo.Modelo.Contains(Modelo));
+            }
+
+            if (!string.IsNullOrEmpty(Serie))
+            {
+                Serie = Serie.Trim();
+                ordenes = ordenes.Where(x=> x.Serie.Contains(Serie));
+            }
+
+            return ordenes.ToList();
+        }
+
+        #endregion
     }
 }

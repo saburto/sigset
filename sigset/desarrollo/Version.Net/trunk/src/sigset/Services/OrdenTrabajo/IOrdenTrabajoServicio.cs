@@ -18,5 +18,7 @@ namespace Services.OrdenTrabajo
         void AsginarTecnicoOrden(int idOrden, int idTecnico, string usuario);
 
         void AceptarOrden(decimal id, Data.Modelo.Usuario usuario);
+
+        System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByArticulo(string Serie, string Modelo);
     }
 }

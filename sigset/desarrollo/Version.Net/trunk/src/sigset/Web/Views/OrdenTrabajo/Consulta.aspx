@@ -11,6 +11,8 @@
 <%using (Html.BeginReady())
   {%>
 
+      $("#tabs").tabs();
+
       $('#Id').focus
       (
         function() {
@@ -40,20 +42,27 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<h2>Consulta Orden de Trabajo</h2>
 
 
     <%= Html.ValidationSummary() %>
 
+<div style="font-size:80%">
+<div id="tabs">
+    <ul>
+        <li><a href="#cliente">Por Número Orden y/o Rut</a></li>
+        <li><a href="#articulo">Por Artículo</a></li>
+    </ul>
+    <div id="cliente">
     <% using (Ajax.BeginForm("Consulta", new AjaxOptions { HttpMethod="POST", LoadingElementId="loadingAjax", UpdateTargetId="resultado" }))
        {%>
 
         <fieldset>
-            <legend>Consulta Orden de Trabajo</legend>
+            
              <div class="three-column-container">
              <div class="three-column-left">
             <p>
-                <label for="Id"><%=Html.Encode("Número de Orden de Trabajo")%></label>
+                <label for="Id"><%=Html.Encode("Número de Orden de Trabajo")%>:</label>
                 <%= Html.TextBox("Id", null,new {title="Número de Orden que se desea buscar" })%>
                 <%= Html.ValidationMessage("Id", "*")%>
             </p>
@@ -74,7 +83,45 @@
         </p>
 
     <% } %>
+    </div>
+    
+    <div id="articulo">
+    <% using (Ajax.BeginForm("ConsultaArticulo", new AjaxOptions { HttpMethod="POST", LoadingElementId="loadingAjax", UpdateTargetId="resultado" }))
+       {%>
+
+        <fieldset>
+             <div class="three-column-container">
+             <div class="three-column-left">
+            <p>
+                <label for="Serie"><%=Html.Encode("Número de Serie de Artículo") %>:</label>
+                <%= Html.TextBox("Serie", null,new {title="Número de serie de artículo se desea buscar" })%>
+                <%= Html.ValidationMessage("Serie", "*")%>
+            </p>
+            </div>
+            <div class="three-column-middle">
+            <p>
+                <label for="Modelo">Modelo:</label>
+                <%= Html.TextBox("Modelo", null,new {title="Modelo de artículo se desea buscar" })%>
+                <%= Html.ValidationMessage("Modelo", "*")%>
+            </p>
+            </div>
+            </div>
+            <div class="clear"></div>
+            
+        </fieldset>
+        <p>
+           <%=Html.ButtonSubmit("Consultar") %>
+        </p>
+
+    <% } %>
+    </div>
+
+</div>    
+</div>
+<br />    
+    
     <div id="resultado"></div>
+
 
 </asp:Content>
 
