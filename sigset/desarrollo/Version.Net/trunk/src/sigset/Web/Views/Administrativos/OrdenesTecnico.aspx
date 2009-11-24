@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Ordenes Tecnico
+    <h2>Ordenes <%=Html.Encode("Técnico") %>
     <%if (Model.FirstOrDefault() != null)
 	{%>
      <%=string.Format("{0} {1}",Model.FirstOrDefault().Tecnico.Usuario.Nombres,Model.FirstOrDefault().Tecnico.Usuario.ApellidoPaterno) %>

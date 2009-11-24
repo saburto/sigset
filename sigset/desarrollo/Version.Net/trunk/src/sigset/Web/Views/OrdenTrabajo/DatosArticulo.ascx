@@ -11,7 +11,7 @@
             <span style="font-weight:bold">Marca:</span>
             <%= Html.Encode(Model.Marca1.Descripcion) %>
             <br />
-            <span style="font-weight:bold">Linea:</span>
+            <span style="font-weight:bold"><%=Html.Encode("Línea")%>:</span>
             <%= Html.Encode(Model.Linea1.Descripcion) %>
         </p>
 

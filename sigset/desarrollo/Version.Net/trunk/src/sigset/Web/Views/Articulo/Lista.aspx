@@ -32,7 +32,7 @@
                 Valor Revisi&oacute;n
             </th>
             <th>
-                Linea
+                <%=Html.Encode("Línea")%>
             </th>
         </tr>
     

@@ -7,7 +7,7 @@
       <mvcSiteMapNode title="Sin Asignar" controller="Administrativos" action="ListaSinAsignar" />
     </mvcSiteMapNode>
 
-    <mvcSiteMapNode title="Tecnicos" controller="Tecnico" action="" >
+    <mvcSiteMapNode title="Técnicos" controller="Tecnico" action="" >
       <mvcSiteMapNode title="Lista" controller="Tecnico" action="Lista" />
       <mvcSiteMapNode title="Especialidades" controller="Especialidad"  action="Lista" />
     </mvcSiteMapNode>

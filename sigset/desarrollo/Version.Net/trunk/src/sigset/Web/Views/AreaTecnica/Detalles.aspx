@@ -66,7 +66,7 @@
             </div>
             <div class="three-column-right">
             <p> 
-            Linea: <%= Html.Encode(String.Format("{0}", Model.Articulo.Linea1.Descripcion)) %>
+            <%=Html.Encode("Línea")%>: <%= Html.Encode(String.Format("{0}", Model.Articulo.Linea1.Descripcion)) %>
             </p>
             </div>
             </div>

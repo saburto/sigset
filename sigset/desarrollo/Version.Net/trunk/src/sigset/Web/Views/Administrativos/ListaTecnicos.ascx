@@ -9,7 +9,7 @@
                     <tr>
                         <td colspan="2" >
                         <span class="nombre ui-widget-header ui-corner-all ui-helper-clearfix" style="text-align:center; font-size:1.2em; color:#459E00;font-weight:bold;font-family:'trebuchet MS',verdana,sans-serif;">
-                            <%=Html.Encode(tecnico.Usuario.NombreCompleto) %>
+                            <%=Html.ActionLink(tecnico.Usuario.User, "Detalles", "Tecnico", new{id=tecnico.Id}, new{ target="_BLANK"}) %>
                         </span>
                         <input type="hidden" value="<%=tecnico.Id %>" name="idTecnico" />
                         </td>
@@ -22,6 +22,7 @@
                             style="padding: 2px; vertical-align: top; text-align: left; color: #000000">
                             Asignados: <%=tecnico.OrdenesAsignadas() %><br />
                             En revisi&oacute;n: <%=tecnico.OrdenesEnRevision() %><br />
+                            En reparaci&oacute;n: <%=tecnico.OrdenesEnRevision() %><br />
                             Revisados: <%=tecnico.OrdenesReparadas() %><br />
                             
                             <div class="starsDiv">

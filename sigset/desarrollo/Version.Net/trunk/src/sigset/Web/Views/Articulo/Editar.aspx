@@ -23,8 +23,8 @@
                 <%= Html.ValidationMessage("Marca", "*") %>
                 </div>
                 <div class="three-column-right">
-                <label for="Linea">Linea:</label>
-                <%= Html.AutoCompleteTextBox("Linea",Model.Linea1.Descripcion, Model.Linea  , new { @class = "required", title="Linea a la que pertence el modelo" })%>
+                <label for="Linea"><%=Html.Encode("Línea")%>:</label>
+                <%= Html.AutoCompleteTextBox("Linea",Model.Linea1.Descripcion, Model.Linea  , new { @class = "required", title="Línea a la que pertence el modelo" })%>
                 <%= Html.ValidationMessage("Linea", "*") %>
                 </div>
             </div>

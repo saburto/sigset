@@ -284,11 +284,7 @@ namespace Web.Controllers
         {
             try
             {
-               
-
                 var ordenes = _srvOrdenTrabajo.GetOrdenesTrabajo(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);
-
-
                 return PartialView("ListaOrdenes", ordenes);
             }
             catch (Exception ex)

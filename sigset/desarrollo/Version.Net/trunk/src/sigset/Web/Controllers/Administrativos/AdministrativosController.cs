@@ -109,7 +109,7 @@ namespace Web.Controllers.Administrativos
 
         [AcceptVerbs(HttpVerbs.Post)]
         [Authorize(Roles = "ordenes_consulta")]
-        public ActionResult ConsultaOrdenes(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
+        public ActionResult ConsultaOrdenes(DateTime? Fecha_Inicio, DateTime? Fecha_Final, string ListaTipos, string ListaEstados)
         {
             return new OrdenTrabajoController().Listar(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);
         }
