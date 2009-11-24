@@ -4,7 +4,7 @@ INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(1, 'SERVICIO TÉCNICO', 'Nombre de empresa')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(2, '33', 'Teléfono de empresa')
+  VALUES(2, '56 2 12345678', 'Teléfono de empresa')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(3, 'true,false', 'Habilitar Asignación Automática')
