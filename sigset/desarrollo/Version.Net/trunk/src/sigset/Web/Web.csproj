@@ -357,6 +357,8 @@
     <Content Include="Views\PrecioGarantia\Lista.aspx" />
     <Content Include="Views\TipoArticulo\Crear.ascx" />
     <Content Include="Views\TipoArticulo\Lista.aspx" />
+    <Content Include="Views\Usuario\Buscar.aspx" />
+    <Content Include="Views\Usuario\ListaUsuario.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet1.xsc">

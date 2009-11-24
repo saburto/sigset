@@ -24,7 +24,7 @@
           
        </p>
     <% } %>
-    
+    <%=Html.ClientSideValidation("", typeof(Data.Modelo.PrecioGarantia)) %>
     
     
 
