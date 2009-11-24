@@ -12,6 +12,7 @@ using Helpers;
 using System.IO;
 using System.Text.RegularExpressions;
 using Data.Modelo.Constantes;
+using Services.Helpers;
 
 
 
@@ -136,8 +137,37 @@ namespace Web.Controllers.Admin
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
-        public ActionResult Buscar(Usuario usuario)
+        public ActionResult Buscar(Usuario usuario, string RutDisplay)
         {
+
+            if (!string.IsNullOrEmpty(RutDisplay))
+            {
+                try
+                {
+                    if (RutDisplay.Contains('-'))
+                    {
+                        string[] data = RutDisplay.Split('-');
+                        if (ValidarRut.RutEsValido(data[0], data[1]))
+                        {
+                            usuario.Rut = int.Parse(data[0]);
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception e)
+                {
+                    return Content("Rut no valido. Ej.: 12345678-9");
+                }
+            }
+
+
             var usuarios = _servicio.BuscarUsuario(usuario);
 
 
