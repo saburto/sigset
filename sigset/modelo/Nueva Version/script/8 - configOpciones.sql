@@ -4,28 +4,28 @@ INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(1, 'SERVICIO TÉCNICO', 'Nombre de empresa')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(2, '33', 'Telefono de empresa')
+  VALUES(2, '33', 'Teléfono de empresa')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(3, 'true,false', 'Habilitar Asignación Automatica')
+  VALUES(3, 'true,false', 'Habilitar Asignación Automática')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(4, '33', 'Asignación Automatica: Número maximo de ordenes asignadas que puede tener un tecnico')
+  VALUES(4, '33', 'Asignación Automática: Número máximo de ordenes asignadas que puede tener un tecnico')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(5, '4', 'Asignación Automatica: Número maximo de ordenes en revision que puede tener un tecnico')
+  VALUES(5, '4', 'Asignación Automática: Número máximo de ordenes en revisión que puede tener un tecnico')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(6, '10', 'Asignación Automatica: Número maximo de ordenes en estado reparacion')
+  VALUES(6, '10', 'Asignación Automática: Número máximo de ordenes en estado reparación')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(7, 'true,false', 'Asignación Automatica: Selecciona por mejor nivel')
+  VALUES(7, 'true,false', 'Asignación Automática: Selecciona por mejor nivel')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(8, 'true', 'Asignación Automatica: Solo seleccionar tecnicos especialistas')
+  VALUES(8, 'true', 'Asignación Automática: Solo seleccionar técnicos especialistas')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
-  VALUES(9, 'true,false', 'Asignación Automatica: Seleccionar a más desocupado si no existe ningun tecnico segun el criterio o dejar sin asignacion')
+  VALUES(9, 'true,false','Asignación Automática: Seleccionar a más desocupado si no existe ningún técnico según el criterio o dejar sin asignación')
 GO
 INSERT INTO [dbo].[Configuracion]([Id], [Valor], [Descripcion])
   VALUES(10, 'true,false', 'Mostrar Logo')
