@@ -165,15 +165,6 @@ namespace Services.Usuarios
         {
             var usuarios = _repo.GetUsuarios();
 
-             if (!string.IsNullOrEmpty(parametros.User))
-             {
-                 return usuarios.Where(x => x.User == parametros.User).ToList();
-             }
-
-             if (parametros.Rut != 0)
-             {
-                 return usuarios.Where(x => x.Rut == parametros.Rut).ToList();
-             }
 
              if (!string.IsNullOrEmpty(parametros.Nombres))
              {  
@@ -190,6 +181,15 @@ namespace Services.Usuarios
                  usuarios = usuarios.Where(x => x.PerfilUsuario == parametros.PerfilUsuario);
              }
 
+             if (!string.IsNullOrEmpty(parametros.User))
+             {
+                 return usuarios.Where(x => x.User == parametros.User).ToList();
+             }
+
+             if (parametros.Rut != 0)
+             {
+                 return usuarios.Where(x => x.Rut == parametros.Rut).ToList();
+             }
 
              return usuarios.ToList();
         }
