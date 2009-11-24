@@ -245,7 +245,11 @@
                     <%= Html.ActionLink("Acerca", "About", "Home") %></li>
             </ul>
             <p class="copyright">
-                &copy; <%=DateTime.Now.Year %> <%=Html.Encode(Services.Configuraciones.Configuracion.NombreEmpresa) %>
+                &copy; <%=DateTime.Now.Year %> <%=Html.Encode(Services.Configuraciones.Configuracion.NombreEmpresa) %> 
+                <br />
+                Tel&eacute;fono <%=Html.Encode(Services.Configuraciones.Configuracion.TelefonoEmpresa) %>
+                <br />
+                Direcci&oacute;n <%=Html.Encode(Services.Configuraciones.Configuracion.DireccionEmpresa) %>
             </p>
         </div>
     </div>

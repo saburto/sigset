@@ -29,8 +29,16 @@
 		showButtonPanel: true
     });
 
-    $('#FechaCompra').datepicker();
-    $('#FechaEntrega').datepicker();
+    $('#FechaEntrega').datepicker(
+    {
+        minDate: +0
+    }
+    );
+    $('#FechaCompra').datepicker(
+    {
+        maxDate: +0
+    }
+    );
     
     $('#TipoOrden').change(
         function()
@@ -107,7 +115,7 @@
                 <label for="Boleta">Boleta:</label>
                 <%= Html.TextBox("Boleta", null, new { title="Boleta de la compra del artículo para hacer valida la garantía" })%>
                 <%= Html.ValidationMessage("Boleta", "*") %>
-                <label for="Poliza">Poliza:</label>
+                <label for="Poliza"><%=Html.Encode("Póliza") %>:</label>
                 <%= Html.TextBox("Poliza", null, new {title="Poliza de garantía del producto" })%>
                 <%= Html.ValidationMessage("Poliza", "*") %>
                 </p>

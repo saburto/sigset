@@ -8,7 +8,7 @@ namespace Services.OrdenTrabajo
         void AsigancionAutomatica(global::Data.Modelo.OrdenTrabajo ot);
         decimal CrearOrdenTrabajo(global::Data.Modelo.OrdenTrabajo orden, string usuario);
         System.Collections.Generic.IList<global::Data.Modelo.Estado> GetEstadosOrden();
-        System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajo(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados);
+        System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajo(DateTime? Fecha_Inicio, DateTime? Fecha_Final, string ListaTipos, string ListaEstados);
         System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByRut(decimal p);
         System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoByTecnico(decimal id);
         System.Collections.Generic.IList<global::Data.Modelo.OrdenTrabajo> GetOrdenesTrabajoSinAsignar();

@@ -21,6 +21,16 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>Report_Parameter_1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="DireccionEmpresa">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_2</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TelefonoEmpresa">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_3</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>21cm</InteractiveWidth>
@@ -31,6 +41,38 @@
   <PageHeader>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
+      <Textbox Name="textbox40">
+        <rd:DefaultName>textbox40</rd:DefaultName>
+        <Top>1.5cm</Top>
+        <Width>17.75cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=Parameters!TelefonoEmpresa.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox32">
+        <rd:DefaultName>textbox32</rd:DefaultName>
+        <Top>0.75cm</Top>
+        <Width>17.75cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=Parameters!DireccionEmpresa.Value</Value>
+      </Textbox>
       <Textbox Name="textbox1">
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Width>6.75cm</Width>
@@ -49,17 +91,16 @@
         <Value>=Parameters!NombreEmpresa.Value</Value>
       </Textbox>
       <Line Name="line1">
-        <Top>1cm</Top>
+        <Top>2.25cm</Top>
         <Width>18.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
           </BorderStyle>
         </Style>
-        <Height>0cm</Height>
       </Line>
     </ReportItems>
-    <Height>1.2619cm</Height>
+    <Height>2.25cm</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageHeader>
   <BottomMargin>1.1cm</BottomMargin>
@@ -424,7 +465,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <ZIndex>27</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.63492cm</Height>
-        <Value>Condición Articulo:</Value>
+        <Value>Condición Artículo:</Value>
       </Textbox>
       <Textbox Name="textbox26">
         <Top>10.5cm</Top>
@@ -454,7 +495,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <ZIndex>25</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.63492cm</Height>
-        <Value>N° de Serie Articulo:</Value>
+        <Value>N° de Serie Artículo:</Value>
       </Textbox>
       <Textbox Name="textbox24">
         <Top>9cm</Top>
@@ -650,7 +691,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <CanGrow>true</CanGrow>
         <Left>6.25cm</Left>
         <Height>0.63492cm</Height>
-        <Value>Precio Garantia:</Value>
+        <Value>Precio Garantía:</Value>
       </Textbox>
       <Textbox Name="textbox12">
         <Top>6.75cm</Top>
@@ -665,7 +706,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <ZIndex>11</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.63492cm</Height>
-        <Value>Categoria:</Value>
+        <Value>Categoría:</Value>
       </Textbox>
       <Textbox Name="textbox11">
         <Top>5.25cm</Top>
@@ -695,7 +736,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <ZIndex>9</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.63492cm</Height>
-        <Value>Tipo Articulo:</Value>
+        <Value>Tipo Artículo:</Value>
       </Textbox>
       <Textbox Name="textbox9">
         <Top>4.5cm</Top>
@@ -740,7 +781,7 @@ TLph96d3xLpkwsGcgcJdUkYPrQaqofFp4st/wCzbwILet+3/d9zxZJttxYTEGjyJ8eR2LofhBV/umrMe
         <ZIndex>6</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.63492cm</Height>
-        <Value>Articulo</Value>
+        <Value>Artículo</Value>
       </Textbox>
       <Line Name="line2">
         <Top>2.5cm</Top>

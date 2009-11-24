@@ -9,6 +9,30 @@ using System.IO;
 
 namespace Web.Controllers.Admin
 {
+    public class compare : IComparer<Data.Modelo.Configuracion>
+    {
+
+        #region IComparer<Configuracion> Members
+
+        public int Compare(Data.Modelo.Configuracion x, Data.Modelo.Configuracion y)
+        {
+            if (x.Id == 10)
+            {
+                return 1;
+            }
+
+            if (y.Id == 10)
+            {
+                return -1;
+            }
+
+            return x.Id.ToString().CompareTo(y.Id.ToString());
+        }
+
+        #endregion
+    }
+
+
     [Seguridad.ManejadorErrores]
     public class ConfiguracionController : Controller
     {
@@ -21,7 +45,11 @@ namespace Web.Controllers.Admin
 
         public ActionResult Lista()
         {
-            return View("Lista",srv.GetConfiguraciones());
+            var configs = srv.GetConfiguraciones();
+            configs.Sort(new compare());
+            
+
+            return View("Lista",configs);
         }
 
         public ActionResult Editar(FormCollection collecion)

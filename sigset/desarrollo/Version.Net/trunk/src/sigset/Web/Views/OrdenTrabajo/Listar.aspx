@@ -60,12 +60,12 @@
             <div class="three-column-left">
                 <label for="Fecha_Inicio">
                     Rango de Fecha:</label>
-                <%=Html.TextBox("Fecha_Inicio") %>
+                <%=Html.TextBox("Fecha_Inicio", null, new { title = "Fecha mínima en que se ingreso la orden de trabajo" })%>
             </div>
             <div class="three-column-middle">
                 <label for="Fecha_Final">
-                    hasta:</label>
-                <%=Html.TextBox("Fecha_Final") %>
+                    Hasta:</label>
+                <%=Html.TextBox("Fecha_Final", null, new { title = "Fecha máxima en que se ingreso la orden de trabajo" })%>
             </div>
         </div>
         <br />

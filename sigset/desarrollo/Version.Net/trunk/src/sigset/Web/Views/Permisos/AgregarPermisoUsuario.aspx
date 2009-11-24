@@ -29,7 +29,13 @@
             <tr>
                 <td>
                     <%=Html.ButtonLinkIcon(Url.Action("QuitarUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idPerfil = ViewData["idperfil"], idUsuario = ViewData["idUsuario"] }), "Quitar", Iconos.circle_close, IconPosition.solo, new { title = "Quitar Permiso" })%>
-                    <%=Html.ButtonLinkIcon(Url.Action("EstadoUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
+                    
+                    <% if (item.Estado)
+                       { %>
+                        <%=Html.ButtonLinkIcon(Url.Action("EstadoUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.circle_minus, IconPosition.solo, new { title = "Desactivar Permiso" })%>
+                    <%} else { %>
+                        <%=Html.ButtonLinkIcon(Url.Action("EstadoUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.circle_check, IconPosition.solo, new { title = "Activar Permiso" })%>
+                    <%} %>
                 </td>
                 <td>
                     <%= Html.Encode(item.Estado.toEstado()) %>
@@ -54,7 +60,15 @@
               { %>
                 <tr>
                     <td>
-                        <%=Html.ButtonLinkIcon(Url.Action("CambiarEstadoPerfilUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.power, IconPosition.solo, new { title = "Cambiar Estado" })%>
+                    <%if (item.Estado)
+                      { %>
+                    
+                        <%=Html.ButtonLinkIcon(Url.Action("CambiarEstadoPerfilUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.circle_minus, IconPosition.solo, new { title = "Desactivar Permiso" })%>
+                    <%}
+                      else
+                      { %>
+                        <%=Html.ButtonLinkIcon(Url.Action("CambiarEstadoPerfilUsuarioPermiso", "Permisos", new { idPermiso = item.IdPermiso, idUsuario = ViewData["idUsuario"] }), "Estado", Iconos.circle_check, IconPosition.solo, new { title = "Activar Permiso" })%>
+                    <%} %>
                     </td>
                     <td>
                         <%= Html.Encode(item.Estado.toEstado()) %>
