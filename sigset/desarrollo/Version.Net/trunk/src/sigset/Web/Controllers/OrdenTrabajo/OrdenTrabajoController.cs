@@ -249,6 +249,26 @@ namespace Web.Controllers
             return null;
         }
 
+        [Authorize(Roles = "ordenes_consulta")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ConsultaArticulo(string Serie, string Modelo)
+        {
+       
+            if (!string.IsNullOrEmpty(Serie) || !string.IsNullOrEmpty(Modelo))
+            {
+                var ordenTrabajo = _srvOrdenTrabajo.GetOrdenesTrabajoByArticulo(Serie, Modelo);
+                if (!ordenTrabajo.Any())
+                {
+                    return Content("<p><span class=" + HtmlHelper.ValidationMessageCssClassName + ">No se encuentran ordenes de trabajo.</span></p>");
+                }
+                else
+                {
+                    return PartialView("ListaOrdenes", ordenTrabajo);
+                }
+            }
+            return Content("");
+        }
+
         [Authorize(Roles = "ordenes_listar")]
         public ActionResult Listar()
         {
