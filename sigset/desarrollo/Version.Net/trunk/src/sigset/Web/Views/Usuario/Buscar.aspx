@@ -21,7 +21,7 @@
                  <div class="three-column-middle">
                    <p>
                         <label for="Rut">Rut:</label>
-                        <%= Html.TextBox("Rut") %>
+                        <%= Html.RutTextBox() %>
                         <%= Html.ValidationMessage("Rut", "*") %>
                     </p>
                   </div>
