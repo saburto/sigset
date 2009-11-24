@@ -17,32 +17,37 @@
                         <%= Html.TextBox("User") %>
                         <%= Html.ValidationMessage("User", "*") %>
                     </p>
-                    <p>
+                 </div>
+                 <div class="three-column-middle">
+                   <p>
                         <label for="Rut">Rut:</label>
                         <%= Html.TextBox("Rut") %>
                         <%= Html.ValidationMessage("Rut", "*") %>
-                    </p>                    
-                </div>
-                <div class="three-column-middle">
-                    <p>
+                    </p>
+                  </div>
+            </div>
+            <div class="clear"></div>
+            <div class="three-column-container">
+                <div class="three-column-left">
+                   <p>
                         <label for="Nombres">Nombres:</label>
                         <%= Html.TextBox("Nombres") %>
                         <%= Html.ValidationMessage("Nombres", "*") %>
                     </p>
-                    <p>
-                        <label for="PerfilUsuario">Perfil de Usuario:</label>
-                        <%= Html.DropDownList("PerfilUsuario") %>
-                        <%= Html.ValidationMessage("PerfilUsuario", "*") %>
-                    </p>
                 </div>
-                <div class="three-column-right">
-
+                <div class="three-column-middle">
                     <p>
                         <label for="ApellidoPaterno">Apellido Paterno:</label>
                         <%= Html.TextBox("ApellidoPaterno") %>
                         <%= Html.ValidationMessage("ApellidoPaterno", "*") %>
                     </p>
-
+                </div>
+                <div class="three-column-right">
+                    <p>
+                        <label for="PerfilUsuario">Perfil de Usuario:</label>
+                        <%= Html.DropDownList("PerfilUsuario") %>
+                        <%= Html.ValidationMessage("PerfilUsuario", "*") %>
+                    </p>
                 </div>
             </div>
             <div class="clear"></div>
@@ -50,6 +55,7 @@
         </fieldset>
         <%=Html.ButtonSubmit("Buscar") %>
     <% } %>
+    <br />
 <div id="resultado"></div>
 </asp:Content>
 

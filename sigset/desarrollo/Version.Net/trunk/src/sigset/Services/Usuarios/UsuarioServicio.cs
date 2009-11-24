@@ -157,6 +157,44 @@ namespace Services.Usuarios
           return _repo.GetPerfilById(id);
         }
 
+
+        #region IUsuarioServicio Members
+
+
+        public IList<Usuario> BuscarUsuario(Usuario parametros)
+        {
+            var usuarios = _repo.GetUsuarios();
+
+             if (!string.IsNullOrEmpty(parametros.User))
+             {
+                 return usuarios.Where(x => x.User == parametros.User).ToList();
+             }
+
+             if (parametros.Rut != 0)
+             {
+                 return usuarios.Where(x => x.Rut == parametros.Rut).ToList();
+             }
+
+             if (!string.IsNullOrEmpty(parametros.Nombres))
+             {  
+                usuarios = usuarios.Where(x => x.Nombres.Contains(parametros.Nombres)); 
+             }
+
+             if (!string.IsNullOrEmpty(parametros.ApellidoPaterno))
+             {
+                 usuarios = usuarios.Where(x=> x.ApellidoPaterno.Contains(parametros.ApellidoPaterno));
+             }
+
+             if (parametros.PerfilUsuario > 0)
+             {
+                 usuarios = usuarios.Where(x => x.PerfilUsuario == parametros.PerfilUsuario);
+             }
+
+
+             return usuarios.ToList();
+        }
+
+        #endregion
     }
 }
     

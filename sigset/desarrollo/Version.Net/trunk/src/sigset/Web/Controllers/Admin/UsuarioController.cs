@@ -138,7 +138,9 @@ namespace Web.Controllers.Admin
         [ValidateInput(false)]
         public ActionResult Buscar(Usuario usuario)
         {
-            var usuarios = _servicio.GetTodosLosUsuario();
+            var usuarios = _servicio.BuscarUsuario(usuario);
+
+
             return PartialView("ListaUsuario", usuarios);
         }
 
