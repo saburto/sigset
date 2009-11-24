@@ -45,8 +45,8 @@
             $("#tecnicos").dialog({
 
                 position: 'right',
-                height: 300,
-                width: 170
+                height: 400,
+                width: 200
 
 
             });

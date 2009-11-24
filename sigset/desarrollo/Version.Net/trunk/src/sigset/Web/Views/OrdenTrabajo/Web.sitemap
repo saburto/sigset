@@ -2,7 +2,7 @@
 <siteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-1.0" enableLocalization="true">
   <mvcSiteMapNode title="Inicio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
 
-    <mvcSiteMapNode title="Ordenes" controller="OrdenTrabajo" action="">
+    <mvcSiteMapNode title="Ordenes de Trabajo" controller="OrdenTrabajo" action="">
       <mvcSiteMapNode title="Crear Orden" controller="OrdenTrabajo" action="Crear" isDynamic="false"  />
       <mvcSiteMapNode title="Consulta" controller="OrdenTrabajo" action="Consulta" />
       <mvcSiteMapNode title="Listar" controller="OrdenTrabajo" action="Listar" />  

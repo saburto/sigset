@@ -10,6 +10,8 @@
 
     <fieldset>
     <legend>Datos Basico</legend>
+    <div class="two-column-container">
+        <div class="two-column-left">
         <p>
             Nombre:
             <%= Html.Encode(Model.Usuario.Nombres + " " + Model.Usuario.ApellidoPaterno + " " + Model.Usuario.ApellidoMaterno) %>
@@ -35,9 +37,8 @@
 	            <span id="desc" ></span>
 	        </td>
 	        <td >
-	        <p>
-	            
-	        </p>
+	        
+	  
 	        </td>
 	        </tr>
 	        </table>
@@ -52,10 +53,15 @@
             <%= Html.ButtonLinkIcon(Url.Action("AgregarNuevaEspecialidad", new {id=Model.Id }), "Agregar", Iconos.circle_plus, IconPosition.left, new { onclick = "return abrirEspc(this)", title = "Agregar nueva especialidad" })%>
         </div></span>  
         </p>
-        <br />
+        
+        </div>
+        
+              <div class="two-column-right">
+	            <%=Html.ImagenUsuario(Model.Usuario.User, "", "", new { style="width:128px; height:128px;" })%>
+	        </div>    
+	</div>
+	<br />
   </fieldset>  
-
-  <br />
   <br />  
 <fieldset>
 <legend>Ordenes de Trabajo</legend>

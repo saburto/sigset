@@ -35,7 +35,7 @@
             <%= Html.Encode(String.Format("{0:F}", Model.PrecioGarantia)) %>
         </p>
         <p>
-            Linea:
+            <%=Html.Encode("Línea")%>:
             <%= Html.Encode(String.Format("{0:F}", Model.Linea)) %>
         </p>
     </fieldset>

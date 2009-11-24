@@ -127,7 +127,7 @@
              <%if (item.Especialidades != null && item.Especialidades.Count > 0)
                { %>
                 
-                <%=Html.ButtonLinkIcon("javascript:VerEspcialidad('" + item.Id + "');", "Ver", Iconos.zoomin, IconPosition.solo, new { title="Ver Especialidades del Tecnico" })%>
+                <%=Html.ButtonLinkIcon("javascript:VerEspcialidad('" + item.Id + "');", "Ver", Iconos.zoomin, IconPosition.solo, new { title="Ver Especialidades del Técnico" })%>
                 <br />
                 <div id="Especialidades<%=item.Id %>" style="display:none">
                 

@@ -48,7 +48,7 @@ namespace Web.Controllers.AreaTecnica
             else
             {
                 Session["ModuloActual"] = null;
-                ViewData["MensajeAreaTecnica"] = "Usuario Actual no es tecnico";
+                ViewData["MensajeAreaTecnica"] = "Usuario Actual no es técnico";
 
             }
             return View();

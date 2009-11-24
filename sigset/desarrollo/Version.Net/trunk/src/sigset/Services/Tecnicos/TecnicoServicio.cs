@@ -245,7 +245,7 @@ namespace Services.Tecnicos
                 var tipo = _repo.GetTipoEspecialidadById(id);
                 if (tipo.Especialidades.Any() || tipo.Categorias.Any())
                 {
-                    throw new ArgumentException("No se puede eliminar tipo especialidad asociadad a una categoría o un tecnico");
+                    throw new ArgumentException("No se puede eliminar tipo especialidad asociadad a una categoría o un técnico");
                 }
                 else
                 {

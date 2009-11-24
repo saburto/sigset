@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Detalle>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Asignar Tecnico
+	Asignar <%=Html.Encode("Técnico") %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Asignar Tecnico a Orden</h2>
+    <h2>Asignar <%=Html.Encode("Técnico") %> a Orden</h2>
 
     <%= Html.ValidationSummary("Asignación incorrecta con los siguientes errores.") %>
 

@@ -21,7 +21,7 @@
                 Estado
             </th>
             <th>
-                Tecnico
+                <%=Html.Encode("Técnico") %>
             </th>
             <th></th>
         </tr>
@@ -58,7 +58,7 @@
                 <%}
                   else
                   { %>
-                    Sin tecnico asignado
+                    Sin <%=Html.Encode("Técnico") %> asignado
                 <%} %>
             </td>
             <td>
