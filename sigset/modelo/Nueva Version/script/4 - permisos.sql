@@ -42,7 +42,7 @@ INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
   VALUES(13, 4, 'asignacion_manual', 'Manual')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(14, 4, 'asignacion_automatica', 'Automatica')
+  VALUES(14, 4, 'asignacion_automatica', 'Automática')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
   VALUES(15, 3, 'ordenes_asignadas', 'Asignadas')
@@ -63,7 +63,7 @@ INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
   VALUES(20, 5, 'informes_ordenes', 'Ordenes')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(21, 5, 'informes_tecnicos', 'Tecnicos')
+  VALUES(21, 5, 'informes_tecnicos', 'Técnicos')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
   VALUES(22, 2, 'usuarios_crear', 'Crear')
@@ -81,7 +81,7 @@ INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
   VALUES(26, 2, 'perfiles_listar', 'Listar')
 GO
 INSERT INTO [dbo].[Permisos]([Id], [Mod_Id], [Opcion], [DescripcionOpcion])
-  VALUES(27, 2, 'sistema_configuracio', 'Configuracion')
+  VALUES(27, 2, 'sistema_configuracio', 'Configuración')
 GO
 SET IDENTITY_INSERT [dbo].[Permisos] OFF
 GO

@@ -15,7 +15,7 @@ GO
 SET IDENTITY_INSERT [dbo].TipoOrden ON
 GO
 INSERT INTO TipoOrden(IdTipoOrden, Descripcion)
-  VALUES(1, 'Garantia')
+  VALUES(1, 'Garantía')
 GO
 INSERT INTO TipoOrden(IdTipoOrden, Descripcion)
   VALUES(2, 'Reparación Particular')
@@ -59,7 +59,7 @@ INSERT INTO TipoEspecialidad(IdTipoEspecialidad, Descripcion)
   VALUES(2, 'Audio')
 GO
 INSERT INTO TipoEspecialidad(IdTipoEspecialidad, Descripcion)
-  VALUES(3, 'Camaras')
+  VALUES(3, 'Cámaras')
 GO
 INSERT INTO TipoEspecialidad(IdTipoEspecialidad, Descripcion)
   VALUES(4, 'Video')
@@ -94,7 +94,7 @@ GO
 
 
 INSERT INTO TipoContacto(IdTipoContacto, Descripcion)
-  VALUES(1, 'Telefono')
+  VALUES(1, 'Teléfono')
 GO
 INSERT INTO TipoContacto(IdTipoContacto, Descripcion)
   VALUES(2, 'Celular')
@@ -168,10 +168,10 @@ INSERT INTO TipoArticulo(IdTipoArticulo, Descripcion)
   VALUES(19, 'Secador de Pelo')
 GO
 INSERT INTO TipoArticulo(IdTipoArticulo, Descripcion)
-  VALUES(20, 'Camara Digital')
+  VALUES(20, 'Cámara Digital')
 GO
 INSERT INTO TipoArticulo(IdTipoArticulo, Descripcion)
-  VALUES(21, 'Camara Video')
+  VALUES(21, 'Cámara Video')
 GO
 
 SET IDENTITY_INSERT TipoArticulo OFF
@@ -224,7 +224,7 @@ INSERT INTO Estado(IdEstado, Descripcion)
   VALUES(7, 'Pendiente ')
 GO
 INSERT INTO Estado(IdEstado, Descripcion)
-  VALUES(8, 'Sin Garantia')
+  VALUES(8, 'Sin Garantía')
 GO
 INSERT INTO Estado(IdEstado, Descripcion)
   VALUES(9, 'Anulado')
@@ -240,7 +240,7 @@ SET IDENTITY_INSERT Categoria ON
 GO
 
 INSERT INTO Categoria(IdCategoria, Descripcion)
-  VALUES(1, 'Fotografia/Video')
+  VALUES(1, 'Fotografía/Video')
 GO
 INSERT INTO Categoria(IdCategoria, Descripcion)
   VALUES(2, 'Audio Mayor')
