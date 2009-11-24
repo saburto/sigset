@@ -34,6 +34,7 @@ namespace Web.Controllers.Admin
 
 
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles = "config_generales")]
     public class ConfiguracionController : Controller
     {
         ConfiguracionServicio srv;

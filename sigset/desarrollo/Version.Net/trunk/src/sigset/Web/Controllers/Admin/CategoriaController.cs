@@ -13,6 +13,7 @@ using Web.Helpers;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles="config_categoria")]
     public class CategoriaController : Controller
     {
          IArticuloServicio _srvArt;

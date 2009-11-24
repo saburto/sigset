@@ -14,7 +14,7 @@ namespace Web.Controllers.Admin
 {
 
     [Seguridad.ManejadorErrores]
-    [Authorize]
+    [Authorize(Roles="config_permisos")]
     public class PermisosController : Controller
     {
         Services.Usuarios.UsuarioServicio servUsuario = new Services.Usuarios.UsuarioServicio();
@@ -29,13 +29,11 @@ namespace Web.Controllers.Admin
             return View(usuario);
         }
 
-        [Authorize(Roles = "permisos_listar")]
         public ActionResult Lista()
         {
             return View(servAut.GetPermisos());
         }
 
-        [Authorize(Roles = "permisos_crear")]
         public ActionResult Crear()
         {
             Data.Repositorios.RepoGenerico<Data.Modelo.Modulo> repo = new Data.Repositorios.RepoGenerico<Data.Modelo.Modulo>();
@@ -43,13 +41,12 @@ namespace Web.Controllers.Admin
             return View();
         }
 
-        [Authorize(Roles = "permisos_crear")]
         public ActionResult Editar()
         {
             return View();
         }
 
-        [Authorize(Roles = "permisos_listar")]
+        
         public ActionResult PerfilesPermisos(decimal id)
         {
             servAut.GetPermisosByPerfil(id);
@@ -58,28 +55,28 @@ namespace Web.Controllers.Admin
             return View(servAut.GetPermisosByPerfil(id));
         }
 
-        [Authorize(Roles="permisos_crear")]
+        
         public ActionResult AgregarPermiso(decimal id)
         {
             ViewData["idperfil"] = servUsuario.GetPerfilById(id).Id;
             return View(servAut.GetPermisosDisponibles(id));
         }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult Agregar(decimal id, decimal perfil)
         {
             servAut.AgregarPermisoAPerfil(id, perfil);
             return RedirectToAction("AgregarPermiso", new { id = perfil });
         }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult QuitarPerfilPermiso(decimal idPermiso, decimal idPerfil)
         {
             servAut.EliminarPerfilPermiso(idPermiso, idPerfil);
             return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
         }
 
-        [Authorize(Roles = "permisos_listar")]
+        
         public ActionResult DetallesPermisos(decimal idPermiso, decimal idPerfil)
         {
             var permiso = servAut.GetPermisoById(idPermiso);
@@ -97,7 +94,7 @@ namespace Web.Controllers.Admin
             return RedirectToAction("PerfilesPermisos", new { id = idPerfil });
         }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult AgregarPermisoUsuario(decimal idUsuario)
         {
             ViewData["idUsuario"] = idUsuario;
@@ -109,7 +106,7 @@ namespace Web.Controllers.Admin
             return View(permisosUsuario);
         }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult AgregarUsuariosPermisos(decimal idUsuario)
         {
             ViewData["idUsuario"] = idUsuario;
@@ -118,7 +115,7 @@ namespace Web.Controllers.Admin
             return View(permisos);
          }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult QuitarUsuarioPermiso(decimal idPermiso, decimal idPerfil,decimal idUsuario)
         {
             servAut.EliminarUsuarioPermiso(idPermiso, idPerfil,idUsuario);
@@ -131,14 +128,14 @@ namespace Web.Controllers.Admin
             return RedirectToAction("AgregarPermisoUsuario", new { idUsuario = idUsuario });
         }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult CambiarEstadoPerfilUsuarioPermiso(decimal idPermiso, decimal idUsuario)
         {
             servAut.GuardarUsuarioPermisoBloqueado(idPermiso, idUsuario);
             return RedirectToAction("AgregarPermisoUsuario", new { idUsuario = idUsuario });
         }
 
-        [Authorize(Roles = "permisos_crear")]
+        
         public ActionResult AgregarUsuarioPermiso(decimal idPermiso, decimal idUsuario)
         {
             servAut.GuardarNuevoUsuarioPermiso(idPermiso, idUsuario);

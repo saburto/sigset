@@ -14,18 +14,15 @@ namespace Web.Controllers.Admin
     [Seguridad.ManejadorErrores]
 
 
-    [Authorize(Roles = "usuarios_crear, usuarios_listar, permisos_crear, permisos_listar, perfiles_listar, sistema_configuracio")]
+    [Authorize(Roles = "usuarios_crear,usuarios_listar,usuarios_buscar,usuarios_perfiles,config_generales,config_permisos,config_categoria,config_tipo_articulo,config_precios")]
     public class AdminController : Controller
     {
         //
         // GET: /Admin/
-
         public ActionResult Index()
         {
             Session["ModuloActual"] = "Admin";
             return View();
         }
-      
-       
     }
 }

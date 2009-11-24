@@ -40,14 +40,14 @@ namespace Web.Controllers
         }
 
         
-        [Authorize(Roles="clientes_consulta")]
+        [Authorize(Roles="clientes_buscar")]
         public ActionResult Buscar()
         {
             return View("Buscar");
         }
 
 
-        [Authorize(Roles = "clientes_consulta")]
+        [Authorize(Roles = "clientes_buscar")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Buscar(string RutDisplay)
         {

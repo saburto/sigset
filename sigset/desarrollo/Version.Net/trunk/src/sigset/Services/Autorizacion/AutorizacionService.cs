@@ -221,18 +221,26 @@ namespace Services.Autorizacion
             List<String> listaPermisosUsuario = new List<string>();
             var repo = new UsuarioRepositorio();
             var usuario =  repo.GetUsuarioByNombreUsuario(username);
-
-            var permisosUsuario = usuario.UsuarioPermisos.ToList();
-            if (permisosUsuario.Any())
+            if (usuario != null)
             {
-                listaPermisosUsuario = permisosUsuario.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
+
+
+                var permisosUsuario = usuario.UsuarioPermisos.ToList();
+                if (permisosUsuario.Any())
+                {
+                    listaPermisosUsuario = permisosUsuario.Where(x => x.Estado).Select(x => x.Permiso.Opcion).ToList(); ;
+                }
+
+                var listaPerfil = ListaPerfilUsuarioPermiso(permisosUsuario, usuario.Perfil.PerfilPermisos.Where(x => x.Estado).ToList());
+                listaPermisosUsuario.AddRange(listaPerfil.Select(x => x.Permiso.Opcion));
+
+                HashSet<String> permisos = new HashSet<string>(listaPermisosUsuario);
+                return permisos.ToList();
             }
-
-            var listaPerfil = ListaPerfilUsuarioPermiso(permisosUsuario,usuario.Perfil.PerfilPermisos.Where(x => x.Estado).ToList());
-            listaPermisosUsuario.AddRange(listaPerfil.Select(x=> x.Permiso.Opcion));
-
-            HashSet<String> permisos = new HashSet<string>(listaPermisosUsuario);
-            return permisos.ToList();
+            else
+            {
+                return listaPermisosUsuario;
+            }
         }
 
         public IList<string> GetUsuariosDePermiso(string roleName)

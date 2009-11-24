@@ -13,6 +13,7 @@ using Services.Articulos;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles="config_precios")]
     public class PrecioGarantiaController : Controller
     {
         IArticuloServicio _srvArt;

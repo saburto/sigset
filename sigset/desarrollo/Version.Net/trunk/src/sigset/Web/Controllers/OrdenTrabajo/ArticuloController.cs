@@ -29,7 +29,7 @@ namespace Web.Controllers.OrdenTrabajo
 
         }
 
-        [Authorize(Roles = "articulo_consulta")]
+        [Authorize(Roles = "articulo_buscar")]
         public ActionResult Buscar(decimal? id)
         {
             if (id.HasValue)
@@ -40,7 +40,7 @@ namespace Web.Controllers.OrdenTrabajo
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [Authorize(Roles = "articulo_consulta")]
+        [Authorize(Roles = "articulo_buscar")]
         public ActionResult Buscar(string Modelo, string Marca_DISPLAY_TEXT, string idCliente)
         {
             ViewData["idCliente"] = idCliente;

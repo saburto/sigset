@@ -31,7 +31,7 @@ namespace Web.Controllers
             _servicio = ser;
         }
 
-
+        [Authorize(Roles = "usuarios_perfiles")]
         public ActionResult Lista()
         {
             var tipo_cargo = _servicio.GetTodosLosTiposCargo();

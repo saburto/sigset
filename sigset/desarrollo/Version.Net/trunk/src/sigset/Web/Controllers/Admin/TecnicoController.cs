@@ -14,6 +14,7 @@ using xVal.ServerSide;
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
+    [Authorize(Roles="ad_tecnicos_lista")]
     public class TecnicoController : Controller
     {
 
