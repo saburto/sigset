@@ -2,7 +2,7 @@
 
     <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th></th>
+            <th>Detalles</th>
             <th>
                 Id
             </th>
@@ -44,7 +44,7 @@
     
         <tr>
             <th scope="row">
-                <%= Html.ActionLink("Detalles", "Detalles", new { id=item.Id })%>
+                <%=Html.ButtonLinkIcon(Url.Action("Detalles", new{id=item.Id}), "Detalles", Iconos.zoomin, IconPosition.solo,new{ title="Ver detalles de orden de trabajo"})  %>
             </th>
             <td>
                 <%= Html.Encode(String.Format("{0}", item.Id)) %>

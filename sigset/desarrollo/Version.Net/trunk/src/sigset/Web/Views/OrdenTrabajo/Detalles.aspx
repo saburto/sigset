@@ -5,13 +5,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div class="no-print" style="float:right;font-size:53%">
-    <%=Html.ButtonLinkIcon("javascript:window.print()", "Imprimir", Iconos.print, IconPosition.left, new{ title="Imprimir Pagina web"}) %>
+    <%=Html.ButtonLinkIcon("javascript:window.print()", "Imprimir", Iconos.print, IconPosition.left, new{ title="Imprimir Página web"}) %>
     <%=Html.ButtonLinkIcon(Url.Action("Detalles",new {id=Model.Id,format="pdf"} ), "Pdf", Iconos.document, IconPosition.left, new{ title="Exportar a pdf"}) %>
     <%=Html.ButtonLinkIcon(Url.Action("Detalles",new {id=Model.Id,format="excel"} ), "Excel", Iconos.calculator, IconPosition.left, new{ title="Exportar a excel"}) %>
 </div>   
 <br /> 
 
 <%Html.RenderPartial("DetallesOrden", Model); %>
+
+<%if(Model.EstadoActual().IdEstado != (int) Data.Modelo.Enums.EstadoOrden.Entregado){ %>
 <div>
     <p>
         <%= Html.ButtonLinkIcon("#", "Agregar Detalle", Iconos.circle_plus, IconPosition.left, new { onclick="return abrirDetalle(this)" })%>
@@ -27,7 +29,7 @@
                 <%=Html.AntiForgeryToken() %>
                 <%= Html.Hidden("IdOrden", Model.Id) %>
                 <label for="Estado">Estado:</label>
-                <%=Html.DropDownList("Estado")%>
+                <%=Html.ListaEstadosRecepcion("Estado", true) %>
             </p>
             <p>
                 <label for="Contenido">Contenido:</label>
@@ -41,6 +43,8 @@
         </p>
 <%} %>
 </div>
+<%} %>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 

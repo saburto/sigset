@@ -141,7 +141,7 @@ namespace Services.OrdenTrabajo
 
                 if (string.IsNullOrEmpty(orden.Poliza))
                 {
-                    _error.Add(new ErrorInfo("Poliza", "Se debe informar Poliza"));
+                    _error.Add(new ErrorInfo("Poliza", "Se debe informar Póliza"));
                 }
 
                 if (string.IsNullOrEmpty(orden.LugarCompra))
@@ -194,48 +194,43 @@ namespace Services.OrdenTrabajo
             return _repo.GetEstadosOrden().ToList();
         }
 
-        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajo(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
+        public IList<Data.Modelo.OrdenTrabajo> GetOrdenesTrabajo(DateTime? Fecha_Inicio, DateTime? Fecha_Final, string ListaTipos, string ListaEstados)
         {
-            if (Fecha_Final == null || Fecha_Inicio == null)
+
+            IQueryable<Data.Modelo.OrdenTrabajo> ordenes = _repo.GetTodasLasOrdenDeTrabajo();
+            
+            if (!string.IsNullOrEmpty(ListaTipos) && ListaTipos != "-1")
+            {
+                ordenes = from o in ordenes
+                          where o.TipoOrden == decimal.Parse(ListaTipos)
+                          select o;
+            }
+
+            if (!string.IsNullOrEmpty(ListaEstados) && ListaEstados != "-1")
+            {
+                ordenes = from o in ordenes
+                          where o.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
+                          select o;
+                                      
+            }
+
+
+            if ((Fecha_Final == null && Fecha_Inicio != null) || (Fecha_Final != null && Fecha_Inicio == null))
             {
                 throw new Exception("Se debe ingresar fecha inicio y final.");
             }
-
-
-            if (Fecha_Final < Fecha_Inicio)
-            {   
-                throw new Exception("Fecha final debe ser mayor que fecha de inicio");
-            }
-
-
-            Fecha_Final = Fecha_Final.AddMinutes(1439);
-            
-            IQueryable<Data.Modelo.OrdenTrabajo> ordenes;
-            if (string.IsNullOrEmpty(ListaTipos) || ListaTipos == "-1")
+            else if(Fecha_Inicio.HasValue && Fecha_Final.HasValue)
             {
-                ordenes = from o in _repo.GetTodasLasOrdenDeTrabajo()
-                          where o.FechaIngreso >= Fecha_Inicio && o.FechaIngreso <= Fecha_Final
-                          select o;    
-            }
-            else
-            {
-                ordenes = from o in _repo.GetTodasLasOrdenDeTrabajo()
-                          where o.FechaIngreso >= Fecha_Inicio && o.FechaIngreso <= Fecha_Final
-                            && o.TipoOrden == decimal.Parse(ListaTipos)
-                          select o;
+                if (Fecha_Final < Fecha_Inicio)
+                {
+                    throw new Exception("Fecha final debe ser mayor que fecha de inicio");
+                }
+                Fecha_Final = Fecha_Final.Value.AddMinutes(1439);
+
+                ordenes = ordenes.Where(x => x.FechaIngreso >= Fecha_Inicio && x.FechaIngreso <= Fecha_Final);
             }
 
-            if (string.IsNullOrEmpty(ListaEstados) || ListaEstados == "-1")
-            {
-                return ordenes.ToList();
-            }
-            else
-            {
-                var ord = from o in ordenes
-                          where o.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault().Estado == decimal.Parse(ListaEstados)
-                          select o;
-                return ord.ToList();                          
-            }
+            return ordenes.ToList();
         }
 
 

@@ -150,11 +150,25 @@ namespace Services.Configuraciones
                 return false;
             }
         }
+
+        internal string GetDireccionEmpresa()
+        {
+            var nomnbre = repo.GetConfiguracion(22);
+            return nomnbre.Valor;
+        }
+
+        internal string GetTelefonoEmpresa()
+        {
+            var nomnbre = repo.GetConfiguracion(2);
+            return nomnbre.Valor;
+        }
     }
 
     public static class Configuracion
     {
         static string _nombreEmpresa;
+        static string _direccionEmpresa;
+        static string _telefonoEmpresa;
         static bool? _asignacionAutHabilitada = null;
         static int? _maxOrdenesAsignadas = null;
         static int? _maxOrdenesRevision = null;
@@ -177,17 +191,43 @@ namespace Services.Configuraciones
         }
 
 
-        public static string NombreEmpresa { 
+        public static string NombreEmpresa
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_nombreEmpresa) || _modificada)
+                {
+                    LoadConfiguraciones();
+                }
+                return _nombreEmpresa;
+            }
+        }
+
+        public static string DireccionEmpresa { 
         get
         {
-            if (string.IsNullOrEmpty(_nombreEmpresa) || _modificada )
+            if (string.IsNullOrEmpty(_direccionEmpresa) || _modificada )
             {
                 LoadConfiguraciones();
             }
-            return _nombreEmpresa;
+            return _direccionEmpresa;
         }
 
         }
+
+        public static string TelefonoEmpresa
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_telefonoEmpresa) || _modificada)
+                {
+                    LoadConfiguraciones();
+                }
+                return _telefonoEmpresa;
+            }
+
+        }
+
 
         public static bool AsignacionAutHabilitada
         {
@@ -297,6 +337,9 @@ namespace Services.Configuraciones
             _asginacionSoloEspecialista = serv.GetAsignacionSoloEspecialista();
             _nombreEmpresa = serv.GetNombreEmpresa();
             _asignacionAutHabilitada = serv.GetAsignacionHabilitada();
+            _direccionEmpresa = serv.GetDireccionEmpresa();
+            _telefonoEmpresa = serv.GetTelefonoEmpresa();
+
             _modificada = false;
         }
             

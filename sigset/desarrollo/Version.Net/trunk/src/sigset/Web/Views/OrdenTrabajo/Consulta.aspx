@@ -54,7 +54,7 @@
              <div class="three-column-left">
             <p>
                 <label for="Id"><%=Html.Encode("Número de Orden de Trabajo")%></label>
-                <%= Html.TextBox("Id")%>
+                <%= Html.TextBox("Id", null,new {title="Número de Orden que se desea buscar" })%>
                 <%= Html.ValidationMessage("Id", "*")%>
             </p>
             </div>

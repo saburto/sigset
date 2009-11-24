@@ -260,11 +260,15 @@ namespace Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [Authorize(Roles = "ordenes_listar")]
-        public ActionResult Listar(DateTime Fecha_Inicio, DateTime Fecha_Final, string ListaTipos, string ListaEstados)
+        public ActionResult Listar(DateTime? Fecha_Inicio, DateTime? Fecha_Final, string ListaTipos, string ListaEstados)
         {
             try
             {
+               
+
                 var ordenes = _srvOrdenTrabajo.GetOrdenesTrabajo(Fecha_Inicio, Fecha_Final, ListaTipos, ListaEstados);
+
+
                 return PartialView("ListaOrdenes", ordenes);
             }
             catch (Exception ex)
@@ -302,6 +306,8 @@ namespace Web.Controllers
             List<ReportParameter> param = new List<ReportParameter>();
             param.Add(new ReportParameter("Id", id.ToString()));
             param.Add(new ReportParameter("NombreEmpresa", Services.Configuraciones.Configuracion.NombreEmpresa));
+            param.Add(new ReportParameter("DireccionEmpresa", Services.Configuraciones.Configuracion.DireccionEmpresa));
+            param.Add(new ReportParameter("TelefonoEmpresa", Services.Configuraciones.Configuracion.TelefonoEmpresa));
             rview.LocalReport.SetParameters(param);
 
 

@@ -71,7 +71,6 @@
     <h2>Lista Técnicos Registrados</h2>
      <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
-            <th>Edtar</th>
             <th>Detalles</th>
             <th>
                 Rut
@@ -103,9 +102,6 @@
         <tr>
     <%} alter = !alter; %>
        
-            <th scope="row">
-                <%= Html.ButtonLinkIcon(Url.Action("Editar", "Usuario", new { id = item.Id }), "Editar", Iconos.pencil, IconPosition.solo, new { title = "Editar Usuario" })%> 
-            </th>                
             <th scope="row">
                 <%= Html.ButtonLinkIcon(Url.Action("Detalles", "Tecnico", new { id = item.Id }), "Detalles", Iconos.zoomin, IconPosition.solo, new { title = "Ver detalles de Usuario" })%> 
             </th>

@@ -54,9 +54,7 @@
         </p>
         <br />
   </fieldset>  
-  <p>
-     <%= Html.ButtonLinkIcon(Url.Action("Editar", "Usuario", new { id = Model.Id }), "Editar Usuario", Iconos.pencil, IconPosition.left, new { title = "Editar Usuario" })%> 
-  </p>
+
   <br />
   <br />  
 <fieldset>

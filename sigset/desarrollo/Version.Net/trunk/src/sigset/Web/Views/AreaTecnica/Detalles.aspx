@@ -96,7 +96,7 @@
             <%= Html.Encode(Model.Boleta)%>
         </p>
         <p>
-            Poliza:
+            <%=Html.Encode("Póliza") %>:
             <%= Html.Encode(Model.Poliza)%>
         </p>
         <p>
