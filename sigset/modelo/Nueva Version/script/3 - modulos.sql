@@ -8,7 +8,7 @@ INSERT INTO [dbo].[Modulos]([Id], [NombreModulo], [DescripcionOpcion])
   VALUES(2, 'Admin', 'Administración de Sistema')
 GO
 INSERT INTO [dbo].[Modulos]([Id], [NombreModulo], [DescripcionOpcion])
-  VALUES(3, 'AreaTecnica','Area Tecnica')
+  VALUES(3, 'AreaTecnica','Área Técnica')
 GO
 INSERT INTO [dbo].[Modulos]([Id], [NombreModulo], [DescripcionOpcion])
   VALUES(4, 'Administrativos', 'Administrativos')
