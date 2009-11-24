@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Articulo>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Buscar Articulo
+	Buscar <%=Html.Encode("Artículo")%> 
 </asp:Content>
 
 
@@ -53,7 +53,7 @@
        {%>
 
         <fieldset>
-            <legend>Buscar Articulo</legend>
+            <legend>Buscar <%=Html.Encode("Artículo")%></legend>
             <div class="three-column-container">
                 <div class="three-column-left">
                 <label for="Modelo">Modelo:</label>

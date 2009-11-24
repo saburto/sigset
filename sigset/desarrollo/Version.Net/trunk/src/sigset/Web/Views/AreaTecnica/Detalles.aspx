@@ -52,7 +52,7 @@
         </p>
      
      <div class="clear"></div>
-        <h2>Articulo:</h2>        
+        <h2><%=Html.Encode("Artículo:")%></h2>        
         <div class="three-column-container">
             <div class="three-column-left">
            <p>
@@ -80,7 +80,7 @@
             <%= Html.Encode(Model.Falla) %>
         </p>
         <p>
-            Condicion Articulo:
+            <%=Html.Encode("Condición Artículo:")%>:
             <%= Html.Encode(Model.CondicionArticulo) %>
         </p>
         <p>

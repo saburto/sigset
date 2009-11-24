@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Data.Modelo.Configuracion>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Lista de Configuracion
+	Lista de Configuraci&oacute;n
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -33,11 +33,11 @@
     <%} alter = !alter; %>
             <td>
                 <div class="disp display<%=item.Id %>">
-                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.Id +")" }) %>
+                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.Id +")", title="Editar opción de configuración" }) %>
                 </div>
                 <div class="formu form<%=item.Id %>" style="display:none;">
-                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.minus,IconPosition.solo, new{ onclick="esconder("+ item.Id +")" }) %>
-                    <%=Html.ButtonLinkIcon("#","Guardar",Iconos.disk,IconPosition.solo, new{ onclick="submit("+ item.Id +")" }) %>
+                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.minus,IconPosition.solo, new{ onclick="esconder("+ item.Id +")", title="Cancelar edición" }) %>
+                    <%=Html.ButtonLinkIcon("#","Guardar",Iconos.disk,IconPosition.solo, new{ onclick="submit("+ item.Id +")", title="Guardar modificación" }) %>
                 </div>
             </td>
             <td>
@@ -60,12 +60,12 @@
                     
                     <%if (Services.Configuraciones.Configuracion.EsConfiguracionBoolean(item.Id))
                       { %>
-                      <%=Html.CheckBox("Valor" + item.Id, item.Valor.Contains("true"))%>
-                    <%}else if(Services.Configuraciones.Configuracion.EsConfiguracionNumerico(item.Id)) {%>
-                    <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required digits" })%>  
+                      <%=Html.CheckBox("Valor" + item.Id, item.Valor.Contains("true"), new { title="Activar/Desactivar opción de configuración" })%>
+                    <%}else if(Services.Configuraciones.Configuracion.EsConfiguracionNumerico(item.Id)) {%>s
+                    <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required digits", title="Editar valor de tipo númerico" })%>  
                       <%}else
                       {%>
-                    <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required" })%>  
+                    <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required", title="Editar valor" })%>  
                     <%} %>
                 </div>
                 <%} %>

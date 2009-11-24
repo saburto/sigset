@@ -22,7 +22,7 @@ namespace Data.Modelo
         [Required]
         public object Modelo { get; set; }
         [Required]
-        [Range(1,int.MaxValue, ErrorMessage="Debe seleccionar precio garantia")]
+        [Range(1,int.MaxValue, ErrorMessage="Debe seleccionar precio garantía")]
         public object PrecioGarantia { get; set; }
         [Required]
         public object TipoArticulo { get; set; }

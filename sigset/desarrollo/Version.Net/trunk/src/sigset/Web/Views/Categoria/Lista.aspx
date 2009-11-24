@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Data.Modelo.Categoria>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Lista de Categoria
+	Lista de <%=Html.Encode("Categoría")%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Lista de Categoria</h2>
+    <h2>Lista de <%=Html.Encode("Categoría")%></h2>
     <%=Html.ValidationSummary() %>
       <table border="0" cellpadding="0" cellspacing="0" class="data-table">
         <tr>
@@ -34,7 +34,7 @@
     <%} alter = !alter; %>
             <td>
                 <div class="disp display<%=item.IdCategoria %>">
-                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.IdCategoria +")", title="Editar Categoria" }) %>
+                    <%=Html.ButtonLinkIcon("#","Editar",Iconos.pencil,IconPosition.solo, new{ onclick="mostrar("+ item.IdCategoria +")", title="Editar Categoría" }) %>
                 </div>
                 <div class="formu form<%=item.IdCategoria %>" style="display:none;">
                     <%=Html.ButtonLinkIcon("#", "Editar", Iconos.minus, IconPosition.solo, new { onclick = "esconder(" + item.IdCategoria + ")", title = "Cancelar Edición" })%>
@@ -50,7 +50,7 @@
                   { %>
                         <div class="formu form<%=item.IdCategoria %>" style="display:none;">
                             <input type="hidden" name="IdCategoria" value="<%=item.IdCategoria %>" />
-                            <%=Html.TextBox("Descripcion" + item.IdCategoria, item.Descripcion, new { @class = "required" })%>  
+                            <%=Html.TextBox("Descripcion" + item.IdCategoria, item.Descripcion, new { @class = "required", title="Editar descripción de categoría" })%>  
                             <input type="hidden" name="IdTipoEspecialidad" value="" />
                         </div>
                 <%} %>
@@ -74,7 +74,7 @@
            
            %>
                 
-                    <%=Html.DropDownList("TipoEspcialidad",lista, new { id = "TipoEspcialidad" + item.IdCategoria })%>
+                    <%=Html.DropDownList("TipoEspcialidad",lista, new { id = "TipoEspcialidad" + item.IdCategoria, title="Relacionar categoría con especialidad" })%>
                 </div>
                 <div class="disp display<%=item.IdCategoria %>">
                     <%if (item.TipoEspecialidad != null){ %>
@@ -85,17 +85,17 @@
                 </div>
             </td>
             <td>
-                <%=Html.ButtonLinkIcon("#", "Elimnar", Iconos.cancel, IconPosition.solo, new { onclick = "elimnar('" + item.IdCategoria + "')", title = "Elimnar Categoria" })%>
+                <%=Html.ButtonLinkIcon("#", "Eliminar", Iconos.close, IconPosition.solo, new { onclick = "elimnar('" + item.IdCategoria + "')", title = "Eliminar Categoría" })%>
             </td>
         </tr>
     
     <% } %>
     </table>
     <p>
-        <%=Html.ButtonLinkIcon("#","Nueva Categoria", Iconos.circle_plus, IconPosition.left, new{title="Agregar nueva categoria", onclick="abrirNuevo()"}) %>
+        <%=Html.ButtonLinkIcon("#","Nueva Categoría", Iconos.circle_plus, IconPosition.left, new{title="Agregar nueva categoría", onclick="abrirNuevo()"}) %>
     
     </p>
-    <div id="nuevo" style="font-size:80%;" title="Nueva Categoria" >
+    <div id="nuevo" style="font-size:80%;" title="Nueva Categoría" >
         <%Html.RenderPartial("Crear"); %>
     </div>
 </asp:Content>

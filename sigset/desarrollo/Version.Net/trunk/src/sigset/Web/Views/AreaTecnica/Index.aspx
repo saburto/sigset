@@ -7,6 +7,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Area Tecnica</h2>
+    
+    
+    <%if (ViewData["MensajeAreaTecnica"] != null && !string.IsNullOrEmpty(ViewData["MensajeAreaTecnica"].ToString()))
+      {%>
+      
+      <p>
+        <% =Html.Encode(ViewData["MensajeAreaTecnica"].ToString())%>
+      
+      </p>
+          
+      <%} %>
+    
+        
+    
 
 </asp:Content>
 

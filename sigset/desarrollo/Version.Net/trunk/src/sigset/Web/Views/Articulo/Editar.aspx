@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Data.Modelo.Articulo>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Editar Articulo
+	Editar <%=Html.Encode("Artículo")%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -9,17 +9,17 @@
 
     <% using (Html.BeginForm("Editar", "Articulo", FormMethod.Post, new { id = "formArticulo" })){%>
             <fieldset>
-            <legend>Editar Articulo</legend>
+            <legend>Editar <%=Html.Encode("Artículo")%></legend>
             <div class="three-column-container">
                 <div class="three-column-left">
                 <label for="Modelo">Modelo:</label>
                 <%= Html.Hidden("Id", Model.Id) %>
-                <%= Html.TextBox("Modelo", Model.Modelo, new { @class = "required", title="Modelo del articulo" })%>
+                <%= Html.TextBox("Modelo", Model.Modelo, new { @class = "required", title="Modelo del artículo" })%>
                 <%= Html.ValidationMessage("Modelo", "*") %>
                 </div>
                 <div class="three-column-middle">
                 <label for="Marca">Marca:</label>
-                <%= Html.AutoCompleteTextBox("Marca", Model.Marca1.Descripcion, Model.Marca, new { @class = "required", title="Marca a la que pertenece el articulo, si no existe en la lista se agrega" })%>
+                <%= Html.AutoCompleteTextBox("Marca", Model.Marca1.Descripcion, Model.Marca, new { @class = "required", title="Marca a la que pertenece el artículo, si no existe en la lista se agrega" })%>
                 <%= Html.ValidationMessage("Marca", "*") %>
                 </div>
                 <div class="three-column-right">
@@ -32,20 +32,20 @@
             <br />
             <div class="three-column-container">
                 <div class="three-column-left">
-                <label for="Categoria">Categoria:</label>
-                <%= Html.AutoCompleteTextBox("Categoria", Model.Categoria1.Descripcion, Model.Categoria, new { @class = "required", title="Categoria a la que pertence el articulo" })%>
+                <label for="Categoria"><%=Html.Encode("Categoría")%>::</label>
+                <%= Html.AutoCompleteTextBox("Categoria", Model.Categoria1.Descripcion, Model.Categoria, new { @class = "required", title="Categoría a la que pertence el artículo" })%>
                 <%= Html.ValidationMessage("Categoria", "*") %>                
                 </div>
                 
                 <div class="three-column-middle">
-                <label for="TipoArticulo">Tipo Articulo:</label>
-                <%= Html.AutoCompleteTextBox("TipoArticulo",Model.TipoArticulo1.Descripcion, Model.TipoArticulo , new { @class = "required", title="Tipo de Articulo" })%>
+                <label for="TipoArticulo">Tipo <%=Html.Encode("Artículo")%>:</label>
+                <%= Html.AutoCompleteTextBox("TipoArticulo",Model.TipoArticulo1.Descripcion, Model.TipoArticulo , new { @class = "required", title="Tipo de Artículo" })%>
                 <%= Html.ValidationMessage("TipoArticulo", "*") %>
                 </div>
                 
                 <div class="three-column-right">
-                <label for="PrecioGarantia">Precios Garantia:</label>
-                <%= Html.DropDownList("PrecioGarantia", null, new { @class = "required", title="Precio de reparacion del articulo" })%>
+                <label for="PrecioGarantia">Precios <%=Html.Encode("Garantía")%>:</label>
+                <%= Html.DropDownList("PrecioGarantia", null, new { @class = "required", title="Precio de reparacion del artículo" })%>
                 <%= Html.ValidationMessage("PrecioGarantia", "*") %>
                 </div>
             </div>

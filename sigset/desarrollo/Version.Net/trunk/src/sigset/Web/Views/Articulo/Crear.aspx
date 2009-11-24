@@ -44,7 +44,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Html.ValidationSummary("Creación de articulo con errores.") %>
+    <%= Html.ValidationSummary("Creación de artículo con errores.") %>
     <% using (Html.BeginForm("Crear", "Articulo", FormMethod.Post, new { id = "formArticulo" }))
        {%>
         <% Html.RenderPartial("CrearArticulo"); %>

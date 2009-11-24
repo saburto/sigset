@@ -52,7 +52,7 @@
       <% Html.RenderPartial("DatosCliente", Model.Cliente); %>
     <%} %>
     
-     <%= Html.ValidationSummary("Creación de articulo con errores.") %>
+     <%= Html.ValidationSummary("Creación de artículo con errores.") %>
     
     <%using (Html.BeginForm("Crear", "OrdenTrabajo", FormMethod.Post, new { id="formArticulo" }))
       { %>

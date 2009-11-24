@@ -347,6 +347,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reportes\OrdenTrabajo.rdlc" />
+    <Content Include="Views\AreaTecnica\ListaReparadas.aspx" />
     <Content Include="Views\Articulo\Editar.aspx" />
     <Content Include="Views\Categoria\Crear.ascx" />
     <Content Include="Views\Categoria\Lista.aspx" />

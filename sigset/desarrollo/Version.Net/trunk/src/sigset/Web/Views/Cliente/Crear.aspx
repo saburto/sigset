@@ -97,7 +97,7 @@
             
                     <%= Html.ValidationMessage("Rut", "*")%>
                     <div style="font-size:50%; display:inline !important; float:right;width:46%;position:relative;">
-                    <%= Html.ButtonLinkIcon(Url.Action("Buscar"), "Buscar", Iconos.search, IconPosition.solo, new { onclick = "return buscarCliente(this)" })%>
+                    <%= Html.ButtonLinkIcon(Url.Action("Buscar"), "Buscar", Iconos.search, IconPosition.solo, new { onclick = "return buscarCliente(this)", title="Buscar si cliente existe por rut" })%>
                     </div>
             
             </div>
@@ -175,8 +175,8 @@
         <div class="three-column-container">
             <div class="three-column-left">
                 <label for="Region">
-                    <%=Html.Encode("Region:")%></label>
-                <%= Html.AutoCompleteTextBox("Region", new { title="Region de dirección del cliente" })%>
+                    <%=Html.Encode("Región:")%></label>
+                <%= Html.AutoCompleteTextBox("Region", new { title="Región de dirección del cliente" })%>
                 <%= Html.ValidationMessage("Region", "*")%>
             </div>
             <div class="three-column-middle">

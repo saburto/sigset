@@ -19,7 +19,7 @@
                         <%= Html.Encode(String.Format("{0}", Model.Id)) %>
                     </p>
                     <p>
-                        <span style="font-weight: bold">N° Serie Articulo:</span>
+                        <span style="font-weight: bold">N° Serie <%=Html.Encode("Artículo")%>:</span>
                         <%= Html.Encode(Model.Serie) %>
                     </p>
                 </div>
@@ -66,7 +66,7 @@
                 <%= Html.Encode(Model.Falla) %>
             </p>
             <p>
-                <span style="font-weight: bold; display: block;">Condici&oacute;n Articulo:</span>
+                <span style="font-weight: bold; display: block;">Condici&oacute;n <%=Html.Encode("Artículo")%>:</span>
                 <%= Html.Encode(Model.CondicionArticulo) %>
             </p>
         </div>

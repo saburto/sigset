@@ -24,7 +24,7 @@
                 Email
             </th>
             <th>
-                Telefono
+                 <%=Html.Encode("Teléfono") %>
             </th>
             <th>
                 Estado

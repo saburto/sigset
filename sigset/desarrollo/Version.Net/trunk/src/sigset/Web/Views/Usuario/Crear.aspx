@@ -90,8 +90,8 @@
                     <div class="two-column-right">
                         <p>
                             <label for="Telefono">
-                                Telefono:</label>
-                            <%= Html.TextBox("Telefono", null, new { title = "Telefono del Usuario, formato solo numeros ej:02328123" })%>
+                                <%=Html.Encode("Teléfono:") %></label>
+                            <%= Html.TextBox("Telefono", null, new { title = "Teléfono del Usuario, formato solo numeros ej:02328123" })%>
                             <%= Html.ValidationMessage("Telefono", "*")%>
                         </p>
                     </div>
