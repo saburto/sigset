@@ -11,6 +11,7 @@
     <mvcSiteMapNode title="Usuarios" controller="Usuario" action="">
       <mvcSiteMapNode title="Nuevo" controller="Usuario" action="Crear" />
       <mvcSiteMapNode title="Lista" controller="Usuario" action="Lista" />
+      <mvcSiteMapNode title="Buscar" controller="Usuario" action="Buscar" />
       <mvcSiteMapNode title="Perfiles"  controller="Perfiles" action="Lista" />
     </mvcSiteMapNode>
 

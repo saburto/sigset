@@ -126,6 +126,24 @@ namespace Web.Controllers.Admin
             return View();
         }
 
+        //[Authorize(Roles = "usuarios_buscar")]
+        public ActionResult Buscar()
+        {
+            SetPerfilSelect();
+            return View();
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
+        public ActionResult Buscar(Usuario usuario)
+        {
+            var usuarios = _servicio.GetTodosLosUsuario();
+            return PartialView("ListaUsuario", usuarios);
+        }
+
+
+
         [Authorize(Roles = "usuarios_crear")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Crear([Bind(Exclude = "Id")]Usuario usuario)
