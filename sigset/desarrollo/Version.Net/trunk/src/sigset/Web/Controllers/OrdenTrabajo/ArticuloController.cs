@@ -68,7 +68,7 @@ namespace Web.Controllers.OrdenTrabajo
         [Authorize(Roles="articulo_crear")]
         public ActionResult Crear()
         {
-            ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", null, "${0}");
+            ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision,ValorReparacion", null, "${0}");
             return View();
         }
 
@@ -99,7 +99,7 @@ namespace Web.Controllers.OrdenTrabajo
         public ActionResult Editar(decimal id)
         {
             var articulo = _srv.GetArticulo(id);
-            ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision", articulo.PrecioGarantia.ToString() , "${0}");
+            ViewData["PrecioGarantia"] = _srv.GetPrecios().GetSelectCampos("IdPrecioGarantia", "ValorRevision,ValorReparacion", articulo.PrecioGarantia.ToString(), "${0}");
             return View("Editar",articulo);
         }
 

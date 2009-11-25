@@ -45,7 +45,7 @@
                 
                 <div class="three-column-right">
                 <label for="PrecioGarantia">Precios <%=Html.Encode("Garantía")%>:</label>
-                <%= Html.DropDownList("PrecioGarantia", null, new { @class = "required", title="Precio de reparacion del artículo" })%>
+                <%= Html.DropDownList("PrecioGarantia", null, new { @class = "required", title = "Precio de revisión y reparación del artículo" })%>
                 <%= Html.ValidationMessage("PrecioGarantia", "*") %>
                 </div>
             </div>
