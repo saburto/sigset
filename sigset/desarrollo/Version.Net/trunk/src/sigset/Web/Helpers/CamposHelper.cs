@@ -45,13 +45,14 @@ namespace Helpers
         public static string ListaEstadosTecnicos(this HtmlHelper html, string name, bool required)
         {
             IList<SelectListItem> lista = new List<SelectListItem>();
-            
-            
-            foreach(var item in Enum.GetNames(typeof(EstadoOrden))){
-                
+
+
+            foreach (var item in Enum.GetNames(typeof(EstadoOrden)))
+            {
+
                 var selectItem = new SelectListItem();
-                selectItem.Text=item;
-                var estado = ((EstadoOrden) Enum.Parse(typeof(EstadoOrden), item));
+                selectItem.Text = item;
+                var estado = ((EstadoOrden)Enum.Parse(typeof(EstadoOrden), item));
                 if (estado == EstadoOrden.Anulado || estado == EstadoOrden.Asignado || estado == EstadoOrden.Entregado || estado == EstadoOrden.Ingresado || estado == EstadoOrden.SinGarantia)
                 {
                     continue;
@@ -72,7 +73,8 @@ namespace Helpers
         public static string NivelesTecnicos(this HtmlHelper html, int seleccionado)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(var nivel in Enum.GetNames(typeof(NivelesTecnicos))){
+            foreach (var nivel in Enum.GetNames(typeof(NivelesTecnicos)))
+            {
                 TagBuilder tagBuilder = new TagBuilder("option");
                 tagBuilder.InnerHtml = nivel;
                 NivelesTecnicos nivelTecnico = (NivelesTecnicos)Enum.Parse(typeof(NivelesTecnicos), nivel);
@@ -132,12 +134,12 @@ namespace Helpers
 
         public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon)
         {
-            return ButtonLinkIcon(html, href, content, icon,null);
+            return ButtonLinkIcon(html, href, content, icon, null);
         }
 
         public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon, IconPosition? position)
         {
-            return ButtonLinkIcon(html, href, content, icon, position,null);
+            return ButtonLinkIcon(html, href, content, icon, position, null);
         }
 
         public static string ButtonLinkIcon(this HtmlHelper html, string href, string content, Iconos? icon, IconPosition? position, object htmlAtributtes)
@@ -150,7 +152,7 @@ namespace Helpers
                 IDictionary<string, object> htmlAttributes1 = new RouteValueDictionary(htmlAtributtes);
                 tagBuilder.MergeAttributes(htmlAttributes1);
             }
-            
+
 
             tagBuilder.AddCssClass("fg-button ui-state-default ui-corner-all");
 
@@ -176,7 +178,7 @@ namespace Helpers
         }
 
 
-        public static string TextoSoloLectura(this HtmlHelper helper,string name, object value)
+        public static string TextoSoloLectura(this HtmlHelper helper, string name, object value)
         {
             Dictionary<String, object> atributos = new Dictionary<string, object>();
             atributos.Add("readonly", "readonly");
@@ -189,7 +191,7 @@ namespace Helpers
         /// <returns></returns>
         public static string RutTextBox(this HtmlHelper helper)
         {
-            return RutTextBox(helper, null,null, false);
+            return RutTextBox(helper, null, null, false);
         }
 
         public static string RutTextBox(this HtmlHelper helper, bool soloLectura)
@@ -205,7 +207,7 @@ namespace Helpers
             //htmlAtributtes.Add("size", "10");
             //htmlAtributtes.Add("style", "text-align: right");
             htmlAtributtes.Add("class", "rut required");
-            htmlAtributtes.Add("title","Rut sin puntos Ej: 12345678-9");
+            htmlAtributtes.Add("title", "Rut sin puntos Ej: 12345678-9");
             if (soloLectura)
             {
                 htmlAtributtes.Add("readonly", "readonly");
@@ -242,23 +244,49 @@ namespace Helpers
 
         public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember, string seleccionado)
         {
-            return GetSelectCampos<T>(listaDeCampos, valueMember, displayMember, seleccionado,null);
+            return GetSelectCampos<T>(listaDeCampos, valueMember, displayMember, seleccionado, null);
         }
 
         public static List<SelectListItem> GetSelectCampos<T>(this IList<T> listaDeCampos, string valueMember, string displayMember, string seleccionado, string formatDisplay)
         {
             List<SelectListItem> lista = new List<SelectListItem>();
             lista.Add(new SelectListItem() { Text = "Seleccione...", Value = "-1" });
+
+            string[] displayMembers = null;
+            if (displayMember.Contains(","))
+            {
+                displayMembers = displayMember.Split(',');
+            }
+
             foreach (T campo in listaDeCampos)
             {
+
                 var valor = campo.GetType().GetProperty(valueMember).GetValue(campo, null).ToString();
-                var display = campo.GetType().GetProperty(displayMember).GetValue(campo, null).ToString();
-                if (formatDisplay != null)
+
+                string display = "";
+                if (displayMembers != null)
                 {
-                    display = string.Format(formatDisplay, display);
+                    foreach (var item in displayMembers)
+                    {
+                        var d = campo.GetType().GetProperty(item).GetValue(campo, null).ToString();
+                        if (formatDisplay != null)
+                        {
+                            d = string.Format(formatDisplay, d);
+                        }
+                        display += d + " ";
+                    }
+                    
                 }
-
-
+                else
+                {
+                    display = campo.GetType().GetProperty(displayMember).GetValue(campo, null).ToString();
+                    if (formatDisplay != null)
+                    {
+                        display = string.Format(formatDisplay, display);
+                    }
+                }
+                
+                
                 if (seleccionado != null && valor.ToString() == seleccionado)
                 {
                     lista.Add(new SelectListItem() { Text = display.ToString(), Value = valor.ToString(), Selected = true });
@@ -318,15 +346,15 @@ namespace Helpers
                 return (RutDigito);
             }
 
-              /*      <a href="<%=Url.Action("Crear") %>" 
-               * class="fg-button ui-state-default fg-button-icon-left ui-corner-all" >
-        <span class="ui-icon ui-icon-circle-plus"></span>Crear Nuevo
-        </a>*/
+            /*      <a href="<%=Url.Action("Crear") %>" 
+             * class="fg-button ui-state-default fg-button-icon-left ui-corner-all" >
+      <span class="ui-icon ui-icon-circle-plus"></span>Crear Nuevo
+      </a>*/
 
         }
 
 
-        
+
 
     }
 

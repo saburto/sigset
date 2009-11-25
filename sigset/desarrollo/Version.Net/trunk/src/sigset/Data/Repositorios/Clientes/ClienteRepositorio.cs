@@ -191,7 +191,7 @@ namespace Data.Repositorios.Clientes
 
         public IQueryable<Cliente> GetClientes()
         {
-            return _ent.Clientes;
+            return _ent.Clientes.OrderByDescending(x => x.Id); ;
         }
 
     
