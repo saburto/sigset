@@ -1,6 +1,6 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Data.Modelo.Tecnico>>" %>
 
-  <div id="tecnicos" title="Tecnicos">
+  <div id="tecnicos" title="Técnicos">
         
         <%foreach(var tecnico in Model){ %>
         
