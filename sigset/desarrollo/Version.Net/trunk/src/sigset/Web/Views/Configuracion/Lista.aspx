@@ -61,7 +61,7 @@
                     <%if (Services.Configuraciones.Configuracion.EsConfiguracionBoolean(item.Id))
                       { %>
                       <%=Html.CheckBox("Valor" + item.Id, item.Valor.Contains("true"), new { title="Activar/Desactivar opción de configuración" })%>
-                    <%}else if(Services.Configuraciones.Configuracion.EsConfiguracionNumerico(item.Id)) {%>s
+                    <%}else if(Services.Configuraciones.Configuracion.EsConfiguracionNumerico(item.Id)) {%>
                     <%=Html.TextBox("Valor" + item.Id, item.Valor, new { @class = "required digits", title="Editar valor de tipo númerico" })%>  
                       <%}else
                       {%>
