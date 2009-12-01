@@ -3,7 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Lista de Clientes
 </asp:Content>
-
+<asp:Content ID="Content5" ContentPlaceHolderID="divContentStyle" runat="server">
+    <%=Html.ImagenFondo("icons","Buddy%20Group.png") %>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Clientes</h2>

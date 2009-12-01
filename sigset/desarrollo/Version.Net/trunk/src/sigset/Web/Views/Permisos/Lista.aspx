@@ -45,6 +45,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="divContentStyle" runat="server">
+    <%=Html.ImagenFondo("icons", "Keys.png")%>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="MenuDerecha" runat="server">
