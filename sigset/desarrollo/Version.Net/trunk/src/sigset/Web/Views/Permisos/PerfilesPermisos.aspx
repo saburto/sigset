@@ -86,3 +86,6 @@
 
 
 
+<asp:Content ID="Content4" ContentPlaceHolderID="divContentStyle" runat="server">
+    <%=Html.ImagenFondo("icons", "Lock.png")%>
+</asp:Content>

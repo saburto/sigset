@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Orden de Trabajo
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="divContentStyle" runat="server">
+    <%=Html.ImagenFondo("icons","Document%20Edit.png") %>
+</asp:Content> 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
