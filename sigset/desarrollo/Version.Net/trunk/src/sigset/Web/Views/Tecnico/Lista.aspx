@@ -157,7 +157,7 @@
     
     <% } %>
     </table>
-    
+    <%=Html.Paginador() %>
     <div id="resultado"  style="display:none" title="Especialidades"></div>
 </asp:Content>
 

@@ -50,6 +50,7 @@
        } %>
 
     </table>
+    <%= Html.Paginador() %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuDerecha" runat="server">

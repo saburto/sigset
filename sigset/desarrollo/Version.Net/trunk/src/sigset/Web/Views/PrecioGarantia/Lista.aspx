@@ -74,6 +74,7 @@
     
     <% } %>
     </table>
+    <%=Html.Paginador() %>
     <p>
         <%=Html.ButtonLinkIcon("#","Nueva Precio Garantia", Iconos.circle_plus, IconPosition.left, new{title="Agregar nuevo precio garantía", onclick="abrirNuevo()"}) %>
     

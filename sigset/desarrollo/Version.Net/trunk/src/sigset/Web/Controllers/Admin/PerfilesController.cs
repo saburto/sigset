@@ -10,6 +10,7 @@ using Services.TipoCargo;
 using xVal.ServerSide;
 using Web.Helpers;
 using Web.Seguridad;
+using Helpers;
 
 namespace Web.Controllers
 {
@@ -32,10 +33,22 @@ namespace Web.Controllers
         }
 
         [Authorize(Roles = "usuarios_perfiles")]
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
+            List<Data.Modelo.Perfil> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
             var tipo_cargo = _servicio.GetTodosLosTiposCargo();
-            return View(tipo_cargo);
+            int total = tipo_cargo.Count;
+            modelo = tipo_cargo.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+
+            return View("Lista", modelo);
+            
         }
 
         public ActionResult Editar(int id)

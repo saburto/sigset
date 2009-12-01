@@ -35,10 +35,21 @@ namespace Web.Controllers.Admin
         }
 
         [Authorize(Roles="usuarios_listar")]
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
+            IList<Usuario> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
             var usuarios = _servicio.GetTodosLosUsuario();
-            return View(usuarios);
+            int total = usuarios.Count;
+            modelo = usuarios.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+
+            return View("Lista", modelo);
         }
 
         [Authorize(Roles = "usuarios_listar")]

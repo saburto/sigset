@@ -10,6 +10,7 @@ using xVal.ServerSide;
 using Services.Clientes;
 using Web.Helpers;
 using Web.Seguridad;
+using Helpers;
 
 
 namespace Web.Controllers
@@ -33,10 +34,20 @@ namespace Web.Controllers
 
 
         [Authorize(Roles = "clientes_listar")]
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
-            var clientes = _serv.GetClientes();
-            return View(clientes);
+            List<Data.Modelo.Cliente> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
+            var lista = _serv.GetClientes();
+            int total = lista.Count;
+            modelo = lista.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+            return View("Lista", modelo);
         }
 
         

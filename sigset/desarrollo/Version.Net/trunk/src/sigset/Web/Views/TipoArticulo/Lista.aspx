@@ -58,6 +58,9 @@
     
     <% } %>
     </table>
+    
+    <%=Html.Paginador() %>
+    
     <p>
         <%=Html.ButtonLinkIcon("#","Nueva Tipo Artículo", Iconos.circle_plus, IconPosition.left, new{title="Agregar nuevo tipo de artículo", onclick="abrirNuevo()"}) %>
     

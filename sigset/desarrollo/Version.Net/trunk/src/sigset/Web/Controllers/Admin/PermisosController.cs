@@ -29,9 +29,22 @@ namespace Web.Controllers.Admin
             return View(usuario);
         }
 
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
-            return View(servAut.GetPermisos());
+            List<Data.Modelo.Permiso> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
+            var lista = servAut.GetPermisos();
+            int total = lista.Count;
+            modelo = lista.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+
+            return View("Lista", modelo);
+            
         }
 
         public ActionResult Crear()

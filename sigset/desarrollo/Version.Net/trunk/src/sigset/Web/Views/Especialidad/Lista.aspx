@@ -58,6 +58,7 @@
     
     <% } %>
     </table>
+    <%=Html.Paginador() %>
     <p>
         <%=Html.ButtonLinkIcon("#","Nueva Especialidad", Iconos.circle_plus, IconPosition.left, new{title="Agregar nueva especialidad", onclick="abrirNuevo()"}) %>
     

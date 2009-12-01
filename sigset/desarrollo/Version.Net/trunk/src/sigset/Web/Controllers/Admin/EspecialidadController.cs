@@ -28,10 +28,21 @@ namespace Web.Controllers.Admin
             _srvTecnicos = srvTecnico ?? new TecnicoServicio();
         }
 
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
-            
-            return View("Lista",_srvTecnicos.GetTodasEspecialidades());
+            List<Data.Modelo.TipoEspecialidad> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
+            var tipo_cargo = _srvTecnicos.GetTodasEspecialidades();
+            int total = tipo_cargo.Count;
+            modelo = tipo_cargo.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+
+            return View("Lista", modelo);
         }
 
 
@@ -45,7 +56,7 @@ namespace Web.Controllers.Admin
             catch (Exception ex)
             {
                 ModelState.AddModelError("_FORM", ex.Message);
-                return Lista();
+                return Lista(null);
             }
             
             
@@ -66,7 +77,7 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                return Lista();
+                return Lista(null);
             }
             
         }

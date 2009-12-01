@@ -11,7 +11,7 @@
     <RootNamespace>Web</RootNamespace>
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -108,6 +108,7 @@
     <Compile Include="Helpers\JQueryHelper.cs" />
     <Compile Include="Helpers\JsonAutoComplete.cs" />
     <Compile Include="Helpers\ModelStateHelper.cs" />
+    <Compile Include="Helpers\Paginador.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="LogFilter\LogFilter.cs" />
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />

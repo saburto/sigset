@@ -31,10 +31,21 @@ namespace Web.Controllers.Admin
             _servicio = ser;
         }
 
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
+            List<Data.Modelo.Tecnico> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
             var tecnicos = _servicio.GetTodosLosTecnicos();
-            return View(tecnicos);
+            int total = tecnicos.Count;
+            modelo = tecnicos.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+
+            return View("Lista", modelo);
         }
 
         public ActionResult Detalles(int id)
