@@ -91,6 +91,7 @@
     
     <% } %>
     </table>
+    <%=Html.Paginador() %>
     <p>
         <%=Html.ButtonLinkIcon("#","Nueva Categoría", Iconos.circle_plus, IconPosition.left, new{title="Agregar nueva categoría", onclick="abrirNuevo()"}) %>
     

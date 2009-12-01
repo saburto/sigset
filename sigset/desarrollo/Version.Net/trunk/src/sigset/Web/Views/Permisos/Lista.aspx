@@ -38,6 +38,7 @@
             <% alter = !alter;
            } %>
     </table>
+    <%= Html.Paginador() %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">

@@ -29,10 +29,21 @@ namespace Web.Controllers.Admin
             _srvArt = srvArt ?? new ArticuloServicio();
         }
 
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
-            
-            return View("Lista", _srvArt.GetPrecios());
+            List<Data.Modelo.PrecioGarantia> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
+            var lista = _srvArt.GetPrecios();
+            int total = lista.Count;
+            modelo = lista.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
+
+            return View("Lista", modelo);
         }
 
 
@@ -46,7 +57,7 @@ namespace Web.Controllers.Admin
             catch (Exception ex)
             {
                 ModelState.AddModelError("_FORM", ex.Message);
-                return Lista();
+                return Lista(null);
             }
             
             
@@ -68,7 +79,7 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                return Lista();
+                return Lista(null);
             }
             
         }

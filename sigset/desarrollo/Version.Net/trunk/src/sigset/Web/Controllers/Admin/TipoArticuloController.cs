@@ -10,6 +10,7 @@ using Web.Helpers;
 using Helpers;
 using Services.Articulos;
 
+
 namespace Web.Controllers.Admin
 {
     [Seguridad.ManejadorErrores]
@@ -29,10 +30,22 @@ namespace Web.Controllers.Admin
             _srvArt = srvArt ?? new ArticuloServicio();
         }
 
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
+            List<Data.Modelo.TipoArticulo> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
+            var articulos = _srvArt.GetTiposArticulos();
+            int total = articulos.Count;
+            modelo = articulos.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value  };
+
+            return View("Lista", modelo);
             
-            return View("Lista", _srvArt.GetTiposArticulos());
         }
 
 
@@ -46,7 +59,7 @@ namespace Web.Controllers.Admin
             catch (Exception ex)
             {
                 ModelState.AddModelError("_FORM", ex.Message);
-                return Lista();
+                return Lista(null);
             }
             
             
@@ -67,7 +80,7 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                return Lista();
+                return Lista(null);
             }
             
         }

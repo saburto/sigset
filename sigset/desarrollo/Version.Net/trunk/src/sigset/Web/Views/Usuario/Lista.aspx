@@ -18,7 +18,7 @@
     <%}%>
 
     <% Html.RenderPartial("ListaUsuario", Model); %>
-
+    <%=Html.Paginador() %>
 
     <p>
         <%=Html.ButtonLinkIcon(Url.Action("Crear"),"Crear Nuevo",Iconos.circle_plus) %>

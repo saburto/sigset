@@ -31,10 +31,21 @@ namespace Web.Controllers.Admin
             _srvTecnico = srvTecnico ?? new TecnicoServicio();
         }
 
-        public ActionResult Lista()
+        public ActionResult Lista(int? index)
         {
+            List<Data.Modelo.Categoria> modelo = null;
+            if (!index.HasValue)
+            {
+                index = 0;
+            }
+
+            var lista = _srvArt.GetCategorias();
+            int total = lista.Count;
+            modelo = lista.Skip(index.Value * 10).Take(10).ToList();
+
+            ViewData["Paginado"] = new Paginador() { Total = total, IndexPaginaActual = index.Value };
             ViewData["TipoEspcialidad"] = _srvTecnico.GetTodosLosTiposDeEspecialidad().GetSelectCampos("IdTipoEspecialidad", "Descripcion");
-            return View("Lista", _srvArt.GetCategorias());
+            return View("Lista", modelo);
         }
 
 
@@ -48,7 +59,7 @@ namespace Web.Controllers.Admin
             catch (Exception ex)
             {
                 ModelState.AddModelError("_FORM", ex.Message);
-                return Lista();
+                return Lista(null);
             }
             
             
@@ -70,7 +81,7 @@ namespace Web.Controllers.Admin
             catch (RulesException e)
             {
                 ModelState.AddRuleErrors(e.Errors);
-                return Lista();
+                return Lista(null);
             }
             
         }

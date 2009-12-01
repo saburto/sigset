@@ -75,7 +75,7 @@
     
     <% } %>      
     </table>
-
+    <%=Html.Paginador() %>
     <p>
         <%=Html.ButtonLinkIcon(Url.Action("Crear"), "Nuevo Cliente", Iconos.circle_plus, IconPosition.left, new {title="Agregar Nuevo Cliente" })%>
     </p>

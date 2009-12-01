@@ -17,11 +17,20 @@ namespace Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                "Paginado",                                              // Route name
+                "{controller}/Lista/{index}",                           // URL with parameters
+                new { controller = "Home", action = "Lista", index = 0 }  // Parameter defaults
+            );
+            
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
+
+            
         }
 
         protected void Application_Start()
