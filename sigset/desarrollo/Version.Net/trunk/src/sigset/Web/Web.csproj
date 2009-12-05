@@ -90,12 +90,18 @@
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\AreaTecnica\AreaTecnicaController.cs" />
     <Compile Include="Controllers\Cliente\ClienteController.cs" />
+    <Compile Include="Controllers\Reportes\ReportesController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\ArticuloController.cs" />
     <Compile Include="Controllers\OrdenTrabajo\OrdenTrabajoController.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DateSetInformes\OrdenesTecnicos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrdenesTecnicos.xsd</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AutoCompleteHelper.cs" />
     <Compile Include="Helpers\CamposHelper.cs" />
@@ -111,6 +117,13 @@
     <Compile Include="Helpers\Paginador.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="LogFilter\LogFilter.cs" />
+    <Compile Include="Reportes\OrdenesPorTecnico.aspx.cs">
+      <DependentUpon>OrdenesPorTecnico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\OrdenesPorTecnico.aspx.designer.cs">
+      <DependentUpon>OrdenesPorTecnico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\FormsAuthenticationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Seguridad\IFormsAuthenticationService.cs" />
@@ -346,6 +359,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reportes\OrdenesPorTecnico.aspx" />
     <Content Include="Reportes\OrdenTrabajo.rdlc" />
     <Content Include="Views\AreaTecnica\ListaReparadas.aspx" />
     <Content Include="Views\Articulo\Editar.aspx" />
@@ -356,6 +370,8 @@
     <Content Include="Views\OrdenTrabajo\AgregarDetalle.ascx" />
     <Content Include="Views\PrecioGarantia\Crear.ascx" />
     <Content Include="Views\PrecioGarantia\Lista.aspx" />
+    <Content Include="Views\Reportes\ReporteTecnicosOrden.ascx" />
+    <Content Include="Views\Reportes\TecnicosOrdenes.aspx" />
     <Content Include="Views\TipoArticulo\Crear.ascx" />
     <Content Include="Views\TipoArticulo\Lista.aspx" />
     <Content Include="Views\Usuario\Buscar.aspx" />
@@ -373,6 +389,20 @@
     <None Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
+    <None Include="DateSetInformes\OrdenesTecnicos.xsc">
+      <DependentUpon>OrdenesTecnicos.xsd</DependentUpon>
+    </None>
+    <None Include="DateSetInformes\OrdenesTecnicos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrdenesTecnicos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DateSetInformes\OrdenesTecnicos.xss">
+      <DependentUpon>OrdenesTecnicos.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\OrdenesTecnicos.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
