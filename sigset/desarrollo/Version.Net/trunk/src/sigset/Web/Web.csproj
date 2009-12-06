@@ -370,6 +370,7 @@
     <Content Include="Views\OrdenTrabajo\AgregarDetalle.ascx" />
     <Content Include="Views\PrecioGarantia\Crear.ascx" />
     <Content Include="Views\PrecioGarantia\Lista.aspx" />
+    <Content Include="Views\Reportes\Index.aspx" />
     <Content Include="Views\Reportes\ReporteTecnicosOrden.ascx" />
     <Content Include="Views\Reportes\TecnicosOrdenes.aspx" />
     <Content Include="Views\TipoArticulo\Crear.ascx" />
@@ -400,6 +401,7 @@
     <None Include="DateSetInformes\OrdenesTecnicos.xss">
       <DependentUpon>OrdenesTecnicos.xsd</DependentUpon>
     </None>
+    <Content Include="Views\Reportes\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reportes\OrdenesTecnicos.rdlc" />
