@@ -16,8 +16,9 @@ namespace Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("Reserved.ReportViewerWebControl.axd/{*pathInfo}");
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+        
             routes.MapRoute(
                 "Paginado",                                              // Route name
                 "{controller}/Lista/{index}",                           // URL with parameters
