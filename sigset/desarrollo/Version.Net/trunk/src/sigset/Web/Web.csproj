@@ -404,7 +404,7 @@
     <Content Include="Views\Reportes\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reportes\OrdenesTecnicos.rdlc" />
+    <Content Include="Reportes\OrdenesTecnicos.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

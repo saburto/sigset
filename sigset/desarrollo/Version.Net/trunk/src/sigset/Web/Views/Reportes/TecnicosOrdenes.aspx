@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Listar
+    Reporte de ordenes por técnico
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -72,7 +72,7 @@
         <br />
         <br />
     </fieldset>
-    <%=Html.ButtonSubmit("Listar", new { id = "submitLista" })%>
+    <%=Html.ButtonSubmit("Generar Informe", new { id = "submitLista" })%>
     <%} %>
     <br />
     <div id="resultados">
