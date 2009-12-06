@@ -5,6 +5,7 @@
      <mvcSiteMapNode title="Administración" controller="Admin" action="Index" />
      <mvcSiteMapNode title="Área Técnica" controller="AreaTecnica" action="Index" />
      <mvcSiteMapNode title="Administrativos" controller="Administrativos" action="Index" />
+     <mvcSiteMapNode title="Informes" controller="Reportes" action="Inicio" />
      <mvcSiteMapNode title="Acerca de" controller="Home" action="About" />
  </mvcSiteMapNode>
 </siteMap>

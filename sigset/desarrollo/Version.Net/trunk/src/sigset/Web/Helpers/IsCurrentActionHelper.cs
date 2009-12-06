@@ -57,6 +57,7 @@ namespace Helpers
             hijos = new List<string>();
             hijos.Add("OrdenesTrabajo");
             controllerHijos.Add("Administrativos", hijos);
+            controllerHijos.Add("Reportes", null);
             
         }
 

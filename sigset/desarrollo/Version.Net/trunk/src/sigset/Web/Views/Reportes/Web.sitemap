@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-1.0" enableLocalization="true">
+  <!-- Este primer nodo apunto al inicio, este es el nodo root o raiz y no lo ocupamos, asi que lo dejas asi nomas -->
+  <mvcSiteMapNode title="Inicio" controller="Home" action="Index" isDynamic="true" dynamicParameters="*">
+    <!--Ningun , pero ningun link se debe repetir, es decir ningun action y controller, osea, pueden
+      puedena habepr varios action que tienen el mismo controller, pero no pueden haber dos action para un controller
+      
+    -->
+     
+
+    <mvcSiteMapNode title="Informes" controller="Reportes" action="">
+      <mvcSiteMapNode title="Ordenes de Técnicos" controller="Reportes" action="TecnicosOrdenes" />
+    </mvcSiteMapNode>
+
+  </mvcSiteMapNode>
+</siteMap>
