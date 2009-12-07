@@ -21,6 +21,78 @@ namespace Data.Modelo
             return null;
         }
 
+        public bool AsignadoTecnico()
+        {
+            try
+            {
+                EstadoOrden estado = (EstadoOrden)Enum.Parse(typeof(EstadoOrden), IdEstadoActual().ToString());
+                switch (estado)
+                {
+                    case EstadoOrden.Ingresado:
+                        return false;
+                    case EstadoOrden.Asignado:
+                        return true;
+                    case EstadoOrden.EnRevisión:
+                        return true;
+                    case EstadoOrden.EnReparación:
+                        return true;
+                    case EstadoOrden.Reparado:
+                        return false;
+                    case EstadoOrden.Entregado:
+                        return false;
+                    case EstadoOrden.Pendiente:
+                        return true;
+                    case EstadoOrden.SinGarantia:
+                        return false;
+                    case EstadoOrden.Anulado:
+                        return false;
+                    default:
+                        return false;
+                        break;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ReparadoTecnico()
+        {
+            try
+            {
+                EstadoOrden estado = (EstadoOrden)Enum.Parse(typeof(EstadoOrden), IdEstadoActual().ToString());
+                switch (estado)
+                {
+                    case EstadoOrden.Ingresado:
+                        return false;
+                    case EstadoOrden.Asignado:
+                        return false;
+                    case EstadoOrden.EnRevisión:
+                        return false;
+                    case EstadoOrden.EnReparación:
+                        return false;
+                    case EstadoOrden.Reparado:
+                        return true;
+                    case EstadoOrden.Entregado:
+                        return true;
+                    case EstadoOrden.Pendiente:
+                        return false;
+                    case EstadoOrden.SinGarantia:
+                        return false;
+                    case EstadoOrden.Anulado:
+                        return false;
+                    default:
+                        return false;
+                        break;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public decimal IdEstadoActual()
         {
             var ultimoDetalle = this.Detalles.OrderByDescending(x => x.FechaCreacion).FirstOrDefault();

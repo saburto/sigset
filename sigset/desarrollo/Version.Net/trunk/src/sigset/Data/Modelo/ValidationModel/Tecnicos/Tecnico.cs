@@ -62,7 +62,7 @@ namespace Data.Modelo
 
         public IEnumerable<OrdenTrabajo> GetOrdenesReparados()
         {
-            return this.GetOrdenesPorEstado(EstadoOrden.Reparado);
+            return this.OrdenTrabajos.Where(x => x.ReparadoTecnico());
         }
         
     }
