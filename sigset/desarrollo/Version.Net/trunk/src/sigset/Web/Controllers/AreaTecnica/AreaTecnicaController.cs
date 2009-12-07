@@ -69,7 +69,7 @@ namespace Web.Controllers.AreaTecnica
                     if (tecnico != null)
                     {
                         var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id);
-                        listaOrdenes = listaOrdenes.Where(x => x.EstadoActual().IdEstado != (int)EstadoOrden.Reparado).ToList();
+                        listaOrdenes = listaOrdenes.Where(x => x.AsignadoTecnico()).ToList();
                         return View("Lista",listaOrdenes);
                     }
                     
@@ -91,7 +91,7 @@ namespace Web.Controllers.AreaTecnica
 
                     if (tecnico != null)
                     {
-                        var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id).Where(x=> x.EstadoActual().IdEstado == (int) EstadoOrden.Reparado);
+                        var listaOrdenes = _srvOr.GetOrdenesTrabajoByTecnico(tecnico.Id).Where(x=> x.ReparadoTecnico());
                         return View("ListaReparadas", listaOrdenes);
                     }
 
