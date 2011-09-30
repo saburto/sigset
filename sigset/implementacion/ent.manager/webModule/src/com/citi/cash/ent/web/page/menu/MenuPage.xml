@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:wicket="http://wicket.apache.org/">
+    <pageTitle wicket:id="titleApp" alternateImage="" alternateText="" href="/"/>
+    <!--businessLogo imageName="" alternateText="test" url="" /-->
+
+    <navigation>
+        <menuItem wicket:id="menuItem" name="" link="">
+            <subItem wicket:id="subMenuItem" link="" name=""/>
+        </menuItem>
+    </navigation>
+
+    <footer>
+        <contactUs url="mailto:"/>
+        <siteMap url="#"/>
+    </footer>
+</config>
