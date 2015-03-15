@@ -1,0 +1,11 @@
+# Entregables #
+
+
+1.- Manual de Pruebas
+> - Casos de Prueba(Documentado por modulo)
+2.- Manual de Sistemas
+> - Casos de uso. Con diagramas UML y ficha Tecnica
+3.- Proyecto Funcional
+> a - Interfaz-presentacion
+> b - Funcionalidad
+> c - Reportes
